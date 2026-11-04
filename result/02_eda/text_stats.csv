@@ -1,0 +1,5 @@
+,char_len,char_len,char_len,char_len,char_len,char_len,char_len,char_len,word_count,word_count,word_count,word_count,word_count,word_count,word_count,word_count
+,count,mean,std,min,25%,50%,75%,max,count,mean,std,min,25%,50%,75%,max
+label,,,,,,,,,,,,,,,,
+AI,125754.0,2074.846072490736,764.5691919418539,5.0,1608.0,1999.0,2421.75,8645.0,125754.0,340.5434419581087,113.96352575169512,1.0,272.0,334.0,398.0,1222.0
+Human,199237.0,2302.9267656108054,1066.1371041913094,76.0,1501.0,2106.0,2858.0,9030.0,199237.0,419.0032172738999,187.5957280299781,14.0,277.0,386.0,518.0,1656.0
