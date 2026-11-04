@@ -1,0 +1,29 @@
+{
+  "source": "https://huggingface.co/datasets/andythetechnerd03/AI-human-text",
+  "note": "Processed public mirror of shanegerami/ai-vs-human-text. Not a byte copy of the Kaggle CSV.",
+  "rows_written": 487235,
+  "csv_sha256": "c071410a0419b41ce401d01c78b6b893bd715546fb6e6602e28b34f4d98d80f6",
+  "csv_bytes": 1080371274,
+  "parquet": [
+    {
+      "name": "test-00000-of-00001.parquet",
+      "sha256": "3a465bec1d49c3a37dca52393aa4cd43085de6da8ba991505a7b3f3034583b69",
+      "bytes": 28514374
+    },
+    {
+      "name": "train-00000-of-00003.parquet",
+      "sha256": "5cb79a7456b391f083057f5e7d9b94ba1cb3319ea4fd3879e5aa98e7e0d970fe",
+      "bytes": 181213893
+    },
+    {
+      "name": "train-00001-of-00003.parquet",
+      "sha256": "c364fa979696960e8563336ef0e9607105703637286a597fb66071a5cb6ee7b2",
+      "bytes": 180571060
+    },
+    {
+      "name": "train-00002-of-00003.parquet",
+      "sha256": "f26bb4278c895a8719127d93f5c4373da07b392d9cdcd938b6913ab5443a7e96",
+      "bytes": 180580348
+    }
+  ]
+}
