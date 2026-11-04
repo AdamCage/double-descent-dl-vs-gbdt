@@ -6,6 +6,7 @@ from functools import lru_cache
 from pathlib import Path
 from typing import List
 
+from pydantic import SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -28,13 +29,15 @@ class Settings(BaseSettings):
     VAL_RATIO: float = 0.15
     TEST_RATIO: float = 0.15
 
-    # Embeddings
-    EMBEDDING_BACKEND: str = "ollama"
-    OLLAMA_URL: str = "http://localhost:11434"
+    # Embeddings. The corpus path is RouterAI Qwen; s03 refuses any other backend.
+    EMBEDDING_BACKEND: str = "routerai"
+    OLLAMA_URL: str = "http://127.0.0.1:11434"
     VLLM_URL: str = "http://localhost:8000"
-    EMBEDDING_MODEL: str = "embeddinggemma:latest"
-    EMBEDDING_BATCH_SIZE: int = 64
-    EMBEDDING_MAX_CONCURRENT: int = 16
+    ROUTERAI_BASE_URL: str = "https://routerai.ru/api/v1"
+    ROUTERAI_API_KEY: SecretStr = SecretStr("")
+    EMBEDDING_MODEL: str = "qwen/qwen3-embedding-8b"
+    EMBEDDING_BATCH_SIZE: int = 32
+    EMBEDDING_MAX_CONCURRENT: int = 4
 
     # DNN
     DNN_WIDTHS: str = "8,16,32,64,128,256,512,1024,2048,4096"
