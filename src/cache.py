@@ -16,7 +16,21 @@ def _stable_hash(*parts: Any) -> str:
 
 
 def compute_hash(**kw: Any) -> str:
+    # Формула ниже заморожена: s03 пишет её в partial_meta.json живого прогона.
     return _stable_hash(*sorted(kw.items()))
+
+
+def sha256_file(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1 << 20), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def code_digest(path: Path) -> str:
+    """Короткий хеш исходника этапа. В ключ s03 не входит."""
+    return sha256_file(path)[:16]
 
 
 def is_cached(stage_dir: Path, expected_hash: str) -> bool:

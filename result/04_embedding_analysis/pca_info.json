@@ -1,0 +1,12 @@
+{
+  "n_components_fitted": 256,
+  "explained_variance_total": 0.8628636002540588,
+  "explained_variance_at_128": 0.7904130220413208,
+  "explained_variance_at_256": 0.8628636002540588,
+  "variance_target": 0.95,
+  "search_components": 256,
+  "final_dims": 4096,
+  "variance_at_choice": 0.8628636002540588,
+  "rule": "variance_target_not_met_within_cap",
+  "umap_plot_rows": 20000
+}
