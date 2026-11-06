@@ -1,0 +1,489 @@
+2026-11-04 17:39:20 | INFO     | pipeline | Pipeline started  mode=full  seed=42
+2026-11-04 17:39:26 | INFO     | pipeline | === 01 Data loading ===
+2026-11-04 17:39:26 | INFO     | pipeline | Reading local CSV: data\AI_Human.csv
+2026-11-04 17:39:38 | INFO     | pipeline | Preprocessing: 487235 -> 464274 rows
+2026-11-04 17:39:39 | INFO     | pipeline |   train: 324991 rows  (pos=38.7%)
+2026-11-04 17:39:39 | INFO     | pipeline |   val: 69641 rows  (pos=38.7%)
+2026-11-04 17:39:39 | INFO     | pipeline |   test: 69642 rows  (pos=38.7%)
+2026-11-04 17:39:41 | INFO     | pipeline | Stage 01 artifacts saved to result\01_data
+2026-11-04 17:39:41 | INFO     | pipeline | Stage s01 finished in 15.0s
+2026-11-04 17:39:41 | INFO     | pipeline | === 02 EDA ===
+2026-11-04 17:39:41 | INFO     | pipeline | Generating EDA charts ...
+2026-11-04 17:40:10 | INFO     | pipeline | Stage 02 artifacts saved to result\02_eda
+2026-11-04 17:40:10 | INFO     | pipeline | Stage s02 finished in 29.0s
+2026-11-04 17:40:10 | INFO     | pipeline | === 03 Embeddings ===
+2026-11-04 17:40:10 | INFO     | pipeline | Extracting embeddings: backend=ollama  model=embeddinggemma:latest  texts=464274
+2026-11-04 17:48:52 | INFO     | pipeline | Pipeline started  mode=full  seed=42
+2026-11-04 17:48:54 | INFO     | pipeline | === 01 Data loading ===
+2026-11-04 17:48:54 | INFO     | pipeline | Stage 01 cached — loading splits from parquet
+2026-11-04 17:48:55 | INFO     | pipeline | Stage s01 finished in 1.0s
+2026-11-04 17:48:55 | INFO     | pipeline | === 02 EDA ===
+2026-11-04 17:48:55 | INFO     | pipeline | Stage 02 cached — skipping
+2026-11-04 17:48:55 | INFO     | pipeline | Stage s02 finished in 0.0s
+2026-11-04 17:48:55 | INFO     | pipeline | === 03 Embeddings ===
+2026-11-04 17:48:56 | INFO     | pipeline | Extracting embeddings: backend=ollama  model=embeddinggemma:latest  texts=464274
+2026-11-04 17:50:46 | INFO     | pipeline | Embedding progress: 200/14509 batches
+2026-11-04 17:52:37 | INFO     | pipeline | Embedding progress: 400/14509 batches
+2026-11-04 17:54:28 | INFO     | pipeline | Embedding progress: 600/14509 batches
+2026-11-04 17:56:17 | INFO     | pipeline | Embedding progress: 800/14509 batches
+2026-11-04 17:58:06 | INFO     | pipeline | Embedding progress: 1000/14509 batches
+2026-11-04 17:59:55 | INFO     | pipeline | Embedding progress: 1200/14509 batches
+2026-11-04 18:01:44 | INFO     | pipeline | Embedding progress: 1400/14509 batches
+2026-11-04 18:03:21 | INFO     | pipeline | Embedding progress: 1600/14509 batches
+2026-11-04 18:04:29 | INFO     | pipeline | Embedding progress: 1800/14509 batches
+2026-11-04 18:06:18 | INFO     | pipeline | Embedding progress: 2000/14509 batches
+2026-11-04 18:08:07 | INFO     | pipeline | Embedding progress: 2200/14509 batches
+2026-11-04 18:09:55 | INFO     | pipeline | Embedding progress: 2400/14509 batches
+2026-11-04 18:11:44 | INFO     | pipeline | Embedding progress: 2600/14509 batches
+2026-11-04 18:13:33 | INFO     | pipeline | Embedding progress: 2800/14509 batches
+2026-11-04 18:15:21 | INFO     | pipeline | Embedding progress: 3000/14509 batches
+2026-11-04 18:17:11 | INFO     | pipeline | Embedding progress: 3200/14509 batches
+2026-11-04 18:18:59 | INFO     | pipeline | Embedding progress: 3400/14509 batches
+2026-11-04 18:20:49 | INFO     | pipeline | Embedding progress: 3600/14509 batches
+2026-11-04 18:22:38 | INFO     | pipeline | Embedding progress: 3800/14509 batches
+2026-11-04 18:24:28 | INFO     | pipeline | Embedding progress: 4000/14509 batches
+2026-11-04 18:26:17 | INFO     | pipeline | Embedding progress: 4200/14509 batches
+2026-11-04 18:28:06 | INFO     | pipeline | Embedding progress: 4400/14509 batches
+2026-11-04 18:29:55 | INFO     | pipeline | Embedding progress: 4600/14509 batches
+2026-11-04 18:31:44 | INFO     | pipeline | Embedding progress: 4800/14509 batches
+2026-11-04 18:33:34 | INFO     | pipeline | Embedding progress: 5000/14509 batches
+2026-11-04 18:35:24 | INFO     | pipeline | Embedding progress: 5200/14509 batches
+2026-11-04 18:37:12 | INFO     | pipeline | Embedding progress: 5400/14509 batches
+2026-11-04 18:38:40 | INFO     | pipeline | Embedding progress: 5600/14509 batches
+2026-11-04 18:39:57 | INFO     | pipeline | Embedding progress: 5800/14509 batches
+2026-11-04 18:41:54 | INFO     | pipeline | Embedding progress: 6000/14509 batches
+2026-11-04 18:43:53 | INFO     | pipeline | Embedding progress: 6200/14509 batches
+2026-11-04 18:45:52 | INFO     | pipeline | Embedding progress: 6400/14509 batches
+2026-11-04 18:47:49 | INFO     | pipeline | Embedding progress: 6600/14509 batches
+2026-11-04 18:49:46 | INFO     | pipeline | Embedding progress: 6800/14509 batches
+2026-11-04 18:51:44 | INFO     | pipeline | Embedding progress: 7000/14509 batches
+2026-11-04 18:53:42 | INFO     | pipeline | Embedding progress: 7200/14509 batches
+2026-11-04 18:55:39 | INFO     | pipeline | Embedding progress: 7400/14509 batches
+2026-11-04 18:57:37 | INFO     | pipeline | Embedding progress: 7600/14509 batches
+2026-11-04 18:59:34 | INFO     | pipeline | Embedding progress: 7800/14509 batches
+2026-11-04 19:01:31 | INFO     | pipeline | Embedding progress: 8000/14509 batches
+2026-11-04 19:03:29 | INFO     | pipeline | Embedding progress: 8200/14509 batches
+2026-11-04 19:05:26 | INFO     | pipeline | Embedding progress: 8400/14509 batches
+2026-11-04 19:07:23 | INFO     | pipeline | Embedding progress: 8600/14509 batches
+2026-11-04 19:09:10 | INFO     | pipeline | Embedding progress: 8800/14509 batches
+2026-11-04 19:10:17 | INFO     | pipeline | Embedding progress: 9000/14509 batches
+2026-11-04 19:12:14 | INFO     | pipeline | Embedding progress: 9200/14509 batches
+2026-11-04 19:14:12 | INFO     | pipeline | Embedding progress: 9400/14509 batches
+2026-11-04 19:16:11 | INFO     | pipeline | Embedding progress: 9600/14509 batches
+2026-11-04 19:18:09 | INFO     | pipeline | Embedding progress: 9800/14509 batches
+2026-11-04 19:20:06 | INFO     | pipeline | Embedding progress: 10000/14509 batches
+2026-11-04 19:22:03 | INFO     | pipeline | Embedding progress: 10200/14509 batches
+2026-11-04 19:24:01 | INFO     | pipeline | Embedding progress: 10400/14509 batches
+2026-11-04 19:25:58 | INFO     | pipeline | Embedding progress: 10600/14509 batches
+2026-11-04 19:27:55 | INFO     | pipeline | Embedding progress: 10800/14509 batches
+2026-11-04 19:29:53 | INFO     | pipeline | Embedding progress: 11000/14509 batches
+2026-11-04 19:31:50 | INFO     | pipeline | Embedding progress: 11200/14509 batches
+2026-11-04 19:33:47 | INFO     | pipeline | Embedding progress: 11400/14509 batches
+2026-11-04 19:35:44 | INFO     | pipeline | Embedding progress: 11600/14509 batches
+2026-11-04 19:37:41 | INFO     | pipeline | Embedding progress: 11800/14509 batches
+2026-11-04 19:39:28 | INFO     | pipeline | Embedding progress: 12000/14509 batches
+2026-11-04 19:40:40 | INFO     | pipeline | Embedding progress: 12200/14509 batches
+2026-11-04 19:42:30 | INFO     | pipeline | Embedding progress: 12400/14509 batches
+2026-11-04 19:44:19 | INFO     | pipeline | Embedding progress: 12600/14509 batches
+2026-11-04 19:46:09 | INFO     | pipeline | Embedding progress: 12800/14509 batches
+2026-11-04 19:47:58 | INFO     | pipeline | Embedding progress: 13000/14509 batches
+2026-11-04 19:49:47 | INFO     | pipeline | Embedding progress: 13200/14509 batches
+2026-11-04 19:51:36 | INFO     | pipeline | Embedding progress: 13400/14509 batches
+2026-11-04 19:53:26 | INFO     | pipeline | Embedding progress: 13600/14509 batches
+2026-11-04 19:55:22 | INFO     | pipeline | Embedding progress: 13800/14509 batches
+2026-11-04 19:57:20 | INFO     | pipeline | Embedding progress: 14000/14509 batches
+2026-11-04 19:59:21 | INFO     | pipeline | Embedding progress: 14200/14509 batches
+2026-11-04 20:01:25 | INFO     | pipeline | Embedding progress: 14400/14509 batches
+2026-11-04 20:03:05 | INFO     | pipeline | Pipeline started  mode=full  seed=42
+2026-11-04 20:03:08 | INFO     | pipeline | === 01 Data loading ===
+2026-11-04 20:03:08 | INFO     | pipeline | Stage 01 cached — loading splits from parquet
+2026-11-04 20:03:09 | INFO     | pipeline | Stage s01 finished in 1.2s
+2026-11-04 20:03:09 | INFO     | pipeline | === 02 EDA ===
+2026-11-04 20:03:09 | INFO     | pipeline | Stage 02 cached — skipping
+2026-11-04 20:03:09 | INFO     | pipeline | Stage s02 finished in 0.0s
+2026-11-04 20:03:09 | INFO     | pipeline | === 03 Embeddings ===
+2026-11-04 20:03:09 | INFO     | pipeline | Extracting embeddings: backend=ollama  model=embeddinggemma:latest  texts=464274
+2026-11-04 20:05:10 | INFO     | pipeline | Embedding progress: 200/14509 batches
+2026-11-04 20:07:02 | INFO     | pipeline | Embedding progress: 400/14509 batches
+2026-11-04 20:09:46 | INFO     | pipeline | Pipeline started  mode=full  seed=42
+2026-11-04 20:09:49 | INFO     | pipeline | === 01 Data loading ===
+2026-11-04 20:09:49 | INFO     | pipeline | Stage 01 cached — loading splits from parquet
+2026-11-04 20:09:50 | INFO     | pipeline | Stage s01 finished in 1.1s
+2026-11-04 20:09:50 | INFO     | pipeline | === 02 EDA ===
+2026-11-04 20:09:50 | INFO     | pipeline | Stage 02 cached — skipping
+2026-11-04 20:09:50 | INFO     | pipeline | Stage s02 finished in 0.0s
+2026-11-04 20:09:50 | INFO     | pipeline | === 03 Embeddings ===
+2026-11-04 20:09:50 | INFO     | pipeline | Extracting embeddings: backend=ollama  model=embeddinggemma:latest  texts=464274
+2026-11-04 20:09:50 | INFO     | pipeline | Resuming embeddings: 586/14509 batches already stored
+2026-11-04 20:09:59 | INFO     | pipeline | Embedding progress: 600/14509 batches
+2026-11-04 20:11:20 | INFO     | pipeline | Pipeline started  mode=full  seed=42
+2026-11-04 20:11:22 | INFO     | pipeline | === 01 Data loading ===
+2026-11-04 20:11:22 | INFO     | pipeline | Stage 01 cached — loading splits from parquet
+2026-11-04 20:11:23 | INFO     | pipeline | Stage s01 finished in 1.1s
+2026-11-04 20:11:23 | INFO     | pipeline | === 02 EDA ===
+2026-11-04 20:11:23 | INFO     | pipeline | Stage 02 cached — skipping
+2026-11-04 20:11:23 | INFO     | pipeline | Stage s02 finished in 0.0s
+2026-11-04 20:11:23 | INFO     | pipeline | === 03 Embeddings ===
+2026-11-04 20:11:24 | INFO     | pipeline | Extracting embeddings: backend=ollama  model=embeddinggemma:latest  texts=464274
+2026-11-04 20:11:24 | INFO     | pipeline | Resuming embeddings: 702/14509 batches already stored
+2026-11-04 20:12:20 | INFO     | pipeline | Embedding progress: 800/14509 batches
+2026-11-04 20:14:18 | INFO     | pipeline | Embedding progress: 1000/14509 batches
+2026-11-04 20:15:59 | INFO     | pipeline | Pipeline started  mode=full  seed=42
+2026-11-04 20:16:02 | INFO     | pipeline | === 01 Data loading ===
+2026-11-04 20:16:02 | INFO     | pipeline | Stage 01 cached — loading splits from parquet
+2026-11-04 20:16:03 | INFO     | pipeline | Stage s01 finished in 1.0s
+2026-11-04 20:16:03 | INFO     | pipeline | === 02 EDA ===
+2026-11-04 20:16:03 | INFO     | pipeline | Stage 02 cached — skipping
+2026-11-04 20:16:03 | INFO     | pipeline | Stage s02 finished in 0.0s
+2026-11-04 20:16:03 | INFO     | pipeline | === 03 Embeddings ===
+2026-11-04 20:16:03 | INFO     | pipeline | Extracting embeddings: backend=ollama  model=embeddinggemma:latest  texts=464274
+2026-11-04 20:16:03 | INFO     | pipeline | Resuming embeddings: 1138/14509 batches already stored
+2026-11-04 20:16:25 | INFO     | pipeline | Embedding progress: 1200/14509 batches
+2026-11-04 20:27:48 | INFO     | pipeline | Pipeline started  mode=full  seed=42
+2026-11-04 20:27:48 | INFO     | pipeline | === 03 Embeddings ===
+2026-11-04 20:27:50 | INFO     | pipeline | Extracting embeddings: backend=routerai  model=qwen/qwen3-embedding-8b  texts=464274  batches=14509  concurrency=4  partial=C:\projects\double-descent-dl-vs-gbdt\result\03_embeddings\partials\routerai__qwen_qwen3-embedding-8b
+2026-11-04 20:27:55 | INFO     | pipeline | Embedding progress: 1/14509 batches
+2026-11-04 20:29:28 | INFO     | pipeline | Embedding progress: 50/14509 batches
+2026-11-04 20:31:38 | INFO     | pipeline | Embedding progress: 100/14509 batches
+2026-11-04 20:33:54 | INFO     | pipeline | Embedding progress: 150/14509 batches
+2026-11-04 20:35:33 | INFO     | pipeline | Embedding progress: 200/14509 batches
+2026-11-04 20:37:42 | INFO     | pipeline | Embedding progress: 250/14509 batches
+2026-11-04 20:39:29 | INFO     | pipeline | Embedding progress: 300/14509 batches
+2026-11-04 20:41:15 | INFO     | pipeline | Embedding progress: 350/14509 batches
+2026-11-04 20:42:40 | INFO     | pipeline | Embedding progress: 400/14509 batches
+2026-11-04 20:44:37 | INFO     | pipeline | Embedding progress: 450/14509 batches
+2026-11-04 20:46:02 | INFO     | pipeline | Embedding progress: 500/14509 batches
+2026-11-04 20:47:45 | INFO     | pipeline | Embedding progress: 550/14509 batches
+2026-11-04 20:49:26 | INFO     | pipeline | Embedding progress: 600/14509 batches
+2026-11-04 20:50:35 | INFO     | pipeline | Embedding progress: 650/14509 batches
+2026-11-04 20:51:48 | INFO     | pipeline | Embedding progress: 700/14509 batches
+2026-11-04 20:53:03 | INFO     | pipeline | Embedding progress: 750/14509 batches
+2026-11-04 20:54:26 | INFO     | pipeline | Embedding progress: 800/14509 batches
+2026-11-04 20:56:01 | INFO     | pipeline | Embedding progress: 850/14509 batches
+2026-11-04 20:58:00 | INFO     | pipeline | Embedding progress: 900/14509 batches
+2026-11-04 21:00:24 | INFO     | pipeline | Embedding progress: 950/14509 batches
+2026-11-04 21:02:00 | INFO     | pipeline | Embedding progress: 1000/14509 batches
+2026-11-04 21:04:13 | INFO     | pipeline | Embedding progress: 1050/14509 batches
+2026-11-04 21:06:08 | INFO     | pipeline | Embedding progress: 1100/14509 batches
+2026-11-04 21:07:47 | INFO     | pipeline | Embedding progress: 1150/14509 batches
+2026-11-04 21:09:25 | INFO     | pipeline | Embedding progress: 1200/14509 batches
+2026-11-04 21:11:05 | INFO     | pipeline | Embedding progress: 1250/14509 batches
+2026-11-04 21:13:09 | INFO     | pipeline | Embedding progress: 1300/14509 batches
+2026-11-04 21:15:00 | INFO     | pipeline | Embedding progress: 1350/14509 batches
+2026-11-04 21:17:16 | INFO     | pipeline | Embedding progress: 1400/14509 batches
+2026-11-04 21:19:00 | INFO     | pipeline | Embedding progress: 1450/14509 batches
+2026-11-04 21:20:28 | INFO     | pipeline | Embedding progress: 1500/14509 batches
+2026-11-04 21:22:09 | INFO     | pipeline | Embedding progress: 1550/14509 batches
+2026-11-04 21:23:43 | INFO     | pipeline | Embedding progress: 1600/14509 batches
+2026-11-04 21:25:16 | INFO     | pipeline | Embedding progress: 1650/14509 batches
+2026-11-04 21:26:59 | INFO     | pipeline | Embedding progress: 1700/14509 batches
+2026-11-04 21:28:27 | INFO     | pipeline | Embedding progress: 1750/14509 batches
+2026-11-04 21:30:02 | INFO     | pipeline | Embedding progress: 1800/14509 batches
+2026-11-04 21:31:51 | INFO     | pipeline | Embedding progress: 1850/14509 batches
+2026-11-04 21:33:23 | INFO     | pipeline | Embedding progress: 1900/14509 batches
+2026-11-04 21:34:51 | INFO     | pipeline | Embedding progress: 1950/14509 batches
+2026-11-04 21:36:26 | INFO     | pipeline | Embedding progress: 2000/14509 batches
+2026-11-04 21:38:00 | INFO     | pipeline | Embedding progress: 2050/14509 batches
+2026-11-04 21:39:39 | INFO     | pipeline | Embedding progress: 2100/14509 batches
+2026-11-04 21:41:06 | INFO     | pipeline | Embedding progress: 2150/14509 batches
+2026-11-04 21:42:30 | INFO     | pipeline | Embedding progress: 2200/14509 batches
+2026-11-04 21:43:53 | INFO     | pipeline | Embedding progress: 2250/14509 batches
+2026-11-04 21:45:13 | INFO     | pipeline | Embedding progress: 2300/14509 batches
+2026-11-04 21:46:44 | INFO     | pipeline | Embedding progress: 2350/14509 batches
+2026-11-04 21:48:27 | INFO     | pipeline | Embedding progress: 2400/14509 batches
+2026-11-04 21:50:27 | INFO     | pipeline | Embedding progress: 2450/14509 batches
+2026-11-04 21:53:00 | INFO     | pipeline | Embedding progress: 2500/14509 batches
+2026-11-04 21:54:53 | INFO     | pipeline | Embedding progress: 2550/14509 batches
+2026-11-04 21:57:05 | INFO     | pipeline | Embedding progress: 2600/14509 batches
+2026-11-04 21:59:54 | INFO     | pipeline | Embedding progress: 2650/14509 batches
+2026-11-04 22:02:17 | INFO     | pipeline | Embedding progress: 2700/14509 batches
+2026-11-04 22:05:04 | INFO     | pipeline | Embedding progress: 2750/14509 batches
+2026-11-04 22:07:05 | INFO     | pipeline | Embedding progress: 2800/14509 batches
+2026-11-04 22:08:35 | INFO     | pipeline | Embedding progress: 2850/14509 batches
+2026-11-04 22:10:12 | INFO     | pipeline | Embedding progress: 2900/14509 batches
+2026-11-04 22:11:53 | INFO     | pipeline | Embedding progress: 2950/14509 batches
+2026-11-04 22:13:33 | INFO     | pipeline | Embedding progress: 3000/14509 batches
+2026-11-04 22:15:05 | INFO     | pipeline | Embedding progress: 3050/14509 batches
+2026-11-04 22:16:47 | INFO     | pipeline | Embedding progress: 3100/14509 batches
+2026-11-04 22:18:01 | INFO     | pipeline | Embedding progress: 3150/14509 batches
+2026-11-04 22:19:45 | INFO     | pipeline | Embedding progress: 3200/14509 batches
+2026-11-04 22:21:19 | INFO     | pipeline | Embedding progress: 3250/14509 batches
+2026-11-04 22:23:05 | INFO     | pipeline | Embedding progress: 3300/14509 batches
+2026-11-04 22:24:41 | INFO     | pipeline | Embedding progress: 3350/14509 batches
+2026-11-04 22:26:30 | INFO     | pipeline | Embedding progress: 3400/14509 batches
+2026-11-04 22:28:31 | INFO     | pipeline | Embedding progress: 3450/14509 batches
+2026-11-04 22:30:22 | INFO     | pipeline | Embedding progress: 3500/14509 batches
+2026-11-04 22:32:27 | INFO     | pipeline | Embedding progress: 3550/14509 batches
+2026-11-04 22:34:37 | INFO     | pipeline | Embedding progress: 3600/14509 batches
+2026-11-04 22:36:49 | INFO     | pipeline | Embedding progress: 3650/14509 batches
+2026-11-04 22:39:18 | INFO     | pipeline | Embedding progress: 3700/14509 batches
+2026-11-04 22:41:25 | INFO     | pipeline | Embedding progress: 3750/14509 batches
+2026-11-04 22:43:21 | INFO     | pipeline | Embedding progress: 3800/14509 batches
+2026-11-04 22:46:09 | INFO     | pipeline | Embedding progress: 3850/14509 batches
+2026-11-04 22:47:41 | INFO     | pipeline | Embedding progress: 3900/14509 batches
+2026-11-04 22:48:43 | INFO     | pipeline | Embedding progress: 3950/14509 batches
+2026-11-04 22:49:44 | INFO     | pipeline | Embedding progress: 4000/14509 batches
+2026-11-04 22:50:42 | INFO     | pipeline | Embedding progress: 4050/14509 batches
+2026-11-04 22:51:38 | INFO     | pipeline | Embedding progress: 4100/14509 batches
+2026-11-04 22:52:32 | INFO     | pipeline | Embedding progress: 4150/14509 batches
+2026-11-04 22:53:26 | INFO     | pipeline | Embedding progress: 4200/14509 batches
+2026-11-04 22:54:13 | INFO     | pipeline | Embedding progress: 4250/14509 batches
+2026-11-04 22:55:06 | INFO     | pipeline | Embedding progress: 4300/14509 batches
+2026-11-04 22:56:07 | INFO     | pipeline | Embedding progress: 4350/14509 batches
+2026-11-04 22:57:12 | INFO     | pipeline | Embedding progress: 4400/14509 batches
+2026-11-04 22:58:04 | INFO     | pipeline | Embedding progress: 4450/14509 batches
+2026-11-04 22:58:57 | INFO     | pipeline | Embedding progress: 4500/14509 batches
+2026-11-04 22:59:51 | INFO     | pipeline | Embedding progress: 4550/14509 batches
+2026-11-04 23:00:46 | INFO     | pipeline | Embedding progress: 4600/14509 batches
+2026-11-04 23:01:40 | INFO     | pipeline | Embedding progress: 4650/14509 batches
+2026-11-04 23:02:28 | INFO     | pipeline | Embedding progress: 4700/14509 batches
+2026-11-04 23:03:21 | INFO     | pipeline | Embedding progress: 4750/14509 batches
+2026-11-04 23:04:19 | INFO     | pipeline | Embedding progress: 4800/14509 batches
+2026-11-04 23:05:11 | INFO     | pipeline | Embedding progress: 4850/14509 batches
+2026-11-04 23:06:05 | INFO     | pipeline | Embedding progress: 4900/14509 batches
+2026-11-04 23:06:59 | INFO     | pipeline | Embedding progress: 4950/14509 batches
+2026-11-04 23:07:50 | INFO     | pipeline | Embedding progress: 5000/14509 batches
+2026-11-04 23:08:39 | INFO     | pipeline | Embedding progress: 5050/14509 batches
+2026-11-04 23:09:26 | INFO     | pipeline | Embedding progress: 5100/14509 batches
+2026-11-04 23:10:21 | INFO     | pipeline | Embedding progress: 5150/14509 batches
+2026-11-04 23:11:25 | INFO     | pipeline | Embedding progress: 5200/14509 batches
+2026-11-04 23:12:25 | INFO     | pipeline | Embedding progress: 5250/14509 batches
+2026-11-04 23:13:21 | INFO     | pipeline | Embedding progress: 5300/14509 batches
+2026-11-04 23:14:18 | INFO     | pipeline | Embedding progress: 5350/14509 batches
+2026-11-04 23:15:08 | INFO     | pipeline | Embedding progress: 5400/14509 batches
+2026-11-04 23:16:02 | INFO     | pipeline | Embedding progress: 5450/14509 batches
+2026-11-04 23:16:57 | INFO     | pipeline | Embedding progress: 5500/14509 batches
+2026-11-04 23:17:45 | INFO     | pipeline | Embedding progress: 5550/14509 batches
+2026-11-04 23:18:36 | INFO     | pipeline | Embedding progress: 5600/14509 batches
+2026-11-04 23:19:29 | INFO     | pipeline | Embedding progress: 5650/14509 batches
+2026-11-04 23:20:31 | INFO     | pipeline | Embedding progress: 5700/14509 batches
+2026-11-04 23:21:37 | INFO     | pipeline | Embedding progress: 5750/14509 batches
+2026-11-04 23:22:57 | INFO     | pipeline | Embedding progress: 5800/14509 batches
+2026-11-04 23:24:24 | INFO     | pipeline | Embedding progress: 5850/14509 batches
+2026-11-04 23:26:07 | INFO     | pipeline | Embedding progress: 5900/14509 batches
+2026-11-04 23:27:52 | INFO     | pipeline | Embedding progress: 5950/14509 batches
+2026-11-04 23:29:21 | INFO     | pipeline | Embedding progress: 6000/14509 batches
+2026-11-04 23:30:35 | INFO     | pipeline | Embedding progress: 6050/14509 batches
+2026-11-04 23:31:58 | INFO     | pipeline | Embedding progress: 6100/14509 batches
+2026-11-04 23:33:12 | INFO     | pipeline | Embedding progress: 6150/14509 batches
+2026-11-04 23:34:29 | INFO     | pipeline | Embedding progress: 6200/14509 batches
+2026-11-04 23:36:15 | INFO     | pipeline | Embedding progress: 6250/14509 batches
+2026-11-04 23:37:26 | INFO     | pipeline | Embedding progress: 6300/14509 batches
+2026-11-04 23:38:54 | INFO     | pipeline | Embedding progress: 6350/14509 batches
+2026-11-04 23:40:16 | INFO     | pipeline | Embedding progress: 6400/14509 batches
+2026-11-04 23:41:42 | INFO     | pipeline | Embedding progress: 6450/14509 batches
+2026-11-04 23:43:07 | INFO     | pipeline | Embedding progress: 6500/14509 batches
+2026-11-04 23:44:33 | INFO     | pipeline | Embedding progress: 6550/14509 batches
+2026-11-04 23:45:58 | INFO     | pipeline | Embedding progress: 6600/14509 batches
+2026-11-04 23:47:07 | INFO     | pipeline | Embedding progress: 6650/14509 batches
+2026-11-04 23:48:23 | INFO     | pipeline | Embedding progress: 6700/14509 batches
+2026-11-04 23:49:43 | INFO     | pipeline | Embedding progress: 6750/14509 batches
+2026-11-04 23:51:06 | INFO     | pipeline | Embedding progress: 6800/14509 batches
+2026-11-04 23:52:27 | INFO     | pipeline | Embedding progress: 6850/14509 batches
+2026-11-04 23:53:54 | INFO     | pipeline | Embedding progress: 6900/14509 batches
+2026-11-04 23:55:21 | INFO     | pipeline | Embedding progress: 6950/14509 batches
+2026-11-04 23:56:54 | INFO     | pipeline | Embedding progress: 7000/14509 batches
+2026-11-04 23:58:29 | INFO     | pipeline | Embedding progress: 7050/14509 batches
+2026-11-04 23:59:57 | INFO     | pipeline | Embedding progress: 7100/14509 batches
+2026-11-05 00:01:29 | INFO     | pipeline | Embedding progress: 7150/14509 batches
+2026-11-05 00:03:01 | INFO     | pipeline | Embedding progress: 7200/14509 batches
+2026-11-05 00:04:50 | INFO     | pipeline | Embedding progress: 7250/14509 batches
+2026-11-05 00:06:34 | INFO     | pipeline | Embedding progress: 7300/14509 batches
+2026-11-05 00:08:09 | INFO     | pipeline | Embedding progress: 7350/14509 batches
+2026-11-05 00:10:01 | INFO     | pipeline | Embedding progress: 7400/14509 batches
+2026-11-05 00:12:13 | INFO     | pipeline | Embedding progress: 7450/14509 batches
+2026-11-05 00:14:03 | INFO     | pipeline | Embedding progress: 7500/14509 batches
+2026-11-05 00:15:53 | INFO     | pipeline | Embedding progress: 7550/14509 batches
+2026-11-05 00:17:33 | INFO     | pipeline | Embedding progress: 7600/14509 batches
+2026-11-05 00:19:08 | INFO     | pipeline | Embedding progress: 7650/14509 batches
+2026-11-05 00:20:46 | INFO     | pipeline | Embedding progress: 7700/14509 batches
+2026-11-05 00:22:06 | INFO     | pipeline | Embedding progress: 7750/14509 batches
+2026-11-05 00:23:39 | INFO     | pipeline | Embedding progress: 7800/14509 batches
+2026-11-05 00:25:23 | INFO     | pipeline | Embedding progress: 7850/14509 batches
+2026-11-05 00:27:22 | INFO     | pipeline | Embedding progress: 7900/14509 batches
+2026-11-05 00:29:10 | INFO     | pipeline | Embedding progress: 7950/14509 batches
+2026-11-05 00:31:19 | INFO     | pipeline | Embedding progress: 8000/14509 batches
+2026-11-05 00:34:01 | INFO     | pipeline | Embedding progress: 8050/14509 batches
+2026-11-05 00:36:53 | INFO     | pipeline | Embedding progress: 8100/14509 batches
+2026-11-05 00:38:41 | INFO     | pipeline | Embedding progress: 8150/14509 batches
+2026-11-05 00:40:24 | INFO     | pipeline | Embedding progress: 8200/14509 batches
+2026-11-05 00:42:33 | INFO     | pipeline | Embedding progress: 8250/14509 batches
+2026-11-05 00:44:23 | INFO     | pipeline | Embedding progress: 8300/14509 batches
+2026-11-05 00:45:56 | INFO     | pipeline | Embedding progress: 8350/14509 batches
+2026-11-05 00:47:11 | INFO     | pipeline | Embedding progress: 8400/14509 batches
+2026-11-05 00:48:53 | INFO     | pipeline | Embedding progress: 8450/14509 batches
+2026-11-05 00:50:29 | INFO     | pipeline | Embedding progress: 8500/14509 batches
+2026-11-05 00:52:15 | INFO     | pipeline | Embedding progress: 8550/14509 batches
+2026-11-05 00:53:48 | INFO     | pipeline | Embedding progress: 8600/14509 batches
+2026-11-05 00:55:28 | INFO     | pipeline | Embedding progress: 8650/14509 batches
+2026-11-05 00:56:56 | INFO     | pipeline | Embedding progress: 8700/14509 batches
+2026-11-05 00:58:10 | INFO     | pipeline | Embedding progress: 8750/14509 batches
+2026-11-05 00:59:22 | INFO     | pipeline | Embedding progress: 8800/14509 batches
+2026-11-05 01:00:47 | INFO     | pipeline | Embedding progress: 8850/14509 batches
+2026-11-05 01:02:11 | INFO     | pipeline | Embedding progress: 8900/14509 batches
+2026-11-05 01:03:25 | INFO     | pipeline | Embedding progress: 8950/14509 batches
+2026-11-05 01:04:48 | INFO     | pipeline | Embedding progress: 9000/14509 batches
+2026-11-05 01:05:57 | INFO     | pipeline | Embedding progress: 9050/14509 batches
+2026-11-05 01:06:59 | INFO     | pipeline | Embedding progress: 9100/14509 batches
+2026-11-05 01:07:51 | INFO     | pipeline | Embedding progress: 9150/14509 batches
+2026-11-05 01:08:39 | INFO     | pipeline | Embedding progress: 9200/14509 batches
+2026-11-05 01:09:31 | INFO     | pipeline | Embedding progress: 9250/14509 batches
+2026-11-05 01:10:17 | INFO     | pipeline | Embedding progress: 9300/14509 batches
+2026-11-05 01:11:08 | INFO     | pipeline | Embedding progress: 9350/14509 batches
+2026-11-05 01:12:00 | INFO     | pipeline | Embedding progress: 9400/14509 batches
+2026-11-05 01:13:00 | INFO     | pipeline | Embedding progress: 9450/14509 batches
+2026-11-05 01:13:57 | INFO     | pipeline | Embedding progress: 9500/14509 batches
+2026-11-05 01:14:54 | INFO     | pipeline | Embedding progress: 9550/14509 batches
+2026-11-05 01:15:50 | INFO     | pipeline | Embedding progress: 9600/14509 batches
+2026-11-05 01:16:55 | INFO     | pipeline | Embedding progress: 9650/14509 batches
+2026-11-05 01:17:51 | INFO     | pipeline | Embedding progress: 9700/14509 batches
+2026-11-05 01:18:43 | INFO     | pipeline | Embedding progress: 9750/14509 batches
+2026-11-05 01:19:29 | INFO     | pipeline | Embedding progress: 9800/14509 batches
+2026-11-05 01:20:13 | INFO     | pipeline | Embedding progress: 9850/14509 batches
+2026-11-05 01:21:08 | INFO     | pipeline | Embedding progress: 9900/14509 batches
+2026-11-05 01:22:01 | INFO     | pipeline | Embedding progress: 9950/14509 batches
+2026-11-05 01:22:59 | INFO     | pipeline | Embedding progress: 10000/14509 batches
+2026-11-05 01:24:18 | INFO     | pipeline | Embedding progress: 10050/14509 batches
+2026-11-05 01:25:41 | INFO     | pipeline | Embedding progress: 10100/14509 batches
+2026-11-05 01:27:04 | INFO     | pipeline | Embedding progress: 10150/14509 batches
+2026-11-05 01:28:18 | INFO     | pipeline | Embedding progress: 10200/14509 batches
+2026-11-05 01:29:28 | INFO     | pipeline | Embedding progress: 10250/14509 batches
+2026-11-05 01:30:58 | INFO     | pipeline | Embedding progress: 10300/14509 batches
+2026-11-05 01:32:08 | INFO     | pipeline | Embedding progress: 10350/14509 batches
+2026-11-05 01:33:42 | INFO     | pipeline | Embedding progress: 10400/14509 batches
+2026-11-05 01:35:02 | INFO     | pipeline | Embedding progress: 10450/14509 batches
+2026-11-05 01:36:18 | INFO     | pipeline | Embedding progress: 10500/14509 batches
+2026-11-05 01:37:33 | INFO     | pipeline | Embedding progress: 10550/14509 batches
+2026-11-05 01:38:51 | INFO     | pipeline | Embedding progress: 10600/14509 batches
+2026-11-05 01:40:07 | INFO     | pipeline | Embedding progress: 10650/14509 batches
+2026-11-05 01:41:23 | INFO     | pipeline | Embedding progress: 10700/14509 batches
+2026-11-05 01:42:37 | INFO     | pipeline | Embedding progress: 10750/14509 batches
+2026-11-05 01:43:48 | INFO     | pipeline | Embedding progress: 10800/14509 batches
+2026-11-05 01:45:05 | INFO     | pipeline | Embedding progress: 10850/14509 batches
+2026-11-05 01:46:16 | INFO     | pipeline | Embedding progress: 10900/14509 batches
+2026-11-05 01:47:14 | INFO     | pipeline | Embedding progress: 10950/14509 batches
+2026-11-05 01:48:10 | INFO     | pipeline | Embedding progress: 11000/14509 batches
+2026-11-05 01:49:07 | INFO     | pipeline | Embedding progress: 11050/14509 batches
+2026-11-05 01:50:02 | INFO     | pipeline | Embedding progress: 11100/14509 batches
+2026-11-05 01:51:06 | INFO     | pipeline | Embedding progress: 11150/14509 batches
+2026-11-05 01:52:20 | INFO     | pipeline | Embedding progress: 11200/14509 batches
+2026-11-05 01:53:43 | INFO     | pipeline | Embedding progress: 11250/14509 batches
+2026-11-05 01:55:34 | INFO     | pipeline | Embedding progress: 11300/14509 batches
+2026-11-05 01:57:27 | INFO     | pipeline | Embedding progress: 11350/14509 batches
+2026-11-05 01:58:39 | INFO     | pipeline | Embedding progress: 11400/14509 batches
+2026-11-05 01:59:55 | INFO     | pipeline | Embedding progress: 11450/14509 batches
+2026-11-05 02:01:08 | INFO     | pipeline | Embedding progress: 11500/14509 batches
+2026-11-05 02:03:06 | INFO     | pipeline | Embedding progress: 11550/14509 batches
+2026-11-05 02:04:33 | INFO     | pipeline | Embedding progress: 11600/14509 batches
+2026-11-05 02:05:53 | INFO     | pipeline | Embedding progress: 11650/14509 batches
+2026-11-05 02:07:00 | INFO     | pipeline | Embedding progress: 11700/14509 batches
+2026-11-05 02:08:26 | INFO     | pipeline | Embedding progress: 11750/14509 batches
+2026-11-05 02:09:56 | INFO     | pipeline | Embedding progress: 11800/14509 batches
+2026-11-05 02:11:15 | INFO     | pipeline | Embedding progress: 11850/14509 batches
+2026-11-05 02:12:59 | INFO     | pipeline | Embedding progress: 11900/14509 batches
+2026-11-05 02:14:43 | INFO     | pipeline | Embedding progress: 11950/14509 batches
+2026-11-05 02:16:07 | INFO     | pipeline | Embedding progress: 12000/14509 batches
+2026-11-05 02:17:14 | INFO     | pipeline | Embedding progress: 12050/14509 batches
+2026-11-05 02:18:23 | INFO     | pipeline | Embedding progress: 12100/14509 batches
+2026-11-05 02:20:06 | INFO     | pipeline | Embedding progress: 12150/14509 batches
+2026-11-05 02:22:44 | INFO     | pipeline | Embedding progress: 12200/14509 batches
+2026-11-05 02:24:11 | INFO     | pipeline | Embedding progress: 12250/14509 batches
+2026-11-05 02:25:19 | INFO     | pipeline | Embedding progress: 12300/14509 batches
+2026-11-05 02:26:27 | INFO     | pipeline | Embedding progress: 12350/14509 batches
+2026-11-05 02:27:25 | INFO     | pipeline | Embedding progress: 12400/14509 batches
+2026-11-05 02:28:57 | INFO     | pipeline | Embedding progress: 12450/14509 batches
+2026-11-05 02:29:58 | INFO     | pipeline | Embedding progress: 12500/14509 batches
+2026-11-05 02:30:54 | INFO     | pipeline | Embedding progress: 12550/14509 batches
+2026-11-05 02:32:03 | INFO     | pipeline | Embedding progress: 12600/14509 batches
+2026-11-05 02:32:59 | INFO     | pipeline | Embedding progress: 12650/14509 batches
+2026-11-05 02:34:08 | INFO     | pipeline | Embedding progress: 12700/14509 batches
+2026-11-05 02:35:16 | INFO     | pipeline | Embedding progress: 12750/14509 batches
+2026-11-06 00:16:33 | INFO     | pipeline | Pipeline started  mode=full  seed=42
+2026-11-06 00:16:33 | INFO     | pipeline | === 03 Embeddings ===
+2026-11-06 00:16:36 | INFO     | pipeline | Extracting embeddings: backend=routerai  model=qwen/qwen3-embedding-8b  texts=464274  batches=14509  concurrency=4  partial=C:\projects\double-descent-dl-vs-gbdt\result\03_embeddings\partials\routerai__qwen_qwen3-embedding-8b
+2026-11-06 00:16:36 | INFO     | pipeline | Resuming embeddings: 12754/14509 batches already stored
+2026-11-06 00:17:35 | INFO     | pipeline | Embedding progress: 12800/14509 batches
+2026-11-06 00:18:33 | INFO     | pipeline | Embedding progress: 12850/14509 batches
+2026-11-06 00:19:36 | INFO     | pipeline | Embedding progress: 12900/14509 batches
+2026-11-06 00:20:46 | INFO     | pipeline | Embedding progress: 12950/14509 batches
+2026-11-06 00:21:52 | INFO     | pipeline | Embedding progress: 13000/14509 batches
+2026-11-06 00:23:13 | INFO     | pipeline | Embedding progress: 13050/14509 batches
+2026-11-06 00:24:16 | INFO     | pipeline | Embedding progress: 13100/14509 batches
+2026-11-06 00:25:33 | INFO     | pipeline | Embedding progress: 13150/14509 batches
+2026-11-06 00:26:32 | INFO     | pipeline | Embedding progress: 13200/14509 batches
+2026-11-06 00:27:27 | INFO     | pipeline | Embedding progress: 13250/14509 batches
+2026-11-06 00:28:23 | INFO     | pipeline | Embedding progress: 13300/14509 batches
+2026-11-06 00:29:24 | INFO     | pipeline | Embedding progress: 13350/14509 batches
+2026-11-06 00:30:19 | INFO     | pipeline | Embedding progress: 13400/14509 batches
+2026-11-06 00:31:17 | INFO     | pipeline | Embedding progress: 13450/14509 batches
+2026-11-06 00:32:19 | INFO     | pipeline | Embedding progress: 13500/14509 batches
+2026-11-06 00:33:16 | INFO     | pipeline | Embedding progress: 13550/14509 batches
+2026-11-06 00:34:14 | INFO     | pipeline | Embedding progress: 13600/14509 batches
+2026-11-06 00:35:10 | INFO     | pipeline | Embedding progress: 13650/14509 batches
+2026-11-06 00:36:06 | INFO     | pipeline | Embedding progress: 13700/14509 batches
+2026-11-06 00:37:02 | INFO     | pipeline | Embedding progress: 13750/14509 batches
+2026-11-06 00:38:00 | INFO     | pipeline | Embedding progress: 13800/14509 batches
+2026-11-06 00:38:58 | INFO     | pipeline | Embedding progress: 13850/14509 batches
+2026-11-06 00:40:03 | INFO     | pipeline | Embedding progress: 13900/14509 batches
+2026-11-06 00:41:02 | INFO     | pipeline | Embedding progress: 13950/14509 batches
+2026-11-06 00:42:02 | INFO     | pipeline | Embedding progress: 14000/14509 batches
+2026-11-06 00:43:01 | INFO     | pipeline | Embedding progress: 14050/14509 batches
+2026-11-06 00:44:05 | INFO     | pipeline | Embedding progress: 14100/14509 batches
+2026-11-06 00:44:52 | INFO     | pipeline | Embedding progress: 14150/14509 batches
+2026-11-06 00:46:12 | INFO     | pipeline | Embedding progress: 14200/14509 batches
+2026-11-06 00:47:17 | INFO     | pipeline | Embedding progress: 14250/14509 batches
+2026-11-06 00:48:39 | INFO     | pipeline | Embedding progress: 14300/14509 batches
+2026-11-06 00:49:42 | INFO     | pipeline | Embedding progress: 14350/14509 batches
+2026-11-06 00:51:13 | INFO     | pipeline | Embedding progress: 14400/14509 batches
+2026-11-06 00:52:21 | INFO     | pipeline | Embedding progress: 14450/14509 batches
+2026-11-06 00:54:22 | INFO     | pipeline | Embedding progress: 14500/14509 batches
+2026-11-06 00:54:55 | INFO     | pipeline | Embedding progress: 14509/14509 batches
+2026-11-06 00:54:55 | INFO     | pipeline | Embedding shape: (464274, 4096)
+2026-11-06 00:55:04 | ERROR    | pipeline | Pipeline failed
+Traceback (most recent call last):
+  File "C:\projects\double-descent-dl-vs-gbdt\main.py", line 71, in main
+    fn(cfg, logger, ctx=ctx)
+  File "C:\projects\double-descent-dl-vs-gbdt\src\stages\s03_embeddings.py", line 311, in run
+    (partial_dir / leftover).unlink(missing_ok=True)
+  File "C:\Users\AdamCage\AppData\Roaming\uv\python\cpython-3.12.11-windows-x86_64-none\Lib\pathlib.py", line 1342, in unlink
+    os.unlink(self)
+PermissionError: [WinError 32] Процесс не может получить доступ к файлу, так как этот файл занят другим процессом: 'C:\\projects\\double-descent-dl-vs-gbdt\\result\\03_embeddings\\partials\\routerai__qwen_qwen3-embedding-8b\\partial.dat'
+2026-11-06 01:10:48 | INFO     | pipeline | Pipeline started  mode=full  seed=42
+2026-11-06 01:10:48 | INFO     | pipeline | === 04 Embedding analysis ===
+2026-11-06 01:11:01 | INFO     | pipeline | Computing UMAP on 20000 of 324991 training rows (plot only)...
+2026-11-06 01:11:43 | INFO     | pipeline | Running PCA (target 256 dims)...
+2026-11-06 01:12:03 | INFO     | pipeline | PCA 256 dims: total var=0.8629  @128=0.7904  @256=0.8629
+2026-11-06 01:12:05 | INFO     | pipeline | PCA choice: dims=4096 rule=variance_target_not_met_within_cap variance=0.8629 (at 128=0.7904, at 256=0.8629)
+2026-11-06 01:12:05 | INFO     | pipeline | Embedding dims after PCA: 4096
+2026-11-06 01:12:05 | INFO     | pipeline | Extracting text-level features (char_len, word_count, avg_word_len)...
+2026-11-06 01:12:20 | INFO     | pipeline | Final feature dimensionality: 4099 (embeddings 4096 + text features 3)
+2026-11-06 01:12:20 | INFO     | pipeline | Computing UMAP on final features (4099 dims, plot subsample)...
+2026-11-06 01:12:42 | INFO     | pipeline | Stage 04 artifacts saved to result\04_embedding_analysis
+2026-11-06 01:12:43 | INFO     | pipeline | Stage s04 finished in 114.4s
+2026-11-06 01:12:43 | INFO     | pipeline | Pipeline completed. Total 114.4s
+2026-11-06 01:20:04 | INFO     | pipeline | Pipeline started  mode=full  seed=42
+2026-11-06 01:20:04 | INFO     | pipeline | === 05 DNN training ===
+2026-11-06 01:20:17 | INFO     | pipeline | Device: cpu
+2026-11-06 01:20:17 | INFO     | pipeline |   Model-wise: width=8  params=32881  epochs=800  noise_regime=clean
+2026-11-06 01:22:17 | INFO     | pipeline | Pipeline started  mode=full  seed=42
+2026-11-06 01:22:17 | INFO     | pipeline | === 05 DNN training ===
+2026-11-06 01:22:24 | INFO     | pipeline | Device: cpu
+2026-11-06 01:22:24 | INFO     | pipeline |   Model-wise: width=8  params=32881  epochs=800  noise_regime=clean
+2026-11-06 01:23:53 | INFO     | pipeline | Pipeline started  mode=full  seed=42
+2026-11-06 01:23:53 | INFO     | pipeline | === 05 DNN training ===
+2026-11-06 01:24:00 | INFO     | pipeline | Device: cpu
+2026-11-06 01:24:00 | INFO     | pipeline |   Model-wise: width=8  params=32881  epochs=800  noise_regime=clean
+2026-11-06 02:11:55 | INFO     | pipeline |     -> train_loss=0.0000  val_loss=0.0063  train_acc=1.000  val_acc=0.999  settled=True
+2026-11-06 02:11:55 | INFO     | pipeline |   Model-wise: width=16  params=65889  epochs=800  noise_regime=clean
+2026-11-06 03:01:04 | INFO     | pipeline |     -> train_loss=0.0000  val_loss=0.0048  train_acc=1.000  val_acc=0.999  settled=False
+2026-11-06 03:01:04 | INFO     | pipeline |   Model-wise: width=32  params=132289  epochs=800  noise_regime=clean
+2026-11-06 04:02:00 | INFO     | pipeline |     -> train_loss=0.0000  val_loss=0.0037  train_acc=1.000  val_acc=0.999  settled=True
+2026-11-06 04:02:00 | INFO     | pipeline |   Model-wise: width=64  params=266625  epochs=800  noise_regime=clean
+2026-11-06 05:13:45 | INFO     | pipeline |     -> train_loss=0.0000  val_loss=0.0025  train_acc=1.000  val_acc=1.000  settled=True
+2026-11-06 05:13:45 | INFO     | pipeline |   Model-wise: width=128  params=541441  epochs=800  noise_regime=clean
+2026-11-06 07:10:34 | INFO     | pipeline |     -> train_loss=0.0000  val_loss=0.0023  train_acc=1.000  val_acc=1.000  settled=False
+2026-11-06 07:10:34 | INFO     | pipeline |   Model-wise: width=256  params=1115649  epochs=800  noise_regime=clean
+2026-11-06 10:42:19 | INFO     | pipeline |     -> train_loss=0.0000  val_loss=0.0020  train_acc=1.000  val_acc=1.000  settled=False
+2026-11-06 10:42:19 | INFO     | pipeline |   Model-wise: width=512  params=2362369  epochs=800  noise_regime=clean
+2026-11-06 19:02:08 | INFO     | pipeline |     -> train_loss=0.0000  val_loss=0.0038  train_acc=1.000  val_acc=1.000  settled=False
+2026-11-06 19:02:08 | INFO     | pipeline |   Model-wise: width=1024  params=5249025  epochs=800  noise_regime=clean

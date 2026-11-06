@@ -1,0 +1,14 @@
+{
+  "study_root": "C:\\projects\\double-descent-dl-vs-gbdt\\.research\\double-descent",
+  "question": "research_question-0faaa9e14385467e",
+  "hypotheses": [
+    "hypothesis-f525597b2c31498f",
+    "hypothesis-c34a19d4acdf4d03",
+    "hypothesis-d8cc70ca755d4aa4",
+    "hypothesis-29a2c2d28d7947ce",
+    "hypothesis-1b751c2989304565"
+  ],
+  "explanation_set": "explanation_set-77e5712868b2468c",
+  "pack_code_digest": "d708883bb45738a79d6b0be33c3da7b6f6466374612d6194ba921114bfdbd6b1",
+  "isolation": "one Windows user, os_isolation=none, sandbox=false; role labels are not independence"
+}

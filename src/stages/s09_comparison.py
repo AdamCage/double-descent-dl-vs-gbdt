@@ -13,15 +13,19 @@ import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
-from src.cache import compute_hash, is_cached, write_hash
+from src.cache import code_digest, compute_hash, is_cached, write_hash
 from src.config import Settings
 from src.plotting import save_fig
+from src.protocol import PROTOCOL_REVISION, comparison_status
 
 
 def run(cfg: Settings, logger: logging.Logger, *, ctx: dict[str, Any] | None = None) -> None:
     out_dir = cfg.result_path / "09_comparison"
 
-    h = compute_hash(mode=cfg.MODE, seed=cfg.SEED, stage="s09")
+    h = compute_hash(
+        mode=cfg.MODE, seed=cfg.SEED, stage="s09",
+        protocol=PROTOCOL_REVISION, code=code_digest(Path(__file__)),
+    )
     if is_cached(out_dir, h):
         logger.info("Stage 09 cached — skipping")
         return
@@ -50,8 +54,13 @@ def run(cfg: Settings, logger: logging.Logger, *, ctx: dict[str, Any] | None = N
         import torch
 
         X_test = np.load(cfg.result_path / "04_embedding_analysis" / "test_reduced.npy")
-        widths = cfg.dnn_widths_list
-        width = widths[-1] if widths else 1024
+        selection_path = cfg.result_path / "05_dnn" / "model_selection.json"
+        if selection_path.exists():
+            width = int(json.loads(selection_path.read_text(encoding="utf-8"))["width"])
+        else:
+            widths = cfg.dnn_widths_list
+            width = widths[-1] if widths else 1024
+            logger.warning("model_selection.json is absent; loading the widest width")
         model = MLP(X_test.shape[1], width)
         model.load_state_dict(torch.load(cfg.result_path / "05_dnn" / "best_model.pt", weights_only=True))
         dnn_proba = predict_proba_dnn(model, X_test)
@@ -91,11 +100,26 @@ def run(cfg: Settings, logger: logging.Logger, *, ctx: dict[str, Any] | None = N
         "cb_accuracy": None,
         "cb_f1": None,
     })
+    selection_path = cfg.result_path / "05_dnn" / "model_selection.json"
+    dnn_selection = (
+        json.loads(selection_path.read_text(encoding="utf-8")) if selection_path.exists() else None
+    )
+    cb_config_path = cfg.result_path / "07_catboost" / "run_config.json"
+    cb_config = json.loads(cb_config_path.read_text(encoding="utf-8")) if cb_config_path.exists() else {}
+    dnn_noise = None if dnn_selection is None else dnn_selection.get("label_noise")
+    cb_noise = cb_config.get("label_noise")
     summary = {
         "dnn_auc": dnn_metrics.get("auc"),
         "dnn_logloss": dnn_metrics.get("logloss"),
         "cb_auc": cb_metrics.get("auc"),
         "cb_logloss": cb_metrics.get("logloss"),
+        "dnn_brier": dnn_metrics.get("brier"),
+        "cb_brier": cb_metrics.get("brier"),
+        "threshold_protocol": dnn_metrics.get("protocol"),
+        "dnn_width": None if dnn_selection is None else dnn_selection.get("width"),
+        "dnn_selection_rule": None if dnn_selection is None else dnn_selection.get("selection_rule"),
+        "comparison_status": comparison_status(dnn_noise, cb_noise),
+        "protocol_revision": PROTOCOL_REVISION,
     }
 
     comparison_df = pd.DataFrame(rows)

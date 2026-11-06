@@ -13,21 +13,13 @@ import plotly.express as px
 import plotly.graph_objects as go
 import torch
 from sklearn.calibration import calibration_curve
-from sklearn.metrics import (
-    accuracy_score,
-    f1_score,
-    log_loss,
-    precision_recall_curve,
-    precision_score,
-    recall_score,
-    roc_auc_score,
-    roc_curve,
-)
 
-from src.cache import compute_hash, is_cached, write_hash
+from src.cache import code_digest, compute_hash, is_cached, write_hash
 from src.config import Settings
 from src.plotting import save_fig
+from src.protocol import PROTOCOL_REVISION, held_out_threshold_report
 from src.stages.s05_dnn_train import MLP
+from src.viz import PLOT_ROWS, stratified_indices
 
 
 # ── Shared metrics helpers (reused in s08) ────────────────────────────────────
@@ -43,44 +35,19 @@ def predict_proba_dnn(model: MLP, X: np.ndarray, device: torch.device | None = N
     return probs
 
 
-def threshold_analysis(y_true: np.ndarray, proba: np.ndarray) -> dict[str, Any]:
-    """Compute metrics at several threshold strategies."""
-    results: dict[str, Any] = {}
+def threshold_analysis(
+    y_selection: np.ndarray,
+    proba_selection: np.ndarray,
+    y_evaluation: np.ndarray,
+    proba_evaluation: np.ndarray,
+) -> dict[str, Any]:
+    """Пороги замораживаются на validation и оцениваются на test.
 
-    # F1-optimal
-    prec_arr, rec_arr, thr_arr = precision_recall_curve(y_true, proba)
-    f1_arr = 2 * prec_arr * rec_arr / np.maximum(prec_arr + rec_arr, 1e-8)
-    best_idx = np.argmax(f1_arr)
-    best_thr_f1 = float(thr_arr[min(best_idx, len(thr_arr) - 1)])
-
-    # ROC-optimal (Youden's J)
-    fpr, tpr, roc_thr = roc_curve(y_true, proba)
-    j = tpr - fpr
-    best_thr_roc = float(roc_thr[np.argmax(j)])
-
-    # Prevalence
-    prevalence_thr = float(y_true.mean())
-
-    thresholds = {
-        "f1_best": best_thr_f1,
-        "roc_youden": best_thr_roc,
-        "prevalence": prevalence_thr,
-        "0.5": 0.5,
-    }
-
-    for name, thr in thresholds.items():
-        preds = (proba >= thr).astype(int)
-        results[name] = {
-            "threshold": thr,
-            "accuracy": float(accuracy_score(y_true, preds)),
-            "precision": float(precision_score(y_true, preds, zero_division=0)),
-            "recall": float(recall_score(y_true, preds, zero_division=0)),
-            "f1": float(f1_score(y_true, preds, zero_division=0)),
-        }
-
-    results["auc"] = float(roc_auc_score(y_true, proba))
-    results["logloss"] = float(log_loss(y_true, proba))
-    return results
+    Прежняя версия подбирала F1 и Youden на том же test, где считала метрики.
+    """
+    return held_out_threshold_report(
+        y_selection, proba_selection, y_evaluation, proba_evaluation,
+    )
 
 
 def plot_probability_distributions(
@@ -90,12 +57,14 @@ def plot_probability_distributions(
 ) -> None:
     """Histogram of predicted probabilities split by y_true, for each data split."""
     for split_name, (y, proba) in splits.items():
-        df = pd.DataFrame({"proba": proba, "class": np.where(y == 1, "AI (1)", "Human (0)")})
-        fig = px.histogram(
-            df, x="proba", color="class", barmode="overlay", nbins=60, opacity=0.6,
-            title=f"{title_prefix}Probability distribution — {split_name}",
-            labels={"proba": "Predicted probability"},
-        )
+        fig = go.Figure()
+        for class_name, class_value, color in (("Human (0)", 0, "#636EFA"), ("AI (1)", 1, "#EF553B")):
+            mask = np.asarray(y) == class_value
+            counts, edges = np.histogram(np.asarray(proba)[mask], bins=60, range=(0.0, 1.0))
+            centers = (edges[:-1] + edges[1:]) / 2
+            fig.add_trace(go.Bar(x=centers, y=counts, name=class_name, marker_color=color, opacity=0.6))
+        fig.update_layout(barmode="overlay", title=f"{title_prefix}Probability distribution — {split_name}",
+                          xaxis_title="Predicted probability", yaxis_title="Count")
         save_fig(fig, out / f"prob_dist_{split_name}")
 
 
@@ -118,6 +87,8 @@ def plot_umap_proba(
 ) -> None:
     import umap
 
+    index = stratified_indices(y, PLOT_ROWS, 42)
+    X, y, proba = X[index], y[index], proba[index]
     reducer = umap.UMAP(n_components=2, random_state=42, n_neighbors=15, min_dist=0.1)
     X2d = reducer.fit_transform(X)
 
@@ -163,17 +134,25 @@ def run(cfg: Settings, logger: logging.Logger, *, ctx: dict[str, Any] | None = N
     y_val = val_df["generated"].values.astype(np.float32)
     y_test = test_df["generated"].values.astype(np.float32)
 
-    h = compute_hash(mode=cfg.MODE, seed=cfg.SEED, n_test=len(y_test), stage="s06")
+    h = compute_hash(
+        mode=cfg.MODE, seed=cfg.SEED, n_test=len(y_test), stage="s06",
+        protocol=PROTOCOL_REVISION, threshold_rule="validation_frozen",
+        code=code_digest(Path(__file__)),
+    )
     if is_cached(out_dir, h):
         logger.info("Stage 06 cached — skipping")
         return
 
-    # Load best DNN model
     if ctx and "dnn_model" in ctx:
         model = ctx["dnn_model"]
     else:
-        widths = cfg.dnn_widths_list
-        width = widths[-1] if widths else 1024
+        selection_path = cfg.result_path / "05_dnn" / "model_selection.json"
+        if selection_path.exists():
+            width = int(json.loads(selection_path.read_text(encoding="utf-8"))["width"])
+        else:
+            widths = cfg.dnn_widths_list
+            width = widths[-1] if widths else 1024
+            logger.warning("model_selection.json is absent; loading the widest width")
         model = MLP(X_train.shape[1], width)
         model.load_state_dict(torch.load(cfg.result_path / "05_dnn" / "best_model.pt", weights_only=True))
 
@@ -182,16 +161,20 @@ def run(cfg: Settings, logger: logging.Logger, *, ctx: dict[str, Any] | None = N
     proba_train = predict_proba_dnn(model, X_train)
     proba_val = predict_proba_dnn(model, X_val)
     proba_test = predict_proba_dnn(model, X_test)
+    np.save(out_dir / "test_proba.npy", proba_test)
+    np.save(out_dir / "y_test.npy", y_test)
 
-    # Threshold analysis on test
-    logger.info("Threshold analysis (test set)...")
-    thr_results = threshold_analysis(y_test, proba_test)
+    logger.info("Thresholds frozen on validation, metrics on test")
+    thr_results = threshold_analysis(y_val, proba_val, y_test, proba_test)
     (out_dir / "threshold_analysis.json").write_text(
         json.dumps(thr_results, indent=2), encoding="utf-8"
     )
-    for name, m in thr_results.items():
-        if isinstance(m, dict):
-            logger.info("  %s: thr=%.3f  acc=%.3f  f1=%.3f", name, m["threshold"], m["accuracy"], m["f1"])
+    for name, metrics in thr_results.items():
+        if isinstance(metrics, dict) and "accuracy" in metrics:
+            logger.info(
+                "  %s: thr=%.3f  acc=%.3f  f1=%.3f",
+                name, metrics["threshold"], metrics["accuracy"], metrics["f1"],
+            )
     logger.info("  AUC=%.4f  LogLoss=%.4f", thr_results["auc"], thr_results["logloss"])
 
     # Probability distributions

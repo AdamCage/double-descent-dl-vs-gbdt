@@ -14,9 +14,11 @@ from sklearn.decomposition import PCA
 
 from sklearn.preprocessing import StandardScaler
 
-from src.cache import compute_hash, is_cached, write_hash
+from src.cache import code_digest, compute_hash, is_cached, write_hash
 from src.config import Settings
 from src.plotting import save_fig
+from src.protocol import PROTOCOL_REVISION, choose_pca_dimensions, sha256_array
+from src.viz import PLOT_ROWS, stratified_indices
 
 
 def _umap_scatter(X: np.ndarray, y: np.ndarray, title: str, out: Path) -> None:
@@ -76,7 +78,17 @@ def run(cfg: Settings, logger: logging.Logger, *, ctx: dict[str, Any] | None = N
     test_df = ctx["test_df"] if ctx and "test_df" in ctx else pd.read_parquet(cfg.result_path / "01_data" / "test.parquet")
     y_train = train_df["generated"].values
 
-    h = compute_hash(shape=emb_train.shape, mode=cfg.MODE, seed=cfg.SEED)
+    h = compute_hash(
+        shape=emb_train.shape,
+        mode=cfg.MODE,
+        seed=cfg.SEED,
+        protocol=PROTOCOL_REVISION,
+        variance_target=cfg.PCA_VARIANCE_TARGET,
+        code=code_digest(Path(__file__)),
+        train_sha=sha256_array(emb_train),
+        val_sha=sha256_array(emb_val),
+        test_sha=sha256_array(emb_test),
+    )
     if is_cached(out_dir, h):
         logger.info("Stage 04 cached — loading reduced embeddings")
         X_train = np.load(out_dir / "train_reduced.npy")
@@ -88,9 +100,11 @@ def run(cfg: Settings, logger: logging.Logger, *, ctx: dict[str, Any] | None = N
 
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    # UMAP on original embeddings
-    logger.info("Computing UMAP on original embeddings (%d dims)...", emb_train.shape[1])
-    _umap_scatter(emb_train, y_train, "UMAP — original embeddings (train, by y_true)", out_dir / "umap_original")
+    # UMAP is a plot of a fixed stratified subsample. PCA and the models use every row.
+    umap_index = stratified_indices(y_train, PLOT_ROWS, cfg.SEED)
+    logger.info("Computing UMAP on %d of %d training rows (plot only)...", len(umap_index), len(y_train))
+    _umap_scatter(emb_train[umap_index], y_train[umap_index],
+                  "UMAP — original embeddings (train subsample, by y_true)", out_dir / "umap_original")
 
     # PCA to 256
     logger.info("Running PCA (target 256 dims)...")
@@ -101,7 +115,10 @@ def run(cfg: Settings, logger: logging.Logger, *, ctx: dict[str, Any] | None = N
     import plotly.graph_objects as go
     fig = go.Figure()
     fig.add_trace(go.Scatter(y=cum_var, mode="lines", name="Cumulative"))
-    fig.add_hline(y=0.95, line_dash="dash", line_color="red", annotation_text="95%")
+    fig.add_hline(
+        y=cfg.PCA_VARIANCE_TARGET, line_dash="dash", line_color="red",
+        annotation_text=f"{cfg.PCA_VARIANCE_TARGET:.0%}",
+    )
     fig.update_layout(
         title="PCA — Cumulative explained variance",
         xaxis_title="Number of components",
@@ -109,13 +126,20 @@ def run(cfg: Settings, logger: logging.Logger, *, ctx: dict[str, Any] | None = N
     )
     save_fig(fig, out_dir / "pca_explained_variance")
 
-    # Decide final dimensionality
-    if pca_info["explained_variance_at_256"] >= 0.95:
-        final_dims = 128
-        logger.info("95%% variance covered at 256 dims -> reducing to 128")
-    else:
-        final_dims = emb_train.shape[1]
-        logger.info("95%% variance NOT covered at 256 dims -> keeping original %d dims", final_dims)
+    # Наименьшее k с долей дисперсии >= target. 128 не подставляется автоматически.
+    decision = choose_pca_dimensions(
+        cum_var, original_dim=emb_train.shape[1], target=cfg.PCA_VARIANCE_TARGET,
+    )
+    pca_info.update(decision)
+    final_dims = int(decision["final_dims"])
+    logger.info(
+        "PCA choice: dims=%d rule=%s variance=%.4f (at 128=%.4f, at 256=%.4f)",
+        final_dims,
+        decision["rule"],
+        decision["variance_at_choice"],
+        decision["explained_variance_at_128"],
+        decision["explained_variance_at_256"],
+    )
 
     if final_dims < emb_train.shape[1]:
         pca_final = PCA(n_components=final_dims, random_state=42)
@@ -144,9 +168,11 @@ def run(cfg: Settings, logger: logging.Logger, *, ctx: dict[str, Any] | None = N
     logger.info("Final feature dimensionality: %d (embeddings %d + text features %d)",
                 X_train.shape[1], X_train.shape[1] - tf_train.shape[1], tf_train.shape[1])
 
-    # UMAP on final features
-    logger.info("Computing UMAP on final features (%d dims)...", X_train.shape[1])
-    _umap_scatter(X_train, y_train, f"UMAP — final features ({X_train.shape[1]}d, train, by y_true)", out_dir / "umap_reduced")
+    logger.info("Computing UMAP on final features (%d dims, plot subsample)...", X_train.shape[1])
+    _umap_scatter(X_train[umap_index], y_train[umap_index],
+                  f"UMAP — final features ({X_train.shape[1]}d, train subsample, by y_true)",
+                  out_dir / "umap_reduced")
+    pca_info["umap_plot_rows"] = int(len(umap_index))
 
     # Save
     np.save(out_dir / "train_reduced.npy", X_train)

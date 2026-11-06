@@ -1,0 +1,1 @@
+{"backend": "routerai", "model": "qwen/qwen3-embedding-8b", "base_url": "https://routerai.ru/api/v1", "dim": 4096, "text_chars": 4}

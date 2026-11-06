@@ -11,8 +11,9 @@ import numpy as np
 import pandas as pd
 from catboost import CatBoostClassifier
 
-from src.cache import compute_hash, is_cached, write_hash
+from src.cache import code_digest, compute_hash, is_cached, write_hash
 from src.config import Settings
+from src.protocol import PROTOCOL_REVISION
 from src.stages.s06_dnn_metrics import (
     plot_calibration,
     plot_probability_distributions,
@@ -35,7 +36,11 @@ def run(cfg: Settings, logger: logging.Logger, *, ctx: dict[str, Any] | None = N
     y_val = val_df["generated"].values.astype(np.float32)
     y_test = test_df["generated"].values.astype(np.float32)
 
-    h = compute_hash(mode=cfg.MODE, seed=cfg.SEED, n_test=len(y_test), stage="s08")
+    h = compute_hash(
+        mode=cfg.MODE, seed=cfg.SEED, n_test=len(y_test), stage="s08",
+        protocol=PROTOCOL_REVISION, threshold_rule="validation_frozen",
+        code=code_digest(Path(__file__)),
+    )
     if is_cached(out_dir, h):
         logger.info("Stage 08 cached — skipping")
         return
@@ -52,16 +57,19 @@ def run(cfg: Settings, logger: logging.Logger, *, ctx: dict[str, Any] | None = N
     proba_train = model.predict_proba(X_train)[:, 1]
     proba_val = model.predict_proba(X_val)[:, 1]
     proba_test = model.predict_proba(X_test)[:, 1]
+    np.save(out_dir / "test_proba.npy", proba_test)
 
-    # Threshold analysis
-    logger.info("CatBoost threshold analysis (test set)...")
-    thr_results = threshold_analysis(y_test, proba_test)
+    logger.info("CatBoost thresholds frozen on validation, metrics on test")
+    thr_results = threshold_analysis(y_val, proba_val, y_test, proba_test)
     (out_dir / "threshold_analysis.json").write_text(
         json.dumps(thr_results, indent=2), encoding="utf-8"
     )
-    for name, m in thr_results.items():
-        if isinstance(m, dict):
-            logger.info("  %s: thr=%.3f  acc=%.3f  f1=%.3f", name, m["threshold"], m["accuracy"], m["f1"])
+    for name, metrics in thr_results.items():
+        if isinstance(metrics, dict) and "accuracy" in metrics:
+            logger.info(
+                "  %s: thr=%.3f  acc=%.3f  f1=%.3f",
+                name, metrics["threshold"], metrics["accuracy"], metrics["f1"],
+            )
     logger.info("  AUC=%.4f  LogLoss=%.4f", thr_results["auc"], thr_results["logloss"])
 
     # Probability distributions

@@ -1,6 +1,8 @@
 """Double Descent Research Pipeline — entry point."""
 
 import argparse
+import importlib
+import logging
 import sys
 import time
 
@@ -29,53 +31,49 @@ def main() -> None:
         cfg.MODE = args.mode
 
     logger = setup_logging()
+    cfg.result_path.mkdir(parents=True, exist_ok=True)
+    file_handler = logging.FileHandler(cfg.result_path / "pipeline.log", encoding="utf-8")
+    file_handler.setFormatter(logging.Formatter("%(asctime)s | %(levelname)-8s | %(name)s | %(message)s",
+                                                "%Y-%m-%d %H:%M:%S"))
+    logger.addHandler(file_handler)
     logger.info("Pipeline started  mode=%s  seed=%d", cfg.MODE, cfg.SEED)
 
-    from src.stages.s01_data import run as run_s01
-    from src.stages.s02_eda import run as run_s02
-    from src.stages.s03_embeddings import run as run_s03
-    from src.stages.s04_embedding_analysis import run as run_s04
-    from src.stages.s05_dnn_train import run as run_s05
-    from src.stages.s06_dnn_metrics import run as run_s06
-    from src.stages.s07_catboost_train import run as run_s07
-    from src.stages.s08_catboost_metrics import run as run_s08
-    from src.stages.s09_comparison import run as run_s09
-    from src.stages.s10_meta import run as run_s10
-
+    # Import a stage only when it is selected. s03 must not load torch or CatBoost.
     stages = {
-        "s01": ("01 Data loading", run_s01),
-        "s02": ("02 EDA", run_s02),
-        "s03": ("03 Embeddings", run_s03),
-        "s04": ("04 Embedding analysis", run_s04),
-        "s05": ("05 DNN training", run_s05),
-        "s06": ("06 DNN metrics", run_s06),
-        "s07": ("07 CatBoost training", run_s07),
-        "s08": ("08 CatBoost metrics", run_s08),
-        "s09": ("09 Comparison", run_s09),
-        "s10": ("10 Metadata", run_s10),
+        "s01": ("01 Data loading", "src.stages.s01_data"),
+        "s02": ("02 EDA", "src.stages.s02_eda"),
+        "s03": ("03 Embeddings", "src.stages.s03_embeddings"),
+        "s04": ("04 Embedding analysis", "src.stages.s04_embedding_analysis"),
+        "s05": ("05 DNN training", "src.stages.s05_dnn_train"),
+        "s06": ("06 DNN metrics", "src.stages.s06_dnn_metrics"),
+        "s07": ("07 CatBoost training", "src.stages.s07_catboost_train"),
+        "s08": ("08 CatBoost metrics", "src.stages.s08_catboost_metrics"),
+        "s09": ("09 Comparison", "src.stages.s09_comparison"),
+        "s10": ("10 Metadata", "src.stages.s10_meta"),
     }
 
     timings: dict[str, float] = {}
     ctx: dict = {}
 
-    if args.stage:
-        key = args.stage if args.stage.startswith("s") else f"s{int(args.stage):02d}"
-        if key not in stages:
-            logger.error("Unknown stage: %s", args.stage)
-            sys.exit(1)
-        label, fn = stages[key]
-        logger.info("=== %s ===", label)
-        t0 = time.perf_counter()
-        fn(cfg, logger, ctx=ctx)
-        timings[key] = time.perf_counter() - t0
-        logger.info("Stage %s finished in %.1fs", key, timings[key])
-    else:
-        for key, (label, fn) in stages.items():
+    try:
+        if args.stage:
+            key = args.stage if args.stage.startswith("s") else f"s{int(args.stage):02d}"
+            if key not in stages:
+                logger.error("Unknown stage: %s", args.stage)
+                sys.exit(1)
+            selected = {key: stages[key]}
+        else:
+            selected = stages
+        for key, (label, module_path) in selected.items():
             logger.info("=== %s ===", label)
             t0 = time.perf_counter()
+            fn = importlib.import_module(module_path).run
             fn(cfg, logger, ctx=ctx)
             timings[key] = time.perf_counter() - t0
             logger.info("Stage %s finished in %.1fs", key, timings[key])
+    except Exception:
+        logger.exception("Pipeline failed")
+        raise
 
     ctx["timings"] = timings
     logger.info("Pipeline completed. Total %.1fs", sum(timings.values()))

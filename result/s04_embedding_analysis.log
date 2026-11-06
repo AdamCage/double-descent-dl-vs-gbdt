@@ -1,0 +1,113 @@
+2026-11-06 01:10:48 | INFO     | pipeline | Pipeline started  mode=full  seed=42
+2026-11-06 01:10:48 | INFO     | pipeline | === 04 Embedding analysis ===
+2026-11-06 01:11:01 | INFO     | pipeline | Computing UMAP on 20000 of 324991 training rows (plot only)...
+C:\projects\double-descent-dl-vs-gbdt\.venv\Lib\site-packages\umap\umap_.py:1952: UserWarning: n_jobs value 1 overridden to 1 by setting random_state. Use no seed for parallelism.
+  warn(
+2026-11-06 01:11:40 | INFO     | choreographer.browsers.chromium | Chromium init'ed with kwargs {}
+2026-11-06 01:11:40 | INFO     | choreographer.browsers.chromium | Found chromium path: C:\Program Files\Google\Chrome\Application\chrome.exe
+2026-11-06 01:11:40 | INFO     | choreographer.utils._tmpfile | Temp directory created: C:\Users\AdamCage\AppData\Local\Temp\tmpwfi670sb.
+2026-11-06 01:11:40 | INFO     | choreographer.browser_async | Opening browser.
+2026-11-06 01:11:40 | INFO     | choreographer.utils._tmpfile | Temp directory created: C:\Users\AdamCage\AppData\Local\Temp\tmpt0odirta.
+2026-11-06 01:11:40 | INFO     | choreographer.browsers.chromium | Temporary directory at: C:\Users\AdamCage\AppData\Local\Temp\tmpt0odirta
+2026-11-06 01:11:41 | INFO     | kaleido.kaleido | Conforming 1 to file:///C:/Users/AdamCage/AppData/Local/Temp/tmpwfi670sb/index.html
+2026-11-06 01:11:41 | INFO     | kaleido.kaleido | Waiting on all navigates
+2026-11-06 01:11:42 | INFO     | kaleido.kaleido | All navigates done, putting them all in queue.
+2026-11-06 01:11:42 | INFO     | kaleido.kaleido | Getting tab from queue (has 1)
+2026-11-06 01:11:42 | INFO     | kaleido.kaleido | Got 2585
+2026-11-06 01:11:42 | INFO     | kaleido._kaleido_tab | Processing UMAP__original_embeddings_train_subsample_by_y_true.png
+2026-11-06 01:11:42 | INFO     | kaleido._kaleido_tab | Sending big command for UMAP__original_embeddings_train_subsample_by_y_true.png.
+2026-11-06 01:11:42 | INFO     | kaleido._kaleido_tab | Sent big command for UMAP__original_embeddings_train_subsample_by_y_true.png.
+2026-11-06 01:11:42 | INFO     | kaleido.kaleido | Reloading tab 2585 before return.
+2026-11-06 01:11:42 | INFO     | kaleido.kaleido | Putting tab 2585 back (queue size: 0).
+2026-11-06 01:11:42 | INFO     | kaleido.kaleido | Waiting for all cleanups to finish.
+2026-11-06 01:11:42 | INFO     | kaleido.kaleido | Exiting Kaleido
+2026-11-06 01:11:42 | INFO     | choreographer.browser_async | Closing browser.
+2026-11-06 01:11:43 | INFO     | choreographer.browser_async | Closing browser.
+2026-11-06 01:11:43 | INFO     | choreographer.utils._tmpfile | TemporaryDirectory.cleanup() worked.
+2026-11-06 01:11:43 | INFO     | choreographer.utils._tmpfile | shutil.rmtree worked.
+2026-11-06 01:11:43 | INFO     | kaleido.kaleido | Cancelling tasks.
+2026-11-06 01:11:43 | INFO     | kaleido.kaleido | Exiting Kaleido/Choreo
+2026-11-06 01:11:43 | INFO     | choreographer.utils._tmpfile | TemporaryDirectory.cleanup() worked.
+2026-11-06 01:11:43 | INFO     | choreographer.utils._tmpfile | shutil.rmtree worked.
+2026-11-06 01:11:43 | INFO     | choreographer.utils._tmpfile | TemporaryDirectory.cleanup() worked.
+2026-11-06 01:11:43 | INFO     | choreographer.utils._tmpfile | shutil.rmtree worked.
+2026-11-06 01:11:43 | INFO     | kaleido.kaleido | Cancelling tasks.
+2026-11-06 01:11:43 | INFO     | kaleido.kaleido | Exiting Kaleido/Choreo
+2026-11-06 01:11:43 | INFO     | pipeline | Running PCA (target 256 dims)...
+2026-11-06 01:12:03 | INFO     | pipeline | PCA 256 dims: total var=0.8629  @128=0.7904  @256=0.8629
+2026-11-06 01:12:03 | INFO     | choreographer.utils._tmpfile | TemporaryDirectory.cleanup() worked.
+2026-11-06 01:12:03 | INFO     | choreographer.utils._tmpfile | shutil.rmtree worked.
+2026-11-06 01:12:03 | INFO     | choreographer.browsers.chromium | Chromium init'ed with kwargs {}
+2026-11-06 01:12:03 | INFO     | choreographer.browsers.chromium | Found chromium path: C:\Program Files\Google\Chrome\Application\chrome.exe
+2026-11-06 01:12:03 | INFO     | choreographer.utils._tmpfile | Temp directory created: C:\Users\AdamCage\AppData\Local\Temp\tmpnpabd94x.
+2026-11-06 01:12:03 | INFO     | choreographer.browser_async | Opening browser.
+2026-11-06 01:12:03 | INFO     | choreographer.utils._tmpfile | Temp directory created: C:\Users\AdamCage\AppData\Local\Temp\tmpskiengcr.
+2026-11-06 01:12:03 | INFO     | choreographer.browsers.chromium | Temporary directory at: C:\Users\AdamCage\AppData\Local\Temp\tmpskiengcr
+2026-11-06 01:12:04 | INFO     | kaleido.kaleido | Conforming 1 to file:///C:/Users/AdamCage/AppData/Local/Temp/tmpnpabd94x/index.html
+2026-11-06 01:12:04 | INFO     | kaleido.kaleido | Waiting on all navigates
+2026-11-06 01:12:04 | INFO     | kaleido.kaleido | All navigates done, putting them all in queue.
+2026-11-06 01:12:04 | INFO     | kaleido.kaleido | Getting tab from queue (has 1)
+2026-11-06 01:12:04 | INFO     | kaleido.kaleido | Got C754
+2026-11-06 01:12:04 | INFO     | kaleido._kaleido_tab | Processing PCA__Cumulative_explained_variance.png
+2026-11-06 01:12:04 | INFO     | kaleido._kaleido_tab | Sending big command for PCA__Cumulative_explained_variance.png.
+2026-11-06 01:12:04 | INFO     | kaleido._kaleido_tab | Sent big command for PCA__Cumulative_explained_variance.png.
+2026-11-06 01:12:04 | INFO     | kaleido.kaleido | Reloading tab C754 before return.
+2026-11-06 01:12:05 | INFO     | kaleido.kaleido | Putting tab C754 back (queue size: 0).
+2026-11-06 01:12:05 | INFO     | kaleido.kaleido | Waiting for all cleanups to finish.
+2026-11-06 01:12:05 | INFO     | kaleido.kaleido | Exiting Kaleido
+2026-11-06 01:12:05 | INFO     | choreographer.browser_async | Closing browser.
+2026-11-06 01:12:05 | INFO     | choreographer.browser_async | Closing browser.
+2026-11-06 01:12:05 | INFO     | choreographer.utils._tmpfile | TemporaryDirectory.cleanup() worked.
+2026-11-06 01:12:05 | INFO     | choreographer.utils._tmpfile | shutil.rmtree worked.
+2026-11-06 01:12:05 | INFO     | kaleido.kaleido | Cancelling tasks.
+2026-11-06 01:12:05 | INFO     | kaleido.kaleido | Exiting Kaleido/Choreo
+2026-11-06 01:12:05 | INFO     | choreographer.utils._tmpfile | TemporaryDirectory.cleanup() worked.
+2026-11-06 01:12:05 | INFO     | choreographer.utils._tmpfile | shutil.rmtree worked.
+2026-11-06 01:12:05 | INFO     | choreographer.utils._tmpfile | TemporaryDirectory.cleanup() worked.
+2026-11-06 01:12:05 | INFO     | choreographer.utils._tmpfile | shutil.rmtree worked.
+2026-11-06 01:12:05 | INFO     | kaleido.kaleido | Cancelling tasks.
+2026-11-06 01:12:05 | INFO     | kaleido.kaleido | Exiting Kaleido/Choreo
+2026-11-06 01:12:05 | INFO     | pipeline | PCA choice: dims=4096 rule=variance_target_not_met_within_cap variance=0.8629 (at 128=0.7904, at 256=0.8629)
+2026-11-06 01:12:05 | INFO     | pipeline | Embedding dims after PCA: 4096
+2026-11-06 01:12:05 | INFO     | pipeline | Extracting text-level features (char_len, word_count, avg_word_len)...
+2026-11-06 01:12:05 | INFO     | choreographer.utils._tmpfile | TemporaryDirectory.cleanup() worked.
+2026-11-06 01:12:05 | INFO     | choreographer.utils._tmpfile | shutil.rmtree worked.
+2026-11-06 01:12:20 | INFO     | pipeline | Final feature dimensionality: 4099 (embeddings 4096 + text features 3)
+2026-11-06 01:12:20 | INFO     | pipeline | Computing UMAP on final features (4099 dims, plot subsample)...
+C:\projects\double-descent-dl-vs-gbdt\.venv\Lib\site-packages\umap\umap_.py:1952: UserWarning: n_jobs value 1 overridden to 1 by setting random_state. Use no seed for parallelism.
+  warn(
+2026-11-06 01:12:33 | INFO     | choreographer.browsers.chromium | Chromium init'ed with kwargs {}
+2026-11-06 01:12:33 | INFO     | choreographer.browsers.chromium | Found chromium path: C:\Program Files\Google\Chrome\Application\chrome.exe
+2026-11-06 01:12:33 | INFO     | choreographer.utils._tmpfile | Temp directory created: C:\Users\AdamCage\AppData\Local\Temp\tmp5yhuwfac.
+2026-11-06 01:12:33 | INFO     | choreographer.browser_async | Opening browser.
+2026-11-06 01:12:33 | INFO     | choreographer.utils._tmpfile | Temp directory created: C:\Users\AdamCage\AppData\Local\Temp\tmpo2w7a4tv.
+2026-11-06 01:12:33 | INFO     | choreographer.browsers.chromium | Temporary directory at: C:\Users\AdamCage\AppData\Local\Temp\tmpo2w7a4tv
+2026-11-06 01:12:33 | INFO     | kaleido.kaleido | Conforming 1 to file:///C:/Users/AdamCage/AppData/Local/Temp/tmp5yhuwfac/index.html
+2026-11-06 01:12:33 | INFO     | kaleido.kaleido | Waiting on all navigates
+2026-11-06 01:12:34 | INFO     | kaleido.kaleido | All navigates done, putting them all in queue.
+2026-11-06 01:12:34 | INFO     | kaleido.kaleido | Getting tab from queue (has 1)
+2026-11-06 01:12:34 | INFO     | kaleido.kaleido | Got 33E6
+2026-11-06 01:12:34 | INFO     | kaleido._kaleido_tab | Processing UMAP__final_features_4099d_train_subsample_by_y_true.png
+2026-11-06 01:12:34 | INFO     | kaleido._kaleido_tab | Sending big command for UMAP__final_features_4099d_train_subsample_by_y_true.png.
+2026-11-06 01:12:35 | INFO     | kaleido._kaleido_tab | Sent big command for UMAP__final_features_4099d_train_subsample_by_y_true.png.
+2026-11-06 01:12:35 | INFO     | kaleido.kaleido | Reloading tab 33E6 before return.
+2026-11-06 01:12:35 | INFO     | kaleido.kaleido | Putting tab 33E6 back (queue size: 0).
+2026-11-06 01:12:35 | INFO     | kaleido.kaleido | Waiting for all cleanups to finish.
+2026-11-06 01:12:35 | INFO     | kaleido.kaleido | Exiting Kaleido
+2026-11-06 01:12:35 | INFO     | choreographer.browser_async | Closing browser.
+2026-11-06 01:12:35 | INFO     | choreographer.browser_async | Closing browser.
+2026-11-06 01:12:35 | INFO     | choreographer.utils._tmpfile | TemporaryDirectory.cleanup() worked.
+2026-11-06 01:12:35 | INFO     | choreographer.utils._tmpfile | shutil.rmtree worked.
+2026-11-06 01:12:35 | INFO     | kaleido.kaleido | Cancelling tasks.
+2026-11-06 01:12:35 | INFO     | kaleido.kaleido | Exiting Kaleido/Choreo
+2026-11-06 01:12:36 | INFO     | choreographer.utils._tmpfile | TemporaryDirectory.cleanup() worked.
+2026-11-06 01:12:36 | INFO     | choreographer.utils._tmpfile | shutil.rmtree worked.
+2026-11-06 01:12:36 | INFO     | choreographer.utils._tmpfile | TemporaryDirectory.cleanup() worked.
+2026-11-06 01:12:36 | INFO     | choreographer.utils._tmpfile | shutil.rmtree worked.
+2026-11-06 01:12:36 | INFO     | kaleido.kaleido | Cancelling tasks.
+2026-11-06 01:12:36 | INFO     | kaleido.kaleido | Exiting Kaleido/Choreo
+2026-11-06 01:12:42 | INFO     | pipeline | Stage 04 artifacts saved to result\04_embedding_analysis
+2026-11-06 01:12:43 | INFO     | pipeline | Stage s04 finished in 114.4s
+2026-11-06 01:12:43 | INFO     | pipeline | Pipeline completed. Total 114.4s
+2026-11-06 01:12:43 | INFO     | choreographer.utils._tmpfile | TemporaryDirectory.cleanup() worked.
+2026-11-06 01:12:43 | INFO     | choreographer.utils._tmpfile | shutil.rmtree worked.

@@ -9,12 +9,12 @@ from typing import Any
 
 import numpy as np
 import pandas as pd
-import plotly.express as px
 import plotly.graph_objects as go
 
 from src.cache import compute_hash, is_cached, write_hash
 from src.config import Settings
 from src.plotting import save_fig
+from src.viz import stratified_indices
 
 
 def _class_balance(df: pd.DataFrame, out: Path) -> None:
@@ -27,27 +27,36 @@ def _class_balance(df: pd.DataFrame, out: Path) -> None:
     save_fig(fig, out / "class_balance")
 
 
+def _binned_overlay(df: pd.DataFrame, column: str, title: str, out: Path, bins: int = 80) -> None:
+    fig = go.Figure()
+    for label_name, color in (("Human", "#636EFA"), ("AI", "#EF553B")):
+        values = df.loc[df["label"] == label_name, column].to_numpy()
+        counts, edges = np.histogram(values, bins=bins)
+        centers = (edges[:-1] + edges[1:]) / 2
+        fig.add_trace(go.Bar(x=centers, y=counts, name=label_name, marker_color=color, opacity=0.6))
+    fig.update_layout(barmode="overlay", title=f"{title} distribution by class",
+                      xaxis_title=title, yaxis_title="Count")
+    save_fig(fig, out)
+
+
 def _text_length_distribution(df: pd.DataFrame, out: Path) -> None:
     df = df.copy()
     df["char_len"] = df["text"].str.len()
     df["word_count"] = df["text"].str.split().str.len()
     df["label"] = df["generated"].map({0: "Human", 1: "AI"})
 
-    for col, title in [("char_len", "Character length"), ("word_count", "Word count")]:
-        fig = px.histogram(
-            df, x=col, color="label", barmode="overlay", nbins=80,
-            title=f"{title} distribution by class", opacity=0.6,
-            labels={col: title},
-        )
-        save_fig(fig, out / f"dist_{col}")
+    _binned_overlay(df, "char_len", "Character length", out / "dist_char_len")
+    _binned_overlay(df, "word_count", "Word count", out / "dist_word_count")
 
     stats = df.groupby("label")[["char_len", "word_count"]].describe()
     stats.to_csv(out / "text_stats.csv")
 
 
 def _top_ngrams(df: pd.DataFrame, out: Path, n: int = 2, top_k: int = 20) -> None:
+    indices = stratified_indices(df["generated"].to_numpy())
+    sampled = df.iloc[indices]
     for label_int, label_name in [(0, "Human"), (1, "AI")]:
-        texts = df.loc[df["generated"] == label_int, "text"]
+        texts = sampled.loc[sampled["generated"] == label_int, "text"]
         counter: Counter[tuple[str, ...]] = Counter()
         for text in texts:
             words = text.lower().split()

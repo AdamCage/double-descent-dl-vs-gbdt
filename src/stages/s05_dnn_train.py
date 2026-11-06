@@ -15,9 +15,16 @@ import torch.nn as nn
 from sklearn.metrics import log_loss, accuracy_score
 from torch.utils.data import DataLoader, TensorDataset
 
-from src.cache import compute_hash, is_cached, write_hash
+from src.cache import code_digest, compute_hash, is_cached, write_hash
 from src.config import Settings
 from src.plotting import save_fig
+from src.protocol import (
+    PROTOCOL_REVISION,
+    noise_regime_name,
+    optimization_settled,
+    select_comparison_index,
+    sha256_array,
+)
 
 
 # ── MLP ───────────────────────────────────────────────────────────────────────
@@ -44,8 +51,9 @@ class MLP(nn.Module):
 # ── Helpers ───────────────────────────────────────────────────────────────────
 
 def _get_device() -> torch.device:
-    if torch.cuda.is_available():
-        return torch.device("cuda")
+    # LOCAL COMPUTE GUARD: another study owns the GPU. Always train the DNN
+    # on CPU, even when torch.cuda.is_available() is true. Do not revert this
+    # while that hold is in effect. Hyperparameters, splits, and loss are unchanged.
     return torch.device("cpu")
 
 
@@ -123,56 +131,102 @@ def _train_model(
 
 # ── Model-wise double descent ────────────────────────────────────────────────
 
+def _clone_state(model: MLP) -> dict[str, torch.Tensor]:
+    return {key: value.detach().cpu().clone() for key, value in model.state_dict().items()}
+
+
 def _model_wise(
     X_tr: np.ndarray, y_tr: np.ndarray,
     X_va: np.ndarray, y_va: np.ndarray,
     cfg: Settings, logger: logging.Logger, out_dir: Path,
     device: torch.device,
-) -> dict[str, Any]:
+    *,
+    label_noise: float,
+    plot_stem: str,
+) -> tuple[dict[str, Any], MLP]:
     widths = cfg.dnn_widths_list
     epochs = cfg.DNN_MODELWISE_EPOCHS
     lr = cfg.DNN_LR
     results: list[dict[str, Any]] = []
+    states: list[dict[str, torch.Tensor]] = []
+    regime = noise_regime_name(label_noise)
 
     for w in widths:
         model = MLP(X_tr.shape[1], w)
-        logger.info("  Model-wise: width=%d  params=%d  epochs=%d", w, model.num_params, epochs)
+        logger.info(
+            "  Model-wise: width=%d  params=%d  epochs=%d  noise_regime=%s",
+            w, model.num_params, epochs, regime,
+        )
         tr_loader, va_loader = _make_loaders(X_tr, y_tr, X_va, y_va)
         history = _train_model(model, tr_loader, va_loader, epochs, lr, device, log_every=max(1, epochs // 20))
         final = history[-1]
+        settled = optimization_settled(
+            [row["train_loss"] for row in history],
+            relative_tolerance=cfg.DNN_CONVERGENCE_REL,
+        )
         results.append({
             "width": w,
             "num_params": model.num_params,
+            "label_noise": float(label_noise),
+            "noise_regime": regime,
+            "optimization_settled": settled,
+            "logged_points": len(history),
             **final,
         })
+        states.append(_clone_state(model))
+        del model
         logger.info(
-            "    -> train_loss=%.4f  val_loss=%.4f  train_acc=%.3f  val_acc=%.3f",
-            final["train_loss"], final["val_loss"], final["train_acc"], final["val_acc"],
+            "    -> train_loss=%.4f  val_loss=%.4f  train_acc=%.3f  val_acc=%.3f  settled=%s",
+            final["train_loss"], final["val_loss"], final["train_acc"], final["val_acc"], settled,
         )
 
-    # Plot model-wise curves
+    chosen, rule = select_comparison_index(results)
+    chosen_row = results[chosen]
+    selected = MLP(X_tr.shape[1], int(chosen_row["width"]))
+    selected.load_state_dict(states[chosen])
+    del states
+    selection = {
+        "width": int(chosen_row["width"]),
+        "num_params": int(chosen_row["num_params"]),
+        "val_loss": float(chosen_row["val_loss"]),
+        "train_loss": float(chosen_row["train_loss"]),
+        "label_noise": float(label_noise),
+        "noise_regime": regime,
+        "selection_rule": rule,
+        "optimization_settled": bool(chosen_row["optimization_settled"]),
+        "n_widths": len(results),
+        "n_widths_settled": int(sum(row["optimization_settled"] for row in results)),
+        "epoch_budget": epochs,
+        "comparison_role": "validation_selected_modelwise",
+        "protocol_revision": PROTOCOL_REVISION,
+    }
+    logger.info(
+        "  Selected width=%d val_loss=%.4f rule=%s regime=%s",
+        selection["width"], selection["val_loss"], rule, regime,
+    )
+
     params = [r["num_params"] for r in results]
     fig = go.Figure()
     fig.add_trace(go.Scatter(x=params, y=[r["train_loss"] for r in results], mode="lines+markers", name="Train loss"))
     fig.add_trace(go.Scatter(x=params, y=[r["val_loss"] for r in results], mode="lines+markers", name="Val loss"))
     fig.update_layout(
-        title="Model-wise double descent: LogLoss vs #params",
+        title=f"Model-wise LogLoss vs #params ({regime})",
         xaxis_title="Number of parameters", yaxis_title="LogLoss",
         xaxis_type="log",
     )
-    save_fig(fig, out_dir / "model_wise_logloss")
+    save_fig(fig, out_dir / f"{plot_stem}_logloss")
 
     fig2 = go.Figure()
     fig2.add_trace(go.Scatter(x=params, y=[r["train_acc"] for r in results], mode="lines+markers", name="Train acc"))
     fig2.add_trace(go.Scatter(x=params, y=[r["val_acc"] for r in results], mode="lines+markers", name="Val acc"))
     fig2.update_layout(
-        title="Model-wise: Accuracy vs #params",
+        title=f"Model-wise accuracy vs #params ({regime})",
         xaxis_title="Number of parameters", yaxis_title="Accuracy",
         xaxis_type="log",
     )
-    save_fig(fig2, out_dir / "model_wise_accuracy")
+    save_fig(fig2, out_dir / f"{plot_stem}_accuracy")
 
-    return {"model_wise": results}
+    return {"model_wise": results, "model_selection": selection, "label_noise": float(label_noise)}, selected
 
 
 # ── Epoch-wise double descent ────────────────────────────────────────────────
@@ -198,7 +252,7 @@ def _epoch_wise(
     fig.add_trace(go.Scatter(x=ep, y=[h["train_loss"] for h in history], mode="lines", name="Train loss"))
     fig.add_trace(go.Scatter(x=ep, y=[h["val_loss"] for h in history], mode="lines", name="Val loss"))
     fig.update_layout(
-        title=f"Epoch-wise double descent (width={width}, params={model.num_params})",
+        title=f"Epoch-wise LogLoss (width={width}, params={model.num_params}; not the comparison model)",
         xaxis_title="Epoch", yaxis_title="LogLoss",
     )
     save_fig(fig, out_dir / "epoch_wise_logloss")
@@ -244,18 +298,19 @@ def run(cfg: Settings, logger: logging.Logger, *, ctx: dict[str, Any] | None = N
         input_dim=X_train.shape[1], n_train=len(X_train),
         widths=cfg.DNN_WIDTHS, mw_epochs=cfg.DNN_MODELWISE_EPOCHS,
         ew_epochs=cfg.DNN_EPOCHWISE_EPOCHS, lr=cfg.DNN_LR,
-        noise=cfg.DNN_LABEL_NOISE,
+        noise_arm_rate=cfg.DNN_LABEL_NOISE,
+        run_noise_arm=cfg.DNN_RUN_NOISE_ARM,
+        convergence_rel=cfg.DNN_CONVERGENCE_REL,
+        comparison_noise=0.0,
+        protocol=PROTOCOL_REVISION,
+        code=code_digest(Path(__file__)),
+        train_sha=sha256_array(X_train),
+        label_sha=sha256_array(y_train),
     )
     if is_cached(out_dir, h):
         logger.info("Stage 05 cached — skipping DNN training")
         if ctx is not None:
-            model_path = out_dir / "best_model.pt"
-            if model_path.exists():
-                widths = cfg.dnn_widths_list
-                width = widths[-1] if widths else 1024
-                best_model = MLP(X_train.shape[1], width)
-                best_model.load_state_dict(torch.load(model_path, weights_only=True))
-                ctx["dnn_model"] = best_model
+            _load_comparison_model(cfg, X_train.shape[1], out_dir, ctx, logger)
         return
 
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -265,29 +320,76 @@ def run(cfg: Settings, logger: logging.Logger, *, ctx: dict[str, Any] | None = N
     torch.manual_seed(cfg.SEED)
     np.random.seed(cfg.SEED)
 
-    # Optionally inject label noise to amplify interpolation peak
-    if cfg.DNN_LABEL_NOISE > 0:
+    # Сравнение с CatBoost идёт на чистых метках. Шумовое плечо — отдельный режим.
+    clean, comparison_model = _model_wise(
+        X_train, y_train, X_val, y_val, cfg, logger, out_dir, device,
+        label_noise=0.0, plot_stem="model_wise",
+    )
+    noise_arm = None
+    if cfg.DNN_RUN_NOISE_ARM and cfg.DNN_LABEL_NOISE > 0:
         y_train_noisy = _inject_label_noise(y_train, cfg.DNN_LABEL_NOISE, cfg.SEED)
-        logger.info("Injected %.0f%% label noise for model-wise experiment", cfg.DNN_LABEL_NOISE * 100)
-    else:
-        y_train_noisy = y_train
+        logger.info(
+            "Noise arm %.3f is stored separately and is not the comparison model",
+            cfg.DNN_LABEL_NOISE,
+        )
+        noise_arm, _noise_model = _model_wise(
+            X_train, y_train_noisy, X_val, y_val, cfg, logger, out_dir, device,
+            label_noise=cfg.DNN_LABEL_NOISE, plot_stem="model_wise_label_noise",
+        )
+        del _noise_model
 
-    # Model-wise experiment
-    mw_results = _model_wise(X_train, y_train_noisy, X_val, y_val, cfg, logger, out_dir, device)
+    ew_results, epochwise_model = _epoch_wise(X_train, y_train, X_val, y_val, cfg, logger, out_dir, device)
 
-    # Epoch-wise experiment (clean labels)
-    ew_results, best_model = _epoch_wise(X_train, y_train, X_val, y_val, cfg, logger, out_dir, device)
-
-    # Save all results
-    all_results = {**mw_results, **ew_results}
+    all_results = {
+        **clean,
+        "model_wise_label_noise": None if noise_arm is None else noise_arm["model_wise"],
+        **ew_results,
+        "epoch_wise_role": "widest_width_curve_not_the_comparison_model",
+        "protocol_revision": PROTOCOL_REVISION,
+    }
     (out_dir / "dnn_results.json").write_text(
         json.dumps(all_results, indent=2, default=str), encoding="utf-8"
     )
-    torch.save(best_model.state_dict(), out_dir / "best_model.pt")
+    (out_dir / "model_selection.json").write_text(
+        json.dumps(clean["model_selection"], indent=2), encoding="utf-8"
+    )
+    torch.save(comparison_model.state_dict(), out_dir / "best_model.pt")
+    torch.save(epochwise_model.state_dict(), out_dir / "epochwise_model.pt")
 
     write_hash(out_dir, h)
     logger.info("Stage 05 artifacts saved to %s", out_dir)
 
     if ctx is not None:
-        ctx["dnn_model"] = best_model
+        ctx["dnn_model"] = comparison_model
+        ctx["dnn_epochwise_model"] = epochwise_model
+        ctx["dnn_model_selection"] = clean["model_selection"]
         ctx["dnn_results"] = all_results
+
+
+def _load_comparison_model(
+    cfg: Settings,
+    in_dim: int,
+    out_dir: Path,
+    ctx: dict[str, Any],
+    logger: logging.Logger,
+) -> None:
+    model_path = out_dir / "best_model.pt"
+    if not model_path.exists():
+        return
+    selection_path = out_dir / "model_selection.json"
+    if selection_path.exists():
+        selection = json.loads(selection_path.read_text(encoding="utf-8"))
+        width = int(selection["width"])
+    else:
+        widths = cfg.dnn_widths_list
+        width = widths[-1] if widths else 1024
+        selection = {
+            "width": width,
+            "label_noise": None,
+            "selection_rule": "legacy_widest_width",
+        }
+        logger.warning("model_selection.json is absent; loading the widest width as a legacy checkpoint")
+    model = MLP(in_dim, width)
+    model.load_state_dict(torch.load(model_path, weights_only=True))
+    ctx["dnn_model"] = model
+    ctx["dnn_model_selection"] = selection

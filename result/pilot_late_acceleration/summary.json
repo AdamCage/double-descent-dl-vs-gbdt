@@ -1,0 +1,475 @@
+{
+  "protocol": "review-2026-11-04",
+  "task_type": "CPU",
+  "thread_count": 2,
+  "embedding_corpus": "not_read",
+  "scientific_validity": "not_assessed",
+  "datasets": {
+    "synthetic": {
+      "origin": "small_data_pilot",
+      "corpus_essay_status": "not_assessed",
+      "n_independent_runs": 3,
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "change_point_reference": {
+        "n_independent_runs": 3,
+        "interval_available": false,
+        "inference": "not_reproduced",
+        "median_fraction": null,
+        "fractions": [
+          null,
+          null,
+          null
+        ],
+        "reason": "at least one run has no candidate"
+      },
+      "change_point_random_strength_0": {
+        "n_independent_runs": 3,
+        "interval_available": false,
+        "inference": "not_reproduced",
+        "median_fraction": null,
+        "fractions": [
+          null,
+          null,
+          null
+        ],
+        "reason": "at least one run has no candidate"
+      },
+      "H1": {
+        "verdict": "inconclusive",
+        "prediction": "При random_strength=0 воспроизведённое позднее ускорение пропадает."
+      },
+      "H2": {
+        "status": "descriptive",
+        "comparisons": [
+          {
+            "seed": 42,
+            "l2_leaf_reg": 1.0,
+            "learning_rates": [
+              0.05,
+              0.2
+            ],
+            "argmin_iteration": [
+              200,
+              50
+            ],
+            "normalized_time_closer": true
+          },
+          {
+            "seed": 42,
+            "l2_leaf_reg": 10.0,
+            "learning_rates": [
+              0.05,
+              0.2
+            ],
+            "argmin_iteration": [
+              200,
+              50
+            ],
+            "normalized_time_closer": true
+          },
+          {
+            "seed": 43,
+            "l2_leaf_reg": 1.0,
+            "learning_rates": [
+              0.05,
+              0.2
+            ],
+            "argmin_iteration": [
+              160,
+              44
+            ],
+            "normalized_time_closer": true
+          },
+          {
+            "seed": 43,
+            "l2_leaf_reg": 10.0,
+            "learning_rates": [
+              0.05,
+              0.2
+            ],
+            "argmin_iteration": [
+              197,
+              50
+            ],
+            "normalized_time_closer": true
+          },
+          {
+            "seed": 44,
+            "l2_leaf_reg": 1.0,
+            "learning_rates": [
+              0.05,
+              0.2
+            ],
+            "argmin_iteration": [
+              80,
+              50
+            ],
+            "normalized_time_closer": true
+          },
+          {
+            "seed": 44,
+            "l2_leaf_reg": 10.0,
+            "learning_rates": [
+              0.05,
+              0.2
+            ],
+            "argmin_iteration": [
+              200,
+              50
+            ],
+            "normalized_time_closer": true
+          }
+        ],
+        "n_curves": 12,
+        "argmin_at_iteration_cap": 8,
+        "note": "Меньший разброс по оси iteration×learning_rate не доказывает механизм регуляризации. Если argmin стоит на последней итерации, совпадение iteration×lr отражает общий бюджет, а не сближение динамики."
+      },
+      "H3": {
+        "status": "descriptive",
+        "runs": [
+          {
+            "seed": 42,
+            "hard20_margin_mid": 0.24304390756611355,
+            "hard20_margin_end": 0.6207388911825287,
+            "auc_end": 0.9818666666666667
+          },
+          {
+            "seed": 43,
+            "hard20_margin_mid": -1.166186662322716,
+            "hard20_margin_end": -1.6252807862565206,
+            "auc_end": 0.8992000000000001
+          },
+          {
+            "seed": 44,
+            "hard20_margin_mid": -1.059774082818352,
+            "hard20_margin_end": -1.4845996904666057,
+            "auc_end": 0.9167852062588905
+          }
+        ],
+        "note": "Сдвиг margin трудных объектов не доказывает отдельную фазу и не заменяет AUC."
+      },
+      "H4": {
+        "border_count": "not_observed",
+        "depth": "not_observed",
+        "ensemble_size": "not_observed",
+        "note": "Три точки сетки не устанавливают интерполяционный порог. coarse_peak не означает double descent."
+      },
+      "threshold_check": [
+        {
+          "frozen_f1_threshold": 0.7473169704928656,
+          "test_selected_f1_threshold": 0.4101631128891058,
+          "held_out_f1": 0.8759124087591241,
+          "held_out_logloss": 0.32416381837535724,
+          "thresholds_differ": true
+        }
+      ],
+      "reference_change_points": [
+        {
+          "candidate": false,
+          "t_star": 159,
+          "n": 200,
+          "fraction": 0.795,
+          "velocity_before": 0.003111129385084648,
+          "velocity_after": 0.00015975302064142466,
+          "velocity_gain": -0.0029513763644432233,
+          "rss_improvement": 0.23602414810108924,
+          "reason": "velocity_did_not_increase"
+        },
+        {
+          "candidate": false,
+          "t_star": 158,
+          "n": 200,
+          "fraction": 0.79,
+          "velocity_before": 0.0015104977585735217,
+          "velocity_after": -0.00045729350721357556,
+          "velocity_gain": -0.001967791265787097,
+          "rss_improvement": 0.16257433127549958,
+          "reason": "velocity_did_not_increase"
+        },
+        {
+          "candidate": false,
+          "t_star": 158,
+          "n": 200,
+          "fraction": 0.79,
+          "velocity_before": 0.0014485642260274692,
+          "velocity_after": -0.00048160279459129893,
+          "velocity_gain": -0.001930167020618768,
+          "rss_improvement": 0.1580102628749325,
+          "reason": "velocity_did_not_increase"
+        }
+      ],
+      "zero_strength_change_points": [
+        {
+          "candidate": false,
+          "t_star": 159,
+          "n": 200,
+          "fraction": 0.795,
+          "velocity_before": 0.002995536854448403,
+          "velocity_after": 1.8184570893918504e-05,
+          "velocity_gain": -0.0029773522835544845,
+          "rss_improvement": 0.12929080029372408,
+          "reason": "velocity_did_not_increase"
+        },
+        {
+          "candidate": false,
+          "t_star": 158,
+          "n": 200,
+          "fraction": 0.79,
+          "velocity_before": 0.0012360441014747444,
+          "velocity_after": -0.0003014662308316298,
+          "velocity_gain": -0.0015375103323063742,
+          "rss_improvement": 0.044501062695900116,
+          "reason": "velocity_did_not_increase"
+        },
+        {
+          "candidate": false,
+          "t_star": 158,
+          "n": 200,
+          "fraction": 0.79,
+          "velocity_before": 0.0011661413481546805,
+          "velocity_after": -0.0005339057753279372,
+          "velocity_gain": -0.0017000471234826177,
+          "rss_improvement": 0.036186692998641364,
+          "reason": "velocity_did_not_increase"
+        }
+      ]
+    },
+    "breast_cancer": {
+      "origin": "small_data_pilot",
+      "corpus_essay_status": "not_assessed",
+      "n_independent_runs": 3,
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "change_point_reference": {
+        "n_independent_runs": 3,
+        "interval_available": false,
+        "inference": "not_reproduced",
+        "median_fraction": null,
+        "fractions": [
+          null,
+          null,
+          null
+        ],
+        "reason": "at least one run has no candidate"
+      },
+      "change_point_random_strength_0": {
+        "n_independent_runs": 3,
+        "interval_available": false,
+        "inference": "not_reproduced",
+        "median_fraction": null,
+        "fractions": [
+          null,
+          null,
+          null
+        ],
+        "reason": "at least one run has no candidate"
+      },
+      "H1": {
+        "verdict": "inconclusive",
+        "prediction": "При random_strength=0 воспроизведённое позднее ускорение пропадает."
+      },
+      "H2": {
+        "status": "descriptive",
+        "comparisons": [
+          {
+            "seed": 42,
+            "l2_leaf_reg": 1.0,
+            "learning_rates": [
+              0.05,
+              0.2
+            ],
+            "argmin_iteration": [
+              200,
+              45
+            ],
+            "normalized_time_closer": true
+          },
+          {
+            "seed": 42,
+            "l2_leaf_reg": 10.0,
+            "learning_rates": [
+              0.05,
+              0.2
+            ],
+            "argmin_iteration": [
+              200,
+              49
+            ],
+            "normalized_time_closer": true
+          },
+          {
+            "seed": 43,
+            "l2_leaf_reg": 1.0,
+            "learning_rates": [
+              0.05,
+              0.2
+            ],
+            "argmin_iteration": [
+              170,
+              38
+            ],
+            "normalized_time_closer": true
+          },
+          {
+            "seed": 43,
+            "l2_leaf_reg": 10.0,
+            "learning_rates": [
+              0.05,
+              0.2
+            ],
+            "argmin_iteration": [
+              200,
+              40
+            ],
+            "normalized_time_closer": true
+          },
+          {
+            "seed": 44,
+            "l2_leaf_reg": 1.0,
+            "learning_rates": [
+              0.05,
+              0.2
+            ],
+            "argmin_iteration": [
+              200,
+              48
+            ],
+            "normalized_time_closer": true
+          },
+          {
+            "seed": 44,
+            "l2_leaf_reg": 10.0,
+            "learning_rates": [
+              0.05,
+              0.2
+            ],
+            "argmin_iteration": [
+              200,
+              50
+            ],
+            "normalized_time_closer": true
+          }
+        ],
+        "n_curves": 12,
+        "argmin_at_iteration_cap": 6,
+        "note": "Меньший разброс по оси iteration×learning_rate не доказывает механизм регуляризации. Если argmin стоит на последней итерации, совпадение iteration×lr отражает общий бюджет, а не сближение динамики."
+      },
+      "H3": {
+        "status": "descriptive",
+        "runs": [
+          {
+            "seed": 42,
+            "hard20_margin_mid": 1.244586743022466,
+            "hard20_margin_end": 1.703066388986288,
+            "auc_end": 0.996184015263939
+          },
+          {
+            "seed": 43,
+            "hard20_margin_mid": 1.3664754305635427,
+            "hard20_margin_end": 1.8163120007711897,
+            "auc_end": 0.9919440322238712
+          },
+          {
+            "seed": 44,
+            "hard20_margin_mid": 1.0731787023111925,
+            "hard20_margin_end": 1.8987100539173059,
+            "auc_end": 0.9955480178079288
+          }
+        ],
+        "note": "Сдвиг margin трудных объектов не доказывает отдельную фазу и не заменяет AUC."
+      },
+      "H4": {
+        "border_count": "not_observed",
+        "depth": "not_observed",
+        "ensemble_size": "not_observed",
+        "note": "Три точки сетки не устанавливают интерполяционный порог. coarse_peak не означает double descent."
+      },
+      "threshold_check": [
+        {
+          "frozen_f1_threshold": 0.46794604756769487,
+          "test_selected_f1_threshold": 0.1365051791038283,
+          "held_out_f1": 0.9608938547486033,
+          "held_out_logloss": 0.14650078869452085,
+          "thresholds_differ": true
+        }
+      ],
+      "reference_change_points": [
+        {
+          "candidate": false,
+          "t_star": 159,
+          "n": 200,
+          "fraction": 0.795,
+          "velocity_before": 0.0032577392773347866,
+          "velocity_after": 2.1593439293018934e-05,
+          "velocity_gain": -0.0032361458380417677,
+          "rss_improvement": 0.15381115275551965,
+          "reason": "velocity_did_not_increase"
+        },
+        {
+          "candidate": false,
+          "t_star": 159,
+          "n": 200,
+          "fraction": 0.795,
+          "velocity_before": 0.0028447800637878403,
+          "velocity_after": -0.00013926241213113588,
+          "velocity_gain": -0.0029840424759189762,
+          "rss_improvement": 0.13149570237250616,
+          "reason": "velocity_did_not_increase"
+        },
+        {
+          "candidate": false,
+          "t_star": 159,
+          "n": 200,
+          "fraction": 0.795,
+          "velocity_before": 0.00340867069797319,
+          "velocity_after": -8.056710667764256e-06,
+          "velocity_gain": -0.0034167274086409545,
+          "rss_improvement": 0.15856565149127305,
+          "reason": "velocity_did_not_increase"
+        }
+      ],
+      "zero_strength_change_points": [
+        {
+          "candidate": false,
+          "t_star": 159,
+          "n": 200,
+          "fraction": 0.795,
+          "velocity_before": 0.0027128810995456993,
+          "velocity_after": -1.1744994252660401e-05,
+          "velocity_gain": -0.0027246260937983597,
+          "rss_improvement": 0.06723670261443372,
+          "reason": "velocity_did_not_increase"
+        },
+        {
+          "candidate": false,
+          "t_star": 159,
+          "n": 200,
+          "fraction": 0.795,
+          "velocity_before": 0.002409779275890834,
+          "velocity_after": -0.00011967780501055958,
+          "velocity_gain": -0.0025294570809013934,
+          "rss_improvement": 0.032381880045677866,
+          "reason": "velocity_did_not_increase"
+        },
+        {
+          "candidate": false,
+          "t_star": 159,
+          "n": 200,
+          "fraction": 0.795,
+          "velocity_before": 0.002851434492349667,
+          "velocity_after": -3.4691066800336676e-05,
+          "velocity_gain": -0.002886125559150004,
+          "rss_improvement": 0.07737943170755625,
+          "reason": "velocity_did_not_increase"
+        }
+      ]
+    }
+  }
+}
