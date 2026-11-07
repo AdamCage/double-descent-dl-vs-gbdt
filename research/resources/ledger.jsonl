@@ -3,3 +3,5 @@
 {"author_agent": "ddb85535-1ef1-4069-95c4-46578067887a", "kind": "preparation", "note": "R2 discovery frozen after design review a80b8102-ffa6-4830-a59c-a18a59ee8989. This entry does not claim an attempt elapsed time.", "stage_id": "R2", "ts": "2026-11-07T09:50:08+00:00"}
 {"attempt_id": "20261107T095017-e76868f52e", "elapsed_seconds": 8.282000000122935, "kind": "attempt", "note": "Discovery attempt verified. Not operationally closed.", "stage_id": "R2", "status": "complete"}
 {"attempt_id": "20261107T095343-6bc0c457c7", "elapsed_seconds": 27.546000000089407, "kind": "attempt", "note": "Confirmation attempt operationally closed. scientific_validity not_assessed.", "stage_id": "R2", "status": "complete"}
+{"attempt_id": "20261107T102058-3d5e221c96", "elapsed_seconds": 16.484999999869615, "kind": "attempt", "note": "Discovery verified. Not operationally closed.", "stage_id": "R3", "status": "complete"}
+{"attempt_id": "20261107T102511-b1cf6c7be9", "elapsed_seconds": 20.29700000025332, "kind": "attempt", "note": "Confirmation attempt operationally closed. scientific_validity not_assessed.", "stage_id": "R3", "status": "complete"}

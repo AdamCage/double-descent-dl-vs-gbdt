@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "scientific_validity": "not_assessed",
+  "attempt_id": "20261107T102058-3d5e221c96",
+  "verified_live_sources": true,
+  "plan_sha256": "8d5ca37d71f9d370b627f6c420caa19870179a237472f059e55241e8603fed2a",
+  "manifest_sha256": "4f532a4f27ec2f3a3d97164753412fba5241e2ada8a369036e718ed75fa4a0e7",
+  "elapsed_seconds": 16.484999999869615,
+  "checked_files": 12
+}

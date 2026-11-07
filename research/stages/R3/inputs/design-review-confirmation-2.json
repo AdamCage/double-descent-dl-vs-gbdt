@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "review_mode": "subagent_review",
+  "harness": "cursor",
+  "stage_id": "R3",
+  "author_agent": "ddb85535-1ef1-4069-95c4-46578067887a",
+  "reviewer_agent": "65e42b62-6bef-4fbf-976d-5fc030638b5c",
+  "verdict": "accept",
+  "blocking_issues": [],
+  "notes": "Design check only. scientific_validity is not_assessed. Confirmation was not run. The earlier revise file design-review-confirmation.json stays in place. Its blocking issue is fixed: research/stages/R3/PLAN.md is now the confirmation contract. It names verified discovery attempt 20261107T102058-3d5e221c96, fits confirmation seeds 4101-4105 with evaluation seeds 40001 and 40002, and keeps the full widths 4, 8, 16, 32, 64, 128, and 256 because the wall-clock projection is 37.23 seconds and below 1800. Clean risk did not choose that menu. The fallback 8, 32, 64, 256 was not used. The plan separates noise, the 40-epoch budget, and the width-64 weight-decay slice, and it allows a negative or inconclusive contrast. No peak is required. Discovery seeds 3101-3102 stay out of confirmation. The exact projection remains 37.226495249778964 seconds in confirmation-grid.json. The discovery export SHA-256 is 5eb5ef3c71267a06d6822cff9eb75aacac459d4febf0d7307bac8539e30dd2f9, matching the grid. The canonical protocol SHA-256 is 558f8c198c9a00cca1a1bc765660db43da0354ff07b326f18b5b0928540c1351, matching the export. kept_widths equal the export reduction, and used_clean_risk is false. The stored discovery plan SHA-256 8d5ca37d71f9d370b627f6c420caa19870179a237472f059e55241e8603fed2a still matches that attempt. Protocol, grid, and export were not edited. This review leaves the plan unfrozen and does not set execution_authorized.",
+  "scientific_validity": "not_assessed"
+}

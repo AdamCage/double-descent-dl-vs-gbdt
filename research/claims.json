@@ -34,6 +34,38 @@
       "assessment": "evidence_supported",
       "review_status": "cursor_team_reviewed",
       "scientific_validity": "not_assessed"
+    },
+    {
+      "id": "R3-confirmation-budget",
+      "statement": "On the frozen R3 confirmation seeds 4101-4105, the predeclared noise contrast was scored supported and the 40-epoch versus until_residual contrast was scored refuted: the short budget had lower clean risk. Width 4 stayed above the 0.001 training-residual tolerance and width 256 met it. The result applies only to this one-hidden-layer CPU MLP.",
+      "scope": "Confirmation seeds 4101-4105 of protocol R3-mlp-2026-11-07. One ReLU hidden layer on CPU only.",
+      "limitations": [
+        "The predeclared 40-epoch versus until_residual contrast is refuted. On seeds 4101-4105, SNR 1, and weight decay 0, epochs_40 minus until_residual clean risk has mean -0.9274205536676664, standard error 0.08318751672019098, minimum -1.1901948155689683, and maximum -0.7294385435323529. The short budget had lower clean risk.",
+        "Standard errors are not confidence intervals. They are descriptive across-draw dispersions, with no hypothesis test and no multiplicity adjustment.",
+        "The result does not transfer to trees or real tables. It applies only to this one-hidden-layer CPU MLP on confirmation seeds 4101-4105.",
+        "scientific_validity remains not_assessed. This is local Cursor team review under the bound authorization, not an external replication."
+      ],
+      "evidence": [
+        {
+          "path": "research/stages/R3/exports/analysis.json",
+          "sha256": "9b6d5e3064407b819089fc9b497818dcd7e78024ed1e9b626fb0b61cfadc785d"
+        },
+        {
+          "path": "research/stages/R3/exports/seed-audit.json",
+          "sha256": "2ec9544709efc1395a12444a7d94c4919a2c798722f068e961136265497f8ed3"
+        },
+        {
+          "path": "research/stages/R3/exports/bound-discovery.json",
+          "sha256": "c4cab46f81303f002bf33c439d1328e70b755c3d215d7e8d996c32c586369c9d"
+        }
+      ],
+      "scientific_review": {
+        "path": "research/decisions/R3-confirmation-claim.json",
+        "sha256": "324808a6af6c02d699c496792288a3d275bbba1a006f1163b0c21df669e80104"
+      },
+      "assessment": "evidence_supported",
+      "review_status": "cursor_team_reviewed",
+      "scientific_validity": "not_assessed"
     }
   ],
   "historical_observations": [

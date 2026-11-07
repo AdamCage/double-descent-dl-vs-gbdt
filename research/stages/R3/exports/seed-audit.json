@@ -1,0 +1,13 @@
+{
+  "phase": "confirmation",
+  "data_seeds": [
+    4101,
+    4102,
+    4103,
+    4104,
+    4105
+  ],
+  "confirmation_seeds_absent": false,
+  "discovery_seeds_absent": true,
+  "eval_seed": 40001
+}

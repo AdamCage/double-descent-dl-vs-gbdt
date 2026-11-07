@@ -1,0 +1,41 @@
+{
+  "phase": "confirmation",
+  "label": "confirmation",
+  "noise": {
+    "outcome": "supported",
+    "n_bracketed": 5,
+    "clean_risk_delta": {
+      "mean": 1.156653945727117,
+      "se": 0.08089862173860121,
+      "minimum": 0.9171551012108189,
+      "maximum": 1.3888049372061388,
+      "n": 5
+    }
+  },
+  "budget": {
+    "outcome": "refuted",
+    "n_bracketed": 5,
+    "clean_risk_delta": {
+      "mean": -0.9274205536676664,
+      "se": 0.08318751672019098,
+      "minimum": -1.1901948155689683,
+      "maximum": -0.7294385435323529,
+      "n": 5
+    },
+    "note": "Positive means the 40-epoch budget has higher clean risk than until_residual."
+  },
+  "weight_decay": {
+    "outcome": "supported",
+    "n_bracketed": 5,
+    "clean_risk_delta": {
+      "mean": 0.22495159249243807,
+      "se": 0.026278055131312813,
+      "minimum": 0.15222007946922655,
+      "maximum": 0.3158360599689405,
+      "n": 5
+    }
+  },
+  "scientific_validity": "not_assessed",
+  "n_cells": 145,
+  "cells_sha256": "60bfd425ac089136f5313dcb9de2fe83b63ecbbcf6b485a6dd21a5e1cdaf69a1"
+}

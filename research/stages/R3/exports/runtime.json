@@ -1,0 +1,12 @@
+{
+  "device": "cpu",
+  "cuda_initialized": false,
+  "torch_threads": 4,
+  "thread_environment": {
+    "OMP_NUM_THREADS": "4",
+    "MKL_NUM_THREADS": "4",
+    "OPENBLAS_NUM_THREADS": "4",
+    "NUMEXPR_NUM_THREADS": "4"
+  },
+  "scientific_validity": "not_assessed"
+}

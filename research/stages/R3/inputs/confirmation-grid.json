@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "scientific_validity": "not_assessed",
+  "kept_widths": [
+    4,
+    8,
+    16,
+    32,
+    64,
+    128,
+    256
+  ],
+  "used_clean_risk": false,
+  "rule": "time_only",
+  "discovery_export_sha256": "5eb5ef3c71267a06d6822cff9eb75aacac459d4febf0d7307bac8539e30dd2f9",
+  "projected_confirmation_seconds": 37.226495249778964
+}

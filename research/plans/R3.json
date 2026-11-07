@@ -1,20 +1,78 @@
 {
   "schema_version": 1,
   "stage_id": "R3",
-  "status": "draft",
-  "question": "MLP на согласованных средах; ширина отдельно от эпох и сходимости.",
-  "scope": "Autonomous Cursor planning under accepted charter; executable detailed plan remains draft until dependencies, implementation, distinct-subagent review and frozen inputs are ready.",
-  "budget": {
-    "max_wall_seconds": 600,
-    "total_wall_seconds": 1200,
-    "max_attempts": 2
-  },
-  "tasks": [],
-  "exit_criteria": [],
-  "predictions": [],
-  "draft_exit_intent": "Matched splits/noise, полные train errors и diagnostics каждой точки.",
+  "status": "frozen",
+  "question": "On the isotropic latent teacher, do MLP clean risk changes separate width, training budget, and label noise?",
+  "scope": "Confirmation on seeds 4101-4105 and the full width menu frozen by the discovery time rule. Discovery risks do not add or drop widths. CPU only. scientific_validity remains not_assessed.",
   "authorization_decision": {
     "path": "research/decisions/autonomous-research-authorization.json",
     "sha256": "4f2eca57802835816b688668838545df60fd568c99069c291d2e42cb4f5371c9"
-  }
+  },
+  "budget": {
+    "max_wall_seconds": 1200,
+    "total_wall_seconds": 3600,
+    "max_attempts": 3
+  },
+  "tasks": [
+    {
+      "id": "solver-checks",
+      "argv": ["{python}", "{repo}/scripts/r3_run.py", "checks", "--root", "{repo}"],
+      "inputs": [
+        "scripts/r3_run.py",
+        "src/__init__.py",
+        "src/r3_mlp.py",
+        "src/controlled_synthetic.py",
+        "tests/test_r3_mlp.py",
+        "research/stages/R3/inputs/protocol.json",
+        "research/stages/R3/PLAN.md"
+      ],
+      "outputs": ["checks.json"],
+      "timeout_seconds": 180
+    },
+    {
+      "id": "confirmation",
+      "argv": [
+        "{python}", "{repo}/scripts/r3_run.py", "confirmation", "--root", "{repo}",
+        "--grid", "{repo}/research/stages/R3/inputs/confirmation-grid.json",
+        "--export", "{repo}/research/stages/R3/inputs/discovery-export.json"
+      ],
+      "inputs": [
+        "scripts/r3_run.py",
+        "src/__init__.py",
+        "src/r3_mlp.py",
+        "src/controlled_synthetic.py",
+        "research/stages/R3/inputs/protocol.json",
+        "research/stages/R3/PLAN.md",
+        "research/stages/R3/inputs/design-review.json",
+        "research/stages/R3/inputs/discovery-export.json",
+        "research/stages/R3/inputs/discovery-verify.json",
+        "research/stages/R3/inputs/confirmation-grid.json",
+        "research/stages/R3/inputs/design-review-confirmation-2.json"
+      ],
+      "outputs": [
+        "timing.json",
+        "cells.jsonl",
+        "reduction.json",
+        "analysis.json",
+        "runtime.json",
+        "seed-audit.json",
+        "bound-discovery.json"
+      ],
+      "timeout_seconds": 900
+    }
+  ],
+  "exit_criteria": [
+    {"id": "C1", "description": "MLP unit tests return exit code 0.", "task_ids": ["solver-checks"]},
+    {"id": "C2", "description": "Every confirmation cell records epochs, residual, both risks, and uses only seeds 4101-4105.", "task_ids": ["confirmation"]},
+    {"id": "C3", "description": "Noise, budget, and weight-decay contrasts are scored. Refuted and inconclusive outcomes still pass.", "task_ids": ["confirmation"]},
+    {"id": "C4", "description": "The bound discovery hash matches and the kept widths are the time-only full menu.", "task_ids": ["confirmation"]},
+    {"id": "C5", "description": "Training stays on CPU with at most 4 threads and CUDA is not initialized.", "task_ids": ["confirmation"]}
+  ],
+  "predictions": [
+    {"id": "P1", "statement": "On bracketed draws, until_residual clean risk at SNR 1 exceeds SNR 5 by the predeclared margin, averaged over the frozen widths."},
+    {"id": "P2", "statement": "On bracketed SNR 1 draws, the 40-epoch budget has higher clean risk than until_residual at the matched widths."},
+    {"id": "P3", "statement": "At width 64, SNR 1, and until_residual, weight decay 0.001 lowers clean risk relative to weight decay 0 by the predeclared margin."},
+    {"id": "P4", "statement": "A width bracket of the 0.001 training residual is either observed or recorded inconclusive. No clean-risk peak is required."}
+  ],
+  "implementation_state": "Confirmation draft after discovery attempt 20261107T102058-3d5e221c96. Full width menu kept because the time projection is 37.23 seconds. Execution stays false until review and freeze."
 }

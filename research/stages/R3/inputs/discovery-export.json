@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "phase": "discovery",
+  "scientific_validity": "not_assessed",
+  "protocol_sha256": "558f8c198c9a00cca1a1bc765660db43da0354ff07b326f18b5b0928540c1351",
+  "timing": {
+    "pilot_elapsed_seconds": 0.14147739997133613,
+    "wall_seconds": 9.927065399941057
+  },
+  "reduction": {
+    "rule": "time_only",
+    "used_clean_risk": false,
+    "discovery_wall_seconds": 9.927065399941057,
+    "projected_confirmation_seconds": 37.226495249778964,
+    "kept_full_menu": true,
+    "kept_widths": [
+      4,
+      8,
+      16,
+      32,
+      64,
+      128,
+      256
+    ]
+  },
+  "seed_audit": {
+    "phase": "discovery",
+    "data_seeds": [
+      3101,
+      3102
+    ],
+    "confirmation_seeds_absent": true,
+    "discovery_seeds_absent": false,
+    "eval_seed": 30001
+  },
+  "n_cells": 58
+}

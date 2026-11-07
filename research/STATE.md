@@ -1,22 +1,11 @@
-# Состояние на 7 ноября 2026 — R2 закрыт, дальше R3
+# Состояние на 7 ноября 2026 — R3 закрыт, дальше R4
 
-По прямому уточнению пользователя основное исследование выполняет Cursor с
-субагентами. Человек/Codex — верхнеуровневая критика и критические моменты.
-Действуют решение `docs/decisions/0003-cursor-autonomous-research.md` и bound
-`research/decisions/autonomous-research-authorization.json`.
+R0, R1, R2 и R3 операционно закрыты. `scientific_validity=not_assessed`.
+Критической эскалации по решению 0003 нет.
 
-**Следующая работа — подготовить R3.** `next` рекомендует `prepare`.
-
-R2 операционно закрыт: confirmation attempt `20261107T095343-6bc0c457c7`,
-review SHA-256 `a4e389ae2bf47a1920145439eae84fd9621ff5d6fe407dfbb423762728d79b7b`,
-`scientific_validity=not_assessed`. Design review
-`a80b8102-ffa6-4830-a59c-a18a59ee8989`. Операционный review
-`50e3cc99-ebd6-4007-bdaa-cee30bac73cf`, verdict accept. Discovery attempt
-`20261107T095017-e76868f52e` сохранён. Архив
-`research/evidence/R2-runs-2026-11-07-closed.tar.gz`, SHA-256
-`2131e6e42c29a7be202a9a67ee0d15f4668ebe51c7a8771a416f69c670cbf055`.
-Claim `R2-confirmation-contrasts` — локальный `evidence_supported` /
-`cursor_team_reviewed`. Критической эскалации 0003 нет.
+**Следующая работа — подготовить R4.** `next` рекомендует `prepare`.
+`preparation_authorized=true` и `execution_authorized=false` — незавершённый
+preflight, не запрос нового разрешения Codex.
 
 ```powershell
 uv sync --frozen
@@ -24,17 +13,18 @@ uv run python scripts/research.py status
 uv run python scripts/research.py next
 ```
 
-В пределах программы Cursor сам выбирает подробные протоколы, discovery и
-confirmation, делает анализ/репликации и пишет статью. Обязательны evidence,
-общие ресурсы и review отдельным субагентом. Human approval не выдумывать.
-Обычный отрицательный/inconclusive исход не блокирует автономную работу.
-Общий runner бюджет — 24 часа, CPU до 4 threads/job, один compute dispatcher,
-GPU/paid APIs = 0.
+R3 confirmation `20261107T102511-b1cf6c7be9`, review SHA-256
+`6c17b3010fdb68ae525962cfec673fac90579a878ca23d99eaaa1edd22756743`.
+Операционный reviewer `6d8384f1-1695-4596-8b33-91a0b28af508`.
+Архив `research/evidence/R3-runs-2026-11-07-closed.tar.gz`, SHA-256
+`49700f5b51e730343e57b041c6844903c6ae9f073cb03dd4895d159cf956ff2b`.
+Короткий бюджет из 40 эпох имел меньший чистый риск, чем обучение до допуска
+0.001. Claim `R3-confirmation-budget` локальный.
 
-R0 и R1 операционно закрыты и не переписываются. R1: attempt
-`20261107T085630-b4345b8c44`. L01 PDF недоступен после двух HTTP 403.
-Сравнение осей L05–L07 неразрешено и не переносилось в R2.
+R2 confirmation `20261107T095343-6bc0c457c7`, архив
+`research/evidence/R2-runs-2026-11-07-closed.tar.gz`, SHA-256
+`2131e6e42c29a7be202a9a67ee0d15f4668ebe51c7a8771a416f69c670cbf055`.
+Commit закрытия R2: `06a3afe32b329100f2119b665443281c5991383f`.
 
-Источники состояния: `research/stages.json`, live attempts/closures и CLI;
-решений — `docs/decisions/` и `research/decisions/`; выводов —
-`research/claims.json`.
+Общий runner бюджет — 24 часа, CPU до 4 потоков, один dispatcher, GPU и
+платные API равны 0. L01 и оси L05–L07 по-прежнему не склеены.
