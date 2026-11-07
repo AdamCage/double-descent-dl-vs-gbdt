@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "claim_id": "R5-replication-not-one-mechanism",
+  "statement": "On the frozen R5 confirmation seeds 8101-8105, the linear noise contrast, the leaf-cap residual and clean-risk contrasts, and the restricted-forest size contrast replicated in the predeclared directions. Those replications do not identify one shared mechanism.",
+  "statement_sha256": "10c1ea6ce836a27fb5f4b1dedfc8eb521babb846eecb8cdbc04abe899c0d5fcf",
+  "evidence": [
+    {
+      "path": "research/stages/R5/exports/analysis.json",
+      "sha256": "56e48cf85af3f1f0aaeccf729e506c80b9bae7b0909ae3048c506ffa3d6d03cc"
+    },
+    {
+      "path": "research/stages/R5/exports/seed-audit.json",
+      "sha256": "ccff4a6517cb0d981c9690d65efc1c64c68ff294f477f9ce313fc12b6105ceb6"
+    },
+    {
+      "path": "research/stages/R5/exports/bound-discovery.json",
+      "sha256": "5b8113d801f3d018ce1c74b9bee19bee14d0e0bb7809bec04ac67a2b588313f1"
+    }
+  ],
+  "reviewer": "R5 confirmation reviewer",
+  "harness": "cursor",
+  "verdict": "accepted",
+  "review_mode": "subagent_review",
+  "author_agent": "ddb85535-1ef1-4069-95c4-46578067887a",
+  "reviewer_agent": "8da4cdef-70ec-45ba-9a94-2d10eeb452f3",
+  "authorization_decision": {
+    "path": "research/decisions/autonomous-research-authorization.json",
+    "sha256": "4f2eca57802835816b688668838545df60fd568c99069c291d2e42cb4f5371c9"
+  },
+  "scientific_validity": "not_assessed",
+  "limitations": [
+    "The replications do not identify one shared mechanism.",
+    "The MLP budget result and the boosting-depth curve were not re-fit.",
+    "Standard errors are not confidence intervals.",
+    "scientific_validity remains not_assessed. This is local Cursor team review by a distinct subagent, not an external replication."
+  ]
+}

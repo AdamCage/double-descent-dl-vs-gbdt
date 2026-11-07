@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "review_mode": "subagent_review",
+  "harness": "cursor",
+  "stage_id": "R5",
+  "author_agent": "ddb85535-1ef1-4069-95c4-46578067887a",
+  "reviewer_agent": "d07fa088-13ac-4dfa-bad6-eb4fad7ed629",
+  "verdict": "accept",
+  "blocking_issues": [],
+  "notes": "Design check only. scientific_validity is not_assessed. Confirmation was not run and no model was fit. research/stages/R5/PLAN.md is the confirmation contract. It names verified discovery attempt 20261107T105818-f129d71a55, which matches discovery-verify.json with verified_live_sources true. It fits confirmation seeds 8101-8105 and leaves discovery seeds 7101-7102 unfitted. The full replication menu stays because the wall-clock projection is 0.74 seconds and below 1800. The exact projection is 0.7350078754825518 seconds in both confirmation-grid.json and discovery-export.json, from discovery wall-clock 0.19600210012868047 seconds, two discovery draws, five confirmation draws, and safety factor 1.5. Clean risk did not choose that menu: used_clean_risk is false in the grid and in the export reduction, and the rule is time_only. blocked_if_over_cap is false. kept_full_menu is true. No endpoint was dropped. The discovery export has 20 cells and seed_audit data_seeds 7101 and 7102, with confirmation_seeds_absent true. The discovery export SHA-256 is 41d101f54ed74d61ec71293addc4b26558e583cac6e651457b96ca52ef3ebf01, matching the grid. The canonical protocol SHA-256 is dcbbfdcbd8972d13f231960f0ce7ff4f58e80a8e27e176314e67c9f665ae6697, matching the export. Protocol confirmation seeds are 8101-8105 and discovery seeds are 7101-7102. The registered confirmation command is scripts/r5_run.py confirmation with this grid and export. research/plans/R5.json scopes that task to seeds 8101-8105. Exit criterion C3 lets refuted and inconclusive outcomes pass, and PLAN.md says a negative replication is allowed and does not shrink the grid. A peak is not required. The R3 40-epoch budget result and the gradient-boosting depth curve stay in not_reestimated, and PLAN.md plus prediction P4 say they are not fit again. CatBoost and L05-L07 stay unresolved. The non-identifiability sentence remains in the protocol. This review leaves the plan unfrozen and does not set execution_authorized.",
+  "scientific_validity": "not_assessed"
+}

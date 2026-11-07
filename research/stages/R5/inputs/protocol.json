@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "protocol_id": "R5-replication-2026-11-07",
+  "protocol_salt": 20261110,
+  "scientific_validity": "not_assessed",
+  "question": "Do the closed linear noise contrast and the closed leaf-versus-forest directions replicate on new seeds, and which alternatives stay non-identifiable?",
+  "copied_from": [
+    "R2-confirmation-contrasts",
+    "R4-separate-axes",
+    "R3-confirmation-budget"
+  ],
+  "not_reestimated": [
+    "The R3 result that 40 epochs had lower clean risk than until_residual is not fit again.",
+    "The gradient-boosting depth curve is not fit again and is not treated as an interpolation bracket.",
+    "L05-L07 and CatBoost stay unresolved."
+  ],
+  "n_train": 200,
+  "n_eval": 1000,
+  "p_max": 800,
+  "input_columns": 20,
+  "linear_columns": [150, 200, 250],
+  "spectrum": "isotropic",
+  "geometric_ratio": 0.95,
+  "beta_geometric_ratio": 0.85,
+  "snr": [1.0, 5.0],
+  "ridge_lambda": 0.0,
+  "linear_tolerance": 1e-8,
+  "tree_leaf_values": [2, 256],
+  "forest_leaf_cap": 8,
+  "forest_sizes": [1, 50],
+  "tree_tolerance": 1e-8,
+  "discovery_data_seeds": [7101, 7102],
+  "confirmation_data_seeds": [8101, 8102, 8103, 8104, 8105],
+  "discovery_eval_seed": 70001,
+  "discovery_eval_noise_seed": 70002,
+  "confirmation_eval_seed": 80001,
+  "confirmation_eval_noise_seed": 80002,
+  "minimum_bracketed_draws": 5,
+  "contrast_margins": {"clean_risk_absolute": 0.01},
+  "threads": 4,
+  "n_jobs": 1,
+  "gpu_jobs": 0,
+  "reduction_rule": {
+    "statistic": "discovery_wall_seconds_per_draw",
+    "safety_factor": 1.5,
+    "keep_full_menu_if_projected_confirmation_seconds_below": 1800,
+    "note": "The replication cells are not optional. If the projection exceeds 1800 seconds the confirmation is blocked rather than reduced by risk or by dropping an endpoint."
+  },
+  "nonidentifiability": "A replicated linear noise contrast and a replicated leaf-versus-forest contrast do not identify one shared mechanism. The MLP budget reversal remains an alternative that this stage does not re-estimate."
+}

@@ -7,3 +7,5 @@
 {"attempt_id": "20261107T102511-b1cf6c7be9", "elapsed_seconds": 20.29700000025332, "kind": "attempt", "note": "Confirmation attempt operationally closed. scientific_validity not_assessed.", "stage_id": "R3", "status": "complete"}
 {"attempt_id": "20261107T103949-29045fc56f", "elapsed_seconds": 5.234000000171363, "kind": "attempt", "note": "Discovery verified. Not closed.", "stage_id": "R4", "status": "complete"}
 {"attempt_id": "20261107T104140-5bc2019cef", "elapsed_seconds": 6.57799999974668, "kind": "attempt", "note": "Confirmation operationally closed. scientific_validity not_assessed.", "stage_id": "R4", "status": "complete"}
+{"attempt_id": "20261107T105818-f129d71a55", "elapsed_seconds": 4.686999999918044, "kind": "attempt", "note": "Discovery verified. Not closed.", "stage_id": "R5", "status": "complete"}
+{"attempt_id": "20261107T105955-6e7f800ff1", "elapsed_seconds": 4.82799999974668, "kind": "attempt", "note": "Confirmation operationally closed. scientific_validity not_assessed.", "stage_id": "R5", "status": "complete"}

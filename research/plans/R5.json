@@ -1,20 +1,41 @@
 {
   "schema_version": 1,
   "stage_id": "R5",
-  "status": "draft",
-  "question": "Различающие вмешательства и независимые от discovery повторения.",
-  "scope": "Autonomous Cursor planning under accepted charter; executable detailed plan remains draft until dependencies, implementation, distinct-subagent review and frozen inputs are ready.",
-  "budget": {
-    "max_wall_seconds": 600,
-    "total_wall_seconds": 1200,
-    "max_attempts": 2
-  },
-  "tasks": [],
-  "exit_criteria": [],
-  "predictions": [],
-  "draft_exit_intent": "Predictions/falsifiers, uncertainty, отрицательные и неидентифицируемые исходы.",
+  "status": "frozen",
+  "question": "Do the closed linear noise contrast and the closed leaf-versus-forest directions replicate on new seeds, and which alternatives stay non-identifiable?",
+  "scope": "Confirmation on seeds 8101-8105. The replication grid stays the linear window and the leaf and forest endpoints. Discovery risks did not drop cells. The R3 budget result is not re-fit. scientific_validity remains not_assessed.",
   "authorization_decision": {
     "path": "research/decisions/autonomous-research-authorization.json",
     "sha256": "4f2eca57802835816b688668838545df60fd568c99069c291d2e42cb4f5371c9"
-  }
+  },
+  "budget": {"max_wall_seconds": 1200, "total_wall_seconds": 3600, "max_attempts": 3},
+  "tasks": [
+    {
+      "id": "solver-checks",
+      "argv": ["{python}", "{repo}/scripts/r5_run.py", "checks", "--root", "{repo}"],
+      "inputs": ["scripts/r5_run.py", "src/__init__.py", "src/r5_replicate.py", "src/controlled_synthetic.py", "src/ridge_svd.py", "tests/test_r5_replicate.py", "research/stages/R5/inputs/protocol.json", "research/stages/R5/PLAN.md"],
+      "outputs": ["checks.json"],
+      "timeout_seconds": 180
+    },
+    {
+      "id": "confirmation",
+      "argv": ["{python}", "{repo}/scripts/r5_run.py", "confirmation", "--root", "{repo}", "--grid", "{repo}/research/stages/R5/inputs/confirmation-grid.json", "--export", "{repo}/research/stages/R5/inputs/discovery-export.json"],
+      "inputs": ["scripts/r5_run.py", "src/__init__.py", "src/r5_replicate.py", "src/controlled_synthetic.py", "src/ridge_svd.py", "research/stages/R5/inputs/protocol.json", "research/stages/R5/PLAN.md", "research/stages/R5/inputs/design-review.json", "research/stages/R5/inputs/discovery-export.json", "research/stages/R5/inputs/discovery-verify.json", "research/stages/R5/inputs/confirmation-grid.json", "research/stages/R5/inputs/design-review-confirmation.json"],
+      "outputs": ["timing.json", "cells.jsonl", "reduction.json", "analysis.json", "runtime.json", "seed-audit.json", "bound-discovery.json"],
+      "timeout_seconds": 900
+    }
+  ],
+  "exit_criteria": [
+    {"id": "C1", "description": "Replication unit tests return exit code 0.", "task_ids": ["solver-checks"]},
+    {"id": "C2", "description": "Confirmation cells use only seeds 8101-8105 and include the linear window, both leaf caps, and both forest sizes.", "task_ids": ["confirmation"]},
+    {"id": "C3", "description": "Noise, leaf, and forest contrasts are scored. Refuted and inconclusive outcomes still pass.", "task_ids": ["confirmation"]},
+    {"id": "C4", "description": "The bound export kept the full menu, and non-identifiability plus the unreplicated alternatives are recorded.", "task_ids": ["confirmation"]}
+  ],
+  "predictions": [
+    {"id": "P1", "statement": "On at least five bracketed confirmation draws, isotropic window clean risk is higher at SNR 1 than at SNR 5 by the predeclared margin."},
+    {"id": "P2", "statement": "The 256-leaf cap has a lower training residual and a higher clean risk than the 2-leaf cap."},
+    {"id": "P3", "statement": "Fifty restricted trees have lower clean risk than one restricted tree."},
+    {"id": "P4", "statement": "A replicated pair of contrasts does not identify one shared mechanism. The MLP budget reversal and the boosting-depth curve stay unreplicated."}
+  ],
+  "implementation_state": "Confirmation draft after verified discovery 20261107T105818-f129d71a55. Full menu kept."
 }

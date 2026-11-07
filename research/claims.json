@@ -102,6 +102,38 @@
       "assessment": "evidence_supported",
       "review_status": "cursor_team_reviewed",
       "scientific_validity": "not_assessed"
+    },
+    {
+      "id": "R5-replication-not-one-mechanism",
+      "statement": "On the frozen R5 confirmation seeds 8101-8105, the linear noise contrast, the leaf-cap residual and clean-risk contrasts, and the restricted-forest size contrast replicated in the predeclared directions. Those replications do not identify one shared mechanism.",
+      "scope": "Confirmation seeds 8101-8105 of protocol R5-replication-2026-11-07. Linear window and tree/forest endpoints only.",
+      "limitations": [
+        "The replications do not identify one shared mechanism.",
+        "The MLP budget result and the boosting-depth curve were not re-fit.",
+        "Standard errors are not confidence intervals.",
+        "scientific_validity remains not_assessed. This is local Cursor team review by a distinct subagent, not an external replication."
+      ],
+      "evidence": [
+        {
+          "path": "research/stages/R5/exports/analysis.json",
+          "sha256": "56e48cf85af3f1f0aaeccf729e506c80b9bae7b0909ae3048c506ffa3d6d03cc"
+        },
+        {
+          "path": "research/stages/R5/exports/seed-audit.json",
+          "sha256": "ccff4a6517cb0d981c9690d65efc1c64c68ff294f477f9ce313fc12b6105ceb6"
+        },
+        {
+          "path": "research/stages/R5/exports/bound-discovery.json",
+          "sha256": "5b8113d801f3d018ce1c74b9bee19bee14d0e0bb7809bec04ac67a2b588313f1"
+        }
+      ],
+      "scientific_review": {
+        "path": "research/decisions/R5-confirmation-claim.json",
+        "sha256": "a26da8049ead289229fc74c47d1d395b35fa09196e6f8e4fbd0a5da0156cfaec"
+      },
+      "assessment": "evidence_supported",
+      "review_status": "cursor_team_reviewed",
+      "scientific_validity": "not_assessed"
     }
   ],
   "historical_observations": [

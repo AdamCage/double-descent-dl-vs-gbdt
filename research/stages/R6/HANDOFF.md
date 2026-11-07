@@ -1,5 +1,13 @@
 # R6 — автономная подготовка после зависимостей
 
+R5 закрыт. Следующая команда:
+
+```powershell
+uv sync --frozen
+uv run python scripts/research.py status
+uv run python scripts/research.py next
+```
+
 Stage пока не начат. Подготовка и условная активация разрешены общим мандатом
 `docs/decisions/0003-cursor-autonomous-research.md` и bound decision в registry.
 После закрытия/проверки зависимостей Cursor сам формирует подробный дизайн,

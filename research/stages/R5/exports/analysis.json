@@ -1,0 +1,57 @@
+{
+  "phase": "confirmation",
+  "label": "confirmation",
+  "noise": {
+    "outcome": "supported",
+    "n_bracketed": 5,
+    "clean_risk_delta": {
+      "mean": 25.923521489780672,
+      "se": 2.544584969615752,
+      "minimum": 17.081275139257393,
+      "maximum": 32.915773611831156,
+      "n": 5
+    }
+  },
+  "leaf_residual": {
+    "outcome": "supported",
+    "delta": {
+      "mean": 0.9258276164735552,
+      "se": 0.00362629229033637,
+      "minimum": 0.9123218342673236,
+      "maximum": 0.9341267485092022,
+      "n": 5
+    },
+    "note": "Positive means the 2-leaf residual exceeds the 256-leaf residual."
+  },
+  "leaf_clean_risk": {
+    "outcome": "supported",
+    "delta": {
+      "mean": 0.9877461785942785,
+      "se": 0.1181326326554373,
+      "minimum": 0.6589918142303048,
+      "maximum": 1.3892703589429987,
+      "n": 5
+    },
+    "note": "Positive means clean risk is higher at 256 leaves than at 2."
+  },
+  "forest_clean_risk": {
+    "outcome": "supported",
+    "delta": {
+      "mean": 0.797021892858969,
+      "se": 0.02848075978584105,
+      "minimum": 0.7068024639439876,
+      "maximum": 0.8850312501515882,
+      "n": 5
+    },
+    "note": "Positive means one restricted tree has higher clean risk than 50 trees."
+  },
+  "nonidentifiability": "A replicated linear noise contrast and a replicated leaf-versus-forest contrast do not identify one shared mechanism. The MLP budget reversal remains an alternative that this stage does not re-estimate.",
+  "not_reestimated": [
+    "The R3 result that 40 epochs had lower clean risk than until_residual is not fit again.",
+    "The gradient-boosting depth curve is not fit again and is not treated as an interpolation bracket.",
+    "L05-L07 and CatBoost stay unresolved."
+  ],
+  "scientific_validity": "not_assessed",
+  "n_cells": 50,
+  "cells_sha256": "683659fefe0ad968c062a90a6b9cdc117d4da2fe9a31683b58c8f5dd5a194b51"
+}
