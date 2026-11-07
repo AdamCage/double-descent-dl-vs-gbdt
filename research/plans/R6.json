@@ -1,20 +1,37 @@
 {
   "schema_version": 1,
   "stage_id": "R6",
-  "status": "draft",
-  "question": "Версии/лицензии/provenance, group split и leakage до модельного вывода.",
-  "scope": "Autonomous Cursor planning under accepted charter; executable detailed plan remains draft until dependencies, implementation, distinct-subagent review and frozen inputs are ready.",
-  "budget": {
-    "max_wall_seconds": 600,
-    "total_wall_seconds": 1200,
-    "max_attempts": 2
-  },
-  "tasks": [],
-  "exit_criteria": [],
-  "predictions": [],
-  "draft_exit_intent": "Проверенные среды, ограниченный scope, новые independent holdouts.",
+  "status": "frozen",
+  "question": "Is a real-table transfer justified after the synthetic results, and if not, what blocked disposition is recorded?",
+  "scope": "Audit only. No download, no dataset open, and no model fit. Disposition may be not_run. scientific_validity remains not_assessed.",
   "authorization_decision": {
     "path": "research/decisions/autonomous-research-authorization.json",
     "sha256": "4f2eca57802835816b688668838545df60fd568c99069c291d2e42cb4f5371c9"
-  }
+  },
+  "budget": {"max_wall_seconds": 300, "total_wall_seconds": 600, "max_attempts": 2},
+  "tasks": [
+    {
+      "id": "transfer-audit",
+      "argv": ["{python}", "{repo}/scripts/r6_audit.py"],
+      "inputs": [
+        "scripts/r6_audit.py", "tests/test_r6_audit.py", "research/claims.json",
+        "research/stages/R6/PLAN.md",
+        "research/stages/R6/inputs/design-review.json",
+        "research/decisions/R2-confirmation-claim.json",
+        "research/decisions/R3-confirmation-claim.json",
+        "research/decisions/R4-confirmation-claim.json",
+        "research/decisions/R5-confirmation-claim.json"
+      ],
+      "outputs": ["disposition.json"],
+      "timeout_seconds": 120
+    }
+  ],
+  "exit_criteria": [
+    {"id": "C1", "description": "The audit records disposition not_run, zero download bytes, zero fits, and an unopened candidate.", "task_ids": ["transfer-audit"]},
+    {"id": "C2", "description": "The disposition cites the four closed claim ids and does not invent a transferred effect.", "task_ids": ["transfer-audit"]}
+  ],
+  "predictions": [
+    {"id": "P1", "statement": "A real-table fit is not justified, so the stage records not_run rather than downloading a dataset menu."}
+  ],
+  "implementation_state": "Draft until design review and freeze."
 }

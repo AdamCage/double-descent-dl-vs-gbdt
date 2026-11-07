@@ -1,22 +1,23 @@
-# R6 — автономная подготовка после зависимостей
+# R6 — операционно закрыт как not_run
 
-R5 закрыт. Следующая команда:
+Attempt `20261107T111120-40cf0c74f2` закрыт 2026-11-07T11:14:07Z.
+Review SHA-256 `859cf65cfae08a8e1049b20728665dc2b006c539adce1be65a4fe1bca7f212c8`.
+Операционный reviewer `b603ed46-4e6d-425e-b193-aa9eec4ce674`, verdict accept.
+Design reviewer `5f1d2237-db12-4c0f-97ca-78f274f68af7`.
+`scientific_validity=not_assessed`.
+
+Реальная таблица не скачивалась и не обучалась. Архив
+`research/evidence/R6-runs-2026-11-07-closed.tar.gz`, SHA-256
+`cb059f512515c1b0699db277434c367019198ca7aecba73136b527a418748e74`.
+Closure copy: `research/evidence/R6-closure.json`.
+
+Причина: R2–R5 не дали одного механизма для переноса. Это не измерение
+отсутствия эффекта на реальных строках.
+
+Следующая команда — подготовить R7:
 
 ```powershell
 uv sync --frozen
 uv run python scripts/research.py status
 uv run python scripts/research.py next
 ```
-
-Stage пока не начат. Подготовка и условная активация разрешены общим мандатом
-`docs/decisions/0003-cursor-autonomous-research.md` и bound decision в registry.
-После закрытия/проверки зависимостей Cursor сам формирует подробный дизайн,
-делегирует реализацию/анализ субагентам и получает review другого субагента.
-Затем freeze inputs/plan, validate-plan, самостоятельная активация только R6,
-run/verify/report/review/close/bundle и продолжение очереди. Не ждать нового
-разрешения Codex на routine stage или claim. Соблюдать общий resource ledger.
-
-Непредвиденный содержательный результат сначала диагностировать ограниченными
-проверками; критические развилки/неустранимая central integrity/выход за мандат
-передать Codex/человеку с evidence. Отрицательные/inconclusive исходы сами по
-себе не требуют эскалации. Не запускать историческую s01-s10 цепочку.
