@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "scientific_validity": "not_assessed",
+  "pilot": null,
+  "residual_tolerance": 1e-08,
+  "rank_target_rule": "min(n_train - 1, n_features). Column centering confines training columns to the complement of the all-ones vector, so the proposal's min(n, p) target is impossible once means are removed. This rank target is the compatible reading of centering plus a full-rank residual check, and it is fixed before any fit.",
+  "wall_seconds": 26.57992310030386
+}

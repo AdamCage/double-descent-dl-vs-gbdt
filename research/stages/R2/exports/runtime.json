@@ -1,0 +1,19 @@
+{
+  "thread_environment": {
+    "OMP_NUM_THREADS": "4",
+    "MKL_NUM_THREADS": "4",
+    "OPENBLAS_NUM_THREADS": "4",
+    "NUMEXPR_NUM_THREADS": "4",
+    "VECLIB_MAXIMUM_THREADS": "4"
+  },
+  "cuda_visible_devices": "",
+  "torch_imported": false,
+  "pools": [
+    {
+      "internal_api": "openblas",
+      "num_threads": 4,
+      "prefix": "libscipy_openblas"
+    }
+  ],
+  "scientific_validity": "not_assessed"
+}

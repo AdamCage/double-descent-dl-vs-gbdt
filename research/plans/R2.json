@@ -1,20 +1,120 @@
 {
   "schema_version": 1,
   "stage_id": "R2",
-  "status": "draft",
-  "question": "Linear min-norm/ridge и random features с известным teacher; оси, шум, спектр.",
-  "scope": "Autonomous Cursor planning under accepted charter; executable detailed plan remains draft until dependencies, implementation, distinct-subagent review and frozen inputs are ready.",
-  "budget": {
-    "max_wall_seconds": 600,
-    "total_wall_seconds": 1200,
-    "max_attempts": 2
-  },
-  "tasks": [],
-  "exit_criteria": [],
-  "predictions": [],
-  "draft_exit_intent": "Solver/rank/residual диагностики, независимые controls, frozen discovery/confirmation.",
+  "status": "frozen",
+  "question": "On a nested linear teacher, do min-norm clean risk and coefficient norm near p/n=1 respond separately to predeclared noise, spectrum and ridge interventions, and are frozen ReLU readout risk and Gram condition recorded on their own N/n axis?",
+  "scope": "Confirmation only, on seeds 2101-2110 and the full column menu frozen by the discovery time rule. Discovery risks were not used to add or drop cells. No GPU, paid API or dataset download. scientific_validity remains not_assessed.",
   "authorization_decision": {
     "path": "research/decisions/autonomous-research-authorization.json",
     "sha256": "4f2eca57802835816b688668838545df60fd568c99069c291d2e42cb4f5371c9"
-  }
+  },
+  "budget": {
+    "max_wall_seconds": 1200,
+    "total_wall_seconds": 3600,
+    "max_attempts": 3
+  },
+  "tasks": [
+    {
+      "id": "solver-checks",
+      "argv": ["{python}", "{repo}/scripts/r2_run.py", "checks", "--root", "{repo}"],
+      "inputs": [
+        "scripts/r2_run.py",
+        "src/__init__.py",
+        "src/r2_experiment.py",
+        "src/controlled_synthetic.py",
+        "src/ridge_svd.py",
+        "tests/test_r2_experiment.py",
+        "research/stages/R2/inputs/protocol.json",
+        "research/stages/R2/PLAN.md",
+        "research/stages/R1/inputs/R2-design.json"
+      ],
+      "outputs": ["checks.json"],
+      "timeout_seconds": 180
+    },
+    {
+      "id": "confirmation",
+      "argv": [
+        "{python}", "{repo}/scripts/r2_run.py", "confirmation", "--root", "{repo}",
+        "--grid", "{repo}/research/stages/R2/inputs/confirmation-grid.json",
+        "--export", "{repo}/research/stages/R2/inputs/discovery-export.json"
+      ],
+      "inputs": [
+        "scripts/r2_run.py",
+        "src/__init__.py",
+        "src/r2_experiment.py",
+        "src/controlled_synthetic.py",
+        "src/ridge_svd.py",
+        "research/stages/R2/inputs/protocol.json",
+        "research/stages/R2/PLAN.md",
+        "research/stages/R1/inputs/R2-design.json",
+        "research/stages/R2/inputs/design-review.json",
+        "research/stages/R2/inputs/design-review-2.json",
+        "research/stages/R2/inputs/discovery-export.json",
+        "research/stages/R2/inputs/discovery-verify.json",
+        "research/stages/R2/inputs/confirmation-grid.json",
+        "research/stages/R2/inputs/design-review-confirmation.json"
+      ],
+      "outputs": [
+        "timing.json",
+        "cells.jsonl",
+        "reduction.json",
+        "analysis.json",
+        "runtime.json",
+        "seed-audit.json",
+        "bound-discovery.json"
+      ],
+      "timeout_seconds": 900
+    }
+  ],
+  "exit_criteria": [
+    {
+      "id": "C1",
+      "description": "Solver, seed, spectrum, reduction and contrast unit tests return exit code 0.",
+      "task_ids": ["solver-checks"]
+    },
+    {
+      "id": "C2",
+      "description": "Every frozen confirmation cell records rank, residual, clean risk and noisy risk, uses only seeds 2101-2110, and does not use discovery seeds.",
+      "task_ids": ["confirmation"]
+    },
+    {
+      "id": "C3",
+      "description": "Noise, spectrum and ridge contrasts are scored with the predeclared window, margins and bracket rule. Refuted and inconclusive outcomes still satisfy this criterion.",
+      "task_ids": ["confirmation"]
+    },
+    {
+      "id": "C4",
+      "description": "The bound discovery export hash matches, used_clean_risk is false, and the kept columns are the time-only menu.",
+      "task_ids": ["confirmation"]
+    },
+    {
+      "id": "C5",
+      "description": "Frozen ReLU random-feature readout risk and Gram condition are recorded on the N axis, separate from the linear contrasts.",
+      "task_ids": ["confirmation"]
+    },
+    {
+      "id": "C6",
+      "description": "The runtime stays within 4 CPU threads and does not import torch.",
+      "task_ids": ["confirmation"]
+    }
+  ],
+  "predictions": [
+    {
+      "id": "P1",
+      "statement": "On bracketed isotropic draws, window-mean clean risk and coefficient norm at SNR 1 exceed the matched SNR 5 values by the predeclared margins."
+    },
+    {
+      "id": "P2",
+      "statement": "On bracketed draws at SNR 1 and lambda 0, the geometric spectrum has higher window-mean clean risk and a higher condition number at p=n than the isotropic spectrum, by the predeclared margins."
+    },
+    {
+      "id": "P3",
+      "statement": "On bracketed isotropic SNR 1 draws, each ridge lambda in {0.01, 0.1, 1} lowers window-mean clean risk and coefficient norm relative to lambda 0, by the predeclared margins."
+    },
+    {
+      "id": "P4",
+      "statement": "Random-feature readout clean risk and feature-Gram condition are recorded against N. Matching the linear peak is not required. The coupling is refuted if Gram condition worsens across N/n=1 while bracketed draws show no interior clean-risk peak."
+    }
+  ],
+  "implementation_state": "Confirmation frozen after design-review-confirmation.json accept by a80b8102-ffa6-4830-a59c-a18a59ee8989. Discovery attempt 20261107T095017-e76868f52e remains. Execution is activated separately."
 }

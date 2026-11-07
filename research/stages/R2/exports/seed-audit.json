@@ -1,0 +1,33 @@
+{
+  "phase": "confirmation",
+  "data_seeds": [
+    2101,
+    2102,
+    2103,
+    2104,
+    2105,
+    2106,
+    2107,
+    2108,
+    2109,
+    2110
+  ],
+  "confirmation_seeds_absent": false,
+  "discovery_seeds_absent": true,
+  "eval_seed": 20001,
+  "eval_noise_seed": 20002,
+  "eval_channels": {
+    "eval": [
+      20261107,
+      2,
+      5,
+      20001
+    ],
+    "eval_noise": [
+      20261107,
+      2,
+      6,
+      20002
+    ]
+  }
+}

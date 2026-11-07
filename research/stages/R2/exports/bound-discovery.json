@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "scientific_validity": "not_assessed",
+  "discovery_export_sha256": "12dd512e616074103e357e23ea39e3a63e0beaf6cbe4e583968722b3d07e6226",
+  "kept_columns": [
+    50,
+    100,
+    150,
+    200,
+    250,
+    300,
+    400,
+    800
+  ],
+  "used_clean_risk": false,
+  "rule": "time_only",
+  "seed_audit": {
+    "phase": "confirmation",
+    "data_seeds": [
+      2101,
+      2102,
+      2103,
+      2104,
+      2105,
+      2106,
+      2107,
+      2108,
+      2109,
+      2110
+    ],
+    "confirmation_seeds_absent": false,
+    "discovery_seeds_absent": true,
+    "eval_seed": 20001,
+    "eval_noise_seed": 20002,
+    "eval_channels": {
+      "eval": [
+        20261107,
+        2,
+        5,
+        20001
+      ],
+      "eval_noise": [
+        20261107,
+        2,
+        6,
+        20002
+      ]
+    }
+  }
+}

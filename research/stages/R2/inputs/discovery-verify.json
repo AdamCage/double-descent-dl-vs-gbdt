@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "scientific_validity": "not_assessed",
+  "stage_id": "R2",
+  "attempt_id": "20261107T095017-e76868f52e",
+  "verified_live_sources": true,
+  "verified_before_plan_change": true,
+  "checked_files": 12,
+  "manifest_sha256": "0100882d4e4235d45cf81742ee524cf2c72981c970a25359c80d8af50970fc9b",
+  "plan_sha256": "d6a6b7b625c46264fd1240cb73709ed5330adc5bca9c8eaee963bd3e85c2079c",
+  "elapsed_seconds": 8.282000000122935,
+  "note": "Live verify passed before the confirmation plan replaced research/plans/R2.json."
+}

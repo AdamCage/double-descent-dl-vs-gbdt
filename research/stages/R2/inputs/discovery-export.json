@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "phase": "discovery",
+  "scientific_validity": "not_assessed",
+  "protocol_sha256": "b5cc30b229af773f3188aaeeccfefdbe054c9a148e36345cface9e992dd3dda8",
+  "timing": {
+    "pilot_elapsed_seconds": 0.005341399926692247,
+    "wall_seconds": 7.273703800048679
+  },
+  "reduction": {
+    "rule": "time_only",
+    "statistic": "discovery_wall_seconds_per_draw",
+    "used_clean_risk": false,
+    "discovery_wall_seconds": 7.273703800048679,
+    "seconds_per_discovery_draw": 1.4547407600097357,
+    "projected_confirmation_seconds": 21.821111400146037,
+    "kept_full_menu": true,
+    "kept_columns": [
+      50,
+      100,
+      150,
+      200,
+      250,
+      300,
+      400,
+      800
+    ]
+  },
+  "seed_audit": {
+    "phase": "discovery",
+    "data_seeds": [
+      1101,
+      1102,
+      1103,
+      1104,
+      1105
+    ],
+    "confirmation_seeds_absent": true,
+    "discovery_seeds_absent": false,
+    "eval_seed": 10001,
+    "eval_noise_seed": 10002,
+    "eval_channels": {
+      "eval": [
+        20261107,
+        1,
+        5,
+        10001
+      ],
+      "eval_noise": [
+        20261107,
+        1,
+        6,
+        10002
+      ]
+    }
+  },
+  "n_cells": 720
+}

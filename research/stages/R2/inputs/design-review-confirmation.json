@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "review_mode": "subagent_review",
+  "harness": "cursor",
+  "stage_id": "R2",
+  "author_agent": "ddb85535-1ef1-4069-95c4-46578067887a",
+  "reviewer_agent": "a80b8102-ffa6-4830-a59c-a18a59ee8989",
+  "verdict": "accept",
+  "blocking_issues": [],
+  "notes": "Design check only. scientific_validity is not_assessed. The discovery export SHA-256 is 12dd512e616074103e357e23ea39e3a63e0beaf6cbe4e583968722b3d07e6226, matching confirmation-grid.json. The canonical protocol SHA-256 is b5cc30b229af773f3188aaeeccfefdbe054c9a148e36345cface9e992dd3dda8, matching the export and the grid. kept_columns are the full menu 50, 100, 150, 200, 250, 300, 400, 800, equal to the export reduction, with used_clean_risk false and rule time_only. The projected confirmation time is 21.821111400146037 seconds, below 1800, so the full menu is the required choice. The export carries no clean-risk fields, and discovery risks do not add or drop cells. The confirmation argv passes the frozen grid and discovery export. build_confirmation recomputes the export hash, requires the current protocol hash, accepts only a time-only kept menu, and rejects a grid whose columns, used_clean_risk flag, or export hash disagree. run_phase for confirmation uses seeds 2101-2110 and rejects a discovery seed. P1 matches the isotropic SNR contrast, P2 the SNR-1 lambda-0 spectrum contrast, P3 the isotropic SNR-1 ridge contrast for lambda 0.01, 0.1, and 1, and P4 the separate random-feature record. Margins remain 0.01 for clean risk and 0.05 for the relative coefficient and condition gaps, with at least 5 bracketed draws. Exit criterion C3 treats a refuted or inconclusive score as satisfying the criterion. A peak is not a success condition. Budget is max_wall 1200, total_wall 3600, and max_attempts 3. Attempt 20261107T095017-e76868f52e is the one existing attempt, elapsed 8.282 seconds, and it was left in place. Task timeouts are 180 and 900 seconds. This review does not freeze the plan and does not set execution_authorized.",
+  "scientific_validity": "not_assessed"
+}

@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "scientific_validity": "not_assessed",
+  "kept_columns": [
+    50,
+    100,
+    150,
+    200,
+    250,
+    300,
+    400,
+    800
+  ],
+  "used_clean_risk": false,
+  "rule": "time_only",
+  "discovery_export_sha256": "12dd512e616074103e357e23ea39e3a63e0beaf6cbe4e583968722b3d07e6226",
+  "discovery_protocol_sha256": "b5cc30b229af773f3188aaeeccfefdbe054c9a148e36345cface9e992dd3dda8",
+  "projected_confirmation_seconds": 21.821111400146037,
+  "median_note": "The projection uses discovery wall-clock per draw, not a cell chosen by risk."
+}

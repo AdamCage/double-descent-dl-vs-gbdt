@@ -1,7 +1,41 @@
 {
   "schema_version": 1,
   "policy": "Local evidence-supported claims require exact evidence and distinct Cursor-subagent scientific review bound to user charter, or real human/Codex review. Per-claim Codex approval is not mandatory; no independent identity or truth certification is implied.",
-  "claims": [],
+  "claims": [
+    {
+      "id": "R2-confirmation-contrasts",
+      "statement": "On the frozen R2 confirmation seeds 2101-2110, the predeclared isotropic noise contrast, the SNR 1 spectrum contrast, and the isotropic SNR 1 ridge contrast were scored supported by the protocol margin rule. The clean-risk mean near p=n is heavy-tailed, one spectrum-risk paired draw is negative, and the result applies only to this synthetic linear and frozen-ReLU protocol.",
+      "scope": "Confirmation seeds 2101-2110 of protocol R2-linear-rf-2026-11-07. Synthetic linear min-norm/ridge and frozen ReLU readouts only.",
+      "limitations": [
+        "The isotropic SNR 1 clean-risk contrast near p=n is heavy-tailed: its paired window-mean delta has minimum 14.992743421551182, maximum 945.0060748065124, and standard error 91.47192821209919.",
+        "One spectrum-risk paired draw is negative: the SNR 1 geometric-minus-isotropic clean-risk delta has minimum -0.2909879610972439.",
+        "Standard errors are not confidence intervals. The protocol records them as descriptive across-draw dispersions, with no hypothesis test and no multiplicity adjustment.",
+        "The result does not transfer to MLP, trees, or real tables. It applies only to this synthetic linear and frozen-ReLU protocol on confirmation seeds 2101-2110.",
+        "scientific_validity remains not_assessed. This is local Cursor team review under the bound authorization."
+      ],
+      "evidence": [
+        {
+          "path": "research/stages/R2/exports/analysis.json",
+          "sha256": "65448550391fa2c8852eb58441378d8e86857e14ac96a1814bfb2a766a534753"
+        },
+        {
+          "path": "research/stages/R2/exports/seed-audit.json",
+          "sha256": "7218413feeb9fd5a21c7f5cb8c53e9ce35fa02a1c1df475ac049aaa2f7ea9b12"
+        },
+        {
+          "path": "research/stages/R2/exports/bound-discovery.json",
+          "sha256": "c1fa5bbc32329a25323bea39ed476aa1ffedecf4474672308aad78303404c8ef"
+        }
+      ],
+      "scientific_review": {
+        "path": "research/decisions/R2-confirmation-claim.json",
+        "sha256": "51a8a4b0ebebefaf38aa73675f90200ec0c89302f7bc2e77c43ae492c0072285"
+      },
+      "assessment": "evidence_supported",
+      "review_status": "cursor_team_reviewed",
+      "scientific_validity": "not_assessed"
+    }
+  ],
   "historical_observations": [
     {
       "id": "legacy-qwen-width-log",

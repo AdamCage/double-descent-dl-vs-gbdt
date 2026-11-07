@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "review_mode": "subagent_review",
+  "harness": "cursor",
+  "stage_id": "R2",
+  "author_agent": "ddb85535-1ef1-4069-95c4-46578067887a",
+  "reviewer_agent": "a80b8102-ffa6-4830-a59c-a18a59ee8989",
+  "verdict": "accept",
+  "blocking_issues": [],
+  "notes": "Design check only. scientific_validity is not_assessed. The previous blocking defect is fixed. Linear rows are built by latent_standardizer and apply_latent_spectrum: center the latent Gaussian columns, divide by their training ddof=0 standard deviation, multiply column j by the declared spectrum scale, and do not divide the scaled columns again. Training labels are that X times beta plus sigma times training noise. Evaluation rows reuse the training latent mean, latent scale, and protocol spectrum scales. The linear call uses fit_ridge_path with rescale_columns false, so the SVD is of that spectrum-preserving X after a redundant column-mean subtraction; on this construction the training column means are zero, and the subtraction does not remove the spectrum. Random-feature ReLU columns still take the default path and are centered and scaled inside fit_ridge_path, on isotropic inputs only. protocol.json and PLAN.md state the same order. The ridge filter remains s/(s^2+n*lambda) for (1/n)||Xw-y_c||^2+lambda||w||^2. The rank target min(n-1, p) remains an acceptable pre-outcome deviation caused by column centering. Residual tolerance stays 1e-8. Discovery seeds 1101-1105 and confirmation seeds 2101-2110 stay disjoint. Registered tasks are solver-checks and discovery. run_phase for discovery iterates discovery_data_seeds only and rejects a confirmation seed. build_confirmation is not a registered task. The new unit test uses data seed 3, outside both research lists, and checks that the geometric matrix differs from the isotropic matrix, that a further per-column standardization would cancel it, and that the retained condition number is larger when rescale_columns is false. uv run python -m unittest tests.test_r2_experiment -q passed 10 tests with exit code 0. Noise, ridge, and frozen ReLU features remain separate interventions. A missing peak and a nonpositive contrast stay compatible with the operational exit criteria. L01 and the L05-L07 axes stay unused. Threads stay at 4, with no GPU, paid API, or dataset download. This review does not freeze the plan and does not set execution_authorized.",
+  "scientific_validity": "not_assessed"
+}

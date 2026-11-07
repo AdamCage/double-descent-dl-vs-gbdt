@@ -1,0 +1,325 @@
+{
+  "phase": "confirmation",
+  "label": "confirmation",
+  "noise": {
+    "primary": {
+      "spectrum": "isotropic",
+      "outcome": "supported",
+      "n_bracketed": 10,
+      "clean_risk_delta": {
+        "mean": 150.15484155353573,
+        "se": 91.47192821209919,
+        "minimum": 14.992743421551182,
+        "maximum": 945.0060748065124,
+        "n": 10
+      },
+      "coefficient_norm_relative_delta": {
+        "mean": 1.0214206223789621,
+        "se": 0.028314324996491856,
+        "minimum": 0.9241909915366725,
+        "maximum": 1.181756869010032,
+        "n": 10
+      },
+      "components": [
+        "pass",
+        "pass"
+      ]
+    },
+    "secondary": {
+      "spectrum": "geometric",
+      "outcome": "supported",
+      "n_bracketed": 10,
+      "clean_risk_delta": {
+        "mean": 152.9567159136385,
+        "se": 91.21451282170675,
+        "minimum": 16.677791152888183,
+        "maximum": 944.80061316931,
+        "n": 10
+      },
+      "coefficient_norm_relative_delta": {
+        "mean": 1.235803547677767,
+        "se": 4.023132108412601e-05,
+        "minimum": 1.235584663724724,
+        "maximum": 1.2360045350133224,
+        "n": 10
+      },
+      "components": [
+        "pass",
+        "pass"
+      ]
+    }
+  },
+  "spectrum": {
+    "primary": {
+      "snr": 1.0,
+      "outcome": "supported",
+      "n_bracketed": 10,
+      "clean_risk_delta": {
+        "mean": 3.4365478620334757,
+        "se": 1.2211148395490092,
+        "minimum": -0.2909879610972439,
+        "maximum": 12.988263788973512,
+        "n": 10
+      },
+      "condition_relative_delta": {
+        "mean": 28.757214859116164,
+        "se": 1.5196271294216537,
+        "minimum": 18.819983166411095,
+        "maximum": 35.80117967628515,
+        "n": 10
+      },
+      "components": [
+        "pass",
+        "pass"
+      ]
+    },
+    "secondary": {
+      "snr": 5.0,
+      "outcome": "supported",
+      "n_bracketed": 10,
+      "clean_risk_delta": {
+        "mean": 0.6346735019307028,
+        "se": 0.24390058517067084,
+        "minimum": -0.08552632389489645,
+        "maximum": 2.5487575419858146,
+        "n": 10
+      },
+      "condition_relative_delta": {
+        "mean": 28.757214859116164,
+        "se": 1.5196271294216537,
+        "minimum": 18.819983166411095,
+        "maximum": 35.80117967628515,
+        "n": 10
+      },
+      "components": [
+        "pass",
+        "pass"
+      ]
+    }
+  },
+  "ridge": {
+    "primary": {
+      "spectrum": "isotropic",
+      "snr": 1.0,
+      "outcome": "supported",
+      "n_bracketed": 10,
+      "lambdas": [
+        {
+          "ridge_lambda": 0.01,
+          "components": [
+            "pass",
+            "pass"
+          ],
+          "clean_risk_delta": {
+            "mean": 184.44972072766433,
+            "se": 114.28934576802759,
+            "minimum": 15.319706542894155,
+            "maximum": 1177.5554499286561,
+            "n": 10
+          },
+          "coefficient_norm_relative_delta": {
+            "mean": 0.632660514924465,
+            "se": 0.04849284479711835,
+            "minimum": 0.47086468553157784,
+            "maximum": 0.9028276429787163,
+            "n": 10
+          }
+        },
+        {
+          "ridge_lambda": 0.1,
+          "components": [
+            "pass",
+            "pass"
+          ],
+          "clean_risk_delta": {
+            "mean": 186.51172454320246,
+            "se": 114.3240856964728,
+            "minimum": 17.39503894691605,
+            "maximum": 1179.9405592481944,
+            "n": 10
+          },
+          "coefficient_norm_relative_delta": {
+            "mean": 0.7624394280011711,
+            "se": 0.031057892943436496,
+            "minimum": 0.6571453108731526,
+            "maximum": 0.9383077064079258,
+            "n": 10
+          }
+        },
+        {
+          "ridge_lambda": 1.0,
+          "components": [
+            "pass",
+            "pass"
+          ],
+          "clean_risk_delta": {
+            "mean": 187.12334387287552,
+            "se": 114.33379231988444,
+            "minimum": 18.10480880023949,
+            "maximum": 1180.6416438149588,
+            "n": 10
+          },
+          "coefficient_norm_relative_delta": {
+            "mean": 0.8874925483943059,
+            "se": 0.014892290960743777,
+            "minimum": 0.8381944735706045,
+            "maximum": 0.9709799340255619,
+            "n": 10
+          }
+        }
+      ]
+    },
+    "secondary": {
+      "spectrum": "geometric",
+      "snr": 1.0,
+      "outcome": "supported",
+      "n_bracketed": 10,
+      "lambdas": [
+        {
+          "ridge_lambda": 0.01,
+          "components": [
+            "pass",
+            "pass"
+          ],
+          "clean_risk_delta": {
+            "mean": 190.685920209105,
+            "se": 114.02121858463575,
+            "minimum": 20.16689884291441,
+            "maximum": 1180.533474382017,
+            "n": 10
+          },
+          "coefficient_norm_relative_delta": {
+            "mean": 0.9884635540214403,
+            "se": 0.0014988819234105506,
+            "minimum": 0.9813268413829368,
+            "maximum": 0.9968757154247475,
+            "n": 10
+          }
+        },
+        {
+          "ridge_lambda": 0.1,
+          "components": [
+            "pass",
+            "pass"
+          ],
+          "clean_risk_delta": {
+            "mean": 191.02010339091973,
+            "se": 114.0198340812867,
+            "minimum": 20.644914665267258,
+            "maximum": 1180.8538082635607,
+            "n": 10
+          },
+          "coefficient_norm_relative_delta": {
+            "mean": 0.9952832896223105,
+            "se": 0.0006345601786885757,
+            "minimum": 0.9923849333230117,
+            "maximum": 0.9987750937412025,
+            "n": 10
+          }
+        },
+        {
+          "ridge_lambda": 1.0,
+          "components": [
+            "pass",
+            "pass"
+          ],
+          "clean_risk_delta": {
+            "mean": 190.8884479344197,
+            "se": 114.01657525112026,
+            "minimum": 20.499513112006685,
+            "maximum": 1180.6919042024822,
+            "n": 10
+          },
+          "coefficient_norm_relative_delta": {
+            "mean": 0.9981162601657267,
+            "se": 0.0002612647025959558,
+            "minimum": 0.9970977460171976,
+            "maximum": 0.9995097922357316,
+            "n": 10
+          }
+        }
+      ]
+    }
+  },
+  "random_features": {
+    "snr_1": {
+      "snr": 1.0,
+      "recorded": true,
+      "coupling_outcome": "coupling_consistent",
+      "n_bracketed": 10,
+      "condition_relative_delta": {
+        "mean": 0.5411857456965337,
+        "se": 0.11890908918933235,
+        "minimum": 0.1403545181822687,
+        "maximum": 1.2876806556855096,
+        "n": 10
+      },
+      "interior_clean_risk_peak": true,
+      "clean_risk_curve": [
+        1.6434658339137698,
+        2.8806872292312975,
+        7.119520775356956,
+        632.0445381405259,
+        8.597173626069642,
+        4.748607082553183,
+        2.8045052328937534,
+        1.5646012983902617
+      ],
+      "columns": [
+        50,
+        100,
+        150,
+        200,
+        250,
+        300,
+        400,
+        800
+      ]
+    },
+    "snr_5": {
+      "snr": 5.0,
+      "recorded": true,
+      "coupling_outcome": "coupling_consistent",
+      "n_bracketed": 10,
+      "condition_relative_delta": {
+        "mean": 0.5411857456965337,
+        "se": 0.11890908918933235,
+        "minimum": 0.1403545181822687,
+        "maximum": 1.2876806556855096,
+        "n": 10
+      },
+      "interior_clean_risk_peak": true,
+      "clean_risk_curve": [
+        1.3848744342691037,
+        2.085463131315974,
+        4.35114933538332,
+        305.8498062296605,
+        5.053634502529771,
+        2.8775801997898385,
+        1.8351802153409889,
+        1.1752516834011877
+      ],
+      "columns": [
+        50,
+        100,
+        150,
+        200,
+        250,
+        300,
+        400,
+        800
+      ]
+    }
+  },
+  "descriptive_shape": {
+    "family": "linear",
+    "spectrum": "isotropic",
+    "snr": 1.0,
+    "ridge_lambda": 0.0,
+    "interior_clean_risk_peak": true,
+    "note": "The interior-peak flag is descriptive. It is not a registered success condition and it does not change the menu."
+  },
+  "scientific_validity": "not_assessed",
+  "n_cells": 1440,
+  "cells_sha256": "5fbe76b00645481acfb979dbf9c999c096e0403e72f749c497d4726fb4836991"
+}
