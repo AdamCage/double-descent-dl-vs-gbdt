@@ -66,6 +66,42 @@
       "assessment": "evidence_supported",
       "review_status": "cursor_team_reviewed",
       "scientific_validity": "not_assessed"
+    },
+    {
+      "id": "R4-separate-axes",
+      "statement": "On the frozen R4 confirmation seeds 6101-6105, raising the single-tree leaf cap lowered the training residual and raised clean risk, while raising forest size at a fixed leaf cap lowered clean risk. The six grids were not pooled. CatBoost was not fit, and the gradient-boosting depth curve has no interpolation bracket.",
+      "scope": "Confirmation seeds 6101-6105 of protocol R4-trees-2026-11-07. Sklearn trees, forests, and gradient boosting only.",
+      "limitations": [
+        "The analysis export records the six grid names, n_cells 155, and cells_sha256 77a5062809b7a26c8dbd5a4aca7107ab6f93534bc17b94ff8d340895e469dee3. It does not record the per-grid means. Those means were spot-checked from confirmation cells.jsonl with that hash.",
+        "On tree_leaves, every seed 6101-6105 has a strictly lower training residual as max_leaf_nodes increases, and the five-draw residual mean falls from 0.910867840799 at cap 2 to 0.0 at cap 256. Clean risk is higher at cap 256 than at cap 2 on every seed, from five-draw mean 0.898602813947 to 1.753766689846. Adjacent caps are not strictly increasing: the five-draw clean mean falls from 0.898602813947 at cap 2 to 0.893371135905 at cap 4, and from 1.754254683228 at cap 128 to 1.753766689846 at cap 256.",
+        "At both fixed leaf caps, forest size from 1 to 50 trees has lower clean risk on every seed. The five-draw means fall at every recorded step, from 1.223959963079 to 0.528015076248 at cap 8 and from 1.982827180487 to 0.470803801803 at cap 256. Seeds 6101 and 6104 on the cap-8 grid rise slightly from 25 to 50 trees.",
+        "The gradient-boosting depth curve is not an interpolation bracket. Every gbdt_depth cell has interpolating false. Depth-10 residuals run from 0.07287973239690256 to 0.07773278189791058, all above 1e-8.",
+        "CatBoost was not fit. The confirmation cells use decision_tree, random_forest, and gradient_boosting only.",
+        "L05-L07 stay unresolved. The six grids were recorded separately and were not pooled.",
+        "Standard errors are not confidence intervals. The five-draw means are descriptive, with no hypothesis test and no multiplicity adjustment.",
+        "scientific_validity remains not_assessed. This is local Cursor team review by a distinct subagent, not an external replication."
+      ],
+      "evidence": [
+        {
+          "path": "research/stages/R4/exports/analysis.json",
+          "sha256": "8aaada532ecb0783afd47402410b869ca4588389ac808517e6951ac70e39518b"
+        },
+        {
+          "path": "research/stages/R4/exports/seed-audit.json",
+          "sha256": "1a224d277719a514ac022cee7a37a5f6f8990fbd6c04afdeb56c8c86617cd226"
+        },
+        {
+          "path": "research/stages/R4/exports/bound-discovery.json",
+          "sha256": "10ca1a88a0e5ed64471ef1811f517fd067dba5e3754a6a16049666203784a5c5"
+        }
+      ],
+      "scientific_review": {
+        "path": "research/decisions/R4-confirmation-claim.json",
+        "sha256": "30c17d3e77e239c74de38aafdbf268e3728630d09d5a2081798cd100402cd3e9"
+      },
+      "assessment": "evidence_supported",
+      "review_status": "cursor_team_reviewed",
+      "scientific_validity": "not_assessed"
     }
   ],
   "historical_observations": [

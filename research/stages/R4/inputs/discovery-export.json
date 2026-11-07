@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "phase": "discovery",
+  "scientific_validity": "not_assessed",
+  "protocol_sha256": "582d6d734c9d05567f62678f0f5c43dd8cec6cf9e59f21bbe47dc0b7df623ace",
+  "reduction": {
+    "rule": "time_only",
+    "used_clean_risk": false,
+    "projected_confirmation_seconds": 3.230253374786116,
+    "kept_full_menu": true,
+    "discovery_wall_seconds": 0.8614008999429643
+  },
+  "seed_audit": {
+    "phase": "discovery",
+    "data_seeds": [
+      5101,
+      5102
+    ],
+    "confirmation_seeds_absent": true,
+    "discovery_seeds_absent": false
+  },
+  "n_cells": 62
+}

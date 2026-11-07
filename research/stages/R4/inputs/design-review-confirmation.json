@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "review_mode": "subagent_review",
+  "harness": "cursor",
+  "stage_id": "R4",
+  "author_agent": "ddb85535-1ef1-4069-95c4-46578067887a",
+  "reviewer_agent": "c5b0bc65-238c-4285-9953-71a88c525f67",
+  "verdict": "accept",
+  "blocking_issues": [],
+  "notes": "Design check only. scientific_validity is not_assessed. Confirmation was not run. research/stages/R4/PLAN.md is the confirmation contract. It names verified discovery attempt 20261107T103949-29045fc56f, fits confirmation seeds 6101-6105, and leaves discovery seeds 5101-5102 unfitted. The full six-grid menu stays because the wall-clock projection is 3.23 seconds and below 1800. The exact projection is 3.230253374786116 seconds in both confirmation-grid.json and discovery-export.json, from discovery wall-clock 0.8614008999429643 seconds, two discovery draws, five confirmation draws, and safety factor 1.5. Clean risk did not choose that menu: used_clean_risk is false and the rule is time_only. The fallback that keeps only the first, middle, and last setting of each grid is unused. The six grids remain separate, with forest leaf caps 8 and 256. CatBoost stays unfitted, and a missing peak is allowed. The discovery export SHA-256 is 39ee8d57a091dd755c125c0dacc7eb573050798be0428d2db3cc78033361765b, matching the grid. The canonical protocol SHA-256 is 582d6d734c9d05567f62678f0f5c43dd8cec6cf9e59f21bbe47dc0b7df623ace, matching the export. Protocol confirmation seeds are 6101-6105 and discovery seeds are 5101-5102. The registered confirmation command is scripts/r4_run.py confirmation with this grid and export. This review leaves the plan unfrozen and does not set execution_authorized.",
+  "scientific_validity": "not_assessed"
+}

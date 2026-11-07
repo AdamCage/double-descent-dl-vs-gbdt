@@ -1,22 +1,24 @@
-# R4 — автономная подготовка после зависимостей
+# R4 — операционно закрыт
 
-R3 закрыт. Следующая команда:
+Confirmation attempt `20261107T104140-5bc2019cef` закрыт 2026-11-07T10:48:32Z.
+Review SHA-256 `16ac881579ff2de3f6d821ceaf6b99e502793e34e3646dbfe9b7b83d274e32fe`.
+Операционный reviewer `9506bcbc-93e4-4b02-8fba-30b05c17fbab`, verdict accept.
+Design reviewer `c5b0bc65-238c-4285-9953-71a88c525f67`.
+`scientific_validity=not_assessed`.
+
+Discovery attempt `20261107T103949-29045fc56f` сохранён. Архив
+`research/evidence/R4-runs-2026-11-07-closed.tar.gz`, SHA-256
+`eb360f4c0aa7be3a296dc09ab7dba42f90bcb1db78866dcab4348eef63b51e4b`.
+Closure copy: `research/evidence/R4-closure.json`.
+
+Шесть сеток не объединены. Рост листьев поднял чистый риск при падении
+train-остатка; рост леса при фиксированном потолке листьев чистый риск снизил.
+CatBoost не обучался. Claim `R4-separate-axes` локальный. Эскалации 0003 нет.
+
+Следующая команда — подготовить R5:
 
 ```powershell
 uv sync --frozen
 uv run python scripts/research.py status
 uv run python scripts/research.py next
 ```
-
-Stage пока не начат. Подготовка и условная активация разрешены общим мандатом
-`docs/decisions/0003-cursor-autonomous-research.md` и bound decision в registry.
-После закрытия/проверки зависимостей Cursor сам формирует подробный дизайн,
-делегирует реализацию/анализ субагентам и получает review другого субагента.
-Затем freeze inputs/plan, validate-plan, самостоятельная активация только R4,
-run/verify/report/review/close/bundle и продолжение очереди. Не ждать нового
-разрешения Codex на routine stage или claim. Соблюдать общий resource ledger.
-
-Непредвиденный содержательный результат сначала диагностировать ограниченными
-проверками; критические развилки/неустранимая central integrity/выход за мандат
-передать Codex/человеку с evidence. Отрицательные/inconclusive исходы сами по
-себе не требуют эскалации. Не запускать историческую s01-s10 цепочку.

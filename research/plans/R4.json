@@ -1,20 +1,55 @@
 {
   "schema_version": 1,
   "stage_id": "R4",
-  "status": "draft",
-  "question": "Деревья, random forest, CatBoost; отдельные оси capacity/averaging/boosting.",
-  "scope": "Autonomous Cursor planning under accepted charter; executable detailed plan remains draft until dependencies, implementation, distinct-subagent review and frozen inputs are ready.",
-  "budget": {
-    "max_wall_seconds": 600,
-    "total_wall_seconds": 1200,
-    "max_attempts": 2
-  },
-  "tasks": [],
-  "exit_criteria": [],
-  "predictions": [],
-  "draft_exit_intent": "Репликация релевантных baseline и интерполяционные диагностики без склейки осей.",
+  "status": "frozen",
+  "question": "Do leaf capacity, forest size, boosting steps, tree depth, and split fraction move clean risk as separate axes?",
+  "scope": "Confirmation on seeds 6101-6105 and the full six-grid menu frozen by the time rule. Axes are not combined. CatBoost is not fit. scientific_validity remains not_assessed.",
   "authorization_decision": {
     "path": "research/decisions/autonomous-research-authorization.json",
     "sha256": "4f2eca57802835816b688668838545df60fd568c99069c291d2e42cb4f5371c9"
-  }
+  },
+  "budget": {"max_wall_seconds": 1200, "total_wall_seconds": 3600, "max_attempts": 3},
+  "tasks": [
+    {
+      "id": "solver-checks",
+      "argv": ["{python}", "{repo}/scripts/r4_run.py", "checks", "--root", "{repo}"],
+      "inputs": [
+        "scripts/r4_run.py", "src/__init__.py", "src/r4_trees.py", "src/controlled_synthetic.py",
+        "tests/test_r4_trees.py", "research/stages/R4/inputs/protocol.json", "research/stages/R4/PLAN.md"
+      ],
+      "outputs": ["checks.json"],
+      "timeout_seconds": 180
+    },
+    {
+      "id": "confirmation",
+      "argv": ["{python}", "{repo}/scripts/r4_run.py", "confirmation", "--root", "{repo}",
+               "--grid", "{repo}/research/stages/R4/inputs/confirmation-grid.json",
+               "--export", "{repo}/research/stages/R4/inputs/discovery-export.json"],
+      "inputs": [
+        "scripts/r4_run.py", "src/__init__.py", "src/r4_trees.py", "src/controlled_synthetic.py",
+        "research/stages/R4/inputs/protocol.json", "research/stages/R4/PLAN.md",
+        "research/stages/R4/inputs/design-review.json",
+        "research/stages/R4/inputs/discovery-export.json",
+        "research/stages/R4/inputs/discovery-verify.json",
+        "research/stages/R4/inputs/confirmation-grid.json",
+        "research/stages/R4/inputs/design-review-confirmation.json"
+      ],
+      "outputs": ["timing.json", "cells.jsonl", "reduction.json", "analysis.json", "runtime.json", "seed-audit.json", "bound-discovery.json"],
+      "timeout_seconds": 900
+    }
+  ],
+  "exit_criteria": [
+    {"id": "C1", "description": "Axis unit tests return exit code 0.", "task_ids": ["solver-checks"]},
+    {"id": "C2", "description": "Every confirmation cell records its own grid, leaf count, residual, and both risks, on seeds 6101-6105 only.", "task_ids": ["confirmation"]},
+    {"id": "C3", "description": "The six grids are still separate in the output and no single capacity curve is formed.", "task_ids": ["confirmation"]},
+    {"id": "C4", "description": "The bound discovery export hash matches and kept_full_menu is true.", "task_ids": ["confirmation"]},
+    {"id": "C5", "description": "The run uses one job and does not import torch.", "task_ids": ["confirmation"]}
+  ],
+  "predictions": [
+    {"id": "P1", "statement": "Within tree_leaves, larger max_leaf_nodes lowers the training residual. This does not imply the same shape for forest size or boosting steps."},
+    {"id": "P2", "statement": "forest_size_restricted and forest_size_large both vary n_estimators, but they keep different leaf caps and are not pooled."},
+    {"id": "P3", "statement": "gbdt_steps, gbdt_depth, and gbdt_split_fraction are reported separately. A missing peak on any of them is allowed."},
+    {"id": "P4", "statement": "CatBoost remains unfitted. The sklearn grids do not resolve L05-L07."}
+  ],
+  "implementation_state": "Confirmation draft. Discovery 20261107T103949-29045fc56f verified. Full menu kept by the 3.23 second projection."
 }

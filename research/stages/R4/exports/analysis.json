@@ -1,0 +1,16 @@
+{
+  "phase": "confirmation",
+  "label": "confirmation",
+  "grids": [
+    "forest_size_large",
+    "forest_size_restricted",
+    "gbdt_depth",
+    "gbdt_split_fraction",
+    "gbdt_steps",
+    "tree_leaves"
+  ],
+  "n_cells": 155,
+  "scientific_validity": "not_assessed",
+  "note": "Axes stay in separate grids. No single capacity curve is formed.",
+  "cells_sha256": "77a5062809b7a26c8dbd5a4aca7107ab6f93534bc17b94ff8d340895e469dee3"
+}

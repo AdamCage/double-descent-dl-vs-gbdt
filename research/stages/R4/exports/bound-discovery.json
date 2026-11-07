@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "scientific_validity": "not_assessed",
+  "kept_full_menu": true,
+  "used_clean_risk": false,
+  "rule": "time_only",
+  "discovery_export_sha256": "39ee8d57a091dd755c125c0dacc7eb573050798be0428d2db3cc78033361765b",
+  "projected_confirmation_seconds": 3.230253374786116,
+  "seed_audit": {
+    "phase": "confirmation",
+    "data_seeds": [
+      6101,
+      6102,
+      6103,
+      6104,
+      6105
+    ],
+    "confirmation_seeds_absent": false,
+    "discovery_seeds_absent": true
+  }
+}

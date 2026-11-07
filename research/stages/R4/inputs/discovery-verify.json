@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "scientific_validity": "not_assessed",
+  "attempt_id": "20261107T103949-29045fc56f",
+  "plan_sha256": "ddd7524f89cd9ee16ab3f5714f3fe06c010c371b144f86dd939f6f05c11688f1",
+  "manifest_sha256": "78d764cbd67c49c3ef648ce2929deefeeed487b65b04675591a12380b3280e42",
+  "elapsed_seconds": 5.234000000171363,
+  "verified_live_sources": true
+}
