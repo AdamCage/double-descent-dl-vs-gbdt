@@ -1,22 +1,19 @@
-# R7 — автономная подготовка после зависимостей
+# R7 — операционно закрыт
 
-R6 закрыт как not_run. Следующая команда:
+Attempt `20261107T112024-93842d83aa` закрыт 2026-11-07T11:22:58Z.
+Review SHA-256 `1bc7dff637fedd7e9326598fe3dfe6b4c82762928b81b4ce5dea5d92f30db51c`.
+Операционный reviewer `6c29cee8-fac5-4b00-a926-1397454d7915`, verdict accept.
+Design reviewer `6d4303d0-c56b-4402-bf06-845ac8bc0ee6`.
+`scientific_validity=not_assessed`.
+
+Локальная записка: `research/stages/R7/article.md`. Внешняя подача не
+выполнялась. Архив и closure copy лежат в `research/evidence/`.
+
+Очередь R0–R7 операционно закрыта. Критической эскалации 0003 нет.
+Следующая команда только читает состояние:
 
 ```powershell
 uv sync --frozen
 uv run python scripts/research.py status
 uv run python scripts/research.py next
 ```
-
-Stage пока не начат. Подготовка и условная активация разрешены общим мандатом
-`docs/decisions/0003-cursor-autonomous-research.md` и bound decision в registry.
-После закрытия/проверки зависимостей Cursor сам формирует подробный дизайн,
-делегирует реализацию/анализ субагентам и получает review другого субагента.
-Затем freeze inputs/plan, validate-plan, самостоятельная активация только R7,
-run/verify/report/review/close/bundle и продолжение очереди. Не ждать нового
-разрешения Codex на routine stage или claim. Соблюдать общий resource ledger.
-
-Непредвиденный содержательный результат сначала диагностировать ограниченными
-проверками; критические развилки/неустранимая central integrity/выход за мандат
-передать Codex/человеку с evidence. Отрицательные/inconclusive исходы сами по
-себе не требуют эскалации. Не запускать историческую s01-s10 цепочку.

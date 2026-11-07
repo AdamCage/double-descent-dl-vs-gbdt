@@ -1,20 +1,42 @@
 {
   "schema_version": 1,
   "stage_id": "R7",
-  "status": "draft",
-  "question": "Каждый эмпирический тезис связан с evidence и отдельным scientific decision.",
-  "scope": "Autonomous Cursor planning under accepted charter; executable detailed plan remains draft until dependencies, implementation, distinct-subagent review and frozen inputs are ready.",
-  "budget": {
-    "max_wall_seconds": 600,
-    "total_wall_seconds": 1200,
-    "max_attempts": 2
-  },
-  "tasks": [],
-  "exit_criteria": [],
-  "predictions": [],
-  "draft_exit_intent": "Claim ledger, воспроизводимый пакет, рукопись и явные ограничения.",
+  "status": "frozen",
+  "question": "Does the local article include the negative, inconclusive, and not-run results with their claim bindings, without an external submission?",
+  "scope": "Synthesis only. No new model fit, no download, and no submission. scientific_validity remains not_assessed.",
   "authorization_decision": {
     "path": "research/decisions/autonomous-research-authorization.json",
     "sha256": "4f2eca57802835816b688668838545df60fd568c99069c291d2e42cb4f5371c9"
-  }
+  },
+  "budget": {"max_wall_seconds": 300, "total_wall_seconds": 600, "max_attempts": 2},
+  "tasks": [
+    {
+      "id": "synthesis-check",
+      "argv": ["{python}", "{repo}/scripts/r7_check.py"],
+      "inputs": [
+        "scripts/r7_check.py",
+        "src/__init__.py",
+        "src/research_claims.py",
+        "research/claims.json",
+        "research/stages/R7/article.md",
+        "research/stages/R7/PLAN.md",
+        "research/stages/R7/inputs/design-review.json",
+        "research/decisions/R2-confirmation-claim.json",
+        "research/decisions/R3-confirmation-claim.json",
+        "research/decisions/R4-confirmation-claim.json",
+        "research/decisions/R5-confirmation-claim.json",
+        "research/decisions/autonomous-research-authorization.json"
+      ],
+      "outputs": ["synthesis-check.json"],
+      "timeout_seconds": 120
+    }
+  ],
+  "exit_criteria": [
+    {"id": "C1", "description": "The synthesis check passes and reports no claim-ledger problems.", "task_ids": ["synthesis-check"]},
+    {"id": "C2", "description": "The check records that the article names the closed claims, the refuted MLP budget, the not_run transfer, and no external submission.", "task_ids": ["synthesis-check"]}
+  ],
+  "predictions": [
+    {"id": "P1", "statement": "The local article retains the refuted MLP budget, the separate tree axes, the non-identified mechanism, and the not_run transfer."}
+  ],
+  "implementation_state": "Draft until design review and freeze."
 }

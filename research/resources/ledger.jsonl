@@ -10,3 +10,4 @@
 {"attempt_id": "20261107T105818-f129d71a55", "elapsed_seconds": 4.686999999918044, "kind": "attempt", "note": "Discovery verified. Not closed.", "stage_id": "R5", "status": "complete"}
 {"attempt_id": "20261107T105955-6e7f800ff1", "elapsed_seconds": 4.82799999974668, "kind": "attempt", "note": "Confirmation operationally closed. scientific_validity not_assessed.", "stage_id": "R5", "status": "complete"}
 {"attempt_id": "20261107T111120-40cf0c74f2", "elapsed_seconds": 0.1559999999590218, "kind": "attempt", "note": "Audit closed as not_run. scientific_validity not_assessed.", "stage_id": "R6", "status": "complete"}
+{"attempt_id": "20261107T112024-93842d83aa", "elapsed_seconds": 0.17199999978765845, "kind": "attempt", "note": "Synthesis check closed. scientific_validity not_assessed.", "stage_id": "R7", "status": "complete"}

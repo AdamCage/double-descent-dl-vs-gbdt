@@ -104,7 +104,7 @@
       ],
       "plan": "research/plans/R7.json",
       "kind": "science",
-      "execution_authorized": false,
+      "execution_authorized": true,
       "preparation_authorized": true,
       "authorization_decision": {
         "path": "research/decisions/autonomous-research-authorization.json",
