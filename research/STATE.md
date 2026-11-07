@@ -6,14 +6,16 @@
 Действуют решение `docs/decisions/0003-cursor-autonomous-research.md` и bound
 `research/decisions/autonomous-research-authorization.json`.
 
-**R1 выполнен и проверен, операционно ещё не закрыт.** Attempt
-`20261107T085630-b4345b8c44` имеет `verify=pass`. Design review
-`03f147be-80d7-42b8-9499-5473f6a5ffc9` принял дизайн без blocking issues.
-Операционное review другого субагента ещё не проставлено, поэтому `close` не
-делался. L01 PDF недоступен после двух HTTP 403. Сравнение осей L05–L07
-неразрешено. Модели не обучались. `scientific_validity=not_assessed`.
-Переносимый архив `research/evidence/R1-runs-2026-11-07.tar.gz`, SHA-256
-`360460dddcd1cbcfbab4e18513da07977b15679c8aea3b35f37fc25455aa9ff5`, verify прошёл.
+**Следующая работа — подготовить R2.** `next` рекомендует `prepare`.
+R1 операционно закрыт: attempt `20261107T085630-b4345b8c44`, review SHA-256
+`c9f57b1459fe0fe5f1ac9139c2fa5db2b2e18a6c3816cd0bdd24ecee60391444`,
+`scientific_validity=not_assessed`. Design review
+`03f147be-80d7-42b8-9499-5473f6a5ffc9`. Операционный review
+`88fc6e9f-cf60-40ad-a8c9-95625863d952`, verdict accept. L01 PDF недоступен
+после двух HTTP 403. Сравнение осей L05–L07 неразрешено. Модели не обучались.
+Архив с review: `research/evidence/R1-runs-2026-11-07-closed.tar.gz`, SHA-256
+`9f0ebf4f76c0152e24c7b558025ed16e9a5872c215c037f732898b33cf030007`.
+Вход R2: `research/stages/R2/HANDOFF.md`.
 
 ```powershell
 uv sync --frozen

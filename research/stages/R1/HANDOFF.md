@@ -1,9 +1,14 @@
-# R1 — следующий разрешённый unit of work для Cursor
+# R1 — операционно закрыт
 
-Текущая задача: подготовить и выполнить R1, затем самостоятельно продолжить
-R2–R7 по [общему мандату](../../../docs/decisions/0003-cursor-autonomous-research.md).
-R1 конкретизирован решением 0002. R0 закрыт и не исполняется повторно.
-Научного утверждения о результатах этим handoff не делается.
+Attempt `20261107T085630-b4345b8c44` закрыт 2026-11-07T09:02:49Z.
+Review SHA-256 `c9f57b1459fe0fe5f1ac9139c2fa5db2b2e18a6c3816cd0bdd24ecee60391444`.
+Операционный reviewer `88fc6e9f-cf60-40ad-a8c9-95625863d952`, verdict accept.
+`scientific_validity=not_assessed`. Научного claim этот close не создаёт.
+
+Следующий unit: подготовить R2 по
+[HANDOFF](../R2/HANDOFF.md) и
+[мандату](../../../docs/decisions/0003-cursor-autonomous-research.md).
+Текст ниже — выполненная процедура, не текущая очередь.
 
 ## Начать здесь
 

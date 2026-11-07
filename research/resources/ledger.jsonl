@@ -1,1 +1,2 @@
 {"author_agent": "ddb85535-1ef1-4069-95c4-46578067887a", "kind": "preparation", "note": "R1 preparation opened. This entry does not claim an attempt elapsed time.", "stage_id": "R1", "ts": "2026-11-07T08:42:19+00:00"}
+{"attempt_id": "20261107T085630-b4345b8c44", "elapsed_seconds": 11.828000000212342, "kind": "attempt", "note": "Measured after operational close. The mid-run validation hold of 28800 seconds was not a measurement.", "stage_id": "R1", "status": "complete"}

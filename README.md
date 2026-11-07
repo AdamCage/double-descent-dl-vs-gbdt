@@ -27,7 +27,7 @@ uv run python scripts/research.py next
 [docs/automation.md](docs/automation.md). В Cursor доступны команды
 `/research-next`, `/research-review` и локальные skills стадий.
 Правила: [AGENTS.md](AGENTS.md), [единая авторизация R1–R7](docs/decisions/0003-cursor-autonomous-research.md).
-R0 закрыт; следующий шаг — [подготовка R1 в Cursor](research/stages/R1/HANDOFF.md).
+R0 и R1 операционно закрыты; следующий шаг — [подготовка R2](research/stages/R2/HANDOFF.md).
 `next` рекомендует `prepare`: Cursor сам завершает preflight и активирует stage.
 
 ## Доказательства и воспроизведение
