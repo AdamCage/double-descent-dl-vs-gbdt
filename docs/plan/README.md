@@ -1,5 +1,11 @@
 # План после ревью 6 ноября 2026
 
+> Архив с 7 ноября 2026. Описания живого процесса и очереди ниже — снимок
+> прошлого состояния, не текущая команда запуска. Действуют
+> [research/STATE.md](../../research/STATE.md), [research-program.md](../research-program.md)
+> и [automation.md](../automation.md). Сохраняется для истории без новой аттестации
+> цифр, кэшей и научных approvals.
+
 Научный текст пересмотра: [`docs/protocol_revision_2026-11-06.md`](../protocol_revision_2026-11-06.md). Протокол 4 ноября остаётся в силе там, где этот план его не сужает: [`docs/protocol_revision_2026-11-04.md`](../protocol_revision_2026-11-04.md). Пререгистрация `.research/double-descent` не переписывается. Одобрения EpistemeOS нет. `scientific_validity` корпуса эссе: `not_assessed`.
 
 Код, константа `PROTOCOL_REVISION` и ключи кэша s03–s05 этим планом не менялись. Живой s05 не перезапускается.

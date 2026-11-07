@@ -1,0 +1,213 @@
+{
+  "source_id": "L04",
+  "version": "arXiv:1912.02292v1",
+  "locators": [
+    {
+      "label": "page 1, model-size double descent",
+      "quote": "We show that a variety of modern deep learning tasks exhibit a “double-descent”\nphenomenon where, as we increase model size, performance ﬁrst gets worse and"
+    },
+    {
+      "label": "page 1, epochs as a second argument",
+      "quote": "function of model size, but also as a function of the number of training epochs."
+    },
+    {
+      "label": "page 2, model-wise horizontal slice",
+      "quote": "Figure 2: Left: Test error as a function of model size and train epochs. The horizontal line corre-\nsponds to model-wise double descent–varying model size while training for as long as possible. The"
+    },
+    {
+      "label": "page 2, epoch-wise vertical slice",
+      "quote": "vertical line corresponds to epoch-wise double descent, with test error undergoing double-descent\nas train time increases. Right Train error of the corresponding models. All models are Resnet18s"
+    },
+    {
+      "label": "page 2, CIFAR-10 ResNet figure",
+      "quote": "trained on CIFAR-10 with 15% label noise, data-augmentation, and Adam for up to 4K epochs."
+    },
+    {
+      "label": "page 2, near-zero training error",
+      "quote": "by the classical bias/variance tradeoff. However, once model complexity is sufﬁciently large to\ninterpolate i.e., achieve (close to) zero training error, then increasing complexity only decreases test"
+    },
+    {
+      "label": "page 2, Belkin trees and ell-2 nets",
+      "quote": "it “double descent”, and demonstrated it for decision trees, random features, and 2-layer neural\nnetworks with ℓ2 loss, on a variety of learning tasks including MNIST and CIFAR-10."
+    },
+    {
+      "label": "page 2, effective model complexity",
+      "quote": "that goes beyond varying the number of parameters. We deﬁne the effective model complexity (EMC)\nof a training procedure as the maximum number of samples on which it can achieve close to zero"
+    },
+    {
+      "label": "page 2, training time increases EMC",
+      "quote": "but also on the training procedure—and in particular increasing training time will increase the EMC."
+    },
+    {
+      "label": "page 2, epoch-wise with model fixed",
+      "quote": "function of the EMC. Indeed we observe “epoch-wise double descent” when we keep the model ﬁxed\nand increase the training time, with performance following a classical U-like curve in the underﬁtting"
+    },
+    {
+      "label": "page 3, EMC formula",
+      "quote": "Deﬁnition 1 (Effective Model Complexity) The Effective Model Complexity (EMC) of a training\nprocedure T , with respect to distribution D and parameter ϵ > 0, is deﬁned as:\nEMCD,ϵ(T ) := max {n | ES∼Dn[ErrorS(T (S))] ≤ϵ}"
+    },
+    {
+      "label": "page 3, train error in the EMC formula",
+      "quote": "where ErrorS(M) is the mean error of model M on train samples S."
+    },
+    {
+      "label": "page 3, hypothesis stated informally",
+      "quote": "Our main hypothesis can be informally stated as follows:"
+    },
+    {
+      "label": "page 3, critical regime near n",
+      "quote": "Critically parameterized regime. If EMCD,ϵ(T ) ≈n, then a perturbation of T that increases its\neffective complexity might decrease or increase the test error."
+    },
+    {
+      "label": "page 3, heuristic epsilon",
+      "quote": "Hypothesis 1 is informal in several ways. We do not have a principled way to choose the parameter\nϵ (and currently heuristically use ϵ = 0.1). We also are yet to have a formal speciﬁcation for"
+    },
+    {
+      "label": "page 3, experimental validation",
+      "quote": "result of this paper is an experimental validation of Hypothesis 1 under a variety of settings, where"
+    },
+    {
+      "label": "page 3, four ways the threshold was moved",
+      "quote": "we changed the “interpolation threshold” by varying the number of model parameters, the length of\ntraining, the amount of label noise in the distribution, and the number of train samples."
+    },
+    {
+      "label": "page 3, model-wise fixed step budget",
+      "quote": "Model-wise Double Descent. In Section 5, we study the test error of models of increasing size,\nfor a ﬁxed large number of optimization steps. We show that “model-wise double-descent” occurs"
+    },
+    {
+      "label": "page 4, epoch-wise fixed architecture",
+      "quote": "Epoch-wise Double Descent. In Section 6, we study the test error of a ﬁxed, large architecture over"
+    },
+    {
+      "label": "page 4, peak near zero train error",
+      "quote": "performance when models are trained just long enough to reach ≈0 train error. The test error of a"
+    },
+    {
+      "label": "page 4, label noise strongest",
+      "quote": "Remarks on Label Noise. We observe all forms of double descent most strongly in settings with\nlabel noise in the train set (as is often the case when collecting train data in the real-world). How-"
+    },
+    {
+      "label": "page 4, three architecture families",
+      "quote": "families of architectures: ResNets, standard CNNs, and Transformers. ResNets: We parameterize"
+    },
+    {
+      "label": "page 4, ResNet widths and CNN family",
+      "quote": "layers. Speciﬁcally, we use layer widths [k, 2k, 4k, 8k] for varying k. The standard ResNet18\ncorresponds to k = 64. Standard CNNs: We consider a simple family of 5-layer CNNs, with"
+    },
+    {
+      "label": "page 4, CNN widths",
+      "quote": "4 convolutional layers of widths [k, 2k, 4k, 8k] for varying k, and a fully-connected layer. For"
+    },
+    {
+      "label": "page 4, six-layer Transformer",
+      "quote": "augmentation. Transformers: We consider the 6 layer encoder-decoder from Vaswani et al. (2017),"
+    },
+    {
+      "label": "page 4, Transformer width scaling",
+      "quote": "as implemented by Ott et al. (2019). We scale the size of the network by modifying the embedding\ndimension dmodel, and setting the width of the fully-connected layers proportionally (dff = 4·dmodel)."
+    },
+    {
+      "label": "page 5, cross-entropy and Adam budget",
+      "quote": "For ResNets and CNNs, we train with cross-entropy loss, and the following optimizers: (1) Adam\nwith learning-rate 0.0001 for 4K epochs; (2) SGD with learning rate ∝"
+    },
+    {
+      "label": "page 5, Transformer training budget",
+      "quote": "We train Transformers for 80K gradient steps, with 10% label smoothing and no drop-out."
+    },
+    {
+      "label": "page 5, label-noise definition",
+      "quote": "In our experiments, label noise of probability p refers to training on a samples which\nhave the correct label with probability (1 −p), and a uniformly random incorrect label otherwise"
+    },
+    {
+      "label": "page 5, label noise sampled once",
+      "quote": "(label noise is sampled only once and not per epoch). Figure 1 plots test error on the noisy distribu-"
+    },
+    {
+      "label": "page 5, CIFAR model-wise figure",
+      "quote": "Figure 4: Model-wise double descent for ResNet18s. Trained on CIFAR-100 and CIFAR-10, with"
+    },
+    {
+      "label": "page 5, mechanism left open",
+      "quote": "Fully understanding the mechanisms behind model-wise double descent in deep neu-\nral networks remains an important open question. However, an analog of model-wise double descent"
+    },
+    {
+      "label": "page 7, Transformer loss and perplexity",
+      "quote": "80k gradient steps with labeled smoothed\ncross-entropy loss on IWSLT‘14 German-\nto-English (160K sentences) and WMT‘14\nEnglish-to-French (subsampled to 200K sen-\ntences) dataset. Test loss is measured as per-\ntoken perplexity."
+    },
+    {
+      "label": "page 7, epoch-wise section",
+      "quote": "In this section, we demonstrate a novel form of double-descent with respect to training epochs,"
+    },
+    {
+      "label": "page 8, sample-wise fixed model",
+      "quote": "In this section, we investigate the effect of varying the number of train samples, for a ﬁxed model and\ntraining procedure. Previously, in model-wise and epoch-wise double descent, we explored behavior"
+    },
+    {
+      "label": "page 8, sample-wise varies n",
+      "quote": "regime by varying the number of train samples n. By increasing n, the same training procedure T"
+    },
+    {
+      "label": "page 8, sample-wise perplexity slice",
+      "quote": "(per-word perplexity) as a function of number of\ntrain samples, for two transformer models trained\nto completion on IWSLT’14.\nFor both model\nsizes, there is a regime where more samples hurt"
+    },
+    {
+      "label": "page 9, epoch-wise claim and more data",
+      "quote": "best of our knowledge, has not been previously proposed. Finally, we show that the double descent\nphenomenon can lead to a regime where training on more data leads to worse test performance."
+    },
+    {
+      "label": "page 9, regularization as another factor",
+      "quote": "Preliminary results suggest that double descent also holds as we vary the amount of regularization"
+    },
+    {
+      "label": "page 14, default image-classification loss",
+      "quote": "Loss function: Unless stated otherwise, we use the cross-entropy loss for all the experiments."
+    },
+    {
+      "label": "page 14, no default weight decay or dropout",
+      "quote": "Regularization: No explicit regularization like weight decay or dropout was applied unless explic-\nitly stated."
+    },
+    {
+      "label": "page 17, Fashion MNIST random features",
+      "quote": "Figure 14: Random Fourier Features on the Fashion MNIST dataset. The setting is equivalent"
+    },
+    {
+      "label": "page 17, fixed first layer",
+      "quote": "to two-layer neural network with e−ix activation, with randomly-initialized ﬁrst layer that is ﬁxed\nthroughout training. The second layer is trained using gradient ﬂow."
+    },
+    {
+      "label": "page 17, model-wise and sample-wise random features",
+      "quote": "In this section, for completeness sake, we show that both the model- and sample-wise double de-\nscent phenomena are not unique to deep neural networks—they exist even in the setting of Random"
+    },
+    {
+      "label": "page 17, second layer MSE",
+      "quote": "the model size. The second layer is initialized with 0s and trained with MSE loss."
+    },
+    {
+      "label": "page 1, unifying complexity measure",
+      "quote": "We unify the above phenomena by deﬁning a new complexity measure we call\nthe effective model complexity and conjecture a generalized double descent with"
+    },
+    {
+      "label": "page 3, no formal specification of the gap",
+      "quote": "“sufﬁciently smaller” and “sufﬁciently larger”. Our experiments suggest that there is a critical"
+    }
+  ],
+  "model_and_data": "The quoted experiments are modern deep-learning tasks, with three architecture families: ResNets, standard CNNs, and Transformers. ResNet18 uses layer widths [k, 2k, 4k, 8k], and the standard ResNet18 corresponds to k = 64. The quoted CNN family is a simple 5-layer CNN with 4 convolutional layers of widths [k, 2k, 4k, 8k] and a fully connected layer. Transformers are the 6-layer encoder-decoder, scaled by embedding dimension dmodel, with fully connected width dff = 4·dmodel. Quoted datasets include CIFAR-10 with 15% label noise for the ResNet figure, CIFAR-100 and CIFAR-10 for the ResNet18 model-wise figure, and IWSLT‘14 German-to-English together with WMT‘14 English-to-French subsampled to 200K sentences in the Transformer caption. Label noise of probability p is quoted as the correct label with probability (1 −p) and a uniformly random incorrect label otherwise, sampled only once and not per epoch. The appendix quotes random Fourier features on Fashion MNIST, equivalent to a two-layer network whose randomly initialized first layer stays fixed.",
+  "loss": "These quoted losses are not one loss. ResNets and CNNs are trained with cross-entropy loss, and the image-classification appendix says that unless stated otherwise the experiments use cross-entropy. The Transformer caption quotes label-smoothed cross-entropy, and test loss measured as per-token perplexity. The sample-wise Transformer slice quotes test loss as per-word perplexity. The body quote says the random Fourier features second layer is initialized with 0s and trained with MSE loss. The figure-caption quote says that second layer is trained using gradient flow. Both wordings are left as printed. The Belkin citation quoted here used ℓ2 loss for decision trees, random features, and 2-layer networks; that citation is not the loss of the ResNet and CNN runs.",
+  "varied_axis": "The extract keeps three experimental axes separate, and it also names further factors. Model-wise: test error of models of increasing size, for a fixed large number of optimization steps. Figure 2’s horizontal line is quoted as model-wise double descent, varying model size while training for as long as possible. Epoch-wise: the vertical line in that figure, with test error undergoing double descent as train time increases; the epoch-wise section studies a fixed, large architecture over the course of training, and another quote keeps the model fixed and increases training time. Sample-wise: the number of train samples, for a fixed model and training procedure. The quoted Transformer slice is per-word perplexity against the number of train samples, with a regime where more samples hurt performance. A separate sentence says the interpolation threshold was changed by varying the number of model parameters, the length of training, the amount of label noise, and the number of train samples. Those four factors are not collapsed into one axis. Effective model complexity is quoted as the maximum number of samples on which the training procedure can achieve close to zero training error, and training time is quoted as increasing that complexity. A separate quote says they unify the above phenomena by defining a new complexity measure they call the effective model complexity and conjecture a generalized double descent with, and the line stops there. That sentence says “the above phenomena”; it is not used here to collapse model-wise, epoch-wise, and sample-wise variation into one axis. A further preliminary quote says double descent also holds as the amount of regularization varies for a fixed model.",
+  "held_fixed_axes": "Held quantities are quoted per axis, not as one shared freeze. Model-wise quotes hold a fixed large number of optimization steps while model size changes. The ResNet/CNN optimizer quote gives Adam with learning-rate 0.0001 for 4K epochs; the SGD learning-rate display continues off that line and is not repaired. The Figure 2 ResNet quote uses CIFAR-10, 15% label noise, data-augmentation, and Adam for up to 4K epochs. Epoch-wise quotes hold the model fixed, including a fixed large architecture, while training time changes. Sample-wise quotes hold the model and training procedure fixed while the number of train samples changes. The image-classification appendix quotes no explicit weight decay or dropout unless explicitly stated. Within a quoted width sweep, the family is the stated ResNet18, 5-layer CNN, or 6-layer Transformer.",
+  "interpolation_definition": "Interpolate is quoted as achieve (close to) zero training error. Effective model complexity of a training procedure T, with respect to distribution D and ϵ > 0, is quoted as EMCD,ϵ(T ) := max {n | ES∼Dn[ErrorS(T (S))] ≤ϵ}, where ErrorS(M) is the mean error of model M on train samples S. The hypothesis quote says there is no principled way to choose ϵ and that they currently heuristically use ϵ = 0.1, and it stops at “a formal specification for”. The next quoted line contains “sufficiently smaller” and “sufficiently larger”. The critically parameterized regime is quoted as EMCD,ϵ(T ) ≈ n, where a perturbation that increases effective complexity might decrease or increase test error. Hypothesis 1 is quoted as informal. The epoch-wise peak is quoted at models trained just long enough to reach ≈0 train error.",
+  "assumptions": [
+    "The main hypothesis can be informally stated.",
+    "The quote says there is no principled way to choose ϵ and that the authors currently heuristically use ϵ = 0.1.",
+    "For ResNets and CNNs, the quote says training uses cross-entropy loss, with Adam at learning-rate 0.0001 for 4K epochs on that line.",
+    "Unless stated otherwise, the image-classification experiments use the cross-entropy loss.",
+    "Label noise of probability p trains on samples that have the correct label with probability (1 −p) and a uniformly random incorrect label otherwise.",
+    "That label noise is sampled only once and not per epoch.",
+    "No explicit regularization like weight decay or dropout was applied unless explicitly stated, in the quoted image-classification setup.",
+    "The random Fourier features first layer is randomly initialized and fixed throughout training.",
+    "The random Fourier features second layer is initialized with 0s and trained with MSE loss.",
+    "The main result is quoted as an experimental validation of Hypothesis 1."
+  ],
+  "result_type": "Finite experiment. The extract says the main result is an experimental validation of Hypothesis 1 under a variety of settings, and that Hypothesis 1 is informal. No asymptotic theorem for these deep-network runs is stated in the quoted passages. An appendix quote says both the model- and sample-wise double-descent phenomena exist even in the setting of Random, and the line breaks there. A quoted figure in that appendix is Random Fourier Features on Fashion MNIST. The extract says that fully understanding the mechanisms behind model-wise double descent in deep neural networks remains an important open question.",
+  "transfer_limits": "The quoted runs are ResNets, 5-layer CNNs, Transformers, and random Fourier features with a fixed first layer and an MSE-trained second layer. Decision trees, random features, and 2-layer neural networks with ℓ2 loss, on tasks including MNIST and CIFAR-10, are attributed to a demonstration by Belkin et al., not identified in that sentence as this paper’s runs. The image-classification loss quoted for this paper’s ResNets and CNNs is cross-entropy. The extract says fully understanding the mechanisms behind model-wise double descent in deep neural networks remains an open question. The extract does not locate gradient-boosted trees or an essay corpus. A learned first layer is outside the quoted random-feature appendix, which keeps the first layer fixed."
+}

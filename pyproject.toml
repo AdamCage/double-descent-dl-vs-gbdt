@@ -4,6 +4,7 @@ version = "0.1.0"
 description = "Research pipeline: double descent in DNN and CatBoost gradient boosting"
 requires-python = ">=3.12,<3.13"
 dependencies = [
+    "epistemeos==0.1.0",
     "pandas>=2.2",
     "numpy>=1.26",
     "scikit-learn>=1.5",
@@ -32,6 +33,7 @@ url = "https://download.pytorch.org/whl/cu128"
 explicit = true
 
 [tool.uv.sources]
+epistemeos = { path = "EpistemeOS-0.2.0" }
 torch = { index = "pytorch-cu128" }
 
 [build-system]

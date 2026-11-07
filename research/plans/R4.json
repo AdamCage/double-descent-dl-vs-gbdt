@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "stage_id": "R4",
+  "status": "draft",
+  "question": "Деревья, random forest, CatBoost; отдельные оси capacity/averaging/boosting.",
+  "scope": "Autonomous Cursor planning under accepted charter; executable detailed plan remains draft until dependencies, implementation, distinct-subagent review and frozen inputs are ready.",
+  "budget": {
+    "max_wall_seconds": 600,
+    "total_wall_seconds": 1200,
+    "max_attempts": 2
+  },
+  "tasks": [],
+  "exit_criteria": [],
+  "predictions": [],
+  "draft_exit_intent": "Репликация релевантных baseline и интерполяционные диагностики без склейки осей.",
+  "authorization_decision": {
+    "path": "research/decisions/autonomous-research-authorization.json",
+    "sha256": "4f2eca57802835816b688668838545df60fd568c99069c291d2e42cb4f5371c9"
+  }
+}

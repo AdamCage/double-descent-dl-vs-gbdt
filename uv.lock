@@ -262,6 +262,7 @@ source = { editable = "." }
 dependencies = [
     { name = "aiohttp" },
     { name = "catboost" },
+    { name = "epistemeos" },
     { name = "kagglehub" },
     { name = "kaleido" },
     { name = "numpy" },
@@ -280,6 +281,7 @@ dependencies = [
 requires-dist = [
     { name = "aiohttp", specifier = ">=3.9" },
     { name = "catboost", specifier = ">=1.2" },
+    { name = "epistemeos", directory = "EpistemeOS-0.2.0" },
     { name = "kagglehub", specifier = ">=0.3" },
     { name = "kaleido", specifier = ">=0.2" },
     { name = "numpy", specifier = ">=1.26" },
@@ -293,6 +295,11 @@ requires-dist = [
     { name = "tqdm", specifier = ">=4.66" },
     { name = "umap-learn", specifier = ">=0.5" },
 ]
+
+[[package]]
+name = "epistemeos"
+version = "0.1.0"
+source = { directory = "EpistemeOS-0.2.0" }
 
 [[package]]
 name = "filelock"

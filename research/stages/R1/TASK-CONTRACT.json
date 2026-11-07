@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "stage_id": "R1",
+  "inference_mode": "descriptive_audit",
+  "baseline_source_ids": [
+    "L01",
+    "L02",
+    "L03",
+    "L04",
+    "L05",
+    "L06",
+    "L07",
+    "L08"
+  ],
+  "authorization_decision": {
+    "path": "research/decisions/autonomous-research-authorization.json",
+    "sha256": "4f2eca57802835816b688668838545df60fd568c99069c291d2e42cb4f5371c9"
+  },
+  "task_order": [
+    "legacy-evidence",
+    "literature",
+    "r2-design",
+    "audit-validate",
+    "repository-check"
+  ],
+  "exit_criteria": [
+    {
+      "id": "C1",
+      "description": "Every in-scope historical observation has actual file/hash/locator and a justified supported/unsupported/contradicted/not_assessed disposition; no large-matrix attestation invented.",
+      "task_ids": [
+        "legacy-evidence",
+        "audit-validate"
+      ]
+    },
+    {
+      "id": "C2",
+      "description": "All L01-L08 have exact version/retrieval/full-text-access disposition; snapshots or explicit unavailable reasons and full-text locators match the stated review level.",
+      "task_ids": [
+        "literature",
+        "audit-validate"
+      ]
+    },
+    {
+      "id": "C3",
+      "description": "Theory and tree-axis comparisons preserve assumptions/limits; no abstract-only promotion and no forced reconciliation or universal mechanistic claim.",
+      "task_ids": [
+        "literature",
+        "audit-validate"
+      ]
+    },
+    {
+      "id": "C4",
+      "description": "R2 proposal specifies teacher/normalization/seeds/axes/noise/solver/metrics/uncertainty/exposure/falsifiers and readiness without running models; Cursor subagent reviews it for subsequent autonomous planning.",
+      "task_ids": [
+        "r2-design",
+        "audit-validate"
+      ]
+    },
+    {
+      "id": "C5",
+      "description": "Coverage, acquisition, resource and pre-freeze exposure records validate; outputs contain no fabricated measurements/approvals and infrastructure tests pass.",
+      "task_ids": [
+        "audit-validate",
+        "repository-check"
+      ]
+    },
+    {
+      "id": "C6",
+      "description": "All tasks and reviewer notes distinguish author and review subagent; missing/negative items and limitations are retained, enabling honest operational closure.",
+      "task_ids": [
+        "legacy-evidence",
+        "literature",
+        "r2-design",
+        "audit-validate"
+      ]
+    }
+  ],
+  "predictions": [
+    {
+      "id": "P1",
+      "statement": "Existing small historical artifacts do not establish double descent on the old corpus; contradicting coherent artifacts must be recorded instead of suppressed."
+    },
+    {
+      "id": "P2",
+      "statement": "Detailed axis/loss/assumption comparison is necessary before transferring tree/GBDT results; unresolved comparability remains explicit."
+    },
+    {
+      "id": "P3",
+      "statement": "A bounded R2 design can distinguish noise, spectrum and regularization using controlled linear/random-feature models, or document why it is not yet identifiable."
+    }
+  ],
+  "legacy_item_requirements": [
+    "observation_id",
+    "statement",
+    "evidence_path",
+    "sha256",
+    "locator",
+    "disposition",
+    "scope",
+    "limitations"
+  ],
+  "literature_card_requirements": [
+    "source_id",
+    "title",
+    "authors",
+    "version",
+    "retrieved_utc",
+    "access_status",
+    "snapshot_path_and_sha256_or_unavailable_reason",
+    "locators",
+    "model_and_data",
+    "loss",
+    "varied_axis",
+    "held_fixed_axes",
+    "interpolation_definition",
+    "assumptions",
+    "result_type",
+    "transfer_limits"
+  ],
+  "r2_design_requirements": [
+    "teacher_and_maximum_feature_space",
+    "nested_feature_selection",
+    "feature_and_ridge_objective_normalization",
+    "separate_data_noise_feature_model_seeds",
+    "planned_p_over_n_grid",
+    "noise_snr_and_clean_evaluation",
+    "discovery_confirmation_exposure",
+    "svd_solver_rcond_rank_residual_norm_spectrum",
+    "estimand_and_uncertainty",
+    "independent_draws_common_evaluation_points",
+    "interventions_predictions_falsifiers_inconclusive_rules",
+    "timing_pilot_and_cumulative_budget",
+    "readiness_and_open_issues"
+  ],
+  "review_policy": "Distinct Cursor reviewer subagent; local team review, no human/Codex sign-off required. Semantic locator and scientific reasoning checks cannot be replaced by structural validation.",
+  "output_policy": "Capture real agent-authored source notes plus immutable intake snapshots as declared inputs. Scripts validate/export; they do not impersonate an automated scientific reader. Seal pre-freeze preparation log; subsequent runtime events go in attempt logs/report.",
+  "completion_policy": "Complete coverage with justified dispositions, not mandatory positive claims, successful downloads or peaks. Continue autonomous R2 preparation if no critical escalation."
+}

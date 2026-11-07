@@ -26,6 +26,13 @@ def _finite(values):
 
 
 def main() -> None:
+    raise SystemExit(
+        "Historical exporter is disabled: it hardcodes embeddinggemma, "
+        "10% label noise and seed 42 and cannot attest the clean Qwen/CPU run. "
+        "No artifacts were read or written. Use the evidence workflow in "
+        "docs/automation.md and scripts/episteme_bridge.py status."
+    )
+    # Historical recipe retained for audit, never used as current provenance.
     dnn = _load(RESULT / "05_dnn" / "dnn_results.json")
     catboost = _load(RESULT / "07_catboost" / "catboost_results.json")
     pca = _load(RESULT / "04_embedding_analysis" / "pca_info.json")

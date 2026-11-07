@@ -1,0 +1,1106 @@
+{
+  "author_agent": "ddb85535-1ef1-4069-95c4-46578067887a",
+  "cards": [
+    {
+      "access_status": "unavailable",
+      "assumptions": [
+        "The published PDF was not read after two HTTP 403 responses."
+      ],
+      "authors": [
+        "Mikhail Belkin",
+        "Daniel Hsu",
+        "Siyuan Ma",
+        "Soumik Mandal"
+      ],
+      "held_fixed_axes": "not_read_published_full_text",
+      "interpolation_definition": "not_read_published_full_text",
+      "locators": [],
+      "loss": "not_read_published_full_text",
+      "model_and_data": "not_read_published_full_text",
+      "registry_version": "published article",
+      "result_type": "not_read_published_full_text",
+      "retrieved_utc": "2026-11-07T08:31:01.210203+00:00",
+      "review_level": "unavailable",
+      "snapshot_path": null,
+      "snapshot_sha256": null,
+      "source_id": "L01",
+      "text_path": null,
+      "text_sha256": null,
+      "title": "Reconciling modern machine-learning practice and the classical bias–variance trade-off",
+      "transfer_limits": "No PNAS theorem or figure is transferred into R2 from this audit. The earlier registry status metadata_and_abstract_verified is not promoted.",
+      "unavailable_reason": "Both permitted retrievals of the PNAS PDF returned HTTP 403. No third request was made, and the arXiv preprint was not substituted for the published version.",
+      "varied_axis": "not_read_published_full_text",
+      "version": "published article; PDF not retrieved"
+    },
+    {
+      "access_status": "full_text",
+      "assumptions": [
+        "Interpolators are estimators that achieve zero training error.",
+        "A quoted feature map is xi = Σ1/2zi with zi a vector of i.i.d. entries and zi ∈Rp.",
+        "A quoted feature map is a one-layer neural network xi = ϕ(Wzi), with zi ∈Rd and W ∈Rp×d a matrix of i.i.d. entries.",
+        "The quoted data display states E(xi) = 0, Cov(xi) = Σ, E(ϵi) = 0, and Var(ϵi) = σ2. Its response line is broken after “yi = xT”.",
+        "The quote sets γ := p/n ∈(0, ∞), calls γ < 1 underparametrized, and calls γ > 1 overparametrized.",
+        "Proposition 2 assumes x ∼Px has the form x = Σ1/2z, where z has i.i.d. entries with zero mean, unit variance, and a finite 4th moment.",
+        "Theorem 1 assumes x ∼Px has i.i.d. entries with zero mean and unit variance.",
+        "The following quoted lines assume a finite moment of order 4 + η, for some η > 0, and the next line begins “2 = r2 for all n, p”.",
+        "When X has rank n, the quoted text says this estimator interpolates the training data.",
+        "Under the quoted step-size bound, limk→∞β(k) = ˆβ, and the next line of that quote calls it the min-norm least squares solution.",
+        "The quoted line sets SNR = r2/σ2."
+      ],
+      "authors": [
+        "Trevor Hastie",
+        "Andrea Montanari",
+        "Saharon Rosset",
+        "Ryan J. Tibshirani"
+      ],
+      "draft_reader": "144f9191-3044-4fe3-87d1-0f162ee1fb60",
+      "held_fixed_axes": "The quoted asymptotic scenario sends p and n to infinity with p/n →γ. Theorem 1, in the quoted lines, assumes i.i.d. feature entries with zero mean and unit variance and a finite moment of order 4 + η. The coefficient-norm display in that quote is broken: it ends at ∥β∥2 and the next line begins “2 = r2 for all n, p”; that display is not rewritten. A later single line sets SNR = r2/σ2. The quoted finite-sample markers use n = 200 and p = [γn]. SNR is not held fixed across the quoted Figure 1 curves, which name SNR = 1 and SNR = 5.",
+      "interpolation_definition": "The extract defines interpolators as estimators that achieve zero training error. The min-norm estimator is the minimum ℓ2-norm least squares estimator of y on X, written ˆβ = (XT X)+XT y, where (XT X)+ is the pseudoinverse. The quoted ridgeless name is the limit ˆβ = limλ→0+ ˆβλ. The quoted ridge closed form is ˆβλ = (XT X + nλI)−1XT y. When X has full column rank, the quote reduces the min-norm estimator to ˆβ = (XT X)−1XT y; when X has rank n, the same quote says this estimator interpolates the training data. Gradient descent is quoted as initialized at β(0) = 0 on the least squares loss; under the quoted step-size bound, limk→∞β(k) = ˆβ, and the next line calls that the min-norm least squares solution.",
+      "locators": [
+        {
+          "label": "page 1, interpolators",
+          "quote": "Interpolators—estimators that achieve zero training error—have attracted growing attention in machine"
+        },
+        {
+          "label": "page 1, ridgeless least squares",
+          "quote": "we study minimum ℓ2 norm (“ridgeless”) interpolation in high-dimensional least squares regression. We"
+        },
+        {
+          "label": "page 1, linear feature map",
+          "quote": "xi ∈Rp are obtained by applying a linear transform to a vector of i.i.d. entries, xi = Σ1/2zi (with zi ∈Rp);"
+        },
+        {
+          "label": "page 1, one-layer feature map",
+          "quote": "one-layer neural network, xi = ϕ(Wzi) (with zi ∈Rd, W ∈Rp×d a matrix of i.i.d. entries, and ϕ an"
+        },
+        {
+          "label": "page 1, data-model display",
+          "quote": "(xi, ϵi) ∼Px × Pϵ,\ni = 1, . . . , n,\n(1)\nyi = xT\ni β + ϵi,\ni = 1, . . . , n,\n(2)\nwhere, Px is a distribution on Rp such that E(xi) = 0, Cov(xi) = Σ, and Pϵ is a distribution on R such that\nE(ϵi) = 0, Var(ϵi) = σ2."
+        },
+        {
+          "label": "page 2, overparametrization ratio",
+          "quote": "We denote by γ := p/n ∈(0, ∞) the overparametrization ratio. When γ < 1, we call the problem\nunderparametrized, and when γ > 1, we call it overparametrized. Our most general results for the linear model"
+        },
+        {
+          "label": "page 2, finite-n risk approximation",
+          "quote": "(Theorem 2 and 5) apply to a non-asymptotic setting in which n, p are ﬁnite, and provide a deterministic\napproximation of the risk with error bounds that are uniform in the distribution of the data. We will"
+        },
+        {
+          "label": "page 2, asymptotic ratio",
+          "quote": "occasionally consider a simpler asymptotic scenario in which both p and n diverge with p/n →γ."
+        },
+        {
+          "label": "page 3, risk versus aspect ratio",
+          "quote": "Figure 1: Asymptotic risk curves for the linear feature model, as a function of the limiting aspect ratio γ. Black and yellow:"
+        },
+        {
+          "label": "page 3, isotropic SNR curves",
+          "quote": "risks for min-norm least squares in the isotropic well speciﬁed model, for SNR = 1 and SNR = 5, respectively. These two match"
+        },
+        {
+          "label": "page 3, finite-sample risk points",
+          "quote": "latent space model of Section 5.4, with r = 7, σ = 0. The points denote ﬁnite-sample risks, with n = 200, p = [γn], across"
+        },
+        {
+          "label": "page 5, Belkin empirical trend",
+          "quote": "Recently, Belkin et al. (2018a) pointed out a fascinating empirical trend where, for\npopular methods like neural networks and random forests, we can see a second bias-variance tradeoﬀin the"
+        },
+        {
+          "label": "page 5, least-squares verification",
+          "quote": "results formally verify that this double descent phenomenon occurs even in the simple and fundamental case\nof least squares regression. The appearance of the second descent in the risk, past the interpolation boundary"
+        },
+        {
+          "label": "page 5, variance past the boundary",
+          "quote": "(γ = 1), is explained by the fact that the variance decreases as γ grows, as discussed above."
+        },
+        {
+          "label": "page 7, lazy-training regime",
+          "quote": "the concrete correspondence outlined above only holds in a certain ‘lazy training’ regime, in which network\nweights do not change much during training, More generally, in a neural network, the feature representation"
+        },
+        {
+          "label": "page 7, features not learned",
+          "quote": "and the regression function or classiﬁer are learned simultaneously. In both our linear and nonlinear model\nsettings, the features X are not learned, but observed. Learning X could signiﬁcantly change some aspects of"
+        },
+        {
+          "label": "page 8, out-of-sample prediction risk",
+          "quote": "training data X, y), we deﬁne its out-of-sample prediction risk (or simply, risk) as"
+        },
+        {
+          "label": "page 8, bias-variance decomposition",
+          "quote": "RX). Note also that we have the bias-variance decomposition"
+        },
+        {
+          "label": "page 8, min-norm estimator",
+          "quote": "We consider the minimum ℓ2 norm (min-norm) least squares regression estimator, of y on X, deﬁned by"
+        },
+        {
+          "label": "page 8, pseudoinverse and ridgeless limit",
+          "quote": "This can be equivalently written as ˆβ = (XT X)+XT y, where (XT X)+ is the pseudoinverse of XT X. An\nalternative name for (4) is the “ridgeless” least squares estimator, motivated by the fact that ˆβ = limλ→0+ ˆβλ,"
+        },
+        {
+          "label": "page 9, ridge closed form",
+          "quote": "or, equivalently, ˆβλ = (XT X + nλI)−1XT y."
+        },
+        {
+          "label": "page 9, rank and interpolation",
+          "quote": "When X has full column rank the min-norm least squares estimator reduces to ˆβ = (XT X)−1XT y, the\nusual least squares estimator. When X has rank n, importantly, this estimator interpolates the training data:"
+        },
+        {
+          "label": "page 9, gradient-descent initialization",
+          "quote": "Proposition 1. Initialize β(0) = 0, and consider running gradient descent on the least squares loss, yielding"
+        },
+        {
+          "label": "page 9, gradient-descent limit",
+          "quote": "where we take 0 < t ≤1/λmax(XT X) (and λmax(XT X) is the largest eigenvalue of XT X). Then limk→∞β(k) = ˆβ,\nthe min-norm least squares solution in (4)."
+        },
+        {
+          "label": "page 9, proposition 2 moments",
+          "quote": "Proposition 2. Assume the model (1), (2), and assume x ∼Px is of the form x = Σ1/2z, where z is a\nrandom vector with i.i.d. entries that have zero mean, unit variance, and a ﬁnite 4th moment, and Σ is a"
+        },
+        {
+          "label": "page 10, theorem 1 entry moments",
+          "quote": "Theorem 1. Assume the model (1), (2), where x ∼Px has i.i.d. entries with zero mean, unit variance,"
+        },
+        {
+          "label": "page 10, moment order and broken norm",
+          "quote": "and a ﬁnite moment of order 4 + η, for some η > 0. Also assume that ∥β∥2\n2 = r2 for all n, p. Then for the"
+        },
+        {
+          "label": "page 10, SNR definition",
+          "quote": "variance decreases with γ. Let SNR = r2/σ2. Observe that the risk of the null estimator ˜β = 0 is r2, which"
+        }
+      ],
+      "loss": "The quoted object is the out-of-sample prediction risk of an estimator built from the training pair (X, y). A later quoted line says that risk has a bias-variance decomposition. The displayed formula for that risk is not one of the intact quoted lines, so it is not reconstructed. The estimator quote is the minimum ℓ2-norm least squares estimator of y on X.",
+      "model_and_data": "Minimum ℓ2-norm (“ridgeless”) interpolation in high-dimensional least squares. The quoted data display is line-broken: it shows (xi, ϵi) ∼ Px × Pϵ and a response line that stops at “yi = xT”, then states E(xi) = 0, Cov(xi) = Σ, E(ϵi) = 0, and Var(ϵi) = σ2. One quoted feature map is xi = Σ1/2zi with zi a vector of i.i.d. entries, zi ∈Rp. Another quoted map is a one-layer neural network xi = ϕ(Wzi), with zi ∈Rd and W ∈Rp×d a matrix of i.i.d. entries; the activation clause continues past that line and is not completed here. The broken response display is not rewritten.",
+      "registry_version": "v5, 2020-12-07",
+      "result_type": "Both a finite-n approximation and an asymptotic limit, together with finite-sample risk points. Theorems 2 and 5 are quoted as applying in a non-asymptotic setting where n and p are finite, and as providing a deterministic approximation of the risk with error bounds uniform in the distribution of the data. Another quoted line is the asymptotic scenario in which p and n diverge with p/n →γ. Figure 1 is quoted as plotting asymptotic risk curves, with finite-sample risks at n = 200 and p = [γn]. The formal verification quoted here is for least squares regression. For that least-squares risk, the extract says the second descent past the interpolation boundary (γ = 1) is explained by the variance decreasing as γ grows. That sentence is kept inside this least-squares setting.",
+      "retrieved_url": "https://arxiv.org/pdf/1903.08560v5",
+      "retrieved_utc": "2026-11-07T08:31:07.555526+00:00",
+      "review_level": "full_text",
+      "snapshot_path": "artifacts/intake/R1/20261107T082900Z/snapshots/L02.pdf",
+      "snapshot_sha256": "b671592188609aae4a4b99bfeb6505dcd8fadffb8916126a71570e2d0b658814",
+      "source_id": "L02",
+      "text_extraction": "PyMuPDF 1.28.0 text layer; equations may be line-broken and were not repaired.",
+      "text_path": "artifacts/intake/R1/20261107T082900Z/text/L02.txt",
+      "text_sha256": "47d1451221c98ff4b42c581e05e155584bc21a4e47a7233ee3a6d1f1fcc59bea",
+      "title": "Surprises in High-Dimensional Ridgeless Least Squares Interpolation",
+      "transfer_limits": "The quoted neural-network correspondence holds only in a lazy-training regime in which network weights do not change much during training. The following quoted lines say that, in a neural network, the feature representation and the regression function or classifier are learned simultaneously, and that in both the linear and nonlinear model settings the features X are not learned, but observed. The extract says learning X could change some aspects of interpolator behavior. The formal double-descent verification quoted here is least squares regression. Neural networks and random forests appear in a sentence that attributes an empirical trend to Belkin et al. The extract does not locate gradient-boosted trees or an essay corpus, and it does not locate a trained multilayer perceptron outside that lazy-training qualification.",
+      "unavailable_reason": null,
+      "varied_axis": "Figure 1 is quoted as asymptotic risk curves against the limiting aspect ratio γ. The extract defines γ := p/n ∈(0, ∞), calls γ < 1 underparametrized and γ > 1 overparametrized, and also considers p and n diverging with p/n →γ. A separate caption line places min-norm least squares in the isotropic well-specified model at SNR = 1 and SNR = 5; those are different curves, not the same axis as γ. A quoted finite-sample line uses n = 200 and p = [γn], and that line stops at “across”.",
+      "version": "arXiv:1903.08560v5"
+    },
+    {
+      "access_status": "full_text",
+      "assumptions": [
+        "Assumption 1 lets σ : R →R be weakly differentiable, with weak derivative σ′, and the quote continues the bound as |σ(u)|, |σ′(u)| ≤ c0ec1|u| for some constants c0, c1 < ∞.",
+        "Assumption 2 defines ψ1,d = N/d and ψ2,d = n/d and assumes the following limits exist in (0, ∞).",
+        "The proportional-regime quote takes N, n, d →∞ with N/d →ψ1 and n/d →ψ2 for some ψ1, ψ2 ∈(0, ∞).",
+        "Assumption 3 assumes yi = fd(xi)+εi, with (εi) i.i.d. from Pε independent of (xi), and Eε(ε1) = 0.",
+        "The response quote writes yi = fd(xi) + εi with εi independent of xi and Eε(ε1) = 0, and the next line of that quote is “1) = τ 2”.",
+        "The functions in FRF(Θ) are two-layer neural networks, except that the first layer is kept constant.",
+        "Random features (θi)i≤N are i.i.d. uniform on a sphere; the radius continuation is outside this quote.",
+        "Remark 1 says Theorem 1 and its generalizations require λ > 0 fixed as N, n, d →∞.",
+        "The quoted remark says that taking λ →0 does not necessarily yield the prediction risk of the min-norm estimator ˆa(0+) at N, n, d.",
+        "The next extracted line begins “ﬁxed.”",
+        "The later-limit quote says the ψ1 →∞ and ψ2 →∞ limits are taken after N, n, d →∞ with N/d →∞ and n/d →∞. That ratio wording is left as printed."
+      ],
+      "authors": [
+        "Song Mei",
+        "Andrea Montanari"
+      ],
+      "draft_reader": "144f9191-3044-4fe3-87d1-0f162ee1fb60",
+      "held_fixed_axes": "The quoted theorems require λ > 0 fixed as N, n, d →∞. A quoted ReLU caption fixes n/d ≡ψ2 = 10 while λ changes across curves. A quoted ReLU line uses σ(x) = max{x, 0} and ψ2 = n/d = 3 for that comparison. Assumption 1 quotes a weakly differentiable activation, and the bound is printed as c0ec1|u| for finite constants c0, c1. These holdings are the ones in the quoted theorem or figure, not one global list for every display.",
+      "interpolation_definition": "The interpolation threshold is quoted as the model-complexity threshold above which the training error vanishes (the model completely interpolates the data). In this model that peak is quoted at ψ1 = ψ2. A quoted ReLU comparison uses minimum ℓ2-norm least squares as the λ →0 limit of Eq. (2), beside regularized least squares at λ = 10−3. Remark 1 quotes that the theorems require λ > 0 fixed in the diverging limit, and that sending λ →0 afterwards does not necessarily yield the prediction risk of the min-norm least squares estimator given by ˆa(0+) ≡limλ→0 ˆa(λ) at N, n, d. The next quoted line begins “fixed.” Gradient flow on the quoted mean squared error, starting at a = 0, is said to converge to the ridgeless limit (λ →0) of ˆa(λ), with a quoted correspondence between positive λ and early stopping in gradient descent.",
+      "locators": [
+        {
+          "label": "page 1, sphere regression",
+          "quote": "In this paper we consider the problem of learning an unknown function over the d-dimensional sphere"
+        },
+        {
+          "label": "page 1, ridge on random features",
+          "quote": "We perform ridge regression on N random\nfeatures of the form σ(wT\nax), a ≤N. This can be equivalently described as a two-layers neural network"
+        },
+        {
+          "label": "page 3, interpolation threshold",
+          "quote": "threshold in model complexity above which the training error vanishes (the model completely interpolates\nthe data), corresponds to a large test error. It seems wise to keep the model complexity well below this"
+        },
+        {
+          "label": "page 3, ReLU figure",
+          "quote": "Figure 1: Random features ridge regression with ReLU activation (σ = max{x, 0}). Data are generated via"
+        },
+        {
+          "label": "page 3, finite-d numerical averages",
+          "quote": "theoretical prediction, and the colored symbols are numerical results for several dimensions d. Symbols are\naverages over 20 instances and the error bars report the standard error of the means over these 20 instances."
+        },
+        {
+          "label": "page 3, cited forests and random features",
+          "quote": "The double-descent scenario is far from being speciﬁc to neural networks, and was instead demonstrated\nempirically in a variety of models including random forests and random features models [BHMM19]. Recently,"
+        },
+        {
+          "label": "page 4, earlier linear model",
+          "quote": "always found to outperform the ridgeless limit λ →0. Moreover, this linear model is not directly connected\nto actual neural networks, which are highly nonlinear in the covariates xi."
+        },
+        {
+          "label": "page 4, random-features description",
+          "quote": "model can be viewed either as a randomized approximation to kernel ridge regression, or as a two-layers\nneural networks with random ﬁrst layer wights. We compute the precise asymptotics of the test error and"
+        },
+        {
+          "label": "page 4, uniform covariates",
+          "quote": "loss of generality.) We are given i.i.d. data {(xi, yi)}i≤n ∼iid Px,y, where xi ∼iid Unif(Sd−1("
+        },
+        {
+          "label": "page 4, response and broken second moment",
+          "quote": "yi = fd(xi) + εi, with εi ∼iid Pε independent of xi. The noise distribution satisﬁes Eε(ε1) = 0, Eε(ε2\n1) = τ 2,"
+        },
+        {
+          "label": "page 4, first layer held constant",
+          "quote": "above, the functions in FRF(Θ) are two-layers neural networks, except that the ﬁrst layer is kept constant."
+        },
+        {
+          "label": "page 4, ridge fit of coefficients",
+          "quote": "We learn the coeﬃcients a = (ai)i≤N by performing ridge regression"
+        },
+        {
+          "label": "page 4, finite-rank kernel approximation",
+          "quote": "The choice of ridge penalty is motivated by the connection to kernel ridge regression, of which this method\ncan be regarded as a ﬁnite-rank approximation. Further, the ridge regularization path is naturally connected"
+        },
+        {
+          "label": "page 4, gradient flow and early stopping",
+          "quote": "i≤n(yi−f(xi; a, Θ))2, starting at a = 0.\nIn particular, gradient ﬂow converges to the ridgeless limit (λ →0) of ˆa(λ), and there is a correspondence\nbetween positive λ, and early stopping in gradient descent [YRC07]."
+        },
+        {
+          "label": "page 4, test error as mean square error",
+          "quote": "We are interested in the ‘prediction’ or ‘test’ error (which we will also call ‘generalization error,’ with\na slight abuse of terminology), that is the mean square error on predicting fd(x) for x ∼Unif(Sd−1("
+        },
+        {
+          "label": "page 4, no expectation over training draws",
+          "quote": "(3)\nNotice that we do not take expectation with respect to the training data X, the random features Θ or the\ndata noise ε. This is not very important, because we will show that RRF(fd, X, Θ, λ) concentrates around"
+        },
+        {
+          "label": "page 5, features uniform on a sphere",
+          "quote": "• The random features are uniformly distributed on a sphere: (θi)i≤N ∼iid Unif(Sd−1("
+        },
+        {
+          "label": "page 5, proportional limits",
+          "quote": "• N, n, d lie in a proportional asymptotics regime. Namely, N, n, d →∞with N/d →ψ1, n/d →ψ2 for\nsome ψ1, ψ2 ∈(0, ∞)."
+        },
+        {
+          "label": "page 5, linear regression function",
+          "quote": "• We consider two models for the regression function fd: (1) A linear model: fd(x) = βd,0 + ⟨βd,1, x⟩,"
+        },
+        {
+          "label": "page 5, convergence in probability",
+          "quote": "Then, for linear fd in the setting described above, for any λ > 0, the prediction risk convergences in\nprobability"
+        },
+        {
+          "label": "page 5, lambda fixed positive",
+          "quote": "Remark 1. Theorem 1 and its generalizations stated below require λ > 0 ﬁxed as N, n, d →∞. We can then"
+        },
+        {
+          "label": "page 5, ridgeless limit caveat",
+          "quote": "consider the ridgeless limit by taking λ →0. Let us stress that this does not necessarily yield the prediction\nrisk of the min-norm least square estimator that is also given by the limit ˆa(0+) ≡limλ→0 ˆa(λ) at N, n, d"
+        },
+        {
+          "label": "page 6, figure uses lambda to zero",
+          "quote": "using ReLU activation function σ(x) = max{x, 0} and ψ2 = n/d = 3. We use minimum ℓ2-norm least squares\n(the λ →0 limit of Eq. (2), left ﬁgure) and regularized least squares with λ = 10−3 (right ﬁgure), and plot"
+        },
+        {
+          "label": "page 6, horizontal axis psi1",
+          "quote": "the prediction error as a function of the number of parameters per dimension ψ1 = N/d. We compare"
+        },
+        {
+          "label": "page 6, threshold at psi1 equals psi2",
+          "quote": "curve is the peak in test error at the interpolation threshold which, in the present case, is located at ψ1 = ψ2."
+        },
+        {
+          "label": "page 6, fixed psi2, several lambda and SNR",
+          "quote": "ψ1/ψ2 = N/n, for ﬁxed ψ2, several values of λ > 0, and two values of the SNR. We repeatedly observe that:"
+        },
+        {
+          "label": "page 7, figure 3 fixes psi2",
+          "quote": "using random features with ReLU activation function σ(x) = max{x, 0}. The rescaled sample size is ﬁxed\nto n/d ≡ψ2 = 10. Diﬀerent curves are for diﬀerent values of the regularization λ. On the left: high SNR"
+        },
+        {
+          "label": "page 11, activation assumption",
+          "quote": "Assumption 1. Let σ : R →R be weakly diﬀerentiable, with weak derivative σ′. Assume |σ(u)|, |σ′(u)| ≤\nc0ec1|u| for some constants c0, c1 < ∞. Deﬁne"
+        },
+        {
+          "label": "page 11, proportional-limit assumption",
+          "quote": "Assumption 2. Deﬁning ψ1,d = N/d and ψ2,d = n/d, we assume that the following limits exist in (0, ∞):"
+        },
+        {
+          "label": "page 11, noise-mean assumption",
+          "quote": "Assumption 3. We assume yi = fd(xi)+εi, where (εi)i≤n ∼iid Pε independent of (xi)i≤n, with Eε(ε1) = 0,"
+        },
+        {
+          "label": "page 13, theorem 2 positive lambda",
+          "quote": "Then for any value of the regularization parameter λ > 0, the asymptotic prediction error of random"
+        },
+        {
+          "label": "page 13, later limits and ambiguous ratios",
+          "quote": "2. The highly overparametrized regime ψ1 →∞(recall that ψ1 = limd→∞N/d).\n3. The large sample limit ψ2 →∞(recall that ψ2 = limd→∞n/d).\nLet us emphasize that these limits are taken after the limit N, n, d →∞with N/d →∞and n/d →∞."
+        },
+        {
+          "label": "page 5, next line begins fixed",
+          "quote": "risk of the min-norm least square estimator that is also given by the limit ˆa(0+) ≡limλ→0 ˆa(λ) at N, n, d\nﬁxed. Denoting by Z = σ(XΘT/"
+        }
+      ],
+      "loss": "The coefficients a = (ai)i≤N are learned by ridge regression. The quoted test error, also called prediction error and, with the extract’s stated slight abuse of terminology, generalization error, is the mean squared error of predicting fd(x) for x uniform on the sphere. The same definition’s quote says this quantity does not take the expectation over the training data X, the random features Θ, or the data noise ε, and that the risk concentrates; that sentence is cut off in the quote.",
+      "model_and_data": "The extract studies learning an unknown function on the d-dimensional sphere by ridge regression on N random features. The feature formula in that quote is broken after σ(wT. A later quote describes the random-features model as a randomized approximation to kernel ridge regression or as a two-layer neural network with random first-layer weights; that line spells the last word “wights”. The functions in FRF(Θ) are quoted as two-layer neural networks except that the first layer is kept constant, and the method is quoted as a finite-rank approximation to kernel ridge regression. Covariates are quoted as i.i.d. uniform on Sd−1; the radius display is not on that line. Random features (θi) are quoted as i.i.d. uniform on a sphere. The response quote is yi = fd(xi) + εi, with εi independent of xi and Eε(ε1) = 0; the second-moment display breaks after Eε(ε2 and continues “1) = τ 2”. A quoted linear regression function is fd(x) = βd,0 + ⟨βd,1, x⟩. The proportional regime is quoted as N, n, d →∞ with N/d →ψ1 and n/d →ψ2 for some ψ1, ψ2 ∈(0, ∞).",
+      "registry_version": "v5, 2020-12-11",
+      "result_type": "Both an asymptotic statement and finite-d numerical comparisons. For linear fd and any λ > 0, the quote says the prediction risk convergences in probability; the limit display is not on those two lines and is not reconstructed. Theorem 2 is quoted as giving, for any λ > 0, the asymptotic prediction error of random-features ridge regression. Figure 1 is quoted as comparing the theoretical prediction with numerical results for several dimensions d, averaged over 20 instances.",
+      "retrieved_url": "https://arxiv.org/pdf/1908.05355v5",
+      "retrieved_utc": "2026-11-07T08:31:14.317410+00:00",
+      "review_level": "full_text",
+      "snapshot_path": "artifacts/intake/R1/20261107T082900Z/snapshots/L03.pdf",
+      "snapshot_sha256": "d69796c99ca1e28365f4b92cbc92c339c59e7efac09e3a3066987303920d00a5",
+      "source_id": "L03",
+      "text_extraction": "PyMuPDF 1.28.0 text layer; equations may be line-broken and were not repaired.",
+      "text_path": "artifacts/intake/R1/20261107T082900Z/text/L03.txt",
+      "text_sha256": "b7aa9719d007589553fd41d795dfb78ca38e59100dc49b25e4d42142f7934d93",
+      "title": "The generalization error of random features regression: Precise asymptotics and double descent curve",
+      "transfer_limits": "The estimator in the quotes is random-features ridge regression: a two-layer network whose first layer is kept constant, also described as a finite-rank approximation to kernel ridge regression. A separate quote about an earlier linear covariates model says that linear model is not directly connected to neural networks which are highly nonlinear in the covariates. Random forests are named in a citation that double descent was demonstrated empirically for random forests and random features. The extract does not locate gradient-boosted trees, a decision-tree experiment of this paper, or an essay corpus. A learned first layer is outside the quoted estimator, which keeps that layer constant.",
+      "unavailable_reason": null,
+      "varied_axis": "These are separate quoted axes. One quote plots prediction error as a function of the number of parameters per dimension ψ1 = N/d. The interpolation-threshold peak is quoted at ψ1 = ψ2. Another quote plots predicted test error as a function of ψ1/ψ2 = N/n, for fixed ψ2, several values of λ > 0, and two values of the SNR. A quoted ReLU caption fixes the rescaled sample size at n/d ≡ψ2 = 10 and uses different curves for different regularization λ. Further quoted limits of the asymptotic formula, listed on their own lines, are the highly overparametrized regime ψ1 →∞ and the large-sample limit ψ2 →∞. The next line says those limits are taken after N, n, d →∞ with N/d →∞ and n/d →∞. That ratio display is ambiguous next to the finite positive ψ1, ψ2 in the proportional-regime quote, and it is not repaired. The ridgeless limit λ →0 is a separate quoted object, not the same axis as ψ1.",
+      "version": "arXiv:1908.05355v5"
+    },
+    {
+      "access_status": "full_text",
+      "assumptions": [
+        "The main hypothesis can be informally stated.",
+        "The quote says there is no principled way to choose ϵ and that the authors currently heuristically use ϵ = 0.1.",
+        "For ResNets and CNNs, the quote says training uses cross-entropy loss, with Adam at learning-rate 0.0001 for 4K epochs on that line.",
+        "Unless stated otherwise, the image-classification experiments use the cross-entropy loss.",
+        "Label noise of probability p trains on samples that have the correct label with probability (1 −p) and a uniformly random incorrect label otherwise.",
+        "That label noise is sampled only once and not per epoch.",
+        "No explicit regularization like weight decay or dropout was applied unless explicitly stated, in the quoted image-classification setup.",
+        "The random Fourier features first layer is randomly initialized and fixed throughout training.",
+        "The random Fourier features second layer is initialized with 0s and trained with MSE loss.",
+        "The main result is quoted as an experimental validation of Hypothesis 1."
+      ],
+      "authors": [
+        "Preetum Nakkiran",
+        "Gal Kaplun",
+        "Yamini Bansal",
+        "Tristan Yang",
+        "Boaz Barak",
+        "Ilya Sutskever"
+      ],
+      "draft_reader": "144f9191-3044-4fe3-87d1-0f162ee1fb60",
+      "held_fixed_axes": "Held quantities are quoted per axis, not as one shared freeze. Model-wise quotes hold a fixed large number of optimization steps while model size changes. The ResNet/CNN optimizer quote gives Adam with learning-rate 0.0001 for 4K epochs; the SGD learning-rate display continues off that line and is not repaired. The Figure 2 ResNet quote uses CIFAR-10, 15% label noise, data-augmentation, and Adam for up to 4K epochs. Epoch-wise quotes hold the model fixed, including a fixed large architecture, while training time changes. Sample-wise quotes hold the model and training procedure fixed while the number of train samples changes. The image-classification appendix quotes no explicit weight decay or dropout unless explicitly stated. Within a quoted width sweep, the family is the stated ResNet18, 5-layer CNN, or 6-layer Transformer.",
+      "interpolation_definition": "Interpolate is quoted as achieve (close to) zero training error. Effective model complexity of a training procedure T, with respect to distribution D and ϵ > 0, is quoted as EMCD,ϵ(T ) := max {n | ES∼Dn[ErrorS(T (S))] ≤ϵ}, where ErrorS(M) is the mean error of model M on train samples S. The hypothesis quote says there is no principled way to choose ϵ and that they currently heuristically use ϵ = 0.1, and it stops at “a formal specification for”. The next quoted line contains “sufficiently smaller” and “sufficiently larger”. The critically parameterized regime is quoted as EMCD,ϵ(T ) ≈ n, where a perturbation that increases effective complexity might decrease or increase test error. Hypothesis 1 is quoted as informal. The epoch-wise peak is quoted at models trained just long enough to reach ≈0 train error.",
+      "locators": [
+        {
+          "label": "page 1, model-size double descent",
+          "quote": "We show that a variety of modern deep learning tasks exhibit a “double-descent”\nphenomenon where, as we increase model size, performance ﬁrst gets worse and"
+        },
+        {
+          "label": "page 1, epochs as a second argument",
+          "quote": "function of model size, but also as a function of the number of training epochs."
+        },
+        {
+          "label": "page 2, model-wise horizontal slice",
+          "quote": "Figure 2: Left: Test error as a function of model size and train epochs. The horizontal line corre-\nsponds to model-wise double descent–varying model size while training for as long as possible. The"
+        },
+        {
+          "label": "page 2, epoch-wise vertical slice",
+          "quote": "vertical line corresponds to epoch-wise double descent, with test error undergoing double-descent\nas train time increases. Right Train error of the corresponding models. All models are Resnet18s"
+        },
+        {
+          "label": "page 2, CIFAR-10 ResNet figure",
+          "quote": "trained on CIFAR-10 with 15% label noise, data-augmentation, and Adam for up to 4K epochs."
+        },
+        {
+          "label": "page 2, near-zero training error",
+          "quote": "by the classical bias/variance tradeoff. However, once model complexity is sufﬁciently large to\ninterpolate i.e., achieve (close to) zero training error, then increasing complexity only decreases test"
+        },
+        {
+          "label": "page 2, Belkin trees and ell-2 nets",
+          "quote": "it “double descent”, and demonstrated it for decision trees, random features, and 2-layer neural\nnetworks with ℓ2 loss, on a variety of learning tasks including MNIST and CIFAR-10."
+        },
+        {
+          "label": "page 2, effective model complexity",
+          "quote": "that goes beyond varying the number of parameters. We deﬁne the effective model complexity (EMC)\nof a training procedure as the maximum number of samples on which it can achieve close to zero"
+        },
+        {
+          "label": "page 2, training time increases EMC",
+          "quote": "but also on the training procedure—and in particular increasing training time will increase the EMC."
+        },
+        {
+          "label": "page 2, epoch-wise with model fixed",
+          "quote": "function of the EMC. Indeed we observe “epoch-wise double descent” when we keep the model ﬁxed\nand increase the training time, with performance following a classical U-like curve in the underﬁtting"
+        },
+        {
+          "label": "page 3, EMC formula",
+          "quote": "Deﬁnition 1 (Effective Model Complexity) The Effective Model Complexity (EMC) of a training\nprocedure T , with respect to distribution D and parameter ϵ > 0, is deﬁned as:\nEMCD,ϵ(T ) := max {n | ES∼Dn[ErrorS(T (S))] ≤ϵ}"
+        },
+        {
+          "label": "page 3, train error in the EMC formula",
+          "quote": "where ErrorS(M) is the mean error of model M on train samples S."
+        },
+        {
+          "label": "page 3, hypothesis stated informally",
+          "quote": "Our main hypothesis can be informally stated as follows:"
+        },
+        {
+          "label": "page 3, critical regime near n",
+          "quote": "Critically parameterized regime. If EMCD,ϵ(T ) ≈n, then a perturbation of T that increases its\neffective complexity might decrease or increase the test error."
+        },
+        {
+          "label": "page 3, heuristic epsilon",
+          "quote": "Hypothesis 1 is informal in several ways. We do not have a principled way to choose the parameter\nϵ (and currently heuristically use ϵ = 0.1). We also are yet to have a formal speciﬁcation for"
+        },
+        {
+          "label": "page 3, experimental validation",
+          "quote": "result of this paper is an experimental validation of Hypothesis 1 under a variety of settings, where"
+        },
+        {
+          "label": "page 3, four ways the threshold was moved",
+          "quote": "we changed the “interpolation threshold” by varying the number of model parameters, the length of\ntraining, the amount of label noise in the distribution, and the number of train samples."
+        },
+        {
+          "label": "page 3, model-wise fixed step budget",
+          "quote": "Model-wise Double Descent. In Section 5, we study the test error of models of increasing size,\nfor a ﬁxed large number of optimization steps. We show that “model-wise double-descent” occurs"
+        },
+        {
+          "label": "page 4, epoch-wise fixed architecture",
+          "quote": "Epoch-wise Double Descent. In Section 6, we study the test error of a ﬁxed, large architecture over"
+        },
+        {
+          "label": "page 4, peak near zero train error",
+          "quote": "performance when models are trained just long enough to reach ≈0 train error. The test error of a"
+        },
+        {
+          "label": "page 4, label noise strongest",
+          "quote": "Remarks on Label Noise. We observe all forms of double descent most strongly in settings with\nlabel noise in the train set (as is often the case when collecting train data in the real-world). How-"
+        },
+        {
+          "label": "page 4, three architecture families",
+          "quote": "families of architectures: ResNets, standard CNNs, and Transformers. ResNets: We parameterize"
+        },
+        {
+          "label": "page 4, ResNet widths and CNN family",
+          "quote": "layers. Speciﬁcally, we use layer widths [k, 2k, 4k, 8k] for varying k. The standard ResNet18\ncorresponds to k = 64. Standard CNNs: We consider a simple family of 5-layer CNNs, with"
+        },
+        {
+          "label": "page 4, CNN widths",
+          "quote": "4 convolutional layers of widths [k, 2k, 4k, 8k] for varying k, and a fully-connected layer. For"
+        },
+        {
+          "label": "page 4, six-layer Transformer",
+          "quote": "augmentation. Transformers: We consider the 6 layer encoder-decoder from Vaswani et al. (2017),"
+        },
+        {
+          "label": "page 4, Transformer width scaling",
+          "quote": "as implemented by Ott et al. (2019). We scale the size of the network by modifying the embedding\ndimension dmodel, and setting the width of the fully-connected layers proportionally (dff = 4·dmodel)."
+        },
+        {
+          "label": "page 5, cross-entropy and Adam budget",
+          "quote": "For ResNets and CNNs, we train with cross-entropy loss, and the following optimizers: (1) Adam\nwith learning-rate 0.0001 for 4K epochs; (2) SGD with learning rate ∝"
+        },
+        {
+          "label": "page 5, Transformer training budget",
+          "quote": "We train Transformers for 80K gradient steps, with 10% label smoothing and no drop-out."
+        },
+        {
+          "label": "page 5, label-noise definition",
+          "quote": "In our experiments, label noise of probability p refers to training on a samples which\nhave the correct label with probability (1 −p), and a uniformly random incorrect label otherwise"
+        },
+        {
+          "label": "page 5, label noise sampled once",
+          "quote": "(label noise is sampled only once and not per epoch). Figure 1 plots test error on the noisy distribu-"
+        },
+        {
+          "label": "page 5, CIFAR model-wise figure",
+          "quote": "Figure 4: Model-wise double descent for ResNet18s. Trained on CIFAR-100 and CIFAR-10, with"
+        },
+        {
+          "label": "page 5, mechanism left open",
+          "quote": "Fully understanding the mechanisms behind model-wise double descent in deep neu-\nral networks remains an important open question. However, an analog of model-wise double descent"
+        },
+        {
+          "label": "page 7, Transformer loss and perplexity",
+          "quote": "80k gradient steps with labeled smoothed\ncross-entropy loss on IWSLT‘14 German-\nto-English (160K sentences) and WMT‘14\nEnglish-to-French (subsampled to 200K sen-\ntences) dataset. Test loss is measured as per-\ntoken perplexity."
+        },
+        {
+          "label": "page 7, epoch-wise section",
+          "quote": "In this section, we demonstrate a novel form of double-descent with respect to training epochs,"
+        },
+        {
+          "label": "page 8, sample-wise fixed model",
+          "quote": "In this section, we investigate the effect of varying the number of train samples, for a ﬁxed model and\ntraining procedure. Previously, in model-wise and epoch-wise double descent, we explored behavior"
+        },
+        {
+          "label": "page 8, sample-wise varies n",
+          "quote": "regime by varying the number of train samples n. By increasing n, the same training procedure T"
+        },
+        {
+          "label": "page 8, sample-wise perplexity slice",
+          "quote": "(per-word perplexity) as a function of number of\ntrain samples, for two transformer models trained\nto completion on IWSLT’14.\nFor both model\nsizes, there is a regime where more samples hurt"
+        },
+        {
+          "label": "page 9, epoch-wise claim and more data",
+          "quote": "best of our knowledge, has not been previously proposed. Finally, we show that the double descent\nphenomenon can lead to a regime where training on more data leads to worse test performance."
+        },
+        {
+          "label": "page 9, regularization as another factor",
+          "quote": "Preliminary results suggest that double descent also holds as we vary the amount of regularization"
+        },
+        {
+          "label": "page 14, default image-classification loss",
+          "quote": "Loss function: Unless stated otherwise, we use the cross-entropy loss for all the experiments."
+        },
+        {
+          "label": "page 14, no default weight decay or dropout",
+          "quote": "Regularization: No explicit regularization like weight decay or dropout was applied unless explic-\nitly stated."
+        },
+        {
+          "label": "page 17, Fashion MNIST random features",
+          "quote": "Figure 14: Random Fourier Features on the Fashion MNIST dataset. The setting is equivalent"
+        },
+        {
+          "label": "page 17, fixed first layer",
+          "quote": "to two-layer neural network with e−ix activation, with randomly-initialized ﬁrst layer that is ﬁxed\nthroughout training. The second layer is trained using gradient ﬂow."
+        },
+        {
+          "label": "page 17, model-wise and sample-wise random features",
+          "quote": "In this section, for completeness sake, we show that both the model- and sample-wise double de-\nscent phenomena are not unique to deep neural networks—they exist even in the setting of Random"
+        },
+        {
+          "label": "page 17, second layer MSE",
+          "quote": "the model size. The second layer is initialized with 0s and trained with MSE loss."
+        },
+        {
+          "label": "page 1, unifying complexity measure",
+          "quote": "We unify the above phenomena by deﬁning a new complexity measure we call\nthe effective model complexity and conjecture a generalized double descent with"
+        },
+        {
+          "label": "page 3, no formal specification of the gap",
+          "quote": "“sufﬁciently smaller” and “sufﬁciently larger”. Our experiments suggest that there is a critical"
+        }
+      ],
+      "loss": "These quoted losses are not one loss. ResNets and CNNs are trained with cross-entropy loss, and the image-classification appendix says that unless stated otherwise the experiments use cross-entropy. The Transformer caption quotes label-smoothed cross-entropy, and test loss measured as per-token perplexity. The sample-wise Transformer slice quotes test loss as per-word perplexity. The body quote says the random Fourier features second layer is initialized with 0s and trained with MSE loss. The figure-caption quote says that second layer is trained using gradient flow. Both wordings are left as printed. The Belkin citation quoted here used ℓ2 loss for decision trees, random features, and 2-layer networks; that citation is not the loss of the ResNet and CNN runs.",
+      "model_and_data": "The quoted experiments are modern deep-learning tasks, with three architecture families: ResNets, standard CNNs, and Transformers. ResNet18 uses layer widths [k, 2k, 4k, 8k], and the standard ResNet18 corresponds to k = 64. The quoted CNN family is a simple 5-layer CNN with 4 convolutional layers of widths [k, 2k, 4k, 8k] and a fully connected layer. Transformers are the 6-layer encoder-decoder, scaled by embedding dimension dmodel, with fully connected width dff = 4·dmodel. Quoted datasets include CIFAR-10 with 15% label noise for the ResNet figure, CIFAR-100 and CIFAR-10 for the ResNet18 model-wise figure, and IWSLT‘14 German-to-English together with WMT‘14 English-to-French subsampled to 200K sentences in the Transformer caption. Label noise of probability p is quoted as the correct label with probability (1 −p) and a uniformly random incorrect label otherwise, sampled only once and not per epoch. The appendix quotes random Fourier features on Fashion MNIST, equivalent to a two-layer network whose randomly initialized first layer stays fixed.",
+      "registry_version": "v1, 2019-12-04",
+      "result_type": "Finite experiment. The extract says the main result is an experimental validation of Hypothesis 1 under a variety of settings, and that Hypothesis 1 is informal. No asymptotic theorem for these deep-network runs is stated in the quoted passages. An appendix quote says both the model- and sample-wise double-descent phenomena exist even in the setting of Random, and the line breaks there. A quoted figure in that appendix is Random Fourier Features on Fashion MNIST. The extract says that fully understanding the mechanisms behind model-wise double descent in deep neural networks remains an important open question.",
+      "retrieved_url": "https://arxiv.org/pdf/1912.02292v1",
+      "retrieved_utc": "2026-11-07T08:31:21.639245+00:00",
+      "review_level": "full_text",
+      "snapshot_path": "artifacts/intake/R1/20261107T082900Z/snapshots/L04.pdf",
+      "snapshot_sha256": "9261e770663677bf7a32a12d994b950ed4f54c918c5db93aa450f8167f04278f",
+      "source_id": "L04",
+      "text_extraction": "PyMuPDF 1.28.0 text layer; equations may be line-broken and were not repaired.",
+      "text_path": "artifacts/intake/R1/20261107T082900Z/text/L04.txt",
+      "text_sha256": "23eb43d322965c091f47f4f6ab4a70514a5bed921a96792d4153027569a87b03",
+      "title": "Deep Double Descent: Where Bigger Models and More Data Hurt",
+      "transfer_limits": "The quoted runs are ResNets, 5-layer CNNs, Transformers, and random Fourier features with a fixed first layer and an MSE-trained second layer. Decision trees, random features, and 2-layer neural networks with ℓ2 loss, on tasks including MNIST and CIFAR-10, are attributed to a demonstration by Belkin et al., not identified in that sentence as this paper’s runs. The image-classification loss quoted for this paper’s ResNets and CNNs is cross-entropy. The extract says fully understanding the mechanisms behind model-wise double descent in deep neural networks remains an open question. The extract does not locate gradient-boosted trees or an essay corpus. A learned first layer is outside the quoted random-feature appendix, which keeps the first layer fixed.",
+      "unavailable_reason": null,
+      "varied_axis": "The extract keeps three experimental axes separate, and it also names further factors. Model-wise: test error of models of increasing size, for a fixed large number of optimization steps. Figure 2’s horizontal line is quoted as model-wise double descent, varying model size while training for as long as possible. Epoch-wise: the vertical line in that figure, with test error undergoing double descent as train time increases; the epoch-wise section studies a fixed, large architecture over the course of training, and another quote keeps the model fixed and increases training time. Sample-wise: the number of train samples, for a fixed model and training procedure. The quoted Transformer slice is per-word perplexity against the number of train samples, with a regime where more samples hurt performance. A separate sentence says the interpolation threshold was changed by varying the number of model parameters, the length of training, the amount of label noise, and the number of train samples. Those four factors are not collapsed into one axis. Effective model complexity is quoted as the maximum number of samples on which the training procedure can achieve close to zero training error, and training time is quoted as increasing that complexity. A separate quote says they unify the above phenomena by defining a new complexity measure they call the effective model complexity and conjecture a generalized double descent with, and the line stops there. That sentence says “the above phenomena”; it is not used here to collapse model-wise, epoch-wise, and sample-wise variation into one axis. A further preliminary quote says double descent also holds as the amount of regularization varies for a fixed model.",
+      "version": "arXiv:1912.02292v1"
+    },
+    {
+      "access_status": "full_text",
+      "assumptions": [
+        "The reanalyzed machine-learning methods are trained by minimizing squared loss.",
+        "The multi-class protocol attributed to BHMM19 is one-vs-rest squared loss summed across classes.",
+        "Main-text results use MNIST with ntrain = 10000.",
+        "A single tree cannot increase P leaf past n, when every leaf contains only one instance, and larger leaves may already be pure.",
+        "When P ens > 1 the plotted model is an ensemble of trees, a random forest without bootstrapping.",
+        "The boosting replication uses trees with 10 leaves and learning rate gamma = 0.85.",
+        "That boosting experiment increases P boost until squared training error is approximately zero, then fixes P boost and increases P ens.",
+        "The interpolation threshold is printed both as p=n and as p = n, and on the P leaf axis it determines maximal depth."
+      ],
+      "authors": [
+        "Alicia Curth",
+        "Alan Jeffares",
+        "Mihaela van der Schaar"
+      ],
+      "draft_reader": "001810aa-bf22-41e9-92fd-4cdc05feb1c1",
+      "held_fixed_axes": "The training objective in this setup is squared loss. Tree sweeps fix P ens while varying P leaf, or fix P leaf while varying P ens. Boosting sweeps are described as a U- or L-shape in P boost for a fixed number of ensemble members, and an L-shape in P ens for fixed boosting rounds. The located boosting replication uses trees with 10 leaves and learning rate gamma = 0.85, as printed with the Greek letter in the extract. The main-text sample is MNIST with ntrain = 10000.",
+      "interpolation_definition": "Two printed forms are located. Page 1 says the second-descent location is not inherently tied to the interpolation threshold, and the next line begins p=n. Page 4 says the interpolation threshold p = n plays a special role only on the P leaf axis, where it determines maximal depth, while P ens can be increased indefinitely. For a single tree, P leaf cannot be increased past n, described as every leaf containing only one instance. In the boosting experiment, P boost is increased until the squared training error reaches approximately zero, after which P boost is fixed. The extract does not supply a separate formula identifying that approximate-zero training error with p = n.",
+      "locators": [
+        {
+          "label": "page 1, multiple complexity axes",
+          "quote": "becomes apparent that there are implicitly multiple, distinct complexity axes along"
+        },
+        {
+          "label": "page 1, interpolation threshold p=n",
+          "quote": "its location is thus not inherently tied to the interpolation threshold\np=n."
+        },
+        {
+          "label": "page 3, squared loss",
+          "quote": "train all ML methods by minimizing the squared loss"
+        },
+        {
+          "label": "page 3, multi-class squared loss",
+          "quote": "1In multi-class settings, [BHMM19] use a one-vs-rest strategy and report squared loss summed across classes."
+        },
+        {
+          "label": "page 3, MNIST sample",
+          "quote": "we focus on results using MNIST (with ntrain = 10000) in the main text."
+        },
+        {
+          "label": "page 3, terminal-leaf axis",
+          "quote": "the maximum allowed number of terminal leaf nodes P leaf."
+        },
+        {
+          "label": "page 3, single-tree leaf limit",
+          "quote": "be increased past n (which is when every leaf contains only one instance)"
+        },
+        {
+          "label": "page 3, ensemble model class",
+          "quote": "parameters within the same model class: in fact, when P ens >1 one is no longer actually considering\na tree, but instead an ensemble of trees (i.e. a random forest [Bre01] without bootstrapping)."
+        },
+        {
+          "label": "page 3, one axis held fixed for trees",
+          "quote": "that, on the one hand, for fixed P ens, error exhibits a classical convex\nU- (or L-)shape in tree-depth P leaf. On the other hand, for fixed\nP leaf in the right plot, error also exhibits an L-shape in the number"
+        },
+        {
+          "label": "page 3, tree composite transition",
+          "quote": "only by transitioning from increasing P leaf (with P ens = 1) to\nincreasing P ens (with P leaf =n) – i.e. by connecting the two solid"
+        },
+        {
+          "label": "page 4, boosting base learner and learning rate",
+          "quote": "use trees with 10 leaves as base learners and a high learning rate of γ = 0.85 to encourage quick"
+        },
+        {
+          "label": "page 4, boosting rounds then ensemble",
+          "quote": "rounds P boost until the squared training error reaches approximately zero, after which P boost is fixed\nand ensembling of P ens independent models is used to further increase the raw parameter count."
+        },
+        {
+          "label": "page 4, interpolation threshold p = n",
+          "quote": "to P ens. Finally, we note that the interpolation threshold p = n plays a special role only on the\nP leaf axis where it determines maximal depth, while parameters on the P ens axis can be increased"
+        },
+        {
+          "label": "page 4, switch between complexity methods",
+          "quote": "occurs only when and where we switch from one method of increasing complexity to another."
+        },
+        {
+          "label": "page 4, separate linear-regression experiment",
+          "quote": "We are now ready to consider Fig. 2 of [BHMM19], which provides experiments demonstrating\ndouble descent in the case of linear regression. Recall that linear regression with y ∈Rn and X ∈"
+        },
+        {
+          "label": "page 4, boosting shapes with one axis fixed",
+          "quote": "ensemble members P ens, test error has a U- or L-shape in the number of boosting rounds P boost\nand an L-shape in P ens for fixed boosting rounds P boost. As a consequence, a double descent shape"
+        }
+      ],
+      "loss": "Squared loss. The extract says the reanalyzed methods are trained by minimizing the squared loss. In multi-class settings it attributes to BHMM19 a one-vs-rest strategy that reports squared loss summed across classes. The footnote digit printed immediately after 'squared loss' on that protocol line is not part of the loss name.",
+      "model_and_data": "Reanalysis of non-neural experiments from Belkin et al., cited as BHMM19. The located tree experiment varies the maximum number of terminal leaves and then an ensemble of trees; once the ensemble count exceeds one, the extract calls the model a random forest without bootstrapping. The located boosting experiment uses trees with 10 leaves as base learners. Main-text results use MNIST with ntrain = 10000. A separate linear-regression experiment is also located.",
+      "registry_version": "conference abstract; arXiv:2310.18988",
+      "result_type": "Empirical reanalysis of the located tree, boosting, and linear-regression plots. For the tree and boosting plots, the extract reports classical convex shapes on each separate axis and a double-descent shape only at the switch from one way of increasing raw parameter count to the other. This is a report about those plots.",
+      "retrieved_url": "https://proceedings.neurips.cc/paper_files/paper/2023/file/aec5e2847c5ae90f939ab786774856cc-Paper-Conference.pdf",
+      "retrieved_utc": "2026-11-07T08:31:29.893408+00:00",
+      "review_level": "full_text",
+      "snapshot_path": "artifacts/intake/R1/20261107T082900Z/snapshots/L05.pdf",
+      "snapshot_sha256": "b57247dfa2bcf6eabc38c2a30f4b8bf50bdadabac4ec2a142960bc58f86227cf",
+      "source_id": "L05",
+      "text_extraction": "PyMuPDF 1.28.0 text layer; equations may be line-broken and were not repaired.",
+      "text_path": "artifacts/intake/R1/20261107T082900Z/text/L05.txt",
+      "text_sha256": "c28bdc07b3ed2366cc93211aa32ca5ac4da784e17ecad19e665518fd748a72c0",
+      "title": "A U-turn on Double Descent: Rethinking Parameter Counting in Statistical Learning",
+      "transfer_limits": "The located loss is squared loss, including one-vs-rest squared loss summed across classes. CatBoost and logloss are absent from this extract. The tree and boosting intervention switches between P leaf or P boost and P ens, so these plots do not document a split-candidate sweep with ensemble size held fixed. The linear-regression experiment is identified as a separate case from the tree and boosting experiments.",
+      "unavailable_reason": null,
+      "varied_axis": "Two raw-parameter routes, used both as separate sweeps and as a composite sequence. For trees, the maximum allowed number of terminal leaf nodes P leaf is increased, and the number of trees P ens is increased. The composite curve transitions from increasing P leaf with P ens = 1 to increasing P ens with P leaf = n. For gradient boosting, the number of boosting rounds P boost is increased and then the number of independent models P ens is increased. The extract says a double-descent shape occurs where the method of increasing complexity switches.",
+      "version": "NeurIPS 2023 conference PDF"
+    },
+    {
+      "access_status": "full_text",
+      "assumptions": [
+        "The task is binary, and the models are squared-loss regressors with test mean squared error as the metric.",
+        "Labels are binarised as y in {0, 1}.",
+        "Tree complexity uses P leaf and P ens; boosting experiments also use P boost and P ens.",
+        "When one of those axes is swept, the other is held fixed per sweep.",
+        "Boosting base learners have P leaf at most 10 and learning rate gamma = 0.85.",
+        "The third boosting experiment fixes P boost = 200 and scales P ens over the printed set {1, . . . , 50}.",
+        "The CRyPTIC analysis uses n = 500 isolates and a feature matrix of dimensions 765,413 by 4, without additional dimensionality reduction in the quoted line.",
+        "The synthetic design uses n = 500 samples and p = 50 features.",
+        "The interpolation threshold in the quoted definition is parameter count equal to the number of training samples."
+      ],
+      "authors": [
+        "Guillermo Comesaña Cimadevila"
+      ],
+      "draft_reader": "001810aa-bf22-41e9-92fd-4cdc05feb1c1",
+      "held_fixed_axes": "Single-axis sweeps hold the other axis fixed per sweep: P ens is held in a set while P leaf varies, and P leaf is held in a set while P ens varies. Gradient-boosting base learners have P leaf at most 10 and learning rate gamma = 0.85, printed with the Greek letter. One located boosting regime fixes P boost = 200 and scales P ens. All located evaluations use one consistent grid and the same 70:30 train-test split.",
+      "interpolation_definition": "Page 2 defines the interpolation threshold as the point where the number of model parameters equals the number of training samples. A figure caption says the vertical dotted line marks the interpolation threshold. The boosting setup says a high learning rate is used to encourage rapid interpolation. The extract does not give a separate train-error cutoff for placing the dotted line, and it does not state that the fixed P boost = 200 regime was chosen because squared training error had reached zero.",
+      "locators": [
+        {
+          "label": "page 2, interpolation threshold definition",
+          "quote": "threshold—where the number of model parameters equals the number of training samples—would"
+        },
+        {
+          "label": "page 3, CRyPTIC subsample",
+          "quote": "n = 500 isolates: 250 resistant and 250 susceptible to isoniazid. Only isolates labelled with a"
+        },
+        {
+          "label": "page 3, feature-matrix dimensions",
+          "quote": "matrix had dimensions 765,413×4. Although the feature-to-sample ratio was high, no additional"
+        },
+        {
+          "label": "page 4, squared-loss regression",
+          "quote": "binary, we adopted a squared-loss regression framework to align with the methodology of Belkin"
+        },
+        {
+          "label": "page 4, labels and test MSE",
+          "quote": "Phenotypic labels were binarised as y ∈{0, 1}, and mean squared error (MSE) on the test"
+        },
+        {
+          "label": "page 4, leaf and ensemble parameterization",
+          "quote": "nodes per tree (P leaf) and the number of estimators in the ensemble (P ens). Three experimental"
+        },
+        {
+          "label": "page 4, each axis held fixed per sweep",
+          "quote": "regimes were implemented. First, we varied P leaf ∈{2, . . . , 500} with P ens ∈{1, 5, 10, 50} held\nfixed per sweep. Second, we varied P ens ∈{1, . . . , 50} with P leaf ∈{20, 50, 100, 500} held fixed"
+        },
+        {
+          "label": "page 4, boosting leaf bound and learning rate",
+          "quote": "with constraints: base learners had P leaf ≤10 and we used a high learning rate γ = 0.85 to"
+        },
+        {
+          "label": "page 4, fixed boosting rounds",
+          "quote": "third, we fixed P boost = 200 and scaled P ens ∈{1, . . . , 50}. All evaluations used a consistent"
+        },
+        {
+          "label": "page 4, train-test split",
+          "quote": "grid and the same 70:30 train–test split."
+        },
+        {
+          "label": "page 4, synthetic sample size",
+          "quote": "work [16]. The dataset contained n = 500 samples and p = 50 independent features. For each"
+        },
+        {
+          "label": "page 4, scikit-learn implementation",
+          "quote": "modelling used Python 3.12 with scikit-learn 1.6.1 [25], NumPy 2.2.3 [26], pandas 2.2.3 [27],"
+        },
+        {
+          "label": "page 6, two complexity axes",
+          "quote": "axes: learner capacity (e.g., P leaf or P boost) and ensemble size (P ens). This dual-axis framework"
+        },
+        {
+          "label": "page 6, composite scaling",
+          "quote": "(increasing P leaf or P boost), followed by expanding P ens—a clear double descent pattern emerged"
+        },
+        {
+          "label": "page 7, dotted interpolation marker",
+          "quote": "(RF1 to RF50). The vertical dotted line marks the interpolation threshold."
+        },
+        {
+          "label": "page 9, single-axis result in these experiments",
+          "quote": "ensemble size independently—the double descent pattern disappeared. Instead, generalisation"
+        },
+        {
+          "label": "page 9, ensemble sweep with boosting rounds fixed",
+          "quote": "boosting range. Conversely, increasing P ens while keeping P boost fixed consistently reduced"
+        }
+      ],
+      "loss": "Squared-loss regression, despite a binary prediction task. Phenotypic labels are binarised as y in {0, 1}, and mean squared error on the test set is the generalisation metric. CatBoost and logloss are absent from this extract.",
+      "model_and_data": "Decision tree regressors, random forest regressors, and gradient boosting regressors. The real-data sample is a stratified CRyPTIC subsample of n = 500 Mycobacterium tuberculosis isolates, 250 resistant and 250 susceptible to isoniazid. The final feature matrix is given as 765,413 by 4, with no additional dimensionality reduction on that line. The synthetic data are the Friedman sample with n = 500 and p = 50. Modelling is located in scikit-learn 1.6.1, with one 70:30 train-test split.",
+      "registry_version": "v1, 2025-09-22",
+      "result_type": "Empirical report on this CRyPTIC subsample and the Friedman sample. The extract says a double-descent pattern emerged under composite scaling of learner capacity followed by P ens, and says the double-descent pattern disappeared when learner capacity or ensemble size was varied independently. Those sentences are confined to the experiments described in the extract.",
+      "retrieved_url": "https://arxiv.org/pdf/2509.25216v1",
+      "retrieved_utc": "2026-11-07T08:31:38.208106+00:00",
+      "review_level": "full_text",
+      "snapshot_path": "artifacts/intake/R1/20261107T082900Z/snapshots/L06.pdf",
+      "snapshot_sha256": "fb2722e4c4d1b5a674279d964d5a119ba078dfa7ab8386ff4a21b869891f2000",
+      "source_id": "L06",
+      "text_extraction": "PyMuPDF 1.28.0 text layer; equations may be line-broken and were not repaired.",
+      "text_path": "artifacts/intake/R1/20261107T082900Z/text/L06.txt",
+      "text_sha256": "962854f1e5f0026c9156ee8f4b8de42ab493c5e3b4aaf0a6b3654a95bcca60dd",
+      "title": "Evaluating Double Descent in Machine Learning: Insights from Tree-Based Models Applied to a Genomic Prediction Task",
+      "transfer_limits": "The located implementation is scikit-learn squared-loss regression with test MSE, on a binary label coded as 0/1 and on a Friedman regression sample. CatBoost and logloss are absent. The intervention is P leaf or P boost together with P ens, including composite and single-axis schedules. It is a different intervention from a split-candidate sweep. The quoted boosting schedule that fixes P boost = 200 is not described as stopping at zero training error. Results use one 70:30 split on these samples.",
+      "unavailable_reason": null,
+      "varied_axis": "Two orthogonal axes: learner capacity and ensemble size. For trees, capacity is the number of terminal leaf nodes per tree, P leaf, and ensemble size is P ens. For gradient boosting, the corresponding capacity count in the results text is P boost, with the same ensemble axis P ens. The extract reports a composite sequence that first scales P leaf or P boost and then expands P ens, plus sweeps that vary one axis at a time.",
+      "version": "arXiv:2509.25216v1"
+    },
+    {
+      "access_status": "full_text",
+      "assumptions": [
+        "The preliminary GBDT update is described with a squared-loss residual, and the reported error is RMSE.",
+        "The operational capacity parameter in the abstract is the number of split candidates, with other training controls held in the quoted sentence.",
+        "M is the exact total split-candidate count and B is the native per-feature border budget; M is called the primary axis.",
+        "The feature view holds loss, tree depth, learning rate, and boosting rounds fixed in the quoted sentence.",
+        "The conclusion states that depth, ensemble size, and the leaf-count bound are held fixed.",
+        "The reference kernel is explicitly not claimed to describe adaptive GBDT training exactly.",
+        "The diagnostic CatBoost profile uses symmetric trees, plain boosting, zero leaf L2 regularization, and a random_strength value printed as = 106. That printed value is ambiguous because no exponent character appears on the line.",
+        "The protocol line prints a learning rate of 0.3 and up to 106 CatBoost iterations. The iteration token is likewise ambiguous in the extract and is not repaired.",
+        "The default protocol uses five resampled training-test splits unless otherwise stated, and ntrain = 1000, ntest = 10000, L = 2 unless a panel varies sample size or depth.",
+        "The cross-library sentence reports an interior peak for XGBoost, LightGBM, and CatBoost, and the random-forest sentence says test RMSE decreases monotonically over the evaluated range."
+      ],
+      "authors": [
+        "Ryuichi Kanoh"
+      ],
+      "draft_reader": "001810aa-bf22-41e9-92fd-4cdc05feb1c1",
+      "held_fixed_axes": "The feature-view passage says the loss, tree depth, learning rate, and number of boosting rounds are held fixed while split candidates are reindexed. The conclusion says depth, ensemble size, and the leaf-count bound are held fixed for the split-candidate intervention. The default California Housing protocol fixes ntrain, ntest, and L = 2 unless a panel varies sample size or depth. The default CatBoost profile fixes the split borders, depth, learning rate, iteration count, and random seed. Those statements have located exceptions: panels vary sample size or depth, and one figure varies the training checkpoint along M.",
+      "interpolation_definition": "An original definition equating interpolation with zero training loss was not located. Training RMSE is described as already close to zero near the ambient path-span crossing. The reference crossing is printed as DL(CM) approximately ntrain, and the reported crossing is the first integer M satisfying DL(CM) greater than or equal to ntrain, using the comparison characters printed in the extract. The displayed formula for DL(CM) is broken across lines and is not repaired. A later sentence cites early stopping before interpolation as a viewpoint from Nakkiran et al. 2020. The extract does not call the path-span crossing the interpolation threshold.",
+      "locators": [
+        {
+          "label": "page 1, split-candidate capacity and other controls",
+          "quote": "propose the number of split candidates as an operational ca-\npacity parameter for GBDTs. Holding other training controls\nfixed, increasing the split-candidate budget refines the feature-"
+        },
+        {
+          "label": "page 1, random-forest control under the same sweep",
+          "quote": "GBM, and CatBoost, whereas a random-forest control im-\nproves monotonically under the same split-candidate sweep."
+        },
+        {
+          "label": "page 2, squared-loss residual",
+          "quote": "the squared-loss residual on the i-th training point. A GBDT"
+        },
+        {
+          "label": "page 3, controls held fixed in the feature view",
+          "quote": "Holding the loss, tree depth, learning rate,\nand number of boosting rounds fixed, the feature view rein-"
+        },
+        {
+          "label": "page 3, reference-kernel scope",
+          "quote": "We do not claim that this refer-\nence kernel exactly describes adaptive GBDT training; its"
+        },
+        {
+          "label": "page 4, exact count M and native budget B",
+          "quote": "trol; M is the exact total split-candidate count, whereas B"
+        },
+        {
+          "label": "page 5, primary axis M",
+          "quote": "enlarge the split-candidate budget, but M is the primary axis"
+        },
+        {
+          "label": "page 5, California Housing",
+          "quote": "California Housing dataset, derived from the housing data"
+        },
+        {
+          "label": "page 5, housing dimensions",
+          "quote": "tains 20,640 rows and 8 numerical features. To assess cross-"
+        },
+        {
+          "label": "page 5, additional regression datasets",
+          "quote": "dataset robustness, we additionally evaluate 18 regression"
+        },
+        {
+          "label": "page 5, panels that vary sample size or depth",
+          "quote": "ments, unless a panel varies sample size or depth, we use\nntrain = 1000, ntest = 10000, and tree depth L = 2. The"
+        },
+        {
+          "label": "page 5, learning rate and printed iteration token",
+          "quote": "stated, we use five resampled training–test splits, a learn-\ning rate of 0.3, and up to 106 CatBoost iterations. For each"
+        },
+        {
+          "label": "page 5, reported RMSE",
+          "quote": "a fitted predictor f, we report the root mean squared error\n(RMSE)."
+        },
+        {
+          "label": "page 5, diagnostic CatBoost profile",
+          "quote": "It uses symmetric trees, plain boost-\ning, zero leaf L2 regularization, and random_strength\n= 106; at this scale, the injected noise dominates residual-"
+        },
+        {
+          "label": "page 5, default CatBoost profile",
+          "quote": "CatBoost (default), fixes the split borders, depth, learning\nrate, iteration count, and random seed; model shrinkage, leaf\nL2 regularization, and the remaining boosting choices are"
+        },
+        {
+          "label": "page 5, training RMSE near the path-span crossing",
+          "quote": "peaks near the ambient path-span crossing; training RMSE is\nalready close to zero in this region. CatBoost (default) shows"
+        },
+        {
+          "label": "page 6, reference crossing",
+          "quote": "The reference crossing is DL(CM) ≈ntrain. Increasing"
+        },
+        {
+          "label": "page 6, reported crossing rule",
+          "quote": "reported crossing is the first integer value of M satisfying\nDL(CM) ≥ntrain."
+        },
+        {
+          "label": "page 6, interior peak across three libraries",
+          "quote": "Panel D tests cross-library robustness. XGBoost, Light-\nGBM, and CatBoost all exhibit an interior peak. Its recur-"
+        },
+        {
+          "label": "page 6, random-forest RMSE on the evaluated range",
+          "quote": "a secondary non-boosting control, random-forest test RMSE\ndecreases monotonically over the evaluated range. This con-"
+        },
+        {
+          "label": "page 6, training checkpoints along M",
+          "quote": "iteration counts, no pronounced double-descent peak is\nvisible. As training proceeds, a clear intermediate-budget"
+        },
+        {
+          "label": "page 6, cited interpolation wording",
+          "quote": "From the effective-model-complexity viewpoint, early stop-\nping before interpolation can prevent double descent from"
+        },
+        {
+          "label": "page 7, operational capacity axis",
+          "quote": "The split-candidate budget is an operational capacity axis for\nGBDTs: it expands the root-to-leaf path dictionary while\nholding depth, ensemble size, and the leaf-count bound\nfixed. Across experiments, intermediate peaks align with"
+        },
+        {
+          "label": "page 7, depth ensemble size and leaf-count bound",
+          "quote": "depth, ensemble size, and the leaf-count bound held fixed."
+        },
+        {
+          "label": "page 9, RMSE and squared-error objective",
+          "quote": "We use RMSE because it matches\nthe squared-error training objective and expresses prediction"
+        }
+      ],
+      "loss": "The preliminaries call the residual a squared-loss residual. The reported metric is root mean squared error. A later line says RMSE is used because it matches the squared-error training objective. Logloss is absent from this extract.",
+      "model_and_data": "Gradient boosting decision trees, with CatBoost, XGBoost, and LightGBM named in the cross-library sweep, plus a random-forest control. The primary dataset in the located setup is California Housing, 20,640 rows and 8 numerical features. The extract also evaluates 18 regression datasets. Unless a panel varies sample size or depth, the California Housing setting is ntrain = 1000, ntest = 10000, and tree depth L = 2. CatBoost is run in a diagnostic profile and a default profile.",
+      "registry_version": "v1, 2026-08-04",
+      "result_type": "Empirical sweeps plus a tree, feature, and kernel diagnostic. The extract reports interior test-error peaks under split-candidate scaling for the three named GBDT libraries, training RMSE already close to zero near the path-span crossing, and a monotone random-forest curve over the evaluated range. It also reports that small iteration counts along M show no pronounced double-descent peak. The reference kernel is a diagnostic, with adaptive relevance tested empirically. These statements cover the reported regression experiments.",
+      "retrieved_url": "https://arxiv.org/pdf/2608.03111v1",
+      "retrieved_utc": "2026-11-07T08:31:44.846676+00:00",
+      "review_level": "full_text",
+      "snapshot_path": "artifacts/intake/R1/20261107T082900Z/snapshots/L07.pdf",
+      "snapshot_sha256": "bd8d66e998808345a2f1cc672b0234ce66fc2329362298f718c289404a4531c7",
+      "source_id": "L07",
+      "text_extraction": "PyMuPDF 1.28.0 text layer; equations may be line-broken and were not repaired.",
+      "text_path": "artifacts/intake/R1/20261107T082900Z/text/L07.txt",
+      "text_sha256": "d9d578a8fb15c74b6ffbd2e7c13f19a9eeb67b88080cd57cf2043511e1275794",
+      "title": "Double Descent in Gradient Boosting Decision Trees via Split-Candidate Scaling",
+      "transfer_limits": "The located objective and metric are squared-loss residuals and RMSE on regression data, including California Housing and 18 regression datasets. Logloss is absent. CatBoost appears here under that RMSE protocol, in diagnostic and default profiles, so the card does not transfer to CatBoost with logloss. The capacity intervention is split-candidate count, and the conclusion holds depth, ensemble size, and the leaf-count bound fixed; that is a different intervention from a P leaf or P boost sequence followed by P ens. Panels that vary depth or sample size, and the figure that varies the training checkpoint along M, are additional interventions. The printed iteration budget and random_strength value use the unrepaired token 106. The path-span crossing is not identified in the extract as the interpolation threshold.",
+      "unavailable_reason": null,
+      "varied_axis": "The number of split candidates. The extract distinguishes M, the exact total split-candidate count, from B, CatBoost's native per-feature border budget, and calls M the primary axis. The conclusion calls the split-candidate budget an operational capacity axis that expands the root-to-leaf path dictionary. A separate figure also moves along training checkpoints at fixed positions on the same M axis, so iteration count is an additional varied coordinate in that figure.",
+      "version": "arXiv:2608.03111v1"
+    },
+    {
+      "access_status": "full_text",
+      "assumptions": [
+        "The theoretical target is regression under the RMSE loss.",
+        "The analysis assumes the regularized gradient-boosting procedure in Algorithm 2.",
+        "The quoted requirement is that decision trees be symmetric (oblivious) and properly randomized.",
+        "The extract says those assumptions are satisfied in some implementations, for example CatBoost.",
+        "Shrinkage of the model at each iteration is the regularization, and the extract says such shrinkage is available in CatBoost.",
+        "Under RMSE, gradients are proportional to residuals.",
+        "A footnote says any non-symmetric tree can be represented as a sum of symmetric ones. That sentence is about representation of the ensemble space.",
+        "Algorithm 2 is said to solve a kernel ridge regression problem interpreted as a Gaussian-process posterior mean. The scale relation is split across lines: one line ends at lambda = sigma2 and the next begins with delta2, with no division symbol on those lines, so the algebra is not repaired.",
+        "The same passage says Algorithm 2 does not give the posterior variance.",
+        "The implementation quote uses CatBoost and an L2 scoring function, and it prints a beta set whose exponent characters are left as extracted."
+      ],
+      "authors": [
+        "Aleksei Ustimenko",
+        "Artem Beliakov",
+        "Liudmila Prokhorenkova"
+      ],
+      "draft_reader": "001810aa-bf22-41e9-92fd-4cdc05feb1c1",
+      "held_fixed_axes": "A double-descent complexity contrast with named axes held fixed was not located. The quoted analysis assumes the regularized gradient-boosting procedure, symmetric (oblivious) trees, proper randomization, RMSE loss, and shrinkage at each iteration.",
+      "interpolation_definition": "not_located_in_extract",
+      "locators": [
+        {
+          "label": "page 1, symmetric decision trees",
+          "quote": "This paper shows that gradient boosting based on symmetric decision trees can be"
+        },
+        {
+          "label": "page 1, kernel ridge reformulation",
+          "quote": "equivalently reformulated as a kernel method that converges to the solution of a\ncertain Kernel Ridge Regression problem. Thus, we obtain the convergence to a"
+        },
+        {
+          "label": "page 1, RMSE loss and regularization",
+          "quote": "assuming the widely used RMSE loss function. First, we show that the gradient boosting with\nregularization can be reformulated as an optimization problem in some Reproducing Kernel Hilbert"
+        },
+        {
+          "label": "page 1, regularized procedure",
+          "quote": "Importantly, our theoretical analysis assumes the regularized gradient boosting procedure (Algo-"
+        },
+        {
+          "label": "page 1, symmetric and randomized trees",
+          "quote": "rithm 2) without any simpliﬁcations — we only need decision trees to be symmetric (oblivious) and\nproperly randomized (Algorithm 1). These assumptions are non-restrictive and are satisﬁed in some"
+        },
+        {
+          "label": "page 1, CatBoost as an example implementation",
+          "quote": "popular gradient boosting implementations, e.g., CatBoost (Prokhorenkova et al., 2018)."
+        },
+        {
+          "label": "page 4, RMSE gradients and residuals",
+          "quote": "of the model. Since we consider the RMSE loss function, the gradients are proportional to the\nresiduals rj = yj −f(xj), where f is the currently built model. The tree structure is deﬁned by"
+        },
+        {
+          "label": "page 4, non-symmetric trees as sums",
+          "quote": "algorithm and would not change the space of tree ensembles as any non-symmetric tree can be represented as a\nsum of symmetric ones."
+        },
+        {
+          "label": "page 5, shrinkage regularization and CatBoost",
+          "quote": "In other words, we shrink the model at each iteration, which serves\nas regularization (Ustimenko & Prokhorenkova, 2021). Such shrinkage is available, e.g., in the\nCatBoost library."
+        },
+        {
+          "label": "page 7, kernel-ridge corollary",
+          "quote": "Corollary 3.9. (Convergence to the solution of the KRR problem) Under the assumptions of the"
+        },
+        {
+          "label": "page 7, algorithm 2 and posterior mean",
+          "quote": "So far, the main result of the paper proved in Section 3.5 shows that Algorithm 2 solves the Kernel\nRidge Regression problem, which can be interpreted as learning Gaussian Process posterior mean f λ"
+        },
+        {
+          "label": "page 7, split Gaussian-process scale line",
+          "quote": "under the assumption that f ∼GP(0, σ2K+δ2IdL2) where λ = σ2\nδ2 . I.e., Algorithm 2 does not give\nus the posterior variance. Still, as mentioned earlier, we can estimate the posterior variance through"
+        },
+        {
+          "label": "page 8, regression-dataset comparison",
+          "quote": "the proposed KGB with SGB, SGLB, and their ensembles. For the experiments, we use several\nstandard regression datasets (Gal & Ghahramani, 2016). The implementation details can be found"
+        },
+        {
+          "label": "page 9, experimental RMSE",
+          "quote": "achieving smaller values of RMSE and having better knowledge uncertainty estimates."
+        },
+        {
+          "label": "page 29, CatBoost L2 scoring",
+          "quote": "we consider β ∈{10−2, 10−1, 1}. We use the standard CatBoost library and add the Gumbel noise\nterm in selecting the trees for the “L2” scoring function, which is implemented in CatBoost out of"
+        }
+      ],
+      "loss": "RMSE. The extract says the analysis concerns regression problems assuming the widely used RMSE loss function, and that under this loss the gradients are proportional to the residuals. Logloss is absent from this extract.",
+      "model_and_data": "Gradient boosting based on symmetric decision trees, reformulated as a kernel method for regression. The located real-data experiments follow the setup of Malinin et al. (2021) and compare the proposed KGB with SGB, SGLB, and their ensembles on several standard regression datasets cited to Gal and Ghahramani (2016). Implementation details use the standard CatBoost library. Individual dataset names are not located in the quoted lines.",
+      "registry_version": "v3, 2023-03-13",
+      "result_type": "Theoretical equivalence, with regression experiments on predictive RMSE and uncertainty. Symmetric-tree gradient boosting with the stated regularization is carried to a kernel ridge solution and a Gaussian-process posterior mean. The extract says this algorithm does not itself provide the posterior variance. Double descent is absent from the extract.",
+      "retrieved_url": "https://arxiv.org/pdf/2206.05608v3",
+      "retrieved_utc": "2026-11-07T08:31:51.519416+00:00",
+      "review_level": "full_text",
+      "snapshot_path": "artifacts/intake/R1/20261107T082900Z/snapshots/L08.pdf",
+      "snapshot_sha256": "73bde47c4c56a124c215c0e93560cd1150560f2f1f7e4d81b92489d8dce7ec7b",
+      "source_id": "L08",
+      "text_extraction": "PyMuPDF 1.28.0 text layer; equations may be line-broken and were not repaired.",
+      "text_path": "artifacts/intake/R1/20261107T082900Z/text/L08.txt",
+      "text_sha256": "052a737956c60e011173a60ee06006f98642fc54f7a690cdde61241ba1be65cd",
+      "title": "Gradient Boosting Performs Gaussian Process Inference",
+      "transfer_limits": "The kernel statement is tied to RMSE loss, shrinkage regularization, symmetric oblivious trees, and proper randomization. CatBoost is an example implementation and is used with the quoted L2 scoring function; logloss is absent. The footnote about writing a non-symmetric tree as a sum of symmetric trees does not extend the result to a double-descent axis comparison. The split lambda and delta2 line is ambiguous and is not repaired. This extract is context for those kernel assumptions and is not evidence that the tree experiments in L05, L06, and L07 vary the same axis.",
+      "unavailable_reason": null,
+      "varied_axis": "not_located_in_extract",
+      "version": "arXiv:2206.05608v3"
+    }
+  ],
+  "intake_path": "artifacts/intake/R1/20261107T082900Z",
+  "literature_readers": {
+    "L02": "144f9191-3044-4fe3-87d1-0f162ee1fb60",
+    "L03": "144f9191-3044-4fe3-87d1-0f162ee1fb60",
+    "L04": "144f9191-3044-4fe3-87d1-0f162ee1fb60",
+    "L05": "001810aa-bf22-41e9-92fd-4cdc05feb1c1",
+    "L06": "001810aa-bf22-41e9-92fd-4cdc05feb1c1",
+    "L07": "001810aa-bf22-41e9-92fd-4cdc05feb1c1",
+    "L08": "001810aa-bf22-41e9-92fd-4cdc05feb1c1"
+  },
+  "prediction_assessments": [
+    {
+      "author_outcome": "consistent",
+      "id": "P2",
+      "observation_ids": [
+        "L05",
+        "L06",
+        "L07"
+      ],
+      "reason": "The located tree and boosting papers use different capacity interventions, losses, and interpolation language. Their comparability stays unresolved, which is why the axis comparison is required before any transfer."
+    }
+  ],
+  "schema_version": 1,
+  "tree_axis_comparison": {
+    "axis_by_source": {
+      "L05": "Composite and separate sweeps of P leaf or P boost and P ens under squared loss.",
+      "L06": "Learner capacity (P leaf or P boost) and ensemble size P ens, composite and single-axis, under squared loss and test MSE.",
+      "L07": "Split-candidate count M, with native per-feature border budget B as another control, under RMSE."
+    },
+    "resolved": false,
+    "sources": [
+      "L05",
+      "L06",
+      "L07"
+    ],
+    "statement": "L05, L06, and L07 do not supply exact quotes for one shared intervention, so the axis comparison is unresolved. L05 describes a composite of terminal-leaf count or boosting-round count with ensemble size under squared loss. L06 describes learner capacity, printed as P leaf or P boost, and ensemble size under squared loss and test MSE. L07 describes split-candidate count, with depth, ensemble size, and the leaf-count bound held fixed in its conclusion, and reports RMSE. L08 is a kernel-ridge analysis under RMSE, symmetric trees, randomization, and shrinkage; it is not a vote that those three interventions are the same.",
+    "unresolved_points": [
+      "L05 and L06 vary leaf or boosting-round capacity together with ensemble size. L07 varies split-candidate count and its conclusion holds ensemble size fixed.",
+      "L05 increases P boost until squared training error is approximately zero and then fixes P boost. L06 fixes P boost = 200 in the quoted third boosting experiment. The extracts do not identify these schedules with each other.",
+      "L05 prints the interpolation threshold as p=n and as p = n. L06 defines it as parameter count equal to the number of training samples and marks a dotted line. L07 places a peak near a path-span crossing in M and reports training RMSE already close to zero there, without calling that crossing the interpolation threshold.",
+      "The located losses are squared loss and RMSE. CatBoost logloss is absent from L05, L06, and L07. L05 does not name CatBoost, L06 names scikit-learn, and L07 names CatBoost, XGBoost, and LightGBM in the RMSE experiments.",
+      "L06 reports that the double-descent pattern disappeared on its single-axis sweeps. L07 reports interior peaks while split-candidate count changes and a monotone random-forest curve on that sweep. The sentences refer to different interventions.",
+      "The located samples differ: L05 uses MNIST with ntrain = 10000 in the main text, L06 uses 500 CRyPTIC isolates and 500 Friedman samples, and L07 uses California Housing with ntrain = 1000 unless a panel changes sample size, plus 18 regression datasets.",
+      "L07 also varies training checkpoint along M in one figure, and some panels vary depth or sample size. Those panels are not the same held-fixed split-candidate intervention as the conclusion sentence.",
+      "L08 assumes RMSE, shrinkage, symmetric oblivious trees, and randomization for a kernel equivalence. It contains no double-descent or interpolation wording and does not establish a common axis for L05, L06, and L07."
+    ]
+  }
+}

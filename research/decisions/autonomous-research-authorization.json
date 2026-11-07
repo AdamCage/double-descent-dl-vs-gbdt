@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "decision_id": "DD-AUTO-2026-11-07",
+  "authority": "user",
+  "status": "accepted",
+  "user_instruction": "Почти всё исследование выполняет Cursor с субагентами; человек и Codex нужны для верхнеуровневого анализа/критики и критических моментов: неожиданные результаты, развилки проекта.",
+  "scope": "Double-descent mechanisms across linear/ridge, random features, MLP and trees/GBDT; autonomous literature, design, code, experiments, analysis, local reviews and manuscript.",
+  "stages": [
+    "R1",
+    "R2",
+    "R3",
+    "R4",
+    "R5",
+    "R6",
+    "R7"
+  ],
+  "cursor_preparation": true,
+  "cursor_self_activation_after_frozen_plan": true,
+  "cursor_claim_review": true,
+  "require_distinct_review_subagent": true,
+  "require_distinct_stage_review_subagent": true,
+  "policy_document": {
+    "path": "docs/decisions/0003-cursor-autonomous-research.md",
+    "sha256": "089eff5c6bd51fd62c519de44cc050f64bf00a10709660987430efd6e486c8ac"
+  },
+  "budgets": {
+    "total_runner_wall_seconds": 86400,
+    "target_stage_wall_seconds": 14400,
+    "max_stage_wall_seconds": 28800,
+    "max_model_task_wall_seconds": 7200,
+    "max_attempts_per_stage": 3,
+    "max_cpu_threads_per_model_job": 4,
+    "max_parallel_model_jobs": 1,
+    "gpu_jobs": 0,
+    "paid_api_spend": 0,
+    "new_storage_bytes": 21474836480,
+    "public_dataset_download_bytes": 2147483648
+  },
+  "r1_budgets": {
+    "agent_preparation_and_review_minutes": 120,
+    "max_wall_seconds": 900,
+    "total_wall_seconds": 1800,
+    "max_attempts": 2,
+    "document_download_bytes": 209715200,
+    "max_document_bytes": 26214400,
+    "max_retrieval_attempts_per_source": 2,
+    "max_http_requests": 48,
+    "max_additional_primary_sources": 4,
+    "new_storage_bytes": 2147483648,
+    "dataset_download_bytes": 0,
+    "model_training_jobs": 0
+  },
+  "critical_escalation": [
+    "Substantial unexpected result after bounded implementation/input checks and replication requiring central reinterpretation",
+    "Project fork outside the authorized mechanistic question",
+    "Unresolved integrity/provenance problem undermining central evidence",
+    "Need to exceed cumulative mandate or access outside authorized resources"
+  ],
+  "ordinary_nonblocking_outcomes": [
+    "negative",
+    "inconclusive",
+    "single unusual seed",
+    "routine code fix",
+    "bounded discovery refinement",
+    "unavailable noncritical source"
+  ],
+  "external_publication_or_messaging": false,
+  "identity_assurance": "Logical agent labels and local team review; no external independence or truth certification."
+}

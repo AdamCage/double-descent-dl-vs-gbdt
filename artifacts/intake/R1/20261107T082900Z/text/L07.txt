@@ -1,0 +1,1920 @@
+
+
+--- page 1 ---
+Double Descent in Gradient Boosting Decision Trees via Split-Candidate Scaling
+Ryuichi Kanoh1,2
+1The University of Electro-Communications
+2National Institute of Informatics
+ryuichi.kanoh@uec.ac.jp
+Abstract
+Double descent is commonly studied by scaling an explicit
+capacity parameter, such as neural-network width. For gradi-
+ent boosting decision trees (GBDTs), however, an analogous
+single-axis capacity parameter has not been established. We
+propose the number of split candidates as an operational ca-
+pacity parameter for GBDTs. Holding other training controls
+fixed, increasing the split-candidate budget refines the feature-
+quantization grid and expands the dictionary of root-to-leaf
+paths from which boosting selects its updates. To analyze
+this expansion, we construct an empirical tree-kernel diag-
+nostic that summarizes how candidate-induced paths group
+the training examples. A regime in which the empirical ker-
+nel rank grows toward the sample size and very small pos-
+itive eigenvalues emerge exposes noise-sensitive directions;
+in this regime, test error peaks before decreasing again at
+larger split-candidate budgets. This perspective predicts that
+deeper trees should reach the regime with fewer split can-
+didates, larger training sets should require finer grids, and
+label noise should make the peak more pronounced. Experi-
+ments support these predictions and show test-error peaks at
+intermediate split-candidate budgets across XGBoost, Light-
+GBM, and CatBoost, whereas a random-forest control im-
+proves monotonically under the same split-candidate sweep.
+Taken together, our analysis and experiments support split-
+candidate scaling as a single-axis capacity intervention for
+studying GBDTs and suggest that the observed double de-
+scent arises from an interaction between candidate-induced
+geometry and boosting dynamics.
+Introduction
+In supervised prediction tasks, a model is trained on a fi-
+nite sample but evaluated on new, unseen examples. As the
+model becomes more expressive, its training error typically
+decreases because it can fit the observed sample more closely.
+The central question is whether this improved fit also leads to
+better generalization. Classical intuition says that test error
+should first decrease, as the model captures useful structure,
+and then increase, as the model begins to fit noise. Dou-
+ble descent describes a different pattern (Belkin et al. 2019;
+Nakkiran et al. 2020). Test error can peak near the point
+where the model first fits the training sample, but then de-
+crease again as capacity continues to grow. In other words,
+making a model more flexible can hurt generalization at an
+intermediate scale and then help it again in a more over-
+parameterized regime. In neural networks, this model-wise
+pattern is commonly studied by increasing network width,
+which corresponds to the number of parameters (Nakkiran
+et al. 2020).
+Although earlier work reported double descent in gradient
+boosting decision trees (GBDTs) using raw parameter count
+as the capacity axis (Belkin et al. 2019), the interpretation
+of this result remains debated because the curve was con-
+structed using two distinct mechanisms for increasing that
+count. It first grew by adding boosting rounds; the number
+of rounds was then fixed, and independently trained boosted
+models were averaged to increase the count further. Curth,
+Jeffares, and van der Schaar (2023) subsequently showed that
+the second descent coincides with the transition between
+these mechanisms, suggesting that the post-peak improve-
+ment may reflect variance reduction from ensembling rather
+than increased expressivity of a single GBDT. More gener-
+ally, counts of trees, nodes, or leaves do not by themselves
+define a consistent capacity intervention: adding rounds also
+extends the optimization trajectory, while increasing depth
+changes both interaction structure and partition geometry.
+This unresolved methodological issue leaves a central ques-
+tion: “Can double descent in GBDTs arise under a single,
+consistent capacity intervention?”
+This paper proposes an operational axis for addressing this
+question: the number of split candidates. Modern GBDT sys-
+tems, including XGBoost (Chen and Guestrin 2016), Light-
+GBM (Ke et al. 2017), and CatBoost (Prokhorenkova et al.
+2018), first discretize continuous features into a finite set
+of candidate thresholds. A coarse grid permits only a lim-
+ited collection of leaf regions, whereas a finer grid gives
+the learner a larger dictionary of root-to-leaf path features.
+Thus, increasing the split-candidate count directly enlarges
+the set of update directions available to boosting. GBDT sys-
+tems expose binning controls to trade accuracy against split-
+search time, memory use, and communication cost. Split-
+candidate count is therefore both a capacity measure and an
+implementation-level control. Figure 1 illustrates the high-
+level picture: as the numerical grid is refined, the path-feature
+dictionary expands and can produce a test-error peak at an
+intermediate grid resolution.
+We explain the mechanism through three linked views. The
+tree view is the conventional description: boosting adds trees
+whose leaf regions are determined by available split candi-
+dates. The feature view rewrites exactly the same model as
+arXiv:2608.03111v1  [cs.LG]  4 Aug 2026
+
+
+--- page 2 ---
+Feature A
+Feature B
+Feature C
+Feature A
+12.5
+8.3
+15.7
+...
+Feature B
+-1.2
+0.3
+2.5
+...
+Feature C
+100
+150
+80
+...
+Binning
+Fine
+Coarse
+Complexity: number of split candidates
+Test error
+Medium
+Figure 1: Schematic overview of split-candidate scaling and
+the associated double-descent mechanism.
+a linear combination of root-to-leaf path indicators. Increas-
+ing the candidate count enlarges this dictionary, making the
+same tree model appear as a wider linear model with more
+coefficients. The kernel view studies this expansion through
+a reference tree kernel on the finite training sample. As paths
+distinguish more training points, the kernel rank approaches
+the sample size and small-eigenvalue directions can appear.
+Under weak regularization, these small-eigenvalue directions
+are sensitive to label noise and can create a test-error peak.
+This chain predicts that deeper trees reach the rank transition
+with fewer candidates, larger training sets require finer grids,
+and label noise makes the peak more visible.
+Our contributions are summarized as follows:
+• Identification of split-candidate count as a single-axis
+capacity intervention for GBDTs through a three-view
+formulation connecting leaf regions, path features, and
+empirical tree-kernel spectra.
+• Empirical tests of predicted peak shifts across depth, sam-
+ple size, label noise, tree-ensemble libraries, and bench-
+mark datasets.
+Related Work
+Gradient boosting decision trees.
+GBDTs originate from
+functional gradient descent with regression trees as base
+learners (Friedman 2001). Modern libraries such as XG-
+Boost, LightGBM, and CatBoost have made GBDTs a prac-
+tical workhorse for tabular prediction; they are widely used
+in applied systems and machine-learning competitions, and
+empirical comparisons continue to find tree ensembles strong
+on typical tabular data (Fu et al. 2019; Grinsztajn, Oyallon,
+and Varoquaux 2022). A common implementation device
+is to quantize continuous features before tree induction and
+then evaluate split candidates on the resulting bins. GBDT
+libraries expose binning controls primarily to manage the
+computational cost of split search. In this study, we use the
+same controls to vary the number of available split can-
+didates. The way trees are constructed varies substantially
+across systems and variants: libraries differ in their growth
+rules and tree shapes, and some methods inject randomness
+through candidate sampling or noisy split scores rather than
+using only deterministic greedy splits (Geurts, Ernst, and
+Wehenkel 2006). Ustimenko, Beliakov, and Prokhorenkova
+(2023) further develop a fixed tree-kernel perspective for gra-
+dient boosting with symmetric decision trees and relate the
+resulting dynamics to Gaussian-process inference. Building
+on this viewpoint, we track how the induced empirical spec-
+trum changes as the candidate set produced by binning is
+varied, with the goal of studying split-candidate scaling as a
+capacity axis in widely used GBDT implementations.
+Double descent.
+The double-descent risk curve was popu-
+larized as a way to reconcile classical statistical intuition with
+high-capacity models that interpolate training data (Belkin
+et al. 2019). Precise analyses now exist for linear ridgeless re-
+gression, including Hastie et al. (2022), Belkin, Hsu, and Xu
+(2020), and Holzmüller (2021), and for random-feature re-
+gression, whose feature construction originates from Rahimi
+and Recht (2007) and whose double-descent asymptotics are
+analyzed by Mei and Montanari (2022). These analyses em-
+phasize the role of the empirical feature spectrum near the
+point where the model first fits the training sample. Deep
+double descent extends the phenomenon to neural-network
+model size, sample size, and training time (Nakkiran et al.
+2020). Our work follows the spectral viewpoint but applies it
+to the empirical tree-kernel spectrum induced by split candi-
+dates. Curth, Jeffares, and van der Schaar (2023) caution that
+raw parameter-count axes in tree and boosting examples can
+conflate model growth with ensembling or smoothing effects;
+this motivates our use of a single split-candidate axis.
+Preliminaries
+We consider supervised regression data
+Dn = {(xi, yi)}n
+i=1,
+xi ∈X ⊆Rd,
+yi ∈R.
+Let ft denote the ensemble prediction after t boosting steps
+and
+rt,i = yi −ft(xi)
+the squared-loss residual on the i-th training point. A GBDT
+update fits a regression tree weak learner ht to the residuals
+and sets
+ft+1(x) = ft(x) + εht(x),
+where ε > 0 is the learning rate. The weak learner is a
+piecewise-constant decision tree. Each internal node stores a
+split test s = (j, b) and sends a point left or right according
+to whether xj ≤b. Each leaf stores a constant prediction.
+Thus a fitted tree partitions the input space into leaves and
+predicts one number on each leaf.
+Modern GBDT implementations make split search finite
+by binning numerical features before tree induction. For fea-
+ture j, let Bj = {bj,1 < · · · < bj,Cj} be the selected borders,
+
+
+--- page 3 ---
+and let C = (B1, . . . , Bd) denote the candidate configuration.
+These borders define threshold split candidates
+SC = {(j, b) : b ∈Bj, j = 1, . . . , d},
+c(C) = (C1, . . . , Cd),
+|SC| =
+d
+X
+j=1
+Cj.
+From Split Candidates to Path Features and
+Tree Kernels
+In this section, we use three linked views of split-candidate
+scaling to explain why increasing the number of split candi-
+dates can lead to double-descent behavior. Figure 2 summa-
+rizes the three views. The tree view starts from leaf-average
+updates, in which split-candidate count is not yet an obvious
+complexity axis. Holding the loss, tree depth, learning rate,
+and number of boosting rounds fixed, the feature view rein-
+dexes those updates as sparse moves in a root-to-leaf path
+dictionary; in this view, increasing split candidates looks
+like increasing model width. The kernel view uses the exact
+leaf-average identity to build a residual-independent refer-
+ence kernel, whose rank and minimum positive eigenvalue
+diagnose how the candidate-induced geometry changes with
+the split-candidate budget. We do not claim that this refer-
+ence kernel exactly describes adaptive GBDT training; its
+relevance to adaptive training is tested empirically below.
+Tree view
+At iteration t, a tree structure νt partitions the input space
+into leaves Lνt. We write the weak learner ht as hνt
+when emphasizing this selected tree structure, and write
+nνt,ℓ(X) = #{i : xi ∈ℓ} for the number of training points
+in leaf ℓ. In the idealized squared-loss update without leaf
+regularization, the whole tree update is
+hνt(x) =
+X
+ℓ∈Lνt
+ 
+1
+nνt,ℓ(X)
+X
+i:xi∈ℓ
+rt,i
+!
+1{x ∈ℓ},
+(1)
+and boosting updates ft+1 = ft + εhνt. With leaf regu-
+larization or second-order objectives, the same leaf-support
+representation is retained, with weighted or shrunken leaf
+values. Thus the split-candidate set controls which leaf re-
+gions can be selected at each update, while the number of
+boosting rounds controls how many updates are taken.
+Feature view
+The feature view keeps the same leaf regions but changes
+the indexing. Fix the tree depth L and a split-candidate set
+SC. Let PC,L be the root-to-leaf path dictionary available to
+depth-L trees under SC. A path p ∈PC,L is a conjunction of
+threshold outcomes and defines the path feature
+ψp(x) = 1{x follows path p}.
+Boosting selects only a few such features at each step. If
+p(νt, ℓ) denotes the path defining leaf ℓ, then one update is
+sparse in the ambient path dictionary:
+ft+1(x) = ft(x) + ε
+X
+p∈PC,L
+∆θt,pψp(x),
+Tree View
+Feature View
+✔
+✖
+✔
+Iteration 1
+Iteration 2
+Iteration 3
+Kernel View
+Feature Engineering
+(All possible root-to-leaf splits)
+Sparse stagewise update by tree leaves
+Overparameterization by increasing 
+possible root-to-leaf patterns
+Input
+Output
+…
+Residual
+Iteration 1
+Residual
+Residual
+Iteration 3
+Iteration 2
+Figure 2: Tree, feature, and kernel views of GBDT training.
+where
+∆θt,p =
+
+
+
+
+
+P
+i:xi∈ℓrt,i
+nνt,ℓ(X) ,
+p = p(νt, ℓ) for some ℓ∈Lνt,
+0,
+otherwise.
+As illustrated in Figure 2, split-candidate scaling plays a
+role analogous to model width in this feature view. Increasing
+the split-candidate budget enlarges the ambient path dictio-
+nary from which boosting selects its updates, while a depth-L
+tree still uses at most |Lνt| ≤2L path features in any one
+step. Thus the number of available update directions grows
+while each update remains sparse. As in other feature-based
+models, expanding this ambient width through the sample
+scale creates a natural setting in which double-descent be-
+havior can arise.
+To turn this width analogy into a scale that can be com-
+pared with the sample size, we introduce an ambient di-
+mension proxy for the path-feature space. Suppose feature j
+has Cj candidate thresholds. Repeated tests on one feature
+remain in its Cj-dimensional nonconstant threshold span be-
+cause their conjunction reduces to an interval or half-line
+indicator. A depth-L path can combine threshold directions
+
+
+--- page 4 ---
+from at most L distinct features. We therefore define the
+ambient path-span proxy
+DL(C) =
+X
+S⊆{1,...,d}
+|S|≤L
+Y
+j∈S
+Cj,
+where the empty product accounts for the constant direction.
+The quantity DL(C) is an ambient upper bound on the path-
+feature dimension, not a count of paths, trees, or leaves. On
+a training sample of size n, the realized rank is at most
+min{n, DL(C)} and can be smaller when path indicators are
+zero or linearly dependent. We therefore use DL(C) ≈n
+only as a reference point for the sample-scale transition; the
+kernel view below examines the realized rank and spectrum
+directly.
+Kernel view
+The feature view gives an ambient width proxy. To study
+the geometry realized on the training sample, we express
+the leaf-average update in Equation (1) as a kernel oper-
+ator on the residual vector. For X = (x1, . . . , xn) and a
+tree ν, let nν,ℓ(X) be the number of training points in leaf
+ℓ, and let LX(ν) = {ℓ: nν,ℓ(X) > 0}. Following the
+fixed tree-kernel construction of Ustimenko, Beliakov, and
+Prokhorenkova (2023), define
+kν,X(x, x′) =
+X
+ℓ∈LX(ν)
+n
+nν,ℓ(X)1{x ∈ℓ}1{x′ ∈ℓ}.
+Leaves empty on X are omitted. This kernel is positive
+semidefinite, with leaf features
+p
+n/nν,ℓ(X)1{x ∈ℓ}, and
+its scaling reproduces the leaf-average update. If z lies in an
+occupied leaf ℓ, then
+1
+n
+X
+i
+kν,X(z, xi)rt,i =
+1
+nν,ℓ(X)
+X
+i:xi∈ℓ
+rt,i.
+Thus
+hν(z) = 1
+nkν,X(z, X)rt,
+which expresses the tree update as a finite-sample kernel
+expansion over the training residuals.
+To form a reference kernel, we average these single-tree
+kernels over a distribution πC from which trees are sampled
+independently of the residuals:
+KC,X(x, x′) = Eν∼πC[kν,X(x, x′)],
+Kij = KC,X(xi, xj)
+(1 ≤i, j ≤n).
+Here KC,X is the averaged kernel function, while K denotes
+its empirical Gram matrix on the training sample. Because
+πC does not depend on rt, K is fixed, and the expected tree
+update is
+Eν∼πC[hν(z) | ft] = 1
+nKC,X(z, X)(y −ft(X)).
+On the training sample, the corresponding ridge-shrunk up-
+date is
+E[ft+1(X) | ft] = ft(X) + ε
+n{K(y −ft(X)) −λft(X)}.
+This is kernel gradient descent (KGD) on the fixed reference
+kernel. At stationarity,
+K(y −f ∗(X)) −λf ∗(X) = 0.
+Thus, the fitted vector has the kernel ridge regression (KRR)
+form
+f ∗(X) = K(K + λI)−1y,
+α∗= (K + λI)−1y.
+Here, the fixed-kernel construction is a residual-independent
+reference endpoint, not an assumption that standard GB-
+DTs select trees independently of the residuals. Nevertheless,
+it is connected to ordinary boosting through the random-
+ized split-selection framework of Ustimenko, Beliakov, and
+Prokhorenkova (2023). At finite random strength, residual-
+dependent split scores still influence the tree distribution
+and induce an ft-dependent greedy kernel. As the random
+strength increases, this dependence weakens and the tree dis-
+tribution approaches a residual-independent reference distri-
+bution. Fixed-kernel KGD and KRR therefore provide a con-
+trolled setting for isolating candidate-induced geometry. The
+spectral analysis below develops predictions in this reference
+setting, and the experiments test whether they persist under
+residual-dependent tree construction.
+The eigenspectrum of K provides a finite-sample diag-
+nostic for double descent. In the standard spectral view of
+double descent, test error can peak as the empirical fea-
+ture dimension approaches the sample size, especially when
+weak regularization makes the fit sensitive to directions
+with small positive eigenvalues (Belkin et al. 2019; Hastie
+et al. 2022; Mei and Montanari 2022). For the eigenvalues
+µi(C) of K, we report rank(K) = #{i : µi > τeig} and
+µ+
+min = min{µi : µi > τeig}, with τeig = 10−10 for numer-
+ical stability in the eigendecompositions. These quantities
+measure the number of directions realized on the training
+sample and the strength of the weakest nonzero direction,
+respectively.
+Experiments
+Our experiments test whether split-candidate scaling pro-
+duces an intermediate-budget test-error peak associated with
+empirical rank growth and small positive kernel eigenval-
+ues. The experimental design combines fixed-kerneldiagnos-
+tics with adaptive tree ensembles to distinguish candidate-
+induced geometry from residual-dependent boosting dynam-
+ics.
+Setup
+We summarize the main experimental setup below; full de-
+tails are provided in Appendix.
+Split-candidate controls.
+We use two interfaces exposed
+directly by CatBoost to control the candidate set.1 Through-
+out, split-candidate budget denotes the general capacity con-
+trol; M is the exact total split-candidate count, whereas B
+is CatBoost’s native per-feature border budget. The native
+interface uses the per-feature border_count value B and
+1https://catboost.ai/docs/en/references/training-parameters/
+
+
+--- page 5 ---
+lets CatBoost construct the borders, whereas the custom in-
+terface uses an input_borders file to supply the borders
+explicitly. For the latter, let CM denote the candidate con-
+figuration formed by the first M feature-border pairs in a
+nested ordering; by construction, |SCM | = M. Both controls
+enlarge the split-candidate budget, but M is the primary axis
+for testing the theory because its candidate configurations
+form monotone prefixes; B provides a comparison with Cat-
+Boost’s native scalar control.
+Datasets.
+We use the scikit-learn (Pedregosa et al. 2011)
+California Housing dataset, derived from the housing data
+of Pace and Barry (1997), as the primary testbed for the
+reference-kernel diagnostics, controlled ablations, training-
+time analysis, and cross-library comparison. The dataset con-
+tains 20,640 rows and 8 numerical features. To assess cross-
+dataset robustness, we additionally evaluate 18 regression
+datasets with only numerical features from TabularBench-
+mark (Grinsztajn, Oyallon, and Varoquaux 2022); the full
+dataset list is provided in Table 1 in Appendix.
+Evaluation protocol.
+For the California Housing experi-
+ments, unless a panel varies sample size or depth, we use
+ntrain = 1000, ntest = 10000, and tree depth L = 2. The
+TabularBenchmark robustness sweep uses ntrain = 1000,
+ntest = 5000, and L = 2; the smaller test split allows the
+same protocol to cover all 18 datasets. Unless otherwise
+stated, we use five resampled training–test splits, a learn-
+ing rate of 0.3, and up to 106 CatBoost iterations. For each
+repeat, the candidate pool and nested candidate ordering are
+rebuilt from the corresponding training split. Features remain
+on their original scales because tree split candidates depend
+only on within-feature order. Targets are standardized within
+each repeat using the training-split mean and standard devia-
+tion, and the same transform is applied to the test targets. For
+a fitted predictor f, we report the root mean squared error
+(RMSE).
+CatBoost configurations.
+For CatBoost sweeps, we com-
+pare two profiles. The diagnostic profile, CatBoost (diag-
+nostic), is designed to approximate the residual-independent
+reference-kernel regime. It uses symmetric trees, plain boost-
+ing, zero leaf L2 regularization, and random_strength
+= 106; at this scale, the injected noise dominates residual-
+dependent differences among split scores, making split selec-
+tion effectively random. It also uses constant model shrink-
+age at rate λ/ntrain, with λ = 10−5. The default profile,
+CatBoost (default), fixes the split borders, depth, learning
+rate, iteration count, and random seed; model shrinkage, leaf
+L2 regularization, and the remaining boosting choices are
+left at CatBoost defaults; split selection therefore remains
+driven by residual-dependent scores.
+Results
+We report the results in four stages. We first compare Cat-
+Boost with the fixed-kernel KGD/KRR diagnostics, and then
+test the predicted depth and sample-size shifts together with
+label-noise and cross-library controls. We next examine how
+the peak emerges over training time, and finally assess its
+recurrence across TabularBenchmark datasets.
+0.0
+0.5
+1.0
+1.5
+2.0
+2.5
+3.0
+3.5
+RMSE
+0
+500
+1000
+rank(K)
+1
+2
+4
+8
+16
+32
+B
+10
+−5
+10
+−3
+10
+−1
+μ
++
+min
+8
+16
+32
+64
+128
+256
+M
+CatBoost (diagnostic)
+CatBoost (default)
+KRR
+KGD
+Figure 3: Reference-kernel diagnostics for native border bud-
+get B and nested input_borders size M. Top-row solid
+and dashed curves denote test and training RMSE, respec-
+tively; the dash-dotted KGD reference is shown for test only.
+Insets zoom in on the CatBoost/KGD test RMSE range, while
+the lower rows show empirical kernel rank and µ+
+min of the
+same empirical kernel. Vertical dotted lines mark the ambi-
+ent path-span crossings.
+Reference-kernel diagnostics.
+The first experiment tests
+whether the fixed reference-kernel picture is visible on the
+native B and nested M axes. Figure 3 compares CatBoost (di-
+agnostic), CatBoost (default), finite-time KGD, and KRR, to-
+gether with the empirical kernel rank and µ+
+min. On both axes,
+finite-time KGD closely tracks CatBoost (diagnostic), with
+peaks near the ambient path-span crossing; training RMSE is
+already close to zero in this region. CatBoost (default) shows
+that the peak remains visible under residual-dependent split
+selection. Near the peak, rank(K) approaches n and µ+
+min
+drops by several orders of magnitude; on the larger-budget
+tail, the rank saturates and µ+
+min rises again. KRR peaks more
+sharply near the same crossing, as expected for a stationary
+ridge fit that uses directions associated with small positive
+eigenvalues. Finite-time KGD and boosting fit these direc-
+tions only gradually. The alignment of the error peaks with
+the accompanying rank and eigenvalue changes supports the
+proposed spectral account.
+Ablations.
+Figure 4 applies four interventions to Califor-
+nia Housing. The first two test predicted shifts in peak loca-
+tion, the third tests whether label noise makes the peak more
+visible, and the fourth tests both transfer across GBDT im-
+plementations and a non-boosting control. Panels A–C use
+the nested M sweep and compare the effectively randomized
+split selection of CatBoost (diagnostic), which approximates
+the reference-kernel regime, with the residual-driven split se-
+
+
+--- page 6 ---
+8
+16
+32
+64
+128
+256
+M
+0.5
+1.0
+1.5
+2.0
+RMSE
+A
+Depth sweep
+tree depth L
+2
+3
+4
+8
+16
+32
+64
+128
+256
+M
+B
+Dataset size sweep
+ntrain
+500
+1000
+2000
+8
+16
+32
+64
+128
+256
+M
+C
+Label noise sweep
+label swap
+0% swapped
+10% swapped
+20% swapped
+1
+2
+4
+8
+16
+32
+B
+D
+Tree-ensemble sweep
+method
+CatBoost
+XGBoost
+LightGBM
+Random Forest
+CatBoost profiles (A-C)
+CatBoost (diagnostic)
+CatBoost (default)
+Figure 4: California Housing test RMSE sweeps across depth, sample size, label noise, and tree-ensemble algorithm, with panels
+A–C comparing CatBoost profiles; panel D compares three GBDT libraries and a random-forest control (Breiman 2001) as B
+varies. Fixed settings are ntrain = 1000 for panels A, C, and D and tree depth L = 2 for panels B–D.
+lection of CatBoost (default). Panel D instead compares the
+native per-feature controls of three GBDT libraries alongside
+a random-forest control across B.
+Panels A and B test peak location on the nested
+input_borders axis M. For each nested configura-
+tion, |SCM | = M; hence, M is exactly the total split-
+candidate count. Substituting the balanced-count approxi-
+mation Cj ≈M/d into the path-span proxy gives
+DL(CM) ≈
+L
+X
+r=0
+d
+r
+ M
+d
+r
+.
+The reference crossing is DL(CM) ≈ntrain. Increasing
+depth adds higher-order path directions and therefore moves
+the crossing to smaller M, whereas increasing the training-
+set size raises the target dimension and moves it to larger M.
+As predicted, deeper trees peak at smaller M in Panel A,
+while larger training sets peak at larger M in Panel B. The
+reported crossing is the first integer value of M satisfying
+DL(CM) ≥ntrain.
+Panel C tests peak visibility by increasing the training-
+label swap rate. Because label corruption changes neither the
+candidate configuration nor the sample size, the proposed
+mechanism predicts a change in peak prominence rather
+than location. Accordingly, the peak remains in roughly the
+same range of split-candidate budgets but becomes more pro-
+nounced as the swap rate increases. This pattern suggests that
+label noise amplifies the contribution of variance-sensitive
+directions near the peak.
+Panel D tests cross-library robustness. XGBoost, Light-
+GBM, and CatBoost all exhibit an interior peak. Its recur-
+rence across independently developed implementations sug-
+gests that the phenomenon is not library-specific, but is a
+broader feature of GBDTs under split-candidate scaling. As
+a secondary non-boosting control, random-forest test RMSE
+decreases monotonically over the evaluated range. This con-
+trast reflects the difference between direct forest averaging
+and inverse-kernel fitting: a forest directly averages leaf tar-
+gets, whereas KRR uses α∗= (K + λI)−1y and fixed-
+kernel KGD approaches that solution through residual iter-
+ation. Small eigenvalues are therefore not inverse-weighted
+under forest averaging. Although this comparison does not
+8
+16
+32
+64
+128
+256
+M
+10
+100
+1k
+10k
+100k
+1M
+iterations (log scale)
+depth=2
+0.6
+0.8
+1.0
+1.2
+RMSE
+Figure 5: CatBoost (default) test RMSE over split-candidate
+count M and training checkpoint; color encodes RMSE.
+establish causality, it suggests that enlarging the candidate
+dictionary alone is insufficient. Together, these results point
+to an interaction between candidate-induced geometry and
+boosting dynamics.
+Training-time emergence.
+Figure 5 tracks the emergence
+of the split-candidate peak over training by evaluating fixed
+CatBoost checkpoints along the same M axis. At small
+iteration counts, no pronounced double-descent peak is
+visible. As training proceeds, a clear intermediate-budget
+peak emerges. This time dependence accords with the ker-
+nel view: unlike closed-form KRR, which incorporates
+all nonzero eigendirections, finite-time boosting fits the
+variance-sensitive, small-eigenvalue directions only gradu-
+ally. This training-time emergence parallels neural-network
+studies in which different components are learned at differ-
+ent rates (Heckel and Yilmaz 2021; Pezeshki et al. 2022).
+From the effective-model-complexity viewpoint, early stop-
+ping before interpolation can prevent double descent from
+becoming visible (Nakkiran et al. 2020).
+Dataset robustness.
+Figure 6 reports the robustness sweep
+over the 18 TabularBenchmark regression datasets with only
+numerical features, testing whether double descent under
+split-candidate scaling extends beyond the primary Califor-
+nia Housing experiments. KRR exhibits the clearest double-
+descent peaks across datasets, and the CatBoost profiles show
+smoother intermediate-budget peaks in roughly the same
+ranges of split-candidate budgets. This pattern agrees with
+
+
+--- page 7 ---
+8
+16
+32
+64
+128 256
+0
+1
+2
+RMSE
+Ailerons
+8
+16
+32
+64
+128 256
+0
+2
+4
+Bike_Sharing_Demand
+8
+16
+32
+64
+128 256
+0.0
+0.2
+0.4
+0.6
+Brazilian_houses
+8
+16
+32
+64
+128 256
+0
+1
+2
+cpu_act
+8
+16
+32
+64
+128 256
+2
+4
+delays_zurich_transport
+8
+16
+32
+64
+128 256
+0.2
+0.4
+0.6
+diamonds
+8
+16
+32
+64
+128 256
+0
+2
+4
+RMSE
+elevators
+8
+16
+32
+64
+128 256
+0
+1
+2
+house_16H
+8
+16
+32
+64
+128 256
+0
+2
+4
+house_sales
+8
+16
+32
+64
+128 256
+0
+2
+4
+houses
+8
+16
+32
+64
+128 256
+0.0
+0.2
+0.4
+medical_charges
+8
+16
+32
+64
+128 256
+0.0
+0.5
+1.0
+1.5
+MiamiHousing2016
+8
+16
+32
+64
+128 256
+M
+0
+2
+4
+RMSE
+nyc taxi green dec 2016
+8
+16
+32
+64
+128 256
+M
+0.0
+0.5
+1.0
+pol
+8
+16
+32
+64
+128 256
+M
+0
+1
+2
+3
+sulfur
+8
+16
+32
+64
+128 256
+M
+0
+1
+2
+3
+superconduct
+8
+16
+32
+64
+128 256
+M
+0
+5
+10
+wine_quality
+8
+16
+32
+64
+128 256
+M
+0
+2
+4
+6
+yprop_4_1
+CatBoost (ctl)
+CatBoost (std)
+KRR
+KGD
+Figure 6: TabularBenchmark split-candidate sweeps. Solid curves show test RMSE, dashed curves show training RMSE when
+reported, and dash-dotted curves show the KGD test reference. Main axes overlay CatBoost (diagnostic), CatBoost (default),
+KRR, and KGD; insets zoom in on the CatBoost test RMSE range.
+the proposed mechanism, under which small-eigenvalue di-
+rections are expressed gradually.
+We assessed cross-dataset robustness for CatBoost (de-
+fault) and KRR using a post-hoc five-fold cross-fit over re-
+peats. In each fold, four repeats selected the pair Mv <
+Mp < Mmax maximizing the mean rise RMSE(Mp) −
+RMSE(Mv); the held-out repeat measured that rise and
+the subsequent decline to Mmax. Fold measurements were
+averaged into one contrast pair per dataset. Across the 18
+datasets, exact one-sided Wilcoxon signed-rank tests as-
+sessed each contrast; the larger p-value formed the method-
+level intersection-union test, followed by Holm correction
+across the two methods. Both contrasts were positive on all
+18 datasets. Median rise and decline were 0.402/0.462 for
+CatBoost (default) and 1.886/1.879 for KRR. The Holm-
+adjusted intersection-union p-value was 7.63 × 10−6 for
+each method, providing statistically significant evidence that
+both the intermediate peak and subsequent descent are robust
+across datasets.
+Peak location nevertheless varies because nominal dictio-
+nary growth need not match growth in realized data parti-
+tions. Feature correlations can create redundant partitions,
+while uneven bin occupancy creates sparse cells and finite-
+sample collisions. Consequently, empirical rank growth, the
+spectral transition, and the error peak are dataset-dependent.
+A detailed analysis is provided in Appendix.
+Discussion and Conclusion
+The split-candidate budget is an operational capacity axis for
+GBDTs: it expands the root-to-leaf path dictionary while
+holding depth, ensemble size, and the leaf-count bound
+fixed. Across experiments, intermediate peaks align with
+noise-sensitive small-eigenvalue directions. The monotone
+random-forest control shows, however, that dictionary ex-
+pansion alone is insufficient: its interaction with the boosting
+algorithm is essential to the observed double descent. To-
+gether, the tree, feature, and kernel views trace this capacity
+intervention from finer admissible partitions, through an ex-
+panding path-feature dictionary, to the noise-sensitive spec-
+tral directions associated with the intermediate peak. Peak
+locations vary with sample size and dataset geometry, but
+the pattern recurs across fixed-kernel diagnostics, residual-
+dependent boosting, and heterogeneous tabular datasets, dis-
+tinguishing it from an implementation-specific artifact.
+A long interval separates the initial report of GBDT double
+descent in Belkin et al. (2019) from the present demonstration
+that it can arise under a single, consistent capacity interven-
+tion. One likely reason is that grid refinement appears to be a
+computational setting and leaves tree-level parameter counts
+unchanged. Only in the induced feature/kernel representation
+does grid refinement become recognizable as an analogue of
+parameter scaling: it expands the dictionary of admissible di-
+rections and can increase empirical rank. By identifying this
+previously hidden capacity axis, this paper demonstrates that
+double descent can arise in GBDTs through split-candidate
+scaling under a single, consistent capacity intervention, with
+depth, ensemble size, and the leaf-count bound held fixed.
+More broadly, this result shows that an implementation-level
+control can induce a genuine change in model expressivity.
+Recognizing such hidden capacity axes may help uncover
+related generalization transitions in other learning systems.
+
+
+--- page 8 ---
+References
+Belkin, M.; Hsu, D.; Ma, S.; and Mandal, S. 2019. Rec-
+onciling Modern Machine-Learning Practice and the Clas-
+sical Bias–Variance Trade-Off. Proceedings of the National
+Academy of Sciences, 116(32): 15849–15854.
+Belkin, M.; Hsu, D.; and Xu, J. 2020. Two Models of Double
+Descent for Weak Features. SIAM Journal on Mathematics
+of Data Science, 2(4): 1167–1180.
+Breiman, L. 2001. Random Forests. Machine Learning,
+45(1): 5–32.
+Chen, T.; and Guestrin, C. 2016. XGBoost: A Scalable Tree
+Boosting System. In Proceedings of the 22nd ACM SIGKDD
+International Conference on Knowledge Discovery and Data
+Mining, 785–794.
+Curth, A.; Jeffares, A.; and van der Schaar, M. 2023. A
+U-Turn on Double Descent: Rethinking Parameter Counting
+in Statistical Learning. In Advances in Neural Information
+Processing Systems 36, 55932–55962.
+Friedman, J. H. 2001. Greedy Function Approximation: A
+Gradient Boosting Machine. The Annals of Statistics, 29(5):
+1189–1232.
+Fu, F.; Jiang, J.; Shao, Y.; and Cui, B. 2019. An Experimental
+Evaluation of Large Scale GBDT Systems. Proceedings of
+the VLDB Endowment, 12(11): 1357–1370.
+Geurts, P.; Ernst, D.; and Wehenkel, L. 2006. Extremely
+Randomized Trees. Machine Learning, 63(1): 3–42.
+Grinsztajn, L.; Oyallon, E.; and Varoquaux, G. 2022. Why
+Do Tree-Based Models Still Outperform Deep Learning on
+Typical Tabular Data? In Advances in Neural Information
+Processing Systems 35, 507–520.
+Hastie, T.; Montanari, A.; Rosset, S.; and Tibshirani, R. J.
+2022.
+Surprises in High-Dimensional Ridgeless Least
+Squares Interpolation. The Annals of Statistics, 50(2): 949–
+986.
+Heckel, R.; and Yilmaz, F. F. 2021. Early Stopping in Deep
+Networks: Double Descent and How to Eliminate It.
+In
+International Conference on Learning Representations.
+Holzmüller, D. 2021. On the Universality of the Double De-
+scent Peak in Ridgeless Regression. In International Con-
+ference on Learning Representations.
+Ke, G.; Meng, Q.; Finley, T.; Wang, T.; Chen, W.; Ma, W.;
+Ye, Q.; and Liu, T.-Y. 2017. LightGBM: A Highly Efficient
+Gradient Boosting Decision Tree. In Advances in Neural
+Information Processing Systems 30, 3146–3154.
+Mei, S.; and Montanari, A. 2022. The Generalization Error
+of Random Features Regression: Precise Asymptotics and
+the Double Descent Curve. Communications on Pure and
+Applied Mathematics, 75(4): 667–766.
+Nakkiran, P.; Kaplun, G.; Bansal, Y.; Yang, T.; Barak, B.;
+and Sutskever, I. 2020. Deep Double Descent: Where Bigger
+Models and More Data Hurt. In International Conference
+on Learning Representations.
+Pace, R. K.; and Barry, R. 1997. Sparse Spatial Autoregres-
+sions. Statistics & Probability Letters, 33(3): 291–297.
+Pedregosa, F.; Varoquaux, G.; Gramfort, A.; Michel, V.;
+Thirion, B.; Grisel, O.; Blondel, M.; Prettenhofer, P.; Weiss,
+R.; Dubourg, V.; Vanderplas, J.; Passos, A.; Cournapeau, D.;
+Brucher, M.; Perrot, M.; and Duchesnay, E. 2011. Scikit-
+learn: Machine Learning in Python. Journal of Machine
+Learning Research, 12(85): 2825–2830.
+Pezeshki, M.; Mitra, A.; Bengio, Y.; and Lajoie, G. 2022.
+Multi-scale Feature Learning Dynamics: Insights for Double
+Descent. In Proceedings of the 39th International Confer-
+ence on Machine Learning, volume 162 of Proceedings of
+Machine Learning Research, 17669–17690. PMLR.
+Prokhorenkova, L.; Gusev, G.; Vorobev, A.; Dorogush, A. V.;
+and Gulin, A. 2018. CatBoost: Unbiased Boosting with Cat-
+egorical Features. In Advances in Neural Information Pro-
+cessing Systems 31, 6638–6648.
+Rahimi, A.; and Recht, B. 2007. Random Features for Large-
+Scale Kernel Machines. In Advances in Neural Information
+Processing Systems 20, 1177–1184.
+Ustimenko, A.; Beliakov, A.; and Prokhorenkova, L. 2023.
+Gradient Boosting Performs Gaussian Process Inference. In
+International Conference on Learning Representations.
+Vanschoren, J.; van Rijn, J. N.; Bischl, B.; and Torgo, L.
+2014. OpenML: Networked Science in Machine Learning.
+SIGKDD Explorations Newsletter, 15(2): 49–60.
+
+
+--- page 9 ---
+Details of Experimental Setup
+This section material gives the full experimental protocol
+and implementation details for the reported figures, including
+settings summarized in the main text.
+Datasets and Evaluation Protocol
+Datasets.
+California Housing is the primary testbed for
+reference-kernel diagnostics, ablations, training-time analy-
+sis, and cross-library comparison. We use the scikit-learn
+version (Pedregosa et al. 2011), derived from the data of
+Pace and Barry (1997), with 20,640 rows and 8 numerical
+features. Cross-dataset robustness uses the 18 all-numerical
+regression datasets from TabularBenchmark (Grinsztajn, Oy-
+allon, and Varoquaux 2022) in Table 1. The table reports the
+original size nfull, feature count d, and OpenML (Vanschoren
+et al. 2014) identifier for each dataset.
+Table 1: Summary of TabularBenchmark (Grinsztajn, Oyal-
+lon, and Varoquaux 2022) datasets used in the robustness
+experiments.
+Dataset
+nfull
+d
+Source
+Ailerons
+13,750
+33 OpenML 44137
+Bike_Sharing_Demand
+17,379
+6 OpenML 44142
+Brazilian_houses
+10,692
+8 OpenML 44141
+cpu_act
+8,192
+21 OpenML 44132
+delays_zurich_transport 5,465,575 8 OpenML 45034
+diamonds
+53,940
+6 OpenML 44140
+elevators
+16,599
+16 OpenML 44134
+house_16H
+22,784
+16 OpenML 44139
+house_sales
+21,613
+15 OpenML 44144
+houses
+20,640
+8 OpenML 44138
+medical_charges
+163,065
+3 OpenML 44146
+MiamiHousing2016
+13,932
+13 OpenML 44147
+nyc-taxi-green-dec-2016 581,835
+9 OpenML 44143
+pol
+15,000
+26 OpenML 44133
+sulfur
+10,081
+6 OpenML 44145
+superconduct
+21,263
+79 OpenML 44148
+wine_quality
+6,497
+11 OpenML 44136
+yprop_4_1
+8,885
+42 OpenML 45032
+Data splits and normalization.
+For each repeat, the ex-
+periment seed permutes the rows; the first ntrain form the
+training set and the next ntest the held-out test set. Un-
+less sample size or depth is varied, California Housing uses
+ntrain = 1000, ntest = 10000, and L = 2. TabularBench-
+mark uses ntrain = 1000, ntest = 5000, and L = 2, al-
+lowing the same protocol for all 18 datasets. Numerical
+features remain on their original scales because splits de-
+pend only on within-feature order. Targets are standardized
+by the training-target mean and standard deviation, with the
+same transformation applied to the test targets. For a fit-
+ted predictor f, we report root mean squared error (RMSE),
+RMSE =
+q
+n−1
+test
+Pntest
+i=1 (f(xi) −yi)2, where yi is the stan-
+dardized test target. Reported RMSE values are therefore in
+standardized target units. We use RMSE because it matches
+the squared-error training objective and expresses prediction
+errors on the same standardized scale across datasets.
+Repeats and aggregation.
+Unless otherwise stated, curves
+average five repeats derived from base seed 42. Each repeat
+uses a fresh training–test split and rebuilds its candidate pool
+and nested ordering. Tables and figures report means; shaded
+bandsand errorcolumnsshow onestandarddeviation.Within
+each repeat, CatBoost, KRR, KGD, and the spectral diagnos-
+tics share the split and candidate ordering.
+Split-Candidate Budgets and Construction
+Split-candidate controls.
+We use two CatBoost interfaces
+to control the candidate set. The native interface sets the
+per-feature border_count B and constructs the borders;
+the custom interface reads an input_borders file. For
+the latter, CM contains the first M feature-border pairs in a
+nested ordering, so |SCM | = M. This exact M axis is the pri-
+mary theory-facing intervention; the native B axis provides
+a comparison with the libraries’ per-feature controls.
+Sweep grids and checkpoints.
+The experiments use the
+following fixed grids.
+• The dense nested-M grid used for the nested-axis
+reference-kernel, training-time, and large-sample experi-
+ments is 8, 9, 10, 11, 12, 13, 15, 16, 18, 20, 22, 25, 28,
+30, 34, 37, 42, 46, 51, 57, 63, 69, 77, 85, 95, 105, 116,
+129, 143, 158, 175, 194, 216, 239, and 256.
+• The reduced nested-M grid used for the controlled depth,
+sample-size, and noise sweeps and for TabularBenchmark
+is 8, 10, 12, 15, 18, 22, 28, 34, 42, 51, 63, 77, 95, 116,
+143, 175, 216, and 256.
+• The shared native-B grid used for the reference-kernel
+and tree-ensemble comparisons is 1, 2, 3, 4, 5, 6, 7, 8, 9,
+10, 11, 12, 13, 14, 16, 20, 24, and 32.
+• The training-time checkpoints are boosting iteration
+counts sk = round(101+k/4), k = 0, . . . , 20, which di-
+vide each decade from 10 to 106 into four equal log-scale
+intervals: 10, 18, 32, 56, 100, 178, 316, 562, 1,000, 1,778,
+3,162, 5,623, 10,000, 17,783, 31,623, 56,234, 100,000,
+177,828, 316,228, 562,341, and 1,000,000.
+• The supplementary spectral and KRR analyses use a lo-
+cally refined nested-M grid with values 8, 10, 12, 15, 18,
+22, 28, 32, 34, 36, 38, 40, 42, 44, 45, 46, 47, 48, 49, 50,
+51, 52, 53, 54, 55, 56, 57, 59, 63, 77, 95, 116, 143, 175,
+216, and 256.
+These grids were fixed before repeat aggregation. All grid
+values were evaluated as sweep points rather than selected as
+a final operating point by test performance.
+Split-candidate
+construction.
+For
+each
+input_borders
+experiment
+and
+numerical
+feature
+j, let uj,1 < · · · < uj,qj be the sorted unique training values.
+We enumerate
+bj,k = uj,k + uj,k+1
+2
+,
+k = 1, . . . , qj −1,
+and retain all such borders. No training value lies within a
+consecutive-value gap, so its midpoint canonically represents
+the corresponding effective split. The complete feature-wise
+lists are fixed before the M sweep. We order the result-
+ing feature-border pairs, write the first M to a CatBoost
+
+
+--- page 10 ---
+input_borders file, and thereby obtain nested sets that
+only grow with M. On the native border_count axis, we
+train at the specified B, extract the fitted borders, and reuse
+them for the external diagnostics.
+Round-robin candidate prefixes.
+After enumerating the
+feature-wise lists, a balanced midpoint-refinement rule or-
+ders each list by selecting the candidate nearest the median
+rank and recursing on the left and right sublists. It creates no
+new borders; candidates at each refinement level are seed-
+permuted. Each round-robin cycle also seed-permutes the
+available features before appending their next candidates.
+This preserves broad feature coverage and coarse-to-fine re-
+finement while randomizing both feature and within-feature
+order.
+Progressive feature activation.
+The TabularBenchmark
+sweeps in Figure 6 use progressive feature activation so that
+M can be smaller than the feature count d. Each repeat per-
+mutes the features. For M < d, only the first M are active,
+with one effective split each; for M ≥d, all are active and the
+standard round-robin prefix is used. This protocol is limited
+to the broad robustness sweeps and associated diagnostics.
+Reference-Kernel Diagnostics
+External random-tree kernel.
+The random-tree diagnos-
+tic uses the same candidate set as the corresponding CatBoost
+run but samples tree structures independently of the residu-
+als. Each sampled tree is an oblivious tree of the specified
+depth. To sample a tree, we group split candidates by feature.
+At each depth, we uniformly select a feature with unused can-
+didates and then uniformly select an unused candidate from
+that feature. A split candidate is not reused within a tree,
+whereas complete tree structures are sampled with replace-
+ment. This procedure produces a fixed random-tree distri-
+bution for each split-candidate budget, separating candidate-
+induced geometry from CatBoost’s adaptive split selection.
+In the reported diagnostics, we draw 106 random-tree struc-
+tures, matching the maximum number of CatBoost iterations.
+Exact duplicates are aggregated before kernel construction,
+so the empirical kernel may be constructed from fewer than
+106 unique tree structures.
+Kernel normalization, KGD, and KRR.
+For a sampled
+tree, training points in the same leaf define a normalized leaf
+kernel. Gram-matrix entries for points in the same leaf equal
+n/nν,ℓ(X), so multiplication by K/n returns the average
+residual in that leaf. The empirical random-tree kernel is the
+average of these normalized leaf kernels over the sampled
+tree structures. Kernel ridge regression uses dual coefficients
+α∗= (K + λI)−1y, with λ = 10−5. Finite-time kernel
+gradient descent uses the same λ, learning rate, and iteration
+count as CatBoost (diagnostic) under the fixed-kernel update
+defined in the kernel view. For numerical stability, kernel
+rank and minimum positive eigenvalue treat eigenvalues at
+or below τeig = 10−10 as zero, preventing floating-point
+roundoff from being classified as a positive eigenvalue. These
+diagnostics and the KGD/KRR predictions are all computed
+from this empirical kernel.
+Model Profiles and Experimental Sweeps
+Common optimization settings.
+The learning rate is 0.3,
+and the final ensembles use 106 boosting iterations unless a
+training-time checkpoint is being evaluated. The controlled
+CatBoost experiments compare the diagnostic and default
+profiles described below at the same depth, candidate con-
+figuration, iteration count, learning rate, data split, and ran-
+dom seed. Unless an experiment explicitly varies one of these
+quantities, it uses the default ntrain = 1000, ntest = 10000,
+and L = 2 protocol stated above.
+CatBoost profiles.
+CatBoost (diagnostic) is the finite-
+time CatBoost profile designed to approximate the residual-
+independent random-tree diagnostic. It uses symmetric trees
+and plain boosting, with bootstrap, leaf-estimation back-
+tracking, and the initial average prediction disabled. We set
+loss_function to RMSE, score_function to L2,
+L2 leaf regularization to zero, random_strength to 106,
+and random_score_type to Gumbel. At this scale,
+the injected noise dominates residual-dependent differences
+among split scores and makes split selection effectively ran-
+dom. The profile also uses model shrinkage at a constant rate
+of λ/ntrain, with λ = 10−5. CatBoost (default) fixes only
+the split-candidate axis, depth, learning rate, iteration count,
+and random seed; it does not use the λ = 10−5 shrinkage of
+CatBoost (diagnostic). Model shrinkage, leaf L2 regulariza-
+tion, and CatBoost’s other training choices are left at their
+library defaults; split selection therefore remains driven by
+residual-dependent scores. The agreement between the exter-
+nal kernel and CatBoost (diagnostic) supports the proposed
+mechanism with respect to peak location and the associated
+spectral pattern; it does not imply identical training trajecto-
+ries.
+Controlled depth, sample-size, and noise sweeps.
+The
+depth panel evaluates L ∈{2, 3, 4} at ntrain = 1000. The
+sample-size panel evaluates ntrain ∈{500, 1000, 2000} at
+L = 2. The label-noise panel evaluates training-label swap
+fractions ρ ∈{0, 0.1, 0.2} at ntrain = 1000 and L = 2. All
+three panels use ntest = 10000, both CatBoost profiles, five
+resampled splits, and the reduced nested-M grid.
+Label-noise perturbations.
+For the label-noise sweep,
+corruption is applied only to the standardized training targets.
+Given a swap fraction ρ, we select round(ρntrain) training
+indices without replacement using the label-noise seed. The
+selected targets are then cyclically shifted within that subset;
+each corrupted target is replaced by another selected training
+target. Test targets are never corrupted.
+TabularBenchmark sweep.
+Each of the 18 TabularBench-
+mark datasets is evaluated with ntrain = 1000, ntest = 5000,
+L = 2, both CatBoost profiles, five resampled splits, the re-
+duced nested-M grid, and the progressive feature-activation
+protocol. The associated KRR, KGD, and spectral diagnos-
+tics use the same repeat-wise splits and candidate configura-
+tions.
+Tree-ensemble comparison protocol.
+The GBDT com-
+parison in Panel D sweeps the native per-feature controls
+of CatBoost, XGBoost, and LightGBM. We set CatBoost’s
+
+
+--- page 11 ---
+8
+16
+32
+64
+128
+256
+M
+0.5
+0.6
+0.7
+0.8
+0.9
+RMSE
+tree depth L
+2
+3
+4
+CatBoost (diagnostic)
+CatBoost (default)
+Figure 7: Large-sample California Housing sweep (ntrain =
+10000). Visualization conventions match panel A of Figure 4.
+border_count to B and the max_bin parameter of XG-
+Boost and LightGBM to B + 1. Across the three libraries,
+we fix the tree depth at L = 2, the ensemble size at 106, and
+the learning rate at 0.3, together with the random seed and
+threading controls. All other training parameters remain at
+their respective library defaults. For the random-forest con-
+trol, each feature is prequantized into at most B + 1 integer
+bins using B evenly spaced effective midpoints between ad-
+jacent unique training values. Test data are transformed using
+the same training-derived borders. We use 106 trees of depth
+2, matching the GBDT ensemble size and depth. Beyond
+these settings, we specify only the random seed and threading
+controls; all other random-forest hyperparameters remain at
+the scikit-learn defaults. Thus Panel D aligns the per-feature
+split-candidate budget while leaving the split grids and learn-
+ing algorithms specific to each method.
+Software and Hardware
+Libraries.
+All experiments use XGBoost version 3.3.0,
+LightGBM version 4.6.0, CatBoost version 1.2.10, and
+scikit-learn version 1.8.0.
+Computational resources.
+All experiments run on a work-
+station with an Intel Core i9-14900K CPU (24 cores and 32
+threads) and 128 GB of RAM. The workstation runs Ubuntu
+24.04.4 LTS.
+Large-Sample Experiment
+Figure 7 repeats panel A of Figure 4 at ntrain = ntest =
+10000, with all other experimental settings unchanged. Dou-
+ble descent remains visible across depths 2, 3, and 4 and both
+CatBoost profiles.
+Moving Peak Locations
+We test whether two label-free interventions move dataset-
+specific spectral transitions toward their geometric crossings
+by comparing the original data, each intervention alone, and
+their combination.
+Interventions.
+The Original condition uses the observed
+covariates. Under Independentized, each feature is permuted
+separately, removing the empirical copula while preserv-
+ing its marginal distribution, effective thresholds, and fea-
+ture allocation within the candidate prefix. This transfor-
+mation targets redundant partitions induced by dependent
+features. Under Unique ranks only, the correspondence of
+samples across features is preserved, but each marginal is
+replaced with unique empirical ranks. Ties are broken ran-
+domly, and candidates are placed at rank midpoints. This
+transformation balances candidate occupancy, avoids direc-
+tions associated with nearly empty leaves, and changes the
+induced partitions rather than merely relabeling feature val-
+ues. Independentized + ranks applies both transformations.
+All four conditions preserve the number of features and use
+the same feature-grouped depth-2 tree distribution, including
+repeated-feature split pairs. Seeds and transformations are
+fixed across datasets and are not tuned using Mµ. Because
+feature permutation removes the regression signal, the con-
+ditions involving feature permutation are used to diagnose
+geometry rather than to compare predictive performance.
+Experiments.
+We compare the observed transition Mµ =
+arg minM µ+
+min(KM) with the nominal crossing M0 =
+min{M : D2(CM) ≥n}. The proxy can fail when feature
+dependence makes split pairs redundant or occupancy skew
+creates nearly empty leaves. Feature permutation and unique
+ranking target these effects and should move Mµ toward M0.
+Across the 90 dataset–repeat combinations in Figure 8, the
+mean absolute offsets |Mµ −M0| are 24.6, 7.8, 4.4, and 0.74
+candidates for Original, Independentized, Unique ranks only,
+and Independentized + ranks, respectively. The combined in-
+tervention yields the closest alignment between Mµ and M0.
+Unique ranking has the larger effect for pol, whereas fea-
+ture permutation has the larger effect for diamonds and
+Ailerons, demonstrating distinct geometric effects. These
+spectral curves require neither labels nor fitted predictors.
+The KRR peaks in Figure 9 shift similarly: across the same
+90 combinations, the mean |MKRR −M0| values for the four
+conditions are 21.0, 8.2, 4.9, and 0.67, respectively, where
+MKRR denotes the interior test-RMSE maximum.
+
+
+--- page 12 ---
+8
+16
+32
+64
+128 256
+10
+−6
+10
+−3
+10
+0
+μ
++
+min
+Ailerons
+8
+16
+32
+64
+128 256
+10
+−6
+10
+−3
+10
+0
+Bike_Sharing_Demand
+8
+16
+32
+64
+128 256
+10
+−7
+10
+−4
+10
+−1
+Brazilian_houses
+8
+16
+32
+64
+128 256
+10
+−5
+10
+−2
+10
+1
+cpu_act
+8
+16
+32
+64
+128 256
+10
+−5
+10
+−2
+10
+1
+delays_zurich_transport
+8
+16
+32
+64
+128 256
+10
+−5
+10
+−2
+10
+1
+diamonds
+8
+16
+32
+64
+128 256
+10
+−5
+10
+−2
+10
+1
+μ
++
+min
+elevators
+8
+16
+32
+64
+128 256
+10
+−5
+10
+−3
+10
+−1
+10
+1
+house_16H
+8
+16
+32
+64
+128 256
+10
+−6
+10
+−3
+10
+0
+house_sales
+8
+16
+32
+64
+128 256
+10
+−6
+10
+−3
+10
+0
+houses
+8
+16
+32
+64
+128 256
+10
+−5
+10
+−3
+10
+−1
+medical_charges
+8
+16
+32
+64
+128 256
+10
+−6
+10
+−3
+10
+0
+MiamiHousing2016
+8
+16
+32
+64
+128 256
+M
+10
+−5
+10
+−3
+10
+−1
+10
+1
+μ
++
+min
+nyc-taxi-green-dec-2016
+8
+16
+32
+64
+128 256
+M
+10
+−4
+10
+−2
+10
+0
+pol
+8
+16
+32
+64
+128 256
+M
+10
+−6
+10
+−3
+10
+0
+sulfur
+8
+16
+32
+64
+128 256
+M
+10
+−6
+10
+−3
+10
+0
+superconduct
+8
+16
+32
+64
+128 256
+M
+10
+−5
+10
+−2
+10
+1
+wine_quality
+8
+16
+32
+64
+128 256
+M
+10
+−5
+10
+−3
+10
+−1
+10
+1
+yprop_4_1
+Original
+Independentized
+Unique ranks only
+Independentized + ranks
+Exact proxy threshold M0
+Figure 8: Minimum positive kernel eigenvalue under four data conditions on 18 datasets. Curves show medians, and bands show
+interquartile ranges over five repeats. Enlarged markers denote Mµ; dotted lines denote M0 = min{M : D2(CM) ≥n}.
+8
+16
+32
+64
+128 256
+0
+10
+20
+KRR test RMSE
+Ailerons
+8
+16
+32
+64
+128 256
+2.5
+5.0
+7.5
+Bike_Sharing_Demand
+8
+16
+32
+64
+128 256
+0
+5
+10
+Brazilian_houses
+8
+16
+32
+64
+128 256
+0
+10
+cpu_act
+8
+16
+32
+64
+128 256
+5
+10
+delays_zurich_transport
+8
+16
+32
+64
+128 256
+0.0
+2.5
+5.0
+7.5
+diamonds
+8
+16
+32
+64
+128 256
+0
+10
+20
+KRR test RMSE
+elevators
+8
+16
+32
+64
+128 256
+5
+10
+house_16H
+8
+16
+32
+64
+128 256
+0
+5
+10
+house_sales
+8
+16
+32
+64
+128 256
+2.5
+5.0
+7.5
+houses
+8
+16
+32
+64
+128 256
+0
+2
+4
+medical_charges
+8
+16
+32
+64
+128 256
+0.0
+2.5
+5.0
+7.5
+MiamiHousing2016
+8
+16
+32
+64
+128 256
+M
+2.5
+5.0
+7.5
+KRR test RMSE
+nyc-taxi-green-dec-2016
+8
+16
+32
+64
+128 256
+M
+2.5
+5.0
+7.5
+pol
+8
+16
+32
+64
+128 256
+M
+2.5
+5.0
+7.5
+sulfur
+8
+16
+32
+64
+128 256
+M
+0
+5
+10
+superconduct
+8
+16
+32
+64
+128 256
+M
+5
+10
+wine_quality
+8
+16
+32
+64
+128 256
+M
+5
+10
+yprop_4_1
+Original
+Independentized
+Unique ranks only
+Independentized + ranks
+Exact proxy threshold M0
+Figure 9: KRR test RMSE for the four data conditions in Figure 8 (λ = 10−5). Bands show one standard deviation over five
+repeats. Enlarged markers denote the interior test-RMSE maximum; dotted lines denote M0.

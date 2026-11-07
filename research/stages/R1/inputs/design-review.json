@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "review_mode": "subagent_review",
+  "harness": "cursor",
+  "stage_id": "R1",
+  "author_agent": "ddb85535-1ef1-4069-95c4-46578067887a",
+  "reviewer_agent": "03f147be-80d7-42b8-9499-5473f6a5ffc9",
+  "verdict": "accept",
+  "blocking_issues": [],
+  "notes": "The design is acceptable to freeze against the listed blocking checks. L01 remains unavailable after two HTTP 403 responses: locators are empty, the registry status metadata_and_abstract_verified stays unpromoted, the arXiv preprint was left unused, and the R2 proposal imports no PNAS theorem. L02 through L08 are full-text cards tied to stored PDF snapshots, extract hashes, and body locators. The L05–L07 axis comparison is explicitly unresolved, with separate interventions, interpolation wording, samples, and libraries, and L08 stays outside that comparison. Legacy embedding, reduced, and parquet matrices keep null content hashes, content_attestation false, and disposition not_assessed. The s05 strings train_loss=0.0000 and train_acc=1.000 are attested as rounded logger text, and the partial validation series stops short of a double-descent claim. The R2 proposal records models_executed false, reserves discovery seeds 1101–1105 for a later timing pilot, keeps confirmation seeds 2101–2110 disjoint, and states its formulas as its own definitions while broken PDF equation lines remain unrepaired. Falsifiers are present for the noise, spectrum, ridge, and frozen-random-feature contrasts. The interpolation bracket is the p/n menu crossing 1, a predeclared residual tolerance plus rank equal to min(n, p) for lambda 0, and an inconclusive rule when no cell pair shows a small training residual on one side of p/n = 1 and a large residual on the other. Acceptance here is a design check only. Scientific validity stays not_assessed. The unresolved tree axes and the missing L01 PDF remain open limits. The residual cutoff is not yet a numeric constant, the confirmatory cell count waits on a timing pilot inside the existing caps, and the five discovery draws are a pilot size with no power calculation. Under decision 0003 these limits stay inside the charter and are not a critical escalation. research/plans/R1.json still says the scripts and notes do not exist; that status line is stale beside the inputs reviewed here and belongs in the freeze update."
+}

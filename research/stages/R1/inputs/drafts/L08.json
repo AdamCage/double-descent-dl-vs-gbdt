@@ -1,0 +1,85 @@
+{
+  "source_id": "L08",
+  "version": "arXiv:2206.05608v3",
+  "locators": [
+    {
+      "label": "page 1, symmetric decision trees",
+      "quote": "This paper shows that gradient boosting based on symmetric decision trees can be"
+    },
+    {
+      "label": "page 1, kernel ridge reformulation",
+      "quote": "equivalently reformulated as a kernel method that converges to the solution of a\ncertain Kernel Ridge Regression problem. Thus, we obtain the convergence to a"
+    },
+    {
+      "label": "page 1, RMSE loss and regularization",
+      "quote": "assuming the widely used RMSE loss function. First, we show that the gradient boosting with\nregularization can be reformulated as an optimization problem in some Reproducing Kernel Hilbert"
+    },
+    {
+      "label": "page 1, regularized procedure",
+      "quote": "Importantly, our theoretical analysis assumes the regularized gradient boosting procedure (Algo-"
+    },
+    {
+      "label": "page 1, symmetric and randomized trees",
+      "quote": "rithm 2) without any simpliﬁcations — we only need decision trees to be symmetric (oblivious) and\nproperly randomized (Algorithm 1). These assumptions are non-restrictive and are satisﬁed in some"
+    },
+    {
+      "label": "page 1, CatBoost as an example implementation",
+      "quote": "popular gradient boosting implementations, e.g., CatBoost (Prokhorenkova et al., 2018)."
+    },
+    {
+      "label": "page 4, RMSE gradients and residuals",
+      "quote": "of the model. Since we consider the RMSE loss function, the gradients are proportional to the\nresiduals rj = yj −f(xj), where f is the currently built model. The tree structure is deﬁned by"
+    },
+    {
+      "label": "page 4, non-symmetric trees as sums",
+      "quote": "algorithm and would not change the space of tree ensembles as any non-symmetric tree can be represented as a\nsum of symmetric ones."
+    },
+    {
+      "label": "page 5, shrinkage regularization and CatBoost",
+      "quote": "In other words, we shrink the model at each iteration, which serves\nas regularization (Ustimenko & Prokhorenkova, 2021). Such shrinkage is available, e.g., in the\nCatBoost library."
+    },
+    {
+      "label": "page 7, kernel-ridge corollary",
+      "quote": "Corollary 3.9. (Convergence to the solution of the KRR problem) Under the assumptions of the"
+    },
+    {
+      "label": "page 7, algorithm 2 and posterior mean",
+      "quote": "So far, the main result of the paper proved in Section 3.5 shows that Algorithm 2 solves the Kernel\nRidge Regression problem, which can be interpreted as learning Gaussian Process posterior mean f λ"
+    },
+    {
+      "label": "page 7, split Gaussian-process scale line",
+      "quote": "under the assumption that f ∼GP(0, σ2K+δ2IdL2) where λ = σ2\nδ2 . I.e., Algorithm 2 does not give\nus the posterior variance. Still, as mentioned earlier, we can estimate the posterior variance through"
+    },
+    {
+      "label": "page 8, regression-dataset comparison",
+      "quote": "the proposed KGB with SGB, SGLB, and their ensembles. For the experiments, we use several\nstandard regression datasets (Gal & Ghahramani, 2016). The implementation details can be found"
+    },
+    {
+      "label": "page 9, experimental RMSE",
+      "quote": "achieving smaller values of RMSE and having better knowledge uncertainty estimates."
+    },
+    {
+      "label": "page 29, CatBoost L2 scoring",
+      "quote": "we consider β ∈{10−2, 10−1, 1}. We use the standard CatBoost library and add the Gumbel noise\nterm in selecting the trees for the “L2” scoring function, which is implemented in CatBoost out of"
+    }
+  ],
+  "model_and_data": "Gradient boosting based on symmetric decision trees, reformulated as a kernel method for regression. The located real-data experiments follow the setup of Malinin et al. (2021) and compare the proposed KGB with SGB, SGLB, and their ensembles on several standard regression datasets cited to Gal and Ghahramani (2016). Implementation details use the standard CatBoost library. Individual dataset names are not located in the quoted lines.",
+  "loss": "RMSE. The extract says the analysis concerns regression problems assuming the widely used RMSE loss function, and that under this loss the gradients are proportional to the residuals. Logloss is absent from this extract.",
+  "varied_axis": "not_located_in_extract",
+  "held_fixed_axes": "A double-descent complexity contrast with named axes held fixed was not located. The quoted analysis assumes the regularized gradient-boosting procedure, symmetric (oblivious) trees, proper randomization, RMSE loss, and shrinkage at each iteration.",
+  "interpolation_definition": "not_located_in_extract",
+  "assumptions": [
+    "The theoretical target is regression under the RMSE loss.",
+    "The analysis assumes the regularized gradient-boosting procedure in Algorithm 2.",
+    "The quoted requirement is that decision trees be symmetric (oblivious) and properly randomized.",
+    "The extract says those assumptions are satisfied in some implementations, for example CatBoost.",
+    "Shrinkage of the model at each iteration is the regularization, and the extract says such shrinkage is available in CatBoost.",
+    "Under RMSE, gradients are proportional to residuals.",
+    "A footnote says any non-symmetric tree can be represented as a sum of symmetric ones. That sentence is about representation of the ensemble space.",
+    "Algorithm 2 is said to solve a kernel ridge regression problem interpreted as a Gaussian-process posterior mean. The scale relation is split across lines: one line ends at lambda = sigma2 and the next begins with delta2, with no division symbol on those lines, so the algebra is not repaired.",
+    "The same passage says Algorithm 2 does not give the posterior variance.",
+    "The implementation quote uses CatBoost and an L2 scoring function, and it prints a beta set whose exponent characters are left as extracted."
+  ],
+  "result_type": "Theoretical equivalence, with regression experiments on predictive RMSE and uncertainty. Symmetric-tree gradient boosting with the stated regularization is carried to a kernel ridge solution and a Gaussian-process posterior mean. The extract says this algorithm does not itself provide the posterior variance. Double descent is absent from the extract.",
+  "transfer_limits": "The kernel statement is tied to RMSE loss, shrinkage regularization, symmetric oblivious trees, and proper randomization. CatBoost is an example implementation and is used with the quoted L2 scoring function; logloss is absent. The footnote about writing a non-symmetric tree as a sum of symmetric trees does not extend the result to a double-descent axis comparison. The split lambda and delta2 line is ambiguous and is not repaired. This extract is context for those kernel assumptions and is not evidence that the tree experiments in L05, L06, and L07 vary the same axis."
+}

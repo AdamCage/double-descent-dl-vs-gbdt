@@ -1,0 +1,158 @@
+{
+  "source_id": "L03",
+  "version": "arXiv:1908.05355v5",
+  "locators": [
+    {
+      "label": "page 1, sphere regression",
+      "quote": "In this paper we consider the problem of learning an unknown function over the d-dimensional sphere"
+    },
+    {
+      "label": "page 1, ridge on random features",
+      "quote": "We perform ridge regression on N random\nfeatures of the form σ(wT\nax), a ≤N. This can be equivalently described as a two-layers neural network"
+    },
+    {
+      "label": "page 3, interpolation threshold",
+      "quote": "threshold in model complexity above which the training error vanishes (the model completely interpolates\nthe data), corresponds to a large test error. It seems wise to keep the model complexity well below this"
+    },
+    {
+      "label": "page 3, ReLU figure",
+      "quote": "Figure 1: Random features ridge regression with ReLU activation (σ = max{x, 0}). Data are generated via"
+    },
+    {
+      "label": "page 3, finite-d numerical averages",
+      "quote": "theoretical prediction, and the colored symbols are numerical results for several dimensions d. Symbols are\naverages over 20 instances and the error bars report the standard error of the means over these 20 instances."
+    },
+    {
+      "label": "page 3, cited forests and random features",
+      "quote": "The double-descent scenario is far from being speciﬁc to neural networks, and was instead demonstrated\nempirically in a variety of models including random forests and random features models [BHMM19]. Recently,"
+    },
+    {
+      "label": "page 4, earlier linear model",
+      "quote": "always found to outperform the ridgeless limit λ →0. Moreover, this linear model is not directly connected\nto actual neural networks, which are highly nonlinear in the covariates xi."
+    },
+    {
+      "label": "page 4, random-features description",
+      "quote": "model can be viewed either as a randomized approximation to kernel ridge regression, or as a two-layers\nneural networks with random ﬁrst layer wights. We compute the precise asymptotics of the test error and"
+    },
+    {
+      "label": "page 4, uniform covariates",
+      "quote": "loss of generality.) We are given i.i.d. data {(xi, yi)}i≤n ∼iid Px,y, where xi ∼iid Unif(Sd−1("
+    },
+    {
+      "label": "page 4, response and broken second moment",
+      "quote": "yi = fd(xi) + εi, with εi ∼iid Pε independent of xi. The noise distribution satisﬁes Eε(ε1) = 0, Eε(ε2\n1) = τ 2,"
+    },
+    {
+      "label": "page 4, first layer held constant",
+      "quote": "above, the functions in FRF(Θ) are two-layers neural networks, except that the ﬁrst layer is kept constant."
+    },
+    {
+      "label": "page 4, ridge fit of coefficients",
+      "quote": "We learn the coeﬃcients a = (ai)i≤N by performing ridge regression"
+    },
+    {
+      "label": "page 4, finite-rank kernel approximation",
+      "quote": "The choice of ridge penalty is motivated by the connection to kernel ridge regression, of which this method\ncan be regarded as a ﬁnite-rank approximation. Further, the ridge regularization path is naturally connected"
+    },
+    {
+      "label": "page 4, gradient flow and early stopping",
+      "quote": "i≤n(yi−f(xi; a, Θ))2, starting at a = 0.\nIn particular, gradient ﬂow converges to the ridgeless limit (λ →0) of ˆa(λ), and there is a correspondence\nbetween positive λ, and early stopping in gradient descent [YRC07]."
+    },
+    {
+      "label": "page 4, test error as mean square error",
+      "quote": "We are interested in the ‘prediction’ or ‘test’ error (which we will also call ‘generalization error,’ with\na slight abuse of terminology), that is the mean square error on predicting fd(x) for x ∼Unif(Sd−1("
+    },
+    {
+      "label": "page 4, no expectation over training draws",
+      "quote": "(3)\nNotice that we do not take expectation with respect to the training data X, the random features Θ or the\ndata noise ε. This is not very important, because we will show that RRF(fd, X, Θ, λ) concentrates around"
+    },
+    {
+      "label": "page 5, features uniform on a sphere",
+      "quote": "• The random features are uniformly distributed on a sphere: (θi)i≤N ∼iid Unif(Sd−1("
+    },
+    {
+      "label": "page 5, proportional limits",
+      "quote": "• N, n, d lie in a proportional asymptotics regime. Namely, N, n, d →∞with N/d →ψ1, n/d →ψ2 for\nsome ψ1, ψ2 ∈(0, ∞)."
+    },
+    {
+      "label": "page 5, linear regression function",
+      "quote": "• We consider two models for the regression function fd: (1) A linear model: fd(x) = βd,0 + ⟨βd,1, x⟩,"
+    },
+    {
+      "label": "page 5, convergence in probability",
+      "quote": "Then, for linear fd in the setting described above, for any λ > 0, the prediction risk convergences in\nprobability"
+    },
+    {
+      "label": "page 5, lambda fixed positive",
+      "quote": "Remark 1. Theorem 1 and its generalizations stated below require λ > 0 ﬁxed as N, n, d →∞. We can then"
+    },
+    {
+      "label": "page 5, ridgeless limit caveat",
+      "quote": "consider the ridgeless limit by taking λ →0. Let us stress that this does not necessarily yield the prediction\nrisk of the min-norm least square estimator that is also given by the limit ˆa(0+) ≡limλ→0 ˆa(λ) at N, n, d"
+    },
+    {
+      "label": "page 6, figure uses lambda to zero",
+      "quote": "using ReLU activation function σ(x) = max{x, 0} and ψ2 = n/d = 3. We use minimum ℓ2-norm least squares\n(the λ →0 limit of Eq. (2), left ﬁgure) and regularized least squares with λ = 10−3 (right ﬁgure), and plot"
+    },
+    {
+      "label": "page 6, horizontal axis psi1",
+      "quote": "the prediction error as a function of the number of parameters per dimension ψ1 = N/d. We compare"
+    },
+    {
+      "label": "page 6, threshold at psi1 equals psi2",
+      "quote": "curve is the peak in test error at the interpolation threshold which, in the present case, is located at ψ1 = ψ2."
+    },
+    {
+      "label": "page 6, fixed psi2, several lambda and SNR",
+      "quote": "ψ1/ψ2 = N/n, for ﬁxed ψ2, several values of λ > 0, and two values of the SNR. We repeatedly observe that:"
+    },
+    {
+      "label": "page 7, figure 3 fixes psi2",
+      "quote": "using random features with ReLU activation function σ(x) = max{x, 0}. The rescaled sample size is ﬁxed\nto n/d ≡ψ2 = 10. Diﬀerent curves are for diﬀerent values of the regularization λ. On the left: high SNR"
+    },
+    {
+      "label": "page 11, activation assumption",
+      "quote": "Assumption 1. Let σ : R →R be weakly diﬀerentiable, with weak derivative σ′. Assume |σ(u)|, |σ′(u)| ≤\nc0ec1|u| for some constants c0, c1 < ∞. Deﬁne"
+    },
+    {
+      "label": "page 11, proportional-limit assumption",
+      "quote": "Assumption 2. Deﬁning ψ1,d = N/d and ψ2,d = n/d, we assume that the following limits exist in (0, ∞):"
+    },
+    {
+      "label": "page 11, noise-mean assumption",
+      "quote": "Assumption 3. We assume yi = fd(xi)+εi, where (εi)i≤n ∼iid Pε independent of (xi)i≤n, with Eε(ε1) = 0,"
+    },
+    {
+      "label": "page 13, theorem 2 positive lambda",
+      "quote": "Then for any value of the regularization parameter λ > 0, the asymptotic prediction error of random"
+    },
+    {
+      "label": "page 13, later limits and ambiguous ratios",
+      "quote": "2. The highly overparametrized regime ψ1 →∞(recall that ψ1 = limd→∞N/d).\n3. The large sample limit ψ2 →∞(recall that ψ2 = limd→∞n/d).\nLet us emphasize that these limits are taken after the limit N, n, d →∞with N/d →∞and n/d →∞."
+    },
+    {
+      "label": "page 5, next line begins fixed",
+      "quote": "risk of the min-norm least square estimator that is also given by the limit ˆa(0+) ≡limλ→0 ˆa(λ) at N, n, d\nﬁxed. Denoting by Z = σ(XΘT/"
+    }
+  ],
+  "model_and_data": "The extract studies learning an unknown function on the d-dimensional sphere by ridge regression on N random features. The feature formula in that quote is broken after σ(wT. A later quote describes the random-features model as a randomized approximation to kernel ridge regression or as a two-layer neural network with random first-layer weights; that line spells the last word “wights”. The functions in FRF(Θ) are quoted as two-layer neural networks except that the first layer is kept constant, and the method is quoted as a finite-rank approximation to kernel ridge regression. Covariates are quoted as i.i.d. uniform on Sd−1; the radius display is not on that line. Random features (θi) are quoted as i.i.d. uniform on a sphere. The response quote is yi = fd(xi) + εi, with εi independent of xi and Eε(ε1) = 0; the second-moment display breaks after Eε(ε2 and continues “1) = τ 2”. A quoted linear regression function is fd(x) = βd,0 + ⟨βd,1, x⟩. The proportional regime is quoted as N, n, d →∞ with N/d →ψ1 and n/d →ψ2 for some ψ1, ψ2 ∈(0, ∞).",
+  "loss": "The coefficients a = (ai)i≤N are learned by ridge regression. The quoted test error, also called prediction error and, with the extract’s stated slight abuse of terminology, generalization error, is the mean squared error of predicting fd(x) for x uniform on the sphere. The same definition’s quote says this quantity does not take the expectation over the training data X, the random features Θ, or the data noise ε, and that the risk concentrates; that sentence is cut off in the quote.",
+  "varied_axis": "These are separate quoted axes. One quote plots prediction error as a function of the number of parameters per dimension ψ1 = N/d. The interpolation-threshold peak is quoted at ψ1 = ψ2. Another quote plots predicted test error as a function of ψ1/ψ2 = N/n, for fixed ψ2, several values of λ > 0, and two values of the SNR. A quoted ReLU caption fixes the rescaled sample size at n/d ≡ψ2 = 10 and uses different curves for different regularization λ. Further quoted limits of the asymptotic formula, listed on their own lines, are the highly overparametrized regime ψ1 →∞ and the large-sample limit ψ2 →∞. The next line says those limits are taken after N, n, d →∞ with N/d →∞ and n/d →∞. That ratio display is ambiguous next to the finite positive ψ1, ψ2 in the proportional-regime quote, and it is not repaired. The ridgeless limit λ →0 is a separate quoted object, not the same axis as ψ1.",
+  "held_fixed_axes": "The quoted theorems require λ > 0 fixed as N, n, d →∞. A quoted ReLU caption fixes n/d ≡ψ2 = 10 while λ changes across curves. A quoted ReLU line uses σ(x) = max{x, 0} and ψ2 = n/d = 3 for that comparison. Assumption 1 quotes a weakly differentiable activation, and the bound is printed as c0ec1|u| for finite constants c0, c1. These holdings are the ones in the quoted theorem or figure, not one global list for every display.",
+  "interpolation_definition": "The interpolation threshold is quoted as the model-complexity threshold above which the training error vanishes (the model completely interpolates the data). In this model that peak is quoted at ψ1 = ψ2. A quoted ReLU comparison uses minimum ℓ2-norm least squares as the λ →0 limit of Eq. (2), beside regularized least squares at λ = 10−3. Remark 1 quotes that the theorems require λ > 0 fixed in the diverging limit, and that sending λ →0 afterwards does not necessarily yield the prediction risk of the min-norm least squares estimator given by ˆa(0+) ≡limλ→0 ˆa(λ) at N, n, d. The next quoted line begins “fixed.” Gradient flow on the quoted mean squared error, starting at a = 0, is said to converge to the ridgeless limit (λ →0) of ˆa(λ), with a quoted correspondence between positive λ and early stopping in gradient descent.",
+  "assumptions": [
+    "Assumption 1 lets σ : R →R be weakly differentiable, with weak derivative σ′, and the quote continues the bound as |σ(u)|, |σ′(u)| ≤ c0ec1|u| for some constants c0, c1 < ∞.",
+    "Assumption 2 defines ψ1,d = N/d and ψ2,d = n/d and assumes the following limits exist in (0, ∞).",
+    "The proportional-regime quote takes N, n, d →∞ with N/d →ψ1 and n/d →ψ2 for some ψ1, ψ2 ∈(0, ∞).",
+    "Assumption 3 assumes yi = fd(xi)+εi, with (εi) i.i.d. from Pε independent of (xi), and Eε(ε1) = 0.",
+    "The response quote writes yi = fd(xi) + εi with εi independent of xi and Eε(ε1) = 0, and the next line of that quote is “1) = τ 2”.",
+    "The functions in FRF(Θ) are two-layer neural networks, except that the first layer is kept constant.",
+    "Random features (θi)i≤N are i.i.d. uniform on a sphere; the radius continuation is outside this quote.",
+    "Remark 1 says Theorem 1 and its generalizations require λ > 0 fixed as N, n, d →∞.",
+    "The quoted remark says that taking λ →0 does not necessarily yield the prediction risk of the min-norm estimator ˆa(0+) at N, n, d.",
+    "The next extracted line begins “ﬁxed.”",
+    "The later-limit quote says the ψ1 →∞ and ψ2 →∞ limits are taken after N, n, d →∞ with N/d →∞ and n/d →∞. That ratio wording is left as printed."
+  ],
+  "result_type": "Both an asymptotic statement and finite-d numerical comparisons. For linear fd and any λ > 0, the quote says the prediction risk convergences in probability; the limit display is not on those two lines and is not reconstructed. Theorem 2 is quoted as giving, for any λ > 0, the asymptotic prediction error of random-features ridge regression. Figure 1 is quoted as comparing the theoretical prediction with numerical results for several dimensions d, averaged over 20 instances.",
+  "transfer_limits": "The estimator in the quotes is random-features ridge regression: a two-layer network whose first layer is kept constant, also described as a finite-rank approximation to kernel ridge regression. A separate quote about an earlier linear covariates model says that linear model is not directly connected to neural networks which are highly nonlinear in the covariates. Random forests are named in a citation that double descent was demonstrated empirically for random forests and random features. The extract does not locate gradient-boosted trees, a decision-tree experiment of this paper, or an essay corpus. A learned first layer is outside the quoted estimator, which keeps that layer constant."
+}

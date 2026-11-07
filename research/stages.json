@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "stages": [
+    {
+      "id": "R0",
+      "depends_on": [],
+      "plan": "research/plans/R0.json",
+      "kind": "engineering",
+      "execution_authorized": true
+    },
+    {
+      "id": "R1",
+      "depends_on": [
+        "R0"
+      ],
+      "plan": "research/plans/R1.json",
+      "kind": "science",
+      "execution_authorized": true,
+      "preparation_authorized": true,
+      "authorization_decision": {
+        "path": "research/decisions/autonomous-research-authorization.json",
+        "sha256": "4f2eca57802835816b688668838545df60fd568c99069c291d2e42cb4f5371c9"
+      },
+      "stage_design_decision": {
+        "path": "research/decisions/R1-authorization.json",
+        "sha256": "962338023cbc094c727d1a1770a29671771c140f3ed8c58c6d965ab653fd535b"
+      }
+    },
+    {
+      "id": "R2",
+      "depends_on": [
+        "R1"
+      ],
+      "plan": "research/plans/R2.json",
+      "kind": "science",
+      "execution_authorized": false,
+      "preparation_authorized": true,
+      "authorization_decision": {
+        "path": "research/decisions/autonomous-research-authorization.json",
+        "sha256": "4f2eca57802835816b688668838545df60fd568c99069c291d2e42cb4f5371c9"
+      }
+    },
+    {
+      "id": "R3",
+      "depends_on": [
+        "R2"
+      ],
+      "plan": "research/plans/R3.json",
+      "kind": "science",
+      "execution_authorized": false,
+      "preparation_authorized": true,
+      "authorization_decision": {
+        "path": "research/decisions/autonomous-research-authorization.json",
+        "sha256": "4f2eca57802835816b688668838545df60fd568c99069c291d2e42cb4f5371c9"
+      }
+    },
+    {
+      "id": "R4",
+      "depends_on": [
+        "R2"
+      ],
+      "plan": "research/plans/R4.json",
+      "kind": "science",
+      "execution_authorized": false,
+      "preparation_authorized": true,
+      "authorization_decision": {
+        "path": "research/decisions/autonomous-research-authorization.json",
+        "sha256": "4f2eca57802835816b688668838545df60fd568c99069c291d2e42cb4f5371c9"
+      }
+    },
+    {
+      "id": "R5",
+      "depends_on": [
+        "R3",
+        "R4"
+      ],
+      "plan": "research/plans/R5.json",
+      "kind": "science",
+      "execution_authorized": false,
+      "preparation_authorized": true,
+      "authorization_decision": {
+        "path": "research/decisions/autonomous-research-authorization.json",
+        "sha256": "4f2eca57802835816b688668838545df60fd568c99069c291d2e42cb4f5371c9"
+      }
+    },
+    {
+      "id": "R6",
+      "depends_on": [
+        "R5"
+      ],
+      "plan": "research/plans/R6.json",
+      "kind": "science",
+      "execution_authorized": false,
+      "preparation_authorized": true,
+      "authorization_decision": {
+        "path": "research/decisions/autonomous-research-authorization.json",
+        "sha256": "4f2eca57802835816b688668838545df60fd568c99069c291d2e42cb4f5371c9"
+      }
+    },
+    {
+      "id": "R7",
+      "depends_on": [
+        "R6"
+      ],
+      "plan": "research/plans/R7.json",
+      "kind": "science",
+      "execution_authorized": false,
+      "preparation_authorized": true,
+      "authorization_decision": {
+        "path": "research/decisions/autonomous-research-authorization.json",
+        "sha256": "4f2eca57802835816b688668838545df60fd568c99069c291d2e42cb4f5371c9"
+      }
+    }
+  ]
+}

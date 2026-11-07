@@ -1,0 +1,328 @@
+{
+  "schema_version": 1,
+  "stage_id": "R1",
+  "status": "frozen",
+  "question": "Which historical observations and primary-source assumptions are supported, and how should controlled R2 separate competing mechanisms?",
+  "scope": "Descriptive historical/literature audit and R2 design proposal only; no model training, datasets or empirical claim promotion without bound subagent review.",
+  "authorization_decision": {
+    "path": "research/decisions/autonomous-research-authorization.json",
+    "sha256": "4f2eca57802835816b688668838545df60fd568c99069c291d2e42cb4f5371c9"
+  },
+  "stage_design_decision": {
+    "path": "research/decisions/R1-authorization.json",
+    "sha256": "962338023cbc094c727d1a1770a29671771c140f3ed8c58c6d965ab653fd535b"
+  },
+  "budget": {
+    "max_wall_seconds": 900,
+    "total_wall_seconds": 1800,
+    "max_attempts": 2
+  },
+  "tasks": [
+    {
+      "id": "legacy-evidence",
+      "argv": [
+        "{python}",
+        "{repo}/scripts/r1_capture.py",
+        "legacy",
+        "--root",
+        "{repo}"
+      ],
+      "inputs": [
+        "AGENTS.md",
+        "docs/automation.md",
+        "docs/research-program.md",
+        "docs/legacy-assessment.md",
+        "docs/literature/sources.json",
+        "research/decisions/autonomous-research-authorization.json",
+        "research/decisions/R1-authorization.json",
+        "research/stages/R1/PLAN.md",
+        "research/stages/R1/TASK-CONTRACT.json",
+        "scripts/r1_capture.py",
+        "research/stages/R1/inputs/preparation-log.jsonl",
+        "research/stages/R1/inputs/legacy-notes.json",
+        "research/evidence/legacy-2026-11-07/inventory.json",
+        "src/r1_audit.py",
+        "src/resource_ledger.py",
+        "src/research_workflow.py",
+        "docs/protocol_revision_2026-11-04.md",
+        "research/evidence/legacy-2026-11-07/files/data/source_manifest.json",
+        "research/evidence/legacy-2026-11-07/files/result/03_embeddings/cache_hash.json",
+        "research/evidence/legacy-2026-11-07/files/result/03_embeddings/partial_meta.json",
+        "research/evidence/legacy-2026-11-07/files/result/03_embeddings/partials/routerai__qwen_qwen3-embedding-8b/probe.json",
+        "research/evidence/legacy-2026-11-07/files/result/04_embedding_analysis/pca_info.json",
+        "research/evidence/legacy-2026-11-07/files/result/pilot_late_acceleration/summary.json",
+        "research/evidence/legacy-2026-11-07/files/result/s05_dnn.log",
+        "research/stages/R1/inputs/dnn-directory-listing.json",
+        "reviews/04-11-2026.md",
+        "src/cache.py",
+        "src/stages/s03_embeddings.py"
+      ],
+      "outputs": [
+        "legacy-audit.json",
+        "legacy-audit.md"
+      ],
+      "timeout_seconds": 120
+    },
+    {
+      "id": "literature",
+      "argv": [
+        "{python}",
+        "{repo}/scripts/r1_capture.py",
+        "literature",
+        "--root",
+        "{repo}"
+      ],
+      "inputs": [
+        "AGENTS.md",
+        "docs/automation.md",
+        "docs/research-program.md",
+        "docs/legacy-assessment.md",
+        "docs/literature/sources.json",
+        "research/decisions/autonomous-research-authorization.json",
+        "research/decisions/R1-authorization.json",
+        "research/stages/R1/PLAN.md",
+        "research/stages/R1/TASK-CONTRACT.json",
+        "scripts/r1_capture.py",
+        "research/stages/R1/inputs/preparation-log.jsonl",
+        "research/stages/R1/inputs/source-cards.json",
+        "research/stages/R1/inputs/intake-index.json",
+        "src/r1_audit.py",
+        "src/resource_ledger.py",
+        "src/research_workflow.py",
+        "artifacts/intake/R1/20261107T082900Z/acquisition.jsonl",
+        "artifacts/intake/R1/20261107T082900Z/extract_text.py",
+        "artifacts/intake/R1/20261107T082900Z/retrieve_sources.py",
+        "artifacts/intake/R1/20261107T082900Z/snapshots/L02.pdf",
+        "artifacts/intake/R1/20261107T082900Z/text/L02.txt",
+        "artifacts/intake/R1/20261107T082900Z/snapshots/L03.pdf",
+        "artifacts/intake/R1/20261107T082900Z/text/L03.txt",
+        "artifacts/intake/R1/20261107T082900Z/snapshots/L04.pdf",
+        "artifacts/intake/R1/20261107T082900Z/text/L04.txt",
+        "artifacts/intake/R1/20261107T082900Z/snapshots/L05.pdf",
+        "artifacts/intake/R1/20261107T082900Z/text/L05.txt",
+        "artifacts/intake/R1/20261107T082900Z/snapshots/L06.pdf",
+        "artifacts/intake/R1/20261107T082900Z/text/L06.txt",
+        "artifacts/intake/R1/20261107T082900Z/snapshots/L07.pdf",
+        "artifacts/intake/R1/20261107T082900Z/text/L07.txt",
+        "artifacts/intake/R1/20261107T082900Z/snapshots/L08.pdf",
+        "artifacts/intake/R1/20261107T082900Z/text/L08.txt"
+      ],
+      "outputs": [
+        "literature-audit.json",
+        "source-index.json",
+        "cards/L01.md",
+        "cards/L02.md",
+        "cards/L03.md",
+        "cards/L04.md",
+        "cards/L05.md",
+        "cards/L06.md",
+        "cards/L07.md",
+        "cards/L08.md"
+      ],
+      "timeout_seconds": 120
+    },
+    {
+      "id": "r2-design",
+      "argv": [
+        "{python}",
+        "{repo}/scripts/r1_capture.py",
+        "r2-design",
+        "--root",
+        "{repo}"
+      ],
+      "inputs": [
+        "AGENTS.md",
+        "docs/automation.md",
+        "docs/research-program.md",
+        "docs/legacy-assessment.md",
+        "docs/literature/sources.json",
+        "research/decisions/autonomous-research-authorization.json",
+        "research/decisions/R1-authorization.json",
+        "research/stages/R1/PLAN.md",
+        "research/stages/R1/TASK-CONTRACT.json",
+        "scripts/r1_capture.py",
+        "research/stages/R1/inputs/preparation-log.jsonl",
+        "research/stages/R1/inputs/R2-design.json",
+        "src/r1_audit.py",
+        "src/resource_ledger.py",
+        "src/research_workflow.py"
+      ],
+      "outputs": [
+        "R2-design-proposal.json",
+        "R2-design-proposal.md"
+      ],
+      "timeout_seconds": 120
+    },
+    {
+      "id": "audit-validate",
+      "argv": [
+        "{python}",
+        "{repo}/scripts/r1_capture.py",
+        "validate",
+        "--root",
+        "{repo}",
+        "--attempt",
+        "{run}"
+      ],
+      "inputs": [
+        "AGENTS.md",
+        "docs/automation.md",
+        "docs/research-program.md",
+        "docs/legacy-assessment.md",
+        "docs/literature/sources.json",
+        "research/decisions/autonomous-research-authorization.json",
+        "research/decisions/R1-authorization.json",
+        "research/stages/R1/PLAN.md",
+        "research/stages/R1/TASK-CONTRACT.json",
+        "scripts/r1_capture.py",
+        "research/stages/R1/inputs/preparation-log.jsonl",
+        "research/stages/R1/inputs/intake-index.json",
+        "src/r1_audit.py",
+        "src/resource_ledger.py",
+        "src/research_workflow.py",
+        "research/stages/R1/inputs/design-review.json",
+        "research/stages/R1/inputs/legacy-notes.json",
+        "research/stages/R1/inputs/source-cards.json",
+        "research/stages/R1/inputs/R2-design.json",
+        "research/stages/R1/inputs/dnn-directory-listing.json",
+        "research/resources/ledger.jsonl",
+        "docs/protocol_revision_2026-11-04.md",
+        "research/evidence/legacy-2026-11-07/files/data/source_manifest.json",
+        "research/evidence/legacy-2026-11-07/files/result/03_embeddings/cache_hash.json",
+        "research/evidence/legacy-2026-11-07/files/result/03_embeddings/partial_meta.json",
+        "research/evidence/legacy-2026-11-07/files/result/03_embeddings/partials/routerai__qwen_qwen3-embedding-8b/probe.json",
+        "research/evidence/legacy-2026-11-07/files/result/04_embedding_analysis/pca_info.json",
+        "research/evidence/legacy-2026-11-07/files/result/pilot_late_acceleration/summary.json",
+        "research/evidence/legacy-2026-11-07/files/result/s05_dnn.log",
+        "reviews/04-11-2026.md",
+        "src/cache.py",
+        "src/stages/s03_embeddings.py",
+        "artifacts/intake/R1/20261107T082900Z/acquisition.jsonl",
+        "artifacts/intake/R1/20261107T082900Z/extract_text.py",
+        "artifacts/intake/R1/20261107T082900Z/retrieve_sources.py",
+        "artifacts/intake/R1/20261107T082900Z/snapshots/L02.pdf",
+        "artifacts/intake/R1/20261107T082900Z/text/L02.txt",
+        "artifacts/intake/R1/20261107T082900Z/snapshots/L03.pdf",
+        "artifacts/intake/R1/20261107T082900Z/text/L03.txt",
+        "artifacts/intake/R1/20261107T082900Z/snapshots/L04.pdf",
+        "artifacts/intake/R1/20261107T082900Z/text/L04.txt",
+        "artifacts/intake/R1/20261107T082900Z/snapshots/L05.pdf",
+        "artifacts/intake/R1/20261107T082900Z/text/L05.txt",
+        "artifacts/intake/R1/20261107T082900Z/snapshots/L06.pdf",
+        "artifacts/intake/R1/20261107T082900Z/text/L06.txt",
+        "artifacts/intake/R1/20261107T082900Z/snapshots/L07.pdf",
+        "artifacts/intake/R1/20261107T082900Z/text/L07.txt",
+        "artifacts/intake/R1/20261107T082900Z/snapshots/L08.pdf",
+        "artifacts/intake/R1/20261107T082900Z/text/L08.txt"
+      ],
+      "outputs": [
+        "validation.json"
+      ],
+      "timeout_seconds": 120
+    },
+    {
+      "id": "repository-check",
+      "argv": [
+        "{python}",
+        "{repo}/scripts/check_repository.py",
+        "--root",
+        "{repo}",
+        "--output",
+        "checks.json"
+      ],
+      "inputs": [
+        "AGENTS.md",
+        "docs/automation.md",
+        "docs/research-program.md",
+        "docs/legacy-assessment.md",
+        "docs/literature/sources.json",
+        "research/decisions/autonomous-research-authorization.json",
+        "research/decisions/R1-authorization.json",
+        "research/stages/R1/PLAN.md",
+        "research/stages/R1/TASK-CONTRACT.json",
+        "scripts/check_repository.py",
+        "src/research_workflow.py",
+        "src/research_claims.py",
+        "scripts/research.py",
+        "pyproject.toml",
+        "uv.lock",
+        "scripts/r1_capture.py",
+        "src/r1_audit.py",
+        "src/resource_ledger.py",
+        "tests/test_r1_audit.py",
+        "tests/test_resource_ledger.py"
+      ],
+      "outputs": [
+        "checks.json"
+      ],
+      "timeout_seconds": 180
+    }
+  ],
+  "exit_criteria": [
+    {
+      "id": "C1",
+      "description": "Every in-scope historical observation has actual file/hash/locator and a justified supported/unsupported/contradicted/not_assessed disposition; no large-matrix attestation invented.",
+      "task_ids": [
+        "legacy-evidence",
+        "audit-validate"
+      ]
+    },
+    {
+      "id": "C2",
+      "description": "All L01-L08 have exact version/retrieval/full-text-access disposition; snapshots or explicit unavailable reasons and full-text locators match the stated review level.",
+      "task_ids": [
+        "literature",
+        "audit-validate"
+      ]
+    },
+    {
+      "id": "C3",
+      "description": "Theory and tree-axis comparisons preserve assumptions/limits; no abstract-only promotion and no forced reconciliation or universal mechanistic claim.",
+      "task_ids": [
+        "literature",
+        "audit-validate"
+      ]
+    },
+    {
+      "id": "C4",
+      "description": "R2 proposal specifies teacher/normalization/seeds/axes/noise/solver/metrics/uncertainty/exposure/falsifiers and readiness without running models; Cursor subagent reviews it for subsequent autonomous planning.",
+      "task_ids": [
+        "r2-design",
+        "audit-validate"
+      ]
+    },
+    {
+      "id": "C5",
+      "description": "Coverage, acquisition, resource and pre-freeze exposure records validate; outputs contain no fabricated measurements/approvals and infrastructure tests pass.",
+      "task_ids": [
+        "audit-validate",
+        "repository-check"
+      ]
+    },
+    {
+      "id": "C6",
+      "description": "All tasks and reviewer notes distinguish author and review subagent; missing/negative items and limitations are retained, enabling honest operational closure.",
+      "task_ids": [
+        "legacy-evidence",
+        "literature",
+        "r2-design",
+        "audit-validate"
+      ]
+    }
+  ],
+  "predictions": [
+    {
+      "id": "P1",
+      "statement": "Existing small historical artifacts do not establish double descent on the old corpus; contradicting coherent artifacts must be recorded instead of suppressed."
+    },
+    {
+      "id": "P2",
+      "statement": "Detailed axis/loss/assumption comparison is necessary before transferring tree/GBDT results; unresolved comparability remains explicit."
+    },
+    {
+      "id": "P3",
+      "statement": "A bounded R2 design can distinguish noise, spectrum and regularization using controlled linear/random-feature models, or document why it is not yet identifiable."
+    }
+  ],
+  "implementation_state": "Inputs, capture scripts and the distinct-subagent design review exist. status=frozen records that closure. Execution is activated separately."
+}

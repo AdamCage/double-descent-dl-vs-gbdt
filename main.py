@@ -1,17 +1,17 @@
-"""Double Descent Research Pipeline — entry point."""
+"""Historical text pipeline. New research uses scripts/research.py."""
 
 import argparse
 import importlib
 import logging
 import sys
 import time
-
-from src.config import get_settings
-from src.logging_setup import setup_logging
+from pathlib import Path
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Double Descent Research Pipeline")
+    parser.add_argument("--legacy", action="store_true", help="Explicitly replay the historical text pipeline")
+    parser.add_argument("--result-dir", help="Isolated destination under artifacts/legacy-replays/<name>")
     parser.add_argument(
         "--mode",
         choices=["fast", "full"],
@@ -26,7 +26,23 @@ def main() -> None:
     )
     args = parser.parse_args()
 
+    if not args.legacy:
+        parser.error("Historical pipeline is archived. Use python scripts/research.py status or next. "
+                     "A deliberate replay requires --legacy --stage and --result-dir.")
+    if not args.stage or not args.result_dir:
+        parser.error("A legacy replay requires an explicit --stage and --result-dir; running all stages is retired.")
+    root = Path(__file__).resolve().parent
+    destination = Path(args.result_dir).resolve()
+    replay_root = (root / "artifacts" / "legacy-replays").resolve()
+    if not destination.is_relative_to(replay_root) or destination == replay_root:
+        parser.error("--result-dir must be a named directory inside artifacts/legacy-replays/; result/ is historical evidence.")
+
+    # Delay scientific imports until the archival guard has accepted the request.
+    from src.config import get_settings
+    from src.logging_setup import setup_logging
+
     cfg = get_settings()
+    cfg.RESULT_DIR = str(destination)
     if args.mode:
         cfg.MODE = args.mode
 

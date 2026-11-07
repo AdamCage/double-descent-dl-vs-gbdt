@@ -1,0 +1,6596 @@
+
+
+--- page 1 ---
+Surprises in High-Dimensional Ridgeless Least Squares
+Interpolation
+Trevor Hastie
+Andrea Montanari∗
+Saharon Rosset
+Ryan J. Tibshirani∗
+Abstract
+Interpolators—estimators that achieve zero training error—have attracted growing attention in machine
+learning, mainly because state-of-the art neural networks appear to be models of this type. In this paper,
+we study minimum ℓ2 norm (“ridgeless”) interpolation in high-dimensional least squares regression. We
+consider two diﬀerent models for the feature distribution: a linear model, where the feature vectors
+xi ∈Rp are obtained by applying a linear transform to a vector of i.i.d. entries, xi = Σ1/2zi (with zi ∈Rp);
+and a nonlinear model, where the feature vectors are obtained by passing the input through a random
+one-layer neural network, xi = ϕ(Wzi) (with zi ∈Rd, W ∈Rp×d a matrix of i.i.d. entries, and ϕ an
+activation function acting componentwise on Wzi). We recover—in a precise quantitative way—several
+phenomena that have been observed in large-scale neural networks and kernel machines, including the
+“double descent” behavior of the prediction risk, and the potential beneﬁts of overparametrization.
+1
+Introduction
+Modern deep learning models involve a huge number of parameters. In many applications, current practice
+suggests that we should design the network to be suﬃciently complex so that the model (as trained, typically,
+by gradient descent) interpolates the data, i.e., achieves zero training error. Indeed, in a thought-provoking
+experiment, Zhang et al. (2016) showed that state-of-the-art deep neural network architectures are complex
+enough that they can be trained to interpolate the data even when the actual labels are replaced by entirely
+random ones.
+Despite their enormous complexity, deep neural networks are frequently observed to generalize well in
+practice. At ﬁrst sight, this seems to defy conventional statistical wisdom: interpolation (vanishing training
+error) is commonly taken to be a proxy for overﬁtting, poor generalization (large gap between training and
+test error), and hence large test error. In an insightful series of papers, Belkin et al. (2018b,c,a) pointed out
+that these concepts are in general distinct, and interpolation does not contradict generalization. For example,
+recent work has investigated interpolation —via kernel ridge regression— in reproducing kernel Hilbert spaces
+(Liang et al., 2020; Ghorbani et al., 2019). While in low dimension a positive regularization is needed to
+achieve good interpolation, in certain high dimensional settings interpolation can be nearly optimal.
+In this paper, we investigate these phenomena in the context of simple linear models. We assume to be
+given i.i.d. data (yi, xi), i ≤n, with xi ∈Rp a feature vector and yi ∈R a response variable. These are
+distributed according to the model (see Section 2 for further deﬁnitions)
+(xi, ϵi) ∼Px × Pϵ,
+i = 1, . . . , n,
+(1)
+yi = xT
+i β + ϵi,
+i = 1, . . . , n,
+(2)
+where, Px is a distribution on Rp such that E(xi) = 0, Cov(xi) = Σ, and Pϵ is a distribution on R such that
+E(ϵi) = 0, Var(ϵi) = σ2.
+We estimate β by linear regression. Since our focus is on the overparametrized regime p > n, the usual
+least square objective does not have a unique minimizer, and needs to be regularized. We consider two
+approaches: min-norm regression, which estimates β by the least squares solution with minimum ℓ2 norm;
+and ridge regression, which penalizes a coeﬃcients vector β by its ℓ2 norm square ∥β∥2
+2. We denote these
+∗Corresponding authors.
+1
+arXiv:1903.08560v5  [math.ST]  7 Dec 2020
+
+
+--- page 2 ---
+estimates by ˆβ and ˆβλ (λ being the regularization parameter), and note that limλ→0 ˆβλ = ˆβ. If the design
+matrix has full row rank, which is generically the case for p > n, the min-norm estimator is an interpolator,
+namely xT
+i ˆβ = yi for all i ≤n. In order to evaluate these methods, we will study the prediction risk at a new
+(unseen) test point (y0, x0).
+We study the model (2) in the proportional regime p ≍n, with a special focus on the overparametrized
+case p > n. Our main contribution is to show that, by considering diﬀerent choices of the features distribution
+Px, we can reproduce a number of statistically interesting phenomena that have emerged in the context of
+deep learning.
+From a technical perspective, our main results are: Theorems 2 and 5, which assume the linear model
+xi = Σ1/2zi with zi a vector with independent coordinates; and Theorem 8, which assumes a nonlinear model
+xi = ϕ(Wzi) with zi ∼N(0, Id). While the linear model has already a attracted signiﬁcant amount of work
+(see Section 1.3 for an overview), Theorems 2 and 5 provide a more accurate non-asymptotic approximation
+of the prediction risk, as compared to available results in the literature.
+The prediction risk depends on the geometry of the pair (Σ, β). We consider a few diﬀerent choices for
+this geometry, which are broadly motivated by our objective to understand overparametrized models, and
+specialize our formulas to these special cases:
+1. Isotropic features. This is the simplest case, in which Σ = Ip and therefore —as we will see— the
+asymptotic risk depends on β only through its norm ∥β∥2. This simple model captures some interesting
+features of overparametrization, but misses others.
+We ﬁrst consider a well speciﬁed case in which xi ∈Rp and we regress against xi. We then pass to a
+misspeciﬁed case, in which the model (2) holds for covariates xi ∈Rp+q, but we regress only against
+the ﬁrst p covariates.
+2. Latent space features. In the overparametrized regime, it is natural to assume that both the covariates
+xi, and the coeﬃcients vector β lie close to a low-dimensional subspace. In order to model this property,
+we assume Σ = WW T + I, with W ∈Rp×d, d ≪p, and β lies in the span of the columns of W.
+Interestingly, this model reproduces many phenomena observed in more complex nonlinear models, and
+has a more direct connection to neural networks.
+3. Nonlinear model. In all of the previous cases, the distribution of xi is of the form xi = Σ1/2zi where zi
+is a vector with independent coordinates. In order to test the generality of our results, we consider a
+model in which xi is obtained by passing zi ∼N(0, Id) through a one-layer neural net with random
+ﬁrst layer weights.
+We will summarize our results for these four examples in the next subsection.
+A skeptical reader might ask what linear models have to do with neural networks. We emphasize that
+linear models provide more than a simple analogy, and a recent line of work outlines a concrete connection
+between the two settings (Jacot et al., 2018; Du et al., 2018b,a; Allen-Zhu et al., 2018; Chizat and Bach,
+2018b). We will discuss this connection in Section 1.2.
+1.1
+Summary of results
+As mentioned above, we analyze the out-of-sample prediction risk of the minimum ℓ2 norm (or min-norm, for
+short) least squares estimator, and of ridge-regularized least squares.
+We denote by γ := p/n ∈(0, ∞) the overparametrization ratio. When γ < 1, we call the problem
+underparametrized, and when γ > 1, we call it overparametrized. Our most general results for the linear model
+(Theorem 2 and 5) apply to a non-asymptotic setting in which n, p are ﬁnite, and provide a deterministic
+approximation of the risk with error bounds that are uniform in the distribution of the data. We will
+occasionally consider a simpler asymptotic scenario in which both p and n diverge with p/n →γ.
+We assume the model (2) and denote by SNR = ∥β∥2
+2/σ2 the signal-to-noise ratio. We refer to Figure 1
+for supporting plots of the asymptotic risk curves for diﬀerent cases of interest.
+Our main results are twofold: (i) We show that by taking Σ̸ = Ip, we can easily construct scenarios in
+which the minimum of the risk is achieved in the overparamertized regime p > n; (ii) We show that these
+ﬁndings are robust to the details of the distribution of (yi, xi).
+2
+
+
+--- page 3 ---
+0.1
+0.2
+0.5
+1.0
+2.0
+5.0
+10.0
+0
+2
+4
+6
+8
+10
+Linear versus nonlinear
+γ
+Risk
+G
+G G
+G G
+G G
+G G
+G G G
+G G
+G G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G G G
+G G G G G G G G G G G G G G G
+G
+G G
+G G
+G G
+G G
+G G G
+G G
+G G G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G G
+G G G
+G G G G G G G G G G G G G G G
+G
+G G
+G G
+G G
+G G
+G G G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G G G G G G G G G G G G G G G
+G
+G G
+G G
+G G
+G G
+G G G
+G G
+G G G
+G
+G G
+G G G
+G G G G
+G G G G G
+G G G
+G G G G G G G G G G G G G G G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+Min−norm LS, SNR=1
+Min−norm LS, SNR=5
+Min−norm LS, misspecified
+Optimal ridge, misspecified
+Latent space model
+Linear feature model
+Nonlinear feature model
+Figure 1: Asymptotic risk curves for the linear feature model, as a function of the limiting aspect ratio γ. Black and yellow:
+risks for min-norm least squares in the isotropic well speciﬁed model, for SNR = 1 and SNR = 5, respectively. These two match
+for γ < 1 but diﬀer for γ > 1. The null risks for SNR = 1 and SNR = 5 are marked by the dotted black and yellow lines,
+respectively. Light blue: risk for a misspeciﬁed model with signiﬁcant approximation bias (a = 1.5 in (22)), when SNR = 5.
+Green: optimally-tuned (equivalently, CV-tuned) ridge regression, in the same misspeciﬁed setup as for the light blue. Red:
+latent space model of Section 5.4, with r = 7, σ = 0. The points denote ﬁnite-sample risks, with n = 200, p = [γn], across
+various values of γ. Meanwhile, the ‘×’ points mark ﬁnite-sample risks for a nonlinear feature model, with n = 200, p = [γn],
+d = 100, and X = ϕ(ZW T ), where Z has i.i.d. N(0, 1) entries, W has i.i.d. N(0, 1/d) entries, and ϕ(t) = a(|t| −b) is a “purely
+nonlinear” activation function, for constants a, b. Theorem 8 predicts that this nonlinear risk should converge to the linear risk
+with p features (regardless of d).
+
+
+--- page 4 ---
+As a preliminary remark, note that in the underparametrized regime (γ < 1), the min-norm estimator
+coincides with the standard least squares estimator. Its risk is purely variance (there is no bias), and does
+not depend on β, Σ (see Proposition 2). Interestingly, the asymptotic risk diverges as we approach the
+interpolation boundary (as γ →1).
+In contrast, in the overparametrized regime (γ > 1), the risk is composed of both bias and variance1, and
+generally depends on β, Σ (see Theorem 2).
+We next highlight some concrete results for the four models discussed in the previous section (unless
+explicitly said, we refer to the min-norm estimator).
+Isotropic features. The asymptotic risk depends on the coeﬃcients vector only through its norm ∥β∥2
+2 or,
+up to a scaling, on SNR = ∥β∥2
+2/σ2.
+1. If the model is well-speciﬁed, we observe two diﬀerent behaviors. For SNR ≤1, the risk is decreasing
+for γ ∈(1, ∞). For SNR > 1, the risk has a local minimum on γ ∈(1, ∞).
+In either case, the risk approaches the null risk as γ →∞, and achieves its global minimum in the
+underparametrized regime (see Section 3.2).
+2. If the model is misspeciﬁed, when SNR > 1, the risk can attain its global minimum in the
+overparametrized regime γ ∈(1, ∞) (when there is strong enough approximation bias, see Section
+5.3). However, the risk is again increasing for γ large enough.
+3. Optimally-tuned ridge regression uses a non-vanishing regularization λ > 0, and dominates the
+min-norm least squares estimator in risk, across all values of γ and SNR, both the well-speciﬁed
+and misspeciﬁed settings. For a misspeciﬁed model, optimally-tuned ridge regression attains its
+global minimum around γ = 1 (see Section 6).
+4. Optimal tuning of the ridge penalty can be achieved by leave-one-out cross-validation (see Theorem
+7).
+Anisotropic features. In this case Σ̸ = I and the risk depends on the geometry of (Σ, β), and in particular
+on how β aligns with the eigenvectors of Σ.
+1. If the coeﬃcients vector is equidistributed along the eigenvectors of Σ, the behavior is qualitatively
+similar to the isotropic case. This situation arises, for instance, if β is itself random with a spherical
+prior.
+2. If β is aligned with the top eigenvectors of Σ, the situation is qualitatively diﬀerent. As an example
+we obtain an explicit formula for the asymptotic risk in the latent space model discussed above,
+see Figure 5 for an illustration. We ﬁnd that, for natural choices of the model parameters, the
+risk is monotone decreasing in the overparametrized regime, and reaches its global minimum as
+γ →∞. This qualitative behavior matches the one observed for neural networks (see Section 5.4).
+3. For the latent space model, we observe that, at large overparametrization, the minimum error is
+achieved as λ →0, i.e. by min-norm interpolators (see Section 6.2, and Section 1.3 for related
+work).
+Nonlinear model. Finally, we consider a nonlinear model in which xi = ϕ(Wzi) where ϕ is a non-linear
+activation function applied componentwise, W ∈Rp×d, and zi ∼N(0, Id). We compute the limiting
+risk of min-norm regression for a purely non-linear activation, and show that this matches the one for
+Gaussian xi. This conﬁrms that the results found for the case xi = Σ1/2zi with zi an i.i.d. vector are
+likely to hold in substantially greater generality (see Theorem 8).
+From a technical viewpoint, analysis of the isotropic covariates model is straightforward and relies on
+standard random matrix theory results. However, we believe it provides useful insights.
+In contrast, the results for general covariance and coeﬃcients structure (Σ, β) is technically novel. We
+discuss related work in Section 1.3. Our results for the nonlinear model are also novel. In this setting, we
+1Note that in the overparametrized regime the bias is non-vanishing even in the interpolation limit λ →0. The reason is that
+the set of interpolators is an aﬃne space of dimension p −n, and the min-norm criterion selects one speciﬁc interpolator which
+has norm smaller than β.
+4
+
+
+--- page 5 ---
+derive a new asymptotic result on resolvents of certain block matrices, which may be of independent interest
+(see Lemma 3).
+We next discuss some intuition behind and implications of our results.
+Bias and variance
+The shape of the asymptotic risk curve for min-norm least squares is, of course,
+controlled by its components: bias and variance. For fully speciﬁed models, the bias increases with γ in
+the overparametrized regime, which is intuitive. When p > n, the min-norm least squares estimate of β is
+constrained to lie the row space of X, the training feature matrix. This is a subspace of dimension n lying in
+a feature space of dimension p. Thus as p increases, so does the bias, since this row space accounts for less
+and less of the ambient p-dimensional feature space.
+Meanwhile, we ﬁnd that, in the overparametrized regime, the variance decreases with γ. This may seem
+counterintuitive at ﬁrst, because it says, in a sense, that the min-norm least squares estimator becomes more
+regularized as p grows. However, this too can be explained intuitively, as follows. As p grows, the minimum ℓ2
+norm least squares solution—i.e., the minimum ℓ2 norm solution to the linear system Xb = y, for a training
+feature matrix X and response vector y—will generally have decreasing ℓ2 norm. Why? Compare two such
+linear systems: in each, we are asking for the min-norm solution to a linear system with the same y, but in one
+instance we are given more columns in X, so we can generally decrease the components of b (by distributing
+them over more columns), and achieve a smaller ℓ2 norm. This can in fact be formalized asymptotically, see
+Corollaries 1 and 3.
+Double descent
+Recently, Belkin et al. (2018a) pointed out a fascinating empirical trend where, for
+popular methods like neural networks and random forests, we can see a second bias-variance tradeoﬀin the
+out-of-sample prediction risk beyond the interpolation limit. The risk curve here resembles a traditional
+U-shape curve before the interpolation limit, and then descends again beyond the interpolation limit, which
+these authors call “double descent”. A closely related phenomenon was found earlier by Spigler et al. (2018),
+who studied the “jamming transition” from underparametrized to overparametrized neural networks. Our
+results formally verify that this double descent phenomenon occurs even in the simple and fundamental case
+of least squares regression. The appearance of the second descent in the risk, past the interpolation boundary
+(γ = 1), is explained by the fact that the variance decreases as γ grows, as discussed above.
+In the misspeciﬁed case, the variance still decreases with γ (for the same reasons), but interestingly, the
+bias can now also decrease with γ, provided γ is not too large (not too far past the interpolation boundary).
+The intuition here is that in a misspeciﬁed model, some part of the true regression function is always
+unaccounted for, and adding features generally improves our approximation capacity. As a consequence, the
+double descent phenomenon can be even more pronounced in the misspeciﬁed case (depending on the strength
+of the approximation bias), and that the risk can attain its global minimum past the interpolation limit.
+Finally in the latent space model, we observe that the overall risk can be monotone decreasing in the over
+parametrized regime, and attain its global minimum for large overparametrization γ →∞(after p, n →∞).
+In this case we can write the design matrix as X = ZW T + U, where U is noise, and Z is the n × d matrix
+of latent covariates. Equivalently, the i-th column of X (the i-th feature) takes the form ˜xi = Zwi + ˜ui,
+where wi is the i-th column of W T and ˜ui is the i-th column of U. Therefore, each new feature provides new
+information about the underlying low-dimensional latent variables Z. As p gets large, ridge regression with
+respect to the feature matrix X approximates increasingly well a ridge regression with respect to the latent
+variables Z.
+Interpolation versus regularization
+The min-norm least squares estimator can be seen as the limit of
+ridge regression as the tuning parameter tends to zero. It is also the convergence point of gradient descent run
+on the least squares loss. We would not in general expect the best-predicting ridge solution to be at the end
+of its regularization path. Our results, comparing min-norm least squares to optimally-tuned ridge regression,
+show that (asymptotically) this is never the case, when β is incoherent with respect to the eigenvectors of Σ.
+This is for instance the case when Σ = Ip, or β is distributed according to a spherically symmetric prior. In
+contrast, Kobak et al. (2020) recently pointed out that —when β is aligned with the leading eigenvectors
+of Σ— min-norm regression can have optimal risk (i.e. the optimal regularization vanishes). We show that
+this is indeed the case in the latent space model mentioned above: this provides indeed an extremely simple
+example of a phenomenon that has been observed in the past for kernel methods Liang et al. (2020).
+5
+
+
+--- page 6 ---
+As mentioned above, early-stopped gradient descent is known to be closely connected to ridge regularization,
+see, e.g., Ali et al. (2019) which proves a tight coupling between the two (see Section 1.3 for further related
+work).
+In practice, of course, we would not have access to the optimal tuning parameter for ridge (optimal
+stopping for gradient descent), and we would rely on, e.g., cross-validation (CV). Our theory shows that for
+ridge regression, CV tuning is asymptotically equivalent to optimal tuning (and we would expect the same
+results to carry over to gradient descent, but have not pursued this formally).
+Historically, the debate between interpolation and regularization has been alive for the last 30 or so
+years. Support vector machines ﬁnd maximum-margin decision boundaries, which often perform very well
+for problems where the Bayes error is close to zero. But for less-separated classiﬁcation tasks, one needs to
+tune the cost parameter (Hastie et al., 2004). Relatedly, in classiﬁcation, it is common to run boosting until
+the training error is zero, and similar to the connection between gradient descent and ℓ2 regularization, the
+boosting path is tied to ℓ1 regularization (Rosset et al., 2004; Tibshirani, 2015). Again, we now know that
+boosting can overﬁt, and the number of boosting iterations should be treated as a tuning parameter.
+1.2
+Connection to neural networks
+As mentioned above, recent literature has pointed out a direct connection between linear models and more
+complex models such as neural networks (Jacot et al., 2018; Du et al., 2018b,a; Allen-Zhu et al., 2018; Chizat
+and Bach, 2018b). Our work contributes to this line of work and in particular points at the important role
+played by universality, a core concept in random matrix theory Tao (2012).
+Assume to be given data i.i.d. (yi, zi), i ≤n, yi ∈R, zi ∈Rd. Consider learning a neural network with
+parameters (weights) θ ∈Rp, f( · ; θ) : Rd →R, z 7→f(z; θ). The speciﬁc form or architecture of the network
+is not important for our discussion. However it is important to emphasize that the form of f need not be
+related to the actual distribution of (yi, zi).
+In some settings, the number of parameters p is so large that training eﬀectively changes θ only by a
+small amount with respect to a random initialization θ0 ∈Rp. It thus makes sense to linearize the model
+around θ0. Further, supposing that the initialization is such that f(z; θ0) ≈0, and letting θ = θ0 + β, we can
+approximate the statistical model z 7→f(z; θ) by
+z 7→∇θf(z; θ0)T β .
+(3)
+This model is still nonlinear in the input z, but is linear in the parameters β. We are therefore led to consider
+a linear regression problem, with random features xi = ∇θf(zi; θ0), i = 1, . . . , n, of high-dimensionality (p
+much greater than n). Notice that the features are random because of the initialization θ0. Further, since
+p > n, many vectors β give rise to a model that interpolates the data.
+The above scenario was made rigorous in a number of papers Jacot et al. (2018); Du et al. (2018b,a);
+Allen-Zhu et al. (2018); Chizat and Bach (2018b). In particular, Chizat and Bach (2018b) shows —under
+some technical conditions— that the linearization (3) can be accurate if the model is overparametrized
+(p > n), and closed under scalings (if f( · ) is encoded by a neural network, then sf( · ) is also a neural
+network for any s ∈R). Under these conditions, there exists a scaling of the network’s parameters such
+that gradient-based training converges to a model that can be approximated arbitrarily well by (3). Further,
+under the linearization (3), gradient descent converges to the interpolator that minimizes 2 the ℓ2 norm ∥β∥2
+(see Proposition 1 below).
+What are the statistical consequences of these linearization results? In principle, one could proceed as
+follows: assume {(yi, zi)}i≤n to be i.i.d. samples with a certain population distribution Py,z, and then study
+the behavior of minimum ℓ2 norm interpolator of the form (3) under this data model. Of course, carrying out
+such a study in any generality is an outstanding mathematical challenge: we refer to Section 1.3 for some
+pointers to recent progress in this direction after a ﬁrst appearance of this manuscript.
+A diﬀerent approach relies on a universality hypothesis. Recall that {(yi, zi)}i≤n have joint distribution
+Py,z, and xi = ∇θf(zi; θ0) and assume these quantities to have zero mean3. Universality posits that the
+2Understanding the bias induced by gradient-based algorithms on fully nonlinear models is a broadly open problem, which
+has attracted considerable attention recently, see e.g. Gunasekar et al. (2018a,b).
+3We further note that the assumption of zero mean is mainly for convenience, as a non-zero mean of the covariates can be
+eﬀectively compensated by an intercept.
+6
+
+
+--- page 7 ---
+asymptotic risk of ridge regression (or min-norm interpolation) does not change if we replace the joint
+distribution (xi, zi) by a Gaussian with the same covariance.
+While universality is not expected to hold for any distribution of the data (yi, zi), and for any function
+f, it has been conﬁrmed in a number of examples of interest (see Section 1.3). In fact, our analysis of the
+nonlinear model in Section 8 provides a concrete example in which universality can be conﬁrmed rigorously.
+Under the universality hypothesis, we can assume (zi, xi) to be jointly Gaussian.
+If the true joint
+distribution of the data (yi, zi) is also Gaussian, it is suﬃcient to study the data distribution
+yi = βT xi + ϵi,
+xi ∼N(0, Σ) , ϵi ∼N(0, σ2) ,
+where Σ, σ are chosen to match the second order statistics of the original model. This is a special case of
+our ‘linear model’ (2). Summarizing, replacing the original nonlinear model yi = f(zi; θ), with the linear
+model rests on two key steps. The ﬁrst step is the linearization in Eq. (3): this has been proved to be a
+good approximation under certain ‘lazy training’ schemes Chizat and Bach (2018b). The second step is the
+universality hypothesis, which is quite common (albeit for simpler models) in random matrix theory Tao
+(2012).
+Finally, although we believe our our results are relevant to understanding overparametrized neural networks,
+the concrete correspondence outlined above only holds in a certain ‘lazy training’ regime, in which network
+weights do not change much during training, More generally, in a neural network, the feature representation
+and the regression function or classiﬁer are learned simultaneously. In both our linear and nonlinear model
+settings, the features X are not learned, but observed. Learning X could signiﬁcantly change some aspects of
+the behavior of an interpolator. (See for instance Chapter 9 of Goodfellow et al. (2016), and also Chizat and
+Bach (2018b); Zhang et al. (2019), which emphasize the importance of learning the representation.)
+1.3
+Related work
+The present work connects to and is motivated by the recent interest in interpolators in machine learning
+(Belkin et al., 2018b,a; Liang et al., 2020; Belkin et al., 2018c; Geiger et al., 2019). Several authors have
+argued that minimum ℓ2 norm least squares regression captures the basic behavior of deep neural networks,
+at least in early (lazy) training (Jacot et al., 2018; Du et al., 2018b,a; Allen-Zhu et al., 2018; Zou et al.,
+2018; Chizat and Bach, 2018b; Lee et al., 2019). The connection between neural networks and kernel ridge
+regression arises when the number of hidden units diverges. The same limit was also studied (beyond the
+linearized regime) in Mei et al. (2018); Rotskoﬀand Vanden-Eijnden (2018); Sirignano and Spiliopoulos
+(2018); Chizat and Bach (2018a).
+Ridge regression with random features has been studied in the past. Dicker (2016) considers a model in
+which the covariates are isotropic Gaussian xi ∼N(0, Ip) and computes the asymptotic risk of ridge regression
+in the proportional asymptotics p, n →∞, with p/n →γ ∈(0, ∞). Dobriban and Wager (2018) generalize
+these results to xi = Σ1/2zi, where zi has independent entries with bounded 12-th moment.
+Recently, Advani and Saxe (2017) study the eﬀect of early stopping and ridge regularization in a model
+with isotropic Gaussian covariates xi ∼N(0, Ip), again focusing on the proportional asymptotics p, n →∞,
+with p/n →γ ∈(0, ∞). They show that this simple model reproduces several phenomena observed in neural
+networks training. The same model is reconsidered in concurrent work by Belkin et al. (2019), who obtain
+exact results for the expected risk of min-norm regression, relying on the jointly Gaussian distribution of
+(yi, xi). We contribute to this line of work by extending the analysis to general covariance structures and to
+misspeciﬁed models. As we will see, these generalizations allow to produce examples for which the global
+minimum of the risk is achieved in the overparametrized regime γ > 1.
+The importance of the relation between the coeﬃcient vector β and the eigenvectors of Σ was emphasized
+by Kobak et al. (2020) and Bartlett et al. (2020). These papers point out —under diﬀerent asymptotic
+settings— that λ = 0+ (i.e., min-norm regression) can be optimal or nearly optimal. After a preprint of this
+paper appeared, Wu and Xu (2020) and Richards et al. (2020) generalized our earlier results to cover the
+case in which β is potentially aligned with Σ. We review in further detail these important generalizations in
+Section 4. We contribute to this line of work by obtaining non-asymptotic approximations for the risk, with
+explicit and nearly optimal error bounds. These hold under weaker assumptions on the geometry of (Σ, β)
+than the results of Wu and Xu (2020); Richards et al. (2020).
+7
+
+
+--- page 8 ---
+For the nonlinear model, the random matrix theory literature is much sparser, and focuses on the related
+model of kernel random matrices, namely, symmetric matrices of the form Kij = ϕ(zT
+i zj). El Karoui (2010)
+studied the spectrum of such matrices in a regime in which ϕ can be approximated by a linear function (for
+i̸ = j) and hence the spectrum converges to a rescaled Marchenko-Pastur law. This approximation does not
+hold for the regime of interest here, which was studied instead by Cheng and Singer (2013) (who determined
+the limiting spectral distribution) and Fan and Montanari (2015) (who characterized the extreme eigenvalues).
+The resulting eigenvalue distribution is the free convolution of a semicircle law and a Marchenko-Pastur law.
+In the current paper, we must consider asymmetric (rectangular) matrices xij = ϕ(wT
+j zi), whose singular
+value distribution was recently computed by Pennington and Worah (2017), using the moment method.
+Unfortunately, the prediction variance depends on both the singular values and vectors of this matrix. In
+order to address this issue, we apply the leave-one out method of Cheng and Singer (2013) to compute the
+asymptotics of the resolvent of a suitably extended matrix. We then extract the information of interest from
+this matrix. After appearance of a preprint of this paper, Mei and Montanari (2019) extended the results
+presented here, to obtain a complete characterization of the risk for the non-linear random features model.
+Let us ﬁnally mention that the universality (or ‘invariance’) phenomenon is quite common in random
+matrix theory Tao (2012). In the context of kernel inner product random matrices, it appears (somewhat
+implicitly) in Cheng and Singer (2013) and (more explicitly) in Fan and Montanari (2015). After a ﬁrst
+appearance of this manuscript, universality has been investigated in the context of neural networks in several
+papers Mei and Montanari (2019); Montanari et al. (2019); Gerace et al. (2020); Goldt et al. (2020); Hu and
+Lu (2020); Adlam and Pennington (2020).
+1.4
+Outline
+Section 2 provides important background. Sections 3–7 consider the linear model case, focusing on isotropic
+features, correlated features, misspeciﬁed models, ridge regularization, and cross-validation, respectively.
+Section 8 covers the nonlinear model case. Nearly all proofs are deferred until the appendix.
+2
+Preliminaries
+We describe our setup and gather a number of important preliminary results.
+2.1
+Data model and risk
+Assume we observe training data (xi, yi) ∈Rp × R, i = 1, . . . , n from the model of Eqs. (1), (2). We collect
+the responses in a vector y ∈Rn, and the features in a matrix X ∈Rn×p (with rows xi ∈Rp, i = 1, . . . , n).
+Consider a test point x0 ∼Px, independent of the training data. For an estimator ˆβ (a function of the
+training data X, y), we deﬁne its out-of-sample prediction risk (or simply, risk) as
+RX(ˆβ; β) = E
+
+(xT
+0 ˆβ −xT
+0 β)2 | X
+
+= E
+
+∥ˆβ −β∥2
+Σ | X
+
+,
+where ∥x∥2
+Σ = xT Σx. Note that our deﬁnition of risk is conditional on X (as emphasized by our notation
+RX). Note also that we have the bias-variance decomposition
+RX(ˆβ; β) = ∥E(ˆβ|X) −β∥2
+Σ
+|
+{z
+}
+BX( ˆβ;β)
++ Tr[Cov(ˆβ|X)Σ]
+|
+{z
+}
+VX( ˆβ;β)
+.
+2.2
+Ridgeless least squares
+We consider the minimum ℓ2 norm (min-norm) least squares regression estimator, of y on X, deﬁned by
+ˆβ = arg min
+n
+∥b∥2 : b minimizes ∥y −Xb∥2
+2
+o
+.
+(4)
+This can be equivalently written as ˆβ = (XT X)+XT y, where (XT X)+ is the pseudoinverse of XT X. An
+alternative name for (4) is the “ridgeless” least squares estimator, motivated by the fact that ˆβ = limλ→0+ ˆβλ,
+8
+
+
+--- page 9 ---
+where ˆβλ denotes the ridge regression estimator:
+ˆβλ = arg min
+b∈Rp
+ 1
+n∥y −Xb∥2
+2 + λ∥b∥2
+2
+
+,
+(5)
+or, equivalently, ˆβλ = (XT X + nλI)−1XT y.
+When X has full column rank the min-norm least squares estimator reduces to ˆβ = (XT X)−1XT y, the
+usual least squares estimator. When X has rank n, importantly, this estimator interpolates the training data:
+yi = xT
+i ˆβ, for i = 1, . . . , n.
+Lastly, the following is a well-known fact that connects the min-norm least squares solution to gradient
+descent (as referenced in the introduction).
+Proposition 1. Initialize β(0) = 0, and consider running gradient descent on the least squares loss, yielding
+iterates
+β(k) = β(k−1) + tXT (y −Xβ(k−1)),
+k = 1, 2, 3, . . . ,
+where we take 0 < t ≤1/λmax(XT X) (and λmax(XT X) is the largest eigenvalue of XT X). Then limk→∞β(k) = ˆβ,
+the min-norm least squares solution in (4).
+Proof. The choice of step size guarantees that β(k) converges to a least squares solution as k →∞, call it ˜β.
+Note that β(k), k = 1, 2, 3, . . . all lie in the row space of X; therefore ˜β must also lie in the row space of X;
+and the min-norm least squares solution ˆβ is the unique least squares solution with this property.
+2.3
+Bias and variance
+We recall expressions for the bias and variance of the min-norm least squares estimator, which are standard.
+Lemma 1. Under the model (1), (2), the min-norm least squares estimator (4) has bias and variance
+BX(ˆβ; β) = βT ΠΣΠβ
+and
+VX(ˆβ; β) = σ2
+n Tr(ˆΣ+Σ),
+where ˆΣ = XT X/n is the (uncentered) sample covariance of X, and Π = I −ˆΣ+ ˆΣ is the projection onto the
+null space of X.
+Proof. As E(ˆβ|X) = (XT X)+XT Xβ = ˆΣ+ ˆΣβ and Cov(ˆβ|X) = σ2(XT X)+XT X(XT X)+ = σ2 ˆΣ+/n, the
+bias and variance expressions follow from plugging these into their respective deﬁnitions.
+2.4
+Underparametrized asymptotics
+We consider an asymptotic setup where n, p →∞, in such a way that p/n →γ ∈(0, ∞). Recall that when
+γ < 1, we call the problem underparametrized; when γ > 1, we call it overparametrized. Here, we recall the
+risk of the min-norm least squares estimator in the underparametrized case. The rest of this paper focuses on
+the overparametrized case.
+The following is a known result in random matrix theory, and can be found in Chapter 6 of Serdobolskii
+(2007). It can also be found in the wireless communications literature, see Chapter 4 of Tulino and Verdu
+(2004).
+Proposition 2. Assume the model (1), (2), and assume x ∼Px is of the form x = Σ1/2z, where z is a
+random vector with i.i.d. entries that have zero mean, unit variance, and a ﬁnite 4th moment, and Σ is a
+(sequence of) deterministic positive deﬁnite matrix, such that λmin(Σ) ≥c > 0, for all n, p and a constant c
+(here λmin(Σ) is the smallest eigenvalue of Σ). Then as n, p →∞, such that p/n →γ < 1, the risk of the
+least squares estimator (4) satisﬁes, almost surely,
+lim
+n→∞RX(ˆβ; β) = σ2
+γ
+1 −γ .
+As it can be seen from the last proposition, in the underparametrized case the risk is just variance. In
+contrast, in the overparametrized case, the bias BX(ˆβ; β) = βT ΠΣΠβ is nonzero, because Π is. This will be
+the focus of the next sections.
+9
+
+
+--- page 10 ---
+3
+Isotropic features
+We begin by considering the simpler case in which Σ = I.
+In this case the limiting bias is relatively
+straightforward to compute and depends on β only through ∥β∥2
+2. In Section 4, we generalize our analysis
+and study the dependence of the bias on the geometry of Σ and β.
+3.1
+Limiting bias
+As mentioned above, in the isotropic case the risk depends β only on through r2 = ∥β∥2
+2. To give some
+intuition as to why this is true, consider the special case where X has i.i.d. entries from N(0, 1). By rotational
+invariance, for any orthogonal U ∈Rp×p, the distribution of X and XU is the same. Thus
+BX(ˆβ; β) = βT  I −(XT X)+XT X
+
+β
+d= βT  I −U T (XT X)+UU T XT XU
+
+β
+= r2 −(Uβ)T (XT X)+XT X(Uβ).
+Choosing U so that Uβ = rei, the ith standard basis vector, then averaging over i = 1, . . . , p, yields
+EBX(ˆβ; β) = r2E
+
+1 −Tr
+ (XT X)+XT X
+
+/p
+
+= r2(1 −n/p).
+It is possible to show that, BX(ˆβ; β) concentrates around its expectation ant therefore BX(ˆβ; β) →r2(1−1/γ),
+almost surely. This is stated formally in the next section.
+3.2
+Limiting risk
+As the next result shows, the independence of the risk on β is still true outside of the Gaussian case, provided
+the features are isotropic. The next result can be proved as a corollary of the more general Theorem 3 below.
+We give a simpler self-contained proof using a theorem of Rubio and Mestre (2011) in Appendix C.2.
+Theorem 1. Assume the model (1), (2), where x ∼Px has i.i.d. entries with zero mean, unit variance,
+and a ﬁnite moment of order 4 + η, for some η > 0. Also assume that ∥β∥2
+2 = r2 for all n, p. Then for the
+min-norm least squares estimator ˆβ in (4), as n, p →∞, such that p/n →γ ∈(0, ∞), it holds almost surely
+that
+BX(ˆβ; β) →r2 1 −1
+γ
+
+,
+(6)
+VX(ˆβ; β) →σ2
+1
+γ −1 .
+(7)
+Hence, summarizing with Proposition 2, we have
+RX(ˆβ; β) →
+(
+σ2
+γ
+1−γ
+for γ < 1,
+r2 1 −1
+γ
+
++ σ2
+1
+γ−1
+for γ > 1.
+(8)
+On (0, 1), there is no bias, and the variance increases with γ; on (1, ∞), the bias increases with γ, and the
+variance decreases with γ. Let SNR = r2/σ2. Observe that the risk of the null estimator ˜β = 0 is r2, which
+we hence call the null risk. The following facts are immediate from the form of the risk curve in (8). See
+Figure 2 for an accompanying plot when SNR varies from 1 to 5.
+1. On (0, 1), the least squares risk R(γ) is better than the null risk if and only if γ <
+SNR
+SNR+1.
+2. On (1, ∞), when SNR ≤1, the min-norm least squares risk R(γ) is always worse than the null risk.
+Moreover, it is monotonically decreasing, and approaches the null risk (from above) as γ →∞.
+3. On (1, ∞), when SNR > 1, the min-norm least squares risk R(γ) beats the null risk if and only if
+γ >
+SNR
+SNR−1. Further, it has a local minimum at γ =
+√
+SNR
+√
+SNR−1, and approaches the null risk (from below)
+as γ →∞.
+10
+
+
+--- page 11 ---
+0.1
+0.2
+0.5
+1.0
+2.0
+5.0
+10.0
+0
+2
+4
+6
+8
+10
+Isotropic features
+γ
+Risk
+G
+G G
+G G
+G G
+G G
+G G G
+G G
+G G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G G G
+G G G G G G G G G G G G G G G
+G
+G G
+G G
+G G
+G G
+G G G
+G G
+G G G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G G G
+G G G G G G G G G G G G G G G
+G
+G G
+G G
+G G
+G G
+G G G
+G G
+G G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G G
+G G G
+G G G G G G G G G G G G G G G
+G
+G G
+G G
+G G
+G G
+G G G
+G G
+G G G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G G
+G G G
+G G G G G G G G G G G G G G G
+SNR = 1
+SNR = 2.33
+SNR = 3.66
+SNR = 5
+Figure 2: Asymptotic risk curves in (8) for the min-norm least squares estimator, when r2 varies from 1 to 5, and σ2 = 1.
+For each value of r2, the null risk is marked as a dotted line, and the points denote ﬁnite-sample risks, with n = 200, p = [γn],
+across various values of γ, computed from features X having i.i.d. N(0, 1) entries.
+3.3
+Limiting ℓ2 norm
+Calculation of the limiting ℓ2 norm of the min-norm least squares estimator is quite similar to the study of
+the limiting risk in Theorem 1, and therefore we state the next result without proof.
+Corollary 1. Assume the conditions of Theorem 1. Then as n, p →∞, such that p/n →γ, the squared ℓ2
+norm of the min-norm least squares estimator (4) satisﬁes, almost surely,
+E[∥ˆβ∥2
+2 | X] →
+(
+r2 + σ2
+γ
+1−γ
+for γ < 1,
+r2 1
+γ + σ2
+1
+γ−1
+for γ > 1.
+We can see that the limiting norm, as a function of γ, has a somewhat similar proﬁle to the limiting risk
+in (8): it is monotonically increasing on (0, 1), diverges at the interpolation boundary, and is monotonically
+decreasing on (1, ∞).
+4
+Correlated features
+We broaden the scope of our analysis from the last section, where we examined isotropic features. In this
+section, we take x ∼Px to be of the form x = Σ1/2z, where z is a random vector with independent entries
+that have zero mean and unit variance, and Σ is arbitrary (but still deterministic and positive deﬁnite).
+The risk of min-norm regression depends on the geometry of Σ and β. Denote by Σ = Pp
+i=1 sivivT
+i the
+eigenvalue decomposition of Σ with s1 ≥s2 ≥· · · ≥sp ≥0. The geometry of the problem is captured by the
+sequence of eigenvalues (s1, . . . , sp), and by the coeﬃcients of β in the basis of eigenvectors ((vT
+1 β), . . . , (vT
+p β)).
+11
+
+
+--- page 12 ---
+We encode these via two probability distributions on R≥0:
+bHn(s) := 1
+p
+p
+X
+i=1
+1{s≥si} ,
+bGn(s) =
+1
+∥β∥2
+2
+p
+X
+i=1
+⟨β, vi⟩21{s≥si} .
+(9)
+We next state our assumptions about the data distribution: our results will be uniform with respect to
+the (large) constants M, {Ck}k≥2 appearing in this assumption.
+Assumption 1. The covariates vector x ∼Px is of the form x = Σ1/2z, where, deﬁning bHn as per Eq. (9),
+we have
+(a) The vector z = (z1, . . . , zp) has independent (not necessarily identically distributed) entries with
+E{zi} = 0, E{z2
+i } = 1, and E{|zi|k} ≤Ck < ∞for all k ≥2.
+(b) s1 = ∥Σ∥op ≤M,
+R
+s−1d bHn(s) < M.
+(c) |1 −(p/n)| ≥1/M, 1/M ≤p/n ≤M.
+Condition (a) bounds the tail probabilities on the covariates. Requiring ﬁnite moment of all order is
+useful to get strong bounds on the deviations of the risk from its predicted value. As discussed below, bounds
+on the ﬁrst few moments are suﬃcient if we are satisﬁed in weaker probability bounds.
+Conditions (b) requires the eigenvalues of Σ to be bounded, and not to accumulate4 near 0. For the
+analysis of min-norm interpolation, we will add the additional assumption that the minimum eigenvalue of Σ
+is bounded away from zero. However condition (b) is suﬃcient for the analysis of ridge regression in Section 6.
+Finally, as our statements are non-asymptotic, we do not assume p/n to converge to to a value. However
+condition (c) requires p/n to be bounded and bounded away from the interpolation threshold p/n = 1.
+4.1
+Prediction risk
+Deﬁnition 1 (Predicted bias and variance: min-norm regression). Let bHn be the empirical distribution of
+eigenvalues of Σ, and bGn the reweighted distribution as per Eq. (9). For γ ∈R>0, deﬁne c0 = c0(γ, bHn) ∈R>0
+to be the unique non-negative solution of
+1 −1
+γ =
+Z
+1
+1 + c0γs d bHn(s) ,
+(10)
+We then deﬁne the predicted bias and variance by
+B( bHn, bGn, γ) := ∥β∥2
+2
+
+
+1 + γc0
+R
+s2
+(1+c0γs)2 d bHn(s)
+R
+s
+(1+c0γs)2 d bHn(s)
+
+
+·
+Z
+s
+(1 + c0γs)2 d bGn(s) ,
+(11)
+V ( bHn, γ) := σ2γ
+R
+s2
+(1+c0γs)2 d bHn(s)
+R
+s
+(1+c0γs)2 d bHn(s)
+.
+(12)
+Note that evaluating B(H, G, γ), V (H, γ) numerically is relatively straightforward, with the most complex
+part being the solution of Eq. (10). The next theorem establishes that —under suitable technical conditions—
+the functions B, V characterize the test error. Similar theorems were proved in Wu and Xu (2020); Richards
+et al. (2020), which generalized an earlier version of this manuscript to account for the geometry of (Σ, β).
+Theorem 2. Assume the data model (1), (2) and that the covariates distribution satisﬁes Assumption 1.
+Further assume sp = λmin(Σ) > 1/M. Deﬁne γ = p/n and let ˆβ be the min-norm least squares estimator in
+Eq. (4).
+4The latter assumption could have been further relaxed, by requiring only p+ of the p eigenvalues to be non-vanishing and to
+satisfy the other conditions. This would require to redeﬁne γ as p+/n.
+12
+
+
+--- page 13 ---
+Then for any constants D > 0 (arbitrarily large) there exist C = C(M, D) such that, with probability at
+least 1 −Cn−D the following hold
+RX(ˆβ; β) = BX(ˆβ; β) + VX(ˆβ; β) ,
+(13)
+BX(ˆβ; β) −B( bHn, bGn, γ)
+ ≤C∥β∥2
+2
+n1/7
+,
+(14)
+VX(ˆβ; β) −V ( bHn, γ)
+ ≤
+C
+n1/7 ,
+(15)
+where B and V are given in Deﬁnition 2.
+The proof of this theorem is deferred to Section B.
+The order of the error bound in Eqs. (14), (15) is not optimal: a central limit theorem heuristics suggests
+the deterministic approximation to be accurate up to an error of order n−1/2. Indeed, we are able to establish
+the correct order in the case of ridge regression, see Theorem 5.
+Remark 1. Note that Theorem 2 establishes deterministic approximations for the bias and variance, that
+are valid at ﬁnite n, p. The overparametrization ratio γ = p/n is a non-asymptotic quantity, and the error
+bounds are uniform, i.e. depend uniquely on the constant M. This is to be contrasted with the asymptotic
+setting of Richards et al. (2020); Wu and Xu (2020). Both of these papers assume a sequence of regression
+problems with n, p →∞, p/n →γ, and obtain an asymptotically exact expression for the risk.
+In order for the asymptotics to make sense, additional assumptions are required by Richards et al.
+(2020); Wu and Xu (2020). In Richards et al. (2020), this is achieved by assuming β to be random with
+E[ββT ] = r2Φ(Σ)/d for a certain (deterministic) function Φ : R →R (promoted to a function on matrices in
+the usual way). In addition, the empirical spectral distribution of Σ is assumed to converge. To state the
+assumptions in Wu and Xu (2020), recall that (si)i≤p are the eigenvalues of Σ, and denote by bi = p · (vT
+i β)2
+the projection of β onto the eigenvectors of Σ. Then Wu and Xu (2020) assumes that the joint empirical
+distribution p−1 Pp
+i=1 δsi,bi converges weakly as n, p →∞.
+Technically, Richards et al. (2020); Wu and Xu (2020) apply asymptotic random matrix theory results,
+such as Ledoit and Peche (2011), while we have to take a longer detour to exploit non-asymptotic results
+established inKnowles and Yin (2017). We believe that the non-asymptotic approach provides more concrete
+and accurate statements.
+Theorem 2 also implies asymptotic predictions under minimal assumptions. In particular, if the two
+probability measures bHn, bGn converge weakly to probability measures H, G on [0, ∞), then we obtain
+BX(ˆβ; β)/∥β∥2 →B(H, G, γ), VX(ˆβ; β) →V (H, γ) almost surely.
+Theorem 3. Consider the setting of Theorem 2 but, instead of Assumption 1 (a), assume that (zi)i≤p
+are identically distributed and satisfy the conditions Ezi = 0, E(z2
+i ) = 1, E(|zi|4+δ) ≤C < ∞. Further
+assume p/n →γ ∈(0, ∞), bHn ⇒H, bGn ⇒G.
+Then, almost surely BX(ˆβ; β)/∥β∥2
+2 →B(H, G, γ),
+VX(ˆβ; β) →V (H, γ).
+As pointed out above the condition bHn ⇒H, bGn ⇒G (here ⇒denotes weak convergence) is strictly
+weaker than the condition assumed in Wu and Xu (2020) to establish asymptotic results. Further, we require
+weaker moment conditions.
+In the next sections we illustrate the role of the geometry of β, Σ by considering two models for which
+bHn ⇒H, bGn ⇒G as n, p →∞. First we consider the case G = H, which we refer to as ‘equidistributed:’
+the components of β are roughly equally distributed along the eigenvectors of Σ. In this case there is no
+special relation between β and Σ.
+As a further application, we consider a latent space model in which β is aligned with the top eigenvectors
+of Σ. This can be regarded as a misspeciﬁed model, and is therefore presented in Section 5.4 below.
+4.2
+Equidistributed coeﬃcients
+In this section we assume G = H, ∥β∥2 →r, and p/n →γ. One way to generate β satisfying this condition
+is to draw it uniformly at random on the p-dimensional sphere of radius ∥β∥2 = r. In this case the conditions
+of Theorem 2 (or Theorem 3), hold with bGn →G = H.
+13
+
+
+--- page 14 ---
+Corollary 2. Under the assumptions of Theorem 3, further assume G = H, ∥β∥2 →r2. Then for n, p →∞,
+with p/n →γ > 1, almost surely
+BX(ˆβ; β) →Bequi(H, γ) :=
+r2
+c0(H, γ)γ2 ,
+(16)
+VX(ˆβ; β) →Vequi(H, γ) := V (H, γ) .
+(17)
+As a special case, we can revisit the isotropic case Σ = I, which results in dH = δ1. In this case
+c0(H, γ) = γ(γ −1) yielding immediately Bequi(H, γ) = 1 −γ−1 and Vequi(H, γ) = 1/(γ −1).
+4.3
+Limiting ℓ2 norm
+Again, as in the isotropic case, analysis of the limiting ℓ2 norm is similar to analysis of the risk in Theorem 2.
+We give the next result without proof, as it is an immediate generalization of previous results.
+Corollary 3. Under the assumptions of Theorem 3, further assume ∥β∥2 →r2, and let c0 = c0(H, γ) be
+deﬁned as there. Then as n, p →∞, such that p/n →γ, the min-norm least squares estimator (4) satisﬁes,
+almost surely,
+∥ˆβ∥2
+2 →
+
+
+
+
+
+
+
+r2 + σ2
+γ
+1 −γ
+Z 1
+s dH(s)
+for γ < 1,
+Z
+c0γs
+1 + c0γs dG(s) + c0γσ2
+for γ > 1,
+(18)
+5
+Misspeciﬁed model
+In this section, we consider a misspeciﬁed model, in which the regression function is still linear, but we
+observe only a subset of the features. Such a setting provides another potential motivation for interpolation:
+in many problems, we do not know the form of the regression function, and we generate features in order
+to improve our approximation capacity. Increasing the number of features past the point of interpolation
+(increasing γ past 1) can now decrease both bias and variance.
+As such, the misspeciﬁed model setting also yields further interesting asymptotic comparisons between
+the γ < 1 and γ > 1 regimes. Recall the isotropic features model of Section 3.2: the risk function in (8) is
+globally minimized at γ = 0. This is a consequence of the fact that, in a well-speciﬁed linear model at γ = 0
+there is no bias and no variance, and hence no risk. In a misspeciﬁed model, we will see that the story can be
+quite diﬀerent, and the asymptotic risk can actually attain its global minimum on (1, ∞).
+5.1
+Data model and risk
+Consider, instead of (1), (2), a data model
+ (xi, wi), ϵi
+
+∼Px,w × Pϵ,
+i = 1, . . . , n,
+(19)
+yi = xT
+i β + wT
+i θ + ϵi,
+i = 1, . . . , n,
+(20)
+where as before the random draws across i = 1, . . . , n are independent. Here, we partition the features
+according to (xi, wi) ∈Rp+q, i = 1, . . . , n, where the joint distribution Px,w is such that E((xi, wi)) = 0 and
+Cov
+ (xi, wi)
+
+= Σ =
+ Σx
+Σxw
+ΣT
+xw
+Σw
+
+.
+We collect the features in a block matrix [ X W ] ∈Rn×(p+q) (which has rows (xi, wi) ∈Rp+q, i = 1, . . . , n).
+We presume that X is observed but W is unobserved, and focus on the min-norm least squares estimator
+exactly as before in (4), from the regression of y on X (not the full feature matrix [ X W ]).
+Given a test point (x0, w0) ∼Px,w, and an estimator ˆβ (ﬁt using X, y only, and not W), we deﬁne its
+out-of-sample prediction risk as
+RX(ˆβ; β, θ) = E
+ xT
+0 ˆβ −E(y0|x0, w0)
+2 | X
+
+= E
+ xT
+0 ˆβ −xT
+0 β −wT
+0 θ
+2 | X
+
+.
+14
+
+
+--- page 15 ---
+Note that this deﬁnition is conditional on X, and we are integrating over the randomness not only in ϵ (the
+training errors), but in the unobserved features W, as well. The next lemma decomposes this notion of risk
+in a useful way.
+Lemma 2. Under the misspeciﬁed model (19), (20), for any estimator ˆβ, we have
+RX(ˆβ; β, θ) = E
+ xT
+0 ˆβ −E(y0|x0)
+2 | X
+
+|
+{z
+}
+R∗
+X( ˆβ;β,θ)
++ E
+ E(y0|x0) −E(y0|x0, w0)
+2
+|
+{z
+}
+M(β,θ)
+.
+Proof. Simply add an subtract E(y0|x0) inside the square in the deﬁnition of RX(ˆβ; β, θ), then expand, and
+note that the cross term vanishes because E
+ E(y0|x0) −E(y0|x0, w0)
+
+| x0
+
+= 0.
+The ﬁrst term R∗
+X(ˆβ; β, θ) in the decomposition in Lemma 2 is precisely the risk that we studied previously
+in the well-speciﬁed case, except that the response distribution has changed (due to the presence of the
+middle term in (20)). We call the second term M(β, θ) in Lemma 2 the misspeciﬁcation bias.
+Remark 2. If (xi, wi) are jointly Gaussian, then the above expressions simplify and Theorem 2 can
+be used to characterize the risk RX(ˆβ; β, θ). In particular, the conditional distribution of w given x is
+Pw|x = N(ΣwxΣ−1
+x x, Σw|x) where Σwx = ΣT
+xw, and Σw|x = Σw −ΣwxΣ−1
+x ΣT
+wx. Further, y = ˜βT x + ˜ϵ, where
+˜β = β + Σ−1
+x Σxwθ, and ˜ε ∼N(0, ˜σ2), ˜σ2 = σ2 + θT Σw|xθ. It is then easy to show that the misspeciﬁcation
+bias is M(β, θ) = θT Σw|xθ and the term R∗
+X(ˆβ; β, θ) can be approximated using Theorem 2.
+In order to discuss some qualitative features, we focus on the simplest possible model by assuming
+independent covariates.
+5.2
+Isotropic features
+Here, we make the additional simplifying assumption that (x, w) ∼Px,w has i.i.d. entries with unit variance,
+which implies that Σ = I. (The case of independent features but general covariances Σx, Σw is similar, and
+we omit the details.) Therefore, we may write the response distribution in (20) as
+yi = xT
+i β + δi,
+i = 1, . . . , n,
+where δi is independent of xi, having mean zero and variance σ2 + ∥θ∥2
+2, for i = 1, . . . , n. Denote the total
+signal by r2 = ∥β∥2
+2 + ∥θ∥2
+2, and the fraction of the signal captured by the observed features by κ = ∥β∥2
+2/r2.
+Then R∗
+X(ˆβ; β, θ) behaves exactly as we computed previously, for isotropic features in the well-speciﬁed
+setting (Theorem 2 for γ < 1, and Theorem 1 for γ > 1), after we make the substitutions:
+r2 7→r2κ
+and
+σ2 7→σ2 + r2(1 −κ).
+(21)
+Furthermore, we can easily calculate the misspeciﬁcation bias:
+M(β, θ) = E(wT
+0 θ)2 = r2(1 −κ).
+Putting these results together leads to the next conclusion.
+Theorem 4. Assume the misspeciﬁed model (19), (20), and assume (x, w) ∼Px,w has i.i.d. entries with zero
+mean, unit variance, and a ﬁnite moment of order 8 + η, for some η > 0. Also assume that ∥β∥2
+2 + ∥θ∥2
+2 = r2
+and ∥β∥2
+2/r2 = κ for all n, p. Then for the min-norm least squares estimator ˆβ in (4), as n, p →∞, with
+p/n →γ, it holds almost surely that
+RX(ˆβ; β, θ) →
+(
+r2(1 −κ) +
+ r2(1 −κ) + σ2
+γ
+1−γ
+for γ < 1,
+r2(1 −κ) + r2κ
+ 1 −1
+γ
+
++
+ r2(1 −κ) + σ2
+1
+γ−1
+for γ > 1.
+We remark that, in the independence setting considered in Theorem 4, the dimension q of the unobserved
+feature space does not play any role: we may equally well take q = ∞for all n, p (i.e., inﬁnitely many
+unobserved features).
+15
+
+
+--- page 16 ---
+The components of the limiting risk from Theorem 4 are intuitive and can be interpreted as follows. The
+ﬁrst term r2(1 −κ) is the misspeciﬁcation bias (irreducible). The second term, which we deem as 0 for γ < 1
+and r2κ(1 −1/γ) for γ > 1, is the bias. The third term, r2(1 −κ)γ/(1 −γ) for γ < 1 and r2(1 −κ)/(γ −1)
+for γ > 1, is what we call the misspeciﬁcation variance: the inﬂation in variance due to unobserved features,
+when we take E(y0|x0) to be the target of estimation. The last term, σ2γ/(1 −γ) for γ < 1 and σ2/(γ −1)
+for γ > 1, is the variance itself.
+5.3
+Polynomial approximation bias
+Since adding features should generally improve our approximation capacity, it is reasonable to model κ = κ(γ)
+as an increasing function of γ. To get an idea of the possible shapes taken by the asymptotic risk curve from
+Theorem 4, we consider the example of a polynomial decay for the approximation bias,
+1 −κ(γ) = (1 + γ)−a,
+(22)
+for some a > 0. In this case, the limiting risk in the isotropic setting, from Theorem 4, becomes
+Ra(γ) =
+(
+r2(1 + γ)−a + (r2(1 + γ)−a + σ2)
+γ
+1−γ
+for γ < 1,
+r2(1 + γ)−a + r2 1 −(1 + γ)−a 1 −1
+γ
+
++ (r2(1 + γ)−a + σ2)
+1
+γ−1
+for γ > 1.
+(23)
+We next summarize some interesting features of these risk curves, and Figures 3 and 4 give accompanying
+plots for SNR = 1 and 5, respectively. Recall that the null risk is r2, which comes from predicting with the
+null estimator ˜β = 0.
+1. On (0, 1), the least squares risk Ra(γ) can only be better than the null risk if a > 1 +
+1
+SNR. Further, in
+this case, we have Ra(γ) < r2 if and only if γ < γ0, where γ0 is the unique zero of the function
+(1 + x)−a +
+
+1 +
+1
+SNR
+
+x −1
+that lies in (0,
+SNR
+SNR+1). Finally, on (
+SNR
+SNR+1, 1), the least squares risk Ra(γ) is always worse than the
+null risk, regardless of a > 0, and it is monotonically increasing.
+2. On (1, ∞), when SNR ≤1, the min-norm least squares risk Ra(γ) is always worse than the null risk.
+Moreover, it is monotonically decreasing, and approaches the null risk (from above) as γ →∞.
+3. On (1, ∞), when SNR > 1, the min-norm least squares risk Ra(γ) can be better than the null risk for
+any a > 0, and in particular we have Ra(γ) < r2 if and only if γ < γ0, where γ0 is the unique zero of
+the function
+(1 + x)−a(2x −1) + 1 −
+
+1 −
+1
+SNR
+
+x
+lying in (
+SNR
+SNR−1, ∞). Indeed, on (1,
+SNR
+SNR−1), the min-norm least squares risk Ra(γ) is always worse
+than the null risk (regardless of a > 0), and it is monotonically decreasing.
+4. When SNR > 1, for small enough a > 0, the global minimum of the min-norm least squares risk Ra(γ)
+occurs after γ = 1. A suﬃcient but not necessary condition is a ≤1 +
+1
+SNR (because, due to points 1
+and 3 above, we see that in this case Ra(γ) is always worse than null risk for γ < 1, but will be better
+than the null risk at some γ > 1).
+5.4
+A latent space model
+We next consider an example in which β is aligned with the top eigenvectors of Σ. To motivate this example,
+assume that the responses yi are linear in the latent features vectors zi ∈Rd. We do not observe this latent
+vector, but rather observe p ≥d covariates xi := (xi1, . . . , xip) that also linear in the latent vector zi:
+yi = θT zi + ξi ,
+xij = wT
+j zi + uij .
+(24)
+16
+
+
+--- page 17 ---
+0.1
+0.2
+0.5
+1.0
+2.0
+5.0
+10.0
+0
+2
+4
+6
+8
+10
+Misspecified model, SNR = 1
+γ
+Risk
+G
+G G
+G G
+G G
+G G
+G G G
+G G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G G G G G G G G G G G G G G G
+G
+G G
+G G
+G G
+G G
+G G G
+G G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G G G G G G G G G G G G G G G
+G
+G G
+G G
+G G
+G G
+G G G
+G G
+G G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G G
+G G G G G G G G G G G G G G G
+G
+G G
+G G
+G G
+G G
+G G G
+G G
+G G G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G G G
+G G G G G G G G G G G G G G G
+a = 0.5
+a = 1
+a = 2
+a = 5
+Figure 3:
+Asymptotic risk curves in (23) for the min-norm least squares estimator in the misspeciﬁed case, when the
+approximation bias has polynomial decay as in (22), as a varies from 0.5 to 5. Here r2 = 1 and σ2 = 1, so SNR = 1. The null
+risk r2 = 5 is marked as a dotted black line. The points denote ﬁnite-sample risks, with n = 200, p = [γn], across various values
+of γ, computed from features X having i.i.d. N(0, 1) entries.
+0.1
+0.2
+0.5
+1.0
+2.0
+5.0
+10.0
+0
+5
+10
+15
+20
+Misspecified model, SNR = 5
+γ
+Risk
+G
+G G
+G G
+G G
+G G
+G G G
+G G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G G G G G G G G G G G G G G
+G
+G G
+G G
+G G
+G G
+G G G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G G G G G G G G G G G G G G G
+G
+G G
+G G
+G G
+G G
+G G G
+G G
+G G G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G G G
+G G G G G G G G G G G G G G G
+G
+G G
+G G
+G G
+G G
+G G G
+G G
+G G G
+G
+G G
+G
+G
+G
+G
+G
+G
+G
+G G G
+G G G
+G G G G G G G G G G G G G G G
+a = 0.5
+a = 1
+a = 2
+a = 5
+Figure 4:
+Asymptotic risk curves in (23) for the min-norm least squares estimator in the misspeciﬁed case, when the
+approximation bias has polynomial decay as in (22), as a varies from 0.5 to 5. Here r2 = 5 and σ2 = 1, so SNR = 5. The null
+risk r2 = 5 is marked as a dotted black line. The points are again ﬁnite-sample risks, with n = 200, p = [γn], across various
+values of γ.
+
+
+--- page 18 ---
+100
+101
+10
+2
+10
+1
+100
+101
+R
+n = 100
+n = 200
+n = 400
+Figure 5: Latent space model of Section 5.4: test error RX(ˆβ; β) of minimum norm regression as a function of the over-
+parametrization ratio γ. Here d = 20, r = 1, σξ = 0 and n varies across various curves. Symbols are averages over 100 realizations;
+continuous lines report the analytical prediction of Corollary 4.
+Here (ξi)i≤n, (uij)i≤n,j≤p are noise variables that are mutually independent, and independent of zi, with
+ξi ∼N(0, σ2
+ξ), uij ∼N(0, 1). The features matrix takes the form X = ZW T + U and therefore, for p > n,
+min-norm regression amounts to
+ˆβ = arg min
+n
+∥b∥2 : ZW T b + Ub = 0
+o
+.
+(25)
+Apart from its intrinsic interest, this latent-space model is directly connected to nonlinear random features
+models, as the ones studied in Section 8. Indeed, in non-linear random features model we have xij = ϕ(wT
+j zi).
+We can decompose this as xij = a0 + a1wT
+j zi + ˜ϕ(wT
+j zi), where ˜ϕ is such that ˜ϕ(wT
+j zi) has zero mean and is
+uncorrelated with wT
+j zi when zj ∼N(0, Id). Equation (24) then corresponds to replacing the uncorrelated
+random variable ˜ϕ(wT
+j zi) by the independent Gaussians uij.
+We assume the latent vector to be isotropic zi ∼N(0, Id). It is then easy to see that the model is
+equivalent to (a special case) model studied in Section 4, namely xi ∼N(0, Σ), yi = βT xi + εi. Indeed
+(considering the case of Gaussian εi), in both cases (yi, xi) ∈Rp+1 is a centered Gaussian vector. By matching
+their covariances we obtain (deﬁning ψ = d/p):
+Σ = Ip + WW T ,
+β = W(I + W T W)−1θ ,
+(26)
+ϵi ∼N(0, σ2) ,
+σ2 = σ2
+ξ + θT (I + W T W)−1θ .
+(27)
+Here W ∈Rp×d is the matrix with rows (wi)i≤p. In what follows r2
+θ := ∥θ∥2
+2. As anticipated, the coeﬃcients
+vector is aligned with the top eigenspace of Σ (the span of the columns of W).
+Notice that the signal-to-noise ratio in the features xij is equal to ∥wi∥2
+2. To be deﬁnite, we’ll ﬁx ∥wi∥2 = 1,
+which implies in particular ∥W∥2
+F = p. In order to simplify our calculations, we assume all the non-zero
+singular values of W to be equal, whence W T W = (p/d)Id. It is not hard to check that this model satisﬁes
+the assumptions of Theorem 2, with
+H(s) = (1 −ψ)1(s ≥1) + ψ1(s ≥1 + ψ−1) ,
+(28)
+G(s) = 1(s ≥1 + ψ−1) ,
+∥β∥2
+2 =
+ψr2
+θ
+(1 + ψ)2
+(29)
+Using Theorem 2, we get the following explicit expressions.
+18
+
+
+--- page 19 ---
+100
+101
+10
+2
+10
+1
+100
+101
+R
+= 0
+= 0.25
+= 0.50
+Figure 6: Latent space model of Section 5.4: test error RX(ˆβ; β) of minimum norm regression as a function of the over-
+parametrization ratio γ. Here d = 20, r = 1, n = 400, and the noise variance σξ varies across diﬀerent curves. Symbols are
+averages over 100 realizations; continuous lines report the analytical prediction of Corollary 4.
+Corollary 4. Consider the latent space model described above, and assume d/p →ψ ∈(1, ∞), p/n →γ ∈
+(0, ∞). Then, almost surely
+RX(ˆβ; β) →Blat(ψ, γ) + Vlat(ψ, γ) ,
+(30)
+Blat(ψ, γ) :=
+
+1 + γc0
+E1(ψ, γ)
+E2(ψ, γ)
+
+·
+r2
+θ
+(1 + ψ)(1 + c0γ(1 + ψ−1))2 ,
+(31)
+Vlat(ψ, γ) := σ2γc0
+E1(ψ, γ)
+E2(ψ, γ) ,
+(32)
+E1(ψ, γ) :=
+1 −ψ
+(1 + c0γ)2 +
+ψ(1 + ψ−1)2
+(1 + c0(1 + ψ−1)γ)2 ,
+(33)
+E2(ψ, γ) :=
+1 −ψ
+(1 + c0γ)2 +
+1 + ψ
+(1 + c0(1 + ψ−1)γ)2 .
+(34)
+where σ2 = σ2
+ξ + ψr2
+θ/(1 + ψ), and c0 = c0(ψ, γ) ≥0 is the unique non-negative solution of the following
+second order equation
+1 −1
+γ = 1 −ψ
+1 + c0γ +
+ψ
+1 + c0(1 + ψ−1)γ .
+(35)
+Figures 5 and 6 illustrate this corollary by comparing analytical predictions to numerical simulations.
+We observe that the prediction risk is monotone decreasing in the overparametrization ratio for γ > 1, and
+reaches its global minimum asymptotically as γ →∞(after p, n, d →∞). To understand why this happens,
+notice that each feature vector xi can be viewed as a noisy measurement of the latent covariates zi. If the
+noise uij was absent, then performing min-norm regression with respect to (xi)i≤n amounts to minimize
+would be equivalent to min-norm regression with respect to (zi)i≤n. To see this, consider again Eq. (25).
+If we drop the noise U, we are minimizing ∥b∥2 subject to Z(W T b) = 0, and the regression function is
+ˆf(z) = xT ˆβ = zT (W T ˆβ). Since W is orthogonal, this is equivalent to computing ˆθ = arg min{∥t∥2 : subject
+to Zt = 0}.
+In presence of noise uij, the latent features cannot be estimated exactly. However as p gets larger, the
+noise is eﬀectively ‘averaged out’ and we approach the idealized situation in which the zi’s are observed.
+19
+
+
+--- page 20 ---
+6
+Ridge regularization
+We generalize the formulas of Section 4 to non-vanishing ridge regularization. We work under the same
+assumptions of that section. In particular, recall that bHn(s) = p−1 Pp
+i=1 1{s≥si} is the empirical distribution
+of eigenvalue of Σ, and bGn(s) = Pp
+i=1⟨β, vi⟩21{s≥si}/∥β∥2 the same empirical distribution, reweighted by
+the projection of β onto the eigenvector vi of the covariance Σ. (Recall the eigenvalue decomposition
+Σ = Pp
+i=1 sivivT
+i .)
+Deﬁnition 2 (Predicted bias and variance: ridge regression). Let bHn be the empirical distribution of
+eigenvalues of Σ, and bGn the reweighted distribution as per Eq. (9). For γ ∈R>0, and z ∈C+ (the set of
+complex numbers with Im(z) > 0), deﬁne mn(z) = m(z; bHn, γ) as the unique solution of
+mn(z) =
+Z
+1
+s[1 −γ −γzmn(z)] −z d bHn(s) .
+(36)
+Further deﬁne mn,1(z) = mn,1(z; bHn, γ) via
+mn,1(z) :=
+R
+s2[1−γ−γzmn(z)]
+[s[1−γ−γzmn(z)]−z]2 d bHn(s)
+1 −γ
+R
+zs
+[s[1−γ−γzmn(z)]−z]2 d bHn(s)
+.
+(37)
+These deﬁnitions are extended analytically to Im(z) = 0 whenever possible. We then deﬁne the predicted
+bias and variance by
+B(λ; bHn, bGn, γ) := λ2∥β∥2 1 + γmn,1(−λ)
+ Z
+s
+[λ + (1 −γ + γλmn(−λ))s]2 d bGn(s) ,
+(38)
+V (λ; bHn, γ) := σ2γ
+Z
+s2(1 −γ + γλ2m′
+n(−λ))
+[λ + s(1 −γ + γλmn(−λ))]2 d bHn(s) .
+(39)
+We next state our deterministic approximation of the risk.
+Theorem 5. Let M −1 ≤p/n ≤M, and Assumption 1 hold. Further assume λ ∨λmin(Σ) > 1/M and
+n−2/3+1/M < λ < M. Let ˆβλ be the ridge estimator of Eq. (5).
+Then for any constants D > 0 (arbitrarily large) and ε > 0 (arbitrarily small), there exist C = C(M, D)
+such that, with probability at least 1 −Cn−D the following hold
+RX(ˆβλ; β) = BX(ˆβλ; β) + VX(ˆβλ; β) ,
+(40)
+BX(ˆβλ; β) −B(λ; bHn, bGn, γ)
+ ≤
+C∥β∥2
+2
+λn(1−ε)/2 ,
+(41)
+VX(ˆβλ; β) −V (λ; bHn, γ)
+ ≤
+C
+λ2n(1−ε)/2 ,
+(42)
+where B and V are given in Deﬁnition 2.
+The proof of this theorem is deferred to Appendix A. As for theorem 2, similar results were proved in Wu
+and Xu (2020); Richards et al. (2020), subsequently to a ﬁrst version of this manuscript that only focused on
+random β. The same comparison of Remark 1 applies here.
+In particular, Theorem 5 establishes non-asymptotic deterministic approximations for the bias BX(ˆβλ; β)
+and variance VX(ˆβ; β). The error terms are uniform over the covariance matrix, and have nearly optimal
+dependence upon the sample size n. Indeed, a central-limit theorem heuristics suggests indeed ﬂuctuations of
+order n−1/2.
+As for the case of min-norm regression, it is easy to extract asymptotic prediction under minimal
+assumptions.
+Theorem 6. Consider the setting of Theorem 5 but, instead of Assumption 1 (a), assume that (zi)i≤p
+are identically distributed and satisfy the conditions Ezi = 0, E(z2
+i ) = 1, E(|zi|4+η) ≤C < ∞for some
+η > 0. Further assume p/n →γ ∈(0, ∞), bHn ⇒H, bGn ⇒G. Then, for any λ > 0, almost surely
+BX(ˆβλ; β)/∥β∥2
+2 →B(λ; H, G, γ), VX(ˆβλ; β) →V (λ; H, γ).
+20
+
+
+--- page 21 ---
+6.1
+Isotropic features
+As a special case, we can consider the simple isotropic model that was already studied in Section 3. Very
+similar (though not identical) results can be found in Dicker (2016); Dobriban and Wager (2018).
+Corollary 5. Assume the conditions of Theorem 1 (well-speciﬁed model, isotropic features). Then for ridge
+regression estimator in (5) as n, p →∞, such that p/n →γ ∈(0, ∞), it holds almost surely that
+RX(ˆβλ; β) →r2λ2m′(−λ) + σ2γ
+ m(−λ) −λm′(−λ)
+
+.
+(43)
+Here m(z) is given by Eq. (36) which in this case has the explicit solution m(z) = [1−γ−z−
+p
+(1 −γ −z)2 −4γz]/(2γz).
+Furthermore, the limiting ridge risk is minimized at λ∗= σ2γ/r2, in which case we have the simpler
+expression RX(ˆβλ; β) →σ2γm(−λ∗).
+Under the conditions of Theorem 4 (misspeciﬁed model, isotropic features), the limiting risk of ridge
+regression is as in the ﬁrst two displays, and the optimal limiting risk is as in the third, after we make the
+substitutions in (21) and add r2(1 −κ), to each expression.
+It is easy to recover the formulas in Theorem 1 as a limiting case of Eq. (43), by using the z →0
+asymptotics m(z) = (1 −γ)−1 + O(z) for γ < 1 and m(z) = (1 −γ)−1 + O(z) for γ < 1 and m(z) =
+−(γ −1)/(γz) + [(γ −1)γ]−1 + O(z) for γ > 1.
+Figures 7 and 8 compare the risk curves of min-norm least squares to those from optimally-tuned ridge
+regression, in the well-speciﬁed and misspeciﬁed settings, respectively. There are two important points
+to make. The ﬁrst is that optimally-tuned ridge regression is seen to have strictly better asymptotic risk
+throughout, regardless of r2, γ, κ. This should not be a surprise, as by deﬁnition optimal tuning should yield
+better risk than min-norm least squares, which is the special case given by λ →0+.
+The second point is that, in this example, the limiting risk of optimally-tuned ridge regression appears
+to have a minimum around γ = 1, and this occurs closer and closer to γ = 1 as SNR grows. This behavior
+is interesting, especially because it is antipodal to that of the min-norm least squares risk, and leads us to
+very diﬀerent suggestions for practical usage for feature generators: in settings where we apply substantial
+ℓ2 regularization (say, using CV tuning to mimic optimal tuning, which the next section shows to be
+asymptotically equivalent), it seems we want the complexity of the feature space to put us as close to the
+interpolation boundary (γ = 1) as possible.
+As we will see, the behavior is rather diﬀerent in the latent space model.
+6.2
+Latent space model
+As a special application, we consider the latent space model of Section 5.4. It is immediate to specialize
+Eqs. (38) and (39) to this case. We omit giving giving explicit formulas for brevity, and instead plot the
+resulting curves for the prediction risk (test error).
+In Figure 9 we plot the risk as a function of the overparametrization ration γ = p/n for several values of
+the regularization parameter λ (included the ridgeless limit λ →0). The setting here is analogous to the one
+of Fig. 5. We observe several interesting phenomena:
+1. Independently of λ in the probed range, the risk is minimized at large overparametrization γ ≫1.
+2. As expected, the divergence of the risk at the interpolation threshold γ = 1 is smoothed out by
+regularization, and the risk becomes a monotone decreasing function of γ when λ is large enough.
+Crucially, the optimal amount of regularization (corresponding to the lower envelope of these curves)
+results in a monotonically decreasing risk.
+3. At large overparametrization, the optimal value of the regularization parameter is λ →0.
+We conﬁrm the last ﬁnding in Fig. 10 which plots the risk as a function of λ: the optimal regularization is
+λ →0. Notice that this is the case despite the fact that the observations are noisy, namely σξ > 0 strictly.
+The optimality of λ →0 has a known intuitive explanation that is worth recalling here. Recall that ridge
+predictor at point x0 takes the form
+ˆfλ(x0) = ⟨x0, ˆβλ⟩= K(x0, X)
+ K(X, X) + λI
+−1y ,
+(44)
+21
+
+
+--- page 22 ---
+0.1
+0.2
+0.5
+1.0
+2.0
+5.0
+10.0
+0
+2
+4
+6
+8
+10
+Min−norm versus ridge, well−specified
+γ
+Risk
+SNR = 1
+SNR = 2.33
+SNR = 3.66
+SNR = 5
+Figure 7: Asymptotic risk curves for the min-norm least squares estimator in (8) as solid lines, and optimally-tuned ridge
+regression (from Theorem 5) as dashed lines. Here r2 varies from 1 to 5, and σ2 = 1. The null risks are marked by the dotted
+lines.
+0.1
+0.2
+0.5
+1.0
+2.0
+5.0
+10.0
+0
+2
+4
+6
+8
+10
+Min−norm versus ridge, misspecified
+γ
+Risk
+SNR = 1
+SNR = 2.33
+SNR = 3.66
+SNR = 5
+Figure 8: Asymptotic risk curves for the min-norm least squares estimator in (23) as solid lines, and optimally-tuned ridge
+regression (from Theorem 5) as dashed lines, in the misspeciﬁed case, when the approximation bias has polynomial decay as in
+(22), with a = 2. Here r2 varies from 1 to 5, and σ2 = 1. The null risks are marked by the dotted lines.
+
+
+--- page 23 ---
+100
+101
+10
+3
+10
+2
+10
+1
+100
+R
+log( ) = 0
+log( ) = -1
+log( ) = -2
+log( ) = -3
+log( ) = -4
+log( ) = -5
+log( ) = -6
+log( ) = -7
+log( ) = -8
+log( ) = -9
+log( ) =
+Figure 9: Asymptotic risk as a function of the overparametrization ratio γ = p/n, for ridge regression in the latent space model
+of Section 6.2. Here δ = n/d = 20, rθ = 1, σξ = 0, and each curve corresponds to a diﬀerent value of the regularization λ. The
+dashed curve correspond to the min-norm interpolator (which coincides with the λ →0 limit of ridge regression).
+0
+2
+4
+6
+8
+10
+12
+10
+2
+10
+1
+R
+= 2
+= 3
+= 4
+= 5
+= 6
+= 7
+= 8
+= 12
+= 16
+= 20
+= 32
+Figure 10: Asymptotic risk as a function of the regularization parameter λ, for ridge regression in the latent space model of
+Section 6.2. Here δ = n/d = 20, rθ = 1, σξ = 0.1, and each curve corresponds to a diﬀerent value of the overparametrization
+ratio γ = p/n.
+
+
+--- page 24 ---
+where we introduced the kernel matrix K(X, X) = XXT /n, and the vector K(x0, X) = xT
+0 X/n. In the
+present case X can ve viewed as a noisy version of X = ZW T , namely Consider the case in which the
+covariates X contain noise, as is our case, X = X + ηU where uij ∼N(0, 1). (While we are considering
+η = 1, it is instructive to regard the noise standard deviation as a parameter.) Then, we might expect
+K(X, X) ≈K(X, X) + η2UU T ≈K(X, X) + η2In. If this approximations hold, the noise acts as an extra
+ridge term, which can be suﬃcient to regularize the problem.
+To the best of our knowledge, this argument was ﬁrst presented by Webb (1994) and, more explicitly, by
+Bishop (1995). Recently, Kobak et al. (2020) elucidated its role in linear regression, establishing several of its
+consequences. In a parallel line of work, a closely related idea has recently emerged in the analysis of kernel
+methods in high dimension El Karoui (2010); Liang et al. (2020).
+7
+Cross-validation
+We analyze the eﬀect of using cross-validation to choose the tuning parameter in ridge regression.
+In
+short, we ﬁnd that choosing the ridge tuning parameter to minimize the leave-one-out cross-validation error
+leads to the same asymptotic risk as the optimally-tuned ridge estimator. The next subsection gives the
+details; the following subsection presents a new “shortcut formula” for leave-one-out cross-validation in the
+overparametrized regime, for min-norm least squares, akin to the well-known formula for underparametrized
+least squares and ridge regression. We refer to Craven and Wahba (1979); Golub et al. (1979a) for background
+on CV and GCV, and to Arlot and Celisse (2010) for a more recent review.
+7.1
+Limiting behavior of CV tuning
+Given the ridge regression solution ˆβλ in (5), trained on (xi, yi), i = 1, . . . , n, denote by ˆfλ the corresponding
+ridge predictor, deﬁned as ˆfλ(x) = xT ˆβλ for x ∈Rp. Additionally, for each i = 1, . . . , n, denote by ˆf −i
+λ
+the
+ridge predictor trained on all but ith data point (xi, yi).5 Recall that the leave-one-out cross-validation
+(leave-one-out CV, or simply CV) error of the ridge solution at a tuning parameter value λ is
+CVn(λ) = 1
+n
+n
+X
+i=1
+ yi −ˆf −i
+λ (xi)
+2.
+(45)
+We typically view this as an estimate of the out-of-sample prediction error E(y0 −xT
+0 ˆβλ)2, where the
+expectation is taken over everything that is random: the training data (xi, yi), i = 1, . . . , n used to ﬁt ˆβλ, as
+well as the independent test point (x0, y0). Note also that, when we observe training data from the model
+(1), (2), and when (x0, y0) is drawn independently according to the same process, we have the relationship
+E(y0 −xT
+0 ˆβλ)2 = σ2 + E(xT
+0 β −xT
+0 ˆβλ)2 = σ2 + E[RX(ˆβλ; β)],
+where RX(ˆβλ; β)] = E[(xT
+0 β −xT
+0 ˆβλ)2 | X] is the conditional prediction risk, which has been our focus through-
+out.
+Recomputing the leave-one-out predictors ˆf −i
+λ , i = 1, . . . , n can be burdensome, especially for large n.
+Importantly, there is a well-known “shortcut formula” that allows us to express the leave-one-out CV error
+(45) as a weighted average of the training errors,
+CVn(λ) = 1
+n
+n
+X
+i=1
+yi −ˆfλ(xi)
+1 −(Sλ)ii
+2
+,
+(46)
+where Sλ = X(XT X + nλ)−1XT is the ridge smoother matrix. This identity is an immediate consequence of
+the Sherman-Morrison-Woodbury formula. In the next subsection, we give an extension to the case λ = 0
+and rank(X) = n, i.e., to min-norm least squares.
+5To be precise, this is ˆf−i(x) = xT (XT
+−iX−i + nλI)−1XT
+−iy−i, where X−i denotes X with the ith row removed, and y−i
+denotes y with the ith component removed. Arguably, it may seem more natural to replace the factor of n here by a factor
+of n −1; we leave the factor of n as is because it simpliﬁes the presentation in what follows, but we remark that the same
+asymptotic results would hold with n −1 in place of n.
+24
+
+
+--- page 25 ---
+The next result shows that, for isotropic features, the CV error of a ridge estimator converges almost
+surely to its prediction error. The focus on isotropic features is only for simplicity: a more general analysis is
+possible but is not pursued here. The proof, given in Appendix C.6, relies on the shortcut formula (46). In
+the proof, we actually ﬁrst analyze generalized cross-validation (GCV), which turns out to be somewhat of
+an easier calculation (see the proof for details on the precise form of GCV), and then relate leave-one-out CV
+to GCV.
+Theorem 7. Assume the a isotropic prior, namely E(β) = 0, Cov(β) = r2Ip/p, and the data model (1), (2).
+Assume that x ∼Px has i.i.d. entries with zero mean, unit variance, and a ﬁnite moment of order 4 + η,
+for some η > 0. Then for the CV error (45) of the ridge estimator in (5) with tuning parameter λ > 0, as
+n, p →∞, with p/n →γ ∈(0, ∞), it holds almost surely that
+CVn(λ) −σ2 →σ2γ
+ m(−λ) −λ(1 −αλ)m′(−λ)
+
+,
+where m(z) denotes the Stieltjes transform of the Marchenko-Pastur law Fγ (as in Corollary 5), and
+α = r2/(σ2γ). Observe that the right-hand side is the asymptotic risk of ridge regression from Theorem
+5. Moreover, the above convergence is uniform over compacts intervals excluding zero. Thus if λ1, λ2 are
+constants with 0 < λ1 ≤λ∗≤λ2 < ∞, where λ∗= 1/α is the asymptotically optimal ridge tuning parameter
+value, and we deﬁne λn = arg minλ∈[λ1,λ2] CVn(λ), then the expected risk of the CV-tuned ridge estimator
+RX(ˆβ) := EβRX(ˆβ; β) ˆβλn satisﬁes, almost surely,
+RX(ˆβλn) →σ2γm(−1/α),
+with the right-hand side above being the asymptotic risk of optimally-tuned ridge regression. Further, the
+exact same set of results holds for GCV.
+Similar results were obtained for various linear smoothers in Li (1986, 1987), for the lasso in the high-
+dimensional (proportional) asymptotics in Miolane and Montanari (2018), and for general smooth penalized
+estimators in Xu et al. (2019). The latter paper covers ridge regression as a special case, and gives more
+precise results (convergence rates), but assumes more restrictive conditions.
+The key implication of Theorem 7, in the context of the current paper and its central focus, is that
+the CV-tuned or GCV-tuned ridge estimator has the same asymptotic performance as the optimally-tuned
+ridge estimator. In other words, the ridge curves in Figures 1, 7, and 8 can be alternatively viewed as the
+asymptotic risk of ridge under CV tuning.
+7.2
+Shortcut formula for ridgeless CV
+We extend the leave-one-out CV shortcut formula (46) to work when p > n and λ = 0+, i.e., for min-norm
+least squares. In this case, both the numerator and denominator are zero in each summand of (46). To
+circumvent this, we can use the so-called “kernel trick” to rewrite the ridge regression solution (5) with λ > 0
+as
+ˆβλ = XT (XXT + nλI)−1y.
+(47)
+Using this expression, the shortcut formula for leave-one-out CV in (46) can be rewritten as
+CVn(λ) = 1
+n
+n
+X
+i=1
+[(XXT + nλI)−1y]2
+i
+[(XXT + nλI)−1]2
+ii
+.
+Taking λ →0+ yields the shortcut formula for leave-one-out CV in min-norm least squares (assuming without
+a loss of generality that rank(X) = n),
+CVn(0) = 1
+n
+n
+X
+i=1
+[(XXT )−1y]2
+i
+[(XXT )−1]2
+ii
+,
+(48)
+In fact, the exact same arguments given here still apply when we replace XXT by a positive deﬁnite kernel
+matrix K (i.e., Kij = k(xi, xj) for each i, j = 1, . . . , n, where k is a positive deﬁnite kernel function), in which
+case (48) gives a shortcut formula for leave-one-out CV in kernel ridgeless regression (the limit in kernel ridge
+regression as λ →0+). We also remark that, when we include an unpenalized intercept in the model, in either
+the linear or kernelized setting, the shortcut formula (48) still applies with XXT or K replaced by their
+doubly-centered (row- and column-centered) versions, and the matrix inverses replaced by pseudoinverses.
+25
+
+
+--- page 26 ---
+8
+Nonlinear model
+Our analysis in the previous sections assumed xi = Σ1/2zi, with zi a vector with i.i.d. entries. As discussed
+in the introduction, we expect our results to have implications on certain neural networks in the lazy
+training regime, via the universality hypothesis. Roughly speaking, if covariates are obtained by applying the
+featurization map zi 7→xi = ∇f(zi; θ0) to data zi, the asymptotic behavior of ridge regression is expected
+to be close to the one of an equivalent Gaussian model, whose second-order statistics match the ones of
+∇f(zi; θ0).
+In this section, we test universality on one simple example. We observe data as in (1), (2), but now
+xi = ϕ(Wzi) ∈Rp, where zi ∈Rd has i.i.d. entries from N(0, 1), for i = 1, . . . , n. Also, W ∈Rp×d has i.i.d.
+entries from N(0, 1/d). Finally, ϕ : R →R is an activation function acting componentwise on vectors.
+We focus on a simple case in which the second order statistics match the ones of the isotropic model.
+8.1
+Limiting risk
+Notice that, conditionally on W, the vectors xi = ϕ(Wzi), i ≤n are independent. However, they do not have
+independent coordinates: intuitively if d is signiﬁcantly smaller than p, xi contains much less randomness
+than a vector of p independent entries6.
+Nevertheless, the next theorem shows that if ϕ is purely nonlinear (in the sense that E{ϕ(G)} =
+E{Gϕ(G)} = 0), then the feature matrix X behaves “as if” it has i.i.d. entries, in that the asymptotic bias
+and variance are exactly as in the linear isotropic case, recall Eq. (8). In other words, this theorem provides a
+rigorous conﬁrmation of the universality hypothesis stated in the introduction.
+Theorem 8. Assume the model (1), (2), where each xi = ϕ(Wzi) ∈Rp, for zi ∈Rd having i.i.d. entries from
+N(0, 1), W ∈Rp×d having i.i.d. entries from N(0, 1/d) (with W independent of zi), and is ϕ an activation
+function that acts componentwise. Assume that |ϕ(x)| ≤c0(1 + |x|)c0 for a constant c0 > 0. Also, for
+G ∼N(0, 1), assume that the standardization conditions hold: E[ϕ(G)] = 0 and E[ϕ(G)2] = 1, E[Gϕ(G)] = 0.
+Then for γ > 1, the variance satisﬁes, almost surely,
+lim
+λ→0+
+lim
+n,p,d→∞VX(ˆβλ; β) =
+σ2
+γ −1,
+which is precisely as in the case of linear isotropic features, recall Theorem 1. Also, under a isotropic prior,
+namely E(β) = 0, Cov(β) = r2Ip/p), the Bayes bias BX(ˆβλ) := EβBX(ˆβλ; β) satisﬁes, almost surely
+lim
+λ→0+
+lim
+n,p,d→∞BX(ˆβλ) =
+(
+0
+for γ < 1,
+r2(1 −1/γ)
+for γ > 1,
+which is again as in the case of linear isotropic features, recall Theorem 1.
+The proof of Theorem 8 is lengthy and will be sketched shortly.
+The origin of the conditions E{ϕ(G)} = E{Gϕ(G)} = 0 can be easily explained (throughout G ∼N(0, 1)).
+In summary, these conditions ensure that the ﬁrst and second order statistics of xi = ϕ(Wzi) approximately
+match those of the isotropic model. To illustrate this point, let i̸ = j, and assume that the corresponding
+rows of W (denoted by wT
+i and wT
+j ) have unit norm (this will only be approximately true, but simpliﬁes our
+explanation). We then have E{ϕ(wT
+i z1)} = E{ϕ(wT
+j z1)} = E{ϕ(G)} = 0. Further
+E{x1,ix1,j|W} = E{ϕ(wT
+i z1)ϕ(wT
+j z1)|W} = E{ϕ(G1)ϕ(G2)} ,
+(49)
+where G1, G2 are jointly Gaussian with unit variance and covariance wT
+i wj. Denoting by ϕ(x) = P
+k≥0 λk(ϕ) hk(x)
+the decomposition of ϕ into orthonormal Hermite polynomials, we thus obtain
+E{x1,ix1,j|W} =
+∞
+X
+k=0
+λ2
+k(ϕ)(wT
+i wj)k ,
+(50)
+6For instance, if ϕ(t) = at2 + b, we can reconstruct zi from the ﬁrst 2d coordinates of xi, and therefore the remaining p −2d
+coordinates of xi are a function of the ﬁrst 2d.
+26
+
+
+--- page 27 ---
+0.1
+0.2
+0.5
+1.0
+2.0
+5.0
+10.0
+0
+1
+2
+3
+4
+5
+Nonlinear variance: different input dimensions
+γ
+Variance
+G
+G G
+G G
+G G
+G G
+G G G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G G G G G G G G G G G G G
+G
+G G
+G G
+G G
+G G
+G G G
+G G
+G
+G G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G G G G G G G G G G G G G
+G
+G G
+G G
+G G
+G G
+G G
+G
+G G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G G
+G G G G G G G G G G G G
+G
+G G
+G G
+G G
+G G
+G G
+G
+G G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G G G
+G G G G G G G G G G G G
+d = 100
+d = 200
+d = 300
+d = 400
+Figure 11: Asymptotic variance curves for the min-norm least squares estimator in the nonlinear feature model (from Theorem
+8), for the purely nonlinear activation ϕabs. Here σ2 = 1, and the points are ﬁnite-sample risks, with n = 200, p = [γn], over
+various values of γ, and varying input dimensions: d = 100 in black, d = 200 in red, d = 300 in green, and d = 400 in black. As
+before, the features used for ﬁnite-sample calculations are X = ϕ(ZW T ), where Z has i.i.d. N(0, 1) entries and W has i.i.d.
+N(0, 1/d) entries.
+
+
+--- page 28 ---
+Since λ0(ϕ) = E{ϕ(G)} = 0, λ1(ϕ) = E{Gϕ(G)} = 0, we have E{x1,ix1,j|W} = O((wT
+i wj)2) = O(1/d).
+In other words, the population covariance E{x1xT
+1 |W} has small entries out-of diagonal, and in fact
+∥E{x1xT
+1 |W} −Ip∥op = oP (1) El Karoui (2010).
+Despite the nonlinear model xi = ϕ(Wzi) matches the second-order population statistics of the isotropic
+model, it is far from obvious that the resulting least norm regression risk is the same. Indeed the coordinates
+of vector xi are highly dependent, as it can be seen by noting that they are a function of only d ≪p
+independent random variables. Theorem 8 conﬁrms that —despite dependence— the risk is asymptotically
+the same, thus providing a concrete example of the general universality phenomenon.
+Figure 11 compares the asymptotic risk curve from Theorem 8 to that computed by simulation, using
+an activation function ϕabs(t) = a(|t| −b), where a =
+p
+π/(π −2) and b =
+p
+2/π are chosen to meet the
+standardization conditions. This activation function is purely nonlinear, i.e., it satisﬁes E[Gϕabs(G)] = 0 for
+G ∼N(0, 1), by symmetry. Again, the agreement between ﬁnite-sample and asymptotic risks is excellent.
+Notice in particular that, as predicted by Theorem 8, the risk depends only on p/n and not on d/n.
+8.2
+Proof outline for Theorem 8
+We deﬁne γn = p/n and ψn = d/p. Recall that as n, p, d →∞, we have γn →γ and ψn →ψ. To reduce
+notational overhead, we will generally drop the subscripts from γn, ψn, writing these simply as γ, ψ, since their
+meanings should be clear from the context. Let N = p + n and deﬁne the symmetric matrix A(s) ∈RN×N,
+for s ≥0, with the block structure:
+A(s) =
+"
+sIp
+1
+√nXT
+1
+√nX
+0n
+#
+,
+(51)
+where Ip ∈Rp×p and 0n ∈Rn×n are the identity and zero matrix, respectively. As we will see this matrix
+allows to construct the traces of interest by taking suitable derivatives of its resolvent.
+We introduce the following resolvents (as usual, these are deﬁned for Im(ξ) > 0 and by analytic continuation,
+whenever possible, for Im(ξ) = 0):
+m1,n(ξ, s) = E
+n A(s) −ξIN
+−1
+1,1
+o
+= EM1,n(ξ, s),
+M1,n(ξ, s) = 1
+pTr[1,p]
+n A(s) −ξIN
+−1o
+,
+m2,n(ξ, s) = E
+n A(s) −ξIN
+−1
+p+1,p+1
+o
+= EM2,n(ξ, s),
+M2,n(ξ, s) = 1
+nTr[p+1,p+n]
+n A(s) −ξIN
+−1o
+.
+Here and henceforth, we write [i, j] = {i + 1, . . . , i + j} for integers i, j. We also write M −1
+ij
+= (M −1)ij for a
+matrix M, and TrS(M) = P
+i∈S Mii for a subset S. The equalities in the ﬁrst and third lines above follow by
+invariance of the distribution of A(s) under permutations of [1, p] and [p + 1, p + n]. Whenever clear from the
+context, we will omit the arguments from block matrix and resolvents, and write A = A(s), m1,n = m1,n(ξ, s),
+and m2,n = m2,n(ξ, s).
+The next lemma characterizes the asymptotics of m1,n, m2,n.
+Lemma 3. Assume the conditions of Theorem 8. Consider Im(ξ) > 0 or Im(ξ) = 0, Re(ξ) < 0, with
+s ≥t ≥0. Let m1 and m2 be the unique solutions of the following quadratic equations:
+m2 =
+ −ξ −γm1
+−1,
+m1 =
+ −ξ −s −m2
+−1,
+(52)
+subject to the condition of being analytic functions for Im(z) > 0, and satisfying |m1(z, s)|, |m2(z, s)| ≤1/Im(z)
+for Im(z) > C (with C a suﬃciently large constant). Then, as n, p, d →∞, such that p/n →γ and d/p →ψ,
+we have almost surely (and in L1),
+lim
+n,p,d→∞M1,n(ξ, s) = m1(ξ, s),
+(53)
+lim
+n,p,d→∞M2,n(ξ, s) = m2(ξ, s).
+(54)
+28
+
+
+--- page 29 ---
+The proof of this lemma is given in Appendix D.2. As a corollary of the above, we obtain that the
+asymptotical empirical spectral distribution of the empirical covariance ˆΣ = XT X/n matches the one for the
+independent entries model, and is hence given by the Marchenko-Pastur law (a result already obtained in
+Pennington and Worah (2017)). We state this formally using the Stieltjes transform
+Rn(z) = 1
+pTr
+ (ˆΣ −zIp)−1
+,
+(55)
+Corollary 6. Assume the conditions of Theorem 8. Consider Im(z) > 0. As n, p, d →∞, with p/n →γ
+and d/p →ψ, we have (almost surely and in L1) Rn(ξ) →r(ξ) where r is nonrandom and coincides with the
+Stieltjes transform of the Marchenko-Pastur law, namely
+r(z) = 1 −γ −z −
+p
+(1 −γ −z)2 −4γz
+2γz
+.
+(56)
+We refer to Appendix D.4 for a proof of this corollary. The next lemma connects the above resolvents
+computed in Lemma 3 to the variance of min-norm least squares, hence ﬁnishing our proof outline.
+Lemma 4. Assume the conditions of Theorem 8. Let m1, m2 be the asymptotic resolvents given in Lemma
+3. Deﬁne
+m(ξ, s) = γm1(ξ, s) + m2(ξ, s) .
+Then for γ̸ = 1, ∂xm(ξ, x)
+
+x=0 as a simple pole at ξ = 0, and hence admits a Taylor-Laurent expansion
+around ξ = 0, whose coeﬃcients will be denoted by D−1, D0
+−∂xm(ξ, x)
+
+x=0 = D−1
+ξ2
++ D0 + O(ξ2).
+(57)
+Here each coeﬃcient is a function of γ, ψ: D−1 = D−1(γ, ψ), D0 = D0(γ, ψ). Furthermore, for the ridge
+regression estimator ˆβλ in (5), as n, p, d →∞, such that p/n →γ ∈(0, ∞), d/p →ψ ∈(0, 1), the following
+ridgeless limit holds almost surely:
+lim
+λ→0+
+lim
+n,p,d→∞VX(ˆβλ; β) = D0.
+The proof of this lemma can be found in Appendix D.3. Theorem 8 follows by evaluating the formula in
+Lemma 4, by using the result of Lemma 3. We refer to the appendices material for details.
+Acknowledgements
+The authors are grateful to Brad Efron, Rob Tibshirani, and Larry Wasserman for inspiring us to work on
+this in the ﬁrst place. RT sincerely thanks Edgar Dobriban for many helpful conversations about the random
+matrix theory literature, in particular, the literature trail leading up to Proposition 2, and the reference to
+Rubio and Mestre (2011). We are also grateful to Dmitry Kobak for bringing to our attention the Kobak
+et al. (2020) and clarifying the implications of this work on our setting.
+TH was partially supported by grants NSF DMS-1407548, NSF IIS-1837931, and NIH 5R01-EB001988-
+21. AM was partially supported by NSF DMS-1613091, NSF CCF-1714305, NSF IIS-1741162, and ONR
+N00014-18-1-2729. RT was partially supported by NSF DMS-1554123.
+A
+Proofs for the linear model: Risk of ridge regression
+A.1
+Proof of Theorem 5: Preliminaries
+Before passing to the proof of Theorem 5, we state and prove a useful lemma in analysis.
+Lemma 5. For any k ∈N, there exist absolute constants C1,k, C2,k < ∞, such that the following holds. Given
+any two functions f, g : [x −∆, x + ∆] →R, that are (2k + 1) times diﬀerentiable with bounded derivatives,
+and any δ ∈(0, ∆/k), we have
+f ′(x) −g′(x)
+ ≤C1,k
+δ
+∥f −g∥∞+ C2,k∥f (2k+1) −g(2k+1)∥∞δ2k .
+29
+
+
+--- page 30 ---
+Proof. Without loss of generality we can assume x = 0. Further we set h = f −g. We consider a ﬁnite
+diﬀerence approximation of order 2k of the ﬁrst order derivative of h at 0. One such approximation is given
+by (Trefethen, 1996, Chapter 3)
+D2kh(0) =
+k
+X
+m=1
+αm
+hh(mδ) −h(−mδ)
+2mδ
+i
+,
+αm := 2(−1)m+1
+2k
+k
+−1
+2k
+k −m
+
+.
+The operator D2k is obviously linear. The following two properties are standard and easy to check (see
+below): (i) If h(x) = x, D2kh(0) = 1; (ii) If h(x) = xℓwith ℓ≤2k an integer, ℓ̸ = 1, then D2kh(x) = 0.
+Using Taylor’s expansion with remainder, we obtain
+h(x) =
+2k
+X
+ℓ=0
+h(ℓ)(0)
+ℓ!
+xℓ+
+1
+(2k)!
+Z x
+0
+(x −t)2kh(2k+1)(t) dt
+=
+2k
+X
+ℓ=0
+h(ℓ)(0)
+ℓ!
+xℓ+ h(2k+1)(ux)
+(2k + 1)! x2k+1 ,
+where ux is a point in the interval [0, x]. Using the properties of D2k listed above, we obtain
+D2kh(0) −h′(0)
+ =
+
+k
+X
+m=1
+αm
+h(2k+1)(umδ) −h(2k+1)(u−mδ)
+2(2k + 1)!
+· (mδ)2k
+
+≤C2,k∥h(2k+1)∥∞δ2k .
+Therefore
+|h′(0)| ≤
+D2kh(0)
+ +
+D2kh(0) −h′(0)
+
+≤C1,k
+∥h∥∞
+δ
++ C2,k∥h(2k+1)∥∞δ2k .
+This proves the desired bound.
+We are left wih the task of proving claims (i) and (ii) about the operator D2k. Substituting, these are
+equivalent to the claims
+k
+X
+m=1
+αm = 1 ,
+(58)
+k
+X
+m=1
+αm[mℓ−1 + (−m)ℓ−1] = 0
+∀ℓ∈{2, . . . , 2k} .
+(59)
+We will prove the second equation, since the ﬁrst one is proved analogously. Notice that this claim is obviously
+true for ℓ−1 odd, and we will therefore assume ℓ−1 even. Setting r = ℓ−1, and choosing Ak = 2−1 2k
+k
+
+, we
+have
+Ak
+k
+X
+m=1
+αm[mr + (−m)r]
+=
+k
+X
+m=1
+(−1)m+1
+
+2k
+k −m
+
+mr +
+k
+X
+m=1
+(−1)m+1
+
+2k
+k + m
+
+mr
+= (−1)k−1
+2k
+X
+j=0
+(−1)j
+2k
+j
+
+(k −j)r
+= (−1)k−1 dr
+dxr
+
+x=0
+2k
+X
+j=0
+(−1)j
+2k
+j
+
+e(k−j)x
+= (−1)k−1 dr
+dxr
+
+x=0
+(ex/2 −e−x/2)2k = 0 .
+30
+
+
+--- page 31 ---
+Here the last identity holds for 0 < r < 2k, i.e. 1 < ℓ≤2k as claimed.
+We further state and proof a lemma about a modiﬁed Stieltjes transform.
+Lemma 6. Let s1 ≥· · · ≥sp > 0 be such that s1 ≤M and #{i : si ≥1/M} ≥p/M for some large constant
+M > 1, and M −1 ≤p/n ≤M. Further assume |1 −(p/n)| ≥1/M and n−1 Pp
+i=1 s−1
+i 1si>0 < M. For
+(λ, η) ∈(0, M] × (−1/(10M 2), 1/(10M 2)) let u = u(λ, η) be the only solution in (0, ∞) of the equation
+u
+1 −ηu = λ + 1
+n
+p
+X
+i=1
+siu
+u + si
+.
+(60)
+Then
+(a) λ 7→u(λ, η) is analytic and non-decreasing with 0 < ∂λu(λ, η) ≤C(M) for a constant C(M) uniquely
+dependent on M.
+(b) u(λ, η) > λ/2.
+(c) If further λ ∨sp ≥1/M, then |∂k
+ηu(λ, η)| ≤Ck(M) for all k.
+Proof. We begin from poinr (a). Since η is ﬁxed here, we write u(λ) = u(λ, η), dropping the dependence on
+η. Note that, for η > 0, any solution u must be such that u ∈(0, 1/η) because otherwise the left hand side is
+negative and the right-hand side is positive. Call x = u/(1 −ηu) whence the above equation is equivalent to
+the following equation on x ∈(0, ∞):
+x = λ + 1
+n
+p
+X
+i=1
+si(η)x
+si(η) + x ,
+(61)
+where si(η) = si/(1 + ηsi). For η ∈(−1/(10M 2), 1/(10M 2)), we have (1 −(10M)−1)si < si(η) < (1 +
+(10M)−1)si, and therefore the sequence (si(η))i≤p satisﬁes the same assumptions as (si)i≤p, with M replaced
+by 2M. We will therefore drop the argument η and study the ﬁxed point equation (61) (which is equivalent
+to the case η = 0 of Eq. (60)).
+Let g(x) := n−1 Pp
+i=1 si/(si + x), and note that this function is mononone decreasing on [0, ∞) with
+g(0) ≤C0(M), and g(x) ≤M 2/x. Equation (61) can be rewritten as
+1 = λ
+x + g(x) ,
+(62)
+Since x 7→ˆg(x) := (λ/x) + g(x) is monotone decreasing with ˆg(0+) = +∞and ˆg(x) →0 as x →∞, this
+equation has a unique solution, denoted by x(λ). By the implicit function theorem, we have
+∂λx(λ) =
+"
+1 −1
+n
+p
+X
+i=1
+s2
+i
+(si + x(λ))2
+#−1
+> 0 .
+(63)
+The second inequality follows for instance by noting that n−1 Pp
+i=1 s2
+i /(si+x(λ))2 < g(x(λ)) = 1−λ/x(λ) < 1.
+Notice that g(0) = p/n. By assumption |g(0) −1| ≥1/M. We will distinguish the two cases g(0) < 1 and
+g(0) > 1.
+Case g(0) < 1. Since g(x) is decreasing, (62) implies 1 ≤λx−1 + g(0) whence
+x(λ) ≤
+λ
+1 −g(0) ≤Mλ .
+(64)
+Further, in this case
+1
+n
+p
+X
+i=1
+s2
+i
+(si + x(λ))2 ≤g(x(λ)) ≤g(0) ≤1 −1
+M ,
+(65)
+31
+
+
+--- page 32 ---
+and therefore, by Eq. (63), we have ∂λx(λ) ≤M for all λ ∈(0, ∞).
+Case g(0) > 1. Let x0 = g−1(1) > 0. Since x 7→g(x) is convex, x0 ≥(1 −g(0))/|g′(0)|. Note that
+|g′(0)| = n−1 Pp
+i=1 s−1
+i 1si>0 ≤M. Therefore x0 ≥1/C(M) for some ﬁnite constant C(M).
+Since ˆg(x) = λ/x + g(x) > g(x) on (0, ∞), we have x(λ) > x(0+) = x0 ≥1/C(M) for all λ ∈(0, ∞).
+Further,
+1
+n
+p
+X
+i=1
+s2
+i
+(si + x(λ))2 ≤1
+n
+p
+X
+i=1
+si
+si + x(λ) −1
+n
+p/M
+X
+i=1
+si
+si + x(λ)
+h
+1 −
+si
+si + x(λ)
+i
+≤1 −
+λ
+x(λ) −
+x0
+x0 + M
+1
+n
+p/M
+X
+i=1
+si
+si + x(λ)
+≤1 −
+λ
+x(λ) −
+x0
+x0 + M · 1
+M · 1
+n
+p
+X
+i=1
+si
+si + x(λ)
+≤
+
+1 −
+λ
+x(λ)
+
+1 −
+x0
+M(x0 + M)
+
+≤1 −
+1
+C(M) .
+Therefore by Eq. (63), 0 < ∂λx(λ) ≤C(M) also in this case.
+Finally note that by Eq. (61), we have
+x(λ) ≤λ + 1
+n
+p
+X
+i=1
+si(η) ≤M + 2M 2 ≤3M 2 .
+(66)
+and therefore 7/10 ≤(1 + ηx(λ)) ≤13/10, whence
+∂λu(λ) =
+1
+(1 + ηx(λ))2 ∂λx(λ) ≤2∂λx(λ) ≤C(M) , .
+(67)
+This proves point (a).
+Claim (b) simply follows since u/(1 −ηu) ≥λ by Eq. (60). Since (1 −ηu) = 1/(1 + ηx) ≥1/2 as just
+shown, this implies u ≥λ/2.
+Finally, for claim (c), notice that u(λ, η) is a solution of the equation
+0 = f(u, η) :=
+u
+1 −ηu −λ −1
+n
+p
+X
+i=1
+siu
+u + si
+.
+(68)
+By the implicit function theorem, it is suﬃcient to prove that
+ ∂k+lf
+∂uk∂ηl
+ ≤Ck,l(M) for all l ≥1, k ≥0 and
+l = 0, k ≥2, and that
+ ∂f
+∂u
+ ≥1/C(M).
+In order to bound the ﬁrst derivative away from 0, note that, again by the implicit function theorem,
+∂f
+∂u
+ =
+∂u
+∂λ
+
+−1
+≥
+1
+C(M) ,
+where the last inequality follows from point (a) above. In order to bound higher order derivatives, write
+f(u, η) = f1(ηu)/η −λ −f2(u) where f1(v) := v/(1 −v). Recall that x = u/(1 −ηu), and x ≤3M 2 by
+Eq. (66). Therefore
+0 ≤∂kf1(ηu) =
+1
+(1 −ηu)k+1 = (1 + ηx)k+1 ≤Ck(M) .
+Further
+∂kf2(u)
+ =
+ 1
+n
+p
+X
+i=1
+s2
+i
+(si + u)k+1
+
+≤p
+n
+s2
+1
+(sp + u)k+1
+≤p
+n
+s2
+1
+(sp + C(M)λ)k+1 ≤Ck(M) .
+32
+
+
+--- page 33 ---
+We therefore obtain, for k ≥2
+
+∂kf
+∂uk (u, η)
+ ≤ηk−1∂kf1(ηu)
+ +
+∂kf2(u)
+ ≤Ck(M) .
+For the other derivvatives, notice that
+∂k+lf
+∂uk∂ηl (u, η) =
+X
+m1,m2,m3≤C0
+c1(m1, m2, m3)ηm1um2∂m3f1(ηu) ,
+where C0, c1(m1, m2, m3) are coeﬃcients depending uniquly on k, l. This sum is bounded since each term
+is bounded, by the above estimate on ∂kf1, and further using the fact that u = x/(1 + ηx) ≤10M 2 since
+x ≤3M 2 by Eq. (66).
+For the proof of Theorem 5, it is convenient to introduce the notations SZ := ZT Z/n and SX := XT X/n =
+Σ1/2SZΣ1/2. We begin by recalling the expressions for bias and variance of ridge regression at regularization
+parameter λ:
+BX(ˆβ; β) = λ2⟨β,
+ SX + λI
+−1Σ
+ SX + λI
+−1β⟩,
+(69)
+VX(ˆβ; β) = σ2
+n Tr
+ ΣSX
+ λI + SX
+−2
+.
+(70)
+The bias and variance for min-norm interpolation are recovered by taking λ →0+. In the following, we will
+occasionally consider λ to be complex with Re(λ) > 0.
+A.2
+Proof of Theorem 5, bias term
+Note that the bias is homogeneous (of degree 2) in ∥β∥2. Hence, without loss of generality we can and will
+assume ∥β∥2 = 1. For Re(η) > −1/λmax(Σ) deﬁne
+F n(η, λ) := λ⟨β,
+ SX + λI + ληΣ
+−1β⟩
+(71)
+= λ⟨βη,
+ Σ1/2
+η
+SZΣ1/2
+η
++ λI
+−1βη⟩,
+(72)
+where
+Ση := Σ(I + ηΣ)−1 ,
+βη :=
+ I + ηΣ
+−1/2β .
+(73)
+Recall that 0 ⪯Σ ⪯M · Ip, and therefore F n is an analytic function in D := {(λ, η) ∈C2 :
+Re(λ) >
+0, Re(η) > −1/(2M)}. For future reference, we also deﬁne D0 := {(λ, η) ∈C × R : 0 < Re(λ) < M, |Im(λ)| <
+M, Re(η) > −1/(2M), }. Using the expressions (71) it is easy to see that
+BX(ˆβ; β) = −∂F n
+∂η (0, λ) .
+(74)
+Note that Eq. (72) has the form of the matrix element of a resolvent. By using the anisotropic local law for
+covariance matrices of (Knowles and Yin, 2017, Theorem 3.16.(i)) (see also Remark 3.17 in the same paper),
+we obtain that for any ε > 0, ε0 > 0, D > 0, there exist C = C(ε, ε0, D) such that the following holds with
+probability at least 1 −Cn−D. For all (λ, η) ∈D0, 0 < Im(−λ) < M, Re(λ) > n−2/3+ε0, we have
+F n(λ, η) −Fn(λ, η)
+ ≤
+s
+Im(rn(−λ, η))
+Im(−λ)
+· n−1+ε ,
+(75)
+Fn(λ, η) := −⟨βη,
+ I + rn(−λ, η)Ση
+−1βη⟩.
+(76)
+Here, for Im(z) > 0, Re(η) = 0, rn = rn(z, η) is deﬁned as the unique solution Im(rn(z, η)) > 0 of
+1
+rn
+= −z + γ 1
+p
+p
+X
+i=1
+si(η)
+1 + si(η)rn
+.
+(77)
+33
+
+
+--- page 34 ---
+where s1(η) ≥s2(η) ≥· · · ≥sp(η) are the eigenvalues of Ση. By Eq. (73) we have si(η) = si/(1 + ηsi).
+Existence and uniqueness of the solution rn(z, η) is given, for instance, in (Knowles and Yin, 2017, Lemma
+2.2). This lemma also states that rn(z, η) is the Stieltjes transorm of a probability measure ρη with support
+in [0, C(M)]. As a consequence, for λ = λ1 + iλ2, λ1 > 0
+Im(rn(−λ, η)) = Im
+Z
+1
+x + λ dρη(x) =
+Z
+−λ2
+(x + λ1)2 + λ2
+2
+dρη(x) .
+⇒
+Im(rn(−λ, η))
+ ≤|Im(λ)|
+Re(λ)2 .
+Therefore, taking the limit Im(λ) →0 in Eq. (75), we obtain, with probability at least 1 −Cn−D
+F n(λ, η) −Fn(λ, η)
+ ≤
+1
+n(1−ε)/2λ
+∀λ ∈(n−2/3+ε0, ∞), η ∈
+
+−
+1
+2M , ∞
+
+.
+(78)
+Since si(η) is diﬀerentiable in η for (λ, η) ∈D0, it follows that rn(z, η) is also diﬀerentiable in η. Deﬁning
+mn(z, η) = (1 −γ + zrn(z, η))/(γz), we obtain that mn is the unique solution
+mn = 1
+p
+p
+X
+i=1
+1
+si(η)[1 −γ −γzmn] −z ,
+(79)
+with si(η) = si/(1+ηsi). Since η = 0 is in the domain D0, we can Taylor expand the solution of this equation,
+to obtain
+mn(z, η) = mn(z) + mn,1(z)η + O(η2) ,
+(80)
+where mn(z), mn,1(z) are deﬁned in Eqs. (36) and (37). Since rn(−λ, η) is analytic for (λ, η) ∈D, we also
+have that Fn(λ, η) is analytic in the same domain. In particular, we can diﬀerentiate Fn(λ, η) with respect to
+η at η = 0. Using Eq. (80), we get
+∂Fn
+∂η (λ, 0) = −λ2 1 + γmn,1(−λ)
+
+⟨β,
+ λI + (1 −γ + γλmn(−λ))Σ
+−2Σβ⟩
+= −λ2∥β∥2 1 + γmn,1(−λ)
+ Z
+s
+[λ + (1 −γ + γλmn(−λ))s]2 d bGn(s)
+= −B(λ; bHn, bGn, γ) .
+(81)
+Here the last identity is simply the deﬁnition of the predicted bias in Eq. (38).
+Notice that η 7→F(λ, η) is inﬁnitely diﬀerentiable in (−1/(2M), ∞) with
+∂kF n
+∂ηk (λ, η) = (−1)kλk+1⟨β, R(ΣR)kβ⟩,
+R := (SX + λI + ληΣ−1)−1 ,
+Note that ∥Σ∥op ≤M, ∥β∥2 = 1 (we assumed this to hold without loss of generality) and ∥R∥op ≤1/λ,
+whence
+
+∂kF n
+∂ηk (λ, η)
+ ≤λk+1∥β∥2∥Σ∥k
+op∥R∥k+1 ≤M k ..
+(82)
+We claim that a similar bound holds for the derivative of Fn, namely
+
+∂kFn
+∂ηk (λ, η)
+ ≤Ck(M) .
+(83)
+In order to prove this bound, we write
+Fn(λ, η) = F(un(η, λ)) ,
+un(η, λ) := (η + rn(η, −λ))−1 ,
+F(u) := −u⟨β,
+ uIp + Σ
+−1β⟩.
+34
+
+
+--- page 35 ---
+In what follows we use the shorhand un = un(η, z). Note that, by Eq. (77), un solves Eq. (60), and we can
+therefore apply Lemma 6. Note that
+∂kF
+∂uk (un)
+ = ⟨β, (unIp + Σ)−k−1Σβ⟩
+≤M(un + λmin(Σ))−k−1
+(a)
+≤C0(M)(λ ∨λmin(Σ))−k−1 (b)
+≤C(M) .
+where (a) follows from Lemma 6.(b) and (b) by the theorem’s assumption.
+Further, by Lemma 6.(c) we have |∂k
+ηun| ≤C′
+k(M) for all k, whence the desired claim (83) follows.
+Using Eqs. (82), (83), and (78) in Lemma 5 we get, for any ε > 0, k and any δ < k/(4M), with probability
+at least 1 −n−C
+
+∂F n
+∂η (λ, 0) −∂Fn
+∂η (λ, 0)
+ ≤
+1
+n(1−ε)/2λ · 1
+δ + C2k+1(M)δ2k .
+(84)
+The claim follows by taking δ = n−ε/2 and k = ⌈1/ε⌉, and recalling that, by Eqs. (74) and (81), we have
+
+∂F n
+∂η (λ, 0) −∂Fn
+∂η (λ, 0)
+ =
+BX(ˆβ; β) −B(λ; bHn, bGn, γ)
+ .
+(85)
+A.3
+Proof of Theorem 5, variance term
+Note that by Eq. (70)
+VX(ˆβ; β) = σ2γ ∂
+∂λ
+nλ
+p Tr
+ Σ(SX + λI)−1o
+.
+(86)
+Further the right-hand side is an analytic function of λ, for Re(λ) > 0. Using again (Knowles and Yin, 2017,
+Theorem 3.16.(i)) , we get that for any D > 0, ε > 0, where exists C = C(D, ε) such that, with probability
+at least 1 −Cn−D,
+
+λ
+p Tr
+ Σ(SX + λI)−1
+−Ln(λ)
+ ≤
+s
+Im(rn(−λ))
+Im(−λ)n1−ε ,
+(87)
+Ln(λ) := 1
+pTr
+ Σ(I + rn(−λ)Σ)−1
+.
+(88)
+uniformly over Re(λ) > n−2/3+(1/M), Im(−λ) > 0. Here rn(z) is deﬁned as in the previous section, namely
+as the solution of Eq. (77) with η = 0. As shown there Im(rn(−λ))| ≤|Im(λ)|/Re(λ)2, whence
+
+λ
+p Tr
+ Σ(SX + λI)−1
+−Ln(λ)
+ ≤
+1
+|Re(λ)|n(1−ε)/2 .
+(89)
+Since both functions λ 7→λ
+p Tr
+ Σ(SX + λI)−1 and λ 7→Ln(λ) are analytic on Re(λ) > 0, the last bound
+implies a similar bound on their derivarives, namely
+VX(ˆβ; β) −σ2γ ∂Ln
+∂λ (λ)
+ ≤
+1
+|Re(λ)|2n(1−ε)/2 .
+(90)
+We are left with the task of computing the derivative of Ln:
+∂Ln
+∂λ (λ) := 1
+pTr
+ Σ2r′
+n(−λ)(I + rn(−λ)Σ)−2
+(91)
+=
+Z
+s2r′
+n(−λ)
+[1 + rn(−λ)s]2 d bHn(s)
+(92)
+=
+Z
+s2(1 −γ + γλ2m′
+n(−λ))
+[λ + s(1 −γ + γλmn(−λ))]2 d bHn(s) .
+(93)
+where the last equality follows by the deﬁnition mn(x) = (1 −γ + γzrn(z))/(γz) given above.
+35
+
+
+--- page 36 ---
+A.4
+Generalization to heavier tail covariates: Proof of Theorem 6
+This result follows from Theorem 2 via a standard truncation argument. We outline the argument for the bias
+as the same proof holds almost unchanged for the variance term. We write the bias BX,Σ(ˆβ; β) to emphasize
+its dependende upon the population covariance. Using Eq. (69), we obtain, for some C = C(λ) < ∞
+BX1,Σ1(ˆβλ; β) −BX2,Σ2(ˆβλ; β)
+ ≤C∥SX1 −SX2∥op + C∥Σ1 −Σ2∥op
+(94)
+≤C
+n (∥X1∥op + ∥X2∥op) · ∥X1 −X2∥op + +C∥Σ1 −Σ2∥op .
+(95)
+For M > 0, decompose the random vriables zij as
+zij = aMzM
+ij + ˜zM
+ij ,
+˜zM
+ij := zij1|zij|>M −E{zij1|zij|>M} ,
+zM
+ij :=
+1
+aM
+ zij1|zij|≤M −E{zij1|zij|≤M}
+
+,
+aM := E{
+ zij1|zij|≤M −E{zij1|zij|≤M}
+2}1/2 .
+Notice that zM
+ij , ˜zM
+ij have zero mean and that zM
+ij is bounded by 2M and has unit variance. Further, by the
+condition E{|zij|4+δ} < C, we also have |aM −1| ≤εM, and E{|˜zM
+ij |4} ≤ε4
+M, for some εM →0 as M →∞.
+We correspondingly decompose the matricex X, Z as
+Z = aMZM + ˜ZM
+(96)
+X = XM + e
+XM ,
+XM = ZMΣ1/2
+M , e
+XM = ˜ZMΣ1/2 ,
+(97)
+where ΣM = a2
+MΣ. Using Eq. (95), we get
+BX,Σ(ˆβλ; β) −BXM,ΣM (ˆβλ; β)
+ ≤C
+ ∥X∥op + ∥XM∥op
+
+∥e
+XM∥op + C∥ΣM −Σ∥op
+(98)
+≤C
+ ∥Z∥op + ∥ZM∥op
+
+∥˜ZM∥op + C|a2
+M −1| .
+(99)
+By the Bai-Yin law Bai and Yin (1993), almost surely lim supn→∞(∥Z∥op + ∥ZM∥op) ≤C < ∞and
+lim supn→∞∥˜ZM∥op < CεM. Therefore
+lim sup
+n,p→∞
+BX,Σ(ˆβλ; β) −BXM,ΣM (ˆβλ; β)
+ ≤CεM .
+(100)
+Now we can apply Theorem 5 to XM, ΣM, since the variables zM
+ij have bounded moments of all orders.
+Denoting by bHM
+n , bGM
+n the corresponding empirical measures, we have, with probability at least 1 −Cn−2:
+BXM,ΣM (ˆβλ; β) −B(λ; bHM
+n , bGM
+n , γ)
+ ≤
+C
+n0.49 .
+Note that bHM
+n (s) = bHn(s/a2
+M) and bGM
+n (s) = bGn(s/a2
+M), hence these measures converge weakly to HM(s) =
+H(s/a2
+M) and GM(s) = G(s/a2
+M). Therefore, by Borel-Cantelli
+lim sup
+n→∞
+BXM,ΣM (ˆβλ; β) −B(λ; HM, GM, γ)
+ = 0 .
+(101)
+The proof is completed by putting together Eqs. (100) and (101), taking M →∞and noting that HM ⇒H,
+GM ⇒G in that limit.
+B
+Proofs for the linear model: Risk min-norm regression
+B.1
+Proof of Theorem 2
+The proof follows from Theorem 5 by approximating min-norm regression with ridge regression with a small
+value of λ. For this reason we will assume λ ≤1 throughout. We treat separately the bias and variance terms.
+36
+
+
+--- page 37 ---
+Since the variance is independent of β and the bias is homogeneous in ∥β∥2, we can assume, without loss of
+generality, ∥β∥2 ≤1.
+Bias term. Recall the notation SX = XT X/n. Denote the eigenvalue decomposition of SX by SX = UDXU T ,
+where DX ∈Rp×p is diagonal and U ∈Rp×p is orthogonal. Using Eq. (69), we can rewrite the bias of min
+norm and ridge regression as (here 1DX=0 is the diagonal matrix with (i, i)-th entry equal to 1 if (DX)ii = 0
+and equal to 0 otherwise)
+BX(ˆβ; β) =
+Σ1/2U1DX=0U T β
+2
+2
+(102)
+BX(ˆβλ; β) =
+Σ1/2Uλ(λIp + DX)−1U T β
+2
+2 .
+(103)
+Using triangular inequality, we get
+BX(ˆβλ; β)1/2 −BX(ˆβ; β)1/2 ≤
+Σ1/2U
+
+λ(λIp + DX)−1 −1DX=0
+
+U T β
+
+2
+≤∥Σ∥1/2
+op
+λ(λIp + DX)−11DX>0
+
+2
+≤
+Mλ
+σmin(X)2/n ≤C(M)
+λ
+σmin(Z)2/n ,
+where σmin denotes the smallest non-vanishing singular value and the last inequality holds since by assumption
+λmin(Σ) ≥1/M. Finally, since |p/n −1| ≥1/M, we have that σmin(Z)/√n ≥1/C(M) with probability at
+least 1−Cn−D Bai and Yin (1993). Hence, with the same probability
+BX(ˆβλ; β)1/2−BX(ˆβ; β)1/2 ≤C(M)λ.
+Also notice that, by Eq. (103), BX(ˆβ; β) ≤∥Σ∥op ≤M. Therefore, we obtain
+BX(ˆβλ; β) −BX(ˆβ; β)
+ ≤C(M)λ .
+(104)
+We next claim that Eqs. (11) and (38) imply the bound
+B(λ; bHn, bGn, γ) −B( bHn, bGn, γ)
+ ≤C(M)λ .
+(105)
+In to prove this estimate, recall that γ > 1 + M −1, and that, by assumption, bHn is supported on [M −1, M].
+Deﬁne c∗(λ) via mn(−λ) = (1 −γ −λγc∗(λ))/(−γλ). Note that c∗(λ) = rn(−λ)/γ, where rn(z) is the
+compaion Stieltjes transform already introduced in Eq. (77). In particular, by (Knowles and Yin, 2017,
+Lemma 2.2), c∗it is non-negative and monotone decreasing in λ. Further Eq. (36), c∗satisﬁes
+1 −1
+γ = −λc∗+
+Z
+1
+1 + c∗γs d bHn(s) =: f(c∗; λ) .
+(106)
+It follows from supp( bHn) ∈[M −1, M] that f(x; λ) is monotone decreasing on (0, ∞) for any λ ≥0 with
+f(0; λ) = 1 and limx→∞f(x; 0) = 0, limx→∞f(x; λ) = −∞for any λ > 0. Further f(x; λ) is monotone
+decreasing in λ with f(x; λ) →f(x; 0) as λ →0.
+Therefore c∗(λ) is monotone decreasing in λ, with
+limλ→0 c∗(λ) = c0 > 0 (with c0 deﬁned as per Eq. (10)).
+Further f(x; λ) ≤f(x; λ) ≤f(x; λ) where
+f(x; λ) is obtained by replacing bHn by δ1/M, and f(x; λ) is obtained by replacing bHn by δM. Therefore
+C(M)−1 ≤c∗(λ) ≤c0 ≤C(M) for some ﬁnite constant C(M) depending uniquely on M. In particular, this
+implies that ∂λf(c∗; λ) is uniformly bounded. Finally
+∂xf(x; λ) = −λ −
+Z
+γs
+(1 + xγs)2 d bHn(s) .
+For s ∈[M −1, M] and x ∈[C(M)−1, C(M)], the integrand γs/(1 + xγs)2 is bounded and bounded away
+from zero. Therefore C(M)−1 ≤−∂xf(x; λ) ≤C(M) for some (possibly diﬀerent) constant C(M). By
+the implicit function theorem, it follows that |∂λc∗(λ)| ≤C(M) is bounded for λ ∈[0, M], and therefore
+|c∗(λ) −c0| ≤C(M)λ, whence
+mn(−λ) =
+ 1 −γ−1 1
+λ + c0 + O∗(λ) .
+(107)
+37
+
+
+--- page 38 ---
+(Here O∗(λ) denotes a quantity bounded uniformly as |O∗(λ)| ≤C(M)λ.). Sustituting this in Eq. (37), and
+repeating similar arguments, we obtain
+mn,1(−λ) = c1 + O∗(λ) ,
+c1 := c0
+R
+s2
+(1+c0γs)2 d bHn(s)
+R
+s
+(1+c0γs)2 d bHn(s)
+.
+Finally, substituting in Eq. (38), we obtain the claimed bound (105).
+Using Eqs. (104), (105) and Theorem 5 we deduce that, for all M, D, ε, and all n−2/3+1/Mλ ≤1, with
+probability at least 1 −Cn−D ,
+BX(ˆβ; β) −B( bHn, bGn, γ)
+ ≤C(M)
+
+λ +
+1
+λn(1−ε)/2
+
+.
+The desired bound is obtained by setting λ = n−1/7 and choosing ε small enough.
+Variance term. With the same notations introduced above, Eq. (70) implies
+VX(ˆβ; β) = σ2
+n Tr
+ ΣUD−1
+X 1DX>0U T 
+,
+(108)
+VX(ˆβλ; β) = σ2
+n Tr
+ ΣUDX(λI + DX)−2U T 
+.
+(109)
+Taking the diﬀerence and bounding |x(x + λ)−2 −x−1| ≤2λ/x2 for x, λ > 0, we get
+VX(ˆβλ; β) −VX(ˆβ; β)
+ ≤2λσ2
+n
+Tr
+ ΣUD−2
+X 1DX>0U T 
+≤
+2λMσ2
+σmin(X)4/n2 ≤C(M)λ .
+The rest of the proof is analogous to one for the bias term and is omitted.
+C
+Other proofs for the linear model
+C.1
+Proof of Proposition 2
+Write X = ZΣ1/2. Note that
+λmin(XT X/n) ≥λmin(ZT Z/n)λmin(Σ) ≥(c/2)(1 −√γ)2,
+(110)
+where the second inequality holds almost surely for all n large enough, following from λmin(Σ) ≥c, and the
+Bai-Yin theorem (Bai and Yin, 1993), which implies that the smallest eigenvalue of ZT Z/n is almost surely
+larger than (1 −√γ)2/2 for suﬃciently large n. As the right-hand side in the above display is strictly positive,
+we have that XT X is almost surely invertible. Therefore by the bias and variance results from Lemma 1, we
+have almost surely Π = 0 and BX(ˆβ; β) = 0, and also
+VX(ˆβ; β) = σ2
+n Tr(ˆΣ−1Σ)
+= σ2
+n Tr
+
+Σ−1/2ZT Z
+n
+−1
+Σ−1/2Σ
+
+= σ2p
+n
+Z 1
+s dFZT Z/n(s)
+= σ2p
+n
+Z 1
+s ∧M
+
+dFZT Z/n(s),
+38
+
+
+--- page 39 ---
+where FZT Z/n is the spectral measure of ZT Z/n and the last identity holds if M −1 < (c/2)(1 −√γ)2
+almost surely for all n ≥N0 (with N0 a random number) by Eq. (110). By the Marchenko-Pastur theorem
+(Marchenko and Pastur, 1967; Silverstein, 1995), which says that FZT Z/n converges weakly, almost surely, to
+the Marchenko-Pastur law Fγ (depending only on γ), whenc, almost surely :
+Z ∞
+0
+1
+s ∧M
+
+dFZT Z/n(s) →
+Z ∞
+0
+1
+s ∧M
+
+dFγ(s) =
+Z ∞
+0
+1
+s dFγ(s) ,
+where the last equality follows since Fγ is supported in [(1 −√γ)2, (1 + √γ)2], provided M > (1 −√γ)−2.
+Thus the last display implies that as n, p →∞, almost surely,
+VX(ˆβ; β) →σ2γ
+Z 1
+s dFγ(s).
+(111)
+It remains to compute the right-hand side above. We recognize the right-hand side as the evaluation of
+the Stieltjes transform m(z) of Marchenko-Pastur law at z = 0. Fortunately, this has an explicit form (e.g.,
+Lemma 3.11 in Bai and Silverstein 2010), for real z > 0:
+m(−z) = −(1 −γ + z) +
+p
+(1 −γ + z)2 + 4γz
+2γz
+.
+(112)
+The proof is thus completed by taking the limit z →0+ in this expression.
+C.2
+Proof of Theorem 1
+Notice that this result can be obtained as a special case of Theorem 3. For the reader’s convenience, we
+present here a simpler self-contained proof that assumes the covariates to satisfy the stronger condition
+E(|zij|8+δ) ≤C < ∞.
+Variance term. Recalling the expression for the bias from Lemma 1 (where now Σ = I), we have
+VX(ˆβ; β) = σ2
+n
+n
+X
+i=1
+1
+si
+,
+where si = λi(XT X/n), i = 1, . . . , n are the nonzero eigenvalues of XT X/n. Let ti = λi(XXT /p), i = 1, . . . , p
+denote the eigenvalues of XXT /p. Then we may write si = (p/n)ti, i = 1, . . . , n, and
+VX(ˆβ; β) = σ2
+p
+n
+X
+i=1
+1
+ti
+= σ2n
+p
+Z 1
+t dFXXT /p(t),
+where FXXT /p is the spectral measure of XXT /p. Now as n/p →τ = 1/γ < 1, we are back precisely in the
+setting of Theorem 2, and by the same arguments, we may conclude that almost surely
+VX(ˆβ; β) →σ2τ
+1 −τ =
+σ2
+γ −1,
+completing the proof.
+Bias term. Recall the expression for the bias from Lemma 1 (where now Σ = I), and note the following key
+characterization of the pseudoinverse of a rectangular matrix A,
+(AT A)+AT = lim
+z→0+ (AT A + zI)−1AT .
+(113)
+We can apply this to A = X/√n, and rewrite the bias as
+BX(ˆβ; β) = lim
+z→0+ βT  I −(ˆΣ + zI)−1 ˆΣ
+
+β
+= lim
+z→0+ zβT (ˆΣ + zI)−1β,
+(114)
+39
+
+
+--- page 40 ---
+where in the second line we added and subtracted zI to ˆΣ and simpliﬁed. By Theorem 1 in Rubio and Mestre
+(2011), which may be seen as a generalized Marchenko-Pastur theorem, we have that for any z > 0, and any
+deterministic sequence of matrices Θn ∈Rp×p, n = 1, 2, 3, . . . with uniformly bounded trace norm, it holds as
+n, p →∞, almost surely,
+Tr
+
+Θn
+ (ˆΣ + zI)−1 −cn(z)I
+
+→0,
+(115)
+for a deterministic sequence cn(z) > 0, n = 1, 2, 3, . . . (deﬁned for each n via a certain ﬁxed-point equation).
+Taking Θn = I/p in the above, note that this reduces to the almost sure convergence of the Stieltjes transform
+of the specral distribution of ˆΣ, and hence by the (classical) Marchenko-Pastur theorem, we learn that
+cn(z) →m(−z), where m denotes the Stieltjes transform of the Marchenko-Pastur law Fγ. Further, taking
+Θn = ββT /p, we see from (115) and cn(z) →m(−z) that, almost surely,
+zβT (ˆΣ + zI)−1β →zm(−z)r2.
+(116)
+Deﬁne fn(z) = zβT (ˆΣ + zI)−1β. Notice that |fn(z)| ≤r2, and f ′
+n(z) = βT (ˆΣ + zI)−2 ˆΣβ, so
+|f ′
+n(z)| ≤r2
+λmax(ˆΣ)
+(λ+
+min(ˆΣ) + z)2 ≤8r2 (1 + √γ)2
+(1 −√γ)4 ,
+where λmax(ˆΣ) and λ+
+min(ˆΣ) denote the largest and smallest nonzero eigenvalues, respectively, of ˆΣ, and the
+second inequality holds almost surely for large enough n, by the Bai-Yin theorem (Bai and Yin, 1993). As its
+derivatives are bounded, the sequence fn, n = 1, 2, 3, . . . is equicontinuous, and by the Arzela-Ascoli theorem,
+we deduce that fn converges uniformly to its limit. By the Moore-Osgood theorem, we can exchange limits
+(as n, p →∞and z →0+) and conclude from (114), (116) that as n, p →∞, almost surely,
+BX(ˆβ; β) →r2 lim
+z→0+ zm(−z).
+Finally, relying on the fact that the Stieltjes transform of the Marchenko-Pastur law has the explicit form in
+(112), we can compute the above limit:
+lim
+z→0+ zm(−z) = lim
+z→0+
+−(1 −γ + z) +
+p
+(1 −γ + z)2 + 4γz
+2γ
+= −(1 −γ) + (γ −1)
+2γ
+= 1 −1/γ,
+completing the proof.
+C.3
+Proof of Corollary 2
+The corollary follows immediately from Theorem 3, once we estabilish that, for ∥β∥2 →r2, B(H, H, γ) →
+Bequi(H, γ). By homogeneity, we can assume without loss of generality that ∥β∥2 = r2 = 1. By using Eq. (11),
+we get
+B(H, H, γ) =
+Z
+s
+(1 + c0γs)2 dH(s) + γc0
+Z
+s2
+(1 + c0γs)2 dH(s)
+(117)
+=
+Z
+s
+1 + c0γs dH(s)
+(118)
+=
+1
+c0γ
+h
+1 −
+Z
+1
+1 + c0γs dH(s)
+i
+=
+1
+c0γ2 ,
+(119)
+where that last equality follows from the deﬁnition of c0 in Eq. (10). Comparing with the deﬁnition of
+cuBequi(H, γ) in Eq. (16) yields the desired claim.
+40
+
+
+--- page 41 ---
+C.4
+The case of equicorrelated features
+As an illustration of Corollary 2, we consider the case of equicorrelated covariates. Namellt, for ρ ∈[0, 1), we
+assume that Σii = 1 for all i, and Σij = ρ for all i̸ = j.
+Corollary 7. Assume the conditions of Theorem 2, and moreover, assume that Σ has ρ-equicorrelation
+structure for all n, p, and some ρ ∈[0, 1). Then as n, p →∞, with p/n →γ > 1, we have almost surely
+RX(ˆβ) →r2(1 −ρ)(1 −1/γ) +
+σ2
+γ −1.
+Proof. Let Hρ denote the weak limit of FΣ, when Σ has ρ-equicorrelation structure for all n, p. A short
+calculation shows that such a matrix Σ has one eigenvalue value equal to 1 + (p −1)ρ, and p −1 eigenvalues
+equal to 1 −ρ. Thus the weak limit of its spectral measure is simply Hρ = 1[1−ρ,∞), i.e., dHρ = δ1−ρ, a point
+mass at 1 −ρ of probability one.
+We remark that the present case, strictly speaking, breaks the conditions that we assume in Theorem
+2, because λmax(Σ) = 1 + (p −1)ρ clearly diverges with p. However, by decomposing Σ = (1 −ρ)I + ρ11T
+(where 1 denotes the vector of all 1s), and correspondingly decomposing the functions fn, gn, hn deﬁned in the
+proof of Theorem 2, to handle the rank one part ρ11T properly, we can ensure the appropriate boundedness
+conditions. Thus, the result in the theorem still holds when Σ has ρ-equicorrelation structure.
+Now denote by vρ the companion Stieltjes transform of the empirical spectral distribution FHρ,γ, to
+emphasize its dependence on ρ. Recall the Silverstein equation (120), which for the equicorrelation case, as
+dHρ = δ1−ρ, becomes
+−
+1
+vρ(z) = z −γ
+1 −ρ
+1 + (1 −ρ)vρ(z),
+or equivalently,
+−
+1
+(1 −ρ)vρ(z) =
+z
+1 −ρ −γ
+1
+1 + (1 −ρ)vρ(z).
+We can hence recognize the relationship
+(1 −ρ)vρ(z) = v0
+ z/(1 −ρ)
+
+,
+where v0 is the companion Stieltjes transform in the Σ = I case, the object of study in Appendix ??. From
+the results for v0 from (??) and (??), invoking the relationship in the above display, we have
+lim
+z→0+ vρ(−z) =
+1
+(1 −ρ)(γ −1)
+and
+lim
+z→0+ v′
+ρ(−z) =
+γ
+(1 −ρ)2(γ −1)3 .
+Plugging these into the asymptotic risk expression from Theorem 2 gives
+r2
+γ (1 −ρ)(γ −1) + σ2
+γ(1 −ρ)2(γ −1)2
+(1 −ρ)2(γ −1)3 −1
+
+= r2(1 −ρ)
+
+1 −1
+γ
+
++
+σ2
+γ −1.
+as claimed.
+C.5
+Autoregressive features
+We consider a ρ-autoregressive structure for Σ, for a constant ρ ∈[0, 1), meaning that Σij = ρ|i−j| for all
+i, j. In this case, it is not clear that a closed-form exists for v(0) or v′(0). However, we can compute these
+numerically. In fact, the strategy we describe below applies to any situation in which we are able to perform
+numerical integration against dH, where H is the weak limit of the spectral measure FΣ of Σ.
+The critical relationship that we use is the Silverstein equation (Silverstein, 1995), which relates the
+companion Stieltjes transform v to H via
+−
+1
+v(z) = z −γ
+Z
+s
+1 + sv(z) dH(s).
+(120)
+41
+
+
+--- page 42 ---
+Taking z →0+ yields
+1
+v(0) = γ
+Z
+s
+1 + sv(0) dH(s).
+(121)
+Therefore, we can use a simple univariate root-ﬁnding algorithm (like the bisection method) to solve for v(0)
+in (121). With v(0) computed, we can compute v′(0) by ﬁrst diﬀerentiating (120) with respect to z (see
+Dobriban 2015), and then taking z →0+, to yield
+1
+v′(0) =
+1
+v(0)2 −γ
+Z
+s2
+(1 + sv(0))2 dH(s).
+(122)
+When Σ is of ρ-autoregressive form, it is known to have eigenvalues (Trench, 1999):
+si =
+1 −ρ2
+1 −2ρ cos(θi) + ρ2 ,
+i = 1, . . . , p,
+where
+(p −i)π
+p + 1
+< θi < (p −i + 1)π
+p + 1
+,
+i = 1, . . . , p.
+This allows us to eﬃciently approximate an integral with respect to dH (e.g., by taking each θi to be in the
+midpoint of its interval given above), solve for v(0) in (121), v′(0) in (122), and evaluate the asymptotic risk
+as per Theorem 2.
+Figure 13 shows the results from using such a numerical scheme to evaluate the asymptotic risk, as ρ
+varies from 0 to 0.75.
+C.6
+Proof of Theorem 7
+We begin by recalling an alternative to leave-one-out cross-validation, for linear smoothers, called generalized
+cross-validation (GCV) (Craven and Wahba, 1978; Golub et al., 1979b). The GCV error of the ridge regression
+estimator at a tuning parameter value λ deﬁned as
+GCVn(λ) = 1
+n
+n
+X
+i=1
+ yi −ˆfλ(xi)
+1 −Tr(Sλ)/n
+2
+.
+(123)
+Compared to the shortcut formula for leave-one-out CV in (46), we can see that GCV in (123) swaps out the
+ith diagonal element (Sλ)ii in the denominator of each summand with the average diagonal element Tr(Sλ)/n.
+This modiﬁcation makes GCV rotationally invariant (Golub et al., 1979b).
+It turns out that the GCV error is easier to analyze, compared to the CV error. Thus we proceed by
+ﬁrst studying GCV, and then relating CV to GCV. We break up the exposition below into these two parts
+accordingly.
+C.6.1
+Analysis of GCV
+Let us rewrite the GCV criterion in (123) as
+GCVn(λ) = yT (I −Sλ)2y/n
+(1 −Tr(Sλ)/n)2 .
+(124)
+We will treat the almost sure convergence of the numerator and denominator separately.
+GCV denominator.
+The denominator is an easier calculation. Denoting si = λi(XT X/n), i = 1, . . . , p,
+we have
+Tr(Sλ)/n = 1
+n
+p
+X
+i=1
+si
+si + λ →γ
+Z
+s
+s + λ dFγ(s),
+42
+
+
+--- page 43 ---
+0.1
+0.2
+0.5
+1.0
+2.0
+5.0
+10.0
+0
+2
+4
+6
+8
+10
+Equicorrelated features
+γ
+Risk
+G
+G G
+G G
+G G
+G G
+G G G
+G G
+G G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G G G
+G G G
+G G G G G G G G G G G G G G G
+G
+G G
+G G
+G G
+G G
+G G G
+G G
+G G G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G G
+G G G
+G G G G G G G G G G G G G G G
+G
+G G
+G G
+G G
+G G
+G G G
+G G
+G G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G G G
+G G G G G G G G G G G G G G G
+G
+G G
+G G
+G G
+G G
+G G G
+G G
+G G G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G G G
+G G G G G G G G G G G G G G G
+ρ = 0
+ρ = 0.25
+ρ = 0.5
+ρ = 0.75
+Figure 12: Asymptotic risk curves for the min-norm least squares estimator when Σ has equicorrelation structure (Theorem 2
+for γ < 1, and Corollary 7 for γ > 1), as ρ varies from 0 to 0.75. Here r2 = 5 and σ2 = 1, thus SNR = 5. The null risk r2 = 5
+is marked as a dotted black line. The points denote ﬁnite-sample risks, with n = 200, p = [γn], across various values of γ,
+computed from appropriately constructed Gaussian features.
+0.1
+0.2
+0.5
+1.0
+2.0
+5.0
+10.0
+0
+2
+4
+6
+8
+10
+Autoregressive features
+γ
+Risk
+G
+G G
+G G
+G G
+G G
+G G G
+G G
+G G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G G G
+G G G
+G G G G G G G G G G G G G G G
+G
+G G
+G G
+G G
+G G
+G G G
+G G
+G G G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G G
+G G G
+G G G G G G G G G G G G G G G
+G
+G G
+G G
+G G
+G G
+G G G
+G G
+G G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G G
+G G G
+G G G G G G G G G G G G G G G
+G
+G G
+G G
+G G
+G G
+G G G
+G G
+G G G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G G G
+G G G G G G G G G G G G G G G
+ρ = 0
+ρ = 0.25
+ρ = 0.5
+ρ = 0.75
+Figure 13: Asymptotic risk curves for the min-norm least squares estimator when Σ has autoregressive structure (Theorem 2
+for γ < 1, and Theorem 2 for γ > 1, evaluated numerically, as described in Appendix C.5), as ρ varies from 0 to 0.75. Here
+r2 = 5 and σ2 = 1, thus SNR = 5. The null risk r2 = 5 is marked as a dotted black line. The points are again ﬁnite-sample
+risks, with n = 200, p = [γn], across various values of γ, computed from appropriately constructed Gaussian features.
+
+
+--- page 44 ---
+0.1
+0.2
+0.5
+1.0
+2.0
+5.0
+10.0
+0
+2
+4
+6
+8
+10
+Autoregressive bias
+γ
+Bias
+G G G
+G G G G
+G G
+G G G G G G G G G G G G G G G G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G G G G G G G G G G G G G
+G G G
+G G G G
+G G
+G G G G G G G G G G G G G G G G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G G G G G G G G G G G G
+G G G
+G G G G
+G G
+G G G G G G G G G G G G G G G G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G G G G G G G G G G
+G G G
+G G G G
+G G
+G G G G G G G G G G G G G G G G G G G G G G G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G G
+G
+G G G G
+ρ = 0
+ρ = 0.25
+ρ = 0.5
+ρ = 0.75
+0.1
+0.2
+0.5
+1.0
+2.0
+5.0
+10.0
+0
+2
+4
+6
+8
+10
+Autoregressive variance
+γ
+Variance
+G G G
+G G G G
+G G
+G G G G G G G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G G G G G G G G G G G G G G G G G
+G G G
+G G G G
+G G
+G G G G G G G G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G G G G G G G G G G G G G G G G G
+G G G
+G G G G
+G G
+G G G G G G G G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G G G G G G G G G G G G G G G G
+G G G
+G G G G
+G G
+G G G G G G G G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G G G G G G G G G G G G G G G G G
+ρ = 0
+ρ = 0.25
+ρ = 0.5
+ρ = 0.75
+Figure 14: Asymptotic bias (left panel) and variance (right panel) for the min-norm least squares estimator when Σ has
+autoregressive structure (Theorem 2 for γ < 1, and Theorem 2 for γ > 1, evaluated numerically, as described in Appendix C.5),
+as ρ varies from 0 to 0.75. Here r2 = 5 and σ2 = 1, hence SNR = 5. The points mark ﬁnite-sample biases and variances, with
+n = 200, p = [γn], computed from appropriately constructed Gaussian features.
+where this convergence holds almost surely as n, p →∞, a direct consequence of the Marchenko-Pastur
+theorem, and Fγ denotes the Marchenko-Pastur law. Meanwhile, we can rewrite this asymptotic limit as
+γ
+Z
+s
+s + λ dFγ(s) = γ
+ 1 −m(−λ)
+
+,
+where m = mFγ denotes the Stieltjes transform of the Marchenko-Pastur law Fγ, and therefore, almost surely,
+ 1 −Tr(Sλ)/n
+2 →
+
+1 −γ
+ 1 −m(−λ)
+2
+.
+(125)
+GCV numerator.
+The numerator requires only a bit more diﬃcult calculation. Let y = Xβ + ϵ and
+cn = √p(σ/r). Observe
+yT (I −Sλ)2y/n = (β, ϵ)T
+ 1
+n
+X
+I
+T
+(I −Sλ)2
+X
+I
+ 
+(β, ϵ)
+= (β, ϵ/cn)T
+|
+{z
+}
+δT
+ 1
+n
+ X
+cnI
+T
+(I −Sλ)2
+ X
+cnI
+ 
+|
+{z
+}
+A
+(β, ϵ/cn)
+|
+{z
+}
+δ
+.
+Note that δ has independent entries with mean zero and variance r2/p, and further, note that δ and A are
+independent. Therefore we can use the almost sure convergence of quadratic forms, from Lemma 7.6 in
+Dobriban and Wager (2018), which is adapted from Lemma B.26 in Bai and Silverstein (2010).7 This result
+asserts that, almost surely,
+δT Aδ −(r2/p)Tr(A) →0.
+7As written, Lemma 7.6 of Dobriban and Wager (2018) assumes i.i.d. components for the random vector in question, which is
+not necessarily true of δ in our case. However, an inspection of their proof shows that they only require independent components
+with mean zero and common variance, which is precisely as stated in Lemma B.26 of Bai and Silverstein (2010).
+44
+
+
+--- page 45 ---
+Now examine
+r2Tr(A)/p = r2
+p Tr
+ (I −Sλ)2(XXT /n + (c2
+n/n)I
+
+= r2
+p Tr
+ XT (I −Sλ)2X/n
+
+|
+{z
+}
+a
++ σ2
+n Tr
+ (I −Sλ)2
+|
+{z
+}
+b
+.
+A short calculation and application of the Marchenko-Pastur theorem gives that, almost surely,
+a = r2λ2
+p
+
+p
+X
+i=1
+1
+si + λ −λ
+p
+X
+i=1
+1
+(si + λ)2
+
+→r2λ2 m(−λ) −λm′(−λ)
+
+,
+where for the second sum, we used Vitali’s theorem to show convergence of the derivative of the Stieltjes
+transform of the spectral distribution of XT X/n to the derivative of the Stieltjes transform of Fγ (note that
+Vitali’s theorem applies as the function in question is bounded and analytic). By a similar calculation, we
+have almost surely,
+b = σ2
+n
+
+p
+X
+i=1
+λ2
+(si + λ)2 + (n −p)
+
+→σ2γλ2m′(−λ) + σ2(1 −γ).
+Hence we have shown that, almost surely,
+yT (I −Sλ)2y/n →λ2
+r2 m(−λ) −λm′(−λ)
+
+−σ2γm′(−λ)
+
++ σ2(1 −γ).
+(126)
+GCV convergence.
+Putting (125), (126) together with (124), we have, almost surely,
+GCVn(λ) →λ2(r2(m(−λ) −λm′(−λ)) −σ2γm′(−λ)) + σ2(1 −γ)
+(1 −γ(1 −m(−λ)))2
+.
+To show that this matches to the asymptotic prediction error of ridge regression requires some nontrivial
+calculations. We start by reparametrizing the above asymptotic limit in terms of the companion Stieltjes
+transform, abbreviated by v = vFγ. This satisﬁes
+v(z) + 1/z = γ
+ m(z) + 1/z
+
+,
+hence
+zv(−z) −1 = γ
+ zm(−z) −1
+
+,
+and also
+z2v′(−z) −1 = γ
+ z2m′(−z) −1
+
+.
+Introducing α = r2/(σ2γ), the almost sure limit of GCV is
+λ2(r2(m(−λ) −λm′(−λ)) −σ2γm′(−λ)) + σ2(1 −γ)
+(1 −γ(1 −m(−λ)))2
+= σ2λ(αγ(λm(−λ) −1) −αγ(λ2m′(−λ) −1) + (γ/λ)(λ2m′(−λ) −1) + γ/λ + (1 −γ)/λ)
+(1 −γ(1 −m(−λ)))2
+= σ2λ(α(λv(−λ) −1) −α(λ2v′(−λ) −1) + (1/λ)(λ2v′(−λ) −1) + 1/λ)
+λ2v(−λ)2
+= σ2(v(−λ) + (αλ −1)(v(−λ) −λv′(−λ))
+λv(−λ)2
+,
+where in the second line we rearranged, in the third line we applied the companion Stieltjes transform facts,
+and in the fourth line we simpliﬁed. We can now recognize the above as σ2 plus the asymptotic risk of ridge
+regression at tuning parameter λ, either from the proof of Theorem 2, or from Theorem 2.1 in Dobriban and
+Wager (2018). In terms of the Stieltjes transform itself, this is σ2 + σ2γ(m(−λ) −λ(1 −αλ)m′(−λ)), which
+proves the ﬁrst claimed result.
+45
+
+
+--- page 46 ---
+Uniform convergence.
+It remains to prove the second claimed result, on the convergence of the GCV-
+tuned ridge estimator. Denote fn(λ) = GCVn(λ), and f(λ) for its almost sure limit. Notice that |fn| is
+almost surely bounded on [λ1, λ2], for large enough n, as
+|fn(λ)| ≤∥y∥2
+2
+n
+λmax(I −Sλ)2
+(1 −Tr(Sλ)/n)2
+≤∥y∥2
+2
+n
+(smax + λ)2
+λ2
+≤2(r2 + σ2)(2 + λ2)2
+λ2
+1
+.
+In the second line, we used Tr(Sλ)/n = (1/n) Pp
+i=1 si/(si + λ) ≤smax/(smax + λ), with smax = λmax(XT X/n),
+and in the third line, we used ∥y∥2
+2/n ≤2(r2 + σ2) almost surely for suﬃciently large n, by the strong law of
+large numbers, and smax ≤2 almost surely for suﬃciently large n, by the Bai-Yin theorem (Bai and Yin,
+1993). Furthermore, writing gn, hn for the numerator and denominator of fn, respectively, we have
+f ′
+n(λ) = g′
+n(λ)hn(λ) −gn(λ)h′
+n(λ)
+hn(λ)2
+.
+The above argument just showed that |gn(λ)| is upper bounded on [λ1, λ2], and |hn(λ)| is lower bounded on
+[λ1, λ2]; also, clearly |hn(λ)| ≤1; therefore to show that |f ′
+n| is almost surely bounded on [λ1, λ2], it suﬃces
+to show that both |g′
+n|, |h′
+n| are. Denoting by ui, i = 1, . . . , p the eigenvectors of XT X/n (corresponding to
+eigenvalues si, i = 1, . . . , p), a short calculation shows
+|g′
+n(λ)| = 2λ
+n
+p
+X
+i=1
+(uT
+i y)2
+si
+(si + λ)3 ≤2λ
+n ∥y∥2
+2 ≤4λ(r2 + σ2),
+the last step holding almost surely for large enough n, by the law of large numbers. Also,
+|h′
+n(λ)| = 2
+
+1 −1
+n
+n
+X
+i=1
+si
+si + λ
+ 1
+n
+n
+X
+i=1
+si
+(si + λ)2 ≤4
+λ2
+1
+,
+the last step holding almost surely for large enough n, by the Bai-Yin theorem. Thus we have shown that
+|f ′
+n| is almost surely bounded on [λ1, λ2], for large enough n, and applying the Arzela-Ascoli theorem, fn
+converges uniformly to f. With λn = arg minλ∈[λ1,λ2] fn(λ), this means for any for any λ ∈[λ1, λ2], almost
+surely
+f(λn) −f(λ) =
+ f(λn) −fn(λn)
+
++
+ fn(λn) −fn(λ)
+
++
+ fn(λ) −f(λ)
+
+≤
+ f(λn) −fn(λn)
+
++
+ fn(λ) −f(λ)
+
+→0,
+where we used the optimality of λn for fn, and then uniform convergence. In other words, almost surely,
+f(λn) →f(λ∗) = σ2 + σ2γm(−1/α).
+As the almost sure convergence RX(ˆβλ) + σ2 →f(λ) is also uniform for λ ∈[λ1, λ2] (by similar arguments,
+where we bound the risk and its derivative in λ), we conclude that almost surely RX(ˆβλ) →σ2γm(−1/α),
+completing the proof for GCV.
+C.6.2
+Analysis of CV
+Let us rewrite the CV criterion, starting in its shortcut form (46), as
+CVn(λ) = yT (I −Sλ)D−2
+λ (I −Sλ)y/n,
+(127)
+where Dλ is a diagonal matrix that has diagonal elements (Dλ)ii = 1 −(Sλ)ii, i = 1, . . . , n.
+46
+
+
+--- page 47 ---
+CV denominators.
+First, ﬁxing an arbitrary i = 1, . . . , n, we will study the limiting behavior of
+1 −(Sλ)ii = 1 −xT
+i (XT X/n + λI)−1xi/n.
+Since xi and XT X are not independent, we cannot immediately apply the almost sure convergence of
+quadratic forms lemma, as we did in the previous analysis of GCV. But, letting X−i denote the matrix
+X with the ith row removed, we can write (XT X/n + λI)−1 = (XT
+−iX−i/n + λI + xixT
+i /n)−1, and use the
+Sherman-Morrison-Woodbury formula to separate out the dependent and independent parts, as follows.
+Letting δi = xi/√n, Ai = (XT
+−iX−i/n + λI)−1, and A = (XT X/n + λI), we have
+1 −(Sλ)ii = 1 −δT
+i Aδi
+= 1 −δT
+i
+
+Ai −AiδiδT
+i Ai
+1 + δT
+i Aiδ
+
+δi
+=
+1
+1 + δT
+i Aiδi
+.
+Note δi and Ai are independent (i.e., xi and XT
+−iX−i are independent), so we can now use the almost sure
+convergence of quadratic forms, from Lemma 7.6 in Dobriban and Wager (2018), adapted from Lemma B.26
+in Bai and Silverstein (2010), to get that, almost surely
+δT
+i Aiδi −Tr(Ai)/n →0.
+(128)
+Further, as Tr(Ai)/n →γm(−λ) almost surely by the Marchenko-Pastur theorem, we have, almost surely,
+1 −(Sλ)ii →
+1
+1 + γm(−λ).
+(129)
+Replacing denominators, controlling remainders.
+The strategy henceforth, based on the result in
+(129), is to replace the denominators 1 −(Sλ)ii, i = 1, . . . , n in the summands of the CV error by their
+asymptotic limits, and then control the remainder terms. More precisely, we deﬁne ¯Dλ = (1 + γm(−λ))−1I,
+and then write, from (127),
+CVn(λ) = yT (I −Sλ) ¯D−2
+λ (I −Sλ)y/n
+|
+{z
+}
+a
++ yT (I −Sλ)(D−2
+λ
+−¯D−2
+λ )(I −Sλ)y/n
+|
+{z
+}
+b
+.
+(130)
+We will ﬁrst show that almost surely b →0. Observe, by the Cauchy-Schwartz inequality,
+b ≤1
+n∥(I −Sλ)y∥2
+2 λmax(D−2
+λ
+−¯D−2
+λ )
+≤2(r2 + σ2) max
+i=1,...,n
+(1 + δT
+i Aiδi)2 −
+ 1 + γm(−λ)
+2
+|
+{z
+}
+c
+,
+where in the second step, we used ∥(I −Sλ)y∥2
+2/n ≤∥y∥2
+2/n ≤2(r2 + σ2), which holds almost surely for large
+enough n, by the strong law of large numbers. Meanwhile,
+c ≤
+max
+i=1,...,n
+(1 + δT
+i Aiδi)2 −
+ 1 + Tr(Ai)/n
+2
+|
+{z
+}
+d1
++ max
+i=1,...,n
+
+ 1 + Tr(Ai)/n
+2 −
+ 1 + Tr(A)/n
+2
+|
+{z
+}
+d2
++
+
+ 1 + Tr(A)/n
+2 −
+ 1 + γm(−λ)
+2
+|
+{z
+}
+d3
+.
+47
+
+
+--- page 48 ---
+By the Marchenko-Pastur theorem, we have d3 →0 almost surely. Using u2 −v2 = (u −v)(u + v) on the
+maximands in d2,
+d2 =
+max
+i=1,...,n
+Tr(Ai)/n −Tr(A)/n
+2 + Tr(Ai)/n + Tr(A)/n
+
+≤2(1 + 1λ)
+n
+max
+i=1,...,n |Tr(Ai −A)|
+≤2(1 + 1λ)
+n
+max
+i=1,...,n
+|Tr(AδiδT
+i A)|
+|1 −δT
+i Aδi|
+≤2(1 + 1λ)
+n
+smax + λ
+λ3
+max
+i=1,...,n ∥δi∥2
+2
+≤2(1 + 1λ)
+n
+(smax + λ)smax
+λ3
+≤4(1 + 1λ)(2 + λ)
+nλ3
+→0.
+In the second line above, we used Tr(Ai)/n ≤λmax(Ai) ≤1/λ, i = 1, . . . , n, and also Tr(A)/n ≤1/λ. In
+the third line, we used the Sherman-Morrison-Woodbury formula. In the fourth line, for each summand
+i = 1, . . . , n, we upper bounded the numerator by λmax(A)2∥δi∥2
+2 ≤∥δi∥2
+2/λ2, and lower bounded the
+denominator by λ/(smax + λ), with smax = λmax(XT X/n) (which follows from a short calculation using the
+eigendecomposition of XT X/n). In the ﬁfth line, we used ∥δi∥2
+2 = eT
+i (XXT /n)ei ≤smax, and in the sixth
+line, we used smax ≤2 almost surely for suﬃciently large n, by the Bai-Yin theorem (Bai and Yin, 1993).
+Now we will show that d1 →0 almost surely by showing that the convergence in (128) is rapid enough.
+As before, using u2 −v2 = (u −v)(u + v) on the maximands in d1, we have
+d1 =
+max
+i=1,...,n
+δT
+i Aiδi −Tr(Ai)/n
+2 + δT
+i Aiδi + Tr(Ai)/n
+2
+≤(2 + 3/λ) max
+i=1,...,n
+δT
+i Aiδi −Tr(Ai)/n
+
+|
+{z
+}
+∆i
+.
+Here we used that for i = 1, . . . , n, we have Tr(Ai)/n ≤1/λ, and similarly, δT
+i Aiδi ≤∥δi∥2
+2/λ ≤smax/λ ≤2/λ,
+with the last inequality holding almost surely for suﬃciently large n, by the Bai-Yin theorem (Bai and Yin,
+1993). To show maxi=1,...,n ∆i →0 almost surely, we start with the union bound and Markov’s inequality,
+where q = 2 + η/2, and tn is be speciﬁed later,
+P
+
+max
+i=1,...,n ∆i
+
+> tn
+
+≤
+n
+X
+i=1
+E(∆2q
+i )t−2q
+n
+≤Cλ−qnp−qt−2q
+n
+.
+In the last step, we used that for i = 1, . . . , n, we have E(∆2q
+i ) ≤Cλmax(Ai)qp−q ≤Cλ−qp−q for a constant
+C > 0 that depends only on q and the assumed moment bound, of order 2q = 4 + η, on the entries of Px.
+This expectation bound is a consequence of the trace lemma in Lemma B.26 of Bai and Silverstein (2010), as
+explained in the proof of Lemma 7.6 in Dobriban and Wager (2018). Hence choosing t−2q
+n
+= pη/4, from the
+last display we have
+P
+
+max
+i=1,...,n ∆i
+
+> tn
+
+≤Cλ−q/2np−2−η/2pη/4 ≤2Cλ−q/2
+γ
+p−1−η/4,
+where in the last step we used n/p ≤2/γ for large enough n. Since the right-hand side above is summable in
+p, we conclude by the Borel-Cantelli lemma that maxi=1,...,n ∆i →0 almost surely, and therefore also d1 →0
+almost surely. This ﬁnishes the proof that b →0.
+Relating back to GCV.
+Returning to (130), observe
+a = yT (I −Sλ)2y/n ·
+ 1 + γm(−λ)
+2.
+48
+
+
+--- page 49 ---
+The ﬁrst term in the product on the right-hand side above is precisely the numerator in GCV, whose
+convergence was established in (126). Therefore, to show that the limit of a, i.e., of CVn(λ), is the same as it
+was for GCVn(λ), we will need to show that the second term in the product above matches the limit for the
+GCV denominator, in (125). That is, we will need to show that
+ 1 + γm(−λ)
+2 =
+1
+(1 −γ(1 −m(−λ)))2 ,
+(131)
+or equivalently,
+1 −γ
+ 1 −m(−λ)
+
+=
+1
+1 + γm(−λ).
+As before, it helps to reparametrize in terms of the companion Stieltjes transform, giving
+v(−λ) =
+1
+λ + λv(−λ) + γ −1,
+of equivalently,
+ λ + λv(−λ) + γ −1
+
+v(−λ) = 1.
+Adding v(−λ) to both sides, then dividing both sides by 1 + v(−λ), yields
+(λ + λv(−λ) + γ)v(−λ)
+1 + v(−λ)
+= 1,
+and dividing through by v(−λ), then rearranging, gives
+1
+v(−λ) = λ +
+γ
+1 + v(−λ).
+This is precisely the Silverstein equation (Silverstein, 1995), which relates the companion Stieltjes trans-
+form v to the weak limit H of the spectral measure of the feature covariance matrix Σ, which in the
+current isotropic case Σ = I, is just H = δ1 (a point mass at 1). Hence, we have established the desired
+claim (131), and from the limiting analysis of GCV completed previously, we have that, almost surely,
+a →σ2 + σ2γ(m(−λ) −λ(1 −αλ)m′(−λ)). This is indeed also the almost sure limit of CVn(λ), from (130)
+and b →0 almost surely. The proof of uniform convergence, and thus convergence of the CV-tuned risk,
+follows similar arguments to the GCV case, and is omitted.
+C.7
+Misspeciﬁed model results
+These results follow because, as argued in Section 5.2, the misspeciﬁed case can be reduced to a well-speciﬁed
+case after we make the substitutions in (21).
+C.8
+CV and GCV simulations
+Figures 15 and 16 investigate the eﬀect of using CV and GCV tuning for ridge regression, under the same
+simulation setup as Figures 7 and 8, respectively. It is worth noting that for these ﬁgures, there is a diﬀerence
+in how we compute ﬁnite-sample risks, compared to what is done for all of the other ﬁgures in the paper. In
+all others, we can compute the ﬁnite-sample risks exactly, because, recall, our notion of risk is conditional on
+X,
+RX(ˆβ; β) = E
+
+∥ˆβ −β∥2
+Σ | X
+
+,
+and this quantity can be computed analytically for linear estimators like min-norm least squares and ridge
+regression. When we tune ridge by minimizing CV or GCV, however, we can no longer compute its risk
+analytically, and so in our experiments we approximate the above expectation by an average over 20 repetitions.
+Therefore, the ﬁnite-sample risks in Figures 15 and 16 are (only a little bit) farther from their asymptotic
+counterparts compared to all other ﬁgures in this paper, and we have included the ﬁnite-sample risk of
+the optimally-tuned ridge estimator in these ﬁgures, when the risk is again computed in the same way
+(approximated by an average over 20 repetitions), as a reference. All this being said, we still see excellent
+agreement between the risks under CV, GCV, and optimal tuning, and these all lie close to their (common)
+asymptotic risk curves, throughout.
+49
+
+
+--- page 50 ---
+0.1
+0.2
+0.5
+1.0
+2.0
+5.0
+10.0
+0
+1
+2
+3
+4
+5
+Ridge regression, well−specified
+γ
+Risk
+G
+G G
+G G
+G G
+G G
+G G G
+G G
+G G G
+G
+G G
+G G G
+G G G G
+G G
+G G G
+G G G
+G G G G G G G G G G G G G G G
+G
+G G
+G G
+G G
+G G
+G G G
+G G
+G G G
+G
+G G
+G G G
+G G
+G G
+G G
+G G
+G
+G G G
+G G G G G G
+G G G G G G G G G
+G
+G G
+G G
+G G
+G G
+G G G
+G G
+G G
+G
+G
+G
+G
+G
+G G
+G
+G
+G
+G
+G G
+G
+G
+G
+G
+G G
+G
+G G G G G
+G G
+G G G G G G G
+G
+G G
+G G
+G G
+G G
+G G G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G G
+G
+G
+G
+G G
+G
+G G
+G G G G G
+G
+SNR = 1
+SNR = 2.33
+SNR = 3.66
+SNR = 5
+CV tuning
+GCV tuning
+Optimal tuning
+Figure 15: Asymptotic risk curves for the optimally-tuned ridge regression estimator (from Theorem 5), under the same setup
+as Figure 7 (well-speciﬁed model). Finite-sample risks for ridge regression under CV, GCV, and optimal tuning are plotted
+as circles, “x” marks, and triangles, respectively. These are computed with n = 200, p = [γn], across various values of γ, from
+features X having i.i.d. N(0, 1) entries.
+0.1
+0.2
+0.5
+1.0
+2.0
+5.0
+10.0
+0
+1
+2
+3
+4
+5
+Ridge regression, misspecified
+γ
+Risk
+G
+G G
+G G
+G G
+G G
+G G G
+G G
+G G G
+G
+G G
+G G G
+G G G G
+G G G
+G G
+G G G
+G G G G G G G G G G G G G G G
+G
+G G
+G G
+G G
+G G
+G G G
+G G
+G G G
+G
+G G
+G G
+G
+G G G G
+G G G
+G G
+G G G
+G G G
+G G G G G G G G G G G G
+G
+G G
+G G
+G G
+G
+G
+G G G
+G G
+G
+G
+G
+G
+G G
+G
+G G
+G G G
+G
+G
+G
+G G G
+G G G
+G G
+G
+G G
+G G
+G G G
+G G
+G G
+G
+G
+G
+G
+G G
+G
+G
+G G
+G G
+G
+G
+G
+G G
+G
+G
+G G
+G G G
+G G
+G
+G
+G G
+G G
+G
+G G
+G
+G
+G
+G G G
+G
+G
+G G G G
+G G G G
+Figure 16: Asymptotic risk curves for the optimally-tuned ridge regression estimator (from Theorem 5), under the same setup
+as Figure 8 (misspeciﬁed model). Finite-sample risks for ridge regression under CV, GCV, and optimal tuning are again plotted
+as circles, “x” marks, and triangles, respectively. These are again computed with n = 200, p = [γn], across various values of γ,
+from features X having i.i.d. N(0, 1) entries.
+
+
+--- page 51 ---
+D
+Nonlinear model: Proof of Theorem 8
+In this section we present the proof of Theorem 8. In fact, in the next section we will state a more general
+result which applies to activation functions ϕ eith a non-vanishing linear component E[Gϕ(G)]̸ = 0 (here and
+below G denotes a standard normal random variable).
+D.1
+A more general theorem
+We denote by Q ∈Rp×p the Gram matrix of the weight vectors wi, i = 1, . . . , p (rows of W ∈Rp×d), with
+diagonals set to zero. Namely, for each i, j,
+Qij = ⟨wi, wj⟩1{i̸ = j}.
+Let N = p + n and deﬁne the symmetric matrix A(s, t) ∈RN×N, for s ≥t ≥0, with the block structure:
+A(s, t) =
+"
+sIp + tQ
+1
+√nXT
+1
+√nX
+0pn
+#
+,
+(132)
+where Ip ∈Rp×p, 0n ∈Rn×n are the identity and zero matrix, respectively. Note that the matrix A(s)
+introduced in the main text, see Eq. (51), is recovered by setting t = 0. We introduce the following resolvents
+(as usual, these are deﬁned for Im(ξ) > 0 and by analytic continuation, whenever possible, for Im(ξ) = 0):
+m1,n(ξ, s, t) = E
+n A(s, t) −ξIN
+−1
+1,1
+o
+= EM1,n(ξ, s, t),
+M1,n(ξ, s, t) = 1
+pTr[1,p]
+n A(s, t) −ξIN
+−1o
+,
+m2,n(ξ, s, t) = E
+n A(s, t) −ξIN
+−1
+p+1,p+1
+o
+= EM2,n(ξ, s, t),
+M2,n(ξ, s, t) = 1
+nTr[p+1,p+n]
+n A(s, t) −ξIN
+−1o
+.
+Whenever clear from the context, we will omit the arguments from block matrix and resolvents, and write
+A = A(s, t), m1,n = m1,n(ξ, s, t), and m2,n = m2,n(ξ, s, t).
+The next theorem is the the central random matrix results, and characterizes the asymptotics of m1,n,
+m2,n. It provides a generalization of Lemma 3.
+Theorem 9. Assume the model (1), (2), where each xi = ϕ(Wzi) ∈Rp, for zi ∈Rd having i.i.d. entries
+from N(0, 1), W ∈Rp×d having i.i.d. entries from N(0, 1/d) (with W independent of zi), and for ϕ an
+activation function that acts componentwise. Assume that |ϕ(x)| ≤c0(1 + |x|)c0 for a constant c0 > 0. Also,
+for G ∼N(0, 1), assume that the standardization conditions hold: E[ϕ(G)] = 0 and E[ϕ(G)2] = 1.
+Consider Im(ξ) > 0 or Im(ξ) = 0, Re(ξ) < 0, with s ≥t ≥0. Let m1 and m2 be the unique solutions of
+the following fourth degree equations:
+m2 =
+
+−ξ −γm1 + γc1m2
+1(c1m2 −t)
+m1(c1m2 −t) −ψ
+−1
+,
+(133)
+m1 =
+
+−ξ −s −t2
+ψ m1 −m2 + t2ψ−1m2
+1(c1m2 −t) −2tc1m1m2 + c2
+1m1m2
+2
+m1(c1m2 −ψ) −ψ
+−1
+,
+(134)
+subject to the condition of being analytic functions for Im(z) > 0, and satisfying |m1(z, s, t)|, |m2(z, s, t)| ≤
+1/Im(z) for Im(z) > C (with C a suﬃciently large constant). Then, as n, p, d →∞, such that p/n →γ and
+d/p →ψ, we have almost surely (and in L1),
+lim
+n,p,d→∞M1,n(ξ, s, t) = m1(ξ, s, t),
+(135)
+lim
+n,p,d→∞M2,n(ξ, s, t) = m2(ξ, s, t).
+(136)
+51
+
+
+--- page 52 ---
+The proof of this theorem is given in Appendix D.2. Now deﬁne
+Sn(z) = 1
+pTr
+ (ˆΣ −zIp)−1
+,
+(137)
+where recall ˆΣ = XT X/n. As a corollary of the above, we obtain the asymptotic Stieltjes transform of the
+eigenvalue distribution of ˆΣ (this result was ﬁrst derived in Pennington and Worah (2017)).
+Corollary 8. Assume the conditions of Theorem 9. Consider Im(ξ) > 0. As n, p, d →∞, with p/n →γ
+and d/p →ψ, the Stieltjes transform of spectral distribution of ˆΣ in (137) satisﬁes almost surely (and in L1)
+Sn(ξ) →s(ξ) where s is a nonrandom function that uniquely solves the following equations (abbreviating
+s = s(ξ)):
+−1 −ξ2s = m1m2 −
+c2
+1m2
+1m2
+2
+c1m1m2 −ψ ,
+(138)
+m1 = ξs,
+(139)
+m2 = γ −1
+ξ
++ γξs,
+(140)
+subject to the condition of being analytic for Im(z) > 0, and satisfying |s(z2)| < 1/Im(z2) for Im(z) > C (where
+C is a large enough constant). When c1 = 0, the function s is the Stieltjes transform of the Marchenko-Pastur
+distribution.
+We refer to Appendix D.4 for a proof of this corollary. The next lemma connects the above resolvents to
+the variance of min-norm least squares.
+Lemma 7. Assume the conditions of Theorem 9. Let m1, m2 be the asymptotic resolvents given in Theorem
+9. Deﬁne
+m(ξ, s, t) = γm1(ξ, s, t) + m2(ξ, s, t).
+Then for γ̸ = 1, the following Taylor-Laurent expansion holds around ξ = 0:
+−∂xm(ξ, x, c1x)
+
+x=0 = D−1
+ξ2
++ D0 + O(ξ2),
+(141)
+with each Di = Di(γ, ψ, c1). Furthermore, for the ridge regression estimator ˆβλ in (5), as n, p, d →∞, such
+that p/n →γ ∈(0, ∞), d/p →ψ ∈(0, 1), the following ridgeless limit holds almost surely:
+lim
+λ→0+
+lim
+n,p,d→∞VX(ˆβλ; β) = D0.
+The proof of this lemma can be found in Appendix D.3.
+D.2
+Proof of Theorem 9
+The proof follows the approach developed by Cheng and Singer (2013) to determine the asymptotic spectral
+measure of symmetric kernel random matrices. The latter is in turn inspired to the classical resolvent proof
+of the semicircle law for Wigner matrices, see Anderson et al. (2009). The present calculation is somewhat
+longer because of the block structure of the matrix A, but does not present technical diﬃculties. We will
+therefore provide a proof outline, referring to Cheng and Singer (2013) for further detail.
+Let µd be the distribution of ⟨w, x⟩when w ∼N(0, Id/d), x ∼N(0, Id). By the central limit theorem µd
+converges weakly to µG (the standard Gaussian measure) as d →∞. Further E{f(⟨w, x⟩)} →
+R
+f(z) µG(dz)
+for any continuous function f, with |f(z)| ≤C(1 + |z|C) for some constant C. As shown in Cheng and Singer
+(2013), we can construct the following orthogonal decomposition of the activation function ϕ in L2(R, µd):
+ϕ(x) = a1,d x + ϕ⊥(x) .
+(142)
+This decomposition satisﬁes the following properties:
+52
+
+
+--- page 53 ---
+1. As mentioned, it is an orthogonal decomposition:
+R
+xϕ⊥(x) µd(dx) = 0. Further, by symmetry and the
+normalization assumption,
+R
+x µd(dx) =
+R
+ϕ⊥(x) µd(dx) = 0.
+2. a2
+1,d →c1 as d →∞.
+3.
+R
+ϕ⊥(x)2 µd(dx) →1 −c1,
+R
+ϕ⊥(x)2 µG(dx) →1 −c1, as d →∞.
+Finally, recall the following deﬁnitions for the random resolvents:
+M1,n(ξ, s, t) = 1
+pTr[1,p]
+
+(A(n) −ξIN)−1
+,
+M2,n(ξ, s, t) = 1
+nTr[p+1,p+n]
+
+(A(n) −ξIN)−1
+.
+(143)
+In the next section, we will summarize some basic facts about the resolvent m1,n, m2,n and their analyticity,
+and some concentration properties of M1,n, M2,n. We will then derive Eqs. (133) and (134). Thanks to the
+analyticity properties, we will assume throughout these derivations Im(ξ) ≥C for C a large enough constant.
+Also, we will assume γ, ψ, ϕ to be ﬁxed throughout, and will not explicitly point out the dependence with
+respect to these arguments.
+D.2.1
+Preliminaries
+The functions m1,n, m2,n are Stieltjes transform of suitably deﬁned probability measures on R, and therefore
+enjoy some important properties.
+Lemma 8. Let C+ = {z : Im(z) > 0} be the upper half of the complex plane. The functions ξ 7→m1,n(ξ),
+ξ 7→m2,n(ξ) have the following properties:
+(a) ξ ∈C+, then |m1,n|, |m2,n| ≤1/Im(ξ).
+(b) m1,n, m2,n are analytic on C+ and map C+ into C+.
+(c) Let Ω⊆C+ be a set with an accumulation point. If ma,n(ξ) →ma(ξ) for all ξ ∈Ω, then ma(ξ) has a
+unique analytic continuation to C+ and ma,n(ξ) →ma(ξ) for all ξ ∈C+.
+Proof. Consider, to be deﬁnite m1,n. Denoting by (λi)i≤N, (vi)i≤N, the eigenvalues and eigenvectors of A(n),
+we have
+m1,n(ξ) = E1
+pTr[1,p]
+
+(A(n) −ξIN)−1
+= E
+N
+X
+i=1
+1
+λi −ξ
+1
+p∥P[1,p]vi∥2
+=
+Z
+1
+λ −ξ µ1,n(dλ) .
+Where we deﬁned the probability measure
+µ1,n ≡E1
+p
+N
+X
+i=1
+∥P[1,p]vi∥2δλi .
+Properties (a)-(c) are then standard consequences of m1,n being a Stieltjes transform (see, for instance,
+Anderson et al. (2009))
+Lemma 9. Let W ∈RN×N be a symmetric positive-semideﬁnite matrix W ⪰0, and denote by wi its i-th
+column, with the i-th entry set to 0. Let W (i) ≡W −wieT
+i −eiwT
+i , where ei is the i-th element of the
+canonical basis (in other words, W (i) is obtained from W by zeroing all elements in the i-th row and column
+except on the diagonal). Finally, let ξ ∈C with Im(ξ) ≥ξ0 > 0 or Im(ξ) = 0 and Re(ξ) ≤−ξ0 < 0.
+Then
+TrS
+
+(W −ξIN)−1
+−TrS
+
+(W (i) −ξIN)−1 ≤3
+ξ0
+.
+(144)
+53
+
+
+--- page 54 ---
+Proof. Without loss of generality, we will assume i = N, and write W∗= (Wij)i,j≤N−1 w = (wN,i)i≤N−1,
+ω = WNN. Deﬁne
+ R
+r
+rT
+ρ
+
+≡(W −ξIN)−1 ,
+(145)
+and R(N), ρ(N) the same quantities when W is replaced by W (N). Then, by Schur complement formula, it is
+immediate to get the formulae
+R = ( ˜W∗−ξIN−1)−1 ,
+˜W∗≡W −wwT
+ω −ξ ,
+(146)
+R(N) = (W∗−ξIN−1)−1 ,
+(147)
+ρ =
+1
+ω −ξ −wT R(N)w
+,
+(148)
+ρ(N) =
+1
+ω −ξ .
+(149)
+Notice that since W ⪰0. we must have ω ≥wT W −1
+∗
+w. For ξ ∈R, ξ ≤−ξ0, this implies ω ≥wT R(N)w, and
+therefore ρ ≤1/ξ0. For Im(ξ) ≥ξ0, we get Im(wT R(N)w) ≥0, and therefore Im(ω −ξ −wT R(N)w) ≤−ξ0.
+We thus conclude that, in either case
+|ρ| ≤1
+ξ0
+.
+(150)
+Let S0 ≡S \ {N} and S1 ≡S ∩{N} (i.e. S1 = {N} or S1 = ∅depending whether N ∈S or not). Deﬁne
+∆A ≡
+TrA
+
+(W −ξIN)−1
+−TrA
+
+(W (N) −ξIN)−1. Then, using the bounds given above,
+∆S1 ≤
+ρ −ρ(N) ≤|ρ| + |ρ(N)| ≤2
+ξ0
+.
+(151)
+Next consider ∆S0. Notice that
+R −R(N) = ρ R(N)w(R(N)w)T
+(152)
+= (W∗−ξI)−1w[(W∗−ξI)−1w]T
+ω −ξ −wT (W∗−ξIN−1)w
+.
+(153)
+We will distinguish two cases.
+Case I: ξ ∈R, ξ ≤−ξ0 < 0. Notice that
+∆S0 =
+TrS0(R −R(N))
+ = |ρ|
+X
+i∈S0
+(R(N)w)2
+i
+(154)
+≤
+Tr[N−1](R −R(N))
+.
+(155)
+Denoting by {˜λi}i≤N the eigenvalues of ˜W∗, we thus get
+∆S0 ≤
+
+N
+X
+i=1
+1
+˜λi −ξ
+−
+N
+X
+i=1
+1
+λi −ξ
+ .
+(156)
+Since ˜W∗is a rank-one deformation of W∗, the eigenvalues ˜λi interlace the λi’s. Since both sets of eigenvalues
+are nonnegative, the diﬀerence above is upper bounded by the total variation of the function x 7→(x −ξ)−1
+on R≥0 which is equal to 1/ξ0. We thus get
+∆S0 ≤1
+ξ0
+.
+(157)
+54
+
+
+--- page 55 ---
+Case II: ξ ∈C, Im(ξ) ≥ξ0 > 0. Let PS0 : RN−1 × RN−1 the projector which zeroes the coordinates outside
+S0 (i.e. PS0 = P
+i∈S0 eieT
+i ). Denote by (λi, vi) the eigenpairs of W∗. Using Eq. (153), we get
+∆S0 ≡A1
+A2
+,
+(158)
+A1 ≡
+
+N
+X
+i,j=1
+⟨vi, PS0vj⟩⟨vi, w⟩⟨vj, w⟩
+(λi −ξ)(λj −ξ)
+
+.
+(159)
+A2 ≡
+ω −ξ −
+N
+X
+i=1
+⟨vi, w⟩2
+λi −ξ
+ .
+(160)
+Letting Vij = ⟨vi, PS0vj⟩, we have ∥V ∥op ≤∥PS0∥op ≤1. Therefore, deﬁning ui = ⟨w, vi⟩/(λi −ξ),
+A1 = ⟨u, V u⟩≤∥u∥2
+2
+(161)
+≤
+N
+X
+i=1
+⟨vi, w⟩2
+|λi −ξ|2
+(162)
+≤
+N
+X
+i=1
+⟨vi, w⟩2
+(λi −Re(ξ))2 + Im(ξ)2 .
+(163)
+Further
+A2 ≥
+Im(ξ) +
+N
+X
+i=1
+Im
+⟨vi, w⟩2
+λi −ξ
+
+(164)
+≥
+Im(ξ) +
+N
+X
+i=1
+⟨vi, w⟩2Im((ξ)
+(λi −Re(ξ))2 + Im(ξ)2
+
+(165)
+≥ξ0A1 ,
+(166)
+which implies that Eq. (157) also holds in this case.
+Using Eqs. (151) and (157) yields the desired claim.
+Lemma 10. If Im(ξ) ≥ξ0 > 0, or Re(ξ) ≤−ξ0 < 0, with s ≥t ≥0. Then there exists c0 = c0(ξ0) such that,
+for i ∈{1, 2},
+P
+ Mi,n(ξ, s, t) −mi,n(ξ, s, t)
+ ≥u
+
+≤2 e−c0nu2 .
+(167)
+In particular, for Im(ξ) > 0, or Re(ξ) < 0, then |Mi,n(ξ, s, t) −mi,n(ξ, s, t)| →0 almost surely.
+Proof. The proof is completely analogous to (Cheng and Singer, 2013, Lemma 2.4), except that we use
+Azuma-Hoeﬀding instead of Burkholder’s inequality. Consider M1,n(ξ) (we omit the arguments s, t for the
+sake of simplicity). We construct the martingale
+Zℓ=
+(
+E{M1,n(ξ)|{wa}a≤ℓ}
+if 1 ≤ℓ≤p,
+E{M1,n(ξ)|{wa}a≤p, {zi}i≤ℓ−p}
+if p + 1 ≤ℓ≤N,
+(168)
+By Lemma 9 Zℓhas bounded diﬀerences |Zℓ−Zℓ−1| ≤3/ξ0, whence the claim (167) follows. The almost
+sure convergence of |Mi,n(ξ, s, t) −mi,n(ξ, s, t)| →0 is implied by Borel-Cantelli.
+Lemma 11. Let F : C2 →C2 be the mapping (m1, m2) 7→F(m1, m2) deﬁned by the right-hand side of
+Eqs. (134), (133), namely
+F1(m1, m2) ≡
+
+−ξ −s −t2
+ψ m1 −m2 + t2ψ−1m2
+1(c1m2 −t) −2tc1m1m2 + c2
+1m1m2
+2
+m1(c1m2 −ψ) −ψ
+−1
+,
+(169)
+F2(m1, m2) ≡
+
+−ξ −γm1 + γc1m2
+1(c1m2 −t)
+m1(c1m2 −t) −ψ
+−1
+.
+(170)
+55
+
+
+--- page 56 ---
+Deﬁne D(r) = {z : |z| < r} to be the disk of radius r in the complex plane. Then, there exists r0 > 0 such
+that, for any r, δ > 0 there exists ξ0 = ξ0(s, t, r, δ) > 0 such that, if Im(ξ) > ξ0, then F maps D(r0) × D(r0)
+into D(r) × D(r) and further is Lipschitz continuous, with Lipschitz constant at most δ on that domain.
+In particular Eqs. (134), (133) admit a unique solution with |m1|, |m2| < r0 for ξ > ξ0.
+Proof. Setting m ≡(m1, m2), we note that F(m) = (−ξ + G(m))−1, where m 7→G(m) is L-Lipschitz
+continuous in a neighborhood of of 0, D(r0) × D(r0), with G(0) = (s, 0). We therefore have, for |mi| ≤r0,
+|Fi(m)| ≤
+1
+|ξ| −|Fi(m)| ≤
+1
+ξ0 −|s| −2Lr0
+.
+(171)
+whence |Fi(m)| < r by taking ξ0 large enough. Analogously
+∥∇Fi(m)∥≤
+1
+(|ξ| −|Fi(m)|)2 ∥∇Gi(m)∥≤
+L
+(ξ0 −|s| −2Lr0)2 .
+(172)
+Again, the claim follows by taking ξ0 large enough.
+The next lemma allow to restrict ourselves to cases in which ϕ is polynomial with degree independent of
+n.
+Lemma 12. Let ϕA, ϕB be two activation functions, and denote by mA
+1,n, mA
+2,n, mB
+1,n, mB
+2,n, denote the
+corresponding resolvents as deﬁned above.
+Assume ξ to be such that either ξ ∈R, ξ ≤−ξ0 < 0, or
+Im(ξ) ≥ξ0 > 0. Then there exists a constant C(ξ0) such that, for all n large enough
+mA
+1,n(ξ) −mB
+1,n(ξ)
+ ≤C(ξ0)E
+
+[ϕA(G) −ϕB(G)]2	1/2 ,
+(173)
+mA
+2,n(ξ) −mB
+2,n(ξ)
+ ≤C(ξ0)E
+
+[ϕA(G) −ϕB(G)]2	1/2 .
+(174)
+Proof. The proof is essentially the same as for Lemma 4.4 in Cheng and Singer (2013).
+Lemma 13. Let m1,n,p(ξ) and m2,n,p(ξ) be the resolvent deﬁned above where we made explicit the dependence
+upon the dimensions n, p. Assume ξ to be such that either ξ ∈R, ξ ≤−ξ0 < 0, or Im(ξ) ≥ξ0 > 0. Then,
+there exist C = C(ξ0) < ∞such that
+m1,n,p(ξ) −m1,n−1,p(ξ)
+ +
+m1,n,p(ξ) −m1,n,p−1(ξ)
+ ≤C
+n ,
+(175)
+m2,n,p(ξ) −m2,n−1,p(ξ)
+ +
+m2,n,p(ξ) −m2,n,p−1(ξ)
+ ≤C
+n .
+(176)
+(Here d is understood to be the same in each case.)
+Proof. This follows immediately from Lemma 9. Denote, with a slight abuse of notation, by A(n, p) the
+matrix in Eq. (132). Consider for instance the diﬀerence
+m1,n,p(ξ) −m1,n,p−1(ξ)
+ = 1
+p
+ETr[1,p]
+
+(A(n, p) −ξI)−1
+−ETr[1,p]
+
+(A(n, p −1) −ξI)−1
+(177)
+= 1
+p
+E
+
+Tr[1,p]
+
+(A(n, p) −ξI)−1
+−Tr[1,p]
+
+(A∗(n, p) −ξI)−1	 ,
+(178)
+where A∗(n, p) is obtained from A(n, p) by zero-ing the last row and column.
+Lemma 9 then implied
+|m1,n,p(ξ) −m1,n,p−1(ξ)| ≤3/ξ0. The other terms are treated analogously.
+D.2.2
+Derivation of Eqs. (133)
+Throughout this appendix, we will assume Im(ξ) ≥C a large enough constant. This is suﬃcient by Lemma
+8.(c). Also, we can restrict ourselves to ϕ a ﬁxed ﬁnite polynomial (independent of n). This is again suﬃcient
+by Lemma 12 (polynomials are dense in L2(R, µG)).
+56
+
+
+--- page 57 ---
+We denote by A˙,m ∈RN−1 the m-th column of A, with the m-th entry removed. By the Schur complement
+formula, we have
+m2,n = E
+n −ξ −AT
+·,n+p(A∗−ξIN−1)A·,n+p
+−1o
+,
+(179)
+where A∗∈R(N−1)×(N−1) is the submatrix comprising the ﬁrst N −1 rows and columns of A.
+We let ηa denote the projection of wa along zn, and by ˜wa the orthogonal component. Namely we write
+wa = ηa
+zn
+∥zn∥+ ˜wa ,
+(180)
+where ⟨˜wa, zn⟩= 0. We further let X∗∈R(n−1)×p denote the submatrix of X obtained by removing the last
+row. With these notations, we have
+A∗=
+"
+sIp + tQ
+1
+√nXT
+∗
+1
+√nX∗
+0
+#
+,
+(181)
+Qab = ηaηb1a̸=b + ⟨˜wa, ˜wb⟩1a̸=b ,
+1 ≤a, b ≤p,
+(182)
+Xja = ϕ
+
+⟨˜wa, zj⟩+ ηa
+⟨zj, zn⟩
+∥zn∥
+
+,
+1 ≤a ≤p, 1 ≤j ≤n −1 ,
+(183)
+and
+A·,n+p =
+
+
+1
+√nϕ(∥zn∥η1)
+...
+1
+√nϕ(∥zn∥ηp)
+0
+...
+0
+
+
+,
+(184)
+We next decompose
+Xja = e
+Xja + a1,dujηa + √n E1,ja ,
+(185)
+e
+Xja ≡ϕ (⟨˜wa, zj⟩) ,
+(186)
+uj ≡
+1
+√n
+⟨zj, zn⟩
+∥zn∥
+,
+(187)
+E1,ja ≡
+1
+√nϕ⊥
+
+⟨˜wa, zj⟩+ ηa
+⟨zj, zn⟩
+∥zn∥
+
+−
+1
+√nϕ⊥(⟨˜wa, zj⟩) .
+(188)
+and
+Qab = eQab + ηaηb + E0,ab ,
+(189)
+eQab ≡⟨˜wa, ˜wb⟩,
+(190)
+E0,ab ≡−η2
+a1a=b .
+(191)
+We therefore get
+A∗= ˜A∗+ ∆+ E ,
+(192)
+˜A∗=
+"
+sIp + t eQ
+1
+√n ˜XT
+∗
+1
+√n ˜X∗
+0
+#
+,
+∆=
+
+tηηT
+a1,dηuT
+a1,duηT
+0
+
+,
+E =
+
+E0
+ET
+1
+E1
+0
+
+,
+(193)
+It is possible to show that ∥E∥op ≤εn ≡(log n)M/n1/2 with probability at least 1 −O(n−1), where M is an
+absolute constant (this can be done as in Section 4.3, Step 2 of Cheng and Singer (2013), using intermediate
+57
+
+
+--- page 58 ---
+value theorem). Further ∆is a rank-2 matrix that can be written as ∆= UCU T , where U ∈R(N−1)×2 and
+C ∈R2×2 are given by
+U =
+η
+0
+0
+u
+
+,
+C =
+ t
+a1,d
+a1,d
+0
+
+.
+(194)
+Using Eq. (179), and Woodbury’s formula, we get (writing for simplicity v = A·,n+p
+m2,n = E
+
+−ξ −vT ( ˜A∗+ ∆+ E −ξIN−1)−1v
+−1
+= E
+
+−ξ −vT ( ˜A∗+ ∆+ E −ξIN−1)−1v
+−1
+1∥bE∥op≤εn
+
++
+C
+Im(ξ)O (P(∥bE∥op > εn))
+(195)
+= E
+
+−ξ −vT ( ˜A∗+ ∆−ξIN−1)−1v
+−1
+1∥bE∥op≤εn
+
++ O(εn)
+= E
+
+−ξ −vT ( ˜A∗−ξIN−1)−1v + vT ( ˜A∗−ξIN−1)−1US−1U T ( ˜A∗−ξIN−1)−1v
+−1
++ O(εn)
+S ≡C−1 + U T ( ˜A∗−ξIN−1)−1U .
+(196)
+Note that, conditional on ∥zn∥n, v is independent of ˜A∗and has independent entries. Further its entries
+are independent with nE{v2
+i |∥zn∥2} = nE{ϕ(∥zn|2G/
+√
+d)2|∥zn∥2} = 1 + O(n−1/2). Hence
+E
+
+vT ( ˜A∗−ξIN−1)−1v
+	
+= p
+nE
+1
+pTr[( ˜A∗−ξIN−1)−1]
+
+(197)
+= γ m1,n + O(εn) ,
+(198)
+By a concentration of measure argument (see, e.g., (Tao, 2012, Section 2.4.3)), the same statement also holds
+with high probability
+vT ( ˜A∗−ξIN−1)−1v = γ m1,n + OP (εn)
+(199)
+We next consider vT ( ˜A∗−ξIN−1)−1U. We decompose v = v1 + v2, where
+v1,i = a1,d∥zn∥
+√n
+ηi ,
+v2,i =
+1
+√n ϕ⊥(∥zn∥ηi) ,
+1 ≤i ≤p ,
+(200)
+Notice, that conditional on ∥zn∥, the pairs {(v1,i, v2,i)}i≤p are mutually independent. Further nE{v1,iv2,i|∥zn∥} =
+E{a1,dGϕ⊥(G)} + O(εn) = O(εn). Finally, again conditionally on zn, η and u are independent. Therefore
+E
+
+vT ( ˜A∗−ξIN−1)−1U
+	
+= E
+nh
+vT
+1 ( ˜A∗−ξIN−1)−1
+[1,p],[1,p]η
+0
+io
++ O(εn)
+(201)
+= a1,d
+√
+d
+√n
+1
+dETr[1,p]
+
+( ˜A∗−ξIN−1)−10
+
++ O(εn)
+(202)
+=
+p
+c1γψ−1
+m1,n , 0
+
++ O(εn) .
+(203)
+By a concentration of measure argument, we also have
+vT ( ˜A∗−ξIN−1)−1U =
+p
+c1γψ−1
+m1,n , 0
+
++ O(εn) .
+(204)
+We next consider U T ( ˜A∗−ξIN−1)−1U. Since η and u are independent (and independent of ˜A∗) and zero
+mean, with dE{η2
+a} = 1, nE{u2
+j} = 1 + O(εn), we have
+E
+
+U T ( ˜A∗−ξIN−1)−1U
+	
+=
+=
+ 1
+dETr[1,p]{( ˜A∗−ξIN−1)−1}
+0
+0
+1
+nETr[p+1,N−1]{( ˜A∗−ξIN−1)−1}
+
++ O(εn)
+=
+ψ−1m1
+0
+0
+m2
+
++ O(εn) .
+58
+
+
+--- page 59 ---
+As in the previous case, this estimate also holds for U T ( ˜A∗−ξIN−1)−1U (not just its expectation) with high
+probability. Substituting this in Eq. (195), we get
+S =
+ψ−1m1
+1/a1,d
+1/a1,d
+m2 −(t/a2
+1,d)
+
++ O(εn)
+(205)
+By using this together with Eqs. (199) and (204), we get
+m2,n =
+ 
+−ξ −γm1,n + γc1m2
+1,n(c1m2,n −t)
+m1(c1m2,n −t) −ψ
+!−1
++ O(εn) .
+(206)
+D.2.3
+Derivation of Eqs. (134)
+The derivation si analogous to the one in the previous section (notice that we will redeﬁne some of the
+notations used in the last section), and hence we will only outline the main steps.
+Let A˙,m ∈RN−1 be the m-th column of A, with the m-th entry removed, and B∗∈R(N−1)×(N−1) be the
+submatrix obtained by removing the p-th column and p-th row from A. By the Schur complement formula,
+we have
+m1,n = E
+n −ξ −s −AT
+·,p(B∗−ξIN−1)A·,p
+−1o
+,
+(207)
+where A∗∈R(N−1)×(N−1) is the submatrix comprising the ﬁrst N −1 rows and columns of A.
+We decompose wa, 1 ≤a ≤p −1, and zi, 1 ≤i ≤n into their components along wp, and the orthogonal
+complement:
+wa = ηa
+wp
+∥wp∥+ ˜wa ,
+zi = √n ui
+wp
+∥wp∥+ ˜zi ,
+(208)
+where ⟨˜wa, wp⟩= ⟨˜zi, wp⟩= 0 (the factor √n in the second expression is introduced for future convenience).
+With these notations, we have
+B∗=
+"
+sIp + tQ∗
+1
+√nXT
+1
+√nX
+0
+#
+,
+(209)
+Qab = ηaηb1a̸=b + ⟨˜wa, ˜wb⟩1a̸=b ,
+1 ≤a, b ≤p −1,
+(210)
+Xja =
+1
+√nϕ
+ ⟨˜wa, ˜zj⟩+ √n ujηa
+
+,
+1 ≤a ≤p, 1 ≤j ≤n ,
+(211)
+and
+A·,p =
+
+
+tη1∥wp∥
+...
+tηp−1∥wp∥
+1
+√nϕ(√nu1∥wp∥)
+...
+1
+√nϕ(√nun∥wp∥)
+
+
+≡h .
+(212)
+We next decompose B∗as follows
+B∗= ˜B∗+ ∆+ E ,
+(213)
+˜B∗≡
+"
+sIp + t eQ∗
+1
+√n ˜XT
+1
+√n ˜X
+0
+#
+,
+∆≡
+ tηηT
+a1,dηuT
+a1,duηT
+0
+
+,
+E ≡
+
+E0
+ET
+1
+E1
+0
+
+,
+(214)
+59
+
+
+--- page 60 ---
+where we deﬁned matrices eQ∗, ˜X, E0, E1 with the following entries:
+eQ∗,ab = ⟨˜wa, ˜wb⟩1a̸=b ,
+1 ≤a, b ≤p −1 ,
+(215)
+e
+Xja = ϕ(⟨˜wa, ˜zj⟩) ,
+1 ≤a ≤p −1, 1 ≤j ≤n ,
+(216)
+E0,ab = −tη2
+a1a=b ,
+1 ≤a, b ≤p −1 ,
+(217)
+E1,ja =
+1
+√nϕ⊥
+ ⟨˜wa, ˜zj⟩+ √n ηauj
+
+−
+1
+√nϕ⊥
+ ⟨˜wa, ˜zj⟩
+
+,
+1 ≤a ≤p −1, 1 ≤j ≤n .
+(218)
+As in the previous section, it can be shown that ∥E∥op ≤εn ≡(log n)c/√n (with c an absolute constant),
+and therefore Eq. (207) yields
+m1,n = E
+n −ξ −s −AT
+·,p( ˜B∗+ ∆−ξIN−1)A·,p
+−1o
++ O(εn) .
+(219)
+Note that ∆= UCU T , where U ∈R(N−1)×2 and C ∈R2×2 take the same form as in Eq. (194). Hence,
+by Woodbury’s formula and recalling the notation h = A·,p w
+m1,n =E
+
+−ξ −hT ( ˜B∗−ξIN−1)−1h + hT ( ˜B∗−ξIN−1)−1US−1U T ( ˜B∗−ξIN−1)−1h
+−1
++ O(εn)
+(220)
+S ≡C−1 + U T ( ˜B∗−ξIN−1)−1U , .
+We then proceed to compute the various terms on the right-hand side. The calculation is very similar to the
+one in the previous section, and we limit ourselves to reporting the results:
+hT ( eB∗−ξIN−1)−1h = t2ψ−1m1,n + m2,n + OP (εn) ,
+(221)
+hT ( eB∗−ξIN−1)−1U =
+
+tψ−1 m1,n, a1,dm2,n
+
++ OP (εn) ,
+(222)
+U T ( eB∗−ξIN−1)−1U =
+ψ−1 m1,n
+0
+0
+m2,n
+
++ OP (εn) ,
+(223)
+whence
+S =
+ψ−1 m1,n
+a−1
+1,d
+a−1
+1,d
+−ta−2
+1,d + m2,n
+
++ OP (εn) .
+(224)
+Substituting Eqs. (221) to (224) into Eq. (220), we get
+m1,n =
+ 
+−ξ −s −t2
+ψ m1,n −m2,n + t2ψ−1m2
+1,n(c1m2,n −t) −2tc1m1,nm2,n + c2
+1m1,nm2
+2,n
+m1,n(c1m2,n −ψ) −ψ
+!−1
++ O(εn) .
+(225)
+D.2.4
+Completing the proof
+Let ϕL be a degree L = L(ε) polynomial such that E{|ϕ(G) −ϕL(G)|2} ≤ε2, for G ∼N(0, 1). We will
+denote by mL
+n = (mL
+1,n, mL
+2,n) the corresponding expected resolvents.
+Consider Im(ξ) ≥C0 a large enough constant. By Eqs. (206), (206), we have
+mL
+n = F(mL
+n) + on(1) .
+(226)
+By Lemma 8 and Lemma 11, taking C0 suﬃciently large, we can ensure that mL
+n ∈D(r0) × D(r0), and that
+F maps D(r0) × D(r0) into D(r0/2) × D(r0/2), with Lipschitz constant at most 1/2. Letting mL denote the
+unique solution of mL = F(mL), we have
+∥mL
+n −mL∥= ∥F(mL
+n) + on(1) −F(mL)∥≤1
+2∥mL
+n −mL∥+ on(1) ,
+(227)
+whence mL
+n(ξ) →mL(ξ) for all Im(ξ) > C0. Since eps is arbitrary, and using Lemma 12, we get m1,n(ξ) →
+m1(ξ), m2,n(ξ) →m2(ξ) for all Im(ξ) > C0. By Lemma 8.(c), we have m1,n(ξ) →m1(ξ), m2,n(ξ) →m2(ξ)
+for all ξ ∈C+. Finally, by Lemma 10, the almost sure convergence of Eqs. (135), (136) holds as well.
+60
+
+
+--- page 61 ---
+D.3
+Proof of Lemma D.5
+We begin approximating the population covariance Σ = 1
+nE{XT X|w} by Σ0 ≡Ip + c1Q ∈Rp×p.
+Lemma 14. With the above deﬁnitions there exists a constant C such that
+P
+
+∥Σ −Σ0∥F ≥(log n)C	
+≥1 −e−(log n)2/C, ,
+(228)
+E{∥Σ −Σ0∥2
+F
+	
+≤(log n)C .
+(229)
+Proof. First notice that
+Σij = E{ϕ(⟨wi, z⟩ϕ(⟨wj, z⟩)|wi, wj} = E{ϕ∥wi∥(G1)ϕ∥wj∥(G2)} ,
+(230)
+G1
+G2
+
+∼N
+
+0,
+ 1
+sij
+sij
+1
+
+,
+(231)
+ϕt(x) ≡ϕ(tx) ,
+(232)
+where sij = ⟨wi, wj⟩/∥wi∥∥wj∥. Let ϕt(x) = α1(t)x + ϕt,⊥(x) be the orthogonal decomposition of ϕt in
+L2(R, µG), and notice that α1(t) = α1(1)t, α1(1)2 = c1.
+On the event G = {|∥wi∥−1| ≤εn} (with
+εn = (log n)c/√n), we obtain
+Σij = a1,d(∥wi∥)a1,d(∥wj∥)sij + E{ϕ∥wi∥,⊥(G1)ϕ∥wj∥,⊥(G2)}
+(233)
+= c1⟨wi, wj⟩+ O(⟨wi, wj⟩2) .
+(234)
+Therefore, on the same event (for a suitable constant C)
+Σ −Σ0
+2
+F =
+p
+X
+i=1
+(Σii −Σ0,ii)2 + 2
+p
+X
+i<j
+(Σii −Σ0,ii)2
+(235)
+≤p O(ε2
+n) + C
+X
+i<j
+⟨wi, wj⟩4 .
+(236)
+This implies Eq. (228) because with the stated probability we have ∥wi∥≤1 + εn for all i and |⟨wi, wj⟩| ≤εn
+for all i̸ = j.
+Equation (228) follows by the above, together with the remark that E(∥Σ −Σ0∥2+c0
+F
+) ≤pC0 by the
+assumption that E(x4+c0
+ij
+) < ∞.
+We have
+VX(ˆβλ; β) −1
+nTr
+n
+(ˆΣ + λI)−2 ˆΣΣ0
+o =
+
+1
+nTr
+n
+(ˆΣ + λI)−2 ˆΣ(Σ −Σ0
+o
+(237)
+≤1
+n
+√p
+(ˆΣ + λI)−2 ˆΣ
+
+op∥Σ −Σ0∥F
+(238)
+≤
+rγ
+n
+1
+λ ∥Σ −Σ0∥F .
+(239)
+And therefore, by Lemma 14, we obtain
+lim
+n→∞
+VX(ˆβλ; β) −1
+nTr
+n
+(ˆΣ + λI)−2 ˆΣΣ0
+o = 0 ,
+(240)
+where the convergence takes place almost surely and in L1.
+Denote by (λi)i≤p, (vi)i≤p the eigenvalues and eigenvectors of ˆΣ. The following qualitative behavior can
+be extracted from the asymptotic of the Stieltjes transform as stated in Corollary 6.
+61
+
+
+--- page 62 ---
+Lemma 15. For any γ̸ = 1, c1 ∈[0, 1), there exists ρ0 > 0 such that the following happens. Let S+ ≡{i ∈
+[p] : |λi| > ρ0}, S−≡{i ∈[p] : |λi| ≤ρ0}. Then, the following limits hold almost surely
+lim
+n→∞
+1
+n|S+| = (γ ∨1) ,
+(241)
+lim
+n→∞
+1
+n|S−| = (γ −1)+ ,
+(242)
+γ > 1
+⇒
+1
+|S−|
+X
+i∈S−
+δλi ⇒δ0 .
+(243)
+(Here ⇒denotes weak convergence of probability measures.)
+Note that
+mn(ξ, s, t) ≡γ m1,n(ξ, s, t) + m2,n(ξ, s, t) = 1
+nETr
+
+(A(n) −ξIN)−1
+.
+(244)
+Denote by ˜Σ0 the N × N matrix whose principal minor corresponding to the ﬁrst p rows and columns is given
+by Σ0. By simple linear algebra (diﬀerentiation inside the integral is allowed for Im(ξ) > 0 by dominated
+convergence and by analyticity elsewhere), we get
+−∂xmn(ξ, x, c1x)
+
+x=0 = 1
+nETr
+
+(A −ξI)−1 ˜Σ0(A −ξI)−1
+x=0
+(245)
+= 1
+nETr
+
+ξ2Ip + ˆΣ −4ξ2(ˆΣ + ξ2Ip)−1 ˆΣ
+−1
+Σ0
+
+(246)
+= 1
+nETr
+
+ˆΣ + ξ2Ip
+ 
+ˆΣ −ξ2Ip
+−2
+Σ0
+
+(247)
+Note that mn(ξ, x, c1x) →m(ξ, x, c1x) as n →∞. Further, for Im(ξ) > 0 or Re(ξ) < 0, it it is immediate to
+show tha ∂2
+xmn(ξ, x, c1x) is bounded in n (in a neighborhood of x = 0). Hence
+lim
+n→∞∂xmn(ξ, x, c1x)
+
+x=0 = ∂xm(ξ, x, c1x)|x=0 ≡q(ξ) ,
+(248)
+and therefore
+q(ξ) = lim
+n→∞EQn(ξ)
+(249)
+Qn(ξ) = 1
+nTr
+
+ˆΣ + ξ2Ip
+ 
+ˆΣ −ξ2Ip
+−2
+Σ0
+
+(250)
+= 1
+n
+p
+X
+i=1
+λi + ξ2
+(λi −ξ2)2 ⟨vi, Σ0vi⟩.
+(251)
+Since the convergence of Mn = γMn,1 + Mn,2 (cf. Eq. (143)) is almost sure, we also have Qn(ξ) →q(ξ)
+almost surely. Deﬁne the probability measure on Rge0
+µn = 1
+p
+n
+X
+i=1
+δλi⟨vi, Σvi⟩.
+(252)
+Since Qn(ξ) →q(ξ), a weak convergence argument implies µn ⇒µ∞almost surely. Further, deﬁning
+µ+
+n = 1(ρ0,∞)µn, µ−
+n = 1[0,ρ0]µn, Lemma 15 implies µ+
+n ⇒µ+
+∞, µ−
+n ⇒c0δ0, where µ+
+∞is a measure supported
+on [ρ0, ∞), with µ+
+∞([ρ0, ∞)) = 1 −c. This in turns implies
+q(ξ) = γc
+ξ2 + q+(ξ) ,
+q+(ξ) = γ
+Z
+[ρ0,∞)
+x + ξ2
+(x −ξ2)2 µ+
+∞(dx) ,
+(253)
+62
+
+
+--- page 63 ---
+In particular, q+ is analytic in a neighborhood of 0. This proves Eq. (141), with q+(0) = D0, γc = D−1.
+Further, we have
+D0 = q+(0) = γ
+Z
+[ρ0,∞)
+x + ξ2
+(x −ξ2)2 µ+
+∞(dx) .
+(254)
+On the other hand by Eq. (240)
+lim
+n→∞VX(ˆβλ; β) = lim
+n→∞
+1
+n
+p
+X
+i=1
+λi
+(λi + λ)2 ⟨vi, Σ0vi⟩
+(255)
+= γ
+Z
+x
+(x + λ)2 µ∞(dx) = γ
+Z
+x
+(x + λ)2 µ+
+∞(dx) .
+(256)
+Comparing the last two displays, we obtain our claim
+lim
+λ→0+ lim
+n→∞VX(ˆβλ; β) = D0 .
+(257)
+D.4
+Proof of Corollary 8 and Corollary 6
+Throughout this section, set s = t = 0 (and drop these arguments for the various functions), and let
+Mn(ξ) ≡γM1,n(ξ) + M2,n(ξ), mn(ξ) ≡γm1,n(ξ) + m2,n(ξ), m(ξ) = γm1(ξ) + m2(ξ). In this case we have
+A =
+"
+0
+1
+√nXT
+1
+√nX
+0
+#
+.
+(258)
+and therefore, a simple linear algebra calculation yields
+Mn(z) = 2z
+h
+γ Sn(z2) + 1
+2(γ −1) 1
+z2
+i
+.
+(259)
+Theorem ?? immediately implies Sn(z2) →s(z2) (almost surely and in L1), where
+m(z) = 2z
+h
+γ s(z2) + 1
+2(γ −1)+
+1
+z2
+i
+.
+(260)
+Equations (133) and (134) simplify for the case s = t = 0 (setting mj = mj(z, s = 0, t = 0)) to yield
+−zm1 −m1m2 +
+c2
+1m2
+1m2
+2
+c1m1m2 −ψ = 1 ,
+(261)
+−zm2 −γm1m2 +
+γc2
+1m2
+1m2
+2
+c1m1m2 −ψ = 1 .
+(262)
+Taking a linear combination of these two equations, we get
+−zm −2γm1m2 + 2γc2
+1m2
+1m2
+2
+c1m1m2 −ψ = 1 + γ .
+(263)
+Comparing this with Eq (260), we get Eq. (138). Substituting the latter in Eqs. (261), (262), we get Eqs. (139),
+(140).
+Finally, Corollary 6 follows by taking c1 = 0.u
+D.5
+Proof of Theorem 8
+First notice that Lemma 3 and 4 follow by taking t = 0, c1 = 0 in Theorem 9 and Lemma .
+63
+
+
+--- page 64 ---
+The variance result follows simply by taking c1 →0 in Theorem ??. Solving the quadratic equations
+(134), we get
+m2(ξ, s) = γ −ξ2 −ξs −1 −
+p
+(γ −xi2 −ξs −1)2 −4ξ(ξ + s)
+2ξ
+,
+(264)
+∂xm2(ξ, x)|x=0 = −1
+2 +
+γ −ξ2 + 1
+2
+p
+(γ −xi2 −ξs −1)2 −4ξ(ξ + s)
+,
+(265)
+m1(ξ, s) = (−ξ −s −m2(ξ, s))−1 ,
+(266)
+∂xm1(ξ, x)|x=0 = 1 + ∂xm2(ξ, x)|x=0
+(ξ + m2(ξ, 0))2
+.
+(267)
+The claimed formula for the variance is obtained by using these expressions in Lemma 4.
+For the bias, recall that
+BX(ˆβλ) = r2
+p Tr
+h
+λ2(ˆΣX + λIp)−2Σ
+i
+.
+(268)
+Deﬁne
+eBX(ˆβλ) = r2
+p Tr
+h
+λ2(ˆΣX + λIp)−2i
+.
+(269)
+By Lemma 14, and using the fact that Σ0 = Ip when c1 = 0, we get
+BX(ˆβλ) −eBX(ˆβλ)
+ ≤r2
+p ∥λ2(ˆΣX + λIp)−2∥F ∥Σ −Ip∥F
+(270)
+≤C
+p ∥λ2(ˆΣX + λIp)−2∥op
+√p(log n)C
+(271)
+≤C
+√n(log n)C . .
+(272)
+with probability larger than 1 −1/n2. Therefore, by Borel-Cantelli it is suﬃcient to estabilish the claim for
+eBX(ˆβλ). By Corollary 6, for c1 = 0, the empirical spectral distribution of ˆΣ converges almost surely (in the
+weak topology) to the Marchenko-Pastur law µMP . Hence (for (λi)i≤p the eigenvalues of ˆΣ)
+lim
+n→∞
+eBX(ˆβλ) = r2 lim
+n→∞
+1
+p
+p
+X
+i=1
+λ2
+(λ + λi)2
+(273)
+= r2
+Z
+λ2
+(λ + x)2 µMP (dx) = r2λ2s′(−λ) .
+(274)
+Hence the asymptotic bias is the same as in the linear model (for random isotropic features). The claim
+hence follows by the results of Section 5.2. Alternatively, we may simply recall that µMP ({0}) = (1 −γ−1)+
+and use dominated convergence.
+References
+Ben Adlam and Jeﬀrey Pennington. The neural tangent kernel in high dimensions: Triple descent and a
+multi-scale theory of generalization. arXiv:2008.06786, 2020.
+Madhu S. Advani and Andrew M. Saxe. High-dimensional dynamics of generalization error in neural networks.
+arXiv: 1710.03667, 2017.
+Alnur Ali, J. Zico Kolter, and Ryan J. Tibshirani. A continuous-time view of early stopping for least squares.
+International Conference on Artiﬁcial Intelligence and Statistics, 22, 2019.
+64
+
+
+--- page 65 ---
+Zeyuan Allen-Zhu, Yuanzhi Li, and Zhao Song.
+A convergence theory for deep learning via over-
+parameterization. arXiv: 1811.03962, 2018.
+Greg W. Anderson, Alice Guionnet, and Ofer Zeitouni. An Introduction to Random Matrices. Cambridge
+University Press, 2009.
+Sylvain Arlot and Alain Celisse. A survey of cross-validation procedures for model selection. Statistics
+Surveys, 4:40–79, 2010.
+Zhidong Bai and Jack Silverstein. Spectral Analysis of Large Dimensional Random Matrices. Springer, 2010.
+Zhidong Bai and Y. Q. Yin. Limit of the smallest eigenvalue of a large dimensional sample covariance matrix.
+Annals of Probability, 21(3):1275–1294, 1993.
+Peter L Bartlett, Philip M Long, Gábor Lugosi, and Alexander Tsigler. Benign overﬁtting in linear regression.
+Proceedings of the National Academy of Sciences, 2020.
+Mikhail Belkin, Daniel Hsu, Siyuan Ma, and Soumik Mandal. Reconciling modern machine learning and the
+bias-variance trade-oﬀ. arXiv: 1812.11118, 2018a.
+Mikhail Belkin, Siyuan Ma, and Soumik Mandal. To understand deep learning we need to understand kernel
+learning. arXiv: 1802.01396, 2018b.
+Mikhail Belkin, Alexander Rakhlin, and Alexandre B Tsybakov. Does data interpolation contradict statistical
+optimality? arXiv: 1806.09471, 2018c.
+Mikhail Belkin, Daniel Hsu, and Ji Xu. Two models of double descent for weak features. arXiv: 1903.07571,
+2019.
+Chris M Bishop. Training with noise is equivalent to tikhonov regularization. Neural computation, 7(1):
+108–116, 1995.
+Xiuyuan Cheng and Amit Singer. The spectrum of random inner-product kernel matrices. Random Matrices:
+Theory and Applications, 2(04):1350010, 2013.
+Lenaic Chizat and Francis Bach. On the global convergence of gradient descent for over-parameterized models
+using optimal transport. Advances in Neural Information Processing Systems, 31, 2018a.
+Lenaic Chizat and Francis Bach. A note on lazy training in supervised diﬀerentiable programming. arXiv:
+1812.07956, 2018b.
+P. Craven and G. Wahba. Smoothing noisy data with spline functions: Estimating the correct degree of
+smoothing by the method of generalized cross-validation. Numer. Math., 31:377–403, 1979.
+Peter Craven and Grace Wahba. Smoothing noisy data with spline functions. Numerische Mathematik, 31(4):
+377–403, 1978.
+Lee H. Dicker. Ridge regression and asymptotic minimax estimation over spheres of growing dimension.
+Bernoulli, 22(1):1–37, 2016.
+Edgar Dobriban. Eﬃcient computation of limit spectra of sample covariance matrices. Random Matrices:
+Theory and Applications, 4(4):1550019, 2015.
+Edgar Dobriban and Stefan Wager.
+High-dimensional asymptotics of prediction: ridge regression and
+classiﬁcation. Annals of Statistics, 46(1):247–279, 2018.
+Simon S. Du, Jason D. Lee, Haochuan Li, Liwei Wang, and Xiyu Zhai. Gradient descent ﬁnds global minima
+of deep neural networks. arXiv: 1811.03804, 2018a.
+Simon S. Du, Xiyu Zhai, Barnabas Poczos, and Aarti Singh. Gradient descent provably optimizes over-
+parameterized neural networks. arXiv: 1810.02054, 2018b.
+65
+
+
+--- page 66 ---
+Noureddine El Karoui. The spectrum of kernel random matrices. The Annals of Statistics, 38(1):1–50, 2010.
+Zhou Fan and Andrea Montanari. The spectral norm of random inner-product kernel matrices. Probability
+Theory and Related Fields, pages 1–59, 2015.
+Mario Geiger, Arthur Jacot, Stefano Spigler, Franck Gabriel, Levent Sagun, Stephane d’Ascoli, Giulio Biroli,
+Clement Hongler, and Matthieu Wyart. Scaling description of generalization with number of parameters in
+deep learning. arXiv: 1901.01608, 2019.
+Federica Gerace, Bruno Loureiro, Florent Krzakala, Marc Mézard, and Lenka Zdeborová. Generalisation
+error in learning with random features and the hidden manifold model. arXiv:2002.09339, 2020.
+Behrooz Ghorbani, Song Mei, Theodor Misiakiewicz, and Andrea Montanari. Linearized two-layers neural
+networks in high dimension. 2019. arXiv:1904.12191.
+Sebastian Goldt, Galen Reeves, Marc Mezard, Florent Krzakala, and Lenka Zdeborová. The gaussian
+equivalence of generative models for learning with two-layer neural networks. arXiv:2006.14709, 2020.
+Gene H. Golub, Michael Heath, and Grace Wahba. Generalized cross-validation as a method for choosing a
+good ridge parameter. Technometrics, 21(2):215–223, 1979a.
+Gene H. Golub, Michael Heath, and Grace Wahba. Generalized cross-validation as a method for choosing a
+good ridge parameter. Technometrics, 21(2):215–223, 1979b.
+Ian Goodfellow, Yoshua Bengio, and Aaron Courville. Deep Learning. MIT Press, 2016.
+Suriya Gunasekar, Jason Lee, Daniel Soudry, and Nathan Srebro. Characterizing implicit bias in terms
+of optimization geometry. In 35th International Conference on Machine Learning, ICML 2018, pages
+2932–2955. International Machine Learning Society (IMLS), 2018a.
+Suriya Gunasekar, Jason D Lee, Daniel Soudry, and Nati Srebro. Implicit bias of gradient descent on linear
+convolutional networks. In Advances in Neural Information Processing Systems, pages 9461–9471, 2018b.
+Trevor Hastie, Saharon Rosset, Robert Tibshirani, and Ji Zhu. The entire regularization path for the support
+vector machine. Journal of Machine Learning Research, 5:1391–1415, 2004.
+Hong Hu and Yue M Lu.
+Universality laws for high-dimensional learning with random features.
+arXiv:2009.07669, 2020.
+Arthur Jacot, Franck Gabriel, and Clement Hongler. Neural tangent kernel: Convergence and generalization
+in neural networks. Advances in Neural Information Processing Systems, 31, 2018.
+Antti Knowles and Jun Yin. Anisotropic local laws for random matrices. Probability Theory and Related
+Fields, 169(1-2):257–352, 2017.
+Dmitry Kobak, Jonathan Lomond, and Benoit Sanchez. The optimal ridge penalty for real-world high-
+dimensional data can be zero or negative due to the implicit ridge regularization. Journal of Machine
+Learning Research, 21(169):1–16, 2020.
+Olivier Ledoit and Sandrine Peche. Eigenvectors of some large sample covariance matrix ensembles. Probability
+Theory and Related Fields, 151(1–2):233–264, 2011.
+Jaehoon Lee, Lechao Xiao, Samuel S Schoenholz, Yasaman Bahri, Jascha Sohl-Dickstein, and Jeﬀrey
+Pennington. Wide neural networks of any depth evolve as linear models under gradient descent. arXiv:
+1902.06720, 2019.
+Ker-Chau Li. Asymptotic optimality of CL and generalized cross-validation in ridge regression with application
+to spline smoothing. Annals of Statistics, 14(3):1101–1112, 1986.
+Ker-Chau Li. Asymptotic optimality for Cp, CL, cross-validation and generalized cross-validation: discrete
+index set. Annals of Statistics, 15(3):958–975, 1987.
+66
+
+
+--- page 67 ---
+Tengyuan Liang, Alexander Rakhlin, et al. Just interpolate: Kernel “ridgeless” regression can generalize.
+Annals of Statistics, 48(3):1329–1347, 2020.
+Vladimir Alexandrovich Marchenko and Leonid Andreevich Pastur. Distribution of eigenvalues for some sets
+of random matrices. Matematicheskii Sbornik, 114(4):507–536, 1967.
+Song Mei and Andrea Montanari. The generalization error of random features regression: Precise asymptotics
+and double descent curve. arXiv:1908.05355, 2019.
+Song Mei, Andrea Montanari, and Phan-Minh Nguyen. A mean ﬁeld view of the landscape of two-layer
+neural networks. Proceedings of the National Academy of Sciences, 2018.
+Leo Miolane and Andrea Montanari. The distribution of the lasso: Uniform control over sparse balls and
+adaptive parameter tuning. arXiv: 1811.01212, 2018.
+Andrea Montanari, Feng Ruan, Youngtak Sohn, and Jun Yan. The generalization error of max-margin linear
+classiﬁers: High-dimensional asymptotics in the overparametrized regime. arXiv:1911.01544, 2019.
+Jeﬀrey Pennington and Pratik Worah. Nonlinear random matrix theory for deep learning. Advances in
+Neural Information Processing Systems, 30, 2017.
+Dominic Richards, Jaouad Mourtada, and Lorenzo Rosasco. Asymptotics of ridge (less) regression under
+general source condition. arXiv:2006.06386, 2020.
+Saharon Rosset, Ji Zhu, and Trevor Hastie. Boosting as a regularized path to a maximum margin classiﬁer.
+Journal of Machine Learning Research, 5:941–973, 2004.
+Grant M Rotskoﬀand Eric Vanden-Eijnden. Neural networks as interacting particle systems: Asymptotic
+convexity of the loss landscape and universal scaling of the approximation error. arXiv: 1805.00915, 2018.
+Francisco Rubio and Xavier Mestre. Spectral convergence for a general class of random matrices. Probability
+Letters, 81(5):592–602, 2011.
+Vadim I. Serdobolskii. Multiparametric Statistics. Elsevier, 2007.
+Jack Silverstein. Strong convergence of the empirical distribution of eigenvalues of large dimensional random
+matrices. Journal of Multivariate Analysis, 55(2):331–339, 1995.
+Justin Sirignano and Konstantinos Spiliopoulos. Mean ﬁeld analysis of neural networks. arXiv: 1805.01053,
+2018.
+Stefano Spigler, Mario Geiger, Stephane d’Ascoli, Levent Sagun, Giulio Biroli, and Matthieu Wyart. A
+jamming transition from under-to over-parametrization aﬀects loss landscape and generalization. arXiv:
+1810.09665, 2018.
+Terence Tao. Topics in Random Matrix Theory, volume 132. American Mathematical Society, 2012.
+Ryan J. Tibshirani. A general framework for fast stagewise algortihms. Journal of Machine Learning Research,
+16:2543–2588, 2015.
+Lloyd N. Trefethen. Finite Diﬀerence and Spectral Methods for Ordinary and Partial Diﬀerential Equations.
+unpublished text, 1996. http://people.maths.ox.ac.uk/trefethen/pdetext.html.
+William F. Trench. Asymptotic distribution of the spectra of a class of generalized Kac-Murdock-Szego
+matrices. Linear Algebra and Its Applications, 294(1–3):181–192, 1999.
+Antonia M. Tulino and Sergio Verdu. Random matrix theory and wireless communications. Foundations and
+Trends in Communications and Information Theory, 1(1):1–182, 2004.
+Andrew R Webb. Functional approximation by feed-forward networks: a least-squares approach to general-
+ization. IEEE transactions on Neural Networks, 5(3):363–371, 1994.
+67
+
+
+--- page 68 ---
+Denny Wu and Ji Xu. On the optimal weighted ℓ2 regularization in overparameterized linear regression.
+arXiv:2006.05800, 2020.
+Ji Xu, Arian Maleki, and Kamiar Rahnama Rad. Consistent risk estimation in high-dimensional linear
+regression. arXiv: 1902.01753, 2019.
+Chiyuan Zhang, Samy Bengio, Moritz Hardt, Benjamin Recht, and Oriol Vinyals. Understanding deep
+learning requires rethinking generalization. arXiv: 1611.03530, 2016.
+Chiyuan Zhang, Samy Bengio, and Yoram Singer. Are all layers created equal? arXiv: 1902.01996, 2019.
+Difan Zou, Yuan Cao, Dongruo Zhou, and Quanquan Gu. Stochastic gradient descent optimizes over-
+parameterized deep ReLU networks. arXiv: 1811.08888, 2018.
+68

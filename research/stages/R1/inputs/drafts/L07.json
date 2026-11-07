@@ -1,0 +1,125 @@
+{
+  "source_id": "L07",
+  "version": "arXiv:2608.03111v1",
+  "locators": [
+    {
+      "label": "page 1, split-candidate capacity and other controls",
+      "quote": "propose the number of split candidates as an operational ca-\npacity parameter for GBDTs. Holding other training controls\nfixed, increasing the split-candidate budget refines the feature-"
+    },
+    {
+      "label": "page 1, random-forest control under the same sweep",
+      "quote": "GBM, and CatBoost, whereas a random-forest control im-\nproves monotonically under the same split-candidate sweep."
+    },
+    {
+      "label": "page 2, squared-loss residual",
+      "quote": "the squared-loss residual on the i-th training point. A GBDT"
+    },
+    {
+      "label": "page 3, controls held fixed in the feature view",
+      "quote": "Holding the loss, tree depth, learning rate,\nand number of boosting rounds fixed, the feature view rein-"
+    },
+    {
+      "label": "page 3, reference-kernel scope",
+      "quote": "We do not claim that this refer-\nence kernel exactly describes adaptive GBDT training; its"
+    },
+    {
+      "label": "page 4, exact count M and native budget B",
+      "quote": "trol; M is the exact total split-candidate count, whereas B"
+    },
+    {
+      "label": "page 5, primary axis M",
+      "quote": "enlarge the split-candidate budget, but M is the primary axis"
+    },
+    {
+      "label": "page 5, California Housing",
+      "quote": "California Housing dataset, derived from the housing data"
+    },
+    {
+      "label": "page 5, housing dimensions",
+      "quote": "tains 20,640 rows and 8 numerical features. To assess cross-"
+    },
+    {
+      "label": "page 5, additional regression datasets",
+      "quote": "dataset robustness, we additionally evaluate 18 regression"
+    },
+    {
+      "label": "page 5, panels that vary sample size or depth",
+      "quote": "ments, unless a panel varies sample size or depth, we use\nntrain = 1000, ntest = 10000, and tree depth L = 2. The"
+    },
+    {
+      "label": "page 5, learning rate and printed iteration token",
+      "quote": "stated, we use five resampled training–test splits, a learn-\ning rate of 0.3, and up to 106 CatBoost iterations. For each"
+    },
+    {
+      "label": "page 5, reported RMSE",
+      "quote": "a fitted predictor f, we report the root mean squared error\n(RMSE)."
+    },
+    {
+      "label": "page 5, diagnostic CatBoost profile",
+      "quote": "It uses symmetric trees, plain boost-\ning, zero leaf L2 regularization, and random_strength\n= 106; at this scale, the injected noise dominates residual-"
+    },
+    {
+      "label": "page 5, default CatBoost profile",
+      "quote": "CatBoost (default), fixes the split borders, depth, learning\nrate, iteration count, and random seed; model shrinkage, leaf\nL2 regularization, and the remaining boosting choices are"
+    },
+    {
+      "label": "page 5, training RMSE near the path-span crossing",
+      "quote": "peaks near the ambient path-span crossing; training RMSE is\nalready close to zero in this region. CatBoost (default) shows"
+    },
+    {
+      "label": "page 6, reference crossing",
+      "quote": "The reference crossing is DL(CM) ≈ntrain. Increasing"
+    },
+    {
+      "label": "page 6, reported crossing rule",
+      "quote": "reported crossing is the first integer value of M satisfying\nDL(CM) ≥ntrain."
+    },
+    {
+      "label": "page 6, interior peak across three libraries",
+      "quote": "Panel D tests cross-library robustness. XGBoost, Light-\nGBM, and CatBoost all exhibit an interior peak. Its recur-"
+    },
+    {
+      "label": "page 6, random-forest RMSE on the evaluated range",
+      "quote": "a secondary non-boosting control, random-forest test RMSE\ndecreases monotonically over the evaluated range. This con-"
+    },
+    {
+      "label": "page 6, training checkpoints along M",
+      "quote": "iteration counts, no pronounced double-descent peak is\nvisible. As training proceeds, a clear intermediate-budget"
+    },
+    {
+      "label": "page 6, cited interpolation wording",
+      "quote": "From the effective-model-complexity viewpoint, early stop-\nping before interpolation can prevent double descent from"
+    },
+    {
+      "label": "page 7, operational capacity axis",
+      "quote": "The split-candidate budget is an operational capacity axis for\nGBDTs: it expands the root-to-leaf path dictionary while\nholding depth, ensemble size, and the leaf-count bound\nfixed. Across experiments, intermediate peaks align with"
+    },
+    {
+      "label": "page 7, depth ensemble size and leaf-count bound",
+      "quote": "depth, ensemble size, and the leaf-count bound held fixed."
+    },
+    {
+      "label": "page 9, RMSE and squared-error objective",
+      "quote": "We use RMSE because it matches\nthe squared-error training objective and expresses prediction"
+    }
+  ],
+  "model_and_data": "Gradient boosting decision trees, with CatBoost, XGBoost, and LightGBM named in the cross-library sweep, plus a random-forest control. The primary dataset in the located setup is California Housing, 20,640 rows and 8 numerical features. The extract also evaluates 18 regression datasets. Unless a panel varies sample size or depth, the California Housing setting is ntrain = 1000, ntest = 10000, and tree depth L = 2. CatBoost is run in a diagnostic profile and a default profile.",
+  "loss": "The preliminaries call the residual a squared-loss residual. The reported metric is root mean squared error. A later line says RMSE is used because it matches the squared-error training objective. Logloss is absent from this extract.",
+  "varied_axis": "The number of split candidates. The extract distinguishes M, the exact total split-candidate count, from B, CatBoost's native per-feature border budget, and calls M the primary axis. The conclusion calls the split-candidate budget an operational capacity axis that expands the root-to-leaf path dictionary. A separate figure also moves along training checkpoints at fixed positions on the same M axis, so iteration count is an additional varied coordinate in that figure.",
+  "held_fixed_axes": "The feature-view passage says the loss, tree depth, learning rate, and number of boosting rounds are held fixed while split candidates are reindexed. The conclusion says depth, ensemble size, and the leaf-count bound are held fixed for the split-candidate intervention. The default California Housing protocol fixes ntrain, ntest, and L = 2 unless a panel varies sample size or depth. The default CatBoost profile fixes the split borders, depth, learning rate, iteration count, and random seed. Those statements have located exceptions: panels vary sample size or depth, and one figure varies the training checkpoint along M.",
+  "interpolation_definition": "An original definition equating interpolation with zero training loss was not located. Training RMSE is described as already close to zero near the ambient path-span crossing. The reference crossing is printed as DL(CM) approximately ntrain, and the reported crossing is the first integer M satisfying DL(CM) greater than or equal to ntrain, using the comparison characters printed in the extract. The displayed formula for DL(CM) is broken across lines and is not repaired. A later sentence cites early stopping before interpolation as a viewpoint from Nakkiran et al. 2020. The extract does not call the path-span crossing the interpolation threshold.",
+  "assumptions": [
+    "The preliminary GBDT update is described with a squared-loss residual, and the reported error is RMSE.",
+    "The operational capacity parameter in the abstract is the number of split candidates, with other training controls held in the quoted sentence.",
+    "M is the exact total split-candidate count and B is the native per-feature border budget; M is called the primary axis.",
+    "The feature view holds loss, tree depth, learning rate, and boosting rounds fixed in the quoted sentence.",
+    "The conclusion states that depth, ensemble size, and the leaf-count bound are held fixed.",
+    "The reference kernel is explicitly not claimed to describe adaptive GBDT training exactly.",
+    "The diagnostic CatBoost profile uses symmetric trees, plain boosting, zero leaf L2 regularization, and a random_strength value printed as = 106. That printed value is ambiguous because no exponent character appears on the line.",
+    "The protocol line prints a learning rate of 0.3 and up to 106 CatBoost iterations. The iteration token is likewise ambiguous in the extract and is not repaired.",
+    "The default protocol uses five resampled training-test splits unless otherwise stated, and ntrain = 1000, ntest = 10000, L = 2 unless a panel varies sample size or depth.",
+    "The cross-library sentence reports an interior peak for XGBoost, LightGBM, and CatBoost, and the random-forest sentence says test RMSE decreases monotonically over the evaluated range."
+  ],
+  "result_type": "Empirical sweeps plus a tree, feature, and kernel diagnostic. The extract reports interior test-error peaks under split-candidate scaling for the three named GBDT libraries, training RMSE already close to zero near the path-span crossing, and a monotone random-forest curve over the evaluated range. It also reports that small iteration counts along M show no pronounced double-descent peak. The reference kernel is a diagnostic, with adaptive relevance tested empirically. These statements cover the reported regression experiments.",
+  "transfer_limits": "The located objective and metric are squared-loss residuals and RMSE on regression data, including California Housing and 18 regression datasets. Logloss is absent. CatBoost appears here under that RMSE protocol, in diagnostic and default profiles, so the card does not transfer to CatBoost with logloss. The capacity intervention is split-candidate count, and the conclusion holds depth, ensemble size, and the leaf-count bound fixed; that is a different intervention from a P leaf or P boost sequence followed by P ens. Panels that vary depth or sample size, and the figure that varies the training checkpoint along M, are additional interventions. The printed iteration budget and random_strength value use the unrepaired token 106. The path-span crossing is not identified in the extract as the interpolation threshold."
+}

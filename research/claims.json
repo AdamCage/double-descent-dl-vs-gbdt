@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "policy": "Local evidence-supported claims require exact evidence and distinct Cursor-subagent scientific review bound to user charter, or real human/Codex review. Per-claim Codex approval is not mandatory; no independent identity or truth certification is implied.",
+  "claims": [],
+  "historical_observations": [
+    {
+      "id": "legacy-qwen-width-log",
+      "evidence": "result/s05_dnn.log",
+      "assessment": "docs/legacy-assessment.md",
+      "status": "descriptive_incomplete",
+      "scientific_validity": "not_assessed",
+      "limitations": [
+        "Rounded training metrics",
+        "No right shoulder after width 512",
+        "No finalized model checkpoint",
+        "Near-duplicate and provenance audit incomplete"
+      ]
+    },
+    {
+      "id": "legacy-acceleration-pilot",
+      "evidence": "result/pilot_late_acceleration/summary.json",
+      "status": "historical_pilot",
+      "scientific_validity": "not_assessed",
+      "limitations": [
+        "Does not test the essay corpus",
+        "No replicated acceleration candidate under the pilot rule",
+        "Not independent scientific review"
+      ]
+    }
+  ],
+  "autonomy_authorization": {
+    "path": "research/decisions/autonomous-research-authorization.json",
+    "sha256": "4f2eca57802835816b688668838545df60fd568c99069c291d2e42cb4f5371c9"
+  }
+}

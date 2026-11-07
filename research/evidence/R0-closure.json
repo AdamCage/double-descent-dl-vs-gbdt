@@ -1,0 +1,11 @@
+{
+  "attempt_id": "20261107T070335-5521b09a17",
+  "closed_at": "2026-11-07T07:05:16.801647+00:00",
+  "dependency_closure_hashes": {},
+  "manifest_sha256": "a321178e4d9c7ffad7bf4444d5b2dd353b33eb94c69bb930e6b2523d3479f206",
+  "review_sha256": "47a98cab76dde1616de8e2caeafc16935312c45ac0c8f873c575dc5ea787cb51",
+  "schema_version": 1,
+  "scientific_validity": "not_assessed",
+  "stage_id": "R0",
+  "status": "operationally_closed"
+}

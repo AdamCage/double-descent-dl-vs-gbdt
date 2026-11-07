@@ -1,0 +1,75 @@
+{
+  "attempt_id": "20261107T070335-5521b09a17",
+  "criteria": [
+    {
+      "evidence": [
+        "repository-check/checks.json"
+      ],
+      "id": "C1",
+      "verdict": "pass",
+      "reason": "Structural problems empty; all authorized plans validate, uv sync --frozen completed and science stages remain disabled."
+    },
+    {
+      "evidence": [
+        "repository-check/checks.json"
+      ],
+      "id": "C2",
+      "verdict": "pass",
+      "reason": "64 tests: 63 passed, one symlink host skip; includes transitive corruption and closure-swap regressions."
+    },
+    {
+      "evidence": [
+        "repository-check/checks.json"
+      ],
+      "id": "C3",
+      "verdict": "pass",
+      "reason": "Portable legacy snapshot hashes validated; large matrices explicitly unverified."
+    },
+    {
+      "evidence": [
+        "repository-check/checks.json"
+      ],
+      "id": "C4",
+      "verdict": "pass",
+      "reason": "Detached archive round-trip and tampered-byte/secret-path rejection tests pass."
+    }
+  ],
+  "limitations": [
+    "Operational engineering acceptance only; scientific_validity remains not_assessed.",
+    "Symlink creation test skipped due Windows WinError 1314; this ledger is not an OS sandbox.",
+    "Cursor execution, transitive input completeness and per-task financial/storage budgets remain governed by the declared design and reviewer.",
+    "Historical large matrices are local-only and unverified; cross-model experimental adapters and full-text literature assessment remain future research tasks."
+  ],
+  "manifest_sha256": "a321178e4d9c7ffad7bf4444d5b2dd353b33eb94c69bb930e6b2523d3479f206",
+  "plan_sha256": "ab204a193f8c3fe385fe921b0be9c1cb23d3af25b0e7ea1899832da966f5d233",
+  "predictions": [
+    {
+      "evidence": [
+        "repository-check/checks.json"
+      ],
+      "id": "P1",
+      "outcome": "Observed in offline engineering checks; no scientific training or hypothesis evidence claimed."
+    },
+    {
+      "evidence": [
+        "repository-check/checks.json"
+      ],
+      "id": "P2",
+      "outcome": "Observed in offline engineering checks; no scientific training or hypothesis evidence claimed."
+    }
+  ],
+  "report": {
+    "path": "research/stages/R0/REPORT.md",
+    "sha256": "f0ff84fa4cca9072d9779047b75973606a07e8283a9623e9c0877bbbfb762e3c"
+  },
+  "reviewer": {
+    "harness": "codex",
+    "independence": "not_established; engineering self-review with separate agent-context code audit, no scientific approval",
+    "name": "Codex root, engineering migration author",
+    "role": "operational_stage_reviewer"
+  },
+  "schema_version": 1,
+  "scientific_validity": "not_assessed",
+  "stage_id": "R0",
+  "verdict": "accept"
+}

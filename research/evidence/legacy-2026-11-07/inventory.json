@@ -1,0 +1,362 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-11-07T06:54:34.185487+00:00",
+  "source_commit": "115d5011d19e03edf6014309dba997694cad01e0",
+  "scientific_validity": "not_assessed",
+  "note": "Partial historical preservation; large local artifacts are neither hashed nor portable. Snapshot hashes identify bytes, not scientific validity. SQLite stores are excluded; use SQLite backup or EpistemeOS export for coherent database preservation.",
+  "files": [
+    {
+      "path": "data/source_manifest.json",
+      "bytes": 1040,
+      "sha256": "00089f0094277cbc097f23cada04e572f934108fb1cc1b5932b4a2e37f369a73",
+      "status": "hashed_at_inventory",
+      "portable": true,
+      "snapshot": "files/data/source_manifest.json"
+    },
+    {
+      "path": "result/01_data/cache_hash.json",
+      "bytes": 28,
+      "sha256": "fd8f442e890ddf6081551507918ef76dc9da8d11947cd15a28a4db70e0eb6bbd",
+      "status": "hashed_at_inventory",
+      "portable": true,
+      "snapshot": "files/result/01_data/cache_hash.json"
+    },
+    {
+      "path": "result/01_data/test.parquet",
+      "bytes": 79511717,
+      "sha256": null,
+      "status": "local_only_not_hashed",
+      "portable": false
+    },
+    {
+      "path": "result/01_data/train.parquet",
+      "bytes": 371212707,
+      "sha256": null,
+      "status": "local_only_not_hashed",
+      "portable": false
+    },
+    {
+      "path": "result/01_data/val.parquet",
+      "bytes": 79406596,
+      "sha256": null,
+      "status": "local_only_not_hashed",
+      "portable": false
+    },
+    {
+      "path": "result/02_eda/cache_hash.json",
+      "bytes": 28,
+      "sha256": "bdfe9ceed69dc2c193d38d16892b46e8175de1480957cbbc764953f1bfea0807",
+      "status": "hashed_at_inventory",
+      "portable": true,
+      "snapshot": "files/result/02_eda/cache_hash.json"
+    },
+    {
+      "path": "result/02_eda/class_balance.html",
+      "bytes": 4859049,
+      "sha256": null,
+      "status": "local_only_not_hashed",
+      "portable": false
+    },
+    {
+      "path": "result/02_eda/class_balance.png",
+      "bytes": 99982,
+      "sha256": "2e81c5ed4e160e9a4a9f7bdf3ed42f0a43593fa0023dda4f1f81176c8e9571f6",
+      "status": "hashed_at_inventory",
+      "portable": false
+    },
+    {
+      "path": "result/02_eda/dist_char_len.html",
+      "bytes": 4861414,
+      "sha256": null,
+      "status": "local_only_not_hashed",
+      "portable": false
+    },
+    {
+      "path": "result/02_eda/dist_char_len.png",
+      "bytes": 137949,
+      "sha256": "7c65064409762874a75816de98bad6730ba2ff0f0be14b0a564cefba96fcf51d",
+      "status": "hashed_at_inventory",
+      "portable": false
+    },
+    {
+      "path": "result/02_eda/dist_word_count.html",
+      "bytes": 4861377,
+      "sha256": null,
+      "status": "local_only_not_hashed",
+      "portable": false
+    },
+    {
+      "path": "result/02_eda/dist_word_count.png",
+      "bytes": 123949,
+      "sha256": "f7b797c72f81dfed2efe918cbc2648f5aa6f67423951206d1c72207b2bd6feda",
+      "status": "hashed_at_inventory",
+      "portable": false
+    },
+    {
+      "path": "result/02_eda/text_stats.csv",
+      "bytes": 576,
+      "sha256": "898fa23b9672ff235f95967d6670ee39d91b3c9e48f97034114cdfd62659109f",
+      "status": "hashed_at_inventory",
+      "portable": true,
+      "snapshot": "files/result/02_eda/text_stats.csv"
+    },
+    {
+      "path": "result/02_eda/top_2grams_ai.html",
+      "bytes": 4859253,
+      "sha256": null,
+      "status": "local_only_not_hashed",
+      "portable": false
+    },
+    {
+      "path": "result/02_eda/top_2grams_ai.png",
+      "bytes": 137064,
+      "sha256": "2c44a7bcfde908ea9f061a27e481915cc8fe9c5579ce654d1d7f50e2350f074f",
+      "status": "hashed_at_inventory",
+      "portable": false
+    },
+    {
+      "path": "result/02_eda/top_2grams_human.html",
+      "bytes": 4859248,
+      "sha256": null,
+      "status": "local_only_not_hashed",
+      "portable": false
+    },
+    {
+      "path": "result/02_eda/top_2grams_human.png",
+      "bytes": 139428,
+      "sha256": "ef3452164069f0a6fc9afac64bd5d3e9ca07491f33dd36c6d1205b2fda89cc54",
+      "status": "hashed_at_inventory",
+      "portable": false
+    },
+    {
+      "path": "result/02_eda/top_3grams_ai.html",
+      "bytes": 4859373,
+      "sha256": null,
+      "status": "local_only_not_hashed",
+      "portable": false
+    },
+    {
+      "path": "result/02_eda/top_3grams_ai.png",
+      "bytes": 162356,
+      "sha256": "d3d6a6605e176fc15383830996b1158a4e83528f3cb4bda7811cbcdc45dcc816",
+      "status": "hashed_at_inventory",
+      "portable": false
+    },
+    {
+      "path": "result/02_eda/top_3grams_human.html",
+      "bytes": 4859369,
+      "sha256": null,
+      "status": "local_only_not_hashed",
+      "portable": false
+    },
+    {
+      "path": "result/02_eda/top_3grams_human.png",
+      "bytes": 164757,
+      "sha256": "84190964065286e5cae9fbf68cce48c5b0b874eed6366333e7edf278d1c4464c",
+      "status": "hashed_at_inventory",
+      "portable": false
+    },
+    {
+      "path": "result/03_embeddings/cache_hash.json",
+      "bytes": 29,
+      "sha256": "8b9f0141a707adafd42524e803602943d41b9b0223af6db8ff42dab77e530082",
+      "status": "hashed_at_inventory",
+      "portable": true,
+      "snapshot": "files/result/03_embeddings/cache_hash.json"
+    },
+    {
+      "path": "result/03_embeddings/partial.dat",
+      "bytes": 1426249728,
+      "sha256": null,
+      "status": "local_only_not_hashed",
+      "portable": false
+    },
+    {
+      "path": "result/03_embeddings/partial_flags.npy",
+      "bytes": 14637,
+      "sha256": "1915d001fffc97ceebedb730165717743a4070d0d1c1371acdbfcfa2f8cd1d31",
+      "status": "hashed_at_inventory",
+      "portable": false
+    },
+    {
+      "path": "result/03_embeddings/partial_meta.json",
+      "bytes": 77,
+      "sha256": "1c5d5a6eec5bcb36cff537632bade4d4efbd98694653ef743f24987090f1e63d",
+      "status": "hashed_at_inventory",
+      "portable": true,
+      "snapshot": "files/result/03_embeddings/partial_meta.json"
+    },
+    {
+      "path": "result/03_embeddings/partials/routerai__qwen_qwen3-embedding-8b/probe.json",
+      "bytes": 131,
+      "sha256": "d429b95986841a7e36d5c9b91cf61ba434386675a234b1479fee38072392f5ff",
+      "status": "hashed_at_inventory",
+      "portable": true,
+      "snapshot": "files/result/03_embeddings/partials/routerai__qwen_qwen3-embedding-8b/probe.json"
+    },
+    {
+      "path": "result/03_embeddings/test.npy",
+      "bytes": 1141014656,
+      "sha256": null,
+      "status": "local_only_not_hashed",
+      "portable": false
+    },
+    {
+      "path": "result/03_embeddings/train.npy",
+      "bytes": 5324652672,
+      "sha256": null,
+      "status": "local_only_not_hashed",
+      "portable": false
+    },
+    {
+      "path": "result/03_embeddings/val.npy",
+      "bytes": 1140998272,
+      "sha256": null,
+      "status": "local_only_not_hashed",
+      "portable": false
+    },
+    {
+      "path": "result/04_embedding_analysis/cache_hash.json",
+      "bytes": 28,
+      "sha256": "0207945cd70229f444b626ca9208e59b4f410a7c3a93ea539adc433428822879",
+      "status": "hashed_at_inventory",
+      "portable": true,
+      "snapshot": "files/result/04_embedding_analysis/cache_hash.json"
+    },
+    {
+      "path": "result/04_embedding_analysis/pca_explained_variance.html",
+      "bytes": 4861268,
+      "sha256": null,
+      "status": "local_only_not_hashed",
+      "portable": false
+    },
+    {
+      "path": "result/04_embedding_analysis/pca_explained_variance.png",
+      "bytes": 160825,
+      "sha256": "40cc1c254043187a9f94d0a11686cfb4443d3e872719fb9985f76a9df018a63e",
+      "status": "hashed_at_inventory",
+      "portable": false
+    },
+    {
+      "path": "result/04_embedding_analysis/pca_info.json",
+      "bytes": 391,
+      "sha256": "91f7f1f3319813959ddf445a67a45c3012ffa4208988007cef122ac073bb7d9c",
+      "status": "hashed_at_inventory",
+      "portable": true,
+      "snapshot": "files/result/04_embedding_analysis/pca_info.json"
+    },
+    {
+      "path": "result/04_embedding_analysis/test_reduced.npy",
+      "bytes": 1141850360,
+      "sha256": null,
+      "status": "local_only_not_hashed",
+      "portable": false
+    },
+    {
+      "path": "result/04_embedding_analysis/train_reduced.npy",
+      "bytes": 5328552564,
+      "sha256": null,
+      "status": "local_only_not_hashed",
+      "portable": false
+    },
+    {
+      "path": "result/04_embedding_analysis/umap_original.html",
+      "bytes": 5096486,
+      "sha256": null,
+      "status": "local_only_not_hashed",
+      "portable": false
+    },
+    {
+      "path": "result/04_embedding_analysis/umap_original.png",
+      "bytes": 273397,
+      "sha256": "b3b858a9aa0fb6158efbb35deff2713bd80410ca913a56c404817307d4afd80a",
+      "status": "hashed_at_inventory",
+      "portable": false
+    },
+    {
+      "path": "result/04_embedding_analysis/umap_reduced.html",
+      "bytes": 5088568,
+      "sha256": null,
+      "status": "local_only_not_hashed",
+      "portable": false
+    },
+    {
+      "path": "result/04_embedding_analysis/umap_reduced.png",
+      "bytes": 646946,
+      "sha256": "9a814cf99b5996c1a3365723aabdc1c2af3c6d25853125e085325405015490ed",
+      "status": "hashed_at_inventory",
+      "portable": false
+    },
+    {
+      "path": "result/04_embedding_analysis/val_reduced.npy",
+      "bytes": 1141833964,
+      "sha256": null,
+      "status": "local_only_not_hashed",
+      "portable": false
+    },
+    {
+      "path": "result/console.log",
+      "bytes": 41391,
+      "sha256": "06b94af23a4e65053cf30b2cebdd0b8a3bb1c505deff0994e071867d5ab57de1",
+      "status": "hashed_at_inventory",
+      "portable": true,
+      "snapshot": "files/result/console.log"
+    },
+    {
+      "path": "result/pilot_late_acceleration/summary.json",
+      "bytes": 14856,
+      "sha256": "30258445c78197fe7da960005db9f910cc0ed1a7f420b51e3010ff5c0b5b6ee6",
+      "status": "hashed_at_inventory",
+      "portable": true,
+      "snapshot": "files/result/pilot_late_acceleration/summary.json"
+    },
+    {
+      "path": "result/pipeline.log",
+      "bytes": 42032,
+      "sha256": "dba8b4b1222f8a86de15ab089a8431a75f60f49af449cbfeb6c6a23e4fbdaff3",
+      "status": "hashed_at_inventory",
+      "portable": true,
+      "snapshot": "files/result/pipeline.log"
+    },
+    {
+      "path": "result/s03_routerai.log",
+      "bytes": 1249755,
+      "sha256": "11a17211ad57481489aeecbda11bb66819794e04da6c93a7b2925e9bd74c6d8e",
+      "status": "hashed_at_inventory",
+      "portable": true,
+      "snapshot": "files/result/s03_routerai.log"
+    },
+    {
+      "path": "result/s04_embedding_analysis.log",
+      "bytes": 11013,
+      "sha256": "27f0bf47bd2e06ca35f3598c09a92c980f70fc314f1a552eb1eff6c2f7e112cf",
+      "status": "hashed_at_inventory",
+      "portable": true,
+      "snapshot": "files/result/s04_embedding_analysis.log"
+    },
+    {
+      "path": "result/s05_dnn.log",
+      "bytes": 2068,
+      "sha256": "a5a58284e1670d13e0eb84d90ff25028ec2e6867e225d7496294c346dd0f3076",
+      "status": "hashed_at_inventory",
+      "portable": true,
+      "snapshot": "files/result/s05_dnn.log"
+    },
+    {
+      "path": "reviews/04-11-2026.md",
+      "bytes": 33787,
+      "sha256": "6e9365cc4cc4c5786f36844fdf6c788b4b42252e0d878aa9150ebf7a8724e200",
+      "status": "hashed_at_inventory",
+      "portable": true,
+      "snapshot": "files/reviews/04-11-2026.md"
+    },
+    {
+      "path": "reviews/06-11-2026.md",
+      "bytes": 37955,
+      "sha256": "497269f5316c03bbfd70be6f4c1b7efde822c8f438ce4d1ef152f3fc17f76aec",
+      "status": "hashed_at_inventory",
+      "portable": true,
+      "snapshot": "files/reviews/06-11-2026.md"
+    }
+  ]
+}

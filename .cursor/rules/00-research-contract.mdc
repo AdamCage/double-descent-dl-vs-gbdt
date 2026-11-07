@@ -1,0 +1,28 @@
+---
+description: Mandatory evidence-first double-descent research operating contract
+alwaysApply: true
+---
+
+Read AGENTS.md and research/STATE.md before work. Follow docs/automation.md.
+Cursor with the user's selected Grok 4.7 Extra High and subagents designs,
+implements, executes, analyzes, reviews and writes within the research charter.
+Human + Codex provide upper-level critique and critical decisions, not mandatory
+per-stage/per-claim approval. Use a distinct reviewer subagent. Do not invoke Codex as the
+autonomous execution backend. Model selection stays in Cursor settings.
+
+Use scripts/research.py status/next; old objective.md and docs/plan are history.
+R0 is closed. R1-R7 preparation and conditional execution are authorized by
+research/decisions/autonomous-research-authorization.json and decision 0003.
+When ready and preparation_authorized=true, prepare the detailed plan/code,
+obtain subagent review, freeze inputs, validate, then activate ONLY that stage's
+execution flag yourself. Initial execution=false is preflight, not a request
+for new human/Codex approval. Respect cumulative resource caps and dependencies.
+One active dispatcher. Freeze plan before run. Preserve every attempt and log.
+Review must bind exact plan, report, outputs and run manifests; close is not
+external scientific approval. Evidence-supported local claims may use the bound
+cursor_team_reviewed lane. No invented measurements, independence or citations.
+
+Keep result/ and old .research/double-descent* immutable. Never modify the
+llm-semantic-afterlife example repository. Do not expose .env or credentials.
+Generic role rules in this directory are optional helpers, not the research
+protocol. Their generic confidence defaults cannot override the frozen design.

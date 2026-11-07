@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "archive": "research/evidence/R0-runs-2026-11-07.tar.gz",
+  "archive_sha256": "79fa3aca01148d7dadcbc91ab26dc6c3bc513b0ae30c7875dc6e5baa36c62669",
+  "closure_sha256": "d6320367dc01ac4d75f62a48cfca391df5ccebb143dcef8ec96c2b7dac33e2f5",
+  "restore_mode": "Fresh temporary root from archive; snapshotted verifier loaded; closure and recursive integrity verified without original artifact paths. Not a numerical experiment replay.",
+  "stage_status": "operationally_closed",
+  "attempt_id": "20261107T070335-5521b09a17",
+  "next_stage": {
+    "id": "R1",
+    "kind": "science",
+    "state": "ready",
+    "waiting_for": [],
+    "closure_error": null,
+    "execution_authorized": false,
+    "scientific_validity": "not_assessed"
+  },
+  "scientific_validity": "not_assessed"
+}

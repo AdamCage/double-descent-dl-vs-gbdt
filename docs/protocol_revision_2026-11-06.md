@@ -1,5 +1,10 @@
 # Пересмотр протокола по ревью 6 ноября 2026
 
+> Историческая версия. С 7 ноября активная программа —
+> [research-program.md](research-program.md), а состояние —
+> [research/STATE.md](../research/STATE.md). Упоминания живого процесса ниже
+> относятся ко времени написания; это не разрешение запуска.
+
 Этот файл не заменяет `docs/protocol_revision_2026-11-04.md` и не переписывает пререгистрацию `.research/double-descent`. Он не является scientific review, не закрывает обязательства EpistemeOS и не ставит рецензентское одобрение. Константа `PROTOCOL_REVISION = "review-2026-11-04"` в `src/protocol.py` намеренно не менялась: живой s05 уже посчитал от неё ключ кэша.
 
 `scientific_validity` корпуса эссе: `not_assessed`.

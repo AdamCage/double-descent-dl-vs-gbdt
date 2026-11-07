@@ -1,0 +1,76 @@
+{
+  "attempts_by_source": {
+    "L01": 2,
+    "L02": 1,
+    "L03": 1,
+    "L04": 1,
+    "L05": 1,
+    "L06": 1,
+    "L07": 1,
+    "L08": 1
+  },
+  "dataset_download_bytes": 0,
+  "download_bytes": 16420945,
+  "http_requests": 9,
+  "intake_path": "artifacts/intake/R1/20261107T082900Z",
+  "model_training_jobs": 0,
+  "schema_version": 1,
+  "stored": [
+    {
+      "attempt": 1,
+      "bytes": 1673553,
+      "sha256": "b671592188609aae4a4b99bfeb6505dcd8fadffb8916126a71570e2d0b658814",
+      "snapshot_path": "artifacts/intake/R1/20261107T082900Z/snapshots/L02.pdf",
+      "source_id": "L02",
+      "url": "https://arxiv.org/pdf/1903.08560v5"
+    },
+    {
+      "attempt": 1,
+      "bytes": 1967153,
+      "sha256": "d69796c99ca1e28365f4b92cbc92c339c59e7efac09e3a3066987303920d00a5",
+      "snapshot_path": "artifacts/intake/R1/20261107T082900Z/snapshots/L03.pdf",
+      "source_id": "L03",
+      "url": "https://arxiv.org/pdf/1908.05355v5"
+    },
+    {
+      "attempt": 1,
+      "bytes": 8603345,
+      "sha256": "9261e770663677bf7a32a12d994b950ed4f54c918c5db93aa450f8167f04278f",
+      "snapshot_path": "artifacts/intake/R1/20261107T082900Z/snapshots/L04.pdf",
+      "source_id": "L04",
+      "url": "https://arxiv.org/pdf/1912.02292v1"
+    },
+    {
+      "attempt": 1,
+      "bytes": 903567,
+      "sha256": "b57247dfa2bcf6eabc38c2a30f4b8bf50bdadabac4ec2a142960bc58f86227cf",
+      "snapshot_path": "artifacts/intake/R1/20261107T082900Z/snapshots/L05.pdf",
+      "source_id": "L05",
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2023/file/aec5e2847c5ae90f939ab786774856cc-Paper-Conference.pdf"
+    },
+    {
+      "attempt": 1,
+      "bytes": 977629,
+      "sha256": "fb2722e4c4d1b5a674279d964d5a119ba078dfa7ab8386ff4a21b869891f2000",
+      "snapshot_path": "artifacts/intake/R1/20261107T082900Z/snapshots/L06.pdf",
+      "source_id": "L06",
+      "url": "https://arxiv.org/pdf/2509.25216v1"
+    },
+    {
+      "attempt": 1,
+      "bytes": 1364733,
+      "sha256": "bd8d66e998808345a2f1cc672b0234ce66fc2329362298f718c289404a4531c7",
+      "snapshot_path": "artifacts/intake/R1/20261107T082900Z/snapshots/L07.pdf",
+      "source_id": "L07",
+      "url": "https://arxiv.org/pdf/2608.03111v1"
+    },
+    {
+      "attempt": 1,
+      "bytes": 930965,
+      "sha256": "73bde47c4c56a124c215c0e93560cd1150560f2f1f7e4d81b92489d8dce7ec7b",
+      "snapshot_path": "artifacts/intake/R1/20261107T082900Z/snapshots/L08.pdf",
+      "source_id": "L08",
+      "url": "https://arxiv.org/pdf/2206.05608v3"
+    }
+  ]
+}

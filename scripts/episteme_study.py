@@ -51,6 +51,13 @@ def _execute(store: Store, action: str, payload: dict, *, actor: str, role: str)
 
 
 def question() -> None:
+    raise SystemExit(
+        "Historical registration is frozen. Its embeddinggemma/GPU/10%-noise "
+        "scope does not describe the clean Qwen/CPU run. Use "
+        "scripts/episteme_bridge.py status|bootstrap for the new question and "
+        "docs/automation.md for stage execution. No historical store was opened."
+    )
+    # Historical implementation retained below for provenance; never execute.
     loaded = registry.load_pack("double_descent_text_v1")
     scope = {
         "corpus": "andythetechnerd03/AI-human-text mirror of shanegerami/ai-vs-human-text",
@@ -134,6 +141,13 @@ def question() -> None:
 
 
 def evaluate() -> None:
+    raise SystemExit(
+        "Historical evaluation is disabled: the text pack's fixed "
+        "embeddinggemma/GPU/10%-noise assumptions mismatch current provenance. "
+        "Do not relabel artifacts to satisfy the old pack. Use the new workflow "
+        "in docs/automation.md; historical stores remain unchanged."
+    )
+    # Historical implementation retained below for provenance; never execute.
     if not (CAPTURE / "bundle.json").is_file():
         raise SystemExit("missing episteme_capture/bundle.json")
     pointer = json.loads((STUDY_ROOT / "question_pointer.json").read_text(encoding="utf-8"))

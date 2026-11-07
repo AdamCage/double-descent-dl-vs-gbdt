@@ -1,0 +1,92 @@
+{
+  "source_id": "L06",
+  "version": "arXiv:2509.25216v1",
+  "locators": [
+    {
+      "label": "page 2, interpolation threshold definition",
+      "quote": "threshold—where the number of model parameters equals the number of training samples—would"
+    },
+    {
+      "label": "page 3, CRyPTIC subsample",
+      "quote": "n = 500 isolates: 250 resistant and 250 susceptible to isoniazid. Only isolates labelled with a"
+    },
+    {
+      "label": "page 3, feature-matrix dimensions",
+      "quote": "matrix had dimensions 765,413×4. Although the feature-to-sample ratio was high, no additional"
+    },
+    {
+      "label": "page 4, squared-loss regression",
+      "quote": "binary, we adopted a squared-loss regression framework to align with the methodology of Belkin"
+    },
+    {
+      "label": "page 4, labels and test MSE",
+      "quote": "Phenotypic labels were binarised as y ∈{0, 1}, and mean squared error (MSE) on the test"
+    },
+    {
+      "label": "page 4, leaf and ensemble parameterization",
+      "quote": "nodes per tree (P leaf) and the number of estimators in the ensemble (P ens). Three experimental"
+    },
+    {
+      "label": "page 4, each axis held fixed per sweep",
+      "quote": "regimes were implemented. First, we varied P leaf ∈{2, . . . , 500} with P ens ∈{1, 5, 10, 50} held\nfixed per sweep. Second, we varied P ens ∈{1, . . . , 50} with P leaf ∈{20, 50, 100, 500} held fixed"
+    },
+    {
+      "label": "page 4, boosting leaf bound and learning rate",
+      "quote": "with constraints: base learners had P leaf ≤10 and we used a high learning rate γ = 0.85 to"
+    },
+    {
+      "label": "page 4, fixed boosting rounds",
+      "quote": "third, we fixed P boost = 200 and scaled P ens ∈{1, . . . , 50}. All evaluations used a consistent"
+    },
+    {
+      "label": "page 4, train-test split",
+      "quote": "grid and the same 70:30 train–test split."
+    },
+    {
+      "label": "page 4, synthetic sample size",
+      "quote": "work [16]. The dataset contained n = 500 samples and p = 50 independent features. For each"
+    },
+    {
+      "label": "page 4, scikit-learn implementation",
+      "quote": "modelling used Python 3.12 with scikit-learn 1.6.1 [25], NumPy 2.2.3 [26], pandas 2.2.3 [27],"
+    },
+    {
+      "label": "page 6, two complexity axes",
+      "quote": "axes: learner capacity (e.g., P leaf or P boost) and ensemble size (P ens). This dual-axis framework"
+    },
+    {
+      "label": "page 6, composite scaling",
+      "quote": "(increasing P leaf or P boost), followed by expanding P ens—a clear double descent pattern emerged"
+    },
+    {
+      "label": "page 7, dotted interpolation marker",
+      "quote": "(RF1 to RF50). The vertical dotted line marks the interpolation threshold."
+    },
+    {
+      "label": "page 9, single-axis result in these experiments",
+      "quote": "ensemble size independently—the double descent pattern disappeared. Instead, generalisation"
+    },
+    {
+      "label": "page 9, ensemble sweep with boosting rounds fixed",
+      "quote": "boosting range. Conversely, increasing P ens while keeping P boost fixed consistently reduced"
+    }
+  ],
+  "model_and_data": "Decision tree regressors, random forest regressors, and gradient boosting regressors. The real-data sample is a stratified CRyPTIC subsample of n = 500 Mycobacterium tuberculosis isolates, 250 resistant and 250 susceptible to isoniazid. The final feature matrix is given as 765,413 by 4, with no additional dimensionality reduction on that line. The synthetic data are the Friedman sample with n = 500 and p = 50. Modelling is located in scikit-learn 1.6.1, with one 70:30 train-test split.",
+  "loss": "Squared-loss regression, despite a binary prediction task. Phenotypic labels are binarised as y in {0, 1}, and mean squared error on the test set is the generalisation metric. CatBoost and logloss are absent from this extract.",
+  "varied_axis": "Two orthogonal axes: learner capacity and ensemble size. For trees, capacity is the number of terminal leaf nodes per tree, P leaf, and ensemble size is P ens. For gradient boosting, the corresponding capacity count in the results text is P boost, with the same ensemble axis P ens. The extract reports a composite sequence that first scales P leaf or P boost and then expands P ens, plus sweeps that vary one axis at a time.",
+  "held_fixed_axes": "Single-axis sweeps hold the other axis fixed per sweep: P ens is held in a set while P leaf varies, and P leaf is held in a set while P ens varies. Gradient-boosting base learners have P leaf at most 10 and learning rate gamma = 0.85, printed with the Greek letter. One located boosting regime fixes P boost = 200 and scales P ens. All located evaluations use one consistent grid and the same 70:30 train-test split.",
+  "interpolation_definition": "Page 2 defines the interpolation threshold as the point where the number of model parameters equals the number of training samples. A figure caption says the vertical dotted line marks the interpolation threshold. The boosting setup says a high learning rate is used to encourage rapid interpolation. The extract does not give a separate train-error cutoff for placing the dotted line, and it does not state that the fixed P boost = 200 regime was chosen because squared training error had reached zero.",
+  "assumptions": [
+    "The task is binary, and the models are squared-loss regressors with test mean squared error as the metric.",
+    "Labels are binarised as y in {0, 1}.",
+    "Tree complexity uses P leaf and P ens; boosting experiments also use P boost and P ens.",
+    "When one of those axes is swept, the other is held fixed per sweep.",
+    "Boosting base learners have P leaf at most 10 and learning rate gamma = 0.85.",
+    "The third boosting experiment fixes P boost = 200 and scales P ens over the printed set {1, . . . , 50}.",
+    "The CRyPTIC analysis uses n = 500 isolates and a feature matrix of dimensions 765,413 by 4, without additional dimensionality reduction in the quoted line.",
+    "The synthetic design uses n = 500 samples and p = 50 features.",
+    "The interpolation threshold in the quoted definition is parameter count equal to the number of training samples."
+  ],
+  "result_type": "Empirical report on this CRyPTIC subsample and the Friedman sample. The extract says a double-descent pattern emerged under composite scaling of learner capacity followed by P ens, and says the double-descent pattern disappeared when learner capacity or ensemble size was varied independently. Those sentences are confined to the experiments described in the extract.",
+  "transfer_limits": "The located implementation is scikit-learn squared-loss regression with test MSE, on a binary label coded as 0/1 and on a Friedman regression sample. CatBoost and logloss are absent. The intervention is P leaf or P boost together with P ens, including composite and single-axis schedules. It is a different intervention from a split-candidate sweep. The quoted boosting schedule that fixes P boost = 200 is not described as stopping at zero training error. Results use one 70:30 split on these samples."
+}

@@ -1,0 +1,87 @@
+{
+  "source_id": "L05",
+  "version": "NeurIPS 2023 conference PDF",
+  "locators": [
+    {
+      "label": "page 1, multiple complexity axes",
+      "quote": "becomes apparent that there are implicitly multiple, distinct complexity axes along"
+    },
+    {
+      "label": "page 1, interpolation threshold p=n",
+      "quote": "its location is thus not inherently tied to the interpolation threshold\np=n."
+    },
+    {
+      "label": "page 3, squared loss",
+      "quote": "train all ML methods by minimizing the squared loss"
+    },
+    {
+      "label": "page 3, multi-class squared loss",
+      "quote": "1In multi-class settings, [BHMM19] use a one-vs-rest strategy and report squared loss summed across classes."
+    },
+    {
+      "label": "page 3, MNIST sample",
+      "quote": "we focus on results using MNIST (with ntrain = 10000) in the main text."
+    },
+    {
+      "label": "page 3, terminal-leaf axis",
+      "quote": "the maximum allowed number of terminal leaf nodes P leaf."
+    },
+    {
+      "label": "page 3, single-tree leaf limit",
+      "quote": "be increased past n (which is when every leaf contains only one instance)"
+    },
+    {
+      "label": "page 3, ensemble model class",
+      "quote": "parameters within the same model class: in fact, when P ens >1 one is no longer actually considering\na tree, but instead an ensemble of trees (i.e. a random forest [Bre01] without bootstrapping)."
+    },
+    {
+      "label": "page 3, one axis held fixed for trees",
+      "quote": "that, on the one hand, for fixed P ens, error exhibits a classical convex\nU- (or L-)shape in tree-depth P leaf. On the other hand, for fixed\nP leaf in the right plot, error also exhibits an L-shape in the number"
+    },
+    {
+      "label": "page 3, tree composite transition",
+      "quote": "only by transitioning from increasing P leaf (with P ens = 1) to\nincreasing P ens (with P leaf =n) – i.e. by connecting the two solid"
+    },
+    {
+      "label": "page 4, boosting base learner and learning rate",
+      "quote": "use trees with 10 leaves as base learners and a high learning rate of γ = 0.85 to encourage quick"
+    },
+    {
+      "label": "page 4, boosting rounds then ensemble",
+      "quote": "rounds P boost until the squared training error reaches approximately zero, after which P boost is fixed\nand ensembling of P ens independent models is used to further increase the raw parameter count."
+    },
+    {
+      "label": "page 4, interpolation threshold p = n",
+      "quote": "to P ens. Finally, we note that the interpolation threshold p = n plays a special role only on the\nP leaf axis where it determines maximal depth, while parameters on the P ens axis can be increased"
+    },
+    {
+      "label": "page 4, switch between complexity methods",
+      "quote": "occurs only when and where we switch from one method of increasing complexity to another."
+    },
+    {
+      "label": "page 4, separate linear-regression experiment",
+      "quote": "We are now ready to consider Fig. 2 of [BHMM19], which provides experiments demonstrating\ndouble descent in the case of linear regression. Recall that linear regression with y ∈Rn and X ∈"
+    },
+    {
+      "label": "page 4, boosting shapes with one axis fixed",
+      "quote": "ensemble members P ens, test error has a U- or L-shape in the number of boosting rounds P boost\nand an L-shape in P ens for fixed boosting rounds P boost. As a consequence, a double descent shape"
+    }
+  ],
+  "model_and_data": "Reanalysis of non-neural experiments from Belkin et al., cited as BHMM19. The located tree experiment varies the maximum number of terminal leaves and then an ensemble of trees; once the ensemble count exceeds one, the extract calls the model a random forest without bootstrapping. The located boosting experiment uses trees with 10 leaves as base learners. Main-text results use MNIST with ntrain = 10000. A separate linear-regression experiment is also located.",
+  "loss": "Squared loss. The extract says the reanalyzed methods are trained by minimizing the squared loss. In multi-class settings it attributes to BHMM19 a one-vs-rest strategy that reports squared loss summed across classes. The footnote digit printed immediately after 'squared loss' on that protocol line is not part of the loss name.",
+  "varied_axis": "Two raw-parameter routes, used both as separate sweeps and as a composite sequence. For trees, the maximum allowed number of terminal leaf nodes P leaf is increased, and the number of trees P ens is increased. The composite curve transitions from increasing P leaf with P ens = 1 to increasing P ens with P leaf = n. For gradient boosting, the number of boosting rounds P boost is increased and then the number of independent models P ens is increased. The extract says a double-descent shape occurs where the method of increasing complexity switches.",
+  "held_fixed_axes": "The training objective in this setup is squared loss. Tree sweeps fix P ens while varying P leaf, or fix P leaf while varying P ens. Boosting sweeps are described as a U- or L-shape in P boost for a fixed number of ensemble members, and an L-shape in P ens for fixed boosting rounds. The located boosting replication uses trees with 10 leaves and learning rate gamma = 0.85, as printed with the Greek letter in the extract. The main-text sample is MNIST with ntrain = 10000.",
+  "interpolation_definition": "Two printed forms are located. Page 1 says the second-descent location is not inherently tied to the interpolation threshold, and the next line begins p=n. Page 4 says the interpolation threshold p = n plays a special role only on the P leaf axis, where it determines maximal depth, while P ens can be increased indefinitely. For a single tree, P leaf cannot be increased past n, described as every leaf containing only one instance. In the boosting experiment, P boost is increased until the squared training error reaches approximately zero, after which P boost is fixed. The extract does not supply a separate formula identifying that approximate-zero training error with p = n.",
+  "assumptions": [
+    "The reanalyzed machine-learning methods are trained by minimizing squared loss.",
+    "The multi-class protocol attributed to BHMM19 is one-vs-rest squared loss summed across classes.",
+    "Main-text results use MNIST with ntrain = 10000.",
+    "A single tree cannot increase P leaf past n, when every leaf contains only one instance, and larger leaves may already be pure.",
+    "When P ens > 1 the plotted model is an ensemble of trees, a random forest without bootstrapping.",
+    "The boosting replication uses trees with 10 leaves and learning rate gamma = 0.85.",
+    "That boosting experiment increases P boost until squared training error is approximately zero, then fixes P boost and increases P ens.",
+    "The interpolation threshold is printed both as p=n and as p = n, and on the P leaf axis it determines maximal depth."
+  ],
+  "result_type": "Empirical reanalysis of the located tree, boosting, and linear-regression plots. For the tree and boosting plots, the extract reports classical convex shapes on each separate axis and a double-descent shape only at the switch from one way of increasing raw parameter count to the other. This is a report about those plots.",
+  "transfer_limits": "The located loss is squared loss, including one-vs-rest squared loss summed across classes. CatBoost and logloss are absent from this extract. The tree and boosting intervention switches between P leaf or P boost and P ens, so these plots do not document a split-candidate sweep with ensemble size held fixed. The linear-regression experiment is identified as a separate case from the tree and boosting experiments."
+}

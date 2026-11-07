@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "decision_id": "DD-R1-AUDIT-2026-11-07",
+  "authority": "codex",
+  "status": "accepted",
+  "decision_kind": "bounded_stage_design_with_user_umbrella_authorization",
+  "authorization_decision": {
+    "path": "research/decisions/autonomous-research-authorization.json",
+    "sha256": "4f2eca57802835816b688668838545df60fd568c99069c291d2e42cb4f5371c9"
+  },
+  "task_contract": {
+    "path": "research/stages/R1/TASK-CONTRACT.json",
+    "sha256": "7476c67389a4855b5bb4eee5f93ea541999d6f0c1e69a1f41b3b9e498f0ce9ed"
+  },
+  "stage_id": "R1",
+  "preparation_authorized": true,
+  "execution_activation": "Delegated to Cursor after real scripts/inputs, distinct-subagent design review, status=frozen and validate-plan PASS; no second approval.",
+  "scientific_validity": "not_assessed"
+}

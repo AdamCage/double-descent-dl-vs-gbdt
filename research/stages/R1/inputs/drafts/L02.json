@@ -1,0 +1,138 @@
+{
+  "source_id": "L02",
+  "version": "arXiv:1903.08560v5",
+  "locators": [
+    {
+      "label": "page 1, interpolators",
+      "quote": "Interpolators—estimators that achieve zero training error—have attracted growing attention in machine"
+    },
+    {
+      "label": "page 1, ridgeless least squares",
+      "quote": "we study minimum ℓ2 norm (“ridgeless”) interpolation in high-dimensional least squares regression. We"
+    },
+    {
+      "label": "page 1, linear feature map",
+      "quote": "xi ∈Rp are obtained by applying a linear transform to a vector of i.i.d. entries, xi = Σ1/2zi (with zi ∈Rp);"
+    },
+    {
+      "label": "page 1, one-layer feature map",
+      "quote": "one-layer neural network, xi = ϕ(Wzi) (with zi ∈Rd, W ∈Rp×d a matrix of i.i.d. entries, and ϕ an"
+    },
+    {
+      "label": "page 1, data-model display",
+      "quote": "(xi, ϵi) ∼Px × Pϵ,\ni = 1, . . . , n,\n(1)\nyi = xT\ni β + ϵi,\ni = 1, . . . , n,\n(2)\nwhere, Px is a distribution on Rp such that E(xi) = 0, Cov(xi) = Σ, and Pϵ is a distribution on R such that\nE(ϵi) = 0, Var(ϵi) = σ2."
+    },
+    {
+      "label": "page 2, overparametrization ratio",
+      "quote": "We denote by γ := p/n ∈(0, ∞) the overparametrization ratio. When γ < 1, we call the problem\nunderparametrized, and when γ > 1, we call it overparametrized. Our most general results for the linear model"
+    },
+    {
+      "label": "page 2, finite-n risk approximation",
+      "quote": "(Theorem 2 and 5) apply to a non-asymptotic setting in which n, p are ﬁnite, and provide a deterministic\napproximation of the risk with error bounds that are uniform in the distribution of the data. We will"
+    },
+    {
+      "label": "page 2, asymptotic ratio",
+      "quote": "occasionally consider a simpler asymptotic scenario in which both p and n diverge with p/n →γ."
+    },
+    {
+      "label": "page 3, risk versus aspect ratio",
+      "quote": "Figure 1: Asymptotic risk curves for the linear feature model, as a function of the limiting aspect ratio γ. Black and yellow:"
+    },
+    {
+      "label": "page 3, isotropic SNR curves",
+      "quote": "risks for min-norm least squares in the isotropic well speciﬁed model, for SNR = 1 and SNR = 5, respectively. These two match"
+    },
+    {
+      "label": "page 3, finite-sample risk points",
+      "quote": "latent space model of Section 5.4, with r = 7, σ = 0. The points denote ﬁnite-sample risks, with n = 200, p = [γn], across"
+    },
+    {
+      "label": "page 5, Belkin empirical trend",
+      "quote": "Recently, Belkin et al. (2018a) pointed out a fascinating empirical trend where, for\npopular methods like neural networks and random forests, we can see a second bias-variance tradeoﬀin the"
+    },
+    {
+      "label": "page 5, least-squares verification",
+      "quote": "results formally verify that this double descent phenomenon occurs even in the simple and fundamental case\nof least squares regression. The appearance of the second descent in the risk, past the interpolation boundary"
+    },
+    {
+      "label": "page 5, variance past the boundary",
+      "quote": "(γ = 1), is explained by the fact that the variance decreases as γ grows, as discussed above."
+    },
+    {
+      "label": "page 7, lazy-training regime",
+      "quote": "the concrete correspondence outlined above only holds in a certain ‘lazy training’ regime, in which network\nweights do not change much during training, More generally, in a neural network, the feature representation"
+    },
+    {
+      "label": "page 7, features not learned",
+      "quote": "and the regression function or classiﬁer are learned simultaneously. In both our linear and nonlinear model\nsettings, the features X are not learned, but observed. Learning X could signiﬁcantly change some aspects of"
+    },
+    {
+      "label": "page 8, out-of-sample prediction risk",
+      "quote": "training data X, y), we deﬁne its out-of-sample prediction risk (or simply, risk) as"
+    },
+    {
+      "label": "page 8, bias-variance decomposition",
+      "quote": "RX). Note also that we have the bias-variance decomposition"
+    },
+    {
+      "label": "page 8, min-norm estimator",
+      "quote": "We consider the minimum ℓ2 norm (min-norm) least squares regression estimator, of y on X, deﬁned by"
+    },
+    {
+      "label": "page 8, pseudoinverse and ridgeless limit",
+      "quote": "This can be equivalently written as ˆβ = (XT X)+XT y, where (XT X)+ is the pseudoinverse of XT X. An\nalternative name for (4) is the “ridgeless” least squares estimator, motivated by the fact that ˆβ = limλ→0+ ˆβλ,"
+    },
+    {
+      "label": "page 9, ridge closed form",
+      "quote": "or, equivalently, ˆβλ = (XT X + nλI)−1XT y."
+    },
+    {
+      "label": "page 9, rank and interpolation",
+      "quote": "When X has full column rank the min-norm least squares estimator reduces to ˆβ = (XT X)−1XT y, the\nusual least squares estimator. When X has rank n, importantly, this estimator interpolates the training data:"
+    },
+    {
+      "label": "page 9, gradient-descent initialization",
+      "quote": "Proposition 1. Initialize β(0) = 0, and consider running gradient descent on the least squares loss, yielding"
+    },
+    {
+      "label": "page 9, gradient-descent limit",
+      "quote": "where we take 0 < t ≤1/λmax(XT X) (and λmax(XT X) is the largest eigenvalue of XT X). Then limk→∞β(k) = ˆβ,\nthe min-norm least squares solution in (4)."
+    },
+    {
+      "label": "page 9, proposition 2 moments",
+      "quote": "Proposition 2. Assume the model (1), (2), and assume x ∼Px is of the form x = Σ1/2z, where z is a\nrandom vector with i.i.d. entries that have zero mean, unit variance, and a ﬁnite 4th moment, and Σ is a"
+    },
+    {
+      "label": "page 10, theorem 1 entry moments",
+      "quote": "Theorem 1. Assume the model (1), (2), where x ∼Px has i.i.d. entries with zero mean, unit variance,"
+    },
+    {
+      "label": "page 10, moment order and broken norm",
+      "quote": "and a ﬁnite moment of order 4 + η, for some η > 0. Also assume that ∥β∥2\n2 = r2 for all n, p. Then for the"
+    },
+    {
+      "label": "page 10, SNR definition",
+      "quote": "variance decreases with γ. Let SNR = r2/σ2. Observe that the risk of the null estimator ˜β = 0 is r2, which"
+    }
+  ],
+  "model_and_data": "Minimum ℓ2-norm (“ridgeless”) interpolation in high-dimensional least squares. The quoted data display is line-broken: it shows (xi, ϵi) ∼ Px × Pϵ and a response line that stops at “yi = xT”, then states E(xi) = 0, Cov(xi) = Σ, E(ϵi) = 0, and Var(ϵi) = σ2. One quoted feature map is xi = Σ1/2zi with zi a vector of i.i.d. entries, zi ∈Rp. Another quoted map is a one-layer neural network xi = ϕ(Wzi), with zi ∈Rd and W ∈Rp×d a matrix of i.i.d. entries; the activation clause continues past that line and is not completed here. The broken response display is not rewritten.",
+  "loss": "The quoted object is the out-of-sample prediction risk of an estimator built from the training pair (X, y). A later quoted line says that risk has a bias-variance decomposition. The displayed formula for that risk is not one of the intact quoted lines, so it is not reconstructed. The estimator quote is the minimum ℓ2-norm least squares estimator of y on X.",
+  "varied_axis": "Figure 1 is quoted as asymptotic risk curves against the limiting aspect ratio γ. The extract defines γ := p/n ∈(0, ∞), calls γ < 1 underparametrized and γ > 1 overparametrized, and also considers p and n diverging with p/n →γ. A separate caption line places min-norm least squares in the isotropic well-specified model at SNR = 1 and SNR = 5; those are different curves, not the same axis as γ. A quoted finite-sample line uses n = 200 and p = [γn], and that line stops at “across”.",
+  "held_fixed_axes": "The quoted asymptotic scenario sends p and n to infinity with p/n →γ. Theorem 1, in the quoted lines, assumes i.i.d. feature entries with zero mean and unit variance and a finite moment of order 4 + η. The coefficient-norm display in that quote is broken: it ends at ∥β∥2 and the next line begins “2 = r2 for all n, p”; that display is not rewritten. A later single line sets SNR = r2/σ2. The quoted finite-sample markers use n = 200 and p = [γn]. SNR is not held fixed across the quoted Figure 1 curves, which name SNR = 1 and SNR = 5.",
+  "interpolation_definition": "The extract defines interpolators as estimators that achieve zero training error. The min-norm estimator is the minimum ℓ2-norm least squares estimator of y on X, written ˆβ = (XT X)+XT y, where (XT X)+ is the pseudoinverse. The quoted ridgeless name is the limit ˆβ = limλ→0+ ˆβλ. The quoted ridge closed form is ˆβλ = (XT X + nλI)−1XT y. When X has full column rank, the quote reduces the min-norm estimator to ˆβ = (XT X)−1XT y; when X has rank n, the same quote says this estimator interpolates the training data. Gradient descent is quoted as initialized at β(0) = 0 on the least squares loss; under the quoted step-size bound, limk→∞β(k) = ˆβ, and the next line calls that the min-norm least squares solution.",
+  "assumptions": [
+    "Interpolators are estimators that achieve zero training error.",
+    "A quoted feature map is xi = Σ1/2zi with zi a vector of i.i.d. entries and zi ∈Rp.",
+    "A quoted feature map is a one-layer neural network xi = ϕ(Wzi), with zi ∈Rd and W ∈Rp×d a matrix of i.i.d. entries.",
+    "The quoted data display states E(xi) = 0, Cov(xi) = Σ, E(ϵi) = 0, and Var(ϵi) = σ2. Its response line is broken after “yi = xT”.",
+    "The quote sets γ := p/n ∈(0, ∞), calls γ < 1 underparametrized, and calls γ > 1 overparametrized.",
+    "Proposition 2 assumes x ∼Px has the form x = Σ1/2z, where z has i.i.d. entries with zero mean, unit variance, and a finite 4th moment.",
+    "Theorem 1 assumes x ∼Px has i.i.d. entries with zero mean and unit variance.",
+    "The following quoted lines assume a finite moment of order 4 + η, for some η > 0, and the next line begins “2 = r2 for all n, p”.",
+    "When X has rank n, the quoted text says this estimator interpolates the training data.",
+    "Under the quoted step-size bound, limk→∞β(k) = ˆβ, and the next line of that quote calls it the min-norm least squares solution.",
+    "The quoted line sets SNR = r2/σ2."
+  ],
+  "result_type": "Both a finite-n approximation and an asymptotic limit, together with finite-sample risk points. Theorems 2 and 5 are quoted as applying in a non-asymptotic setting where n and p are finite, and as providing a deterministic approximation of the risk with error bounds uniform in the distribution of the data. Another quoted line is the asymptotic scenario in which p and n diverge with p/n →γ. Figure 1 is quoted as plotting asymptotic risk curves, with finite-sample risks at n = 200 and p = [γn]. The formal verification quoted here is for least squares regression. For that least-squares risk, the extract says the second descent past the interpolation boundary (γ = 1) is explained by the variance decreasing as γ grows. That sentence is kept inside this least-squares setting.",
+  "transfer_limits": "The quoted neural-network correspondence holds only in a lazy-training regime in which network weights do not change much during training. The following quoted lines say that, in a neural network, the feature representation and the regression function or classifier are learned simultaneously, and that in both the linear and nonlinear model settings the features X are not learned, but observed. The extract says learning X could change some aspects of interpolator behavior. The formal double-descent verification quoted here is least squares regression. Neural networks and random forests appear in a sentence that attributes an empirical trend to Belkin et al. The extract does not locate gradient-boosted trees or an essay corpus, and it does not locate a trained multilayer perceptron outside that lazy-training qualification."
+}

@@ -1,0 +1,7361 @@
+
+
+--- page 1 ---
+The generalization error of random features regression:
+Precise asymptotics and double descent curve
+Song Mei∗
+and
+Andrea Montanari†
+December 14, 2020
+Abstract
+Deep learning methods operate in regimes that defy the traditional statistical mindset. Neural net-
+work architectures often contain more parameters than training samples, and are so rich that they can
+interpolate the observed labels, even if the latter are replaced by pure noise. Despite their huge com-
+plexity, the same architectures achieve small generalization error on real data.
+This phenomenon has been rationalized in terms of a so-called ‘double descent’ curve. As the model
+complexity increases, the test error follows the usual U-shaped curve at the beginning, ﬁrst decreasing
+and then peaking around the interpolation threshold (when the model achieves vanishing training error).
+However, it descends again as model complexity exceeds this threshold. The global minimum of the
+test error is found above the interpolation threshold, often in the extreme overparametrization regime in
+which the number of parameters is much larger than the number of samples. Far from being a peculiar
+property of deep neural networks, elements of this behavior have been demonstrated in much simpler
+settings, including linear regression with random covariates.
+In this paper we consider the problem of learning an unknown function over the d-dimensional sphere
+Sd−1, from n i.i.d.
+samples (xi, yi) ∈Sd−1 × R, i ≤n.
+We perform ridge regression on N random
+features of the form σ(wT
+ax), a ≤N. This can be equivalently described as a two-layers neural network
+with random ﬁrst-layer weights.
+We compute the precise asymptotics of the test error, in the limit
+N, n, d →∞with N/d and n/d ﬁxed. This provides the ﬁrst analytically tractable model that captures
+all the features of the double descent phenomenon without assuming ad hoc misspeciﬁcation structures. In
+particular, above a critical value of the signal-to-noise ratio, minimum test error is achieved by extremely
+overparametrized interpolators, i.e., networks that have a number of parameters much larger than the
+sample size, and vanishing training error.
+Contents
+1
+Introduction
+3
+2
+Results and insights: An informal overview
+6
+3
+Related literature
+9
+3.1
+Learning via interpolation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+9
+3.2
+Random features and kernels
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+9
+3.3
+Technical contribution . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+10
+4
+Notations
+10
+5
+Main results
+11
+5.1
+Statement of main result . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+13
+5.2
+Simplifying the asymptotic risk in special cases . . . . . . . . . . . . . . . . . . . . . . . . . .
+13
+5.2.1
+Ridgeless limit
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+14
+∗Institute for Computational and Mathematical Engineering, Stanford University
+†Department of Electrical Engineering and Department of Statistics, Stanford University
+1
+arXiv:1908.05355v5  [math.ST]  11 Dec 2020
+
+
+--- page 2 ---
+5.2.2
+Highly overparametrized regime . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+15
+5.2.3
+Large sample limit . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+16
+6
+Asymptotics of the training error
+17
+6.1
+Numerical illustrations . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+18
+7
+An equivalent Gaussian covariates model
+19
+8
+Proof of Theorem 2
+22
+9
+Proof of Proposition 8.1
+26
+9.1
+Proof of Lemma 9.3
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+28
+9.2
+Proof of Lemma 9.4
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+28
+9.3
+Proof of Lemma 9.5
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+31
+10 Proof of Proposition 8.3
+33
+10.1 The key lemma: partial Stieltjes transforms are approximate ﬁxed point . . . . . . . . . . . .
+33
+10.2 Preliminaries of the proof of Lemma 10.1: Stieltjes transforms and the ﬁxed point equation .
+34
+10.3 Proof of Lemma 10.1: Leave-one-out argument
+. . . . . . . . . . . . . . . . . . . . . . . . . .
+35
+10.4 Equivalence between Gaussian and sphere version of Stieltjes transforms . . . . . . . . . . . .
+44
+10.5 Proof of Proposition 8.3 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+46
+11 Proof of Proposition 8.4
+48
+11.1 Properties of the Stieltjes transforms and the log determinant . . . . . . . . . . . . . . . . . .
+48
+11.2 Proof of Proposition 8.4 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+50
+12 Proof of Theorem 3, 4, and 5
+51
+12.1 Proof of Theorem 3 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+51
+12.2 Proof of Theorem 4 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+53
+12.3 Proof of Theorem 5 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+53
+13 Proof of Proposition 5.1 and 5.2
+53
+13.1 Proof of Proposition 5.1 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+53
+13.2 Proof of Proposition 5.2 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+54
+A Technical background
+60
+A.1 Functional spaces over the sphere . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+60
+A.2 Gegenbauer polynomials . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+60
+A.3 Hermite polynomials . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+61
+B Proof of Proposition 8.2
+63
+C Additional Proofs in Section 9
+64
+C.1 Proof of Lemma 9.1 and Lemma 9.2
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+64
+C.2 Proof of Lemma 9.6 and Lemma 9.7
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+64
+C.3 Some auxiliary lemmas . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+68
+C.4 The decomposition of kernel inner product matrices
+. . . . . . . . . . . . . . . . . . . . . . .
+72
+C.5 A lemma on the variance of the quadratic form . . . . . . . . . . . . . . . . . . . . . . . . . .
+72
+D Proof of Lemma 8.1
+74
+E Proof sketch for Theorem 6
+75
+2
+
+
+--- page 3 ---
+1
+Introduction
+Statistical lore recommends not to use models that have too many parameters since this will lead to ‘over-
+ﬁtting’ and poor generalization.
+Indeed, a plot of the test error as a function of the model complexity
+often reveals a U-shaped curve. The test error ﬁrst decreases because the model is less and less biased, but
+then increases because of a variance explosion [HTF09]. In particular, the interpolation threshold, i.e., the
+threshold in model complexity above which the training error vanishes (the model completely interpolates
+the data), corresponds to a large test error. It seems wise to keep the model complexity well below this
+threshold in order to obtain a small generalization error.
+These classical prescriptions are in stark contrast with the current practice in deep learning. The number
+of parameters of modern neural networks can be much larger than the number of training samples, and the
+resulting models are often so complex that they can perfectly interpolate the data. Even more surprisingly,
+they can interpolate the data when the actual labels are replaced by pure noise [ZBH+16]. Despite such
+a large complexity, these models have small test error and can outperform others trained in the classical
+underparametrized regime.
+This behavior has been rationalized in terms of a so-called ‘double-descent’ curve [BMM18, BHMM19].
+A plot of the test error as a function of the model complexity follows the traditional U-shaped curve until the
+interpolation threshold. However, after a peak at the interpolation threshold, the test error decreases, and
+attains a global minimum in the overparametrized regime. In fact, the minimum error often appears to be ‘at
+inﬁnite complexity’: the more overparametrized is the model, the smaller is the error. It is conjectured that
+the good generalization behavior in this highly overparametrized regime is due to the implicit regularization
+induced by gradient descent learning: among all interpolating models, gradient descent selects the simplest
+one, in a suitable sense. An example of double descent curve is plotted in Fig. 1. The main contribution of
+this paper is to describe a natural, analytically tractable model leading to this generalization curve, and to
+derive precise formulae for the same curve, in a suitable asymptotic regime.
+0
+0.5
+1
+1.5
+2
+2.5
+3
+3.5
+4
+4.5
+5
+0
+0.5
+1
+1.5
+2
+2.5
+3
+Test error
+0
+0.5
+1
+1.5
+2
+2.5
+3
+3.5
+4
+4.5
+5
+0
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+0.9
+1
+Test error
+Figure 1: Random features ridge regression with ReLU activation (σ = max{x, 0}). Data are generated via
+yi = ⟨β1, xi⟩(zero noise) with ∥β1∥2
+2 = 1, and ψ2 = n/d = 3. Left frame: regularization λ = 10−8 (we
+didn’t set λ = 0 exactly for numerical stability). Right frame: λ = 10−3. The continuous black line is our
+theoretical prediction, and the colored symbols are numerical results for several dimensions d. Symbols are
+averages over 20 instances and the error bars report the standard error of the means over these 20 instances.
+The double-descent scenario is far from being speciﬁc to neural networks, and was instead demonstrated
+empirically in a variety of models including random forests and random features models [BHMM19]. Recently,
+several elements of this scenario were established analytically in simple least square regression, with certain
+probabilistic models for the random covariates [AS17, HMRT19, BHX19]. These papers consider a setting
+in which we are given i.i.d. samples (yi, xi) ∈R × Rd, i ≤n, where yi is a response variable which depends
+on covariates xi via yi = ⟨β, xi⟩+ εi, with E(εi) = 0 and E(ε2
+i ) = τ 2; or in matrix notation, y = Xβ + ε.
+3
+
+
+--- page 4 ---
+The authors study the test error of ‘ridgeless least square regression’ ˆβ = X†y (where X† stands for the
+pseudoinverse of X), and use random matrix theory to derive its precise asymptotics in the limit n, d →∞
+with d/n = γ ﬁxed, when xi = Σ1/2zi with zi a vector with i.i.d. entries.
+Despite its simplicity, this random covariates model captures several features of the double descent sce-
+nario. In particular, the asymptotic generalization curve is U-shaped for γ < 1, diverging at the interpolation
+threshold γ = 1, and descends again exceeding that threshold. The divergence at γ = 1 is explained by an
+explosion in the variance, which is in turn related to a divergence of the condition number of the random
+matrix X. At the same time, this simple model misses some interesting features that are observed in more
+complex settings: (i) In the Gaussian covariates model, the global minimum of the test error is achieved in
+the underparametrized regime γ < 1, unless ad-hoc misspeciﬁcation structure is assumed; (ii) The number
+of parameters is tied to the covariates dimension d and hence the eﬀects of overparametrization are not
+isolated from the eﬀects of the ambient dimensions; (iii) Ridge regression, with some regularization λ > 0, is
+always found to outperform the ridgeless limit λ →0. Moreover, this linear model is not directly connected
+to actual neural networks, which are highly nonlinear in the covariates xi.
+In this paper, we study the random features model of Rahimi and Recht [RR08]. The random features
+model can be viewed either as a randomized approximation to kernel ridge regression, or as a two-layers
+neural networks with random ﬁrst layer wights. We compute the precise asymptotics of the test error and
+show that it reproduces all the qualitative features of the double-descent scenario.
+More precisely, we consider the problem of learning a function fd ∈L2(Sd−1(
+√
+d)) on the d-dimensional
+sphere. (Here and below Sd−1(r) denotes the sphere of radius r in d dimensions, and we set r =
+√
+d without
+loss of generality.) We are given i.i.d. data {(xi, yi)}i≤n ∼iid Px,y, where xi ∼iid Unif(Sd−1(
+√
+d)) and
+yi = fd(xi) + εi, with εi ∼iid Pε independent of xi. The noise distribution satisﬁes Eε(ε1) = 0, Eε(ε2
+1) = τ 2,
+and Eε(ε4
+1) < ∞. We ﬁt these training data using the random features (RF) model, which is deﬁned as the
+function class
+FRF(Θ) =
+n
+f(x; a, Θ) ≡
+N
+X
+i=1
+aiσ(⟨θi, x⟩/
+√
+d) :
+ai ∈R ∀i ∈[N]
+o
+.
+(1)
+Here, Θ ∈RN×d is a matrix whose i-th row is the vector θi, which is chosen randomly, and independent of
+the data. In order to simplify some of the calculations below, we will assume the normalization ∥θi∥2 =
+√
+d,
+which justiﬁes the factor 1/
+√
+d in the above expression, yielding ⟨θi, xj⟩/
+√
+d of order one. As mentioned
+above, the functions in FRF(Θ) are two-layers neural networks, except that the ﬁrst layer is kept constant.
+A substantial literature draws connections between random features models, fully trained neural networks,
+and kernel methods. We refer to Section 3 for a summary of this line of work.
+We learn the coeﬃcients a = (ai)i≤N by performing ridge regression
+ˆa(λ) = arg min
+a∈RN
+
+
+
+1
+n
+n
+X
+j=1
+
+yj −
+N
+X
+i=1
+aiσ(⟨θi, xj⟩/
+√
+d)
+2
++ Nλ
+d ∥a∥2
+2
+
+
+.
+(2)
+The choice of ridge penalty is motivated by the connection to kernel ridge regression, of which this method
+can be regarded as a ﬁnite-rank approximation. Further, the ridge regularization path is naturally connected
+to the path of gradient ﬂow with respect to the mean square error P
+i≤n(yi−f(xi; a, Θ))2, starting at a = 0.
+In particular, gradient ﬂow converges to the ridgeless limit (λ →0) of ˆa(λ), and there is a correspondence
+between positive λ, and early stopping in gradient descent [YRC07].
+We are interested in the ‘prediction’ or ‘test’ error (which we will also call ‘generalization error,’ with
+a slight abuse of terminology), that is the mean square error on predicting fd(x) for x ∼Unif(Sd−1(
+√
+d))
+a fresh sample independent of the training data X = (xi)i≤n, noise ε = (εi)i≤n, and the random features
+Θ = (θa)a≤N:
+RRF(fd, X, Θ, λ) = Ex
+h
+fd(x) −f(x; ˆa(λ), Θ)
+2i
+.
+(3)
+Notice that we do not take expectation with respect to the training data X, the random features Θ or the
+data noise ε. This is not very important, because we will show that RRF(fd, X, Θ, λ) concentrates around
+the expectation RRF(fd, λ) ≡EX,Θ,εRRF(fd, X, Θ, λ). We study the following setting
+4
+
+
+--- page 5 ---
+• The random features are uniformly distributed on a sphere: (θi)i≤N ∼iid Unif(Sd−1(
+√
+d)).
+• N, n, d lie in a proportional asymptotics regime. Namely, N, n, d →∞with N/d →ψ1, n/d →ψ2 for
+some ψ1, ψ2 ∈(0, ∞).
+• We consider two models for the regression function fd: (1) A linear model: fd(x) = βd,0 + ⟨βd,1, x⟩,
+where βd,1 ∈Rd is arbitrary with ∥βd,1∥2
+2 = F 2
+1 ; (2) A nonlinear model: fd(x) = βd,0 + ⟨βd,1, x⟩+
+f NL
+d (x) where the nonlinear component f NL
+d (x) is a centered isotropic Gaussian process indexed by
+x ∈Sd−1(
+√
+d). (Note that the linear model is a special case of the nonlinear one, but we prefer to keep
+the former distinct since it is purely deterministic.)
+Within this setting, we are able to determine the precise asymptotics of the prediction error, as an explicit
+function of the dimension parameters ψ1, ψ2, the noise level τ 2, the activation function σ, the regularization
+parameter λ, and the power of linear and nonlinear components of fd: F 2
+1 and F 2
+⋆≡limd→∞E{f NL
+d (x)2}.
+The resulting formulae are somewhat complicated, and we defer them to Section 5, limiting ourselves to give
+the general form of our result for the linear model.
+Theorem 1. (Linear truth, formulas omitted) Let σ : R →R be weakly diﬀerentiable, with σ′ a weak
+derivative of σ. Assume |σ(u)|, |σ′(u)| ≤c0ec1|u| for some constants c0, c1 < ∞. Deﬁne the parameters µ0,
+µ1, µ⋆, ζ, and the signal-to-noise ratio ρ ∈[0, ∞], via
+µ0 = E[σ(G)],
+µ1 = E[Gσ(G)],
+µ2
+⋆= E[σ(G)2] −µ2
+0 −µ2
+1,
+ζ ≡µ2
+1/µ2
+⋆,
+ρ ≡F 2
+1 /τ 2 ,
+(4)
+where expectation is taken with respect to G ∼N(0, 1). Assume µ0, µ1, µ⋆̸ = 0.
+Then, for linear fd in the setting described above, for any λ > 0, the prediction risk convergences in
+probability
+RRF(fd, X, Θ, λ)
+p→(F 2
+1 + τ 2) R(ρ, ζ, ψ1, ψ2, λ/µ2
+⋆) ,
+(5)
+where R(ρ, ζ, ψ1, ψ2, λ) is explicitly given in Deﬁnition 1.
+Section 5.1 also contains an analogous statement for the nonlinear model.
+Remark 1. Theorem 1 and its generalizations stated below require λ > 0 ﬁxed as N, n, d →∞. We can then
+consider the ridgeless limit by taking λ →0. Let us stress that this does not necessarily yield the prediction
+risk of the min-norm least square estimator that is also given by the limit ˆa(0+) ≡limλ→0 ˆa(λ) at N, n, d
+ﬁxed. Denoting by Z = σ(XΘT/
+√
+d)/
+√
+d the design matrix, the latter is given by ˆa(0+) = (ZTZ)†ZTy/
+√
+d.
+While we conjecture that indeed this is the same as taking λ →0 in the asymptotic expression of Theorem
+1, establishing this rigorously would require proving that the limits λ →0 and d →∞can be exchanged.
+We leave this to future work.
+Remark 2. As usual, we can decompose the risk RRF(fd, X, Θ, λ) = ∥fd−ˆf∥2
+L2 (where ˆf(x) = f(x; ˆa(λ), Θ))
+into a variance component ∥ˆf −Eε( ˆf)∥2
+L2, and a bias component ∥fd −Eε( ˆf)∥2
+L2. The asymptotics of the
+variance component in the λ →0+ limit was concurrently computed in [HMRT19, Section 8]. Notice that
+the variance calculation only requires to consider a pure noise model in which y = ε ∼N(0, τ 2In), and indeed
+[HMRT19] does not mention the nonparametric model yi = fd(xi) + εi. The pure noise ridgeless (λ →0)
+setting captures the divergence of the risk at N = n but misses most phenomena that are interesting from a
+statistical viewpoint: the optimality of vanishing regularization, the optimality of large overparametrization,
+the disappearance of double descent for optimally regularized models.
+Our work is the ﬁrst one to provide a complete treatment of the nonparametric model in the proportional
+asymptotics and to establish those phenomena. From a mathematical viewpoint, the calculation of the test
+error can be reduced to studying a block-structured kernel random matrix, with a more intricate structure
+than the one of [HMRT19]. The reduction itself is novel in the present context, and goes through the log
+determinant of this random matrix, while the variance computation of [HMRT19] is directly connected to
+the resolvent.
+5
+
+
+--- page 6 ---
+Figure 1 reports numerical results for learning a linear function fd(x) = ⟨β1, x⟩, ∥β1∥2
+2 = 1 with E[ε2] = 0
+using ReLU activation function σ(x) = max{x, 0} and ψ2 = n/d = 3. We use minimum ℓ2-norm least squares
+(the λ →0 limit of Eq. (2), left ﬁgure) and regularized least squares with λ = 10−3 (right ﬁgure), and plot
+the prediction error as a function of the number of parameters per dimension ψ1 = N/d. We compare
+the numerical results with the asymptotic formula R(∞, ζ, ψ1, ψ2, λ/µ2
+⋆). The agreement is excellent and
+displays all the key features of the double descent phenomenon, as discussed in the next section.
+The proof of Theorem 1 builds on ideas from random matrix theory. A careful look at these arguments
+unveils an interesting phenomenon. While the random features {σ(⟨θi, x⟩/
+√
+d)}i≤d are highly non-Gaussian,
+it is possible to construct a Gaussian covariates model with the same asymptotic prediction error as for
+the random features model. Apart from being mathematically interesting, this ﬁnding provides additional
+intuition for the behavior of random features models, and opens the way to some interesting future directions.
+In particular, [MRSY19] uses this Gaussian covariates proxy to analyze maximum margin classiﬁcation using
+random features.
+The rest of the paper is organized as follows:
+• In Section 2 we summarize the main insights that can be extracted from the asymptotic theory, and
+illustrate them through plots.
+• Section 3 provides a succinct overview of related work.
+• Section 4 introduces the notations that are used in this paper.
+• Section 5 contains formal statements of our main results, which is the asymptotics of prediction error
+as in Theorem 2. This section also presents some special cases of the asymptotic formula.
+• Section 6 contains the statements of the asymptotics of the training error as in Theorem 6.
+• Section 7 presents an interesting phenomenon which is that the random features model has the same
+asymptotic prediction error as a simpler model with Gaussian covariates.
+• In Section 8 we present the proof of main results. The main results will use several propositions that
+are proved in the following sections and in the appendices.
+2
+Results and insights: An informal overview
+Before explaining in detail our technical results —which we will do in Section 5— it is useful to pause and
+describe some consequences of the exact asymptotic formulae that we prove. Our focus here will be on
+insights that have a chance to hold more generally, beyond the speciﬁc setting studied here.
+Bias term also exhibits a singularity at the interpolation threshold. A prominent feature of the double descent
+curve is the peak in test error at the interpolation threshold which, in the present case, is located at ψ1 = ψ2.
+In the linear regression model of [AS17, HMRT19, BHX19], this phenomenon is entirely explained by a peak
+in the variance of the estimator (that diverges in the ridgeless limit λ →0), while its bias is monotone
+increasing across to this threshold.
+In contrast, in the random features model studied here, both variance and bias have a peak at the
+interpolation threshold, diverging there when λ →0. This is apparent from Figure 1 which was obtained
+for τ 2 = 0, and therefore in a setting in which the error is entirely due to bias. The fact that the double
+descent scenario persists in the noiseless limit is particularly important, especially in view of the fact that
+many machine learning tasks are usually considered nearly noiseless.
+Optimal prediction error is achieved in the highly overparametrized regime.
+Figure 2 (left) reports the
+predicted test error in the ridgeless limit λ →0 (for a case with non-vanishing noise, τ 2 > 0) as a function
+of ψ1 = N/d , for several values of ψ2 = n/d. Figure 3 plots the predicted test error as a function of
+ψ1/ψ2 = N/n, for ﬁxed ψ2, several values of λ > 0, and two values of the SNR. We repeatedly observe that:
+(i) For a ﬁxed λ, the minimum of test error (over ψ1) is in the highly overparametrized regime ψ1 →∞; (ii)
+The global minimum (over λ and ψ1) of test error is achieved at a value of λ that depends on the SNR, but
+6
+
+
+--- page 7 ---
+10-4
+10-2
+100
+102
+104
+106
+108
+1010
+10-4
+10-2
+100
+102
+104
+Test error
+10-4
+10-2
+100
+102
+104
+106
+108
+1010
+10-4
+10-2
+100
+102
+104
+Test error
+Figure 2: Analytical predictions for the test error of learning a linear function fd(x) = ⟨β1, x⟩with ∥β1∥2
+2 = 1
+using random features with ReLU activation function σ(x) = max{x, 0}. Here we perform ridgeless regression
+(λ →0). The signal-to-noise ratio is ∥β1∥2
+2/τ 2 ≡ρ = 2. In the left ﬁgure, we plot the test error as a function
+of ψ1 = N/d, and diﬀerent curves correspond to diﬀerent sample sizes (ψ2 = n/d). In the right ﬁgure, we
+plot the test error as a function of ψ2 = n/d, and diﬀerent curves correspond to diﬀerent number of features
+(ψ1 = N/d).
+10-2
+100
+102
+0
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+0.9
+1
+Test error
+10-2
+100
+102
+0
+0.5
+1
+1.5
+2
+2.5
+3
+Test error
+Figure 3: Analytical predictions for the test error of learning a linear function fd(x) = ⟨β1, x⟩with ∥β1∥2
+2 = 1
+using random features with ReLU activation function σ(x) = max{x, 0}. The rescaled sample size is ﬁxed
+to n/d ≡ψ2 = 10. Diﬀerent curves are for diﬀerent values of the regularization λ. On the left: high SNR
+∥β1∥2
+2/τ 2 ≡ρ = 5. On the right: low SNR ρ = 1/5.
+always at ψ1 →∞; (iii) In the ridgeless limit λ →0, the generalization curve is monotonically decreasing
+in ψ1 when ψ1 > ψ2.
+To the best of our knowledge, this is the ﬁrst natural and analytically tractable model which satisﬁes
+the following requirements: (1) Large overparametrization is necessary to achieve optimal prediction; (2) No
+special misspeciﬁcation structure needs to be postulated.
+Optimal regularization eliminated the double-descent.
+Figure 3 reports the asymptotic prediction for the test
+error as a function of the overparametrization ratio N/n for various values of the regularization parameter
+λ.
+The peak at the interpolation threshold N = n is apparent, but it becomes less prominent as the
+7
+
+
+--- page 8 ---
+10-3
+10-2
+10-1
+100
+101
+102
+0
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+0.9
+1
+Test error
+10-3
+10-2
+10-1
+100
+101
+102
+0
+0.5
+1
+1.5
+2
+2.5
+3
+Test error
+Figure 4: Analytical predictions for the test error of learning a linear function fd(x) = ⟨β1, x⟩with ∥β1∥2
+2 = 1
+using random features with ReLU activation function σ(x) = max{x, 0}. The rescaled sample size is ﬁxed
+to ψ2 = n/d = 10. Diﬀerent curves are for diﬀerent values of the number of neurons ψ1 = N/d. On the left:
+high SNR ∥β1∥2
+2/τ 2 ≡ρ = 5. On the right: low SNR ρ = 1/10.
+regularization increases.
+In particular, if we consider the optimal regularization (the lower envelope of
+these curves), the test error becomes monotone decreasing in the number of parameters: regularization
+compensates overparametrization.
+Non-vanishing regularization can hurt (at high SNR). Figure 4 plots the predicted test error as a function
+of λ, for several values of ψ1, with ψ2 ﬁxed. The lower envelope of these curves is given by the curve at
+ψ1 →∞, conﬁrming that the optimal error is achieved in the highly overparametrized regime. However the
+dependence of this lower envelope on λ changes qualitatively, depending on the SNR. For small SNR, the
+global minimum is achieved as some λ > 0: regularization helps. However, for a large SNR the minimum
+error is achieved as λ →0. The optimal regularization is vanishingly small.
+These two noise regime are separated by a phase transition at a critical SNR which we denote by ρ⋆. A
+characterization of this critical value is given in Section 5.2.2.
+Notice that, in the overparametrized regime, the training error vanishes as λ →0, and the resulting
+model is a ‘near-interpolator’. We therefore conclude that highly overparametrized (near) interpolators1 are
+statistically optimal when the SNR is above the critical value ρ⋆.
+Self-induced regularization. What is the mechanism underlying the optimality of the ridgeless limit λ →0?
+An intuitive explanation can be obtained by considering the (random) kernel associated to the ridge regression
+(2), namely
+HN(x, x′) = 1
+N
+N
+X
+i=1
+σ(⟨x, θi⟩/
+√
+d)σ(⟨x′, θi⟩/
+√
+d) .
+(6)
+The diagonal elements of the empirical kernel HN,n = (HN(xi, xj))i,j≤n ∈Rn×n concentrate around the
+value EHN(xi, xi) ≈E{σ(G)2} (here G ∼N(0, 1)), while the out-of-diagonal terms are equal to a constant
+E{σ(G)}2 plus ﬂuctuations of order 1/
+√
+N. One would naively expect that these diagonal elements are
+equivalent to a regularization (that we call ‘self-induced’) λ0 of order Var(σ(G)). The reality is more compli-
+cated because out-of-diagonals are random and not negligible, However, this intuition is essentially correct
+in the wide limit N/d →∞(after N, n, d →∞), see Section 5.2.2.
+1We cannot prove it is an exact interpolator because here we take λ →0 after d →∞. Following Remark 1, we expect the
+minimum-ℓ2 norm interpolator also to achieve asymptotically minimum error.
+8
+
+
+--- page 9 ---
+3
+Related literature
+3.1
+Learning via interpolation
+A recent stream of papers studied the generalization behavior of machine learning models in the interpolation
+regime. An incomplete list of references includes [BMM18, BRT19, LR18, BHMM19, RZ18]. The starting
+point of this line of work were the experimental results in [ZBH+16, BMM18], which showed that deep neural
+networks as well as kernel methods can generalize even if the prediction function interpolates all the data.
+It was proved that several machine learning models including kernel regression [BRT19] and kernel ridgeless
+regression [LR18] can generalize under certain conditions.
+The double descent phenomenon, which is our focus in this paper, was ﬁrst discussed in general terms
+in [BHMM19]. The same phenomenon was also observed in [AS17, GJS+19]. The paper [KLS18] observes
+that the optimal amount of ridge regularization is sometimes vanishing, and provides an explanation in
+terms of noisy features. Analytical predictions conﬁrming this scenario were obtained, within the linear
+regression model, in two concurrent papers [HMRT19, BHX19]. In particular, [HMRT19] derives the precise
+high-dimensional asymptotics of the prediction error, for a general model with correlated covariates. On the
+other hand, [BHX19] gives exact formula for any ﬁnite dimension, for a model with i.i.d. Gaussian covariates.
+The same papers also compute the double descent curve within other models, including over-speciﬁed linear
+model [HMRT19], and a Fourier series model [BHX19].
+As mentioned in the introduction, [HMRT19, Section 8] also calculates the variance term of the pre-
+diction error in the random features model in the ridgeless limit λ →0. Both the simple linear regression
+models of [HMRT19, BHX19], and the variance calculation of [HMRT19, Section 8] capture the peak of
+the test error at the interpolation threshold. However, these calculations do not elucidate several crucial
+statistical phenomena, which are instead the main contribution of our work (see Section 2): optimality of
+large overparametrization; optimality of interpolators at high SNR (λ →0 limit); the role of self-induced
+regularization; disappearance of the double descent at optimal overparametrization.
+Rate-optimal bounds on the generalization error of overparametrized linear models were recently derived
+in [BLLT20] (see also [MVS19] for a diﬀerent perspective).
+3.2
+Random features and kernels
+The random features model has been studied in considerable depth since the original work in [RR08]. A
+classical viewpoint suggests that FRF(Θ) should be regarded as random approximation of the reproducing
+kernel Hilbert space FH deﬁned by the kernel
+H(x, x′) = Eθ∼Unif(Sd−1(
+√
+d))[σ(⟨x, θ⟩/
+√
+d)σ(⟨x′, θ⟩/
+√
+d)].
+(7)
+Indeed FRF(Θ) is an RKHS deﬁned by the ﬁnite-rank approximation of this kernel deﬁned in Eq. (6). The
+paper [RR08] showed the pointwise convergence of the empirical kernel HN to H. Subsequent work [Bac17b]
+showed the convergence of the empirical kernel matrix to the population kernel in terms of operator norm
+and derived bound on the approximation error (see also [Bac13, AM15, RR17] for related work).
+The setting in the present paper is quite diﬀerent, since we take the limit of a large number neurons
+N →∞, together with large dimension d →∞. Our focus on this high-dimensional regime is partially
+motivated by [RZ18], which emphasizes that optimality of interpolators is somewhat un-natural in low
+dimension.
+It is well-known that approximation using two-layers network suﬀers from the curse of dimensionality, in
+particular when ﬁrst-layer weights are not trained [DHM89, Bac17a, VW18, GMMM19]. The recent paper
+[GMMM19] studies random features regression in a setting similar to ours, by considering two diﬀerent
+regimes: (1) the population limit n = ∞, with N scaling as a polynomial of d; (2) the wide limit N = ∞,
+with n scaling as a polynomial of d. In particular, [GMMM19] proves that, if dk+δ ≤N ≤dk+1−δ and
+n = ∞or dk+δ ≤n ≤dk+1−δ and N = ∞then a random features model can only ﬁt the projection of the
+true function fd onto degree-k polynomials.
+Here, we consider N, n = Θd(d), and therefore [GMMM19] only implies that the test error of the random
+feature model is (asymptotically) lower bounded by the norm of the nonlinear component of the target
+function F 2
+⋆= limd→∞E(f NL
+d (x)2). The present results are of course much more precise: we conﬁrm this
+9
+
+
+--- page 10 ---
+lower bound which is achieved in the limit N/d, n/d →∞, but also derive the precise asymptotics of the
+test error for ﬁnite n/d, N/d. The connection between neural networks and random features models was
+pointed out originally in [Nea96, Wil97] and has attracted signiﬁcant attention recently [HJ15, MRH+18,
+LBN+17, NXB+18, GAAR18]. The papers [DFS16, Dan17] showed that, for a certain initialization, gradient
+descent training of overparametrized neural networks learns a function in an RKHS, which corresponds to the
+random features kernel. A recent line of work [JGH18, LL18, DZPS18, DLL+18, AZLS18, AZLL18, ADH+19,
+ZCZG20, OS19] studied the training dynamics of overparametrized neural networks under a second type of
+initialization, and showed that it learns a function in a diﬀerent but comparable RKHS, which corresponds
+to the “neural tangent kernel”. A concurrent approach [MMN18, RVE18, CB18b, SS19, JMM19, Ngu19,
+RJBVE19, AOY19] studies the training dynamics of overparametrized neural networks under a third type of
+initialization, and showed that the dynamics of empirical distribution of weights follows Wasserstein gradient
+ﬂow of a risk functional. The connection between neural tangent theory and Wasserstein gradient ﬂow was
+studied in [CB18a, DL19, MMM19].
+3.3
+Technical contribution
+We use methods from random matrix theory. The general class of matrices we need to consider are kernel
+inner product random matrices, namely matrices of the form σ(W W T/
+√
+d), where W is a random matrix
+with i.i.d. entries, or similar (σ : R →R is a scaler function and for a matrix A ∈Rm×n, σ(A) ∈Rm×n is a
+matrix that formed by applying σ to A elementwisely). The paper [EK10] studied the spectrum of random
+kernel matrices when σ can be well approximated by a linear function and hence the spectrum converges to
+a scaled Marchenko-Pastur law. In the nonlinear regime, the spectrum was shown to converge to the free
+convolution of a Marchenko-Pastur and a scaled semi-circular law [CS13]. The extreme eigenvalues of the
+same random matrix were studied in [FM19]. The random matrix we need to consider is an asymmetric
+kernel matrix Z = σ(XΘT/
+√
+d)/
+√
+d, whose asymptotic singular values distribution was calculated in [PW17]
+(see also [LLC18] for X deterministic).
+The asymptotic singular values distribution of Z is not suﬃcient to compute the asymptotic prediction
+error, which also depends on the singular vectors of Z. The paper [HMRT19] addresses this challenge for
+what concerns the variance term of the error, and only in the limit λ →0. Notice that the variance term
+is given (up to constants) by Tr((ZTZ)†Σ). It is quite straightforward to express this quantity in terms of
+the Stieltjes transform of a certain block random matrix, and [HMRT19] use the leave-one-out method to
+characterize the asymptotics of this Stieltjes transform.
+Unfortunately, the approach of [HMRT19] cannot be pushed to compute the full test error (i.e. both
+the bias and variance terms): the latter cannot be expressed in terms of the Stieltjes transform of the same
+matrix. A key observation of the present paper is that the full prediction error can be expressed in terms of
+derivatives of the log-determinant of a diﬀerent block-structured random matrix. In order to compute the
+asymptotics of this log-determinant, we use leave-one-out arguments (e.g. [BS10, Chapter 3.3]) to derive
+ﬁxed point equations for the Stieltjes transform of this random matrix, and then integrate this Stieltjes
+transform.
+One further diﬀerence from [HMRT19] is that we consider the full nonparametric model yi = fd(xi) + εi
+while for the calculation of [HMRT19] does not model the target function. As mentioned above, our setting
+is similar to the one of [GMMM19]. However, the main technical content of [GMMM19] is to prove that,
+under polynomial scalings of n and d (at N = ∞) or N and d (at n = ∞), the kernel matrix is near isometric.
+In contrast, here we study a regime in which it is not true that the same matrix is a near isometry, and we
+characterize its spectral distribution (alongside those properties of the eigenvectors that determine the test
+error).
+4
+Notations
+Let R denote the set of real numbers, C the set of complex numbers, and N = {0, 1, 2, . . .} the set of natural
+numbers. For z ∈C, let ℜz and ℑz denote the real part and the imaginary part of z respectively. We denote
+by C+ = {z ∈C : ℑz > 0} the set of complex numbers with positive imaginary part. We denote by i = √−1
+the imaginary unit. We denote by Sd−1(r) = {x ∈Rd : ∥x∥2 = r} the set of d-dimensional vectors with
+radius r. For an integer k, let [k] denote the set {1, 2, . . . , k}.
+10
+
+
+--- page 11 ---
+Throughout the proofs, let Od( · ) (respectively od( · ), Ωd( · )) denote the standard big-O (respectively
+little-o, big-Omega) notation, where the subscript d emphasizes the asymptotic variable. We denote by
+Od,P( · ) the big-O in probability notation: h1(d) = Od,P(h2(d)) if for any ε > 0, there exists Cε > 0 and
+dε ∈Z>0, such that
+P(|h1(d)/h2(d)| > Cε) ≤ε,
+∀d ≥dε.
+We denote by od,P( · ) the little-o in probability notation: h1(d) = od,P(h2(d)), if h1(d)/h2(d) converges to 0
+in probability. We write h(d) = Od(Poly(log d)), if there exists a constant k, such that h(d) = Od((log d)k).
+Throughout the paper, we use bold lowercase letters {x, y, z, . . .} to denote vectors and bold uppercase
+letters {A, B, C, . . .} to denote matrices. We denote by In ∈Rn×n the identity matrix, by 1n×m ∈Rn×m
+the all-ones matrix, and by 0n×m ∈Rn×m the all-zero matrix.
+For a matrix A ∈Rn×m, we denote by ∥A∥F = (P
+i∈[n],j∈[m] A2
+ij)1/2 the Frobenius norm of A, ∥A∥⋆
+the nuclear norm of A, ∥A∥op the operator norm of A, and ∥A∥max = maxi∈[n],j∈[m] |Aij| the maximum
+norm of A. Further, we denote by A† ∈Rm×n the Moore–Penrose inverse of matrix A ∈Rn×m. For a
+measurable function h : R →R and a matrix A ∈Rn×m, we denote h(A) = (h(Aij))i∈[n],j∈[m] ∈Rn×m. For
+a matrix A ∈Rn×n, we denote by Tr(A) = Pn
+i=1 Aii the trace of A. For two integers a and b, we denote
+by Tr[a,b](A) = Pb
+i=a Aii the partial trace of A. For two matrices A, B ∈Rn×m, let A ⊙B denote the
+element-wise product of A and B.
+Let µG denote the standard Gaussian measure.
+Let γd denote the uniform probability distribution
+on Sd−1(
+√
+d). We denote by µd the distribution of ⟨x1, x2⟩/
+√
+d when x1, x2 ∼N(0, Id), τd the distribu-
+tion of ⟨x1, x2⟩/
+√
+d when x1, x2 ∼Unif(Sd−1(
+√
+d)), and ˜τd the distribution of ⟨x1, x2⟩when x1, x2 ∼
+Unif(Sd−1(
+√
+d)).
+5
+Main results
+We begin by stating our assumptions and notations for the activation function σ. It is straightforward to
+check that these are satisﬁed by all commonly-used activations, including ReLU and sigmoid functions.
+Assumption 1. Let σ : R →R be weakly diﬀerentiable, with weak derivative σ′. Assume |σ(u)|, |σ′(u)| ≤
+c0ec1|u| for some constants c0, c1 < ∞. Deﬁne
+µ0 ≡E{σ(G)},
+µ1 ≡E{Gσ(G)},
+µ2
+⋆≡E{σ(G)2} −µ2
+0 −µ2
+1 ,
+(8)
+where expectation is with respect to G ∼N(0, 1). Assuming 0 < µ2
+0, µ2
+1, µ2
+⋆< ∞, deﬁne ζ by
+ζ ≡µ1
+µ⋆
+.
+(9)
+We will consider sequences of parameters (N, n, d) that diverge proportionally to each other.
+When
+necessary, we can think such sequences to be indexed by d, with N = N(d), n = n(d) functions of d.
+Assumption 2. Deﬁning ψ1,d = N/d and ψ2,d = n/d, we assume that the following limits exist in (0, ∞):
+lim
+d→∞ψ1,d = ψ1,
+lim
+d→∞ψ2,d = ψ2 .
+(10)
+Our last assumption concerns the distribution of the data (y, x), and, in particular, the regression function
+fd(x) = E[y|x]. As stated in the introduction, we take fd to be the sum of a deterministic linear component,
+and a nonlinear component that we assume to be random and isotropic.
+Assumption 3. We assume yi = fd(xi)+εi, where (εi)i≤n ∼iid Pε independent of (xi)i≤n, with Eε(ε1) = 0,
+Eε(ε2
+1) = τ 2, Eε(ε4
+1) < ∞. Further
+fd(x) = βd,0 + ⟨βd,1, x⟩+ f
+NL
+d (x) ,
+(11)
+where βd,0 ∈R and βd,1 ∈Rd are deterministic with limd→∞β2
+d,0 = F 2
+0 , limd→∞∥βd,1∥2
+2 = F 2
+1 .
+The
+nonlinear component f NL
+d (x) is a centered Gaussian process indexed by x ∈Sd−1(
+√
+d), with covariance
+Ef NL
+d {f
+NL
+d (x1)f
+NL
+d (x2)} = Σd(⟨x1, x2⟩/d)
+(12)
+11
+
+
+--- page 12 ---
+satisfying Ex∼Unif(Sd−1(
+√
+d)){Σd(x1/
+√
+d)} = 0, Ex∼Unif(Sd−1(
+√
+d)){Σd(x1/
+√
+d)x1} = 0, and limd→∞Σd(1) =
+F 2
+⋆. We deﬁne the signal-to-noise ratio parameter ρ by
+ρ =
+F 2
+1
+F 2⋆+ τ 2 .
+(13)
+Remark 3. The last assumption covers, as a special case, deterministic linear functions fd(x) = βd,0 +
+⟨βd,1, x⟩, but also a large class of random non-linear functions. As an example, let G = (Gij)i,j≤d, where
+(Gij)i,j≤d ∼iid N(0, 1), and consider the random quadratic function
+fd(x) = βd,0 + ⟨βd,1, x⟩+ F⋆
+d
+
+⟨x, Gx⟩−Tr(G)
+
+,
+(14)
+for some ﬁxed F⋆∈R. It is easy to check that this fd satisﬁes Assumption 3, where the covariance function
+gives
+Σd(⟨x1, x2⟩/d) = F 2
+⋆
+d2
+
+⟨x1, x2⟩2 −d
+
+.
+Higher order polynomials can be constructed analogously (or using the expansion of fd in spherical harmon-
+ics).
+We also emphasize that that the nonlinear part f NL
+d (x2), although being random, is the same for all
+samples, and hence should not be confused with additive noise ε.
+We ﬁnally introduce the formula for the asymptotic prediction error, denoted by R(ρ, ζ, ψ1, ψ2, λ) in
+Theorem 1.
+Deﬁnition 1 (Formula for the prediction error of random features regression).
+Let the functions ν1, ν2 :
+C+ →C+ be be uniquely deﬁned by the following conditions: (i) ν1, ν2 are analytic on C+; (ii) For ℑ(ξ) > 0,
+ν1(ξ), ν2(ξ) satisfy the following equations
+ν1 = ψ1
+
+−ξ −ν2 −
+ζ2ν2
+1 −ζ2ν1ν2
+−1
+,
+ν2 = ψ2
+
+−ξ −ν1 −
+ζ2ν1
+1 −ζ2ν1ν2
+−1
+;
+(15)
+(iii) (ν1(ξ), ν2(ξ)) is the unique solution of these equations with |ν1(ξ)| ≤ψ1/ℑ(ξ), |ν2(ξ)| ≤ψ2/ℑ(ξ) for
+ℑ(ξ) > C, with C a suﬃciently large constant.
+Let
+χ ≡ν1(i(ψ1ψ2λ)1/2) · ν2(i(ψ1ψ2λ)1/2),
+(16)
+and
+E0(ζ, ψ1, ψ2, λ) ≡−χ5ζ6 + 3χ4ζ4 + (ψ1ψ2 −ψ2 −ψ1 + 1)χ3ζ6 −2χ3ζ4 −3χ3ζ2
++ (ψ1 + ψ2 −3ψ1ψ2 + 1)χ2ζ4 + 2χ2ζ2 + χ2 + 3ψ1ψ2χζ2 −ψ1ψ2 ,
+E1(ζ, ψ1, ψ2, λ) ≡ψ2χ3ζ4 −ψ2χ2ζ2 + ψ1ψ2χζ2 −ψ1ψ2 ,
+E2(ζ, ψ1, ψ2, λ) ≡χ5ζ6 −3χ4ζ4 + (ψ1 −1)χ3ζ6 + 2χ3ζ4 + 3χ3ζ2 + (−ψ1 −1)χ2ζ4 −2χ2ζ2 −χ2 .
+(17)
+We then deﬁne
+B(ζ, ψ1, ψ2, λ) ≡E1(ζ, ψ1, ψ2, λ)
+E0(ζ, ψ1, ψ2, λ) ,
+(18)
+V (ζ, ψ1, ψ2, λ) ≡E2(ζ, ψ1, ψ2, λ)
+E0(ζ, ψ1, ψ2, λ) ,
+(19)
+R(ρ, ζ, ψ1, ψ2, λ) ≡
+ρ
+1 + ρ B(ζ, ψ1, ψ2, λ) +
+1
+1 + ρ V (ζ, ψ1, ψ2, λ) .
+(20)
+The formula for the asymptotic risk can be easily evaluated numerically. In order to gain further insight,
+it can be simpliﬁed in some interesting special cases, as shown in Section 5.2.
+12
+
+
+--- page 13 ---
+5.1
+Statement of main result
+We are now in position to state our main theorem, which generalizes Theorem 1 to the case in which fd has
+a nonlinear component f NL
+d .
+Theorem 2. Let X = (x1, . . . , xn)T ∈Rn×d with (xi)i∈[n] ∼iid Unif(Sd−1(
+√
+d)) and Θ = (θ1, . . . θN)T ∈
+RN×d with (θa)a∈[N] ∼iid Unif(Sd−1(
+√
+d)) independently. Let the activation function σ satisfy Assumption
+1, and consider proportional asymptotics N/d →ψ1, n/d →ψ2, as per Assumption 2. Finally, let the
+regression function {fd}d≥1 and the response variables (yi)i∈[n] satisfy Assumption 3.
+Then for any value of the regularization parameter λ > 0, the asymptotic prediction error of random
+features ridge regression satisﬁes
+EX,Θ,ε,f NL
+d
+RRF(fd, X, Θ, λ) −
+h
+F 2
+1 B(ζ, ψ1, ψ2, λ/µ2
+⋆) + (τ 2 + F 2
+⋆)V (ζ, ψ1, ψ2, λ/µ2
+⋆) + F 2
+⋆
+i = od(1) , (21)
+where EX,Θ,ε,f NL
+d
+denotes expectation with respect to data covariates X, feature vectors Θ, data noise ε, and
+f NL
+d
+the nonlinear part of the true regression function (as a Gaussian process), as per Assumption 3. The
+functions B, V are given in Deﬁnition 1.
+Remark 4. If the regression function fd(x) is linear (i.e., f NL
+d (x) = 0), we recover Theorem 1, where R is
+deﬁned as per Eq. (20). Numerical experiments suggest that Eq. (21) holds for any deterministic nonlinear
+functions fd as well, and that the convergence in Eq. (21) is uniform over λ in compacts. We defer the study
+of these stronger properties to future work.
+Remark 5. Note that the formula for a nonlinear truth, cf. Eq. (21), is almost identical to the one for a
+linear truth in Eq. (5). In fact, the only diﬀerence is that the the prediction error increases by a term F 2
+⋆,
+and the noise level τ 2 is replaced by τ 2 + F 2
+⋆.
+Recall that the parameter F 2
+⋆is the variance of the nonlinear part E(f NL
+d (x)2) →F 2
+⋆. Hence, these changes
+can be interpreted by saying that random features regression (in N, n, d proportional regime) only estimates
+the linear component of fd and the nonlinear component behaves similar to random noise. This ﬁnding is
+consistent with the results of [GMMM19] which imply, in particular, RRF(fd, X, Θ, λ) ≥F 2
+⋆+ od,P(1) for
+any n and for N = od(d2−δ) for any δ > 0.
+Figure 5 illustrates the last remark. We report the simulated and predicted test error as a function of
+ψ1/ψ2 = N/n, for three diﬀerent choices of the function fd and noise level τ 2. In all the settings, the total
+power of nonlinearity and noise is F 2
+⋆+ τ 2 = 0.5, while the power of the linear component is F 2
+1 = 1. The
+test errors in these three settings appear to be very close, as predicted by our theory.
+Remark 6. The terms B and V in Eq. (21) correspond to the the limits of the bias and variance of the
+estimated function f(x; ˆa(λ), Θ), when the ground truth function fd is linear. That is, for fd to be a linear
+function, we have
+Ex
+
+fd(x) −Eεf(x; ˆa(λ), Θ)
+2	
+= B(ζ, ψ1, ψ2, λ/µ2
+⋆)F 2
+1 + od,P(1) ,
+(22)
+ExVarε
+ f(x; ˆa(λ), Θ)
+
+= V (ζ, ψ1, ψ2, λ/µ2
+⋆) τ 2 + od,P(1) .
+(23)
+5.2
+Simplifying the asymptotic risk in special cases
+In order to gain further insight into the formula for the asymptotic risk R(ρ, ζ, ψ1, ψ2, λ), we consider here
+three special cases that are particularly interesting:
+1. The ridgeless limit λ →0+.
+2. The highly overparametrized regime ψ1 →∞(recall that ψ1 = limd→∞N/d).
+3. The large sample limit ψ2 →∞(recall that ψ2 = limd→∞n/d).
+Let us emphasize that these limits are taken after the limit N, n, d →∞with N/d →∞and n/d →∞.
+Hence, the correct interpretation of the highly overparametrized regime is not that the width N is inﬁnite,
+but rather much larger than d (more precisely, larger than any constant times d). Analogously, the large
+sample limit does not coincide with inﬁnite sample size n, but instead sample size that is much larger than
+d.
+13
+
+
+--- page 14 ---
+0.5
+1
+1.5
+2
+2.5
+3
+3.5
+4
+4.5
+0
+0.5
+1
+1.5
+2
+2.5
+3
+3.5
+4
+4.5
+5
+Test error
+0
+0.5
+1
+1.5
+2
+2.5
+3
+3.5
+4
+4.5
+5
+0
+0.5
+1
+1.5
+2
+2.5
+3
+Test error
+Figure 5: Random features regression with ReLU activation (σ = max{x, 0}). Data are generated according
+to one of three settings: (1) fd(x) = x1 and E[ε2] = 0.5; (2) fd(x) = x1 + (x2
+1 −1)/2 and E[ε2] = 0; (3)
+fd(x) = x1 +x1x2/
+√
+2 and E[ε2] = 0. Within any of these settings, the total power of nonlinearity and noise
+is F 2
+⋆+ τ 2 = 0.5, while the power of linear part is F 2
+1 = 1. Left frame: λ = 10−8. Right frame: λ = 10−3.
+Here n = 300, d = 100. The continuous black line is our theoretical prediction, and the colored symbols are
+numerical results. Symbols are averages over 20 instances and the error bars report the standard error of
+the means over these 20 instances.
+5.2.1
+Ridgeless limit
+The ridgeless limit λ →0+ is important because it captures the asymptotic behavior the min-norm inter-
+polation predictor (see also Remark 1.)
+Theorem 3. Under the assumptions of Theorem 2, set ψ ≡min{ψ1, ψ2} and deﬁne
+χ ≡−[(ψζ2 −ζ2 −1)2 + 4ζ2ψ]1/2 + (ψζ2 −ζ2 −1)
+2ζ2
+,
+(24)
+and
+E0,rless(ζ, ψ1, ψ2) ≡−χ5ζ6 + 3χ4ζ4 + (ψ1ψ2 −ψ2 −ψ1 + 1)χ3ζ6 −2χ3ζ4 −3χ3ζ2
++ (ψ1 + ψ2 −3ψ1ψ2 + 1)χ2ζ4 + 2χ2ζ2 + χ2 + 3ψ1ψ2χζ2 −ψ1ψ2 ,
+E1,rless(ζ, ψ1, ψ2) ≡ψ2χ3ζ4 −ψ2χ2ζ2 + ψ1ψ2χζ2 −ψ1ψ2,
+E2,rless(ζ, ψ1, ψ2) ≡χ5ζ6 −3χ4ζ4 + (ψ1 −1)χ3ζ6 + 2χ3ζ4 + 3χ3ζ2 + (−ψ1 −1)χ2ζ4 −2χ2ζ2 −χ2,
+(25)
+and
+Brless(ζ, ψ1, ψ2) ≡E1,rless/E0,rless,
+(26)
+Vrless(ζ, ψ1, ψ2) ≡E2,rless/E0,rless.
+(27)
+Then the asymptotic prediction error of random features ridgeless regression is given by
+lim
+λ→0 lim
+d→∞E[RRF(fd, X, Θ, λ)] = F 2
+1 Brless(ζ, ψ1, ψ2) + (τ 2 + F 2
+⋆)Vrless(ζ, ψ1, ψ2) + F 2
+⋆.
+(28)
+The proof of this result can be found in Section 12.
+The next proposition establishes the main qualitative properties of the ridgeless limit.
+Proposition 5.1. Recall the bias and variance functions Brless and Vrless deﬁned in Eq. (26) and (27). Then,
+for any ζ ∈(0, ∞) and ﬁxed ψ2 ∈(0, ∞), we have
+14
+
+
+--- page 15 ---
+1. Small width limit ψ1 →0:
+lim
+ψ1→0 Brless(ζ, ψ1, ψ2) = 1,
+lim
+ψ1→0 Vrless(ζ, ψ1, ψ2) = 0.
+(29)
+2. Divergence at the interpolation threshold ψ1 = ψ2:
+Brless(ζ, ψ2, ψ2) = ∞,
+Vrless(ζ, ψ2, ψ2) = ∞.
+(30)
+3. Large width limit ψ1 →∞(here χ is deﬁned as per Eq. (24)):
+lim
+ψ1→∞Brless(ζ, ψ1, ψ2) = (ψ2χζ2 −ψ2)/((ψ2 −1)χ3ζ6 + (1 −3ψ2)χ2ζ4 + 3ψ2χζ2 −ψ2),
+(31)
+lim
+ψ1→∞Vrless(ζ, ψ1, ψ2) = (χ3ζ6 −χ2ζ4)/((ψ2 −1)χ3ζ6 + (1 −3ψ2)χ2ζ4 + 3ψ2χζ2 −ψ2) .
+(32)
+4. Above the interpolation threshold (i.e. for ψ1 ≥ψ2), the function Brless(ζ, ψ1, ψ2) and Vrless(ζ, ψ1, ψ2)
+are strictly decreasing in the rescaled number of neurons ψ1.
+The proof of this proposition is presented in Section 13.1.
+As anticipated, point 2 establishes an important diﬀerence with respect to the random covariates linear
+regression model of [AS17, HMRT19, BHX19]. While in those models the peak in prediction error is entirely
+due to a variance divergence, in the present setting both variance and bias diverge.
+Another important diﬀerence is established in point 4: both bias and variance are monotonically decreas-
+ing above the interpolation threshold. This, again, contrasts with the behavior of simpler models, in which
+bias increases after the interpolation threshold, or after a somewhat larger point in the number of parameters
+per dimension (if misspeciﬁcation is added).
+This monotone decrease of the bias is crucial, and is at the origin of the observation that highly over-
+parametrized models outperform underparametrized or moderately overparametrized ones. See Figure 6 for
+an illustration.
+0
+0.5
+1
+1.5
+2
+2.5
+3
+3.5
+4
+4.5
+5
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+Test error
+Figure 6: Analytical predictions of learning a linear function fd(x) = ⟨x, β1⟩with ReLU activation (σ =
+max{x, 0}) in the ridgeless limit (λ →0). We take ∥β1∥2
+2 = 1 and E[ε2] = 1 . We ﬁx ψ2 = 2 and plot the
+bias, variance, and the test error as functions of ψ1/ψ2. Both the bias and the variance term diverge when
+ψ1 = ψ2, and decrease in ψ1 when ψ1 > ψ2.
+5.2.2
+Highly overparametrized regime
+As the number of neurons N diverges (for ﬁxed dimension d), random features ridge regression is known
+to approach kernel ridge regression with respect to the kernel (7). It is therefore interesting what happens
+when N and d diverge together, but N is larger than any constant times d.
+15
+
+
+--- page 16 ---
+Theorem 4. Under the assumptions of Theorem 2, deﬁne
+ω ≡−[(ψ2ζ2 −ζ2 −λψ2 −1)2 + 4ψ2ζ2(λψ2 + 1)]1/2 + (ψ2ζ2 −ζ2 −λψ2 −1)
+2(λψ2 + 1)
+,
+(33)
+and
+Bwide(ζ, ψ2, λ) =
+ψ2ω −ψ2
+(ψ2 −1)ω3 + (1 −3ψ2)ω2 + 3ψ2ω −ψ2
+,
+(34)
+Vwide(ζ, ψ2, λ) =
+ω3 −ω2
+(ψ2 −1)ω3 + (1 −3ψ2)ω2 + 3ψ2ω −ψ2
+.
+(35)
+Then the asymptotic prediction error of random features ridge regression, in the large width limit is given by
+lim
+ψ1→∞lim
+d→∞E[RRF(fd, X, Θ, λ)] = F 2
+1 Bwide(ζ, ψ2, λ/µ2
+⋆) + (τ 2 + F 2
+⋆)Vwide(ζ, ψ2, λ/µ2
+⋆) + F 2
+⋆.
+(36)
+The proof of this result can be found in Section 12. Note that, as expected, the risk remains lower bounded
+by F 2
+⋆, even in the limit ψ1 →∞. Naively, one could have expected to recover kernel ridge regression in
+this limit, and hence a method that can ﬁt nonlinear functions. However, as shown in [GMMM19], random
+features methods can only learn linear functions for N = Od(d2−δ).
+As observed in Figures 2 to 4 (which have been obtained by applying Theorem 2), the minimum prediction
+error is often achieved by highly overparametrized networks ψ1 →∞. It is natural to ask what is the eﬀect
+of regularization on such networks. Somewhat surprisingly (and as anticipated in Section 2), we ﬁnd that
+regularization does not always help. Namely, there exists a critical value ρ⋆of the signal-to-noise ratio, such
+that vanishing regularization is optimal for ρ > ρ⋆, and is not optimal for ρ < ρ⋆.
+In order to state formally this result, we deﬁne the following quantities
+Rwide(ρ, ζ, ψ2, λ) ≡
+ρ
+1 + ρBwide(ζ, ψ2, λ) +
+1
+1 + ρVwide(ζ, ψ2, λ) ,
+(37)
+ω0(ζ, ψ2) ≡−[(ψ2ζ2 −ζ2 −1)2 + 4ψ2ζ2]1/2 + (ψ2ζ2 −ζ2 −1)
+2
+,
+(38)
+ρ⋆(ζ, ψ2) ≡
+ω2
+0 −ω0
+(1 −ψ2)ω0 + ψ2
+.
+(39)
+Notice in particular that Rwide(ρ, ζ, ψ2, λ/µ2
+⋆) is the limiting value of the prediction error (right-hand side of
+(36)) up to an additive constant and an multiplicative constant.
+Proposition 5.2. Fix ζ, ψ2 ∈(0, ∞) and ρ ∈(0, ∞). Then the function λ 7→Rwide(ρ, ζ, ψ2, λ) is either
+strictly increasing in λ, or strictly decreasing ﬁrst and then strictly increasing.
+Moreover, we have
+ρ < ρ⋆(ζ, ψ2)
+⇒
+arg min
+λ≥0
+Rwide(ρ, ζ, ψ2, λ) = 0 ,
+(40)
+ρ > ρ⋆(ζ, ψ2)
+⇒
+arg min
+λ≥0
+Rwide(ρ, ζ, ψ2, λ) = λ⋆(ζ, ψ2, ρ) > 0 .
+(41)
+The proof of this proposition is presented in Section 13.2, which also provides further information about
+this phase transition (and, in particular, an explicit expression for λ⋆(ζ, ψ2, ρ)).
+5.2.3
+Large sample limit
+As the number of sample n goes to inﬁnity, both training error (minus τ 2) and test error2 converge to the
+approximation error using random features class to ﬁt the true function fd. It is therefore interesting what
+happens when n and d diverge together, but n is larger than any constant times d.
+2The diﬀerence between training error and test error is due to the fact that we deﬁne the former as ˆEn{(y −ˆf(x))2} and
+the latter as E{(f(x) −ˆf(x))2}.
+16
+
+
+--- page 17 ---
+Theorem 5. Under the assumptions of Theorem 2, deﬁne
+ω ≡−[(ψ1ζ2 −ζ2 −λψ1 −1)2 + 4ψ1ζ2(λψ1 + 1)]1/2 + (ψ1ζ2 −ζ2 −λψ1 −1)
+2(λψ1 + 1)
+,
+(42)
+and
+Blsamp(ζ, ψ1, λ) =
+(ω3 −ω2)/ζ2 + ψ1ω −ψ1
+(ψ1 −1)ω3 + (1 −3ψ1)ω2 + 3ψ1ω −ψ1
+.
+(43)
+Then the asymptotic prediction error of random features ridge regression, in the large width limit is given by
+lim
+ψ2→∞lim
+d→∞E[RRF(fd, X, Θ, λ)] = F 2
+1 Blsamp(ζ, ψ2, λ/µ2
+⋆) + F 2
+⋆.
+(44)
+The proof of this result can be found in Section 12.
+6
+Asymptotics of the training error
+Theorem 2 establishes the exact asymptotics of the test error in the random features model. However, the
+technical results obtained in the proofs allow us to characterize several other quantities of interest. Here we
+consider the behavior of the training error and of the norm of the parameters. We deﬁne the regularized
+training error by
+LRF(fd, X, Θ, λ) = min
+a
+n 1
+n
+n
+X
+i=1
+
+yi −
+N
+X
+j=1
+ajσ(⟨θj, xi⟩/
+√
+d)
+2
++ Nλ
+d ∥a∥2
+2
+o
+.
+(45)
+We also recall that ˆa(λ) denotes the minimizer in the last expression, cf. Eq. (2) The next deﬁnition presents
+the asymptotic formulas for these quantities.
+Deﬁnition 2 (Asymptotic formula for training error of random features regression). Let the functions
+ν1, ν2 : C+ →C+ be uniquely deﬁned by the following conditions: (i) ν1, ν2 are analytic on C+; (ii) For
+ℑ(ξ) > 0, ν1(ξ), ν2(ξ) satisfy the following equations
+ν1 = ψ1
+
+−ξ −ν2 −
+ζ2ν2
+1 −ζ2ν1ν2
+−1
+,
+ν2 = ψ2
+
+−ξ −ν1 −
+ζ2ν1
+1 −ζ2ν1ν2
+−1
+;
+(46)
+(iii) (ν1(ξ), ν2(ξ)) is the unique solution of these equations with |ν1(ξ)| ≤ψ1/ℑ(ξ), |ν2(ξ)| ≤ψ2/ℑ(ξ) for
+ℑ(ξ) > C, with C a suﬃciently large constant.
+Let
+χ ≡ν1(i(ψ1ψ2λ)1/2) · ν2(i(ψ1ψ2λ)1/2),
+(47)
+and
+L = −iν2(i(ψ1ψ2λ)1/2) ·
+λψ1
+ψ2
+1/2
+·
+h
+ρ
+1 + ρ ·
+1
+1 −χζ2 +
+1
+1 + ρ
+i
+,
+A1 =
+ρ
+1 + ρ
+h
+−χ2(χζ4 −χζ2 + ψ2ζ2 + ζ2 −χψ2ζ4 + 1)
+i
++
+1
+1 + ρ
+h
+χ2(χζ2 −1)(χ2ζ4 −2χζ2 + ζ2 + 1)
+i
+,
+A0 = −χ5ζ6 + 3χ4ζ4 + (ψ1ψ2 −ψ2 −ψ1 + 1)χ3ζ6 −2χ3ζ4 −3χ3ζ2
++ (ψ1 + ψ2 −3ψ1ψ2 + 1)χ2ζ4 + 2χ2ζ2 + χ2 + 3ψ1ψ2χζ2 −ψ1ψ2,
+A = A1/A0.
+(48)
+We next state our asymptotic characterization of LRF(fd, X, Θ, λ) and ∥ˆa(λ)∥2
+2.
+17
+
+
+--- page 18 ---
+Theorem 6. Let X = (x1, . . . , xn)T ∈Rn×d with (xi)i∈[n] ∼iid Unif(Sd−1(
+√
+d)) and Θ = (θ1, . . . θN)T ∈
+RN×d with (θa)a∈[N] ∼iid Unif(Sd−1(
+√
+d)) independently. Let the activation function σ satisfy Assumption
+1, and consider proportional asymptotics N/d →ψ1, N/d →ψ2, as per Assumption 2. Finally, let the
+regression function {fd}d≥1 and the response variables (yi)i∈[n] satisfy Assumption 3.
+Then for any value of the regularization parameter λ > 0, the asymptotic regularized training error and
+norm square of its minimizer satisfy
+EX,Θ,ε,f NL
+d
+LRF(fd, X, Θ, λ) −(F 2
+1 + F 2
+⋆+ τ 2)L
+ = od(1),
+EX,Θ,ε,f NL
+d
+µ2
+⋆∥ˆa(λ)∥2
+2 −(F 2
+1 + F 2
+⋆+ τ 2)A
+ = od(1),
+(49)
+where EX,Θ,ε,f NL
+d
+denotes expectation with respect to data covariates X, feature vectors Θ, data noise ε, and
+f NL
+d
+the nonlinear part of the true regression function (as a Gaussian process), as per Assumption 3. The
+functions L and A are given in Deﬁnition 2.
+The proof of Theorem 6 is similar to the proof of Theorem 2. We will give a sketch of proof of Theorem
+6 in Section E.
+6.1
+Numerical illustrations
+0
+1
+2
+3
+4
+5
+0
+0.5
+1
+1.5
+2
+2.5
+3
+3.5
+4
+4.5
+5
+Figure 7: Analytical predictions and numerical simulations for the test error and regularized training error.
+Data are generated according to yi = ⟨β1, xi⟩+ εi with ∥β1∥2
+2 = 1 and εi ∼N(0, τ 2), τ 2 = 0.5. We ﬁt
+a random features model with ReLU activations (σ(x) = max{x, 0}) and ridge regularization parameter
+λ = 10−3. In simulations we use d = 100 and n = 300. We add τ 2 = 0.5 to the test error to make it
+comparable with training error. Symbols are averages over 20 instances.
+In this section, we illustrate Theorem 6 through numerical simulations. Figure 6.1 reports the theoretical
+prediction and numerical results for the regularized training error, the test error, and the norm of the
+coeﬃcients ˆa(λ). We use a small non-zero value of the regularization parameter λ = 10−3, ﬁx the number of
+samples per dimension ψ2 = n/d, and follow these quantities as a function of the overparameterization ratio
+ψ1/ψ2 = N/n.
+As expected, the behavior of the training error strikingly diﬀerent from the one of the test error. The
+training error is monotone decreasing in the overparameterization ratio N/n, and is close to zero in the
+overparameterized regime N/n > 1 (it is not exactly vanishing because we use a small λ > 0). In other
+18
+
+
+--- page 19 ---
+words, the ﬁtted model is nearly interpolating the data, and the peak in test error matches the interpolation
+threshold.
+On the other hand, the penalty term ψ1∥ˆa(λ)∥2
+2 is non-monotone: it increases up to the interpolation
+threshold, then decreases for N/n > 1, and converges to a constant as ψ1 →∞.
+If we take this as a
+proxy for the model complexity, the behavior of ψ1∥ˆa(λ)∥2
+2 provides useful intuition about descent of the
+generalization error. As the number of parameters increases beyond the interpolation threshold, the model
+complexity decreases instead of increasing.
+10-2
+10-1
+100
+101
+102
+0
+0.5
+1
+1.5
+Figure 8: Analytical predictions and numerical simulations results for the test error and the regularized
+training error. Data are generated according to yi = ⟨β1, xi⟩+εi with ∥β1∥2
+2 = 1 and εi ∼N(0, τ 2), τ 2 = 0.2.
+We ﬁt a random features model with ReLU activations (σ(x) = max{x, 0}). We ﬁx ψ2 = n/d = 10. We add
+τ 2 = 0.2 to the test error make it comparable with training error. In the optimal ridge setting, we choose λ
+for each value of ψ1 as to minimize the asymptotic test error.
+We can conﬁrm the intuition that the double descent of the test error is driven by the behavior of the
+model complexity ψ1∥ˆa(λ)∥2
+2, by selecting λ in an optimal way. Following [HMRT19], we expect that the
+optimal regularization should produce a smaller value of ψ1∥ˆa(λ)∥2
+2, and hence eliminate or reduce the double
+descent phenomenon. Indeed, this is illustrated in Figure 6.1 demonstrates the prediction of the regularized
+training error and the test error for two choices of λ: λ = 0, and an optimal λ such that the test error is
+minimized. When we choose an optimal λ, the test error becomes strictly decreasing as ψ1 = N/d increases.
+We expect this is a generic phenomenon that also holds in other interesting models.
+7
+An equivalent Gaussian covariates model
+An examination of the proof of our main result (Theorem 2) reveals an interesting phenomenon. The random
+features model has the same asymptotic prediction error as a simpler model with Gaussian covariates and
+response that is linear in these covariates, provided we use a special covariance and signal structure.
+The construction of the Gaussian covariates model proceeds as follows. Fix β1 ∈Rd, ∥β1∥2
+2 = F 2
+1 and
+Θ = (θ1, . . . , θN)T with (θj)j∈[N] ∼iid Unif(Sd−1(
+√
+d)). The joint distribution of (y, x, u) ∈R × Rd × RN
+conditional on Θ is deﬁned by the following procedure:
+1. Draw x ∼N(0, Id), ε ∼N(0, τ 2), and w ∼N(0, IN) independently, conditional on Θ.
+2. Let y = ⟨β1, x⟩+ ε.
+3. Let u = (u1, . . . , uN)T, uj = µ0 + µ1⟨θj, x⟩/
+√
+d + µ⋆wj, for some 0 < |µ0|, |µ1|, |µ⋆| < ∞.
+19
+
+
+--- page 20 ---
+We will denote by Py,x,u|Θ the probability distribution thus deﬁned. As anticipated, this is a Gaussian
+covariates model. Indeed, the covariates vector u ∼N(0, Σ) is Gaussian, with covariance Σ = µ2
+011T +
+µ2
+1ΘΘT/d + µ2
+⋆IN. Also (y, u) are jointly Gaussian and we can therefore write y = ⟨˜β1, u⟩+ ˜ε, for some new
+vector of coeﬃcients ˜β1, and noise ˜ε which is independent of u.
+Let [{(yi, xi, ui)}i∈[n]|Θ] ∼iid Py,x,u|Θ. We learn a regression function ˆf(x; a, Θ) = ⟨u, a⟩, by performing
+ridge regression
+ˆa(λ) = arg min
+a∈RN
+(
+1
+n
+n
+X
+i=1
+(yi −⟨ui, a⟩)2 + Nλ
+d ∥a∥2
+2
+)
+.
+(50)
+The prediction error is deﬁned by
+RGC(fd, X, Θ, λ) = Ex,z|Θ[(fd(x) −⟨u, ˆa(λ)⟩)2] .
+(51)
+Remarkably, in the proportional asymptotics N, n, d →∞with N/d →ψ1, n/d →ψ2, the behavior of
+this model is the same as the one of the nonlinear random features model studied in the rest of the paper.
+In particular, the asymptotic prediction error R is given by the same formula as in Deﬁnition 1.
+Theorem 7. (Gaussian covariates prediction model) Deﬁne ζ and the signal-to-noise ratio ρ ∈[0, ∞] as
+ζ ≡µ2
+1/µ2
+⋆,
+ρ ≡F 2
+1 /τ 2 ,
+(52)
+and assume µ0, µ1, µ⋆̸ = 0. Then, in the Gaussian covariates model described above, for any λ > 0, we have
+RGC(fd, X, Θ, λ) = (F 2
+1 + τ 2) R(ρ, ζ, ψ1, ψ2, λ/µ2
+⋆) + od,P(1) ,
+(53)
+where R(ρ, ζ, ψ1, ψ2, λ) is explicitly given in Deﬁnition 1.
+The proof of Theorem 7 is is almost the same as the one of Theorem 2 (with several simpliﬁcations,
+because of the greater amount of independence). To avoid repetitions, we will not present a proof here.
+Figure 9 illustrates the content of Theorem 7 via numerical simulations. We report the simulated and
+predicted test error as a function of ψ1/ψ2 = N/n. The theoretical prediction here is exactly the same as
+the one reported in Figure 5. However, numerical simulations were carried out with the Gaussian covariates
+model instead of random features. The agreement is excellent, as predicted by Theorem 7.
+Why do the RF and GC models result in the same asymptotic prediction error? It is useful to provide
+a heuristic explanation of this interesting phenomenon. Consider an activation function σ : R →R, with
+µk = E[Hek(G)σ(G)] and µ2
+⋆= E[σ2(G)] −µ2
+0 −µ2
+1 for G ∼N(0, 1). Deﬁne the nonlinear component of the
+activation function by σ⊥(x) ≡σ(x) −µ0 −µ1x. Note that we have
+σ(⟨xi, θj⟩/
+√
+d) = µ0 + µ1⟨xi, θj⟩/
+√
+d + µ⋆˜wij ,
+˜wij ≡1
+µ⋆
+σ⊥(⟨xi, θj⟩/
+√
+d),
+uj = µ0 + µ1⟨xi, θj⟩/
+√
+d + µ⋆wij,
+where (wij)i∈[n],j∈[N] ∼iid N(0, 1) independent of X and Θ. Note that the ﬁrst two moments of ˜wij match
+those of wij, i.e.
+Ex|Θ ˜wij = 0, Ex|Θ( ˜w2
+ij) = 1.
+Further, for i̸ = l, ˜wij, ˜wil are nearly uncorrelated:
+Ex|Θ{ ˜wij ˜wil} = O((⟨θj, θl⟩/d)2) = OP(1/d) It is therefore not unreasonable to imagine that they should
+behave as independents. The same intuition also appears in the analysis of the spectrum of kernel random
+matrices in [CS13, PW17].
+20
+
+
+--- page 21 ---
+0
+0.5
+1
+1.5
+2
+2.5
+3
+3.5
+4
+4.5
+5
+0
+0.5
+1
+1.5
+2
+2.5
+3
+Test error
+Figure 9: Predictions and numerical simulations for the test error of the Gaussian covariates model. We ﬁt
+yi = ⟨β1, xi⟩+ εi with ∥β1∥2
+2 = 1 and τ 2 = E[ε2
+i ] = 0.5, and parameters µ1 = 0.5, µ⋆=
+p
+(π −2)/(4π), and
+λ = 10−3. This choice of parameters µ1 and µ⋆matches the corresponding parameters for ReLU activations.
+Here n = 300, d = 100. The continuous black line is our theoretical prediction, and the colored symbols are
+numerical results. Symbols are averages over 20 instances and the error bars report the standard error of
+the means over 20 instances.
+21
+
+
+--- page 22 ---
+8
+Proof of Theorem 2
+This section presents the proof strategy of Theorem 2, deferring a detailed proof of technical proposi-
+tions to the next sections. Throughout the proof, we let X = (x1, . . . , xn)T ∈Rn×d with (xi)i∈[n] ∼iid
+Unif(Sd−1(
+√
+d)), Θ = (θ1, . . . , θn)T ∈RN×d with (θa)a∈[N] ∼iid Unif(Sd−1(
+√
+d)) independently of X. Fur-
+ther, we let Assumptions 1, 2, 3 hold, and λ > 0 is kept ﬁxed.
+We begin by observing that the minimizer of the training error (2) is given by
+ˆa(λ) =
+1
+√
+d
+(ZTZ + λψ1,dψ2,dIN)−1ZTy.
+It is useful to introduce the following resolvent matrix Ξ ∈RN×N
+Ξ ≡(ZTZ + λψ1,dψ2,dIN)−1.
+(54)
+Then ˆa(λ) can be written in a simpler form ˆa(λ) = ΞZTy/
+√
+d. After a simple calculation, we obtain
+RRF(fd, X, Θ, λ) = Ex[fd(x)2] −2yTZΞV /
+√
+d + yTZΞUΞZTy/d.
+(55)
+Here σ(x) =
+(σ(⟨θ1, x⟩/
+√
+d), . . . , σ(⟨θN, x⟩/
+√
+d))T ∈RN, y =
+(y1, . . . , yn)T = f + ε ∈Rn, f =
+(fd(x1), . . . , fd(xn))T ∈Rn, ε =
+(ε1, . . . , εn)T ∈Rn, and V = (V1, . . . , VN)T ∈RN, U = (Uij)ij∈[N] ∈
+RN×N, are deﬁned by
+Vi = Ex[fd(x)σ(⟨θi, x⟩/
+√
+d)],
+Uij = Ex[σ(⟨θi, x⟩/
+√
+d)σ(⟨θj, x⟩/
+√
+d)].
+(56)
+Our ﬁrst step is to replace the exact expression (55) by a simpler one involving traces of combinations of Ξ
+and the following four random matrices:
+Q = 1
+dΘΘT,
+H = 1
+dXXT,
+Z =
+1
+√
+d
+σ
+ 1
+√
+d
+XΘT
+,
+Z1 = µ1
+d XΘT.
+(57)
+Proposition 8.1 (Decomposition). We have
+EX,Θ,ε,f NL
+d
+RRF(fd, X, Θ, λ) −
+h
+F 2
+1 (1 −2Ψ1 + Ψ2) + (F 2
+⋆+ τ 2)Ψ3 + F 2
+⋆
+i = od(1),
+(58)
+where
+Ψ1 = 1
+dTr[ZT
+1 ZΞ],
+Ψ2 = 1
+dTr[Ξ(µ2
+1Q + µ2
+⋆IN)ΞZTHZ],
+Ψ3 = 1
+dTr[Ξ(µ2
+1Q + µ2
+⋆IN)ΞZTZ].
+(59)
+The proof of this proposition is deferred to Section 9 and is based on the following main steps:
+• As a preliminary remark, we show that by invariance of the distributions of (θj)j≤N and (xi)i≤n under
+rotations in Rd, we can replace the deterministic vector βd,1 by a uniformly random vector on the
+sphere with radius ∥βd,1∥2 = Fd,1.
+• Second, we compute the expectation Eβ,ε[RRF(fd, X, Θ, λ)], and simplify this expression, in particular
+by proving that a negligible error is incurred by replacing the kernel matrix U by µ2
+1Q + µ2
+⋆IN.
+• Finally, we show that RRF(fd, X, Θ, λ) concentrates around its expectation with respect to fd (i.e. the
+coeﬃcients {βd,k}k≥1) and ε.
+22
+
+
+--- page 23 ---
+In order to compute the traces Ψj appearing in the last proposition, we introduce a block-structured
+matrix A ∈RM×M, M = N + n as follows. For q = (s1, s2, t1, t2, p) ∈R5, we deﬁne
+A = A(q) :=
+
+s1IN + s2Q
+ZT + pZT
+1
+Z + pZ1
+t1In + t2H
+
+.
+(60)
+For ξ ∈C+ and q ∈R5, we deﬁne the Stieltjes transform of A (denoted by md) and its log-determinant
+(denoted by Gd) via
+md(ξ; q) = E[Md(ξ; q)],
+Md(ξ; q) = 1
+dTr[(A −ξIM)−1] ,
+Gd(ξ; q) = 1
+d
+M
+X
+i=1
+Log(λi(A(q)) −ξ).
+(61)
+Here Log is the complex logarithm with branch cut on the negative real axis and {λi(A)}i∈[M] is the set of
+eigenvalues of A in non-increasing order.
+The next proposition connects the quantities Ψj to the transforms Gd and Md.
+Proposition 8.2. For ξ ∈C+ and q ∈R5, we have
+d
+dξ Gd(ξ; q) = −1
+d
+M
+X
+i=1
+(λi(A) −ξ)−1 = −Md(ξ; q) ,
+(62)
+and
+Ψ1 = 1
+2∂pGd(i(ψ1ψ2λ)1/2; 0),
+Ψ2 = −µ2
+⋆∂s1,t2Gd(i(ψ1ψ2λ)1/2; 0) −µ2
+1 ∂s2,t2Gd(i(ψ1ψ2λ)1/2; 0),
+Ψ3 = −µ2
+⋆∂s1,t1Gd(i(ψ1ψ2λ)1/2; 0) −µ2
+1 ∂s2,t1Gd(i(ψ1ψ2λ)1/2; 0).
+(63)
+The proof of Proposition 8.2 follows by basic calculus and linear algebra, and we defer its proof to
+Appendix B. Despite its simplicity, this statement provides the basic scheme of our proof. We will determine
+the asymptotics of Md(ξ; q) using a leave-one-out argument; then extract the behavior of Gd(ξ; q) using
+Eq. (62); ﬁnally we characterize the test error using Eqs. (63) and Proposition 8.1.
+Remark 7. The construction of the matrix A(q) is related to the linear pencil method in free probability,
+see e.g., [HMS18]. A signiﬁcantly simpler construction was used in [HMRT19, Section 8] to calculate the
+variance part of the risk RRF in the limit λ →0 (in special cases). The approach of [HMRT19] amounts to
+computing the Stieltjes transform of A for p = t1 = t2 = 0, in the limit ξ →0: unfortunately this quantity
+is not suﬃcient to extract the prediction error. We overcome this diﬃculty by considering a more complex
+block-structured matrix and expressing the risk in terms of derivatives of the log determinant Gd(ξ; q).
+In order to compute the Stieltjes transform of A, we derive a set of two non-linear equations for the partial
+transform m1,d(ξ; q) = (N/d)E{[(A−ξIM)−1]N,N}, m2,d(ξ; q) = (n/d)E{[(A−ξIM)−1]M,M} corresponding
+to the two blocks in the deﬁnition of A. The starting point is the Schur complement formula with respect
+to entry (N, N) of matrix A −ξIM
+m1,d = N
+d E
+n
+−ξ + s1 + s2∥θN∥2
+2/d −AT
+·,N(B −ξIM−1)−1A·,N
+−1o
+.
+(64)
+An analogous formula for m2,d is obtained by taking the complement of entry (M, M). Here A·,N ∈RM−1
+is the N-th column of A, with the N-th entry removed and B ∈R(M−1)×(M−1) is the matrix obtained from
+A by removing the N-th column and N-th row. As usual in random matrix theory, we aim at expressing
+the right-hand side as an explicit deterministic function of m1,d, m2,d, plus a small error. Unlike in more
+standard random matrix models, the matrix B is not independent of the vector A·,N: both are functions of
+(θa)a<N and (xi)i≤n. In order to overcome this diﬃculty, we decompose these vectors in the components
+along θN and the ones orthogonal to θN: the ﬁrst one carries most of the dependence and can be treated
+explicitly, while for the second we can leverage independence.
+23
+
+
+--- page 24 ---
+Unfortunately, even conditional on θN, the projections of (θa)a<N and (xi)i≤n along θN and orthogonal
+to it are not independent (because of the sphere constraint). To overcome this problem we replace these by
+Gaussian vectors (θa)a<N and (xi)i≤n and prove that the two distributions yield the same asymptotics of
+the Stieltjes transform. The decomposition of these Gaussian vectors takes the form
+θa = ηa
+θN
+∥θN∥2
++ ˜θa ,
+⟨θN, ˜θa⟩= 0,
+a ∈[N −1] ,
+(65)
+xi = ui
+θN
+∥θN∥+ ˜xi ,
+⟨θN, ˜xi⟩= 0,
+i ∈[n] .
+(66)
+Note that {ηa}a∈[N−1], {ui}i∈[n] ∼iid N(0, 1) are independent of θN/∥θN∥2, {˜θa}a∈[N−1], and {˜xi}i∈[n].
+Further, the vector A·,N (the equivalent of A·,N for the Gaussian model) only depends on the ηa’s and
+ui’s. While the matrix B (the equivalent of B) depends on all of ηa’s, ui’s, ˜θa’s, ˜xi’s, we show it can be
+approximated by ˜
+B + ∆where ˜
+B only depends on the ˜θa’s, ˜xi’s, and ∆is a low-rank matrix depending
+only on ηa’s, ui’s. We thus get:
+m1,d = N
+d E
+n
+−ξ + s1 + s2 −A
+T
+·,N( ˜
+B + ∆−ξIM−1)−1A·,N
+−1o
++ err(d) .
+(67)
+At this point independence can be exploited to obtain concentration results on the right-hand side. Let us
+emphasize that, while these paragraphs outline the main elements of the leave-one-out argument, several
+technical subtleties make the actual proof signiﬁcantly longer, see Section 10 for details.
+We next state the asymptotic characterization of the Stieltjes transform which is obtained by this argu-
+ment. Deﬁne Q ⊆R5 via
+Q = {(s1, s2, t1, t2, p) : |s2t2| ≤µ2
+1(1 + p)2/2} ,
+(68)
+and two functions F1( · , · ; ξ; q, ψ1, ψ2, µ1, µ⋆), F2( · , · ; ξ; q, ψ1, ψ2, µ1, µ⋆) : C × C →C via:
+F1(m1, m2; ξ; q, ψ1, ψ2, µ1, µ⋆) ≡ψ1
+
+−ξ + s1 −µ2
+⋆m2 +
+(1 + t2m2)s2 −µ2
+1(1 + p)2m2
+(1 + s2m1)(1 + t2m2) −µ2
+1(1 + p)2m1m2
+−1
+,
+F2(m1, m2; ξ; q, ψ1, ψ2, µ1, µ⋆) ≡ψ2
+
+−ξ + t1 −µ2
+⋆m1 +
+(1 + s2m1)t2 −µ2
+1(1 + p)2m1
+(1 + t2m2)(1 + s2m1) −µ2
+1(1 + p)2m1m2
+−1
+.
+(69)
+Proposition 8.3 (Stieltjes transform). Let m1( · ; q) m2( · ; q) : C+ →C+ be deﬁned, for ℑ(ξ) ≥C a
+suﬃciently large constant, as the unique solution of the equations
+m1 = F1(m1, m2; ξ; q, ψ1, ψ2, µ1, µ⋆) ,
+m2 = F2(m1, m2; ξ; q, ψ1, ψ2, µ1, µ⋆) ,
+(70)
+subject to the condition |m1| ≤ψ1/ℑ(ξ), |m2| ≤ψ2/ℑ(ξ). Extend this deﬁnition to ℑ(ξ) > 0 by requiring
+m1, m2 to be analytic functions in C+. Deﬁne m(ξ; q) = m1(ξ; q) + m2(ξ; q). Then for any ξ ∈C+ with
+ℑξ > 0, and any compact set Ω⊆C+, we have
+lim
+d→∞E[|Md(ξ; q) −m(ξ; q)|] = 0 ,
+(71)
+lim
+d→∞E
+h
+sup
+ξ∈Ω
+|Md(ξ; q) −m(ξ; q)|
+i
+= 0.
+(72)
+The proof of Proposition 8.3 is presented in Section 10.
+The ﬁxed point equations (70) arise as a
+consequence of Eq. (64) (and the analogous equation for m2,d).
+Indeed the proof also shows that the
+solution (m1, m2) of these equations gives the limit of (m1,d, m2,d) as n, N, d →∞.
+Recall that, by Proposition 8.2, we have Md(ξ; q) = −dGd(ξ; q)/dξ. We can therefore derive an asymp-
+totic formula for Gd(ξ; q), by integrating the expression for m(ξ; q) in Proposition 8.3 over a path in the ξ
+plane. Namely, we integrate over a path in C+ between ξ and iK, and let K →∞. A priori, one could
+expect this integral not to have a closed form. Instead, we obtain a relatively explicit expression given below.
+24
+
+
+--- page 25 ---
+Proposition 8.4. Deﬁne
+Ξ(ξ, z1, z2; q) ≡log[(s2z1 + 1)(t2z2 + 1) −µ2
+1(1 + p)2z1z2] −µ2
+⋆z1z2
++ s1z1 + t1z2 −ψ1 log(z1/ψ1) −ψ2 log(z2/ψ2) −ξ(z1 + z2) −ψ1 −ψ2.
+(73)
+For ξ ∈C+ and q ∈Q (c.f. Eq. (68)), let m1(ξ; q), m2(ξ; q) be deﬁned as the analytic continuation of
+solution of Eq. (70) as deﬁned in Proposition 8.3. Deﬁne
+g(ξ; q) = Ξ(ξ, m1(ξ; q), m2(ξ; q); q).
+(74)
+Consider proportional asymptotics N/d →ψ1, N/d →ψ2, as per Assumption 2. Then for any ﬁxed ξ ∈C+
+and q ∈Q, we have
+lim
+d→∞E[|Gd(ξ; q) −g(ξ; q)|] = 0.
+(75)
+Moreover, for any ﬁxed u ∈R+, we have
+lim
+d→∞E[∥∂qGd(iu; 0) −∂qg(iu; 0)∥2] = 0,
+(76)
+lim
+d→∞E[∥∇2
+qGd(iu; 0) −∇2
+qg(iu; 0)∥op] = 0.
+(77)
+For a complete proof of this proposition we refer to Section 11.
+We can now use Eqs. (76), (77), and (63) in Proposition 8.1, to get
+EX,Θ,ε,f NL
+d
+RRF(fd, X, Θ, λ) −R
+ = od(1),
+(78)
+where
+R = F 2
+1 B + (F 2
+⋆+ τ 2)V + F 2
+⋆,
+(79)
+B = 1 −∂pg(i(ψ1ψ2λ)1/2; 0) −µ2
+⋆∂s1,t2g(i(ψ1ψ2λ)1/2; 0) −µ2
+1 ∂s2,t2g(i(ψ1ψ2λ)1/2; 0) ,
+(80)
+V = −µ2
+⋆∂s1,t1g(i(ψ1ψ2λ)1/2; 0) −µ2
+1 ∂s2,t1g(i(ψ1ψ2λ)1/2; 0) .
+(81)
+The last display provides the desired asymptotics of bias and variance. However, these expressions involve
+derivatives of g that are very inconvenient to evaluate. We conclude by proving more explicit expressions
+for these quantities. The key remark here is that the expression g(ξ; q) in Proposition 8.4 has a special
+property: the ﬁxed point equations (70) imply that (m1(ξ; q), m2(ξ; q)) is a stationary point of the function
+Ξ(ξ, · , · ; q). This simpliﬁes the calculation of derivatives with respect to q. In particular, the ﬁrst derivative
+are obtained by computing the partial derivatives of Ξ with respect to q and evaluating it at m1, m2.
+Lemma 8.1 (Formula for derivatives of g). For ﬁxed ξ ∈C+ and q ∈R5, let m1(ξ; q), m2(ξ; q) be deﬁned
+as the analytic continuation of solution of Eq. (70) as deﬁned in Proposition 8.3. Recall the deﬁnition of Ξ
+and g given in Eq. (73) and (74). Deﬁning
+m0 = m0(ξ) ≡m1(ξ; 0) · m2(ξ; 0),
+(82)
+we have
+∂pg(ξ; 0) = 2m0µ2
+1/(m0µ2
+1 −1),
+∂2
+s1,t1g(ξ; 0) = [m5
+0µ6
+1µ2
+⋆−3m4
+0µ4
+1µ2
+⋆+ m3
+0µ4
+1 + 3m3
+0µ2
+1µ2
+⋆−m2
+0µ2
+1 −m2
+0µ2
+⋆]/S,
+∂2
+s1,t2g(ξ; 0) = [(ψ2 −1)m3
+0µ4
+1 + m3
+0µ2
+1µ2
+⋆+ (−ψ2 −1)m2
+0µ2
+1 −m2
+0µ2
+⋆]/S,
+∂2
+s2,t1g(ξ; 0) = [(ψ1 −1)m3
+0µ4
+1 + m3
+0µ2
+1µ2
+⋆+ (−ψ1 −1)m2
+0µ2
+1 −m2
+0µ2
+⋆]/S,
+∂2
+s2,t2g(ξ; 0) = [−m6
+0µ6
+1µ4
+⋆+ 2m5
+0µ4
+1µ4
+⋆+ (ψ1ψ2 −ψ2 −ψ1 + 1)m4
+0µ6
+1
+−m4
+0µ4
+1µ2
+⋆−m4
+0µ2
+1µ4
+⋆+ (2 −2ψ1ψ2)m3
+0µ4
+1
++ (ψ1 + ψ2 + ψ1ψ2 + 1)m2
+0µ2
+1 + m2
+0µ2
+⋆]/[(m0µ2
+1 −1)S],
+(83)
+where
+S = m5
+0µ6
+1µ4
+⋆−3m4
+0µ4
+1µ4
+⋆+ (ψ1 + ψ2 −ψ1ψ2 −1)m3
+0µ6
+1
++ 2m3
+0µ4
+1µ2
+⋆+ 3m3
+0µ2
+1µ4
+⋆+ (3ψ1ψ2 −ψ2 −ψ1 −1)m2
+0µ4
+1
+−2m2
+0µ2
+1µ2
+⋆−m2
+0µ4
+⋆−3ψ1ψ2m0µ2
+1 + ψ1ψ2.
+(84)
+25
+
+
+--- page 26 ---
+The proof of this lemma follows by simple calculus and can be found in Appendix D.
+Deﬁne
+ν1(iξ) ≡m1(iξµ⋆; 0) · µ⋆,
+ν2(iξ) ≡m2(iξµ⋆; 0) · µ⋆.
+(85)
+By the deﬁnition of analytic functions m1 and m2 (satisfying Eq. (70) and (69) with q = 0 as deﬁned in
+Proposition 8.3), the deﬁnition of ν1 and ν2 in Eq. (85) above is equivalent to its deﬁnition in Deﬁnition 1
+(as per Eq. (15)). Moreover, for χ deﬁned in Eq. (16) with λ = λ/µ2
+⋆and m0 deﬁned in Eq. (82), we have
+χ = ν1(i(ψ1ψ2λ/µ2
+⋆)1/2)ν2(i(ψ1ψ2λ/µ2
+⋆)1/2)
+= m1(i(ψ1ψ2λ)1/2; 0)m2(i(ψ1ψ2λ)1/2; 0) · µ2
+⋆
+= m0(i(ψ1ψ2λ)1/2) · µ2
+⋆.
+(86)
+Plugging in Eq. (83) and (84) into Eq. (80) and (81) and using Eq. (86), we can see that the expressions
+for B and V deﬁned in Eq. (80) and (81) coincide with Eq. (18) and (19) where E0, E1, E2 are provided in
+Eq. (17). Combining with Eq. (78) and (79) proves the theorem.
+9
+Proof of Proposition 8.1
+Throughout the proof of Proposition 8.1, we write that ψ1 = ψ1,d = N/d and ψ2 = ψ2,d = n/d for notation
+simplicity.
+Throughout this section, we will denote by B(d, k) the dimension of the space of spherical
+harmonics of degree k on Sd−1(
+√
+d), and by (Y (d)
+kl )l≤B(d,k) a basis for this space. We refer to Appendix A
+for further background.
+As a useful preliminary remark, we note that the Gaussian process f NL
+d
+deﬁned in Assumption 3 can be
+explicitly represented as a sum of spherical harmonics with Gaussian coeﬃcients. The following lemma is
+standard (see, e.g., [MP11, Proposition 6.11]). For the reader’s convenience, we present a simple proof in
+Appendix C.
+Lemma 9.1. For any kernel function Σd satisfying Assumption 3, we can always ﬁnd a sequence (F 2
+d,k ∈
+R+)k≥2 satisfying: (1) P
+k≥2 F 2
+d,k = Σd(1), limd→∞
+P
+k≥2 F 2
+d,k = F 2
+⋆; (2) There exist a sequence of indepen-
+dent random vectors βd,k ∼N(0, [F 2
+d,k/B(d, k)]IB(d,k)) such that
+f
+NL
+d (x) =
+X
+k≥2
+X
+l∈[B(d,k)]
+(βd,k)lY (d)
+kl (x) .
+(87)
+By exploiting the symmetry in the problem, the next lemma shows that, to show Eq. (58), instead of
+considering a ﬁxed sequence of {βd,1}d≥2, we can consider to take {βd,1 ∼Unif(Sd−1(Fd,1))}d≥2. We defer
+the proof of this lemma to Section C.
+Lemma 9.2. Let us write the random variable in the left hand side of Eq. (58) as a function of βd,1 and
+de-emphasize its dependence on other variables, i.e.,
+E(βd,1) ≡
+RRF(fd, X, Θ, λ) −
+h
+F 2
+1 (1 −2Ψ1 + Ψ2) + (F 2
+⋆+ τ 2)Ψ3 + F 2
+⋆
+i.
+Let X, Θ, ε, and f NL
+d
+be distributed as in the statement of Proposition 8.1. Then, for any ﬁxed βd,1 ∈
+Sd−1(Fd,1), we have
+EX,Θ,ε,f NL
+d [E(βd,1)] = E ˜βd,1∼Unif(Sd−1(Fd,1))EX,Θ,ε,f NL
+d [E( ˜βd,1)].
+By Lemma 9.1, we can represent the Gaussian process f NL
+d
+as per Eq. (87). By Lemma 9.2, we can
+replace the expectation over f NL
+d
+by expectation over βd,1 ∼Unif(Sd−1(Fd,1)) and the Gaussian vectors
+{βd,k ∼N(0, [F 2
+d,k/B(d, k)]IB(d,k))}k≥2.
+In the remaining of this section, we write Eβ as a shorthand for this expectation.
+To simplify our
+expressions, we sometimes write βk ≡βd,k. It is furthermore useful to introduce two resolvent matrices
+26
+
+
+--- page 27 ---
+Ξ ∈RN×N and Π ∈Rn×n (Ξ is the same as deﬁned in Eq. (54) except that we are keeping ψ1,d and ψ2,d
+ﬁxed here)
+Ξ ≡(ZTZ + ψ1ψ2λIN)−1,
+Π ≡(ZZT + ψ1ψ2λIn)−1.
+(88)
+Next, we state three lemmas that are used in the proof of Proposition 8.1.
+Lemma 9.3 (Decomposition). Let λd,k(σ) be the Gegenbauer coeﬃcients of the function σ, i.e., we have
+σ(x) =
+∞
+X
+k=0
+λd,k(σ)B(d, k)Qk(
+√
+d · x).
+(89)
+Under the assumptions of Proposition 8.1, for any λ > 0, we have
+Eβ,ε[RRF(fd, X, Θ, λ)] =
+∞
+X
+k=0
+F 2
+d,k(1 −2S1k + S2k) + τ 2S3,
+(90)
+where
+S1k =
+1
+√
+d
+λd,k(σ)Tr[Qk(ΘXT)ZΞ],
+S2k = 1
+dTr[ΞUΞZTQk(XXT)Z],
+S3 = 1
+dTr[ΞUΞZTZ],
+(91)
+where U = (Uij)i,j∈[N] ∈RN×N is a matrix whose elements is as deﬁned in Eq. (56), Z is given by Eq.
+(57) and Ξ is given by Eq. (88).
+Lemma 9.4. Under the same deﬁnitions and assumptions of Proposition 8.1 and Lemma 9.3, for any λ > 0,
+we have (E is the expectation taken with respect to the randomness in X and Θ)
+E|1 −2S10 + S20| = od(1),
+(92)
+E
+h
+sup
+k≥2
+|S1k|
+i
+= od(1),
+(93)
+E
+h
+sup
+k≥2
+|S2k −S3|
+i
+= od(1),
+(94)
+E|S11 −Ψ1| = od(1),
+(95)
+E|S21 −Ψ2| = od(1),
+(96)
+E|S3 −Ψ3| = od(1),
+(97)
+where S1k, S2k, S3 are given by Eq. (91), and Ψ1, Ψ2, Ψ3 are given by Eq. (59).
+Lemma 9.5. Under the assumptions of Proposition 8.1, we have
+EX,Θ
+h
+Varβ,ε
+
+RRF(fd, X, Θ, λ)
+X, Θ
+1/2i
+= od(1).
+(98)
+We defer the proofs of these three lemmas to the following subsections and show here that they imply
+Proposition 8.1. Indeed, we have
+EX,Θ
+Eε,β[RRF(fd, X, Θ, λ)] −
+h
+F 2
+d,1(1 −2Ψ1 + Ψ2) +
+
+τ 2 +
+∞
+X
+k=2
+F 2
+d,k
+
+Ψ3 +
+∞
+X
+k=2
+F 2
+d,k
+i
+(a)
+≤F 2
+d,0 · E|1 −2S10 + S20| + F 2
+d,1 ·
+h
+E|S11 −Ψ1| + E|S21 −Ψ2|
+i
++
+ ∞
+X
+k=2
+F 2
+d,k
+
+· sup
+k≥2
+h
+2E|S1k| + E|S2k −Ψ3|
+i
++ τ 2E|S3 −Ψ3|
+(b)
+= od(1).
+27
+
+
+--- page 28 ---
+where (a) follows by Lemma 9.3 and triangular inequality, and (b) from Lemma 9.4.
+Combining with Lemma 9.5 (and E[Ψ1], E[Ψ2], E[Ψ3] = Od(1)) and Lemma 9.2 concludes the proof of
+Proposition 8.1. In the remaining of this section, we will prove Lemma 9.3, 9.4, and 9.5.
+9.1
+Proof of Lemma 9.3
+Recall the expression (55) for the risk. Taking expectation with respect to β and ε, we get
+Eβ,ε[RRF(fd, X, Θ, λ)] =
+X
+k≥0
+F 2
+d,k −2T1 + T2 + T3,
+where
+T1 =
+1
+√
+d
+Eβ[f TZΞV ],
+T2 = 1
+dEβ[f TZΞUΞZTf],
+T3 = 1
+dEε[εTZΞUΞZTε].
+The proof of the lemma follows by evaluating each of these three terms. It is useful to introduce the matrices
+Yk,x, Yk,θ, which denotes the evaluations of spherical harmonics of degree k at the points {xi}i≤n and
+{θa}a≤N (c.f. Appendix A):
+Yk,x = (Ykl(xi))i∈[n],l∈[B(d,k)] ∈Rn×B(d,k),
+Yk,θ = (Ykl(θa))a∈[N],l∈[B(d,k)] ∈RN×B(d,k).
+(99)
+With these notations we have
+f =
+∞
+X
+k=0
+Yk,xβk ∈Rn,
+V =
+∞
+X
+k=0
+λd,k(σ)Yk,θβk ∈RN.
+(100)
+Since βk ∼N(0, F 2
+d,kIB(d,k)/B(d, k)) for k ≥2 and β1 ∼Unif(Sd−1(Fd,1)) independently, we have
+Eβ[V f T] =
+∞
+X
+k=0
+F 2
+d,kλd,k(σ)Qk(ΘXT) ,
+(101)
+Eβ[ff T] =
+∞
+X
+k=0
+F 2
+d,kQk(XXT) .
+(102)
+Using these expressions, we can evaluate terms T1 and T2:
+T1 =
+1
+√
+d
+∞
+X
+k=0
+F 2
+d,kλd,k(σ) · Tr
+h
+Qk(ΘXT)ZΞ
+i
+,
+T2 = 1
+d
+∞
+X
+k=0
+F 2
+d,k · Tr
+h
+ΞUΞZTQk(XXT)Z
+i
+.
+We proceed analogously for term T3. By the assumption εi ∼iid Pε with Eε(ε) = 0 and Eε(ε2
+1) = τ 2, we have
+T3 = 1
+dEε[Tr(εεTΞUΞZTZ)] = τ 2
+d · Tr[ΞUΞZTZ].
+Combining the above formulas for T1, T2, T3 proves Lemma 9.3.
+9.2
+Proof of Lemma 9.4
+The next two lemmas will be used in the proofs of Lemma 9.4 and Lemma 9.5, and hold under the same
+assumptions. The ﬁrst of these lemmas will be used to establish Eq. (92) (but notice that its statement does
+not coincide with that equation), and the second will be used to control several terms in those proofs. The
+proofs of these lemmas are given in Section C.2.
+28
+
+
+--- page 29 ---
+Lemma 9.6. Deﬁne
+A1 ≡λd,0(σ)
+√
+d
+Tr[1N1T
+nZΞ],
+(103)
+A2 ≡λd,0(σ)2
+d
+Tr[Ξ1N1T
+NΞZT1n1T
+nZ].
+(104)
+Then for any λ > 0, we have
+E|1 −2A1 + A2| = od(1).
+Lemma 9.7. Let (M α)α∈A ∈Rn×n be a collection of symmetric random matrices with E[supα∈A ∥M α∥2
+op]1/2 =
+Od(1). Deﬁne
+Bα ≡λd,0(σ)2
+d
+Tr[Ξ1N1T
+NΞZTM αZ].
+(105)
+Then for any λ > 0, we have
+E
+h
+sup
+α∈A
+|Bα|
+i
+= od(1).
+We will now use these lemmas to prove Lemma 9.4. We begin by recalling a few facts that are used
+several times in the proof. Since λ > 0, there exists a constant C < ∞depending on (λ, ψ1, ψ2) such that
+deterministically
+∥ZΞ∥op = ∥Z(ZTZ + ψ1ψ2λIN)−1∥op ≤C,
+∥Ξ∥op = ∥(ZTZ + ψ1ψ2λIN)−1∥op ≤C.
+(106)
+By operator norm bounds on Wishart matrices [AGZ09], we have (the deﬁnition of these matrices are given
+in Eq. (57))
+E[∥H∥2
+op], E[∥Q∥2
+op], E[∥Z1∥2
+op] = Od(1).
+(107)
+Finally we need some simple operator norm bounds on the matrices Qk(XXT) −In, Qk(ΘΘT) −IN, and
+Qk(ΘXT). Notice that Qk(XXT)ii = 1 (by the normalization condition of Gegenbauer polynomials) and
+the out-of-diagonal entries of Qk(XXT) have zero mean and typical size of order 1/dk/2 (see Appendix A).
+This suggests the following estimates, which are formalized in Lemma C.6,
+E
+h
+sup
+k≥2
+∥Qk(XXT) −In∥2
+op
+i
+∨E
+h
+sup
+k≥2
+∥Qk(ΘΘT) −IN∥2
+op
+i
+∨E
+h
+sup
+k≥2
+∥Qk(ΘXT)∥2
+op
+i
+= od(1).
+(108)
+As a consequence of these estimates, we obtain a useful approximation result for the matrix U ∈RN as
+deﬁned in Eq. (56). In words, U is well approximated by a term that is linear in the weights covariance
+matrix ΘΘT, plus a term that is proportional to the identity. To see this, by the decomposition of σ into
+Gegenbauer polynomials as in Eq. (89) and the properties of Gegenbauer polynomials as in Appendix A, we
+have
+U =
+∞
+X
+k,l=0
+λd,k(σ)λd,l(σ)B(d, k)B(d, l)EX[Qk(ΘXT)Ql(XΘT)] =
+∞
+X
+k=0
+λd,k(σ)2B(d, k) Qk(ΘΘT).
+Since further λd,k(σ)2B(d, k)k! →µk(σ)2 as d →∞(see Eq. (225)), we have
+U = λ2
+d,01N1T
+N + µ2
+1Q + µ2
+⋆(IN + ∆),
+E[∥∆∥2
+op] = od(1) .
+(109)
+(This estimate is stated formally in the appendices as Lemma C.7.) It is also useful to introduce the matrix
+M ≡µ2
+1Q + µ2
+⋆(IN + ∆),
+for which the above implies U = λ2
+d,01N1T
+N + M and E[∥M∥2
+op] = Od(1).
+We have now ﬁnished presenting our preliminary estimates and can prove Lemma 9.4.
+29
+
+
+--- page 30 ---
+We begin by considering Eq. (92), where S10 and S20 are deﬁned in Eq. (91). By the approximate
+linearization of U in Eq. (109), we have
+S10 = λd,0(σ)
+√
+d
+Tr(1N1T
+nZΞ),
+S20 = λd,0(σ)2
+d
+Tr(Ξ1N1T
+NΞZT1n1T
+nZ) + 1
+dTr(ZΞMΞZT1n1T
+n).
+Further recall the deﬁnition of A1, and A2 in Eqs. (103), (104) and the deﬁnition of Ξ and Π as in Eq. (88),
+and we deﬁne
+B ≡1
+dTr(ZΞMΞZT1n1T
+n) = 1
+dTr(ZMZTΠ1n1T
+nΠ).
+Then we have S10 = A1, S20 = A2 + B and by Lemma 9.6, we have
+E[|1 −2S10 + S20|] = E[|1 −2A1 + A2 + B|] ≤E[|1 −2A1 + A2|] + E[|B|] ≤E[|B|] + od(1) .
+(110)
+By Lemma 9.7 and the fact that E[∥M∥2
+op] = Od(1) as in Eq (109) (when applying Lemma 9.7, we change
+the role of N and n, the role of Ξ and Π, and the role of Θ and X; this can be done because the role of Θ
+and X is symmetric), we have
+E[|B|] = od(1).
+Plugging these bounds into Eq. (110), we get E[|1 −2S10 + S20|] = od(1) as claimed.
+We next consider Eq. (93), which requires to control S1k, deﬁned in Eq. (91)). By Eq. (106), we have
+sup
+k≥2
+|S1k| ≤sup
+k≥2
+h
+|
+√
+dλd,k(σ)| · ∥Qk(ΘXT)ZΞ∥op
+i
+≤sup
+k≥2
+h
+C · |
+√
+dλd,k(σ)| · ∥Qk(ΘXT)∥op
+i
+.
+(111)
+Further note ∥σ∥2
+L2(τd) = P
+k≥0 λd,k(σ)2B(d, k) = Od(1), B(d, k) = Θ(dk), and for ﬁxed d, B(d, k) is non-
+decreasing in k [GMMM19, Lemma 1]. Therefore
+sup
+k≥2
+|λd,k(σ)| ≤sup
+k≥2
+h
+∥σ∥L2(τd)/
+p
+B(d, k)
+i
+= Od(1/d).
+Combining with Eq. (108) and Eq. (111), we get E
+h
+supk≥2 |S1k|
+i
+= od(1).
+We next consider Eq. (94), whereby S2k and S3 are deﬁned as per Eq. (91). Recall that, by Eq. (109),
+we have U = λ2
+d,01N1T
+N + M where E[∥M∥2
+op] = Od(1). We have therefore
+sup
+k≥2
+|S2k −S3| ≤I1 + I2,
+(112)
+where
+I1 = sup
+k≥2
+
+λ2
+d,0
+d Tr
+h
+Ξ1N1T
+NΞZT(Qk(XXT) −In)Z
+i,
+I2 = sup
+k≥2
+1
+dTr
+h
+ΞMΞZT(Qk(XXT) −In)Z
+i.
+By Lemma 9.7 (with M k = Qk(XXT) −In) and Eq. (108), we get
+E[I1] = od(1).
+Moreover, by Eqs. (106), (107), we have
+E[I2] ≤E
+h
+sup
+k≥2
+λ2
+d,0∥ZΞ∥op∥M∥op∥ΞZT∥op∥Qk(XXT) −In∥op
+i
+≤Od(1) · E[∥M∥2
+op]1/2 · E
+h
+sup
+k≥2
+∥Qk(XXT) −In∥2
+op
+i1/2
+= od(1).
+30
+
+
+--- page 31 ---
+Plugging these bounds into Eq. (112), we get the desired bound E[supk≥2 |S2k −S3|] = od(1).
+We next consider Eq. (95), where we recall the deﬁnition of S11 in Eq. (91) and the deﬁnition of Ψ1 in Eq.
+(59). By observing that limd→∞
+√
+dλ1,d(σ) = µ1 (see Eq. (225)) and that µ1Q1(XΘT) = µ1XΘT/d = Z1,
+we immediately get
+E|S11 −Ψ1| = od(1) · E[|Ψ1|] = od(1).
+In order to prove Eq. (96), recall the deﬁnition of S21 in Eq. (91) and the deﬁnition of Ψ2 in Eq. (59).
+By the decomposition of U in Eq. (109) and recalling that Q1(XXT) = H, we have
+|S21 −Ψ2| ≤I3 + I4,
+(113)
+where
+I3 =
+λd,0(σ)2
+d
+Tr
+h
+Ξ1N1T
+NΞZTHZ
+i,
+I4 =
+µ2
+⋆
+d Tr
+h
+Ξ∆ΞZTHZ
+i.
+By Lemma 9.7 and Eq. (107), we get
+E[I3] = od(1).
+Moreover, by Eq. (106), (107), we have
+E[I4] ≤E
+h
+µ2
+⋆∥ZΞ∥op∥∆∥op∥ΞZT∥op∥H∥op
+i
+≤Od(1) · E[∥∆∥2
+op] · E[∥H∥2
+op] = od(1).
+Plugging these bounds into Eq. (113), we get the desired bound E|S21 −Ψ2| = od(1).
+Finally, Eq. (97) is proved analogously to Eq. (96): this completes the proof of the lemma.
+9.3
+Proof of Lemma 9.5
+Instead of taking βd,1 ∼Unif(Sd−1(Fd,1)), in the proof we will assume βd,1 ∼N(0, [F 2
+d,1/d]Id). Note for
+βd,1 ∼N(0, [F 2
+d,1/d]Id), we have Fd,1βd,1/∥βd,1∥2 ∼Unif(Sd−1(Fd,1)). Moreover, in high dimension, ∥βd,1∥2
+concentrates tightly around Fd,1. Using these properties, it is not hard to translate the proof from Gaussian
+βd,1 to spherical βd,1.
+To prove Lemma 9.5, we begin with by rewriting the prediction risk —cf. Eq. (55)— as (note that
+y = f + ε)
+RRF(fd, X, Θ, λ) =
+X
+k≥0
+F 2
+d,k −2Γ1 + Γ2 + Γ3 −2Γ4 + 2Γ5,
+where
+Γ1 = f TZΞV /
+√
+d,
+Γ2 = f TZΞUΞZTf/d,
+Γ3 = εTZΞUΞZTε/d,
+Γ4 = εTZΞV /
+√
+d,
+Γ5 = εTZΞUΞZTf/d,
+and V ∈RN and U ∈RN×N given in Eq. (56). We will regard Γ1, . . . , Γ5 as quadratic forms in the vectors
+β, ε, and bound their variances individually. Namely, we claim that
+EX,Θ[Varβ,ε(Γk)] = od(1),
+∀k ≤5.
+This obviously implies the claims of the lemma. In the rest of this proof, we show the variance bound for
+Γ1, as the other bounds are very similar.
+31
+
+
+--- page 32 ---
+Recall the deﬁnition of Yk,x and Yk,θ in Eq. (99), the deﬁnition of Gegenbauer coeﬃcients λd,l ≡λd,l(σ)
+in Eq. (89) and the expansion of f and V vectors in Eq. (100). We rewrite Γ1 as
+Γ1 =
+1
+√
+d
+ ∞
+X
+k=0
+Yk,xβd,k
+T
+ZΞ
+ ∞
+X
+l=0
+λd,lYl,θβd,l
+
+.
+Calculating the variance of Γ1 with respect to βd,k ∼N(0, (F 2
+d,k/B(d, k))I) for k ≥1 using Lemma C.8
+(which follows from direct calculation), we get
+Varβ(Γ1) =
+X
+l̸=k
+λ2
+d,l
+d Varβ
+
+βT
+d,kY T
+k,xZΞYl,θβd,l
+
++
+X
+k≥1
+λ2
+d,k
+d Varβ
+
+βT
+d,kY T
+k,xZΞYk,θβd,k
+
+=
+X
+l̸=k
+F 2
+d,lF 2
+d,k
+λ2
+d,l
+d Tr
+
+ΞZTQk(XXT)ZΞQl(ΘΘT)
+
++
+X
+k≥1
+F 4
+d,k
+λ2
+d,k
+d
+h
+Tr
+
+ΞZTQk(XXT)ZΞQk(ΘΘT)
+
++ Tr
+
+ZΞQk(ΘXT)ZΞQk(ΘXT)
+i
+.
+Notice that we have ∥ZΞ∥op ≤C almost surely for some constant C, and recall the bounds (108) which imply
+E{supk≥1 ∥Qk(XXT)∥2} = Od(1), E{supk≥1 ∥Qk(ΘXT)∥2} = od(1), and E{supk≥1 ∥Qk(ΘΘT)∥2} = Od(1)
+(the case k = 1 corresponds to standard Wishart matrices).
+By taking expectation in the above expression, using d−1Tr(A) ≤C∥A∥op for A ∈Rn×n or A ∈RN×N,
+and Cauchy-Schwartz, we obtain
+EX,Θ
+
+Varβ(Γ1)
+
+≤
+X
+k≥1
+F 2
+d,0F 2
+d,k
+λ2
+d,0
+d EX,ΘTr
+
+ΞZTQk(XXT)ZΞ1N1T
+N
+
++
+X
+l>1
+F 2
+d,lF 2
+d,0
+λ2
+d,l
+d EX,ΘTr
+
+ΞZT1n1T
+nZΞQl(ΘΘT)
+
++ C
+X
+l̸=k≥1
+F 2
+d,lF 2
+d,kλ2
+d,l + C
+X
+k≥1
+F 4
+d,kλ2
+d,k .
+Further note that ∥σ∥2
+L2(τd) = P
+k≥0 λ2
+d,kB(d, k) = Od(1), B(d, k) = Θ(dk), and for ﬁxed d, B(d, k) is
+non-decreasing in k [GMMM19, Lemma 1]. Therefore
+sup
+k≥1
+|λd,k(σ)| ≤sup
+k≥1
+h
+∥σ∥L2(τd)/
+p
+B(d, k)
+i
+= Od(1/
+√
+d).
+Substituting above we obtain, and using the fact that P
+k≥1 F 2
+d,k = Od(1) by construction, we have
+EX,Θ
+
+Varβ(Γ1)
+
+≤
+X
+k≥1
+F 2
+d,0F 2
+d,k
+λ2
+d,0
+d EX,ΘTr
+
+ΞZTQk(XXT)ZΞ1N1T
+N
+
++
+X
+l>1
+F 2
+d,lF 2
+d,0
+λ2
+d,l
+d EX,ΘTr
+
+ΞZT1n1T
+nZΞQl(ΘΘT)
+
++ od(1) .
+(114)
+To bound the remaining two terms in this expression, note that
+sup
+k≥1
+EX,Θ
+1
+dTr
+
+ΞZT1n1T
+nZΞQk(ΘΘT)
+ = sup
+k≥1
+EX,Θ
+1
+dTr
+
+Π1n1T
+nΠZQk(ΘΘT)ZT = od(1),
+where the bound is implied by Lemma 9.7 (when applying Lemma 9.7, we change the role of N and n, the
+role of Ξ and Π, and the role of Θ and X; this can be done because the role of Θ and X is symmetric), and
+by Eq. (107) and λd,0(σ) = Θd(1) (by Assumption 1 and note that µ0(σ) = limd→∞λd,0(σ) by Eq. (225)).
+This proves that
+X
+l>1
+F 2
+d,lF 2
+d,0
+λ2
+d,l
+d EX,ΘTr
+
+ΞZT1n1T
+nZΞQl(ΘΘT)
+
+= od(1) .
+The bound on the ﬁrst term in Eq. (114) is obtained analogously and we omit it for brevity.
+32
+
+
+--- page 33 ---
+10
+Proof of Proposition 8.3
+This section is organized as follows. We collect the elements to prove Proposition 8.3 in Sections 10.1, 10.2,
+10.3, 10.4, and prove the proposition in Section 10.5.
+More speciﬁcally, in Section 10.1 we state the key Lemma 10.1: the partial Stieltjes transforms of A
+approximately satisfy the ﬁxed point equation, when xi, θa are Gaussian vectors and the activation function
+ϕ is a polynomial with EG∼N(0,1)[ϕ(G)] = 0. In Section 10.2, and Section 10.3 we ﬁrst establish some useful
+properties of the ﬁxed point equations and then prove Lemma 10.1. Finally, in Section 10.4, we show that
+the Stieltjes transform does not change signiﬁcantly when changing the distribution of xi, θa from uniform
+on the sphere to Gaussian.
+10.1
+The key lemma: partial Stieltjes transforms are approximate ﬁxed point
+In this subsection, we state Lemma 10.1, which is the key lemma that is used to prove Proposition 8.3.
+Lemma 10.1 studies m1,d and m2,d, the partial Stieltjes transforms of the Gaussian counterparts of the
+matrix A as deﬁned in Eq. (60). This lemma shows that these partial Stieltjes transforms m1,d and m2,d
+approximately satisfy the ﬁxed point equation which involves functions F1 and F2 as deﬁned in Eq. (69). We
+will prove Lemma 10.1 in Section 10.3. Later in Section 10.4, we will show that the Gaussian counterpart of
+the Stieltjes transform shares the same asymptotics with its spherical version.
+First let us deﬁne the Gaussian counterparts of the partial Stieltjes transforms. Let (θa)a∈[N] ∼iid N(0, Id)
+and (xi)i∈[n] ∼iid N(0, Id). We denote by Θ ∈RN×d the matrix whose a-th row is given by θa, and by
+X ∈Rn×d the matrix whose i-th row is given by xi.
+We consider a polynomial activation functions
+ϕ : R →R. Denote µk = E[ϕ(G)Hek(G)] and µ2
+⋆= P
+k≥2 µ2
+k/k!. We deﬁne the following matrices,
+Q = 1
+dΘΘ
+T,
+H = 1
+dXX
+T,
+(115)
+J =
+1
+√
+d
+ϕ
+ 1
+√
+d
+XΘ
+T
+,
+J1 = µ1
+d XΘ
+T,
+(116)
+as well as the block matrix A ∈RM×M, M = N + n, deﬁned by
+A =
+"
+s1IN + s2Q
+J
+T + pJ
+T
+1
+J + pJ1
+t1In + t2H
+#
+.
+(117)
+The matrix A is in parallel with its spherical version matrix A deﬁned as in Eq. (60).
+In what follows, we will write q = (s1, s2, t1, t2, p). We would like to calculate the asymptotic behavior
+of the following partial Stieltjes transforms
+m1,d(ξ; q) = N
+d E{(A −ξIM)−1
+11 } = E[M 1,d(ξ; q)],
+m2,d(ξ; q) = n
+d E{(A −ξIM)−1
+N+1,N+1} = E[M 2,d(ξ; q)],
+(118)
+where
+M 1,d(ξ; q) = 1
+dTr[1,N][(A −ξIM)−1],
+M 2,d(ξ; q) = 1
+dTr[N+1,N+n][(A −ξIM)−1].
+(119)
+Here, the partial trace notation Tr[·,·] is deﬁned as follows: for a matrix K ∈CM×M and 1 ≤a ≤b ≤M,
+deﬁne
+Tr[a,b](K) =
+b
+X
+i=a
+Kii.
+The crucial step consists in showing that the expected Stieltjes transforms m1,d, m2,d are approximate
+solutions of the ﬁxed point equations (70).
+33
+
+
+--- page 34 ---
+Lemma 10.1. Assume that ϕ is a polynomial with E[ϕ(G)] = 0 and µ1 ≡E[ϕ(G)G]̸ = 0. Consider the linear
+regime Assumption 2. Then for any q ∈Q and for any ξ0 > 0, there exists C = C(ξ0, q, ψ1, ψ2, ϕ) which is
+uniformly bounded when (q, ψ1, ψ2) is in a compact set, and a function err(d) with limd→∞err(d) →0, such
+that for all ξ ∈C+ with ℑ(ξ) > ξ0, we have
+m1,d −F1(m1,d, m2,d; ξ; q, ψ1,d, ψ2,d, µ1, µ⋆)
+ ≤C · err(d) ,
+(120)
+m2,d −F2(m1,d, m2,d; ξ; q, ψ1,d, ψ2,d, µ1, µ⋆)
+ ≤C · err(d) .
+(121)
+The proof of Lemma 10.1 uses a leave-one-out argument in deriving the ﬁxed point equation for Stieltjes
+transform of random matrices, e.g. [BS10, Chapter 3.3] and [CS13]. We will prove Lemma 10.1 in Section
+10.3. In the next subsection, we will collect some lemmas that are used in this proof.
+10.2
+Preliminaries of the proof of Lemma 10.1: Stieltjes transforms and the
+ﬁxed point equation
+First we establish some useful properties of the ﬁxed point characterization (70), where F1, F2 is deﬁned via
+Eq. (69). For the sake of simplicity, we will write m = (m1, m2) and introduce the function F( · ; ξ; q, ψ1, ψ2, µ1, µ⋆) :
+C × C →C × C via
+F(m; ξ; q, ψ1, ψ2, µ1, µ⋆) =
+F1(m1, m2; ξ; q, ψ1, ψ2, µ1, µ⋆)
+F2(m1, m2; ξ; q, ψ1, ψ2, µ1, µ⋆)
+
+.
+(122)
+In the following lemma, we ﬁx a q ∈Q (as deﬁned in Eq. (68)) and ﬁx 0 < ψ1, ψ2, µ1, µ⋆< ∞. Since the
+parameters q, ψ1, ψ2, µ1, µ⋆are ﬁxed, we will drop them from the argument of F unless necessary. In these
+notations, Eq. (70) reads
+m = F(m; ξ) .
+(123)
+The following lemma shows that there exists a unique ﬁxed point of the equation above in a certain domain
+provided ℑξ is large enough.
+Lemma 10.2. Let D(r) = {z :
+|z| < r} be the disk of radius r in the complex plane.
+There exists
+ξ0 = ξ0(q, ψ1, ψ2, µ1, µ⋆) > 0 such that, for any ξ ∈C+ with ℑ(ξ) ≥ξ0, F( · ; ξ) maps domain D(2ψ1/ξ0) ×
+D(2ψ2/ξ0) into itself and further is 1/2-Lipschitz continuous. As a result, Eq. (70) admits a unique solution
+in D(2ψ1/ξ0) × D(2ψ2/ξ0).
+Proof of Lemma 10.2. We rewrite the ﬁrst equation in Eq. (69) as
+F1(m1, m2; ξ) =
+ψ1
+−ξ + s1 + H1(m1, m2) ,
+(124)
+H1(m1, m2) = −µ2
+⋆m2 +
+1
+m1 +
+1+t2m2
+s2+(t2s2−µ2
+1(1+p)2)m2
+.
+(125)
+It is easy to see that, for r0 = r0(q, µ1, µ⋆) small enough, |H1(m)| ≤2 + 2|s2| for any m ∈D(r0) × D(r0).
+Therefore |F1(m; ξ)| ≤ψ1/(ℑ(ξ) −2 −2|s2|) < 2ψ1/ξ0 provided ℑξ ≥ξ0 > 4 + 4|s2|. Similarly, we have
+|F2(m; ξ)| < 2ψ2/ξ0 provided ℑξ ≥ξ0 > 4 + 4|t2|. We enlarge ξ0 so that 2 max{ψ1, ψ2}/ξ0 ≤r0. This shows
+that F maps domain D(2ψ1/ξ0) × D(2ψ2/ξ0) into itself.
+In order to prove the Lipschitz continuity of F in this domain, notice that F1 is diﬀerentiable and
+∇mF1(m; ξ) =
+ψ1
+(−ξ + s1 + H1(m))2 ∇mH1(m) .
+(126)
+By enlarging ξ0, we can ensure ∥∇mH1(m)∥2 ≤C(q, µ1, µ⋆) for all m ∈D(2ψ1/ξ0) × D(2ψ2/ξ0), whence in
+the same domain ∥∇mF1(m; ξ)∥2 ≤C(q, µ1, µ⋆)ψ1/(ℑ(ξ) −2 −2|s2|)2. This result similarly holds for F2.
+Therefore, by enlarging ξ0, we get F is 1/2-Lipschitz on D(2ψ1/ξ0) × D(2ψ2/ξ0).
+As a consequence, we have shown that F is a contraction on domain D(2ψ1/ξ0)×D(2ψ2/ξ0). The existence
+of a unique ﬁxed point follows by Banach ﬁxed point theorem.
+34
+
+
+--- page 35 ---
+Next, we establish some properties of the Stieltjes transforms as in Eq. (118). Notice that the functions
+ξ 7→mi,d(ξ; q)/ψi,d, i ∈{1, 2} can be shown to be Stieltjes transforms of certain probability measures on the
+reals line R [HMRT19]. As such, they enjoy several useful properties (see, e.g., [AGZ09]). The next three
+lemmas are standard, and already stated in [HMRT19]. For the reader’s convenience, we reproduce them
+here without proof: although the present deﬁnition of the matrix A is slightly more general, the proofs are
+unchanged.
+Lemma 10.3 (Lemma 7 in [HMRT19]). The functions ξ 7→m1,d(ξ), ξ 7→m2,d(ξ) have the following
+properties:
+(a) ξ ∈C+, then |mi,d| ≤ψi/ℑ(ξ) for i ∈{1, 2}.
+(b) m1,d, m2,d are analytic on C+ and map C+ into C+.
+(c) Let Ω⊆C+ be a set with an accumulation point. If mi,d(ξ) →mi(ξ) for all ξ ∈Ω, then mi(ξ) has a
+unique analytic continuation to C+ and mi,d(ξ) →mi(ξ) for all ξ ∈C+. Moreover, the convergence is
+uniform over compact sets Ω⊆C+.
+Lemma 10.4 (Lemma 8 in [HMRT19]). Let W ∈RM×M be a symmetric matrix, and denote by wi its i-th
+column, with the i-th entry set to 0. Let W (i) ≡W −wieT
+i −eiwT
+i , where ei is the i-th element of the
+canonical basis (in other words, W (i) is obtained from W by zeroing all elements in the i-th row and column
+except on the diagonal). Finally, let ξ ∈C+ with ℑ(ξ) ≥ξ0 > 0. Then for any subset S ⊆[M], we have
+TrS
+
+(W −ξIM)−1
+−TrS
+
+(W (i) −ξIM)−1 ≤3
+ξ0
+.
+(127)
+The next lemma establishes the concentration of Stieltjes transforms to its mean, whose proof is the same
+as the proof of Lemma 9 in [HMRT19].
+Lemma 10.5 (Concentration). Let ℑ(ξ) ≥ξ0 > 0 and consider the partial Stieltjes transforms M i,d(ξ; q)
+as per Eq. (119). Then there exists c0 = c0(ξ0) such that, for i ∈{1, 2},
+P
+ M i,d(ξ; q) −EM i,d(ξ; q)
+ ≥u
+
+≤2 e−c0du2,
+(128)
+In particular, if ℑ(ξ) > 0, then |M i,d(ξ; q) −EM i,d(ξ; q)| →0 almost surely and in L1.
+Lemma 10.6 (Lemma 5 in [GMMM19]). Assume σ is an activation function with σ(u)2 ≤c0 exp(c1 u2/2)
+for some constants c0 > 0 and c1 < 1 (this is implied by Assumption 1). Then
+(a) EG∼N(0,1)[σ(G)2] < ∞.
+(b) Let ∥w∥2 = 1. Then there exists d0 = d0(c1) such that, for x ∼Unif(Sd−1(
+√
+d)),
+sup
+d≥d0
+Ex[σ(⟨w, x⟩)2] < ∞.
+(129)
+(c) Let ∥w∥2 = 1. Then there exists a coupling of G ∼N(0, 1) and x ∼Unif(Sd−1(
+√
+d)) such that
+lim
+d→∞Ex,G[(σ(⟨w, x⟩) −σ(G))2] = 0.
+(130)
+10.3
+Proof of Lemma 10.1: Leave-one-out argument
+Throughout the proof, we write F(d) = Od(G(d)) if there exists a constant C = C(ξ0, q, ψ1, ψ2, ϕ) which
+is uniformly bounded when (ξ0, q, ψ1, ψ2) is in a compact set, such that |F(d)| ≤C · |G(d)|.
+We write
+F(d) = od(G(d)) if for any ε > 0, there exists a constant C = C(ε, ξ0, q, ψ1, ψ2, ϕ) which is uniformly
+bounded when (ξ0, q, ψ1, ψ2) is in a compact set, such that |F(d)| ≤ε · |G(d)| for any d ≥C. We use C to
+denote generically such a constant, that can change from line to line.
+We write F(d) = Od,P(G(d)) if for any δ > 0, there exists constant K = K(δ, ξ0, q, ψ1, ψ2, ϕ), d0 =
+d0(δ, ξ0, q, ψ1, ψ2, ϕ) which are uniformly bounded when (ξ0, q, ψ1, ψ2) is in a compact set, such that P(|F(d)| >
+35
+
+
+--- page 36 ---
+K|G(d)|) ≤δ for any d ≥d0.
+We write F(d) = od,P(G(d)) if for any ε, δ > 0, there exists constant
+d0 = d0(ε, δ, ξ0, q, ψ1, ψ2, ϕ) which are uniformly bounded when (ξ0, q, ψ1, ψ2) is in a compact set, such that
+P(|F(d)| > ε|G(d)|) ≤δ for any d ≥d0.
+We will assume p = 0 throughout the proof.
+For p̸ = 0, the lemma holds by viewing J + pJ1 =
+ϕ⋆(XΘT/
+√
+d)/
+√
+d as a new kernel inner product matrix, with ϕ⋆(x) = ϕ(x) + pµ1x.
+Step 1. Calculate the Schur complement and deﬁne some notations.
+Let A·,N ∈RM−1 be the N-th column of A, with the N-th entry removed.
+We further denote by
+B ∈R(M−1)×(M−1) be the the matrix obtained from A by removing the N-th column and N-th row.
+Applying Schur complement formula with respect to element (N, N), we get
+m1,d = ψ1,d E
+n
+−ξ + s1 + s2∥θN∥2
+2/d −A
+T
+·,N(B −ξIM−1)−1A·,N
+−1o
+.
+(131)
+We decompose the vectors θa, xi in the components along θN and the orthogonal component:
+θa = ηa
+θN
+∥θN∥2
++ ˜θa ,
+⟨θN, ˜θa⟩= 0,
+a ∈[N −1] ,
+(132)
+xi = ui
+θN
+∥θN∥+ ˜xi ,
+⟨θN, ˜xi⟩= 0,
+i ∈[n] .
+(133)
+Note that {ηa}a∈[N−1], {ui}i∈[n] ∼iid N(0, 1) are independent of all the other random variables, and {˜θa}a∈[N−1], {˜xi}i∈[n]
+are conditionally independent given θN, with ˜θa, ˜xi ∼N(0, P⊥), where P⊥is the projector orthogonal to
+θN.
+With this decomposition we have
+Qa,b = 1
+d
+
+ηaηb + ⟨˜θa, ˜θb⟩
+
+,
+a, b ∈[N −1] ,
+(134)
+Ji,a =
+1
+√
+d
+ϕ
+ 1
+√
+d
+⟨˜xi, ˜θa⟩+ 1
+√
+d
+uiηa
+
+,
+a ∈[N −1], i ∈[n] ,
+(135)
+Hij = 1
+d
+
+uiuj + ⟨˜xi, ˜xj⟩
+
+,
+i, j ∈[n] .
+(136)
+Further we have A·,N = (A1,N, . . . , AM−1,N)T ∈RM−1 with
+Ai,N =
+( 1
+ds2ηi∥θN∥2
+if i ≤N −1,
+1
+√
+dϕ
+
+1
+√
+dui∥θN∥2
+
+if i ≥N.
+(137)
+We next write B as the sum of three terms:
+B = ˜
+B + ∆+ E0 ∈R(M−1)×(M−1) ,
+(138)
+where
+˜
+B =
+
+s1IN−1 + s2 ˜Q
+˜
+JT
+˜
+J
+t1In + t2 ˜
+H
+
+,
+∆=
+ s2
+d ηηT
+µ1
+d ηuT
+µ1
+d uηT
+t2
+d uuT
+
+,
+E0 =
+
+0
+ET
+1
+E1
+0
+
+,
+(139)
+and η = (η1, . . . , ηN−1)T, u = (u1, . . . , un)T, and
+˜Qa,b = 1
+d⟨˜θa, ˜θb⟩,
+a, b ∈[N −1] ,
+(140)
+˜Ji,a =
+1
+√
+d
+ϕ
+ 1
+√
+d
+⟨˜xi, ˜θa⟩
+
+,
+a ∈[N −1], i ∈[n] ,
+(141)
+˜Hij = 1
+d⟨˜xi, ˜xj⟩,
+i, j ∈[n] .
+(142)
+36
+
+
+--- page 37 ---
+Further, we have E1 = (E1,ia)i∈[n],a∈[N−1] ∈Rn×N, where
+E1,ia =
+1
+√
+d
+
+ϕ
+ 1
+√
+d
+⟨˜xi, ˜θa⟩+ 1
+√
+d
+uiηa
+
+−ϕ
+ 1
+√
+d
+⟨˜xi, ˜θa⟩
+
+−µ1
+√
+d
+uiηa
+
+(143)
+=
+1
+√
+d
+
+ϕ⊥
+ 1
+√
+d
+⟨˜xi, ˜θa⟩+ 1
+√
+d
+uiηa
+
+−ϕ⊥
+ 1
+√
+d
+⟨˜xi, ˜θa⟩
+
+,
+(144)
+where ϕ⊥(x) ≡ϕ(x) −µ1x.
+Step 2. Perturbation bound for the Schur complement.
+Denote
+ω1 =
+
+−ξ + s1 + s2∥θN∥2
+2/d −A
+T
+·,N(B −ξIM−1)−1A·,N
+−1
+,
+(145)
+ω2 =
+
+−ξ + s1 + s2 −A
+T
+·,N( ˜
+B + ∆−ξIM−1)−1A·,N
+−1
+.
+(146)
+Note we have m1,d = ψ1,dE[ω1]. Combining Lemma 10.7, 10.8, and 10.9 below, we have
+|ω1 −ω2| ≤Od(1) ·
+∥θN∥2
+2/d −1
+ + Od(1) · ∥A·,N∥2
+2 · ∥E1∥op = od,P(1).
+Moreover, by Lemma 10.7, |ω1 −ω2| is deterministically bounded by 2/ξ0. This gives
+|m1,d −ψ1,dE[ω2]| ≤ψ1,dE[|ω1 −ω2|] = od(1).
+(147)
+Lemma 10.7. Using the deﬁnitions of ω1 and ω2 as in Eq. (145) and (146), for ℑξ ≥ξ0, we have
+|ω1 −ω2| ≤
+h
+s2|∥θN∥2
+2/d −1|/ξ2
+0 + 2∥A·,N∥2
+2∥E1∥op/ξ4
+0
+i
+∧[2/ξ0].
+Proof of Lemma 10.7. Note that
+ℑ(−ω−1
+1 ) ≥ℑξ + ℑ(A
+T
+·,N(B −ξIM−1)−1A·,N) ≥ℑξ > ξ0.
+Hence we have |ω1| ≤1/ξ0, and, using a similar argument, |ω2| ≤1/ξ0. Hence we get the bound |ω1 −ω2| ≤
+2/ξ0.
+Denote
+ω1.5 =
+
+−ξ + s1 + s2 −A
+T
+·,N(B −ξIM−1)−1A·,N
+−1
+,
+we get
+|ω1 −ω1.5| = s2
+ω1(∥θN∥2
+2/d −1)ω1.5
+ ≤s2
+∥θN∥2
+2/d −1
+/ξ2
+0.
+Moreover, we have
+|ω1.5 −ω2| = |ω1.5ω2A
+T
+·,N[( ˜
+B + ∆−ξIM−1)−1 −( ˜
+B + ∆+ E0 −ξIM−1)−1]A·,N|
+= |ω1.5ω2A
+T
+·,N( ˜
+B + ∆−ξIM−1)−1E0( ˜
+B + ∆+ E0 −ξIM−1)−1A·,N|
+≤(1/ξ2
+0) · ∥A·,N∥2
+2(1/ξ2
+0)∥E0∥op ≤2∥E1∥op∥A·,N∥2
+2/ξ4
+0.
+This proves the lemma.
+Lemma 10.8. Under the assumptions of Lemma 10.1, we have
+∥E1∥op = Od,P(Poly(log d)/d1/2).
+(148)
+Proof of Lemma 10.8. Deﬁne zi = ˜θi for i ∈[N −1], zi = ˜xi−N+1 for N ≤i ≤M −1, and ζi = ηi for
+i ∈[N −1], ζi = ui−N+1 for N ≤i ≤M −1. Consider the symmetric matrix E ∈R(M−1)×(M−1) with
+Eii = 0, and
+Eij =
+1
+√
+d
+
+ϕ⊥
+ 1
+√
+d
+⟨zi, zj⟩+ 1
+√
+d
+ζiζj
+
+−ϕ⊥
+ 1
+√
+d
+⟨zi, zj⟩
+
+.
+(149)
+37
+
+
+--- page 38 ---
+Since E1 is a sub-matrix of E, we have ∥E1∥op ≤∥E∥op. By the intermediate value theorem
+E =
+1
+√
+d
+ΞF1Ξ + 1
+2dΞ2F2Ξ2 ,
+(150)
+Ξ ≡diag(ζ1, . . . , ζM−1) ,
+(151)
+F1,ij ≡
+1
+√
+d
+ϕ′
+⊥
+ 1
+√
+d
+⟨zi, zj⟩
+
+1i̸=j,
+(152)
+F2,ij ≡
+1
+√
+d
+ϕ′′
+⊥
+ ˜zij
+
+1i̸=j ,
+˜zij ∈
+h 1
+√
+d
+⟨zi, zj⟩, 1
+√
+d
+⟨zi, zj⟩+ 1
+√
+d
+ζiζj
+i
+.
+(153)
+Hence we get
+∥E∥op ≤(∥F1∥op/
+√
+d)∥Ξ∥2
+op + (∥F2∥op/d)∥Ξ∥4
+op.
+Note that ϕ′′
+⊥(x) = ϕ′′(x) is a polynomial with some ﬁxed degree ¯k. Therefore we have
+E{∥F2∥2
+F } = [M(M −1)/d] · E[ϕ′′
+⊥(˜z12)2] ≤Od(d) · E[(1 + |˜z12|)2¯k]
+≤Od(d) ·
+n
+E
+
+(1 + |⟨zi, zj⟩/
+√
+d|)2¯k
++ E
+
+(1 + |⟨zi, zj⟩+ ζiζj/
+√
+d|)2¯ko
+= Od(d).
+Moreover, by the fact that ϕ′
+⊥is a polynomial with E[ϕ′
+⊥(G)] = 0, and by Theorem 1.7 in [FM19], we have
+∥F1∥op = Od,P(1). By the concentration bound for χ-squared random variable, we get ∥Ξ∥op = Od,P(√log d).
+Therefore, we have
+∥E∥op ≤Od,P(d−1/2)Od,P(Poly(log d)) + Od,P(d−1/2)Od,P(Poly(log d)) = Od,P(Poly(log d)/d−1/2).
+This proves the lemma.
+Lemma 10.9. Under the assumptions of Lemma 10.1, we have
+∥A·,N∥2 = Od,P(1).
+(154)
+Proof of Lemma 10.9. Recall the deﬁnition of A·,N as in Eq. (137). Denote a1 = s2η∥θN∥2/d ∈RN−1, and
+a2 = ϕ(u∥θN∥2/
+√
+d)/
+√
+d ∈Rn, where η ∼N(0, IN−1), and u ∼N(0, In). Then A·,N = (a1; a2) ∈Rn+N−1.
+For a1, note we have ∥a1∥2 = |s2| · ∥η∥2∥θN∥2/d where η ∼N(0, IN−1) and θN ∼N(0, Id) are indepen-
+dent. Hence we have
+E[∥a1∥2
+2] = s2
+2E[∥η∥2
+2∥θN∥2
+2]/d2 = Od(1).
+For a2, note ϕ is a polynomial with some ﬁxed degree ¯k, hence we have
+E[∥a2∥2
+2] = E[ϕ(ui∥θN∥2/
+√
+d)2] = Od(1).
+This proves the lemma.
+Step 3. Simpliﬁcation using Sherman-Morrison-Woodbury formula.
+Notice that ∆is a matrix with rank at most two. Indeed
+∆= UMU T ∈R(M−1)×(M−1),
+U =
+1
+√
+d
+η
+0
+0
+u
+
+∈R(M−1)×2,
+M =
+s2
+µ1
+µ1
+t2
+
+∈R2×2.
+(155)
+Since we assumed q ∈Q so that |s2t2| ≤µ2
+1/2, the matrix M is invertible with ∥M −1∥op ≤C.
+Recall the deﬁnition of ω2 in Eq. (146). By the Sherman-Morrison-Woodbury formula, we get
+ω2 =
+
+−ξ + s1 + s2 −v1 + vT
+2 (M −1 + V3)−1v2
+−1
+,
+(156)
+where
+v1 = A
+T
+·,N( ˜
+B −ξIM−1)−1A·,N,
+v2 = U T( ˜
+B −ξIM−1)−1A·,N,
+V3 = U T( ˜
+B −ξIM−1)−1U.
+(157)
+38
+
+
+--- page 39 ---
+We deﬁne
+v1 = s2
+2m1,d + (µ2
+1 + µ2
+⋆)m2,d,
+v2 =
+s2m1,d
+µ1m2,d
+
+,
+V 3 =
+m1,d
+0
+0
+m2,d
+
+,
+(158)
+and
+ω3 =
+
+−ξ + s1 + s2 −v1 + vT
+2 (M −1 + V 3)−1v2
+−1
+.
+(159)
+By auxiliary Lemmas 10.10, 10.11, and 10.12 below, we get
+E[|ω2 −ω3|] = od(1),
+Combining with Eq. (147) we get
+|m1,d −ψ1,dω3| = od(1).
+Elementary algebra simplifying Eq. (159) gives ψ1,dω3 = F1(m1,d, m2,d; ξ; q, ψ1,d, ψ2,d, µ1, µ⋆). This proves
+Eq. (120) in Lemma 10.1. Eq. (121) follows by the same argument (exchanging N and n). In the rest of
+this section, we prove auxiliary Lemmas 10.10, 10.11, and 10.12.
+Lemma 10.10. Using the formula of ω2 and ω3 as in Eq. (156) and (159), for ℑξ ≥ξ0, we have
+|ω2 −ω3| ≤Od(1) ·
+nh
+|v1 −v1| + ∥v2∥2
+2∥(M −1 + V3)−1∥op∥(M −1 + V 3)−1∥op∥V3 −V 3∥op
++ (∥v2∥2 + ∥v2∥2)∥(M −1 + V3)−1∥op∥v2 −v2∥2
+i
+∧1
+o
+.
+Proof of Lemma 10.10. Denote
+ω2.5 =
+
+−ξ + s1 + s2 −v1 + vT
+2 (M −1 + V3)−1v2
+−1
+We have
+|ω2 −ω2.5| = |ω2(v1 −v1)ω2.5| ≤|v1 −v1|/ξ2
+0.
+Moreover, we have
+|ω2.5 −ω3| ≤(1/ξ2
+0)|vT
+2 (M −1 + V3)−1v2 −vT
+2 (M −1 + V 3)−1v2|
+≤(1/ξ2
+0)
+n
+(∥v2∥2 + ∥v2∥2)∥(M −1 + V3)−1∥op∥v2 −v2∥2
++ ∥v2∥2
+2∥(M −1 + V3)−1∥op∥(M −1 + V 3)−1∥op∥V3 −V 3∥op
+o
+.
+Combining with |ω2 −ω3| ≤|ω2| + |ω3| ≤Od(1) proves the lemma.
+Lemma 10.11. Under the assumptions of Lemma 10.1, we have (following the notations of Eq. (157) and
+(158))
+∥v2∥2 = Od(1),
+(160)
+|v1 −v1| = od,P(1),
+(161)
+∥v2 −v2∥2 = od,P(1),
+(162)
+∥V3 −V 3∥op = od,P(1).
+(163)
+Proof of Lemma 10.11. The ﬁrst bound is because (see Lemma 10.3 for the boundedness of m1,d and m2,d)
+∥v2∥2 ≤|s2| · |m1,d| + |µ1| · |m2,d| ≤(ψ1 + ψ2)(|s2| + |µ1|)/ξ0 = Od(1).
+In the following, we limit ourselves to proving Eq. (161), since Eq.
+(162) and (163) follow by similar
+arguments.
+39
+
+
+--- page 40 ---
+Recall the deﬁnition of ˜
+B as in Eq. (139). Let R ≡( ˜
+B −ξIM−1)−1. Then we have ∥R∥op ≤1/ξ0. Deﬁne
+a, h as
+a = A·,N =
+h1
+ds2ηT∥θN∥2, 1
+√
+d
+ϕ
+ 1
+√
+d
+uT∥θN∥2
+iT
+,
+h =
+h 1
+√
+d
+s2ηT, 1
+√
+d
+ϕ(uT)
+iT
+.
+Then by the deﬁnition of v1 in Eq. (157), we have v1 = aTRa. Note we have
+∥h −a∥2 ≤(s2∥η∥2 + ∥ϕ′(u ⊙ξ)∥2) · |∥θN∥2/
+√
+d −1|/
+√
+d,
+for some ξ = (ξ1, . . . , ξn)T with ξi between ∥θN∥2/
+√
+d and 1. Since |∥θN∥2/
+√
+d −1| = Od,P(√log d/
+√
+d),
+∥η∥2 = Od,P(
+√
+d), and ∥ϕ′(u · ξ)∥2 = Od,P(Poly(log d) ·
+√
+d), we have
+∥h −a∥2 = od,P(1).
+By Lemma 10.9 we have ∥a∥2 = Od,P(1) and hence ∥h∥2 = Od,P(1). Combining all these bounds, we have
+|v1 −hTRh| = |aTRa −hTRh| ≤(∥a∥2 + ∥h∥2)∥h −a∥2∥R∥op = od,P(1).
+(164)
+Denote by D the covariance matrix of h. Since h has independent elements, D a diagonal matrix with
+maxi Dii = maxi Var(hi) ≤C/d. Since E[h] = 0, we have
+E{hTRh|R} = Tr(DR).
+(165)
+We next compute Var(hTRh|R). By a similar calculation of Lemma C.8, we have (for a complex matrix,
+denote RT to be the transpose of R, and R∗to be the conjugate transpose of R)
+Var(hTRh|R) =
+M−1
+X
+i=1
+|Rii|2(E[h4
+i ] −3E[h2
+i ]2) + Tr(DRTDR∗) + Tr(DRDR∗).
+Note that we have maxi[E[h4
+i ] −3E[h2
+i ]2] = Od(1/d2), so that
+M−1
+X
+i=1
+|Rii|2(E[h4
+i ] −3E[h2
+i ]2) ≤Od(1/d2) · ∥R∥2
+F ≤Od(1/d)∥R∥2
+op = Od(1/d).
+Moreover, we have
+|Tr(DRTDR∗) + Tr(DRDR∗)| ≤∥DR∥2
+F + ∥DR∥F ∥DR∗∥F ≤2∥D∥2
+op∥R∥2
+F = Od(1/d),
+which gives
+Var(hTRh|R) = Od(1/d),
+and therefore
+|hTRh −Tr(DR)| = Od,P(d−1/2).
+(166)
+Combining Eq. (166) and (164), we obtain
+|v1 −Tr(DR)| ≤|aTRa −hTRh| + |hTRh −Tr(DR)| = od,P(1).
+(167)
+Finally, notice that
+Tr(DR) = s2
+2Tr[1,N−1](( ˜
+B −ξIM−1)−1)/d + (µ2
+1 + µ2
+⋆)Tr[N,M−1](( ˜
+B −ξIM−1)−1)/d.
+By Lemmas 10.4, partial Stieltjes transforms are stable with respect to deleting one row and one column
+of the same index. By Lemma 10.13 (which will be stated and proved later), partial Stieltjes transforms
+are stable with respect to small changes of the dimension d. Moreover, by Lemma 10.5, partial Stieltjes
+40
+
+
+--- page 41 ---
+transforms concentrate tightly around their mean. As a consequence of all these lemmas (Lemma 10.4,
+10.13, 10.5), we have
+|Tr[1,N−1](( ˜
+B −ξIM−1)−1)/d −m1,d| = od,P(1),
+|Tr[N,M−1](( ˜
+B −ξIM−1)−1)/d −m2,d| = od,P(1),
+so that
+|Tr(DR) −v1| = od,P(1).
+Combining with Eq. (167) proves Eq. (161).
+The following lemma is the analog of Lemma B.7 and B.8 in [CS13].
+Lemma 10.12. Under the assumptions of Lemma 10.1, we have (using the deﬁnitions in Eq. (155), (157)
+and (158) )
+∥(M −1 + V3)−1∥op = Od,P(1),
+(168)
+∥(M −1 + V 3)−1∥op = Od(1).
+(169)
+Proof of Lemma 10.12.
+Step 1. Bounding ∥(M −1 + V3)−1∥op.
+By Sherman-Morrison-Woodbury formula, we have
+(M −1 + V3)−1 = (M −1 + U T( ˜
+B −ξIM−1)−1U)−1
+= M −MU T( ˜
+B −ξIM−1 + UMU T)−1UM.
+Note we have ∥M∥op = Od(1), and ∥( ˜
+B −ξIM−1 + UMU T)−1∥op ≤1/ξ0 = Od(1). Therefore, by the
+concentration of ∥η∥2/
+√
+d and ∥u∥2/
+√
+d, we have
+(M −1 + V3)−1 = Od(1) · (1 + ∥U∥2
+op) = Od(1)(1 + ∥η∥2/
+√
+d + ∥u∥2/
+√
+d) = Od,P(1).
+Step 2. Bounding ∥(M −1 + V 3)−1∥op.
+Deﬁne G = M 1/2V3M 1/2 and G = M 1/2V 3M 1/2. By Lemma
+10.11, we have
+∥G −G∥op = od,P(1).
+(170)
+By the bound ∥(M −1 + V3)−1∥op = Od,P(1), we get
+∥(I2 + G)−1∥op = ∥M −1/2(M −1 + V3)−1M −1/2∥op ≤∥(M −1 + V3)−1∥· ∥M −1/2∥2
+op = Od,P(1).
+(171)
+Note we have
+(I2 + G)−1 −(I2 + G)−1 = (I2 + G)−1(G −G)(I2 + G)−1,
+so that
+(I2 + G)−1 = {I2 −(G −G)(I2 + G)−1}(I2 + G)−1.
+Combining with Eq. (170) and (171), we get
+∥(I2 + G)−1∥op ≤∥I2 −(G −G)(I2 + G)−1∥op∥(I2 + G)−1∥op = Od,P(1) = Od(1).
+The last equality holds because ∥(I2 + G)−1∥op is deterministic. Hence we have
+∥(M −1 + V 3)−1∥op = ∥M 1/2(I2 + G)−1M 1/2∥op ≤∥(I2 + G)−1∥op∥M 1/2∥2
+op = Od(1).
+This proves the lemma.
+The following lemma shows that, the partial resolvents are stable with respect to small changes of the
+dimension d.
+41
+
+
+--- page 42 ---
+Lemma 10.13. Follow the assumptions of Lemma 10.1.
+Let X = (x1, . . . , xn)T ∈Rn×d with (xi =
+(xi,1, . . . , xi,d)T)i∈[n] ∼iid N(0, Id), and Θ = (θ1, . . . , θN)T ∈RN×d with (θa = (θa,1, . . . , θa,d)T)a∈[N] ∼iid
+N(0, Id).
+Let X = (x1, . . . , xn)T ∈Rn×(d−1) with xi = Rxi = (xi,1, . . . , xi,d−1)T ∈Rd−1 and Θ =
+(θ1, . . . , θN)T ∈RN×(d−1) with θa = Rθa = (θa,1, . . . , θa,d−1)T ∈Rd−1, where R = (Id−1, 0(d−1)×1) ∈
+R(d−1)×d is the matrix form of the operator that restricts a vector to its 1’st to (d −1)’th canonical coordi-
+nates. Denote
+J ≡
+1
+√
+d
+ϕ
+ 1
+√
+d
+X Θ
+T
+,
+J ≡
+1
+√
+d
+ϕ
+ 1
+√
+d
+XΘT
+,
+(172)
+Q ≡1
+dΘ Θ
+T
+Q ≡1
+dΘΘT ,
+(173)
+H ≡1
+dX X
+T
+H ≡1
+dXXT ,
+(174)
+as well as the block matrix A, A ∈RM×M, M = N + n, deﬁned by
+A =
+"
+s1IN + s2Q
+J
+T
+J
+t1In + t2H
+#
+A =
+
+s1IN + s2Q
+JT
+J
+t1In + t2H
+
+.
+(175)
+Then for any ξ ∈C+ with ℑξ ≥ξ0 > 0, we have
+1
+dE
+Tr[1,N][(A −ξIM)−1] −Tr[1,N][(A −ξIM)−1]
+ = od(1),
+(176)
+1
+dE
+Tr[N+1,M][(A −ξIM)−1 −Tr[N+1,M][(A −ξIM)−1]
+ = od(1).
+(177)
+Proof of Lemma 10.13.
+Step 1. The Schur complement.
+We denote Aij and Aij for i, j ∈[2] to be
+A =
+A11
+A12
+A21
+A22
+
+=
+"
+s1IN + s2Q
+J
+T
+J
+t1In + t2H
+#
+,
+A =
+A11
+A12
+A21
+A22
+
+=
+
+s1IN + s2Q
+JT
+J
+t1In + t2H
+
+.
+Deﬁne
+ω = 1
+dTr[1,N][(A −ξIM)−1],
+ω = 1
+dTr[1,N][(A −ξIM)−1],
+and
+Ω=
+
+A11 −ξIN −A12(A22 −ξIn)−1A21
+−1
+,
+Ω=
+
+A11 −ξIN −A12(A22 −ξIn)−1A21
+−1
+.
+Then we have
+ω = 1
+dTr(Ω),
+ω = 1
+dTr(Ω).
+Deﬁne
+Ω1 =
+
+A11 −ξIN −A12(A22 −ξIn)−1A21
+−1
+,
+Ω2 =
+
+A11 −ξIN −A12(A22 −ξIn)−1A21
+−1
+,
+Ω3 =
+
+A11 −ξIN −A12(A22 −ξIn)−1A21
+−1
+,
+Then it’s easy to see that ∥Ω∥op, ∥Ω1∥op, ∥Ω2∥op, ∥Ω3∥op, ∥Ω∥op ≤1/ξ0.
+42
+
+
+--- page 43 ---
+Calculating their diﬀerence, we have
+1
+dTr(Ω) −1
+dTr(Ω1)
+ =
+1
+dTr(Ω(A11 −A11)Ω)
+ ≤Od(1) · 1
+d∥A11 −A11∥⋆,
+1
+dTr(Ω1) −1
+dTr(Ω2)
+ ≤Od(1) · 1
+d∥(A12 −A12)(A22 −ξIn)−1A21∥⋆,
+1
+dTr(Ω2) −1
+dTr(Ω3)
+ ≤Od(1) · 1
+d∥(A12 −A12)(A22 −ξIn)−1A21∥⋆,
+1
+dTr(Ω3) −1
+dTr(Ω)
+ ≤Od(1) · 1
+d∥A12(A22 −ξIn)−1(A22 −A22)(A22 −ξIn)−1A21∥⋆.
+Step 2. Bounding the diﬀerences.
+First, we have
+A11 −A11 = s2(Q −Q) = s2(θadθbd/d)a,b∈[N] = s2ηη/d,
+where η = (θ1d, . . . , θNd)T ∼N(0, IN). This gives
+∥A11 −A11∥⋆/d = s2∥η∥2
+2/d2 = od,P(1),
+and therefore
+1
+dTr(Ω) −1
+dTr(Ω1)
+ = od,P(1).
+By Theorem 1.7 in [FM19], and by the fact that ϕ is a polynomial with E[ϕ(G)] = 0, we have
+∥A12∥op = ∥J∥op = Od,P(1),
+∥A12∥op = Od,P(1).
+It is also easy to see that
+∥(A22 −ξIn)−1∥op, ∥(A22 −ξIn)−1∥op ≤1/ξ0 = Od(1).
+Moreover, we have
+A22 −A22 = t2(H −H) = t2(xidxjd/d)i,j∈[n] = t2uu/d,
+where u = (x1d, . . . , xnd)T ∼N(0, In). This gives
+∥A12(A22 −ξIn)−1(A22 −A22)(A22 −ξIn)−1A21∥⋆/d
+≤t2∥A12(A22 −ξIn)−1u∥2∥A12(A22 −ξIn)−1u∥2/d2
+≤t2∥A12∥2
+op∥(A22 −ξIn)−1∥2
+op∥u∥2
+2/d2
+= Od,P(1) · ∥u∥2
+2/d2 = od,P(1),
+and therefore
+1
+dTr(Ω3) −1
+dTr(Ω)
+ = od,P(1).
+By Lemma 10.8, deﬁning
+E = A12 −A12 −µ1uηT/d,
+we have ∥E∥op = Od(Poly(log d)/
+√
+d). Therefore, we get
+∥(A12 −A12)(A22 −ξIn)−1A21∥⋆/d
+≤∥(µ1uηT/d)(A22 −ξIn)−1A21∥⋆/d + ∥E(A22 −ξIn)−1A21∥⋆/d
+≤µ1∥η∥2∥(A22 −ξIn)−1∥op∥A21∥op∥u∥2/d2 + ∥E∥op∥(A22 −ξIn)−1∥op∥A21∥op
+= od,P(1),
+and therefore
+1
+dTr(Ω1) −1
+dTr(Ω2)
+,
+1
+dTr(Ω2) −1
+dTr(Ω3)
+ = od,P(1).
+Combining all these bounds establishes Eq. (176). Finally, Eq. (177) can be shown using the same argument.
+43
+
+
+--- page 44 ---
+10.4
+Equivalence between Gaussian and sphere version of Stieltjes transforms
+In this subsection, we show that the Stieltjes transform of matrix A as deﬁned in Eq. (60) and that of
+matrix A as deﬁned in Eq. (117) share the same asymptotics. For the reader’s convenience, we restate the
+deﬁnitions of these two matrices here.
+Let (θa)a∈[N] ∼iid N(0, Id), (xi)i∈[n] ∼iid N(0, Id). We denote by Θ ∈RN×d the matrix whose a-th row
+is given by θa, and by X ∈Rn×d the matrix whose i-th row is given by xi. We denote by Θ ∈RN×d the
+matrix whose a-th row is given by θa =
+√
+d·θa/∥θa∥2, and by X ∈Rn×d the matrix whose i-th row is given
+by xi =
+√
+d · xi/∥xi∥2. Then we have (xi)i∈[n] ∼iid Unif(Sd−1(
+√
+d)) and (θa)a∈[N] ∼iid Unif(Sd−1(
+√
+d))
+independently.
+We consider activation functions σ, ϕ : R →R with ϕ(x) = σ(x) −EG∼N(0,1)[σ(G)].
+We deﬁne the
+following matrices (where µ1 is the ﬁrst Hermite coeﬃcients of σ)
+J ≡
+1
+√
+d
+ϕ
+ 1
+√
+d
+X Θ
+T
+,
+Z ≡
+1
+√
+d
+σ
+ 1
+√
+d
+XΘT
+,
+(178)
+J1 ≡µ1
+d X Θ
+T,
+Z1 ≡µ1
+d XΘT ,
+(179)
+Q ≡1
+dΘ Θ
+T,
+Q ≡1
+dΘΘT ,
+(180)
+H ≡1
+dX X
+T,
+H ≡1
+dXXT ,
+(181)
+as well as the block matrix A, A ∈RM×M, M = N + n, deﬁned by
+A =
+"
+s1IN + s2Q
+J
+T + pJ
+T
+1
+J + pJ1
+t1In + t2H
+#
+,
+A =
+
+s1IN + s2Q
+ZT + pZT
+1
+Z + pZ1
+t1In + t2H
+
+,
+(182)
+and the Stieltjes transforms M d(ξ; q) and Md(ξ; q), deﬁned by
+M d(ξ; q) = 1
+dTr[(A −ξIM)−1],
+Md(ξ; q) = 1
+dTr[(A −ξIM)−1].
+(183)
+The readers could keep in mind: a quantity with an overline corresponds to the case when features and data
+are Gaussian, while a quantity without overline usually corresponds to the case when features and data are
+on the sphere.
+Lemma 10.14. Let σ be a ﬁxed polynomial. Let ϕ(x) = σ(x) −EG∼N(0,1)[σ(G)]. Consider the linear regime
+of Assumption 2. For any ﬁxed q ∈Q and for any ξ0 > 0, we have
+E
+h
+sup
+ℑξ≥ξ0
+|M d(ξ; q) −Md(ξ; q)|
+i
+= od(1).
+Proof of Lemma 10.14.
+Step 1. Show that the resolvent is stable with respect to nuclear norm perturbation.
+We deﬁne
+∆(A, A, ξ) = Md(ξ; q) −M d(ξ; q).
+Then we have deterministically
+|∆(A, A, ξ)| ≤|Md(ξ; q)| + |M d(ξ; q)| ≤4(ψ1 + ψ2)/ℑξ.
+Moreover, we have
+|∆(A, A, ξ)| = |Tr((A −ξI)−1(A −A)(A −ξI)−1)|/d
+≤∥(A −ξI)−1(A −ξI)−1∥op∥A −A∥⋆/d
+≤∥A −A∥⋆/(d(ℑξ)2).
+Therefore, if we can show ∥A −A∥⋆/d = od,P(1), then E[supℑξ≥ξ0 |∆(A, A, ξ)|] = od(1).
+44
+
+
+--- page 45 ---
+Step 2. Show that ∥A −A∥⋆/d = od,P(1).
+Denote Z0 = EG∼N(0,1)[σ(G)]1n1T
+N/
+√
+d and Z⋆= ϕ(XΘT/
+√
+d)/
+√
+d. Then we have Z = Z0 + Z⋆, and
+A −A =s2
+
+Q −Q
+0
+0
+0
+
++ t2
+0
+0
+0
+H −H
+
++ p
+"
+0
+ZT
+1 −J
+T
+1
+Z1 −J1
+0
+#
++
+"
+0
+ZT
+⋆−J
+T
+Z⋆−J
+0
+#
++
+
+0
+ZT
+0
+Z0
+0
+
+.
+Since q = (s1, s2, t1, t2, p) is ﬁxed, we have
+1
+d∥A −A∥⋆≤C
+ 1
+√
+d
+∥Q −Q∥F + 1
+√
+d
+∥H −H∥F + 1
+√
+d
+∥J1 −Z1∥F + 1
+√
+d
+∥J −Z⋆∥F
++1
+d
+
+
+0
+ZT
+0
+Z0
+0
+
+⋆
+
+.
+The nuclear norm of the term involving Z0 can be easily bounded by
+1
+d
+
+
+0
+ZT
+0
+Z0
+0
+
+⋆
+=
+1
+d3/2 |EG∼N(0,1)[σ(G)]| ·
+
+
+0
+1N1T
+n
+1n1T
+N
+0
+
+⋆
+= od(1).
+For term H −H, denoting Dx = diag(
+√
+d/∥x1∥2, . . . ,
+√
+d/∥xn∥2), we have
+∥H −H∥F /
+√
+d ≤∥H −H∥op ≤∥In −Dx∥op∥H∥op(1 + ∥Dx∥op) = od,P(1),
+where we used the fact that ∥Dx −In∥op = od,P(1) and ∥H∥op = Od,P(1). Similar argument shows that
+∥Q −Q∥F /
+√
+d = od,P(1),
+∥J1 −Z1∥F /
+√
+d = od,P(1).
+Step 3. Bound for ∥J −Z⋆∥F /
+√
+d.
+Deﬁne Z⋆= ϕ(DxX Θ
+T/
+√
+d)/
+√
+d. Deﬁne ri =
+√
+d/∥xi∥2. We have (for ζia between ri and 1)
+Z⋆−J =
+
+ϕ(ri⟨xi, θa⟩/
+√
+d)/
+√
+d −ϕ(⟨xi, θa⟩/
+√
+d)/
+√
+d
+
+i∈[n],a∈[N]
+=
+
+(ri −1)(⟨xi, θa⟩/
+√
+d)ϕ′(ζia⟨xi, θa⟩/
+√
+d)/
+√
+d
+
+i∈[n],a∈[N]
+= (Dx −In) ¯ϕ(Ξ ⊙(X Θ
+T/
+√
+d))/
+√
+d,
+where Ξ = (ζia)i∈[n],a∈[N], and ¯ϕ(x) = xϕ′(x) (so ¯ϕ is a polynomial). It is easy to see that
+∥Dx −In∥op = max
+i
+|ri −1| = Od,P(
+p
+log d/
+√
+d),
+∥Ξ∥max = Od,P(1),
+∥X Θ
+T/
+√
+d∥max = Od,P(
+p
+log d).
+Therefore, we have (denoting deg(ϕ) to be the degree of polynomial ϕ, and C(ϕ) to be a constant that only
+depends on ϕ)
+∥Z⋆−J∥F /
+√
+d = ∥(Dx −In) ¯ϕ(Ξ ⊙(X Θ
+T/
+√
+d))∥F /d
+≤∥Dx −In∥op∥¯ϕ(Ξ ⊙(X Θ
+T/
+√
+d))∥F /d
+≤C(ϕ) · ∥Dx −In∥op(1 + ∥Ξ∥max∥X Θ
+T/
+√
+d∥max)deg(ϕ) = Od,P((log d)deg(ϕ)+1/
+√
+d) = od,P(1).
+This proves the lemma.
+45
+
+
+--- page 46 ---
+10.5
+Proof of Proposition 8.3
+Step 1. Polynomial activation function σ.
+First we consider the case when σ is a ﬁxed polynomial with EG∼N(0,1)[σ(G)G]̸ = 0.
+Let ϕ(u) =
+σ(u)−E[σ(G)], and let md ≡(m1,d, m2,d) (whose deﬁnition is given by Eq. (118) and (119)), and recall that
+ψ1,d →ψ1 and ψ2,d →ψ2 as d →∞. By Lemma 10.1, together with the continuity of F1, F2 with respect to
+ψ1, ψ2, we have, for any ξ0 > 0, there exists C = C(ξ0, q, ψ1, ψ2, ϕ) and err(d) →0 such that for all ξ ∈C+
+with ℑξ ≥ξ0,
+md −F(md; ξ)
+
+2 ≤C · err(d).
+(184)
+By Lemma 10.2, there exists ξ0 = ξ0(q, ψ1, ψ2, ϕ) > 0, such that for any ξ ∈C+ with ℑξ ≥ξ0, F( · ; ξ)
+a continuous mapping from D(2ψ1/ξ0) × D(2ψ2/ξ0) to itself and has a unique ﬁxed point m(ξ) in the same
+domain. By Lemma 10.3 (a), we have md(ξ) ∈D(ψ1/ξ0) × D(ψ2/ξ0). Combining the above facts with Eq.
+(184), we have
+∥md(ξ) −m(ξ)∥2 = od(1),
+∀ξ ∈C+, ℑξ ≥ξ0.
+By the property of Stieltjes transform as in Lemma 10.3 (c), we have
+∥md(ξ) −m(ξ)∥2 = od(1),
+∀ξ ∈C+.
+By the concentration result of Lemma 10.5, for M d(ξ) = d−1Tr[(A −ξIM)−1], we also have
+E|M d(ξ) −m(ξ)| = od(1),
+∀ξ ∈C+.
+(185)
+Then we use Lemma 10.14 to transfer this property from M d to Md. Recall the deﬁnition of resolvent
+Md(ξ; q) in sphere case in Eq. (61). Combining Lemma 10.14 with Eq. (185), we have
+E|Md(ξ) −m(ξ)| = od(1),
+∀ξ ∈C+.
+(186)
+Step 2. General activation function σ satisfying Assumption 1.
+Next consider the case of a general function σ as in the theorem statement satisfying Assumption 1. Fix
+ε > 0 and let ˜σ is a polynomial be such that ∥σ −˜σ∥L2(τd) ≤ε, where τd is the marginal distribution of
+⟨x, θ⟩/
+√
+d for x, θ ∼iid Unif(Sd−1(
+√
+d)). In order to construct such a polynomial, consider the expansion of
+σ in the orthogonal basis of Hermite polynomials
+σ(x) =
+∞
+X
+k=0
+µk
+k! Hek(x) .
+(187)
+Since this series converges in L2(µG), we can choose k < ∞such that, letting ˜σ(x) = Pk
+k=0(µk/k!)Hek(x),
+we have ∥σ −˜σ∥2
+L2(µG) ≤ε/2. By Lemma 10.6 (cf. Eq. (130)) we therefore have ∥σ −˜σ∥2
+L2(τd) ≤ε for all d
+large enough.
+Write µk(˜σ) = E[˜σ(G)Hek(G)] and µ⋆(˜σ)2 = Pk
+k=2 µ2
+k/k!. Notice that, by construction we have µ0(˜σ) =
+µ0(σ), µ1(˜σ) = µ1(σ) and |µ⋆(˜σ)2 −µ⋆(σ)2| ≤ε. Let ˜m1,d, ˜m2,d be the Stieltjes transforms associated to
+activation ˜σ, and ˜m1, ˜m2 be the solution of the corresponding ﬁxed point equation (70) (with µ⋆= µ⋆(˜σ)
+and µ1 = µ1(˜σ)), and ˜m = ˜m1 + ˜m2. Denoting by ˜
+A the matrix obtained by replacing the σ in A to be ˜σ,
+and ˜
+Md(ξ) = (1/d)Tr[( ˜
+A −ξI)−1]. Step 1 of this proof implies
+E| ˜
+Md(ξ) −˜m(ξ)| = od(1),
+∀ξ ∈C+.
+(188)
+Further, by continuity of the solution of the ﬁxed point equation with respect to µ⋆, µ1 when ℑξ ≥ξ0 for
+some large ξ0 (as stated in Lemma 10.2), we have for ℑξ ≥ξ0,
+| ˜m(ξ) −m(ξ)| ≤C(ξ, q)ε.
+(189)
+Eq. (189) also holds for any ξ ∈C+, by the property of Stieltjes transform as in Lemma 10.3 (c).
+46
+
+
+--- page 47 ---
+Moreover, we have (for C independent of d, σ, ˜σ and ε, but depend on ξ and q)
+E
+hMd(ξ) −˜
+Md(ξ)
+
+i
+≤1
+dE
+hTr[(A −ξI)−1( ˜
+A −A)( ˜
+A −ξI)−1]
+
+i
+≤1
+dE
+h
+∥( ˜
+A −ξI)−1(A −ξI)−1∥op∥˜
+A −A∥⋆
+i
+≤[1/(ξ2
+0d)] · E[∥˜
+A −A∥⋆] ≤[1/(ξ2
+0
+√
+d)] · E{∥˜
+A −A∥2
+F }1/2 ≤C(ξ, q) · ∥σ −˜σ∥L2(τd).
+Therefore
+lim sup
+d→∞
+E[|Md(ξ) −˜
+Md(ξ)|] ≤C(ξ, q)ε,
+∀ξ ∈C+.
+(190)
+Combining Eq. (188), (189), and (190), we obtain
+lim sup
+d→∞
+E|Md(ξ) −m(ξ)| ≤C(ξ, q)ε,
+∀ξ ∈C+.
+Taking ε →0 proves Eq. (71).
+Step 3. Uniform convergence in compact sets (Eq. (72)).
+Note md(ξ; q) = E[Md(ξ; q)] is an analytic function on C+. By Lemma 10.3 (c), for any compact set
+Ω⊆C+, we have
+lim
+d→∞
+h
+sup
+ξ∈Ω
+|E[Md(ξ; q)] −m(ξ; q)|
+i
+= 0.
+(191)
+In the following, we show the concentration of Md(ξ; q) around its expectation uniformly in the compact
+set Ω⊂C+. Deﬁne L = supξ∈Ω(1/(ℑξ)2). Since Ω⊂C+ is a compact set, we have L < ∞, and Md(ξ; q) (as
+a function of ξ) is L-Lipschitz on Ω. Moreover, for any ε > 0, there exists a ﬁnite set N(ε, Ω) ⊆C+ which
+is an ε/L-covering of Ω. That is, for any ξ ∈Ω, there exists ξ⋆∈N(ε, Ω) such that |ξ −ξ⋆| ≤ε/L. Since
+Md(ξ; q) (as a function of ξ) is L-Lipschitz on Ω, we have
+sup
+ξ∈Ω
+inf
+ξ⋆∈N(ε,Ω) |Md(ξ; q) −Md(ξ⋆; q)| ≤ε,
+sup
+ξ∈Ω
+inf
+ξ⋆∈N(ε,Ω) |E[Md(ξ; q)] −E[Md(ξ⋆; q)]| ≤ε.
+(192)
+By the concentration of Md(ξ⋆; q) to its expectation (which is the spherical version of Lemma 10.5), we have
+|Md(ξ⋆; q) −E[Md(ξ⋆; q)]| = od,P(1),
+and since N(ε, Ω) is a ﬁnite set, we have
+sup
+ξ⋆∈N(ε,Ω)
+|Md(ξ⋆; q) −E[Md(ξ⋆; q)]| = od,P(1).
+(193)
+This high probability bound will become an expectation bound by the uniform boundedness of Md(ξ; q) for
+ξ in any compact domain. That is, we have
+E
+h
+sup
+ξ⋆∈N(ε,Ω)
+|Md(ξ⋆; q) −E[Md(ξ⋆; q)]|
+i
+= od(1).
+(194)
+Combining Eq. (191), (192) and (194), we have
+E
+h
+sup
+ξ∈Ω
+|Md(ξ; q) −m(ξ; q)|
+i
+≤ε + od(1).
+Letting ε →0 proves Eq. (72). This concludes the proof of Proposition 8.3.
+47
+
+
+--- page 48 ---
+11
+Proof of Proposition 8.4
+In Section 11.1 we state and prove some lemmas that are used in the proof of Proposition 8.4. We prove
+Proposition 8.4 in Section 11.2.
+11.1
+Properties of the Stieltjes transforms and the log determinant
+The ﬁrst lemma concerns the behavior of the partial Stieltjes transforms m1 and m2 when ℑξ →∞.
+Lemma 11.1. For ξ ∈C+ and q ∈Q (c.f. Eq. (68)), let m1(ξ; q), m2(ξ; q) be deﬁned as the analytic
+continuation of solution of Eq. (70) as deﬁned in Proposition 8.3. Denote ξ = ξr +iK for some ﬁxed ξr ∈R.
+Then we have
+lim
+K→∞|m1(ξ; q)ξ + ψ1| = 0,
+lim
+K→∞|m2(ξ; q)ξ + ψ2| = 0.
+Proof of Lemma 11.1. Deﬁne m1 = −ψ1/ξ, m2 = −ψ2/ξ, m = (m1, m2)T, and m = (m1, m2)T. Let F1, F2
+be deﬁned as in Eq. (69), F be deﬁned as in Eq. (122), and H1 deﬁned as in Eq. (125). By simple calculus
+we can see that
+lim
+K→∞H1(m) = s2.
+This gives
+ξ[m1 −F1(m; ξ)] = ψ1
+s1 + H1(m)
+ξ −s1 −H1(m) →0,
+as K →∞.
+As a result, we have ξ∥m −F(m; ξ)∥2 →0 as K →∞. Moreover, by Lemma 10.2, there exists suﬃciently
+large ξ0, so that for any ℑξ = K ≥ξ0, F(m; ξ) is 1/2-Lipschitz on domain m ∈D(2ψ1/ξ0) × D(2ψ2/ξ0).
+Therefore, for ℑξ = K ≥ξ0, we have (note we have m = F(m; ξ))
+∥m −m∥2 = ∥F(m; ξ) −F(m; ξ) + m −F(m; ξ)∥2
+≤∥F(m; ξ) −F(m; ξ)∥2 + ∥m −F(m; ξ)∥2
+≤∥m −m∥2/2 + ∥m −F(m; ξ)∥2,
+so that
+ξ∥m −m∥2 ≤2ξ∥m −F(m; ξ)∥2 →0,
+as K →∞.
+This proves the lemma.
+The next lemma concerns the behavior of the log-determinants when ℑξ →∞.
+Lemma 11.2. Follow the notations and settings of Proposition 8.4. For any ﬁxed q, we have
+lim
+K→∞sup
+d≥1
+E|Gd(iK; q) −(ψ1 + ψ2)Log(−iK)| = 0,
+(195)
+lim
+K→∞|g(iK; q) −(ψ1 + ψ2)Log(−iK)| = 0.
+(196)
+Proof of Lemma 11.2.
+Step 1. Asymptotics of Gd(iK; q).
+First we look at the real part. We have
+ℜ
+h 1
+M
+M
+X
+i=1
+Log(λi(A) −iK) −Log(−iK)
+i
+=
+1
+2M
+M
+X
+i=1
+log(1 + λi(A)2/K2) ≤
+1
+2MK2
+M
+X
+i=1
+λi(A)2 = ∥A∥2
+F
+2MK2 .
+For the imaginary part, we have
+ℑ
+h 1
+M
+M
+X
+i=1
+Log(λi(A) −iK) −Log(−iK)
+i
+=
+ 1
+M
+M
+X
+i=1
+arctan(λi(A)/K)
+ ≤
+1
+MK
+M
+X
+i=1
+|λi(A)| ≤∥A∥F
+M 1/2K .
+48
+
+
+--- page 49 ---
+Combining the bound of the real part and the imaginary part, we have
+E
+ 1
+M
+M
+X
+i=1
+Log(λi(A) −iK) −Log(−iK)
+ ≤E[∥A∥2
+F ]
+2MK2 + E[∥A∥2
+F ]1/2
+M 1/2K
+.
+Note that
+1
+M E[∥A∥2
+F ] ≤1
+M
+
+E∥s1IN + s2Q∥2
+F + E∥t1In + t2H∥2
+F + 2E[∥Z + pZ1∥2
+F ]
+
+= Od(1).
+This proves Eq. (195).
+Step 2. Asymptotics of g(iK; q).
+Recall the deﬁnition of Ξ as given in Eq. (73). Deﬁne
+Ξ1(z1, z2; q) ≡
+log[(s2z1 + 1)(t2z2 + 1) −µ2
+1(1 + p)2z1z2] −µ2
+⋆z1z2 + s1z1 + t1z2,
+Ξ2(ξ, z1, z2) ≡
+−ψ1 log(z1/ψ1) −ψ2 log(z2/ψ2) −ξ(z1 + z2) −ψ1 −ψ2.
+(197)
+Then we have
+Ξ(ξ, z1, z2; q) = Ξ1(z1, z2; q) + Ξ2(ξ, z1, z2).
+(198)
+It is easy to see that for any ﬁxed q, we have
+lim
+z1,z2→0 Ξ1(z1, z2, q) = 0.
+By Lemma 11.1, we have limK→∞m1(iK) = 0 and limK→∞m2(iK) = 0 (for notational simplicity, here and
+below, we suppressed the argument q in m1 and m2), which gives
+lim
+K→∞Ξ1(m1(iK), m2(iK), q) = 0.
+(199)
+Moreover, we have
+|Ξ2(iK, m1(iK), m2(iK)) −Ξ2(iK, iψ1/K, iψ2/K)|
+≤ψ1| log(−iKm1(iK)/ψ1)| + ψ2| log(−iKm2(iK)/ψ2)| + |iKm1(iK) + ψ1| + |iKm2(iK) + ψ2|.
+By Lemma 11.1 again, we have
+lim
+K→∞|iKm1(iK) + ψ1| = lim
+K→∞|iKm2(iK) + ψ2| = 0,
+and hence
+lim
+K→∞|Ξ2(iK, m1(iK), m2(iK)) −Ξ2(iK, iψ1/K, iψ2/K)| = 0.
+(200)
+Combining Eq. (198), (199) and (200), we get
+lim
+K→∞
+Ξ(ξ, m1(iK), m2(iK); q) −Ξ2(iK, iψ1/K, iψ2/K)
+ = 0.
+Finally, by the deﬁnition of g as in Eq.
+(74) and noting that we have Ξ2(iK, iψ1/K, iψ2/K) = (ψ1 +
+ψ2)Log(−iK), this proves the lemma.
+Next, we give some uniform upper bounds on the diﬀerence of derivatives of Gd and g.
+Lemma 11.3. Follow the notations and settings of Proposition 8.4. For ﬁxed u ∈R+, we have
+lim sup
+d→∞
+sup
+q∈R5 E∥∇qGd(iu; q) −∇qg(iu; q)∥2 <∞,
+lim sup
+d→∞
+sup
+q∈R5 E∥∇2
+qGd(iu; q) −∇2
+qg(iu; q)∥op <∞,
+lim sup
+d→∞
+sup
+q∈R5 E∥∇3
+qGd(iu; q) −∇3
+qg(iu; q)∥op <∞.
+49
+
+
+--- page 50 ---
+Proof of Lemma 11.3. Deﬁne q = (s1, s2, t1, t2, p) ≡(q1, q2, q3, q4, q5), and
+S1 =
+
+IN
+0
+0
+0
+
+,
+S2 =
+
+Q
+0
+0
+0
+
+,
+S3 =
+
+0
+0
+0
+In
+
+,
+S4 =
+0
+0
+0
+H
+
+,
+S5 =
+
+0
+ZT
+1
+Z1
+0
+
+.
+Then by the bound on the operator norm of Wishart matrix [AGZ09], for any ﬁxed k ∈N, we have
+lim sup
+d→∞
+sup
+i∈[5]
+E[∥Si∥2k
+op] < ∞.
+Moreover, deﬁne R = (A −iuIM)−1. Then we have almost surely supq ∥R∥op ≤1/u.
+Therefore
+sup
+q E|∂qiGd(iu; q)| = sup
+q
+1
+dE|Tr(RSi)| ≤sup
+q
+1
+uE[∥Si∥op] = Od(1),
+sup
+q E|∂2
+qi,qjGd(iu; q)| = sup
+q
+1
+dE|Tr(RSiRSj)| ≤sup
+q
+1
+u2 (E[∥Si∥2
+op]E∥Sj∥2
+op])1/2 = Od(1),
+sup
+q E|∂3
+qi,qj,qlGd(iu; q)| = sup
+q
+1
+d
+h
+E|Tr(RSiRSjRSl)| + E|Tr(RSiRSlRSj)|
+i
+≤2 sup
+q
+1
+u3
+h
+E[∥Si∥4
+op]E[∥Sj∥4
+op]E[∥Sl∥4
+op]
+i1/4
+= Od(1).
+Similarly we can show that for ﬁxed u > 0, we have supq∈R5 ∥∇j
+qg(iu; q)∥< ∞for j = 1, 2, 3. The lemma
+holds by the following inequality,
+lim sup
+d→∞
+sup
+q∈R5 E∥∇j
+qGd(iu; q) −∇j
+qg(iu; q)∥≤lim sup
+d→∞
+sup
+q∈R5
+h
+E∥∇j
+qGd(iu; q)∥+ ∥∇j
+qg(iu; q)∥
+i
+< ∞
+for j = 1, 2, 3.
+Finally, we show that the derivatives of a function in a region can be upper bounded by the function
+value and the second derivatives of the function in the region.
+Lemma 11.4. Let f ∈C2([a, b]). Then we have
+sup
+x∈[a,b]
+|f ′(x)| ≤
+f(a) −f(b)
+a −b
+ + 1
+2 sup
+x∈[a,b]
+|f ′′(x)| · |a −b|.
+As a consequence, letting f ∈C2(Bd(0, 2r)) where Bd(0, r) = {x ∈Rd : ∥x∥2 ≤r}, we have
+sup
+x∈B(0,r)
+∥∇f(x)∥2 ≤r−1
+sup
+x∈B(0,2r)
+|f(x)| + 2r
+sup
+x∈B(0,2r)
+∥∇2f(x)∥op.
+The proof of Lemma 11.4 is elementary and simply follows from Taylor expansion.
+11.2
+Proof of Proposition 8.4
+By the expression of Ξ in Eq. (73), we have
+∂z1Ξ(ξ, z1, z2; q) =
+s2(t2z2 + 1) −µ2
+1(1 + p)2z2
+(s2z1 + 1)(t2z2 + 1) −µ2
+1(1 + p)2z1z2
+−µ2
+⋆z2 + s1 −ψ1/z1 −ξ,
+∂z2Ξ(ξ, z1, z2; q) =
+t2(s2z1 + 1) −µ2
+1(1 + p)2z1
+(s2z1 + 1)(t2z2 + 1) −µ2
+1(1 + p)2z1z2
+−µ2
+⋆z1 + s2 −ψ2/z2 −ξ.
+By ﬁxed point equation (70) with F1, F2 deﬁned in (69), we obtain that
+∇(z1,z2)Ξ(ξ, z1, z2; q)|(z1,z2)=(m1(ξ;q),m2(ξ;q)) = 0.
+50
+
+
+--- page 51 ---
+As a result, by the deﬁnition of g given in Eq. (74), and by formula for implicit diﬀerentiation, we have
+d
+dξ g(ξ; q) = −m(ξ; q).
+Hence, for any ξ ∈C+ and K ∈R and compact continuous path φ(ξ, iK) that connects ξ and iK, we have
+g(ξ; q) −g(iK; q) =
+Z
+φ(ξ,iK)
+m(η; q)dη.
+(201)
+By Proposition 8.2, for any ξ ∈C+ and K ∈R, we have
+Gd(ξ; q) −Gd(iK; q) =
+Z
+φ(ξ,iK)
+Md(η; q)dη.
+(202)
+Combining Eq. (202) with Eq. (201), we get
+E[|Gd(ξ; q) −g(ξ; q)|] ≤
+Z
+φ(ξ,iK)
+E|Md(η; q) −m(η; q)|dη + E|Gd(iK; q) −g(iK; q)|.
+(203)
+By Proposition 8.3, we have
+lim
+d→∞
+Z
+φ(ξ,iK)
+E|Md(η; q) −m(η; q)|dη = 0.
+(204)
+By Lemma 11.2, we have
+lim
+K→∞sup
+d≥d0
+E|Gd(iK; q) −g(iK; q)| = 0.
+(205)
+Combining Eq. (203), (204) and (205), we get Eq. (75).
+For ﬁxed ξ ∈C+, deﬁne Ed(q) = Gd(ξ, q) −g(ξ; q). By Lemma 11.4, we have
+sup
+q∈B(0,ε)
+∥∇Ed(q)∥2 ≤ε−1
+sup
+q∈B(0,2ε)
+|Ed(q)| + 2ε
+sup
+q∈B(0,2ε)
+∥∇2Ed(q)∥op.
+(206)
+By Eq. (75) and Lemma 11.3, by the covering number argument (similar to the Step 3 in Section 10.5), we
+get that for any compact region Q⋆, there is
+lim
+d→∞E
+h
+sup
+q∈Q⋆
+|Ed(q)|
+i
+= 0.
+Taking Q⋆= B(0, 2ε), by Eq. (206) and by Lemma 11.3 again, there exists some constant C, such that
+lim sup
+d→∞
+E
+h
+sup
+q∈B(0,ε)
+∥∇Ed(q)∥2
+i
+≤Cε.
+Sending ε →0 gives Eq. (76). By similar argument we get Eq. (77). This ﬁnishes the proof of Proposition
+8.4.
+12
+Proof of Theorem 3, 4, and 5
+12.1
+Proof of Theorem 3
+To prove this theorem, we just need to show that
+lim
+λ→0
+B(ζ, ψ1, ψ2, λ) = Brless(ζ, ψ1, ψ2),
+lim
+λ→0
+V (ζ, ψ1, ψ2, λ) = Vrless(ζ, ψ1, ψ2).
+More speciﬁcally, we just need to show that, the formula for χ deﬁned in Eq. (16) as λ →0 coincides with
+the formula for χ deﬁned in Eq. (24). By the relationship of χ and m1m2 as per Eq. (86), we just need to
+show the lemma below.
+51
+
+
+--- page 52 ---
+Lemma 12.1. Let Assumption 1 and 2 hold. For ﬁxed ξ ∈C+, let m1(ξ; ψ1, ψ2) and m2(ξ; ψ1, ψ2) be deﬁned
+by
+m1(ξ; ψ1, ψ2) =
+lim
+d→∞,N/d→ψ1,n/d→ψ2
+1
+dE{Tr[1,N][([0, ZT; Z, 0] −ξIM)−1]},
+m2(ξ; ψ1, ψ2) =
+lim
+d→∞,N/d→ψ1,n/d→ψ2
+1
+dE{Tr[N+1,M][([0, ZT; Z, 0] −ξIM)−1]}.
+(207)
+By Proposition 8.3 this is equivalently saying m1(ξ; ψ1, ψ2), m2(ξ; ψ1, ψ2) is the analytic continuation of
+solution of Eq. (70) as deﬁned in Proposition 8.3, when q = 0. Deﬁning ψ = min(ψ1, ψ2), we have
+lim
+u→0[m1(iu; ψ1, ψ2)m2(iu; ψ1, ψ2)] = −[(ψζ2 −ζ2 −1)2 + 4ζ2ψ]1/2 + (ψζ2 −ζ2 −1)
+2µ2⋆ζ2
+.
+(208)
+Proof of Lemma 12.1.
+In the following, we consider the case ψ2 > ψ1. The proof for the case ψ2 < ψ1
+is the same, and the case ψ1 = ψ2 is simpler.
+By Proposition 8.3, m1 = m1(iu) = m1(iu; ψ1, ψ2) and
+m2 = m2(iu) = m2(iu; ψ1, ψ2) must satisfy Eq. (70) for ξ = iu and q = 0. A reformulation for Eq. (70) for
+q = 0 yields
+−µ2
+1m1m2
+1 −µ2
+1m1m2
+−µ2
+⋆m1m2 −ψ1 −iu · m1 = 0,
+(209)
+−µ2
+1m1m2
+1 −µ2
+1m1m2
+−µ2
+⋆m1m2 −ψ2 −iu · m2 = 0.
+(210)
+Deﬁning m0(iu) = m1(iu)m2(iu). Then m0 must satisfy the following equation
+−u2m0 =
+ −µ2
+1m0
+1 −µ2
+1m0
+−µ2
+⋆m0 −ψ1
+ −µ2
+1m0
+1 −µ2
+1m0
+−µ2
+⋆m0 −ψ2
+
+.
+Note we must have |m0(iu)| ≤|m1(iu)| · |m2(iu)| ≤ψ1ψ2/u2, and hence |u2m0| = Ou(1) (as u →0). This
+implies that
+−µ2
+1m0
+1 −µ2
+1m0
+−µ2
+⋆m0 = Ou(1),
+and hence m0 = Ou(1). Taking the diﬀerence between Eq. (209) and (210), we get
+m2 −m1 = −(ψ2 −ψ1)/(iu).
+(211)
+This implies one of m1 and m2 should be of order 1/u and the other one should be of order u, as u →0.
+By deﬁnition of m1 and m2 in Eq. (207), we have
+m1(iu) = iu
+lim
+d→∞,N/d→ψ1,n/d→ψ2
+1
+dE{Tr[(ZTZ + u2IN)−1]},
+m2(iu) = iu
+lim
+d→∞,N/d→ψ1,n/d→ψ2
+1
+dE{Tr[(ZZT + u2IN)−1]}.
+When ψ2 > ψ1 (i.e., n > N), (ZZT +u2IN) has (n−N) number of eigenvalues that are u2, and therefore we
+must have m2(iu) = Ωu(1/u). Hence m1(iu) = Ou(u). Moreover, when u > 0, m1(iu) and m2(iu) are purely
+imaginary and ℑm1(iu), ℑm2(iu) > 0. This implies that m0(iu) must be a real number which is non-positive.
+By Eq. (209) and limu→0 iu · m1(iu) = 0, all the accumulation points of m1(iu)m2(iu) as u →0 should
+satisfy the quadratic equation
+−µ2
+1m⋆
+1 −µ2
+1m⋆
+−µ2
+⋆m⋆−ψ1 = 0.
+Note that the above equation has only one non-positive solution, and m0(iu) for any u > 0 must be non-
+positive. Therefore limu→0 m1(iu)m2(iu) must exists and be the non-positive solution of the above quadratic
+equation. The right hand side of Eq. (208) gives the non-positive solution of the above quadratic equation.
+52
+
+
+--- page 53 ---
+12.2
+Proof of Theorem 4
+To prove this theorem, we just need to show that
+lim
+ψ1→∞B(ζ, ψ1, ψ2, λ) = Bwide(ζ, ψ2, λ),
+lim
+ψ1→∞V (ζ, ψ1, ψ2, λ) = Vwide(ζ, ψ2, λ).
+This follows by simple calculus and a lemma below.
+Lemma 12.2. Under the same condition of Lemma 12.1, we have
+lim
+ψ1→∞[m1(i(ψ1ψ2µ2
+⋆λ)1/2; ψ1, ψ2)m2(i(ψ1ψ2µ2
+⋆λ)1/2; ψ1, ψ2)]
+= −[(ψ2ζ2 −ζ2 −(λψ2 + 1))2 + 4ζ2ψ2(λψ2 + 1)]1/2 + (ψ2ζ2 −ζ2 −(λψ2 + 1))
+2µ2⋆ζ2(λψ2 + 1)
+.
+The proof of this lemma is similar to the proof of Lemma 12.1.
+12.3
+Proof of Theorem 5
+To prove this theorem, we just need to show that
+lim
+ψ2→∞B(ζ, ψ1, ψ2, λ) = Blsamp(ζ, ψ1, λ),
+lim
+ψ2→∞V (ζ, ψ1, ψ2, λ) = 0.
+This follows by simple calculus and a lemma below (this lemma is symmetric to Lemma 12.2).
+Lemma 12.3. Under the same condition of Lemma 12.1, we have
+lim
+ψ2→∞[m1(i(ψ1ψ2µ2
+⋆λ)1/2; ψ1, ψ2)m2(i(ψ1ψ2µ2
+⋆λ)1/2; ψ1, ψ2)]
+= −[(ψ1ζ2 −ζ2 −(λψ1 + 1))2 + 4ζ2ψ1(λψ1 + 1)]1/2 + (ψ1ζ2 −ζ2 −(λψ1 + 1))
+2µ2⋆ζ2(λψ1 + 1)
+.
+13
+Proof of Proposition 5.1 and 5.2
+13.1
+Proof of Proposition 5.1
+Proof of Point (1).
+When ψ1 →0, we have χ = O(ψ1), so that E1,rless = −ψ1ψ2 + O(ψ2
+1), E2,rless = O(ψ2
+1)
+and E0,rless = −ψ1ψ2 + O(ψ2
+1). This proves Point (1).
+Proof of Point (2).
+When ψ1 = ψ2, substituting the expression for χ into E0,rless, we can see that
+E0,rless(ζ, ψ2, ψ2) = 0. We also see that E1,rless(ζ, ψ2, ψ2)̸ = 0 and E2,rless(ζ, ψ2, ψ2)̸ = 0. This proves Point (2).
+Proof of Point (3).
+When ψ1 > ψ2, we have
+lim
+ψ1→∞E0,rless(ζ, ψ1, ψ2)/ψ1 = (ψ2 −1)χ3ζ6 + (1 −3ψ2)χ2ζ4 + 3ψ2χζ2 −ψ2,
+lim
+ψ1→∞E1,rless(ζ, ψ1, ψ2)/ψ1 = ψ2χζ2 −ψ2,
+lim
+ψ1→∞E2,rless(ζ, ψ1, ψ2)/ψ1 = χ3ζ6 −χ2ζ4.
+This proves Point (3).
+Proof of Point (4).
+For ψ1 > ψ2, taking derivative of Brless and Vrless with respect to ψ1, we have
+∂ψ1Brless(ζ, ψ1, ψ2) = (∂ψ1E1,rless · E0,rless −∂ψ1E0,rless · E1,rless)/E 2
+0,rless,
+∂ψ1Vrless(ζ, ψ1, ψ2) = (∂ψ1E2,rless · E0,rless −∂ψ1E0,rless · E2,rless)/E 2
+0,rless.
+53
+
+
+--- page 54 ---
+It is easy to check that when ψ1 > ψ2, the functions ∂ψ1E1,rless · E0,rless −∂ψ1E0,rless · E1,rless and ∂ψ1E2,rless ·
+E0,rless −∂ψ1E0,rless · E2,rless are functions of ζ and ψ2, and are independent of ψ1 (note when ψ1 > ψ2, χ is a
+function of ψ2 and doesn’t depend on ψ1). Therefore, Brless(ζ, ·, ψ2) and Vrless(ζ, ·, ψ2) as functions of ψ1 must
+be strictly increasing, strictly decreasing, or staying constant on the interval ψ1 ∈(ψ2, ∞). However, we
+know Brless(ζ, ψ2, ψ2) = Vrless(ζ, ψ2, ψ2) = ∞, and Brless(ζ, ∞, ψ2) and Vrless(ζ, ∞, ψ2) are ﬁnite. Therefore,
+we must have that Brless and Vrless are strictly decreasing on ψ1 ∈(ψ2, ∞).
+13.2
+Proof of Proposition 5.2
+In Proposition 13.1 given by the following, we give a more precise description of the behavior of Rwide, which
+is stronger than Proposition 5.2.
+Proposition 13.1. Denote
+Rwide(u, ρ, ψ2) =
+ψ2ρ + u2
+(1 + ρ)(ψ2 −2uψ2 + u2ψ2 −u2),
+ω(λ, ζ, ψ2) = −[(ψ2ζ2 −ζ2 −λψ2 −1)2 + 4ψ2ζ2(λψ2 + 1)]1/2 + (ψ2ζ2 −ζ2 −λψ2 −1)
+2(λψ2 + 1)
+,
+ω0(ζ, ψ2) = −[(ψ2ζ2 −ζ2 −1)2 + 4ψ2ζ2]1/2 + (ψ2ζ2 −ζ2 −1)
+2
+,
+ω1(ρ, ψ2) = −(ψ2ρ −ρ −1) + [(ψ2ρ −ρ −1)2 + 4ψ2ρ]1/2
+2
+,
+ρ⋆(ζ, ψ2) =
+ω2
+0 −ω0
+(1 −ψ2)ω0 + ψ2
+,
+ζ2
+⋆(ρ, ψ2) =
+ω2
+1 −ω1
+ω1 −ψ2ω1 + ψ2
+,
+λ⋆(ζ, ψ2, ρ) = ζ2ψ2 −ζ2ω1ψ2 + ζ2ω1 + ω1 −ω2
+1
+(ω2
+1 −ω1)ψ2
+.
+Fix ζ, ψ2 ∈(0, ∞) and ρ ∈(0, ∞). Then the function λ 7→Rwide(ρ, ζ, ψ2, λ) is either strictly increasing
+in λ, or strictly decreasing ﬁrst and then strictly increasing.
+Moreover, For any ρ < ρ⋆(ζ, ψ2), we have
+arg min
+λ≥0
+Rwide(ρ, ζ, λ, ψ2) = 0,
+min
+λ≥0
+Rwide(ρ, ζ, λ, ψ2) = Rwide(ω0(ζ, ψ2), ρ, ψ2).
+For any ρ ≥ρ⋆(ζ, ψ2), we have
+arg min
+λ≥0
+Rwide(ρ, ζ, λ, ψ2) = λ⋆(ζ, ψ2, ρ),
+min
+λ≥0
+Rwide(ρ, ζ, λ, ψ2) = Rwide(ω1(ρ, ψ2), ρ, ψ2).
+Minimizing over λ and ζ, we have
+min
+ζ,λ≥0
+Rwide(ρ, ζ, λ, ψ2) = Rwide(ω1(ρ, ψ2), ρ, ψ2).
+The minimizer is achieved for any ζ2 ≥ζ2
+⋆(ρ, ψ2), and λ = λ⋆(ζ, ψ2, ρ).
+In the following, we prove Proposition 13.1. It is easy to see that
+Rwide(ρ, ζ, λ, ψ2) = Rwide(ω(λ, ζ, ψ2), ρ, ψ2).
+54
+
+
+--- page 55 ---
+Hence we study the properties of Rwide ﬁrst.
+Step 1. Properties of the function Rwide.
+Calculating the derivative of Rwide with respect to u, we
+have
+∂uRwide(u, ρ, ψ2) = −2ψ2[u2 + (ψ2ρ −ρ −1)u −ψ2ρ]/[(1 + ρ)(ψ2 −2uψ2 + u2ψ2 −u2)2].
+Note the equation
+u2 + (ψ2ρ −ρ −1)u −ψ2ρ = 0
+has one negative and one positive solution, and ω1 is the negative solution of the above equation. Therefore,
+when u ≤ω1, Rwide will be strictly decreasing in u; when 0 ≥u ≥ω1, Rwide will be strictly increasing in u.
+Therefore, we have
+arg min
+u∈(−∞,0]
+Rwide(u, ρ, ψ2) = ω1(ρ, ψ2).
+Step 2.
+Properties of the function Rwide.
+For ﬁxed (ζ, ρ, ψ2), we look at the minimizer over λ of
+the function Rwide(ρ, ζ, λ, ψ2) = Rwide(ω(λ, ζ, ψ2), ρ, ψ2). The minimum minλ≥0 Rwide(ρ, ζ, λ, ψ2) could be
+diﬀerent from the minimum minu∈(−∞,0] Rwide(u, ρ, ψ2), since arg minu∈(−∞,0] Rwide(u, ρ, ψ2) = ω1(ρ, ψ2)
+may not be achievable by ω(λ, ζ, ψ2) when λ ≥0.
+One observation is that ω(·, ψ2, ζ) as a function of λ is always negative and increasing.
+Lemma 13.1. Let
+ω(λ, ψ2, ζ) = −[(ψ2ζ2 −ζ2 −λψ2 −1)2 + 4ψ2ζ2(λψ2 + 1)]1/2 + (ψ2ζ2 −ζ2 −λψ2 −1)
+2(λψ2 + 1)
+.
+Then for any ψ2 ∈(0, ∞), ζ ∈(0, ∞) and λ > 0, we have
+ω(λ, ψ2, ζ) <0,
+∂λω(λ, ψ2, ζ) >0.
+Let us for now admit this lemma holds. When ρ is such that ω1 > ω0 (i.e. ρ < ρ⋆(ζ, ψ2)), we can choose
+λ = λ⋆(ζ, ψ2, ρ) > 0 such that ω(λ, ζ, ψ2) = ω(λ⋆, ζ, ψ2) = ω1(ρ, ψ2), and then Rwide(ρ, ζ, λ⋆(ζ, ψ2, ρ), ψ2) =
+Rwide(ω1(ρ, ψ2), ρ, ψ2) gives the minimum of Rwide optimizing over λ ∈[0, ∞). When ρ is such that ω1 < ω0
+(i.e. ρ > ρ⋆(ζ, ψ2)), there is not a λ such that ω(λ, ζ, ψ2) = ω1(ρ, ψ2) holds. Therefore, the best we can do
+is to take λ = 0, and then Rwide(ρ, ζ, 0, ψ2) = Rwide(ω0(ρ, ψ2), ρ, ψ2) gives the minimum of Rwide optimizing
+over λ ∈[0, ∞).
+Finally, when we minimize Rwide(ρ, ζ, λ, ψ2) jointly over ζ and λ, note that as long as ζ2 ≥ζ2
+⋆, we can
+choose λ = λ⋆(ζ, ψ2, ρ) > 0 such that ω(λ, ζ, ψ2) = ω(λ⋆, ζ, ψ2) = ω1(ρ, ψ2), and then Rwide(ρ, ζ, λ⋆(ζ, ψ2, ρ), ψ2) =
+Rwide(ω1(ρ, ψ2), ρ, ψ2) gives the minimum of Rwide optimizing over λ ∈[0, ∞) and ζ ∈(0, ∞). This proves
+Proposition 13.1.
+In the following, we prove Lemma 13.1.
+Proof of Lemma 13.1. It is easy to see that ω(λ, ψ2, ζ) < 0. In the following, we show ∂λω(λ, ψ2, ζ) > 0.
+Step 1. When ψ2 ≥1.
+We have
+ω = −[(ψ2ζ2 −ζ2 −λψ2 −1)2 + 4ψ2ζ2(λψ2 + 1)]1/2 + (ψ2ζ2 −ζ2 −λψ2 −1)
+2(λψ2 + 1)
+.
+Then we have
+∂λω = (ψ2 −1)[(λψ2 −ψ2ζ2 + ζ2 + 1)2 + 4ψ2ζ2(λψ2 + 1)]1/2 + (λψ2
+2 + λψ2 + (ψ2 −1)2ζ2 + ψ2 + 1)
+2ψ2
+2λ[λ
+2ψ2
+2(λψ2 −ψ2ζ2 + ζ2 + 1)2 + 4λ
+2ψ3
+2ζ2(λψ2 + 1)]1/2(λψ2 + 1)2
+It is easy to see that, when λ > 0 and ψ2 > 1, both the denominator and numerator is positive, so that
+∂λω > 0.
+Step 2. When ψ2 < 1.
+Note ω is the negative solution of the quadratic equation
+(λψ2 + 1)ω2 + (ψ2ζ2 −ζ2 −λψ2 −1)ω −ψ2ζ2 = 0.
+55
+
+
+--- page 56 ---
+Diﬀerentiating the quadratic equation with respect to λ, we have
+ψ2ω2 + 2(λψ2 + 1)ω∂λω −ψ2ω + (ψ2ζ2 −ζ2 −λψ2 −1)∂λω = 0,
+which gives
+∂λω = (ψ2ω −ψ2ω2)/[2(λψ2 + 1)ω + ψ2ζ2 −ζ2 −λψ2 −1] = (ψ2ω −ψ2ω2)/[(λψ2 + 1)(2ω −1) + (ψ2 −1)ζ2].
+We can see that, since ω < 0, when ψ2 < 1, both the denominator and numerator is negative. This proves
+∂λω > 0 when ψ2 < 1.
+Acknowledgements
+This work was partially supported by grants NSF CCF-1714305, IIS-1741162, and ONR N00014-18-1-2729.
+References
+[ADH+19]
+Sanjeev Arora, Simon S Du, Wei Hu, Zhiyuan Li, and Ruosong Wang, Fine-grained anal-
+ysis of optimization and generalization for overparameterized two-layer neural networks,
+arXiv:1901.08584 (2019).
+[AGZ09]
+Greg W. Anderson, Alice Guionnet, and Ofer Zeitouni, An introduction to random matrices,
+Cambridge University Press, 2009.
+[AM15]
+Ahmed Alaoui and Michael W Mahoney, Fast randomized kernel ridge regression with statistical
+guarantees, Advances in Neural Information Processing Systems, 2015, pp. 775–783.
+[AOY19]
+Dyego Ara´ujo, Roberto I Oliveira, and Daniel Yukimura, A mean-ﬁeld limit for certain deep
+neural networks, arXiv:1906.00193 (2019).
+[AS17]
+Madhu S Advani and Andrew M Saxe, High-dimensional dynamics of generalization error in
+neural networks, arXiv:1710.03667 (2017).
+[AZLL18]
+Zeyuan Allen-Zhu, Yuanzhi Li, and Yingyu Liang, Learning and generalization in overparame-
+terized neural networks, going beyond two layers, arXiv:1811.04918 (2018).
+[AZLS18]
+Zeyuan Allen-Zhu, Yuanzhi Li, and Zhao Song, A convergence theory for deep learning via
+over-parameterization, arXiv:1811.03962 (2018).
+[Bac13]
+Francis Bach, Sharp analysis of low-rank kernel matrix approximations, Conference on Learning
+Theory, 2013, pp. 185–209.
+[Bac17a]
+, Breaking the curse of dimensionality with convex neural networks, The Journal of
+Machine Learning Research 18 (2017), no. 1, 629–681.
+[Bac17b]
+, On the equivalence between kernel quadrature rules and random feature expansions, The
+Journal of Machine Learning Research 18 (2017), no. 1, 714–751.
+[BHMM19] Mikhail Belkin, Daniel Hsu, Siyuan Ma, and Soumik Mandal, Reconciling modern machine
+learning and the bias-variance trade-oﬀ, Proceedings of the National Academy of Sciences 116
+(2019), 15849–15854.
+[BHX19]
+Mikhail Belkin, Daniel Hsu, and Ji Xu, Two models of double descent for weak features,
+arXiv:1903.07571, 2019.
+[BLLT20]
+Peter L Bartlett, Philip M Long, G´abor Lugosi, and Alexander Tsigler, Benign overﬁtting in
+linear regression, Proceedings of the National Academy of Sciences (2020).
+56
+
+
+--- page 57 ---
+[BMM18]
+Mikhail Belkin, Siyuan Ma, and Soumik Mandal, To understand deep learning we need to
+understand kernel learning, arXiv:1802.01396, 2018.
+[BRT19]
+Mikhail Belkin, Alexander Rakhlin, and Alexandre B Tsybakov, Does data interpolation con-
+tradict statistical optimality?, The 22nd International Conference on Artiﬁcial Intelligence and
+Statistics, 2019, pp. 1611–1619.
+[BS10]
+Zhidong Bai and Jack W Silverstein, Spectral analysis of large dimensional random matrices,
+vol. 20, Springer, 2010.
+[CB18a]
+Lenaic Chizat and Francis Bach, A note on lazy training in supervised diﬀerentiable program-
+ming, arXiv:1812.07956 (2018).
+[CB18b]
+, On the global convergence of gradient descent for over-parameterized models using op-
+timal transport, Advances in neural information processing systems, 2018, pp. 3036–3046.
+[Chi11]
+Theodore S Chihara, An introduction to orthogonal polynomials, Courier Corporation, 2011.
+[CS13]
+Xiuyuan Cheng and Amit Singer, The spectrum of random inner-product kernel matrices, Ran-
+dom Matrices: Theory and Applications 2 (2013), no. 04, 1350010.
+[Dan17]
+Amit Daniely, Sgd learns the conjugate kernel class of the network, Advances in Neural Infor-
+mation Processing Systems, 2017, pp. 2422–2430.
+[DFS16]
+Amit Daniely, Roy Frostig, and Yoram Singer, Toward deeper understanding of neural networks:
+The power of initialization and a dual view on expressivity, Advances In Neural Information
+Processing Systems, 2016, pp. 2253–2261.
+[DHM89]
+Ronald A DeVore, Ralph Howard, and Charles Micchelli, Optimal nonlinear approximation,
+Manuscripta mathematica 63 (1989), no. 4, 469–478.
+[DJ89]
+David L Donoho and Iain M Johnstone, Projection-based approximation and a duality with
+kernel methods, The Annals of Statistics (1989), 58–106.
+[DL19]
+Xialiang Dou and Tengyuan Liang, Training neural networks as learning data-adaptive kernels:
+Provable representation and approximation beneﬁts, arXiv:1901.07114 (2019).
+[DLL+18]
+Simon S Du, Jason D Lee, Haochuan Li, Liwei Wang, and Xiyu Zhai, Gradient descent ﬁnds
+global minima of deep neural networks, arXiv:1811.03804 (2018).
+[DM16]
+Yash Deshpande and Andrea Montanari, Sparse pca via covariance thresholding, Journal of
+Machine Learning Research 17 (2016), 1–41.
+[DZPS18]
+Simon S Du, Xiyu Zhai, Barnabas Poczos, and Aarti Singh, Gradient descent provably optimizes
+over-parameterized neural networks, arXiv:1810.02054 (2018).
+[EF14]
+Costas Efthimiou and Christopher Frye, Spherical harmonics in p dimensions, World Scientiﬁc,
+2014.
+[EK10]
+Noureddine El Karoui, The spectrum of kernel random matrices, The Annals of Statistics 38
+(2010), no. 1, 1–50.
+[FM19]
+Zhou Fan and Andrea Montanari, The spectral norm of random inner-product kernel matrices,
+Probability Theory and Related Fields 173 (2019), no. 1-2, 27–85.
+[GAAR18]
+Adri`a Garriga-Alonso, Laurence Aitchison, and Carl Edward Rasmussen, Deep convolutional
+networks as shallow gaussian processes, arXiv:1808.05587 (2018).
+[GJS+19]
+Mario Geiger, Arthur Jacot, Stefano Spigler, Franck Gabriel, Levent Sagun, St´ephane d’Ascoli,
+Giulio Biroli, Cl´ement Hongler, and Matthieu Wyart, Scaling description of generalization with
+number of parameters in deep learning, arXiv:1901.01608 (2019).
+57
+
+
+--- page 58 ---
+[GMMM19] Behrooz Ghorbani, Song Mei, Theodor Misiakiewicz, and Andrea Montanari, Linearized two-
+layers neural networks in high dimension, arXiv:1904.12191 (2019).
+[HJ15]
+Tamir Hazan and Tommi Jaakkola, Steps toward deep kernel methods from inﬁnite neural net-
+works, arXiv:1508.05133 (2015).
+[HMRT19]
+Trevor Hastie, Andrea Montanari, Saharon Rosset, and Ryan J Tibshirani, Surprises in high-
+dimensional ridgeless least squares interpolation, arXiv:1903.08560 (2019).
+[HMS18]
+J William Helton, Tobias Mai, and Roland Speicher, Applications of realizations (aka lineariza-
+tions) to free probability, Journal of Functional Analysis 274 (2018), no. 1, 1–79.
+[HTF09]
+Trevor Hastie, Robert Tibshirani, and Jerome Friedman, The elements of statistical learning,
+Springer, 2009.
+[JGH18]
+Arthur Jacot, Franck Gabriel, and Cl´ement Hongler, Neural tangent kernel: Convergence and
+generalization in neural networks, Advances in neural information processing systems, 2018,
+pp. 8571–8580.
+[JMM19]
+Adel Javanmard, Marco Mondelli, and Andrea Montanari, Analysis of a two-layer neural net-
+work via displacement convexity, arXiv:1901.01375 (2019).
+[KLS18]
+Dmitry Kobak, Jonathan Lomond, and Benoit Sanchez, Implicit ridge regularization provided
+by the minimum-norm least squares estimator when n ≪p, arXiv:1805.10939 (2018).
+[LBN+17]
+Jaehoon Lee, Yasaman Bahri, Roman Novak, Samuel S Schoenholz, Jeﬀrey Pennington, and
+Jascha Sohl-Dickstein, Deep neural networks as gaussian processes, arXiv:1711.00165 (2017).
+[LL18]
+Yuanzhi Li and Yingyu Liang, Learning overparameterized neural networks via stochastic gra-
+dient descent on structured data, Advances in Neural Information Processing Systems, 2018,
+pp. 8157–8166.
+[LLC18]
+Cosme Louart, Zhenyu Liao, and Romain Couillet, A random matrix approach to neural net-
+works, The Annals of Applied Probability 28 (2018), no. 2, 1190–1248.
+[LR18]
+Tengyuan Liang and Alexander Rakhlin, Just interpolate: Kernel” ridgeless” regression can
+generalize, arXiv:1808.00387 (2018).
+[MMM19]
+Song Mei, Theodor Misiakiewicz, and Andrea Montanari, Mean-ﬁeld theory of two-layers neural
+networks: dimension-free bounds and kernel limit, arXiv:1902.06015 (2019).
+[MMN18]
+Song Mei, Andrea Montanari, and Phan-Minh Nguyen, A mean ﬁeld view of the landscape of
+two-layer neural networks, Proceedings of the National Academy of Sciences 115 (2018), no. 33,
+E7665–E7671.
+[MP11]
+Domenico Marinucci and Giovanni Peccati, Random ﬁelds on the sphere: representation, limit
+theorems and cosmological applications, vol. 389, Cambridge University Press, 2011.
+[MRH+18]
+Alexander G de G Matthews, Mark Rowland, Jiri Hron, Richard E Turner, and Zoubin Ghahra-
+mani, Gaussian process behaviour in wide deep neural networks, arXiv:1804.11271 (2018).
+[MRSY19]
+Andrea Montanari, Feng Ruan, Youngtak Sohn, and Jun Yan, The generalization error of max-
+margin linear classiﬁers: High-dimensional asymptotics in the overparametrized regime, arXiv
+preprint arXiv:1911.01544 (2019).
+[MVS19]
+Vidya Muthukumar, Kailas Vodrahalli, and Anant Sahai, Harmless interpolation of noisy data
+in regression, arXiv:1903.09139 (2019).
+[Nea96]
+Radford M Neal, Priors for inﬁnite networks, Bayesian Learning for Neural Networks, Springer,
+1996, pp. 29–53.
+58
+
+
+--- page 59 ---
+[Ngu19]
+Phan-Minh Nguyen, Mean ﬁeld limit of the learning dynamics of multilayer neural networks,
+arXiv:1902.02880 (2019).
+[NXB+18]
+Roman Novak, Lechao Xiao, Yasaman Bahri, Jaehoon Lee, Greg Yang, Jiri Hron, Daniel A
+Abolaﬁa, Jeﬀrey Pennington, and Jascha Sohl-Dickstein, Bayesian deep convolutional networks
+with many channels are gaussian processes.
+[OS19]
+Samet Oymak and Mahdi Soltanolkotabi, Towards moderate overparameterization: global con-
+vergence guarantees for training shallow neural networks, arXiv:1902.04674 (2019).
+[PW17]
+Jeﬀrey Pennington and Pratik Worah, Nonlinear random matrix theory for deep learning, Ad-
+vances in Neural Information Processing Systems, 2017, pp. 2637–2646.
+[RJBVE19] Grant Rotskoﬀ, Samy Jelassi, Joan Bruna, and Eric Vanden-Eijnden, Neuron birth-death dy-
+namics accelerates gradient descent and converges asymptotically, International Conference on
+Machine Learning, 2019, pp. 5508–5517.
+[RR08]
+Ali Rahimi and Benjamin Recht, Random features for large-scale kernel machines, Advances in
+neural information processing systems, 2008, pp. 1177–1184.
+[RR17]
+Alessandro Rudi and Lorenzo Rosasco, Generalization properties of learning with random fea-
+tures, Advances in Neural Information Processing Systems, 2017, pp. 3215–3225.
+[RVE18]
+Grant M Rotskoﬀand Eric Vanden-Eijnden, Neural networks as interacting particle systems:
+Asymptotic convexity of the loss landscape and universal scaling of the approximation error,
+arXiv:1805.00915 (2018).
+[RZ18]
+Alexander Rakhlin and Xiyu Zhai, Consistency of interpolation with laplace kernels is a high-
+dimensional phenomenon, arXiv:1812.11167 (2018).
+[SS19]
+Justin Sirignano and Konstantinos Spiliopoulos, Mean ﬁeld analysis of neural networks: A
+central limit theorem, Stochastic Processes and their Applications (2019).
+[Sze39]
+Szeg˝o, Gabor, Orthogonal polynomials, vol. 23, American Mathematical Soc., 1939.
+[VW18]
+Santosh Vempala and John Wilmes, Gradient descent for one-hidden-layer neural networks:
+Polynomial convergence and sq lower bounds, arXiv:1805.02677 (2018).
+[Wil97]
+Christopher KI Williams, Computing with inﬁnite networks, Advances in neural information
+processing systems, 1997, pp. 295–301.
+[YRC07]
+Yuan Yao, Lorenzo Rosasco, and Andrea Caponnetto, On early stopping in gradient descent
+learning, Constructive Approximation 26 (2007), no. 2, 289–315.
+[ZBH+16]
+Chiyuan Zhang, Samy Bengio, Moritz Hardt, Benjamin Recht, and Oriol Vinyals, Understanding
+deep learning requires rethinking generalization, arXiv:1611.03530 (2016).
+[ZCZG20]
+Difan Zou, Yuan Cao, Dongruo Zhou, and Quanquan Gu, Stochastic gradient descent optimizes
+over-parameterized deep relu networks, Machine Learning 109 (2020), 467–492.
+59
+
+
+--- page 60 ---
+A
+Technical background
+In this section we introduce the technical background which will be useful for the proofs in the next sections.
+In particular, we will use decompositions in (hyper-)spherical harmonics on the Sd−1(
+√
+d) and in orthogonal
+polynomials on the real line. All of the properties listed below are classical: we will however prove a few
+facts that are slightly less standard. We refer the reader to [EF14, Sze39, Chi11, GMMM19] for further
+information on these topics. Expansions in spherical harmonics have been used in the past in the statistics
+literature, for instance in [DJ89, Bac17a].
+A.1
+Functional spaces over the sphere
+For d ≥1, we let Sd−1(r) = {x ∈Rd : ∥x∥2 = r} denote the sphere with radius r in Rd. We will mostly work
+with the sphere of radius
+√
+d, Sd−1(
+√
+d) and will denote by γd the uniform probability measure on Sd−1(
+√
+d).
+All functions in the following are assumed to be elements of L2(Sd−1(
+√
+d), γd), with scalar product and norm
+denoted as ⟨· , · ⟩L2 and ∥· ∥L2:
+⟨f, g⟩L2 ≡
+Z
+Sd−1(
+√
+d)
+f(x) g(x) γd(dx) .
+(212)
+For ℓ∈N≥0, let ˜Vd,ℓbe the space of homogeneous harmonic polynomials of degree ℓon Rd (i.e. homo-
+geneous polynomials q(x) satisfying ∆q(x) = 0), and denote by Vd,ℓthe linear space of functions obtained
+by restricting the polynomials in ˜Vd,ℓto Sd−1(
+√
+d). With these deﬁnitions, we have the following orthogonal
+decomposition
+L2(Sd−1(
+√
+d), γd) =
+∞
+M
+ℓ=0
+Vd,ℓ.
+(213)
+The dimension of each subspace is given by
+dim(Vd,ℓ) = B(d, ℓ) = 2ℓ+ d −2
+ℓ
+ℓ+ d −3
+ℓ−1
+
+.
+(214)
+For each ℓ∈N≥0, the spherical harmonics {Y (d)
+ℓj }1≤j≤B(d,ℓ) form an orthonormal basis of Vd,ℓ:
+⟨Y (d)
+ki , Y (d)
+sj ⟩L2 = δijδks.
+Note that our convention is diﬀerent from the more standard one, that deﬁnes the spherical harmonics as
+functions on Sd−1(1). It is immediate to pass from one convention to the other by a simple scaling. We will
+drop the superscript d and write Yℓ,j = Y (d)
+ℓ,j whenever clear from the context.
+We denote by Pk the orthogonal projections to Vd,k in L2(Sd−1(
+√
+d), γd). This can be written in terms
+of spherical harmonics as
+Pkf(x) ≡
+B(d,k)
+X
+l=1
+⟨f, Ykl⟩L2Ykl(x).
+(215)
+Then for a function f ∈L2(Sd−1(
+√
+d)), we have
+f(x) =
+∞
+X
+k=0
+Pkf(x) =
+∞
+X
+k=0
+B(d,k)
+X
+l=1
+⟨f, Ykl⟩L2Ykl(x).
+A.2
+Gegenbauer polynomials
+The ℓ-th Gegenbauer polynomial Q(d)
+ℓ
+is a polynomial of degree ℓ. Consistently with our convention for
+spherical harmonics, we view Q(d)
+ℓ
+as a function Q(d)
+ℓ
+: [−d, d] →R. The set {Q(d)
+ℓ}ℓ≥0 forms an orthogonal
+60
+
+
+--- page 61 ---
+basis on L2([−d, d], ˜τd) (where ˜τd is the distribution of ⟨x1, x2⟩when x1, x2 ∼i.i.d. Unif(Sd−1(
+√
+d))), satisfying
+the normalization condition:
+⟨Q(d)
+k , Q(d)
+j ⟩L2(˜τd) =
+1
+B(d, k) δjk .
+(216)
+In particular, these polynomials are normalized so that Q(d)
+ℓ(d) = 1. As above, we will omit the superscript
+d when clear from the context (write it as Qℓfor notation simplicity).
+Gegenbauer polynomials are directly related to spherical harmonics as follows. Fix v ∈Sd−1(
+√
+d) and
+consider the subspace of Vℓformed by all functions that are invariant under rotations in Rd that keep v
+unchanged. It is not hard to see that this subspace has dimension one, and coincides with the span of the
+function Q(d)
+ℓ(⟨v, · ⟩).
+We will use the following properties of Gegenbauer polynomials
+1. For x, y ∈Sd−1(
+√
+d)
+⟨Q(d)
+j (⟨x, ·⟩), Q(d)
+k (⟨y, ·⟩)⟩L2(Sd−1(
+√
+d),γd) =
+1
+B(d, k)δjkQ(d)
+k (⟨x, y⟩).
+(217)
+2. For x, y ∈Sd−1(
+√
+d)
+Q(d)
+k (⟨x, y⟩) =
+1
+B(d, k)
+B(d,k)
+X
+i=1
+Y (d)
+ki (x)Y (d)
+ki (y).
+(218)
+Note in particular that property 2 implies that –up to a constant– Q(d)
+k (⟨x, y⟩) is a representation of the
+projector onto the subspace of degree-k spherical harmonics
+(Pkf)(x) = B(d, k)
+Z
+Sd−1(
+√
+d)
+Q(d)
+k (⟨x, y⟩) f(y) γd(dy) .
+(219)
+For a function σ ∈L2([−
+√
+d,
+√
+d], τd) (where τd is the distribution of ⟨x1, x2⟩/
+√
+d when x1, x2 ∼iid Unif(Sd−1(
+√
+d))),
+denoting its spherical harmonics coeﬃcients λd,k(σ) to be
+λd,k(σ) =
+Z
+[−
+√
+d,
+√
+d]
+σ(x)Q(d)
+k (
+√
+dx)τd(x),
+(220)
+then we have the following equation holds in L2([−
+√
+d,
+√
+d], τd) sense
+σ(x) =
+∞
+X
+k=0
+λd,k(σ)B(d, k)Q(d)
+k (
+√
+dx).
+(221)
+A.3
+Hermite polynomials
+The Hermite polynomials {Hek}k≥0 form an orthogonal basis of L2(R, µG), where µG(dx) = e−x2/2dx/
+√
+2π
+is the standard Gaussian measure, and Hek has degree k. We will follow the classical normalization (here
+and below, expectation is with respect to G ∼N(0, 1)):
+E
+
+Hej(G) Hek(G)
+	
+= k! δjk .
+(222)
+As a consequence, for any function σ ∈L2(R, µG), we have the decomposition
+σ(x) =
+∞
+X
+k=1
+µk(σ)
+k!
+Hek(x) ,
+µk(σ) ≡E
+
+σ(G) Hek(G)} .
+(223)
+The Hermite polynomials can be obtained as high-dimensional limits of the Gegenbauer polynomials
+introduced in the previous section. Indeed, the Gegenbauer polynomials (up to a
+√
+d scaling in domain)
+61
+
+
+--- page 62 ---
+are constructed by Gram-Schmidt orthogonalization of the monomials {xk}k≥0 with respect to the measure
+τd, while Hermite polynomial are obtained by Gram-Schmidt orthogonalization with respect to µG. Since
+τd ⇒µG (here ⇒denotes weak convergence), it is immediate to show that, for any ﬁxed integer k,
+lim
+d→∞Coeﬀ{Q(d)
+k (
+√
+dx) B(d, k)1/2} = Coeﬀ
+
+1
+(k!)1/2 Hek(x)
+
+.
+(224)
+Here and below, for P a polynomial, Coeﬀ{P(x)} is the vector of the coeﬃcients of P. As a consequence,
+for any ﬁxed integer k, we have
+µk(σ) = lim
+d→∞λd,k(σ)(B(d, k)k!)1/2,
+(225)
+where µk(σ) and λd,k(σ) are given in Eq. (223) and (220).
+62
+
+
+--- page 63 ---
+B
+Proof of Proposition 8.2
+We can see Eq. (62) is trivially implied by the deﬁnition of Gd and Md as in Eq. (61). To prove Eq. (63),
+it is enough to prove the following equations: for u ∈R, we have
+∂pGd(iu; 0) = 2
+dTr
+
+(u2IN + ZTZ)−1ZT
+1 Z
+
+,
+∂2
+s1,t1Gd(iu; 0) = −1
+dTr
+
+(u2IN + ZTZ)−2ZTZ
+
+,
+∂2
+s1,t2Gd(iu; 0) = −1
+dTr
+
+(u2IN + ZTZ)−2ZTHZ
+
+,
+∂2
+s2,t1Gd(iu; 0) = −1
+dTr
+
+(u2IN + ZTZ)−1Q(u2IN + ZTZ)−1ZTZ
+
+,
+∂2
+s2,t2Gd(iu; 0) = −1
+dTr
+
+(u2IN + ZTZ)−1Q(u2IN + ZTZ)−1ZTHZ
+
+.
+(226)
+Now we prove Eq. (226). For any ﬁxed q ∈R5, ξ ∈C+ and a ﬁxed instance A(q), the determinant can
+be represented as det(A(q) −ξIM) = r(q, ξ) exp(iθ(q, ξ)) for θ(q, ξ) ∈(−π, π]. Without loss of generality,
+we assume for this ﬁxed q and ξ, we have θ(q, ξ)̸ = π, and then Log(det(A(q)−ξIM)) = log r(q, ξ)+iθ(q, ξ)
+(when θ(q, ξ) = π, we use another deﬁnition of Log notation, and the proof is the same). For this q, ξ, and
+A(q), there exists some integer k = k(q, ξ) ∈N, such that
+M
+X
+i=1
+Log(λi(A(q)) −ξ) = Log det(A(q) −ξIM) + 2πik(q, ξ).
+Moreover, the set of eigenvalues of A(q) −ξIM and det(A(q) −ξIM) are continuous with respect to q.
+Therefore, for any perturbation ∆q with ∥∆q∥2 ≤ε and ε small enough, we have k(q + ∆q, ξ) = k(q, ξ). As
+a result, we have
+∂qi
+h M
+X
+i=1
+Log(λi(A(q)) −ξ)
+i
+= ∂qiLog
+h
+det(A(q) −ξIM)
+i
+= Tr
+h
+(A(q) −ξIM)−1∂qiA(q)
+i
+.
+Moreover, A(q) (deﬁned as in Eq. (60)) is a linear matrix function of q, which gives ∂qi,qjA(q) = 0. Hence
+we have
+∂2
+qi,qj
+h M
+X
+i=1
+Log(λi(A(q)) −ξ)
+i
+= ∂2
+qi,qjLog
+h
+det(A(q) −ξIM)
+i
+= ∂qjTr
+h
+(A(q) −ξIM)−1∂qiA(q)
+i
+= −Tr
+h
+(A(q) −ξIM)−1∂qjA(q)(A(q) −ξIM)−1∂qiA(q)
+i
+.
+Note
+∂s1A(0) =
+IN
+0
+0
+0
+
+,
+∂s2A(0) =
+Q
+0
+0
+0
+
+,
+∂t1A(0) =
+0
+0
+0
+In
+
+,
+∂t2A(0) =
+0
+0
+0
+H
+
+,
+∂pA(0) =
+
+0
+ZT
+1
+Z1
+0
+
+,
+and using the formula for block matrix inversion, we have
+(A(0) −iuIM)−1 =
+(−iuIN −iZTZ/u)−1
+(u2IN + ZTZ)−1ZT
+Z(u2IN + ZTZ)−1
+(−iuIn −iZZT/u)−1
+
+.
+With simple algebra, we can show that Eq. (226) holds.
+63
+
+
+--- page 64 ---
+C
+Additional Proofs in Section 9
+C.1
+Proof of Lemma 9.1 and Lemma 9.2
+Proof of Lemma 9.1.
+We deﬁne the sequence (F 2
+d,k)k≥2 to be the coeﬃcients of Gegenbauer expansion of
+Σd:
+Σd(x/
+√
+d) =
+∞
+X
+k=2
+F 2
+d,kQ(d)
+k (
+√
+dx).
+In the expansion, the zeroth and ﬁrst order coeﬃcients are 0, because, according to Assumption 3,
+Ex∼Unif(Sd−1(
+√
+d))[Σd(x1/
+√
+d)] = Ex∼Unif(Sd−1(
+√
+d))[Σd(x1/
+√
+d)x1] = 0.
+To check point (1), we have Σd(1) = P∞
+k=2 F 2
+d,kQ(d)
+k (d) = P∞
+k=2 F 2
+d,k, and by Assumption 3 we have
+limd→∞Σd(1) = F 2
+⋆, so that (1) holds.
+To check point (2), deﬁning (βd,k)k≥2 and gNL
+d (x) accordingly, we have
+Eβ[g
+NL
+d (x1)g
+NL
+d (x2)] = Eβ
+h X
+k≥2
+X
+l∈[B(d,k)]
+(βd,k)lY (d)
+kl (x1)
+ X
+k≥2
+X
+l∈[B(d,k)]
+(βd,k)lY (d)
+kl (x2)
+i
+=
+X
+k≥2
+F 2
+d,kY (d)
+kl (x1)Y (d)
+kl (x2)/B(d, k) =
+X
+k≥2
+F 2
+d,kQ(d)
+k (⟨x1, x2⟩) = Σd(⟨x1, x2⟩/d).
+This proves Lemma 9.1
+Proof of Lemma 9.2.
+With a little abuse of notations, let us deﬁne
+E(βd,1, f
+NL
+d , X, Θ, ε) ≡
+RRF(fd, X, Θ, λ) −
+h
+F 2
+1 (1 −2Ψ1 + Ψ2) + (F 2
+⋆+ τ 2)Ψ3 + F 2
+⋆
+i.
+For any orthogonal matrix O ∈Rd×d, it is easy to see that, there exists a transformation TO that acts on
+f NL
+d
+with f NL
+d
+d= TO[f NL
+d ], such that for any ﬁxed βd,1, X, Θ, ε and f NL
+d , we have
+E(βd,1, f
+NL
+d , X, Θ, ε) = E(Oβd,1, TO[f
+NL
+d ], XOT, ΘOT, ε).
+Moreover, note that X, Θ, ε, and f NL
+d
+are mutually independent, X
+d= XOT, Θ
+d= ΘOT, and f NL
+d
+d= TO[f NL
+d ].
+Then, for any ﬁxed βd,1, we have
+E(Oβd,1, TO[f
+NL
+d ], XOT, ΘOT, ε)
+d= E(Oβd,1, f
+NL
+d , X, Θ, ε)
+where the randomness is given by (X, Θ, ε, f NL
+d ). As a result, for any βd,1 ∈Sd−1(Fd,1) and O orthogonal
+matrix, we have
+EX,Θ,ε,f NL
+d [E(βd,1)] = EX,Θ,ε,f NL
+d [E(Oβd,1)].
+This immediately proves the lemma.
+C.2
+Proof of Lemma 9.6 and Lemma 9.7
+To prove Lemma 9.6 and 9.7, ﬁrst we state a lemma that reformulate A1, A2 and Bα using Sherman-Morrison-
+Woodbury formula.
+Lemma C.1 (Simpliﬁcations using Sherman-Morrison-Woodbury formula). Use the same deﬁnitions and
+assumptions as Proposition 8.1 and Lemma 9.3. For M ∈RN×N, deﬁne
+L1 =
+1
+√
+d
+λd,0(σ)Tr[1N1T
+nZΞ],
+(227)
+L2(M) = 1
+dTr[ΞMΞZT1n1T
+nZ].
+(228)
+64
+
+
+--- page 65 ---
+We then have
+L1 = 1 −
+K12 + 1
+K11(1 −K22) + (K12 + 1)2 ,
+(229)
+L2(M) = ψ2
+G11(1 −K22)2 + G22(K12 + 1)2 + 2G12(K12 + 1)(1 −K22)
+(K11(1 −K22) + (K12 + 1)2)2
+,
+(230)
+where
+K11 = T T
+1 E−1
+0 T1,
+K12 = T T
+1 E−1
+0 T2,
+K22 = T T
+2 E−1
+0 T2,
+G11 = T T
+1 E−1
+0 ME−1
+0 T1,
+G12 = T T
+1 E−1
+0 ME−1
+0 T2,
+G22 = T T
+2 E−1
+0 ME−1
+0 T2,
+and
+ϕd(x) = σ(x) −λd,0(σ),
+J =
+1
+√
+d
+ϕd
+ 1
+√
+d
+XΘT
+,
+E0 = JTJ + ψ1ψ2λIN,
+T1 = ψ1/2
+2
+λd,0(σ)1N,
+T2 =
+1
+√nJT1n.
+Proof of Lemma C.1.
+Step 1. Term L1.
+Note we have (denoting λd,0 = λd,0(σ))
+Z = λd,01n1T
+N/
+√
+d + J.
+Hence we have (denoting T2 = JT1n/√n)
+L1 = Tr
+h
+λd,01N1T
+n(λd,01n1T
+N/
+√
+d + J)[(λd,01n1T
+N/
+√
+d + J)T(λd,01n1T
+N/
+√
+d + J) + ψ1ψ2λIN]−1i
+/
+√
+d
+= Tr
+h
+(ψ2λ2
+d,01N1T
+N + ψ1/2
+2
+λd,01NT T
+2 )[ψ2λ2
+d,01T
+N1T
+N + ψ1/2
+2
+λd,01NT T
+2 + ψ1/2
+2
+λd,0T21T
+N + JTJ + ψ1ψ2λIN]−1i
+.
+Deﬁne
+E = ZTZ + ψ1ψ2λIN = E0 + F1F T
+2 ,
+E0 = JTJ + ψ1ψ2λIN,
+F1 = (T1, T1, T2),
+F2 = (T1, T2, T1),
+T1 = ψ1/2
+2
+λd,01N,
+T2 = JT1n/√n.
+By the Sherman-Morrison-Woodbury formula, we have
+E−1 = E−1
+0
+−E−1
+0 F1(I3 + F T
+2 E−1
+0 F1)−1F T
+2 E−1
+0 .
+65
+
+
+--- page 66 ---
+Then we have
+L1 = Tr
+h
+(T1T T
+1 + T1T T
+2 )(E−1
+0
+−E−1
+0 F1(I3 + F T
+2 E−1
+0 F1)−1F T
+2 E−1
+0 )
+i
+= (T T
+1 E−1
+0 T1 −T T
+1 E−1
+0 F1(I3 + F T
+2 E−1
+0 F1)−1F T
+2 E−1
+0 T1)
++ (T T
+2 E−1
+0 T1 −T T
+2 E−1
+0 F1(I3 + F T
+2 E−1
+0 F1)−1F T
+2 E−1
+0 T1)
+= (K11 −[K11, K11, K12](I3 + K)−1[K11, K12, K11]T)
++ (K12 −[K12, K12, K22](I3 + K)−1[K11, K12, K11]T)
+= [K11, K11, K12](I3 + K)−1[1, 0, 0]T
++ [K12, K12, K22](I3 + K)−1[1, 0, 0]T
+= (K2
+12 + K12 + K11 −K11K22)/(K2
+12 + 2K12 + K11 −K11K22 + 1)
+= 1 −(K12 + 1)/[K11(1 −K22) + (K12 + 1)2],
+where
+K11 = T T
+1 E−1
+0 T1 = ψ2λ2
+d,01T
+N(JTJ + ψ1ψ2λIN)−11N,
+K12 = T T
+1 E−1
+0 T2 = λd,01T
+N(JTJ + ψ1ψ2λIN)−1JT1n/
+√
+d,
+K22 = T T
+2 E−1
+0 T2 = 1T
+nJ(JTJ + ψ1ψ2λIN)−1JT1n/n,
+K =
+
+
+K11
+K11
+K12
+K12
+K12
+K22
+K11
+K11
+K12
+
+.
+This prove Eq. (229).
+Step 2. Term L2(M).
+We have
+ZT1n1T
+nZ/d = (λd,01n1T
+N/
+√
+d + J)T1n1T
+n(λd,01n1T
+N/
+√
+d + J)/d
+= ψ2
+2λ2
+d,01N1T
+N + ψ2T2 ·
+p
+ψ2λd,01T
+N + ψ2
+p
+ψ2λd,01NT T
+2 + ψ2T2T T
+2 = ψ2(T1 + T2)(T1 + T2)T.
+As a result, we have
+L2(M) = ψ2 · (T1 + T2)TE−1ME−1(T1 + T2)
+= ψ2 · (T1 + T2)T(IN −E−1
+0 F1(I3 + F T
+2 E−1
+0 F1)−1F T
+2 )
+· (E−1
+0 ME−1
+0 )(IN −F2(I3 + F T
+1 E−1
+0 F2)−1F T
+1 E−1
+0 )(T1 + T2).
+Simplifying this formula using simple algebra proves Eq. (230).
+Proof of Lemma 9.6.
+Step 1. Term A1.
+By Lemma C.1, we get
+A1 = 1 −(K12 + 1)/(K11(1 −K22) + (K12 + 1)2),
+(231)
+where
+K11 = T T
+1 E−1
+0 T1 = ψ2λ2
+d,01T
+N(JTJ + ψ1ψ2λIN)−11N,
+K12 = T T
+1 E−1
+0 T2 = λd,01T
+N(JTJ + ψ1ψ2λIN)−1JT1n/
+√
+d,
+K22 = T T
+2 E−1
+0 T2 = 1T
+nJ(JTJ + ψ1ψ2λIN)−1JT1n/n.
+Step 2. Term A2.
+Note that we have
+A2 = Tr((ZTZ + ψ1ψ2λIN)−1U0(ZTZ + ψ1ψ2λIN)−1ZT1n1T
+nZ)/d,
+where
+U0 = λd,0(σ)21N1T
+N = T1T T
+1 /ψ2.
+(232)
+66
+
+
+--- page 67 ---
+By Lemma C.1, we have
+A2 = ψ2[G11(1 −K22)2 + G22(K12 + 1)2 + 2G12(K12 + 1)(1 −K22)]/(K11(1 −K22) + (K12 + 1)2)2, (233)
+where
+G11 = T T
+1 E−1
+0 U0E−1
+0 T1 = K2
+11/ψ2,
+G12 = T T
+1 E−1
+0 U0E−1
+0 T2 = K11K12/ψ2,
+G22 = T T
+2 E−1
+0 U0E−1
+0 T2 = K2
+12/ψ2.
+We can simplify S20 in Eq. (233) further, and get
+A2 = (K11(1 −K22) + K2
+12 + K12)2/(K11(1 −K22) + (K12 + 1)2)2.
+(234)
+Step 3. Combining A1 and A2
+By Eq. (231) and (234), we have
+A = 1 −2A1 + A2 = (K12 + 1)2/(K11(1 −K22) + (K12 + 1)2)2 ≥0.
+For term K12, we have
+|K12| ≤λd,0∥(JTJ + ψ1ψ2λIN)−1JT∥op∥1n1T
+N/
+√
+d∥op = Od(
+√
+d).
+For term K11, we have
+K11 ≥ψ2λ2
+d,0Nλmin((JTJ + ψ1ψ2λIN)−1) = Ωd(d)/(∥JTJ∥op + ψ1ψ2λ).
+For term K22, we have
+1 ≥1 −K22 = 1T
+n(In −J(JTJ + ψ1ψ2λIN)−1JT)1n/n ≥1 −λmax(J(JTJ + ψ1ψ2λIN)−1JT)
+≥ψ1ψ2λ/(ψ1ψ2λ + ∥JTJ∥op) > 0.
+As a result, we have
+1/(K11(1 −K22) + (K12 + 1)2)2 = Od(d−2) · (1 + ∥J∥8
+op),
+and hence
+A = Od(1/d) · (1 + ∥J∥8
+op)
+Lemma C.5 in Section C.4 provides an upper bound on the operator norm of ∥J∥op, which gives ∥J∥op =
+Od,P(exp{C(log d)1/2}) (note J can be regarded as a sub-matrix of K in Lemma C.5, so that ∥J∥op ≤
+∥K∥op). Using this bound, we get
+A = od,P(1).
+It is easy to see that 0 ≤A ≤1. Hence the high probability bound translates to an expectation bound. This
+proves the lemma.
+Proof of Lemma 9.7. For notation simplicity, we prove this lemma under the case when A = {α} which is a
+singleton. We denote B = Bα. The proof can be directly generalized to the case for arbitrary set A.
+By Lemma C.1 (when applying Lemma C.1, we change the role of N and n, and the role of Θ and X;
+this can be done because the role of Θ and X is symmetric), we have
+B = ψ2
+G11(1 −K22)2 + G22(K12 + 1)2 + 2G12(K12 + 1)(1 −K22)
+(K11(1 −K22) + (K12 + 1)2)2
+,
+(235)
+where
+K11 = T T
+1 E−1
+0 T1 = ψ2λd,0(σ)21T
+N(JTJ + ψ1ψ2λIN)−11N,
+K12 = T T
+1 E−1
+0 T2 = λd,0(σ)1T
+N(JTJ + ψ1ψ2λIN)−1JT1n/
+√
+d,
+K22 = T T
+2 E−1
+0 T2 = 1T
+nJ(JTJ + ψ1ψ2λIN)−1JT1n/n,
+G11 = T T
+1 E−1
+0 ME−1
+0 T1 = ψ2λd,0(σ)21T
+N(JTJ + ψ1ψ2λIN)−1M(JTJ + ψ1ψ2λIN)−11N,
+G12 = T T
+1 E−1
+0 ME−1
+0 T2 = λd,0(σ)1T
+N(JTJ + ψ1ψ2λIN)−1M(JTJ + ψ1ψ2λIN)−1JT1n/
+√
+d,
+G22 = T T
+2 E−1
+0 ME−1
+0 T2 = 1T
+nJ(JTJ + ψ1ψ2λIN)−1M(JTJ + ψ1ψ2λIN)−1JT1n/n.
+67
+
+
+--- page 68 ---
+Note we have shown in the proof of Lemma 9.6 that
+K11 = Ωd(d)/(ψ1ψ2λ + ∥J∥2
+op),
+K12 = Od(
+√
+d),
+1 ≥1 −K22 ≥ψ1ψ2λ/(ψ1ψ2λ + ∥J∥2
+op),
+1/(K11(1 −K22) + (K12 + 1)2)2 = Od(d−2) · (1 ∨∥J∥8
+op).
+Lemma C.5 provides an upper bound on the operator norm of ∥J∥op, which gives ∥J∥op = Od,P(exp{C(log d)1/2}).
+Using this bound, we get for any ε > 0
+(1 −K22)2/(K11(1 −K22) + (K12 + 1)2)2 = Od,P(d−2+ε),
+(K12 + 1)2/(K11(1 −K22) + (K12 + 1)2)2 = Od,P(d−1+ε),
+|(K12 + 1)(1 −K22)|/(K11(1 −K22) + (K12 + 1)2)2 = Od,P(d−3/2+ε).
+Since all the quantities above are deterministically bounded by a constant, these high probability bounds
+translate to expectation bounds.
+Moreover, we have
+E[G2
+11]1/2 ≤ψ2λd,0(σ)2(ψ1ψ2λ)−2E[∥M∥2
+op]1/2∥1N1T
+N∥op = Od(d),
+E[G2
+22]1/2 ≤Od(1) · E[∥M∥2
+op]1/2∥1n1T
+n/n∥op = Od(1),
+E[G2
+12]1/2 ≤Od(1) · λd,0(σ)E[∥M∥2
+op]1/2∥1n1T
+N/
+√
+d∥op = Od(d1/2).
+Plugging in the above bounds into Equation (235), we have
+E[|B|] = od(1).
+This proves the lemma.
+C.3
+Some auxiliary lemmas
+We denote by µd the probability law of ⟨x1, x2⟩/
+√
+d when x1, x2 ∼iid N(0, Id). Note that µd is symmetric,
+and
+R
+x2µd(dx) = 1. By the central limit theorem, µd converges weakly to µG as d →∞, where µG is the
+standard Gaussian measure. In fact, we have the following stronger convergence result.
+Lemma C.2. For any λ ∈[−
+√
+d/2,
+√
+d/2], we have
+Z
+eλx µd(dx) ≤eλ2 .
+(236)
+Further, let f : R →R be a continuous function such that |f(x)| ≤c0 exp(c1|x|) for some constants c0, c1 <
+∞. Then
+lim
+d→∞
+Z
+f(x) µd(dx) =
+Z
+f(x) µG(dx) .
+(237)
+Proof of Lemma C.2.
+In order to prove Eq. (236), we note that the left hand side is given by
+E
+
+eλ⟨x1,x2⟩/
+√
+d	
+=
+1
+(2π)d
+Z
+exp
+n
+−1
+2∥x1∥2
+2 −1
+2∥x2∥2
+2 + λ
+√
+d
+⟨x1, x2⟩
+o
+dx1dx2
+=
+
+det
+
+1
+−λ/
+√
+d
+−λ/
+√
+d
+1
+−d/2
+=
+
+1 −λ2
+d
+−d/2
+≤eλ2 ,
+where the last inequality holds for |λ| ≤
+√
+d/2 using the fact that (1 −x)−1 ≤e2x for x ∈[0, 1/4].
+In order to prove (237), let Xd ∼µd, and G ∼N(0, 1). Since µd converges weakly to N(0, 1), we can
+construct such random variables so that Xd →G almost surely.
+Hence f(Xd) →f(G) almost surely.
+However |f(Xd)| ≤c0 exp(c1|Xd|) which is a uniformly integrable family by the previous point, implying
+Ef(Xd) →Ef(G) as claimed.
+68
+
+
+--- page 69 ---
+The next several lemmas establish general bounds on the operator norm of random kernel matrices which
+is of independent interest.
+Lemma C.3. Let σ : R →R be an activation function satisfying Assumption 1, i.e., |σ(u)|, |σ′(u)| ≤c0ec1|u|
+for some constants c0, c1 ∈(0, ∞). Let (zi)i∈[M] ∼iid N(0, Id). Assume 0 < 1/c2 ≤M/d ≤c2 < ∞for some
+constant c2 ∈(0, ∞). Consider the random matrix R ∈RM×M deﬁned by
+Rij = 1i̸=j · σ(⟨zi, zj⟩/
+√
+d)/
+√
+d.
+(238)
+Then there exists a constant C depending uniquely on c0, c1, c2, and a sequence of numbers (ηd)d≥1 with
+|ηd| ≤C exp{C(log d)1/2}, such that
+∥R −ηd1M1T
+M/
+√
+d∥op = Od,P(exp{C(log d)1/2}).
+(239)
+Proof of Lemma C.3.
+By Lemma C.2 and Markov inequality, we have, for any i̸ = j and all 0 ≤t ≤
+√
+d,
+P
+
+⟨zi, zj⟩/
+√
+d ≥t
+
+≤e−t2/4 .
+(240)
+Hence
+P
+
+max
+1≤i<j≤M
+ 1
+√
+d
+⟨zi, zj⟩
+ ≥16
+p
+log M
+
+≤M 2
+2
+max
+1≤i<j≤M P
+ 1
+√
+d
+⟨zi, zj⟩
+ ≥16
+p
+log M
+
+≤M 2 exp{−4(log M)} ≤
+1
+M 2 .
+(241)
+We deﬁne ˜σ : R →R as follows: for |u| ≤x ≡16√log d, deﬁne ˜σ(u) ≡σ(u)e−c1|x|/c0; for u > x, deﬁne
+˜σ(u) = ˜σ(x); for u < −x, deﬁne ˜σ(u) = ˜σ(−x). Then ˜σ is a 1-bounded-Lipschitz function on R. Deﬁne
+˜ηd = Ex,y∼N(0,Id)[˜σ(⟨x, y⟩/
+√
+d)] and ηd = ˜ηdc0ec1|x|. Since we have |˜ηd| ≤maxu |˜σ(u)| ≤1, we have
+|ηd| = Od(exp{C(log d)1/2}).
+(242)
+Moreover, we deﬁne K, ˜
+K ∈RM×M by
+˜Kij = 1i̸=j · (˜σ(⟨zi, zj⟩/
+√
+d) −˜ηd)/
+√
+d,
+Kij = 1i̸=j · (σ(⟨zi, zj⟩/
+√
+d) −ηd)/
+√
+d.
+(243)
+By [DM16, Lemma 20], there exists a constant C such that
+P(∥˜
+K∥op ≥C) ≤Ce−d/C.
+Note that [DM16, Lemma 20] considers one speciﬁc choice of ˜σ, but the proof applies unchanged to any
+1-Lipschitz function with zero expectation under the measure µd, where µd is the distribution of ⟨x, y⟩/
+√
+d
+for x, y ∼N(0, Id).
+Deﬁning the event G ≡{|⟨zi, zj⟩/
+√
+d| ≤16√log d, ∀1 ≤i < j ≤M}, we have
+P
+
+∥K∥op ≥C c0ec1|x|
+≤P
+
+∥K∥op ≥C c0ec1|x|; G
+
++ P(Gc) ≤P
+
+∥˜
+K∥op ≥C
+
++
+1
+M 2 = od(1).
+(244)
+By Eq. (238) and (243), we have
+R = K −ηdIM/
+√
+d + ηd1M1T
+M/
+√
+d.
+By Eq. (244) and (242), we have
+∥R −ηd1M1T
+M/
+√
+d∥op = ∥K −ηdIM/
+√
+d∥op ≤∥K∥op + ηd/
+√
+d = Od,P(exp{C(log d)1/2}).
+This completes the proof.
+69
+
+
+--- page 70 ---
+Lemma C.4. Let σ : R →R be an activation function satisfying Assumption 1, i.e., |σ(u)|, |σ′(u)| ≤c0ec1|u|
+for some constants c0, c1 ∈(0, ∞). Let (zi)i∈[M] ∼iid N(0, Id). Assume 0 < 1/c2 ≤M/d ≤c2 < ∞for some
+constant c2 ∈(0, ∞). Deﬁne zi =
+√
+d · zi/∥zi∥2. Consider two random matrices R, R ∈RM×M deﬁned by
+Rij = 1i̸=j · σ(⟨zi, zj⟩/
+√
+d)/
+√
+d,
+Rij = 1i̸=j · σ(⟨zi, zj⟩/
+√
+d)/
+√
+d.
+Then there exists a constant C depending uniquely on c0, c1, c2, such that
+∥R −R∥op = Od,P(exp{C(log d)1/2}).
+Proof of Lemma C.4. In the proof of this lemma, we assume σ has continuous derivatives. In the case when
+σ is only weak diﬀerentiable, the proof is the same, except that we need to replace the mean value theorem
+to its integral form.
+Deﬁne ri =
+√
+d/∥zi∥2, and
+˜Rij = 1i̸=j · σ(ri⟨zi, zj⟩/
+√
+d)/
+√
+d.
+By the concentration of χ-squared distribution, it is easy to see that
+max
+i∈[M] |ri −1| = Od,P((log d)1/2/d1/2).
+Moreover, we have (for ζi between ri and 1)
+|Rij −˜Rij| ≤|σ′(ζi⟨zi, zj⟩/
+√
+d)| · |⟨zi, zj⟩/
+√
+d| · |ri −1|/
+√
+d.
+By Eq. (241), we have
+max
+i̸=j∈[M][⟨zi, zj⟩/
+√
+d] = Od,P((log d)1/2),
+max
+i̸=j∈[M][ζi⟨zi, zj⟩/
+√
+d] = Od,P((log d)1/2).
+Moreover by the assumption that |σ′(u)| ≤c0ec1|u|, we have
+max
+i̸=j∈[M] |σ′(ζi⟨zi, zj⟩/
+√
+d)| · |⟨zi, zj⟩/
+√
+d| = Od,P(exp{C(log d)1/2}).
+This gives
+max
+i̸=j∈[M] |Rij −˜Rij| = Od,P(exp{C(log d)1/2}/d).
+Using similar argument, we can show that
+max
+i̸=j∈[M] |Rij −˜Rij| = Od,P(exp{C(log d)1/2}/d),
+which gives
+max
+i̸=j∈[M] |Rij −Rij| = Od,P(exp{C(log d)1/2}/d).
+This gives
+∥R −R∥op ≤∥R −R∥F ≤d ·
+max
+i̸=j∈[M] |Rij −Rij| = Od,P(exp{C(log d)1/2}).
+This proves the lemma.
+Lemma C.5. Let σ : R →R be an activation function satisfying Assumption 1, i.e., |σ(u)|, |σ′(u)| ≤c0ec1|u|
+for some constants c0, c1 ∈(0, ∞). Let (zi)i∈[M] ∼iid Unif(Sd−1(
+√
+d)). Assume 0 < 1/c2 ≤M/d ≤c2 < ∞
+for some constant c2 ∈(0, ∞). Deﬁne λd,0 = Ezi,z2∼Unif(Sd−1(
+√
+d))[σ(⟨z1, z2⟩/
+√
+d)], and ϕd(u) = σ(u) −λd,0.
+Consider the random matrix K ∈RM×M with
+Kij = 1i̸=j · 1
+√
+d
+ϕd
+ 1
+√
+d
+⟨zi, zj⟩
+
+.
+Then there exists a constant C depending uniquely on c0, c1, c2, such that
+∥K∥op ≤Od,P(exp{C(log d)1/2}).
+70
+
+
+--- page 71 ---
+Proof of Lemma C.5. We construct (zi)i∈[M] by normalizing a collection of independent Gaussian random
+vectors. Let (zi)i∈[M] ∼iid N(0, Id) and denote zi =
+√
+d · zi/∥zi∥2 for i ∈[M]. Then we have (zi)i∈[M] ∼iid
+Unif(Sd−1(
+√
+d)).
+Consider two random matrices R, R ∈RM×M deﬁned by
+Rij = 1i̸=j · σ(⟨zi, zj⟩/
+√
+d)/
+√
+d,
+Rij = 1i̸=j · σ(⟨zi, zj⟩/
+√
+d)/
+√
+d.
+By Lemma C.3, there exists a sequence (ηd)d≥0 with |ηd| ≤C exp{C(log d)1/2}, such that
+∥R −ηd1M1T
+M/
+√
+d∥op = Od,P(exp{C(log d)1/2}).
+Moreover, by Lemma C.4, we have,
+∥R −R∥op ≤Od,P(exp{C(log d)1/2}),
+which gives,
+∥R −ηd1M1T
+M/
+√
+d∥op = Od,P(exp{C(log d)1/2}).
+Note we have
+R = K + λd,01M1T
+M/
+√
+d −λd,0IM/
+√
+d.
+Moreover, note that limd→∞λd,0 = EG∼N(0,1)[σ(G)] so that supd |λd,0| ≤C.
+Therefore, denoting κd =
+λd,0 −ηd, we have
+∥K + κd1M1T
+M/
+√
+d∥op = ∥R −ηd1M1T
+M/
+√
+d + λd,0IM/
+√
+d∥op
+≤∥R −ηd1M1T
+M/
+√
+d∥op + λd,0/
+√
+d = Od,P(exp{C(log d)1/2}).
+(245)
+Notice that
+|1T
+MK1M/M| ≤
+C
+M 3/2
+
+X
+i̸=j
+ϕd(⟨zi, zj⟩/
+√
+d)
+ ≤C
+M
+M
+X
+i=1
+
+X
+j:j̸=i
+ϕd(⟨zi, zj⟩/
+√
+d)/
+√
+M
+ ≡C
+M
+M
+X
+i=1
+|Vi|,
+where
+Vi =
+1
+√
+M
+X
+j:j̸=i
+ϕd(⟨zi, zj⟩/
+√
+d).
+Note E[ϕd(⟨zi, zj⟩/
+√
+d)] = 0 for i̸ = j so that E[ϕd(⟨zi, zj1⟩/
+√
+d)ϕd(⟨zi, zj2⟩/
+√
+d)] = 0 for i, j1, j2 distinct.
+Calculating the second moment, we have
+sup
+i∈[M]
+E[V 2
+i ] = sup
+i∈[M]
+E
+h X
+j:j̸=i
+ϕd(⟨zi, zj⟩/
+√
+d)/
+√
+M
+2i
+= sup
+i∈[M]
+1
+M
+X
+j:j̸=i
+E[ϕd(⟨zi, zj⟩/
+√
+d)2] = Od(1).
+Therefore, we have
+E[(1T
+MK1M/M)2] ≤C2
+M 2
+M
+X
+i,j=1
+E[|Vi| · |Vj|] ≤C2
+M 2
+M
+X
+i,j=1
+E[(V 2
+i + V 2
+j )/2] ≤C2 sup
+i∈[M]
+E[V 2
+i ] = Od(1).
+This gives
+|1T
+MK1M/M| = Od,P(1).
+Combining this equation with Eq. (245), we get
+∥κd1M1T
+M/
+√
+d∥op = |⟨1M, (κd1M1T
+M/
+√
+d)1M⟩/M|
+≤|⟨1M, (K + κd1M1T
+M/
+√
+d)1M⟩/M| + |1T
+MK1M/M|
+≤∥K + κd1M1T
+M/
+√
+d∥op + |1T
+MK1M/M| = Od,P(exp{C(log d)1/2}),
+and hence
+∥K∥op ≤∥K + κd1M1T
+M/
+√
+d∥op + ∥κd1M1T
+M/
+√
+d∥op = Od,P(exp{C(log d)1/2}).
+This proves the lemma.
+71
+
+
+--- page 72 ---
+C.4
+The decomposition of kernel inner product matrices
+The following lemma (Lemma C.6) is a reformulation of Proposition 3 in [GMMM19]. We present it in a
+stronger form, but it can be easily derived from the proof of Proposition 3 in [GMMM19]. This lemma was
+ﬁrst proved in [EK10] in the Gaussian case. (Notice that the second estimate —on Qk(ΘXT)— follows by
+applying the ﬁrst one whereby Θ is replaced by W = [ΘT|XT]T
+Lemma C.6. Let Θ = (θ1, . . . , θN)T ∈RN×d with (θa)a∈[N] ∼iid Unif(Sd−1(
+√
+d)) and X = (x1, . . . , xn)T ∈
+Rn×d with (xi)i∈[n] ∼iid Unif(Sd−1(
+√
+d)). Assume 1/c ≤n/d, N/d ≤c for some constant c ∈(0, ∞). Then
+E
+h
+sup
+k≥2
+∥Qk(ΘΘT) −IN∥2
+op
+i
+= od(1) ,
+(246)
+E
+h
+sup
+k≥2
+∥Qk(ΘXT)∥2
+op
+i
+= od(1).
+(247)
+Notice that the second estimate —on Qk(ΘXT)— follows by applying the ﬁrst one —Eq. (246)— whereby
+Θ is replaced by W = [ΘT|XT]T, and we use ∥Qk(ΘXT)∥op ≤∥Qk(W W T) −IN+n∥op.
+The following lemma (Lemma C.7) can be easily derived from Lemma C.6. Again, this lemma was ﬁrst
+proved in [EK10] in the Gaussian case.
+Lemma C.7. Let Θ = (θ1, . . . , θN)T ∈RN×d with (θa)a∈[N] ∼iid Unif(Sd−1(
+√
+d)). Let activation function
+σ satisﬁes Assumption 1. Assume 1/c ≤N/d ≤c for some constant c ∈(0, ∞). Denote
+U =
+
+Ex∼Unif(Sd−1(
+√
+d))[σ(⟨θa, x⟩/
+√
+d)σ(⟨θb, x⟩/
+√
+d)]
+
+a,b∈[N] ∈RN×N.
+Then we can rewrite the matrix U to be
+U = λd,0(σ)21N1T
+N + µ2
+1Q + µ2
+⋆(IN + ∆),
+with Q = ΘΘT/d and E[∥∆∥2
+op] = od(1).
+C.5
+A lemma on the variance of the quadratic form
+Lemma C.8. Let A ∈Rn×N and B ∈Rn×n. Let g = (g1, . . . , gn)T with gi ∼iid Pg, Eg[g] = 0, and
+Eg[g2] = 1. Let h = (h1, . . . , hN)T with hi ∼iid Ph, Eh[h] = 0, and Eh[h2] = 1. Further we assume that h is
+independent of g. Then we have
+Var(gTAh) = ∥A∥2
+F ,
+Var(gTBg) =
+n
+X
+i=1
+B2
+ii(E[g4] −3) + ∥B∥2
+F + Tr(B2).
+Proof of Lemma C.8.
+Step 1. Term gTAh.
+Calculating the expectation, we have
+E[gTAh] = 0.
+Hence we have
+Var(gTAh) = E[gTAhhTATg] = E[Tr(ggTAhhTAT)] = Tr(AAT) = ∥A∥2
+F .
+Step 2. Term gTBg.
+Calculating the expectation, we have
+E[gTBg] = E[Tr(BggT)] = Tr(B).
+72
+
+
+--- page 73 ---
+Hence we have
+Var(gTBg) =
+n
+X
+i1,i2,i3,i4
+E[gi1Bi1i2gi2gi3Bi3i4gi4]
+o
+−Tr(B)2
+=
+n
+X
+i1=i2=i3=i4
++
+X
+i1=i2̸=i3=i4
++
+X
+i1=i3̸=i2=i4
++
+X
+i1=i4̸=i2=i3
+
+E[gi1Bi1i2gi2gi3Bi3i4gi4]
+o
+−Tr(B)2
+=
+n
+X
+i=1
+B2
+iiE[g4] +
+X
+i̸=j
+BiiBjj +
+X
+i̸=j
+(BijBij + BijBji) −Tr(B)2
+=
+n
+X
+i=1
+B2
+ii(E[g4] −3) + Tr(BTB) + Tr(B2).
+This proves the lemma.
+73
+
+
+--- page 74 ---
+D
+Proof of Lemma 8.1
+Proof of Lemma 8.1. For ﬁxed ξ ∈C+ and q ∈R5, by the ﬁxed point equation satisﬁed by m1, m2 (c.f. Eq.
+(70)), we see that (m1(ξ; q), m2(ξ; q)) is a stationary point of function Ξ(ξ, ·, ·; q). Using the formula for
+implicit diﬀerentiation, we have
+∂pg(ξ; q) = ∂pΞ(ξ, z1, z2; q)|(z1,z2)=(m1(ξ;q),m2(ξ;q)),
+∂2
+s1,t1g(ξ; q) = H1,3 −H1,[5,6]H−1
+[5,6],[5,6]H[5,6],3,
+∂2
+s1,t2g(ξ; q) = H1,4 −H1,[5,6]H−1
+[5,6],[5,6]H[5,6],4,
+∂2
+s2,t1g(ξ; q) = H2,3 −H2,[5,6]H−1
+[5,6],[5,6]H[5,6],3,
+∂2
+s2,t2g(ξ; q) = H2,4 −H2,[5,6]H−1
+[5,6],[5,6]H[5,6],4,
+where we have, for u = (s1, s2, t1, t2, z1, z2)T
+H = ∇2
+uΞ(ξ, z1, z2; q)|(z1,z2)=(m1(ξ;q),m2(ξ;q)).
+Basic algebra completes the proof.
+74
+
+
+--- page 75 ---
+E
+Proof sketch for Theorem 6
+In this section, we sketch the calculations of Theorem 6. We assume ψ1,d ≡N/d = ψ1 and ψ2,d ≡n/d = ψ2
+are constants independent of d. Recall that the deﬁnitions of two useful resolvent matrix Ξ and Π are
+Ξ = (ZTZ + λψ1ψ2IN)−1,
+Π = (ZZT + λψ1ψ2In)−1.
+Step 1. The expectation of regularized training error.
+By Eq. (45), the regularized training error of random features regression gives
+LRF(fd, X, Θ, λ) = min
+a
+h 1
+n
+n
+X
+i=1
+
+yi −
+N
+X
+j=1
+ajσ(⟨θj, xi⟩/
+√
+d)
+2
++ λψ1∥a∥2
+2
+i
+= min
+a
+h 1
+n∥y −
+√
+dZa∥2 + λψ1∥a∥2
+2
+i
+= 1
+n∥y −ZΞZTy∥2 + λψ1∥ΞZTy∥2
+2/d
+= 1
+n
+h
+∥y∥2
+2 −yTZΞZTy
+i
+.
+Its expectation with respect to f NL
+d
+(that satisﬁes Assumption 3), β1 ∼Unif(Sd−1(Fd,1)) and ε gives
+Eβ,ε[LRF(fd, X, Θ, λ)]
+= 1
+n
+h
+Eβ,ε[∥y∥2
+2] −Eβ,ε[yTZΞZTy]
+i
+= Eβ[∥fd∥2
+L2] + τ 2 −1
+nEβ
+h
+f TZΞZTf
+i
+−1
+nEε
+h
+εTZΞZTε
+i
+= Eβ[∥fd∥2
+L2] + τ 2 −1
+nEβ
+h ∞
+X
+k=0
+Yx,kβk
+T
+ZΞZT ∞
+X
+k=0
+Yx,kβk
+i
+−τ 2
+n Tr
+
+ΞZTZ
+
+=
+∞
+X
+k=0
+F 2
+k + τ 2 −1
+n
+∞
+X
+k=0
+F 2
+k Tr
+
+ΞZTQk(XXT)Z
+
+−τ 2
+n Tr
+
+ΞZTZ
+
+It can be shown that the coeﬃcients before F 2
+0 is asymptotically vanishing, and by Lemma C.6, we have
+E[supk≥2 ∥Qk(XXT) −In∥2
+op] = od(1). Hence we get
+Eβ,ε[LRF(fd, X, Θ, λ)] = F 2
+1
+n
+1 −1
+nTr
+
+ΞZTHZ
+o
++ (F 2
+⋆+ τ 2) ·
+n
+1 −1
+nTr
+
+ΞZTZ
+o
++ od,P(1).
+Using the fact that
+ΞZT = ZTΠ,
+we have
+Eβ,ε[LRF(fd, X, Θ, λ)]
+·= F 2
+1 · ψ1λ
+d Tr(ΠH) + (F 2
+⋆+ τ 2) · ψ1λ
+d Tr(Π) + od,P(1).
+Step 2. The norm square of minimizers.
+We have
+∥a∥2
+2 = ∥yTZΞ∥2
+2/d = yTZΞ2ZTy/d,
+so that
+Eβ,ε[∥a∥2
+2] = Eβ[f TZΞ2ZTf]/d + ψ1Eε[εTZΞ2ZTε]/d
+= Eβ
+h ∞
+X
+k=0
+Yx,kβk
+T
+ZΞ2ZT ∞
+X
+k=0
+Yx,kβk
+i
+/d + τ 2Tr
+
+Ξ2ZTZ
+
+/d
+=
+∞
+X
+k=0
+F 2
+k · Tr
+
+Ξ2ZTQk(XXT)Z
+
+/d + τ 2Tr
+
+Ξ2ZTZ
+
+/d
+= F 2
+1 Tr
+
+Ξ2ZTHZ
+
+/d + (F 2
+⋆+ τ 2) · Tr
+
+Ξ2ZTZ
+
+/d + od,P(1).
+75
+
+
+--- page 76 ---
+Step 3. The derivatives of the log determinant.
+Deﬁne q = (s1, s2, t1, t2, p) ∈R5, and introduce a block matrix A ∈RM×M with M = N + n, deﬁned by
+A =
+
+s1IN + s2Q
+ZT + pZT
+1
+Z + pZ1
+t1In + t2H
+
+.
+(248)
+For any ξ ∈C+, we consider the quantity
+Gd(ξ; q) = 1
+d
+M
+X
+i=1
+log(λi(A(q)) −ξ).
+With simple algebra, we can show that
+∂t1Gd(iu; 0) = iu
+d Tr
+
+(u2In + ZZT)−1
+,
+∂t2Gd(iu; 0) = iu
+d Tr
+
+(u2In + ZZT)−1H
+
+,
+∂2
+s1,t1Gd(iu; 0) = −1
+dTr
+
+(u2IN + ZTZ)−2ZTZ
+
+,
+∂2
+s1,t2Gd(iu; 0) = −1
+dTr
+
+(u2IN + ZTZ)−2ZTHZ
+
+.
+(249)
+Hence, we have
+E[LRF(fd, X, Θ, λ)] = −F 2
+1 · i
+ψ1λ
+ψ2
+1/2
+∂t2E[Gd(i(λψ1ψ2)1/2; 0)]
+−(F 2
+⋆+ τ 2) · i
+ψ1λ
+ψ2
+1/2
+∂t1E[Gd(i(λψ1ψ2)1/2; 0)] + od(1),
+and
+E[∥a∥2
+2] = −F 2
+1 ∂2
+s1,t2E[Gd(i(λψ1ψ2)1/2; 0)] −(F 2
+⋆+ τ 2) · ∂2
+s1,t1E[Gd(i(λψ1ψ2)1/2; 0)] + od(1).
+By Lemma 11.3, we get
+E[LRF(fd, X, Θ, λ)] = −F 2
+1 · i
+ψ1λ
+ψ2
+1/2
+∂t2g(i(λψ1ψ2)1/2; 0)
+−(F 2
+⋆+ τ 2) · i
+ψ1λ
+ψ2
+1/2
+∂t1g(i(λψ1ψ2)1/2; 0) + od(1),
+and
+Eβ,ε[∥a∥2
+2] = −F 2
+1 ∂2
+s1,t2g(i(λψ1ψ2)1/2; 0) −(F 2
+⋆+ τ 2) · ∂2
+s1,t1g(i(λψ1ψ2)1/2; 0) + od,P(1),
+where g is given in Eq. (74). The derivatives of g can be obtained by diﬀerentiating Eq. (73) and using
+Daskin’s theorem. The theorem then follows by simple calculus.
+76

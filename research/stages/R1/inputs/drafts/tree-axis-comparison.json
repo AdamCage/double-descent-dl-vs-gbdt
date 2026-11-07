@@ -1,0 +1,24 @@
+{
+  "sources": [
+    "L05",
+    "L06",
+    "L07"
+  ],
+  "resolved": false,
+  "statement": "L05, L06, and L07 do not supply exact quotes for one shared intervention, so the axis comparison is unresolved. L05 describes a composite of terminal-leaf count or boosting-round count with ensemble size under squared loss. L06 describes learner capacity, printed as P leaf or P boost, and ensemble size under squared loss and test MSE. L07 describes split-candidate count, with depth, ensemble size, and the leaf-count bound held fixed in its conclusion, and reports RMSE. L08 is a kernel-ridge analysis under RMSE, symmetric trees, randomization, and shrinkage; it is not a vote that those three interventions are the same.",
+  "axis_by_source": {
+    "L05": "Composite and separate sweeps of P leaf or P boost and P ens under squared loss.",
+    "L06": "Learner capacity (P leaf or P boost) and ensemble size P ens, composite and single-axis, under squared loss and test MSE.",
+    "L07": "Split-candidate count M, with native per-feature border budget B as another control, under RMSE."
+  },
+  "unresolved_points": [
+    "L05 and L06 vary leaf or boosting-round capacity together with ensemble size. L07 varies split-candidate count and its conclusion holds ensemble size fixed.",
+    "L05 increases P boost until squared training error is approximately zero and then fixes P boost. L06 fixes P boost = 200 in the quoted third boosting experiment. The extracts do not identify these schedules with each other.",
+    "L05 prints the interpolation threshold as p=n and as p = n. L06 defines it as parameter count equal to the number of training samples and marks a dotted line. L07 places a peak near a path-span crossing in M and reports training RMSE already close to zero there, without calling that crossing the interpolation threshold.",
+    "The located losses are squared loss and RMSE. CatBoost logloss is absent from L05, L06, and L07. L05 does not name CatBoost, L06 names scikit-learn, and L07 names CatBoost, XGBoost, and LightGBM in the RMSE experiments.",
+    "L06 reports that the double-descent pattern disappeared on its single-axis sweeps. L07 reports interior peaks while split-candidate count changes and a monotone random-forest curve on that sweep. The sentences refer to different interventions.",
+    "The located samples differ: L05 uses MNIST with ntrain = 10000 in the main text, L06 uses 500 CRyPTIC isolates and 500 Friedman samples, and L07 uses California Housing with ntrain = 1000 unless a panel changes sample size, plus 18 regression datasets.",
+    "L07 also varies training checkpoint along M in one figure, and some panels vary depth or sample size. Those panels are not the same held-fixed split-candidate intervention as the conclusion sentence.",
+    "L08 assumes RMSE, shrinkage, symmetric oblivious trees, and randomization for a kernel equivalence. It contains no double-descent or interpolation wording and does not establish a common axis for L05, L06, and L07."
+  ]
+}

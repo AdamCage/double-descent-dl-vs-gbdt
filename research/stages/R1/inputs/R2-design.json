@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "author_agent": "ddb85535-1ef1-4069-95c4-46578067887a",
+  "models_executed": false,
+  "discovery_data_reused_as_confirmation": false,
+  "readiness": "ready_for_autonomous_planning",
+  "open_issues": [
+    "The published L01 PDF was not retrieved. R2 does not import a PNAS theorem from this audit.",
+    "L05, L06 and L07 do not share one located intervention. Their axes are not the R2 axis.",
+    "Broken PDF equation lines were not repaired. The formulas below are this proposal's definitions.",
+    "The confirmatory cell count waits for a timing pilot inside the existing R2 and charter budgets.",
+    "A sphere design located in L03 is not part of the first grid.",
+    "The historical essay matrices remain unread and are outside R2."
+  ],
+  "teacher_and_maximum_feature_space": "The teacher is linear in a fixed maximum feature space of dimension p_max. Coefficients beta are fixed for a data seed with Euclidean norm 1. Covariates are Gaussian with mean zero and diagonal covariance Sigma. The response on a training row is the noiseless teacher value plus noise; evaluation against the teacher uses no added noise.",
+  "nested_feature_selection": "One draw builds the full n by p_max design. The model with p features uses the first p columns of that same draw. Random features, when used, likewise take a nested prefix of one frozen weight matrix rather than an independent redraw at each width.",
+  "feature_and_ridge_objective_normalization": "Column means and scales are computed on the training rows only and applied unchanged to evaluation rows. The ridge objective is the mean squared residual plus lambda times the squared Euclidean norm of the coefficient. Lambda equal to 0 is the minimum-norm least-squares fit, obtained as the lambda to 0 limit through the same SVD path rather than as a separate solver.",
+  "separate_data_noise_feature_model_seeds": "Each draw records four seeds: data_seed for covariates and beta, noise_seed for training-label noise, feature_seed for frozen random-feature weights, and model_seed, which is recorded even though the closed form has no optimizer state. Confirmation seeds are disjoint from discovery seeds.",
+  "planned_p_over_n_grid": "The planning menu fixes n at 200 and uses p/n in {0.25, 0.5, 0.75, 1, 1.25, 1.5, 2, 4}, so the menu crosses 1. A timing pilot may drop cells before confirmation. It may not add a cell after confirmation seeds have been used, and it may not choose the kept cells by a held-out confirmation risk.",
+  "noise_snr_and_clean_evaluation": "Training labels equal x beta plus sigma times standard normal noise. The nominal signal-to-noise menu is {1, 5}, with sigma set from the unit teacher norm. Each draw also records the empirical training signal energy divided by n sigma squared. Clean risk is the mean squared error against x beta on shared evaluation covariates that contain no label noise. Noisy risk is recorded separately and is not substituted for clean risk.",
+  "discovery_confirmation_exposure": "R1 generates no rows and fits no model. Discovery seeds 1101 through 1105 may be used later to time the solver and to drop menu cells. Confirmation seeds 2101 through 2110 stay unused until that reduced grid is frozen. Evaluation covariates are shared across draws inside a phase and are not used to pick the grid.",
+  "svd_solver_rcond_rank_residual_norm_spectrum": "The solver is a singular-value decomposition. The relative cutoff rcond is fixed before the pilot at 1e-10 times the largest singular value. Each fit records numerical rank, residual norm, coefficient norm, and the singular values of the training design. Interpolation for lambda 0 requires a predeclared residual tolerance and a rank that matches the smaller of n and p. Positive lambda is not required to interpolate.",
+  "estimand_and_uncertainty": "The primary estimand is the mean clean risk at each predeclared cell. Uncertainty is the standard error across independent draws and the observed minimum and maximum. Those are not reported as a confidence interval. The primary contrasts are the noise pair, the spectrum pair, and the ridge pair near p/n = 1. Random-feature cells are a separate family.",
+  "independent_draws_common_evaluation_points": "Draws are independent in covariates, teacher, and training noise. They share one evaluation design so that a later bias-variance split is taken at the same points. Five discovery draws are a pilot size, not a power calculation.",
+  "interventions_predictions_falsifiers_inconclusive_rules": [
+    {
+      "intervention": "Increase the training-label noise scale on the same designs, teacher, and spectrum.",
+      "prediction": "For minimum-norm least squares, clean risk near p/n = 1 rises as the noise scale rises, and the coefficient norm rises with it.",
+      "falsifier": "On draws that bracket interpolation, neither the clean-risk peak nor the coefficient norm rises across the predeclared noise pair.",
+      "inconclusive": "No pair of cells places a small training residual on one side of p/n = 1 and a large residual on the other, or the rank check fails."
+    },
+    {
+      "intervention": "Replace isotropic covariance with a geometrically decaying diagonal spectrum, holding teacher norm, noise, and the p/n menu fixed.",
+      "prediction": "The minimum-norm clean-risk peak near interpolation is larger under the decaying spectrum than under the isotropic spectrum.",
+      "falsifier": "The decaying-spectrum peak is not larger on bracketed draws, and the recorded condition number is not larger either.",
+      "inconclusive": "Either spectrum fails to bracket interpolation, or the singular values are missing."
+    },
+    {
+      "intervention": "On the same draws, increase lambda from 0 to the predeclared positive values 0.01, 0.1, and 1.",
+      "prediction": "A positive lambda reduces the clean-risk peak and the coefficient norm relative to the matched minimum-norm fit.",
+      "falsifier": "On bracketed draws the peak and the coefficient norm do not fall at the predeclared positive lambda.",
+      "inconclusive": "The minimum-norm cell is not numerically identified, so ridge has no matched baseline."
+    },
+    {
+      "intervention": "On the same covariates and noise, fit nested ReLU random features with first-layer weights frozen inside the draw.",
+      "prediction": "This family is not predicted to match the linear peak. Its own prediction is that readout clean risk and the feature-Gram condition number are recorded against N/n.",
+      "falsifier": "The feature-Gram condition number worsens as N/n crosses 1 while the clean readout risk shows no corresponding peak on bracketed draws.",
+      "inconclusive": "N/n does not bracket interpolation. That result does not refute the linear noise or spectrum contrast."
+    }
+  ],
+  "timing_pilot_and_cumulative_budget": "No model is run in R1. The later R2 timing pilot is one linear cell, then the smallest menu that brackets interpolation, inside R2's own wall-clock cap and the charter's remaining 24-hour and storage caps. The pilot cannot raise those caps. GPU, paid APIs, and the historical essay matrices stay at zero.",
+  "readiness_and_open_issues": "Ready for autonomous R2 planning, not for a confirmatory fit. The open issues are the missing L01 PDF, the unresolved tree axes, the unrepaired PDF equations, the timing pilot, the deferred sphere variant, and the exclusion of the unread essay matrices.",
+  "prediction_assessments": [
+    {
+      "id": "P3",
+      "author_outcome": "consistent",
+      "observation_ids": ["R2-linear-contrasts", "R2-random-features"],
+      "reason": "The proposal separates noise, spectrum, and ridge for a linear teacher, and treats frozen random features as another family. It also states when a missing interpolation bracket makes the contrast inconclusive. No fit was run."
+    }
+  ]
+}
