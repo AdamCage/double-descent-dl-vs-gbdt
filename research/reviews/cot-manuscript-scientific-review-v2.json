@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "review_mode": "subagent_review",
+  "review_kind": "scientific_manuscript_v2_delta_review_with_primary_prior_check_not_layout",
+  "harness": "codex",
+  "author_agent": "/root",
+  "reviewer_agent": "/root/reset_critic",
+  "reviewer_independence": "Distinct child agent. Authored none of the manuscript narrative, primary scientific source/results, claim proposal statements or research design. Independently reviewed source, metadata and H1/H2 mathematics and results using a retained checker. Authored independent checks and reviews only. No PDF was created or its layout accepted by this review.",
+  "reviewed_at_utc": "2026-11-08T10:24:57.775878+00:00",
+  "verdict": "accept",
+  "blocking_issues": [],
+  "scope": "Accepted as a bounded, AI-assisted historical-data research report with supported local empirical claims. This is not external peer review, priority certification, journal-readiness approval, independent new-model replication or final delivery QA.",
+  "reviewed_artifacts": [
+    {
+      "path": "manuscript/cot_input_comparability.md",
+      "sha256": "230a21f145ade23000f43ac82aa913d2459d81dca014ce55395fc44ac70ebf2e"
+    },
+    {
+      "path": "research/stages/R17/REPORT.md",
+      "sha256": "205104d4401f247605d9dd54e9fc4c538c34b26e16b7be7c671def87e8030c50"
+    },
+    {
+      "path": "research/stages/R17D/REPORT.md",
+      "sha256": "535e9bded100579ec0fc67bca392cd6a9329ba308bc3a22030cc1a7314a6498f"
+    },
+    {
+      "path": "research/stages/R16/REPORT.md",
+      "sha256": "76c8b6d8c7e89f61fb32b54af0010a18b6d17d2db21210615a97e8675b8fae4c"
+    },
+    {
+      "path": "research/decisions/H2-sensitivity-claim.json",
+      "sha256": "cbff7134b802eaaf7ab0620e3705bf3b8d3f8a8d35aa942b4d3e72695e6ac14c"
+    },
+    {
+      "path": "research/decisions/H2-discovery-descriptive-claim.json",
+      "sha256": "6cb40a025ed733d43bc0a99b3937566252bc9f18182b1e63a98bbd5d87f79ef7"
+    },
+    {
+      "path": "research/decisions/H2-design-support-claim.json",
+      "sha256": "915f49e0f5c665fc9e522d951f1729a3d995aedc833f0616226d0d9b2286df47"
+    },
+    {
+      "path": "docs/methods/cot-scope-comparison.md",
+      "sha256": "9d431d9fd434b24c06bf95bde9e817e128bd71070097af52b6228ddff3952679"
+    },
+    {
+      "path": "docs/research-reset/cot-source-audit-2026-11-08.md",
+      "sha256": "3f98afb2e3c659be7bfd118d7810222d412c47d13041db37e2b7c737feb330b7"
+    },
+    {
+      "path": "docs/research-reset/cot-design-support-note-2026-11-08.md",
+      "sha256": "2a7e76405dd70c46dea5164295ca82c009d89f68119fa164b1b5f97ecebfa33d"
+    },
+    {
+      "path": "research/reviews/R17-v1.json",
+      "sha256": "afe449669bad2e1313201f90b91a3986e480268b6f2c31dd113e4c9c4a4a1928"
+    },
+    {
+      "path": "research/reviews/R17D-v1.json",
+      "sha256": "e5a567904fa0880cfe63befb3d6c458d1c073d456b0a00e8041f2449d1865f82"
+    },
+    {
+      "path": "artifacts/intake/R17-independent-review/verification.json",
+      "sha256": "c5b49a4f49c4a95077f857d470900a85d03009357e09f459be1a9b27f5281771"
+    },
+    {
+      "path": "artifacts/intake/R17D-independent-review/verification.json",
+      "sha256": "938c73e2e4471eeca4cad400b29d7aaf6f5a713fe24e7440369422bfa0326cec"
+    },
+    {
+      "path": "artifacts/intake/cot-independent-review/check_scope_audit.py",
+      "sha256": "7330c7a3d3aeebea1e807b94fd63dcad179091e7bbdfc10f012b2ee41284f673"
+    },
+    {
+      "path": "artifacts/intake/cot-metadata-audit/metadata_audit.json",
+      "sha256": "c6b267d3e253f6d8f404073f94fa330d669a9dc94afca6901821f23ffa89593a"
+    },
+    {
+      "path": "research/history/R17-H1-unexecuted-planning-2026-11-08/PRESERVATION.json",
+      "sha256": "8236247527528e3d9fdfd825b1e540cb75b69ceebceaec064fe0adf0c4451699"
+    },
+    {
+      "path": "research/evidence/R15-archive-2026-11-08.json",
+      "sha256": "8d56b25b482e1e8001821303820d98345f9acef8069516a4f96c8444d03559e7"
+    },
+    {
+      "path": "research/reviews/cot-manuscript-scientific-review.json",
+      "sha256": "110ce39b6070ce3310fbb0d92e8fa51ec55b7e5dbec118090abf2c21017dbc3b"
+    },
+    {
+      "path": "research/history/cot-manuscript-reviewed-v1.md",
+      "sha256": "e01374d9a1327f6bc16e8d85c85cf838bface9f5331ae6bd7931ad3799327d25"
+    }
+  ],
+  "assessment": {
+    "numbers": "The manuscript counts, rounding, coverage ranges, largest BBH/MMLU estimates, intervals, denominators, critical value 3.32979 and 5,000 bootstrap draws match independently verified outputs. Confirmation has 16 material cells among 56 eligible comparisons (9 BBH, 7 MMLU), with all 84 declared and 28 GPQA cells unsupported. Discovery has 17 among 57 and is explicitly exploratory. All 88,772 confirmation contributions and bootstrap replicas were independently reconstructed. A separate metadata-only check confirms one observed version in every nonbaseline model/question/scope cell.",
+    "scope_and_inference": "The report separates judge acknowledgment from latent faithfulness, point sign changes from significance of individual gaps, support restriction from causal effects, and the legitimate source policy from this question-weighted estimand. The primary criterion was fixed before fresh confirmation. The 56 primary intervals are simultaneous only within their endpoint/split family. Unsupported GPQA comparisons and conditional uncertainty are explicit. No corrected true ranking or world-first method is claimed.",
+    "history_and_blinding": "H1 overconditioning, the initial integrity failure, uniform pre-outcome quarantine, unexecuted H1 confirmation and exploratory H2 reuse are disclosed. The original nominal 30/35/35 hash allocation remains unchanged. Confirmation acknowledgment was not aggregated before H2 freeze; reserve model outcomes remain unused. Task metadata across the reserve has already been inspected and is not an unseen future endpoint.",
+    "prior_and_novelty": "The contribution is a bounded empirical measurement audit, not new matching, decomposition or bootstrap theory. Meek et al. (2025) and Guan, Xie and Baker (2026) are accurately cited; the official OpenAI page authors, date and title were directly verified. Relevant matching and model-dependent selection prior is acknowledged. External priority search is not exhaustive, and journal novelty/readiness is not established. Directly read the primary Connor Dilgren/Sarah Wiegreffe commentary dated17August2026, including introduction and intervention-evaluation filtering/comparison sections. It explicitly discusses model-specific retained subsets and cross-model comparability, supporting the newly added sentence. This further reinforces the limit that the general selection/comparison issue is established prior; the contribution remains this specific heldout empirical audit.",
+    "design_argument": "The conditional support identity, binary obstruction and evaluation counts are valid under the stated aligned-answer and valid-baseline assumptions. They do not verify every released row, establish a new theorem, measure runtime savings or causally explain the empirical shifts.",
+    "contribution_transparency": "AI-assisted implementation, analysis and writing, plus distinct internal review, are stated. The human role is limited to observed motivation and constraints. No external peer review or independent human authorship is fabricated. The work is useful portfolio evidence when its owner understands and can defend its methods and limitations.",
+    "v2_diff": "Independently inspected the complete diff against byte-preserved v1. Numerical results and estimands are unchanged. Additions are an earlier primary commentary citation, clarification that the 5pp point criterion plus separation from a 2pp band does not guarantee a 95percent lower magnitude bound above5pp, and explicit exclusion of uncued baselines/repeats from MC/KMC call counts. Each addition is accurate and improves scope clarity."
+  },
+  "nonblocking_notes": [
+    "The narrative is clear and honest for a technical research report. This local review does not establish acceptance in a good journal or certify substantive external novelty.",
+    "Question clustering handles exact baseline-input aliases, while semantic, template and task-family dependence can remain. Do not expand the claim beyond held-out questions in this historical corpus.",
+    "Raw gap sign changes are descriptive examples without individual-gap intervals. The simultaneous interval supports a gap shift, not a true ranking of latent faithfulness.",
+    "Nominal hash proportions are appropriate; the report supplies actual retained counts rather than claiming exact realized percentages.",
+    "Gallery and replay links target the bundle layout. They must resolve in the portable package even though they may not resolve beside the repository manuscript.",
+    "Statements about accompanying artifacts and replay are delivery conditions. The actual 111-figure gallery, PDF and replay must pass before handoff; this review does not assert PDF existence or legibility.",
+    "The fixed eight-model M1-M8 mapping must be in the bound first figure caption, as agreed, so the standalone PDF forest is interpretable without opening the gallery."
+  ],
+  "required_before_delivery": [
+    "Register both additional bounded claim decisions and validate the claim registry.",
+    "Freeze and independently review final R18 inputs, source, captions and replay components.",
+    "Run the portable numerical replay and compare scientific JSON, arrays, rows and counts with declared tolerances, without network or model calls.",
+    "Run the PDF skill marker before actual authoring, inspect every rendered PDF page, and verify all 111 PNG/SVG pairs, eight CSV tables, local links and manifests.",
+    "A semantic or numerical manuscript change requires a follow-up review of its new hash. Formatting should preserve the source Markdown bytes."
+  ],
+  "scientific_validity": "not_assessed",
+  "prior_review": {
+    "path": "research/reviews/cot-manuscript-scientific-review.json",
+    "sha256": "110ce39b6070ce3310fbb0d92e8fa51ec55b7e5dbec118090abf2c21017dbc3b"
+  },
+  "preserved_prior_manuscript": {
+    "path": "research/history/cot-manuscript-reviewed-v1.md",
+    "sha256": "e01374d9a1327f6bc16e8d85c85cf838bface9f5331ae6bd7931ad3799327d25"
+  },
+  "primary_source_check": {
+    "url": "https://www.lesswrong.com/posts/z9fPtghFxELBXebY3/evaluating-chain-of-thought-monitorability-is-still-an-open",
+    "authors": [
+      "Connor Dilgren",
+      "Sarah Wiegreffe"
+    ],
+    "date": "2026-08-17",
+    "read_scope": "Primary article title/byline/date, introduction, evaluation taxonomy, and intervention filtering/comparison discussion through its reported filtering examples.",
+    "claim_supported": "Earlier commentary highlights model-specific filtering and the resulting difficulty of cross-model comparisons.",
+    "scope_limit": "No assertion of complete literature coverage or absence of earlier empirical findings."
+  }
+}

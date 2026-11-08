@@ -17,3 +17,13 @@ __pycache__/
 *.sqlite3-wal
 /checks.json
 /research/reviews/*-draft.json
+
+# Generated intake/QA copies and large evidence archives ship as release assets.
+# Previously tracked historical intake files stay tracked.
+/artifacts/intake/
+/research/evidence/*.zip
+/research/evidence/*.tar.gz
+
+# Exact small snapshots explicitly listed by the historical portable inventory.
+!/research/evidence/legacy-2026-11-07/files/result/
+!/research/evidence/legacy-2026-11-07/files/result/**

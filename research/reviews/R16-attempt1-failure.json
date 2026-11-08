@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "stage_id": "R16",
+  "attempt_id": "20261108T091936-7fa306e46e",
+  "review_mode": "subagent_review",
+  "review_kind": "bound_failed_attempt_review_not_operational_import",
+  "harness": "codex",
+  "author_agent": "/root",
+  "implementation_author": "/root/alignment_brainstorm",
+  "reviewer_agent": "/root/reset_critic",
+  "reviewer_independence": "Distinct child agent; authored no evaluated PLAN, protocol, implementation, outputs or REPORT. Previously reviewed design and independently ran16 handwritten-fixture checks. Independently read failure evidence and only source provenance/question/choice/gold-label metadata plus two raw INPUT strings, never ACK/model-output/reasoning values. Wrote only this review.",
+  "reviewed_at_utc": "2026-11-08T09:23:28.220120+00:00",
+  "verdict": "revise",
+  "scientific_validity": "not_assessed",
+  "operational_review_imported": false,
+  "operational_close_performed": false,
+  "reviewed_artifacts": [
+    {
+      "path": "artifacts/research/R16/20261108T091936-7fa306e46e/manifest.json",
+      "sha256": "074319cbb4e1dfac7af49e8a4aae36ff46194d84d7d787833efda27cdbe8724c"
+    },
+    {
+      "path": "artifacts/research/R16/20261108T091936-7fa306e46e/plan.json",
+      "sha256": "0c744a73f7e88cdd57b9ed433965a26e3dfcb8ebede901d5b8dce3bd9aced503"
+    },
+    {
+      "path": "artifacts/research/R16/20261108T091936-7fa306e46e/tasks/unit-checks/checks.json",
+      "sha256": "45cd5e0232a85408623f1ae332d2b0ae16dd00d07fa8ddc2338986d04ebe89d7"
+    },
+    {
+      "path": "artifacts/research/R16/20261108T091936-7fa306e46e/tasks/ack-audit/stderr.log",
+      "sha256": "04db1a046d977aaa9cbd7536a70cec931a4f9535a823d448d64cdeebae708df1"
+    },
+    {
+      "path": "artifacts/research/R16/20261108T091936-7fa306e46e/tasks/ack-audit/stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/research/R16/20261108T091936-7fa306e46e/tasks/ack-audit/audit/failure.json",
+      "sha256": "f573755b473be733081268e5401b555215d53a7e75e5fc4574a7efc9125becbe"
+    },
+    {
+      "path": "artifacts/research/R16/20261108T091936-7fa306e46e/tasks/ack-audit/audit/dataquality.json",
+      "sha256": "d9f5b312c7abb7ecff630845ec82531861e7bcafe4523d7b01703d8c67d150af"
+    },
+    {
+      "path": "research/stages/R16/REPORT-attempt1.md",
+      "sha256": "80b0ea956cbd14993215f7c05d1c7bbd3512ff87381a3d9180740508c67ab02a"
+    },
+    {
+      "path": "research/stages/R16/PLAN.md",
+      "sha256": "b4ae1e835ae5955875b005236bf30770eb6b856682ff172c81270d2e2c450a2f"
+    },
+    {
+      "path": "research/stages/R16/inputs/analysis-protocol.json",
+      "sha256": "b5d447ba7263e2584272d7a08c0ada204d8b0157e36d36375d33d5f8a5531e42"
+    },
+    {
+      "path": "research/stages/R16/inputs/design-review.json",
+      "sha256": "1d1817033da1adde54513c9a6a0c3e58ae4172372e2cab2ba89a4834d0831b60"
+    },
+    {
+      "path": "research/plans/R16.json",
+      "sha256": "0c744a73f7e88cdd57b9ed433965a26e3dfcb8ebede901d5b8dce3bd9aced503"
+    },
+    {
+      "path": "src/cot_audit.py",
+      "sha256": "4742c0db97859cf231d40dbf239bc6f5348abc61c3ec1e322e76da819f3f7ab9"
+    },
+    {
+      "path": "scripts/cot_audit.py",
+      "sha256": "d45019bd96a9346579dfda4c86c1d401e62ead2a2abca55a880a811f9c0956ac"
+    },
+    {
+      "path": "tests/test_cot_audit.py",
+      "sha256": "0ab5d83d214a63e106f490100696468dcd37570063a770382e43b3c047ba3ac0"
+    },
+    {
+      "path": "artifacts/intake/cot-audit-source/slim.parquet",
+      "sha256": "cf41ae989be031362fed849a89387be87ca5d8231f89faa94ff8c1a96763f6ec"
+    },
+    {
+      "path": "research/stages/R15/inputs/download-spec.json",
+      "sha256": "e28633394bacca464ffa4190527dd0d55b4db25ddc019c5f17a6bbb8e958c66c"
+    },
+    {
+      "path": "uv.lock",
+      "sha256": "ac89eef670e3774086fff7a06df62f1ba760f85d6c76378ac915ca32b76523b4"
+    }
+  ],
+  "assessment": {
+    "failure_gate": "Identical released input has contradictory question metadata: correct_text",
+    "failure_phase": "Full metadata_pass before rows_factory(VALUE_COLUMNS), validity pass, ACK aggregation, estimands or bootstrap. Traceback and source control flow independently reviewed.",
+    "hypothesis_H1": "not_evaluated; this is not a negative scientific result or support-analyzability failure",
+    "failure_wall_seconds": 0.0940000000409782,
+    "input_binding": {
+      "slim_sha256": "cf41ae989be031362fed849a89387be87ca5d8231f89faa94ff8c1a96763f6ec",
+      "spec_sha256": "e28633394bacca464ffa4190527dd0d55b4db25ddc019c5f17a6bbb8e958c66c",
+      "protocol_sha256": "b5d447ba7263e2584272d7a08c0ada204d8b0157e36d36375d33d5f8a5531e42",
+      "slim_bytes": 88613869
+    },
+    "actual_failed_status_preserved": true,
+    "workflow_limitation": "Current verify/review importer requires complete attempt status. This standalone bound review is not an operational review/closure, and no success is fabricated."
+  },
+  "independent_metadata_reproduction": {
+    "scope": "Two baseline rows in bbh/bbh_anthropic_claude_3_5_sonnet.parquet; only metadata and raw input requested",
+    "row_indices": [
+      216,
+      624
+    ],
+    "core_ids": [
+      "bbh_causal_judgement_0036",
+      "bbh_causal_judgement_0104"
+    ],
+    "same_exact_raw_input": true,
+    "input_chars": 817,
+    "input_sha256": "ba08a665eb39a1524b7a74cf47429e3fe90aa92e4c35fa1e389d93f79cbbbcaa",
+    "ordered_choices": [
+      "Yes",
+      "No"
+    ],
+    "gold_metadata": [
+      {
+        "core_id": "bbh_causal_judgement_0036",
+        "correct_answer": "B",
+        "correct_text": "No"
+      },
+      {
+        "core_id": "bbh_causal_judgement_0104",
+        "correct_answer": "A",
+        "correct_text": "Yes"
+      }
+    ],
+    "outcome_columns_requested": []
+  },
+  "limitations": [
+    "This proves a released metadata inconsistency for an identical INPUT, not its upstream cause, source-code fault, original benchmark label error, or invalidity of acknowledgment labels. Gold correctness is not the ACK outcome.",
+    "No selected or heldout/reserve ACK aggregation has occurred; no H1 effect, model ranking, statistical interval, positive/negative alignment result or journal readiness can be inferred.",
+    "Only the first encountered conflict has been independently reproduced. Its frequency and other conflicts require a complete metadata-only audit before any retry. Raw input examination used existing pinned payloads; no new data/model/network operation was run."
+  ],
+  "required_before_retry": [
+    "Preserve failed attempt, frozen original PLAN/protocol/source, stderr, failure and metadata ledger; do not overwrite or pretend closed.",
+    "Perform a full metadata-only consistency audit across all release rows, without ACK/model-answer/output/reasoning values or scores; identify ALL conflicts under a uniform documented rule.",
+    "Independently review source/input diagnosis and the complete conflict ledger. Any conservative exclusion must quarantine every affected whole baseline-union cluster across every partition, retain original split keys, list exact excluded questions/source reasons and explicitly narrow estimand. No one-off exception for0104 or outcome-based exclusion.",
+    "Keep source/provenance/schema corruption and remaining contradictions as hard failures; do not silently normalize truth labels or impute unknown versions.",
+    "Freeze a revised PLAN/protocol/source and new independent preflight before the new attempt. Treat this as pre-outcome integrity repair of H1, not a positive/negative H1 or reserve/H2 analysis."
+  ],
+  "notes": [
+    "Parent conservative quarantine proposal is conditionally defensible before outcome aggregation. Conflicting gold text alone does not causally invalidate ACK comparison; the purpose is an explicit metadata-consistent population, not proof original native adaptive estimand is wrong.",
+    "No implementation or source change was made by reviewer. No subsequent source revision is accepted by this failed-attempt review."
+  ]
+}

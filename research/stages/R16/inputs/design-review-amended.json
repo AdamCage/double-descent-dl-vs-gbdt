@@ -1,0 +1,185 @@
+{
+  "schema_version": 1,
+  "stage_id": "R16",
+  "review_mode": "subagent_review",
+  "harness": "codex",
+  "author_agent": "/root",
+  "coauthor_agents": [
+    "/root/alignment_brainstorm"
+  ],
+  "reviewer_agent": "/root/reset_critic",
+  "reviewer_independence": "Distinct child /root/reset_critic. Authored no evaluated PLAN/protocol/amendment, intake/analysis/metadata-audit implementation/tests, ledger or REPORT. Independently reviewed corrections, ran17 pure fixtures and separately reimplemented full-release metadata/design checks read-only. Only reviewer artifacts and independent metadata-verification output authored by reviewer. No actual ACK, model-answer, output/reasoning, correctness outcome or factor-score column requested. Local independent team review, not external peer review.",
+  "reviewed_at_utc": "2026-11-08T09:37:39.926078+00:00",
+  "verdict": "accept",
+  "blocking_issues": [],
+  "authorization_decision": {
+    "path": "research/decisions/alignment-portfolio-authorization-2026-11-08.json",
+    "sha256": "c0ad0d0aa0fdb84d70f4ddfe7b613a22436400003427d37882284f1bdbbb38b1"
+  },
+  "reviewed_artifacts": [
+    {
+      "path": "research/plans/R16.json",
+      "sha256": "f04a0ecdf6210f58dc97bc4803805e68efa736a1a677b886467b8ba7f9452274"
+    },
+    {
+      "path": "research/plans/R17.json",
+      "sha256": "230119c5e8a02995889c56b51242fccbb227797f883bea5ef940226f9be56a6f"
+    },
+    {
+      "path": "research/stages/R16/PLAN.md",
+      "sha256": "f60d64943c715560ad0bcbfe29f64e555f75c1f771e74e62ba159eea8f68d60b"
+    },
+    {
+      "path": "research/stages/R17/PLAN.md",
+      "sha256": "3ffc405233a1195738b7704b33b1504d76c0f0858fe6e16e9362cf53a7bde109"
+    },
+    {
+      "path": "research/stages/R16/inputs/analysis-protocol.json",
+      "sha256": "d1f05436b33dea8314c1a32283037c76cc48122e55ae40c87d739a7f9afa4b35"
+    },
+    {
+      "path": "research/stages/R17/inputs/analysis-protocol.json",
+      "sha256": "3d37791eb263b33418144befbae7d93783877d3371892cdfa143003dc6637a01"
+    },
+    {
+      "path": "research/stages/R15/inputs/download-spec.json",
+      "sha256": "e28633394bacca464ffa4190527dd0d55b4db25ddc019c5f17a6bbb8e958c66c"
+    },
+    {
+      "path": "research/stages/R15/inputs/dataset-LICENSE",
+      "sha256": "c0dadc3d3f06dc19f2fed56f39c8d04d4d4a8a5cc8cf06522ee9d34107fd2a31"
+    },
+    {
+      "path": "research/stages/R15/inputs/dataset-README.md",
+      "sha256": "8460079e18374955310b16b82a25e2de9c7e9542f268d2698c01ffb4caddb616"
+    },
+    {
+      "path": "research/stages/R15/inputs/design-review.json",
+      "sha256": "e01fe100381f53e73bd39261e887ce969c22c7a6b86486f0f7ecaa076c7ae231"
+    },
+    {
+      "path": "docs/research-reset/cot-source-audit-2026-11-08.md",
+      "sha256": "3f98afb2e3c659be7bfd118d7810222d412c47d13041db37e2b7c737feb330b7"
+    },
+    {
+      "path": "docs/decisions/0006-alignment-portfolio-reset.md",
+      "sha256": "2ffe8716ca9f4a1cc9b5e5570fa5ab5887c685e90243742f65d33eb591ff56c6"
+    },
+    {
+      "path": "research/decisions/alignment-portfolio-authorization-2026-11-08.json",
+      "sha256": "c0ad0d0aa0fdb84d70f4ddfe7b613a22436400003427d37882284f1bdbbb38b1"
+    },
+    {
+      "path": "artifacts/intake/cot-audit-source/slim.parquet",
+      "sha256": "cf41ae989be031362fed849a89387be87ca5d8231f89faa94ff8c1a96763f6ec"
+    },
+    {
+      "path": "artifacts/intake/cot-audit-source/download_manifest.json",
+      "sha256": "9f73748295f546573a5810b0bf122e59504b829bf17b7755c0d178a254d220af"
+    },
+    {
+      "path": "artifacts/intake/cot-audit-source/schema_profile.json",
+      "sha256": "06f4ceec6dc719c0e103be94e3587b676da27deacc8a1fa0f4f7a4ad98ffc0f4"
+    },
+    {
+      "path": "artifacts/intake/cot-audit-source/intake_report.json",
+      "sha256": "57f4e199ee18e0997d64cf9111f8c3791333f59c8dde95a733ec78e42cd39e7e"
+    },
+    {
+      "path": "src/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "src/cot_audit.py",
+      "sha256": "f278b5a3adcae1535f04a499347c9ac68b2e60f9c92796fec1352879ee33c4c4"
+    },
+    {
+      "path": "scripts/cot_audit.py",
+      "sha256": "73054927bc3a79a684a9542dee9acfa438f447f665e630be87d6e1026335cd20"
+    },
+    {
+      "path": "scripts/run_unit_checks.py",
+      "sha256": "d2fc3c360195cd7f8d69689b0dc60940dcd416e2b31b9396e60bfeafb9528c52"
+    },
+    {
+      "path": "tests/test_cot_audit.py",
+      "sha256": "2315cbcb1b9bce801154832114fa90ca57ebfa23487baea6902f5ea297dac0e4"
+    },
+    {
+      "path": "pyproject.toml",
+      "sha256": "5d43d6f7f88312b18299a1ec7e8ac921d512c271ac022de4ad0720eb5883e182"
+    },
+    {
+      "path": "uv.lock",
+      "sha256": "ac89eef670e3774086fff7a06df62f1ba760f85d6c76378ac915ca32b76523b4"
+    },
+    {
+      "path": "research/stages/R16/inputs/design-review.json",
+      "sha256": "1d1817033da1adde54513c9a6a0c3e58ae4172372e2cab2ba89a4834d0831b60"
+    },
+    {
+      "path": "research/stages/R16/AMENDMENT-metadata-population.md",
+      "sha256": "6fb4d9ac6c0e76f16fb252881dc9b0eb473746771beddbce65ffe95db5075b68"
+    },
+    {
+      "path": "research/reviews/R16-attempt1-failure.json",
+      "sha256": "029507da4390203f4c89c6cdf672e04f2f208cbb00e873d7db2c9aed27a4f2a3"
+    },
+    {
+      "path": "research/stages/R16/inputs/metadata-scan-review.json",
+      "sha256": "97a601743604c96251bca4637999526b77b6de3213cb269d100cfea3fea184bb"
+    },
+    {
+      "path": "artifacts/intake/cot-metadata-audit/metadata_audit.json",
+      "sha256": "c6b267d3e253f6d8f404073f94fa330d669a9dc94afca6901821f23ffa89593a"
+    },
+    {
+      "path": "artifacts/intake/cot-metadata-independent-review/verification.json",
+      "sha256": "99ad3fa2fbad1ca6027dcb8cbd9892b456fef33c762bf5369265a034814b80a5"
+    }
+  ],
+  "checks": {
+    "question_and_scope": "All8 historical released models,28 unordered pairs,3 explicit file-parent datasets =84 cells, fixed lexicographic model order. Endpoint is source judge cue_acknowledgment among observed bool has_cue rows; non-switches included, null excluded and logged, false may include source parse failure. This is not published subdataset-macro F reproduction, latent faithfulness, causal recall or corrected model ranking.",
+    "estimands": "Reviewed duplicate-generation mean inside model/question/context/exact-version; equal version, common-context and release-core-question weighting. U0 common question/context native versions; U1 common-exact-version question/context subset with native-all-observed versions; EXACT same U1 question/context but common versions. Total=EXACT-U0, composition=U1native-U0native, version=EXACT-U1native. Algebraic closure retained. Different populations remain explicit; no missing counterfactual imputation.",
+    "integrity_before_aggregation": "Full metadata validation before ACK aggregation: expected24source files/payloadSHAs; contiguous unique per-file rowindices; one model/file/dataset map; recomputed ordered-choices SHA; same-q unordered choices and correct_text consistency; correct answer letter/index consistency only within same ordered choices; identical nonempty input contradictions hard fail. Valid cued ACK row requires nonempty baseline anchor and valid exact input/choices/target signature. Invalid keys hard fail, not unknown-version pooling. Missing baselines reported with failure ledger; baseline prompt variants reported, not automatically treated as confounding proof. AMENDMENT: all cross-question same-input conflicts are collected completely before original baseline-union clusters/partitions are quarantined uniformly; within-question conflicts remain hard failures. No convenient-label correction or one-off ID exception.",
+    "split_and_reserve": "Both protocols have identical pre-outcome three-way split: SHA256(20261108|minimum canonical dataset|core_id alias cluster), full hex integer mod20:0..5discovery,6..12confirmation,13..19reserve. Union aliases through baseline input hashes across all datasets before split; cluster remains in one partition. Active audit filters selected question IDs before ACK validity/aggregation. Heldout and reserve outcomes are statistically unused; Parquet may decode unselected values in memory and explicit quality flag says so. Tests mutate heldout/reserve outcome values to unreadable objects and show identical selected estimates/bootstrap. No reserve inference under this review.",
+    "bootstrap_and_intervals": "5000 global Efron cluster multiplicities shared by every dataset/pair; aliases spanning datasets share weight. Bootstrap universe selected clusters with valid cued ACK; ratio means retain equal release-core-question estimands. Frozen seeds16016discovery/17017confirmation, batches32. Each delta endpoint has separate centered max absolute standardized bootstrap family, fixed marginal bootstrapSD ddof1,95percent higher quantile. Common joint finite mask across all support-tested cells must retain>=99percent; otherwise whole family noCI. SE<=1e-12 gets noCI/inconclusive. No nested bootstrap-t, finite-sample guarantee, or joint95percent claim across3 endpoint families.",
+    "support_and_decisions": "Support eligibility U1cluster count>=50discovery/100confirmation and question coverage>=.25, finite point estimands. Discovery go uses only support eligibility>=4cells spanning>=2datasets, not SE, effect or CI. Inferential eligibility separately requires valid primary CI. Confirmation sensitivity requires>=2cells spanning>=2datasets with absolute total>=.05 and primary CI low>.02 or high<-.02. Robustness requires support analyzability and ALL supporteligible primaryCIs present and inside[-.05,.05]; degenerate/missingCI prevents strong null. All84cells retained even unsupported. No post-discovery pair/threshold selection.",
+    "power_and_limits": "Three-way split adopted before outcome calculations after explicit user request for further hypotheses. Confirmation35percent reduces precision; GPQA Diamond198 questions cannot realistically satisfy100confirmation clusters and is knowingly descriptive/unsupported. At least2dataset criterion therefore primarily relies on BBH/MMLU. This is a design limitation, not permission to lower thresholds after outcomes.",
+    "implementation_and_resources": "Reviewed input/spec SHA checks before data access, all8models/3datasets/24source requirement, new output directory, failure preservation and per-question/bootstraps/settings outputs. CLI numeric env and Arrow CPU/I/O capped4; batch2048 reads no parallel Arrow decoding. No network/model/train/GPU operations. Outer1500s task/1800s attempt and cumulative explicit charter guards remain necessary; actual outputs<=256MiB must be verified postrun.",
+    "independent_tests": "Independently17/17 pure/handwritten-fixture tests PASS0.547s on amended source. Additional cross-question conflict test touches two ORIGINAL clusters across discovery/reserve plus a cross-dataset alias; all members excluded before unreadable quarantined ACK values could be used; within-question contradiction still hard fails. --metadata-only fixture rejects requests for any ACK/model-answer/output/reasoning/is_correct column; META+DESIGN only branches complete all3partitions.",
+    "frozen_bindings": "Amended sourcef278b5a3adcae1535f04a499347c9ac68b2e60f9c92796fec1352879ee33c4c4; CLI73054927bc3a79a684a9542dee9acfa438f447f665e630be87d6e1026335cd20; tests2315cbcb1b9bce801154832114fa90ca57ebfa23487baea6902f5ea297dac0e4. MachineR16f04a0ecdf6210f58dc97bc4803805e68efa736a1a677b886467b8ba7f9452274;R17230119c5e8a02995889c56b51242fccbb227797f883bea5ef940226f9be56a6f. ProtocolR16d1f05436b33dea8314c1a32283037c76cc48122e55ae40c87d739a7f9afa4b35;R173d37791eb263b33418144befbae7d93783877d3371892cdfa143003dc6637a01. Both bind exact metadata ledgerc6b267d3e253f6d8f404073f94fa330d669a9dc94afca6901821f23ffa89593a and originalcf41...slim/e286...spec. FirstR16failedattempt preserved before ACK aggregation; no numerical H1 result exists; registry execution false before amended activation.",
+    "complete_metadata_ledger_independent_audit": "Independently scanned ALL446208 release rows using metadata/design columns only and a separate inline implementation, not author metadata_pass. Recomputed source-row/provenance identity, orderedchoices hashes, per-q consistency, global4field conflicts/values/questionIDs, original baseline hash unions/canonicalkeys/20bucket splits, complete excluded clusters/questions and all370307 retained cued design anchors/signatures. Exactmatch:14conflicting input hashes,4corequestions in2wholeclusters,192rows quarantined, all in confirmationBBH; no within-question conflict. Original9442question IDs:2858discovery/3272confirmation/3312reserve; retained2858/3268/3312. All author ledger values/counts/IDs and original cluster assignments match. This is source metadata consistency, not an ACK finding.",
+    "amended_population": "Exact policy quarantine_entire_baseline_union_cluster_before_outcomes applied without outcomes under a separately accepted metadata-only scan. All14conflicts reflect opposing reference labels in2duplicate BBHprompt groups. Fullledger and complete independent verification hashbound; 4questions/2clusters excluded uniformly across all partitions while original split keys/numeric thresholds remain unchanged. Contradictory gold text does not establish wrong ACKlabels or upstream benchmark/code cause. Estimand explicitly covers retained metadata-consistent release only."
+  },
+  "nonblocking_notes": [
+    "This amended acceptance applies only to future attempts using this exact amended packet. Original first R16 integrity failure and its bound revise review remain; it is not a negative H1. Original reviews are preserved and do not authorize mutable amended inputs.",
+    "Quarantine removes4release questionIDs/2whole clusters, not a fixed target outcome. All excluded groups happen to fall in the pre-existing confirmation split. This is known before ACK aggregation; no claim about excluded population is allowed. Metadata has been inspected across reserve, so only unqueried generated-model outcomes retain statistical reserve status.",
+    "Acceptance is readiness for a bounded descriptive audit. It does not establish empirical sensitivity, robustness, novelty, journal readiness or alignment safety. Actual metadata could fail; preserve failure and do not relax definitions after outcomes.",
+    "Question aliases share bootstrap multiplicity while point weights remain equal released core IDs. Counts of raw rows, generations and aliases are not independent sample sizes. Resampling approximates question variation conditional on cached generations and source judge labels; it does not capture annotator or new-model-generation uncertainty.",
+    "Exact released-input equality may omit system/provider prompts. Common-input support restriction changes population and can select on model-dependent baseline answers. Composition/version decomposition is descriptive, not causal correction or proof original adaptive estimand is wrong.",
+    "Novelty is limited by existing Meek adaptive-cue/state-transition work and OpenAI beyond-gmean-squared matching/behavior-class limitations. Standard matching, maxT, baseline-correctness algebra and decompositions are not new methods. A meaningful scientific contribution depends on heldout empirical evidence and honest practical implications.",
+    "No reserve outcome analysis is authorized. A next hypothesis needs a separately frozen preregistration and independent review before one use of reserve. Multiple attempted hypotheses must be disclosed; per-study nominal familywise intervals do not imply program-wide95percent validity.",
+    "R17 common method description refers to frozen R16PLAN; both PLANs/protocols and both machine plans are hashbound here. R16 closure and original snapshot must remain verified/restorable as dependency evidence.",
+    "Scientific outputs, decomposition identities, support masks, bootstrap arrays and report numerical claims require independent postrun audit before claim acceptance/closure; pure tests cannot establish a real positive finding."
+  ],
+  "required_before_dispatch": [
+    "uv run python scripts/research.py validate-plan R16",
+    "Frozen dependencies and repository checks pass",
+    "All dependencies closed/verified; explicit new-charter cumulative resource check includes R15 and all retained evidence",
+    "Activate only accepted frozen stage under single-dispatcher lock",
+    "R17 dispatch only after R16 integrity and support-only discovery_go, independent of effect or SE",
+    "Verify actual output bytes, source bindings and no unselected/reserve contributions after run",
+    "Postrun compare dataquality.metadata_integrity.conflict_ledger EXACTLY with frozen metadata audit ledger before any result/claim acceptance; record any discrepancy as integrity failure."
+  ],
+  "scientific_validity": "not_assessed",
+  "review_kind": "amended_pre_outcome_numerical_preflight_after_metadata_only_ledger",
+  "supersedes_for_future_attempts": {
+    "path": "research/stages/R16/inputs/design-review.json",
+    "sha256": "1d1817033da1adde54513c9a6a0c3e58ae4172372e2cab2ba89a4834d0831b60"
+  },
+  "preserved_failure_review": {
+    "path": "research/reviews/R16-attempt1-failure.json",
+    "sha256": "029507da4390203f4c89c6cdf672e04f2f208cbb00e873d7db2c9aed27a4f2a3"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "claim_id": "H2-exploratory-discovery-summary",
+  "statement": "Under the frozen H2 scope-only exploratory discovery attempt 20261108T095410-f87b41e0ef, 17 cells (10 BBH and 7 MMLU) among 57 support- and inference-eligible cells met the fixed descriptive sensitivity rule; all 84 declared cells were retained. These 30% question clusters had already been inspected for H1. This is exploratory reuse, not independent confirmation, a replication of H1, or evidence about latent reasoning. The separately frozen confirmation criterion was assessed on unused questions.",
+  "statement_sha256": "b27aec954140fac6ae5daf56766e9a51d509fa6253759828d0b2c135faf9707d",
+  "scope": "Exploratory descriptive summary of the pinned historical release, equal-question weights, scope-only H2 context.",
+  "author_agent": "/root",
+  "coauthor_agents": [
+    "/root/alignment_brainstorm"
+  ],
+  "evidence": [
+    {
+      "path": "artifacts/research/R17D/20261108T095410-f87b41e0ef/tasks/ack-audit/audit/analysis.json",
+      "sha256": "99d7a0c9e07886959fa13c44064d7de41789ba8018410523bc795b92a34c316c"
+    },
+    {
+      "path": "artifacts/research/R17D/20261108T095410-f87b41e0ef/tasks/ack-audit/audit/dataquality.json",
+      "sha256": "bda5a5ae8ace9a8ac73a14ce36a8128969ef1f3696793f5935aafff004dbd573"
+    },
+    {
+      "path": "research/stages/R17D/REPORT.md",
+      "sha256": "535e9bded100579ec0fc67bca392cd6a9329ba308bc3a22030cc1a7314a6498f"
+    },
+    {
+      "path": "research/reviews/R17D-v1.json",
+      "sha256": "e5a567904fa0880cfe63befb3d6c458d1c073d456b0a00e8041f2449d1865f82"
+    }
+  ],
+  "authorization_decision": {
+    "path": "research/decisions/alignment-h2-authorization-2026-11-08.json",
+    "sha256": "76eb82a9b82c8ad0c7832d0c55b7d3e445e9f412579e57390aca56f7c1bc66cd"
+  },
+  "limitations": [
+    "Discovery reuses H1-inspected questions; no independent confirmation or new-model replication.",
+    "Simultaneous bootstrap families are approximate and separate by endpoint and split.",
+    "Released judge annotation, not latent faithfulness; matching changes population."
+  ]
+}

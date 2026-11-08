@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "claim_id": "R11-schedule-clock-dependence",
+  "statement": "On R11 fixed equal-total schedules, stepup-minus-constant train descent-speed gain was positive in tree-index time in both environments (synthetic mean 0.004256879126726967, adjusted 95% family4 CI [0.00319455579167358,0.005319202461780355]; breast_cancer mean 0.0016625764263010839, CI [0.0013709968758980947,0.001954155976704073]). The prespecified cumulative-learning-rate clock gave negative corresponding contrasts (synthetic mean -0.02412183355432826, CI [-0.03371496643591244,-0.01452870067274408]; breast_cancer mean -0.05136558044625129, CI [-0.05352673234988818,-0.04920442854261439]). Stepdown-minus-constant was supported negative only on synthetic; the breast-cancer primary adjusted interval crossed zero. This is a whole-schedule, clock-dependent optimization control, not a natural CatBoost mechanism or double-descent result.",
+  "statement_sha256": "89c0dbf79f5b18e60a9590eea39234bf29deba203693b9e5a9a3920a3515f4de",
+  "evidence": [
+    {
+      "path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/analysis.json",
+      "sha256": "f83c00cc8844af56c1073e756db80f3e9596e04306ff7d4943622ef330cb05c3"
+    },
+    {
+      "path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/cells.jsonl",
+      "sha256": "df64212083191fb78579c5883b282318d8a00ce669eff2d643c10693f4d83185"
+    },
+    {
+      "path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/predictions.npz",
+      "sha256": "3045935cd2290cc944d0a8d0e3d4aa871fbece4b4cc307c6c9f15620e013c0f3"
+    },
+    {
+      "path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/data.npz",
+      "sha256": "e95b1bd73f14a578e9662a813e424739b93032c01812492bd8c6bf53a9c9cba4"
+    },
+    {
+      "path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models.json",
+      "sha256": "398160c18ebddba0fbffaf5f74682ceab1e9d180af19fd6852b0b82dbd43fdb2"
+    }
+  ],
+  "reviewer": "Independent Codex subagent /root/science_critique",
+  "harness": "codex",
+  "verdict": "accepted",
+  "review_mode": "subagent_review",
+  "author_agent": "/root/catboost_study",
+  "coauthor_agents": [
+    "/root"
+  ],
+  "reviewer_agent": "/root/science_critique",
+  "authorization_decision": {
+    "path": "research/decisions/codex-refactor-authorization-2026-11-07.json",
+    "sha256": "8559055cea21e6f58bdd58b07930e5d9ab505a84a1ea58c72721c0c5e4e2119d"
+  },
+  "scientific_validity": "not_assessed",
+  "limitations": [
+    "This is a whole-schedule intervention, including different pre-boundary training histories, not an isolated LR jump with identical initial trees/gradients.",
+    "Tree-clock and cumulative-LR-clock slopes have different units. Their numerical effect sizes must not be subtracted or compared as a common estimand; the claim concerns signs of within-clock schedule-minus-constant contrasts.",
+    "Cumulative prescribed LR is a diagnostic clock, not a proved exact optimization time for CatBoost or a fixed quadratic operator.",
+    "Each of the primary and LR-clock families has4 nominal Bonferroni-adjusted intervals. They do not jointly provide95%coverage across all8 quantities; n12 Student-t inference is approximate.",
+    "Synthetic repeats are new data/split/model units. Breast-cancer repeats are split/model units conditional on one fixed corpus, not independent new corpora or clinical validation.",
+    "First successful numerical attempt is preserved with operational revise for missing inference-resource assurance; actual excess CPU was unmeasured. Both attempts remain charged, share the same12 units and exactly identical raw prediction values, and do not form independent replications.",
+    "Observed scheduled acceleration is a positive optimization control, not naturally discovered late acceleration, a new general method/theorem, a CatBoost annealing mechanism or double descent. Novelty priority and journal readiness are not certified.",
+    "All raw arrays and72 model hashes were checked, while detailed model inference was spotchecked on6 models rather than independently rerunning training."
+  ],
+  "assessment_basis": "All raw data/prediction hashes and rows; independently recomputed raw-loss OLS gains, eight paired contrast vectors and all intervals;72 model-file hashes checked and6 model prefix/final predictions spotchecked. Historical verify passed83files. Exact retry predictions match preserved attempt1. No model training or scientific matrix rerun."
+}

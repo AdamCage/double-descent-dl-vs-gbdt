@@ -1,0 +1,769 @@
+{
+  "schema_version": 1,
+  "protocol_id": "R12-split-score-randomness-2026-11-07",
+  "protocol_sha256": "02de1fdb0fd4dd4c2d73da7091c8e268c1e935e1a5334b9c8ef99a10fa9cfb3c",
+  "n_cells": 72,
+  "expected_cells": 72,
+  "seeds": [
+    13001,
+    13002,
+    13003,
+    13004,
+    13005,
+    13006,
+    13007,
+    13008,
+    13009,
+    13010,
+    13011,
+    13012
+  ],
+  "datasets": [
+    "synthetic",
+    "breast_cancer"
+  ],
+  "random_strengths": [
+    0.0,
+    1.0,
+    10.0
+  ],
+  "single_continuous_fit": true,
+  "constant_learning_rate": 0.05,
+  "calibration_binding": null,
+  "scan_score_contrasts": [
+    {
+      "dataset": "synthetic",
+      "random_strength_minus_zero": 1.0,
+      "predicted_sign": null,
+      "outcome": "exploratory_no_sign_prediction",
+      "n": 12,
+      "values": [
+        0.024089050907246196,
+        -9.961996505550904e-05,
+        0.017667187359463765,
+        -0.00018418102698813596,
+        0.003477459805060322,
+        0.002557350220665509,
+        0.01020552704204934,
+        -0.0035687029238455348,
+        0.008836746398284093,
+        -0.00026600757051040147,
+        0.018294031612339966,
+        0.003928070350210747
+      ],
+      "mean": 0.007078076017410028,
+      "standard_error": 0.002545118878797457,
+      "ci95_student_t": [
+        0.0014763071345077552,
+        0.012679844900312301
+      ],
+      "ci_family_bonferroni": [
+        -0.0005085986796038696,
+        0.014664750714423927
+      ],
+      "family_alpha": 0.05,
+      "family_comparisons": 4,
+      "assumptions": "Independent replicate differences and approximate t inference; fixed-corpus split repetitions do not sample new corpora."
+    },
+    {
+      "dataset": "synthetic",
+      "random_strength_minus_zero": 10.0,
+      "predicted_sign": "positive",
+      "outcome": "supported",
+      "n": 12,
+      "values": [
+        0.015981134602975646,
+        0.014538538173704409,
+        0.04058355509746667,
+        0.02584104569227124,
+        0.014862491718628704,
+        0.015045513451535587,
+        0.0253069220424676,
+        0.00042455719073537443,
+        0.0099112973278093,
+        0.0006320734729440627,
+        0.02279036209877784,
+        0.01971471154662168
+      ],
+      "mean": 0.017136016867994843,
+      "standard_error": 0.0032008745582583448,
+      "ci95_student_t": [
+        0.010090939465953346,
+        0.02418109427003634
+      ],
+      "ci_family_bonferroni": [
+        0.00759461814522553,
+        0.026677415590764156
+      ],
+      "family_alpha": 0.05,
+      "family_comparisons": 4,
+      "assumptions": "Independent replicate differences and approximate t inference; fixed-corpus split repetitions do not sample new corpora."
+    },
+    {
+      "dataset": "breast_cancer",
+      "random_strength_minus_zero": 1.0,
+      "predicted_sign": null,
+      "outcome": "exploratory_no_sign_prediction",
+      "n": 12,
+      "values": [
+        0.0024158463285301095,
+        -0.006224506202838801,
+        0.002470402615972604,
+        -0.00011089428876030565,
+        -0.0031067902383998818,
+        0.0005571871466938461,
+        0.0007022798454568155,
+        0.0003532735842717259,
+        0.004604267827976945,
+        0.00021641550128888732,
+        0.0011247814257019668,
+        -0.0013446798989046817
+      ],
+      "mean": 0.0001381319705824359,
+      "standard_error": 0.0008041889843687806,
+      "ci95_student_t": [
+        -0.0016318760499224169,
+        0.0019081399910872887
+      ],
+      "ci_family_bonferroni": [
+        -0.0022590528014745184,
+        0.00253531674263939
+      ],
+      "family_alpha": 0.05,
+      "family_comparisons": 4,
+      "assumptions": "Independent replicate differences and approximate t inference; fixed-corpus split repetitions do not sample new corpora."
+    },
+    {
+      "dataset": "breast_cancer",
+      "random_strength_minus_zero": 10.0,
+      "predicted_sign": "positive",
+      "outcome": "supported",
+      "n": 12,
+      "values": [
+        0.0029763845522065065,
+        0.0008209603133249276,
+        0.002670755813184621,
+        0.0013746433109630817,
+        0.0003633203651401467,
+        0.001973881666487174,
+        0.004942649139524894,
+        0.002768569160577521,
+        0.005325663310596093,
+        0.002740865535011493,
+        0.005571640935232004,
+        0.007333838879598478
+      ],
+      "mean": 0.003238597748487245,
+      "standard_error": 0.0006124937377719236,
+      "ci95_student_t": [
+        0.0018905081210021815,
+        0.004586687375972309
+      ],
+      "ci_family_bonferroni": [
+        0.0014128320519830092,
+        0.005064363444991481
+      ],
+      "family_alpha": 0.05,
+      "family_comparisons": 4,
+      "assumptions": "Independent replicate differences and approximate t inference; fixed-corpus split repetitions do not sample new corpora."
+    }
+  ],
+  "fixed_boundary_gain_contrasts": [
+    {
+      "dataset": "synthetic",
+      "random_strength_minus_zero": 1.0,
+      "interpretation": "Prespecified signed fixed-boundary diagnostic; no sign prediction.",
+      "n": 12,
+      "values": [
+        -7.662056435259583e-05,
+        -6.978812645486886e-05,
+        -5.1417486688542656e-05,
+        0.00012312734919189445,
+        9.971545137300054e-05,
+        -6.878650165398662e-06,
+        6.375060995116494e-05,
+        5.454246241801583e-05,
+        -0.00017220771761586963,
+        7.174680476950104e-05,
+        0.00016236527595366515,
+        1.8528185233261912e-05
+      ],
+      "mean": 1.8071966134435685e-05,
+      "standard_error": 2.795619273885203e-05,
+      "ci95_student_t": [
+        -4.345919921643926e-05,
+        7.960313148531064e-05
+      ],
+      "ci_family_bonferroni": [
+        -6.526187805004692e-05,
+        0.0001014058103189183
+      ],
+      "family_alpha": 0.05,
+      "family_comparisons": 4,
+      "assumptions": "Independent replicate differences and approximate t inference; fixed-corpus split repetitions do not sample new corpora."
+    },
+    {
+      "dataset": "synthetic",
+      "random_strength_minus_zero": 10.0,
+      "interpretation": "Prespecified signed fixed-boundary diagnostic; no sign prediction.",
+      "n": 12,
+      "values": [
+        -0.00016947158160666797,
+        -5.4612852555673355e-05,
+        -7.28685934672899e-05,
+        0.00020935942041364476,
+        1.1552215999278522e-05,
+        -0.00011037461116332635,
+        -2.760917965487095e-05,
+        2.3255293340249897e-05,
+        -0.00010183534350899412,
+        4.416023887038857e-05,
+        0.00012208592361312765,
+        7.452824050568205e-05
+      ],
+      "mean": -4.319235767870935e-06,
+      "standard_error": 3.10204708938043e-05,
+      "ci95_student_t": [
+        -7.259483186418881e-05,
+        6.395636032844694e-05
+      ],
+      "ci_family_bonferroni": [
+        -9.678730222246343e-05,
+        8.814883068672155e-05
+      ],
+      "family_alpha": 0.05,
+      "family_comparisons": 4,
+      "assumptions": "Independent replicate differences and approximate t inference; fixed-corpus split repetitions do not sample new corpora."
+    },
+    {
+      "dataset": "breast_cancer",
+      "random_strength_minus_zero": 1.0,
+      "interpretation": "Prespecified signed fixed-boundary diagnostic; no sign prediction.",
+      "n": 12,
+      "values": [
+        2.3224111453290956e-05,
+        9.84508615826793e-06,
+        -4.594401174718469e-06,
+        -3.073919836018885e-05,
+        -4.99378399159278e-06,
+        -3.2318818485415706e-06,
+        3.41164862895734e-07,
+        2.053758797565745e-05,
+        5.307871052139616e-06,
+        -9.680494321048648e-07,
+        -1.62154931558252e-05,
+        1.4915088626399783e-05
+      ],
+      "mean": 1.119008513806645e-06,
+      "standard_error": 4.403055331743833e-06,
+      "ci95_student_t": [
+        -8.5720509304239e-06,
+        1.0810067958037189e-05
+      ],
+      "ci_family_bonferroni": [
+        -1.2005937732584953e-05,
+        1.4243954760198242e-05
+      ],
+      "family_alpha": 0.05,
+      "family_comparisons": 4,
+      "assumptions": "Independent replicate differences and approximate t inference; fixed-corpus split repetitions do not sample new corpora."
+    },
+    {
+      "dataset": "breast_cancer",
+      "random_strength_minus_zero": 10.0,
+      "interpretation": "Prespecified signed fixed-boundary diagnostic; no sign prediction.",
+      "n": 12,
+      "values": [
+        -4.069912917778163e-05,
+        -3.537758987084024e-05,
+        -1.7354389233633765e-05,
+        -5.47598808349382e-06,
+        -1.587100312264236e-06,
+        -2.5365193666012028e-05,
+        -5.6756047091085375e-06,
+        3.0383715421372643e-05,
+        8.085596777492544e-07,
+        -1.2222439359716743e-05,
+        -2.2396647467347827e-05,
+        -1.6081414124306737e-05
+      ],
+      "mean": -1.258693507544864e-05,
+      "standard_error": 5.4002953877854775e-06,
+      "ci95_student_t": [
+        -2.44729050840758e-05,
+        -7.00965066821482e-07
+      ],
+      "ci_family_bonferroni": [
+        -2.8684526711038952e-05,
+        3.510656560141673e-06
+      ],
+      "family_alpha": 0.05,
+      "family_comparisons": 4,
+      "assumptions": "Independent replicate differences and approximate t inference; fixed-corpus split repetitions do not sample new corpora."
+    }
+  ],
+  "natural_acceleration_gates": [
+    {
+      "dataset": "synthetic",
+      "random_strength": 0.0,
+      "fixed_boundary": 512,
+      "contrast_points": 64,
+      "mean_gain": {
+        "n": 12,
+        "values": [
+          -1.7150714949221933e-05,
+          2.396076515235831e-05,
+          2.409185424569012e-05,
+          -0.0001469516489448023,
+          -7.000525750256536e-05,
+          3.244656972410868e-05,
+          -0.00010345643049919031,
+          -5.869750504990749e-05,
+          0.00010652934132818121,
+          -3.325217356468514e-05,
+          -0.00011688924427799945,
+          -7.423800859720646e-05
+        ],
+        "mean": -3.613437107793668e-05,
+        "standard_error": 2.116062087626377e-05,
+        "ci95_student_t": [
+          -8.270858360491856e-05,
+          1.0439841449045206e-05
+        ],
+        "ci_family_bonferroni": [
+          -0.0001123220589868271,
+          4.005331683095374e-05
+        ],
+        "family_alpha": 0.05,
+        "family_comparisons": 12,
+        "assumptions": "Independent replicate differences and approximate t inference; fixed-corpus split repetitions do not sample new corpora."
+      },
+      "mean_after_drop": {
+        "n": 12,
+        "values": [
+          0.013501865427770349,
+          0.010912920906186521,
+          0.011044274915463101,
+          0.010011193689375919,
+          0.005393504455276685,
+          0.00948032309144578,
+          0.012512677723250237,
+          0.011535525879725825,
+          0.01424243432655059,
+          0.012932162565079203,
+          0.013765323700898446,
+          0.010077010947577
+        ],
+        "mean": 0.01128410146904997,
+        "standard_error": 0.000703566651674105,
+        "ci95_student_t": [
+          0.009735561709579902,
+          0.012832641228520038
+        ],
+        "ci_family_bonferroni": [
+          0.008750947229659137,
+          0.013817255708440803
+        ],
+        "family_alpha": 0.05,
+        "family_comparisons": 12,
+        "assumptions": "Independent replicate differences and approximate t inference; fixed-corpus split repetitions do not sample new corpora."
+      },
+      "positive_gain_seed_count": 4,
+      "practical_drop_threshold": 0.01,
+      "positive_gain_ci": false,
+      "practical_drop_ci": false,
+      "reproduced_gain_sign": false,
+      "outcome": "not_established",
+      "interpretation": "Operational evidence for a prespecified sustained-window event only. No identification of split-noise annealing mechanism or universal natural acceleration."
+    },
+    {
+      "dataset": "synthetic",
+      "random_strength": 1.0,
+      "fixed_boundary": 512,
+      "contrast_points": 64,
+      "mean_gain": {
+        "n": 12,
+        "values": [
+          -9.377127930181777e-05,
+          -4.5827361302510554e-05,
+          -2.7325632442852537e-05,
+          -2.382429975290786e-05,
+          2.971019387043518e-05,
+          2.5567919558710015e-05,
+          -3.9705820548025374e-05,
+          -4.155042631891659e-06,
+          -6.56783762876884e-05,
+          3.84946312048159e-05,
+          4.5476031675665694e-05,
+          -5.570982336394455e-05
+        ],
+        "mean": -1.8062404943500994e-05,
+        "standard_error": 1.3023827801463497e-05,
+        "ci95_student_t": [
+          -4.672765666211107e-05,
+          1.0602846775109078e-05
+        ],
+        "ci_family_bonferroni": [
+          -6.495400296036548e-05,
+          2.882919307336349e-05
+        ],
+        "family_alpha": 0.05,
+        "family_comparisons": 12,
+        "assumptions": "Independent replicate differences and approximate t inference; fixed-corpus split repetitions do not sample new corpora."
+      },
+      "mean_after_drop": {
+        "n": 12,
+        "values": [
+          0.015451980732891835,
+          0.009272279211455112,
+          0.009488332768527216,
+          0.021694780841575168,
+          0.013517510975804031,
+          0.011993221680782845,
+          0.017557920882015104,
+          0.010063022230324126,
+          0.013483717786046012,
+          0.01655836938514596,
+          0.020668483370045482,
+          0.00876170917212682
+        ],
+        "mean": 0.014042610753061643,
+        "standard_error": 0.001276659079593218,
+        "ci95_student_t": [
+          0.01123270306438072,
+          0.016852518441742566
+        ],
+        "ci_family_bonferroni": [
+          0.00944606776451427,
+          0.018639153741609016
+        ],
+        "family_alpha": 0.05,
+        "family_comparisons": 12,
+        "assumptions": "Independent replicate differences and approximate t inference; fixed-corpus split repetitions do not sample new corpora."
+      },
+      "positive_gain_seed_count": 4,
+      "practical_drop_threshold": 0.01,
+      "positive_gain_ci": false,
+      "practical_drop_ci": false,
+      "reproduced_gain_sign": false,
+      "outcome": "not_established",
+      "interpretation": "Operational evidence for a prespecified sustained-window event only. No identification of split-noise annealing mechanism or universal natural acceleration."
+    },
+    {
+      "dataset": "synthetic",
+      "random_strength": 10.0,
+      "fixed_boundary": 512,
+      "contrast_points": 64,
+      "mean_gain": {
+        "n": 12,
+        "values": [
+          -0.0001866222965558899,
+          -3.0652087403315045e-05,
+          -4.877673922159978e-05,
+          6.240777146884245e-05,
+          -5.845304150328684e-05,
+          -7.792804143921767e-05,
+          -0.00013106561015406126,
+          -3.5442211709657594e-05,
+          4.693997819187089e-06,
+          1.0908065305703429e-05,
+          5.196679335128199e-06,
+          2.9023190847558985e-07
+        ],
+        "mean": -4.045360684580761e-05,
+        "standard_error": 1.9558651506455963e-05,
+        "ci95_student_t": [
+          -8.350190856292116e-05,
+          2.5946948713059445e-06
+        ],
+        "ci_family_bonferroni": [
+          -0.00011087348940058269,
+          2.9966275708967468e-05
+        ],
+        "family_alpha": 0.05,
+        "family_comparisons": 12,
+        "assumptions": "Independent replicate differences and approximate t inference; fixed-corpus split repetitions do not sample new corpora."
+      },
+      "mean_after_drop": {
+        "n": 12,
+        "values": [
+          0.014752281496221958,
+          0.010542907656433426,
+          0.013474020725999125,
+          0.01547761394306324,
+          0.01034989303386688,
+          0.01666939196794992,
+          0.020704153401242625,
+          0.010449489340959225,
+          0.02084006372861366,
+          0.018592516891762834,
+          0.014546425406269325,
+          0.014032642174230975
+        ],
+        "mean": 0.015035949980551098,
+        "standard_error": 0.0010598640789620387,
+        "ci95_student_t": [
+          0.012703204871041459,
+          0.01736869509006074
+        ],
+        "ci_family_bonferroni": [
+          0.011219965839727496,
+          0.018851934121374703
+        ],
+        "family_alpha": 0.05,
+        "family_comparisons": 12,
+        "assumptions": "Independent replicate differences and approximate t inference; fixed-corpus split repetitions do not sample new corpora."
+      },
+      "positive_gain_seed_count": 5,
+      "practical_drop_threshold": 0.01,
+      "positive_gain_ci": false,
+      "practical_drop_ci": true,
+      "reproduced_gain_sign": false,
+      "outcome": "not_established",
+      "interpretation": "Operational evidence for a prespecified sustained-window event only. No identification of split-noise annealing mechanism or universal natural acceleration."
+    },
+    {
+      "dataset": "breast_cancer",
+      "random_strength": 0.0,
+      "fixed_boundary": 512,
+      "contrast_points": 64,
+      "mean_gain": {
+        "n": 12,
+        "values": [
+          -2.421809664380015e-06,
+          5.338673864429825e-06,
+          -9.672038188400052e-06,
+          -5.5186084248916284e-06,
+          -3.188128740748006e-06,
+          6.8773826980596965e-06,
+          -6.589532496158635e-06,
+          -2.2376983224818085e-05,
+          -2.4368174729042678e-06,
+          -1.3476616737888621e-06,
+          2.4338872542429923e-05,
+          1.5006852608609228e-06
+        ],
+        "mean": -1.2913304600257663e-06,
+        "standard_error": 3.188949276870096e-06,
+        "ci95_student_t": [
+          -8.31016049470181e-06,
+          5.7274995746502775e-06
+        ],
+        "ci_family_bonferroni": [
+          -1.277297240636353e-05,
+          1.0190311486311996e-05
+        ],
+        "family_alpha": 0.05,
+        "family_comparisons": 12,
+        "assumptions": "Independent replicate differences and approximate t inference; fixed-corpus split repetitions do not sample new corpora."
+      },
+      "mean_after_drop": {
+        "n": 12,
+        "values": [
+          0.0014147822554771185,
+          0.0015391384734002693,
+          0.002174859969843939,
+          0.0019580610090832937,
+          0.0030478029373443884,
+          0.001933566772509103,
+          0.0012084714712074056,
+          0.0010533390867388387,
+          0.0008490374855222235,
+          0.0009818910515699414,
+          0.002817459754281274,
+          0.000748454317210696
+        ],
+        "mean": 0.0016439053820157077,
+        "standard_error": 0.0002182302053247794,
+        "ci95_student_t": [
+          0.001163583938612117,
+          0.0021242268254192983
+        ],
+        "ci_family_bonferroni": [
+          0.0008581791562683551,
+          0.00242963160776306
+        ],
+        "family_alpha": 0.05,
+        "family_comparisons": 12,
+        "assumptions": "Independent replicate differences and approximate t inference; fixed-corpus split repetitions do not sample new corpora."
+      },
+      "positive_gain_seed_count": 4,
+      "practical_drop_threshold": 0.01,
+      "positive_gain_ci": false,
+      "practical_drop_ci": false,
+      "reproduced_gain_sign": false,
+      "outcome": "not_established",
+      "interpretation": "Operational evidence for a prespecified sustained-window event only. No identification of split-noise annealing mechanism or universal natural acceleration."
+    },
+    {
+      "dataset": "breast_cancer",
+      "random_strength": 1.0,
+      "fixed_boundary": 512,
+      "contrast_points": 64,
+      "mean_gain": {
+        "n": 12,
+        "values": [
+          2.080230178891094e-05,
+          1.5183760022697755e-05,
+          -1.4266439363118521e-05,
+          -3.6257806785080476e-05,
+          -8.181912732340786e-06,
+          3.645500849518126e-06,
+          -6.248367633262901e-06,
+          -1.8393952491606344e-06,
+          2.871053579235348e-06,
+          -2.315711105893727e-06,
+          8.123379386604723e-06,
+          1.6415773887260706e-05
+        ],
+        "mean": -1.72321946219121e-07,
+        "standard_error": 4.48297881199027e-06,
+        "ci95_student_t": [
+          -1.003929178441495e-05,
+          9.694647891976709e-06
+        ],
+        "ci_family_bonferroni": [
+          -1.631304828063415e-05,
+          1.5968404388195907e-05
+        ],
+        "family_alpha": 0.05,
+        "family_comparisons": 12,
+        "assumptions": "Independent replicate differences and approximate t inference; fixed-corpus split repetitions do not sample new corpora."
+      },
+      "mean_after_drop": {
+        "n": 12,
+        "values": [
+          0.004863146000010879,
+          0.0026011568071237015,
+          0.0036373658140432287,
+          0.0038740530298029957,
+          0.003356060690859322,
+          0.003519098801613073,
+          0.0020512185566126002,
+          0.00206786707969692,
+          0.0021731543861101613,
+          0.0017357401253273695,
+          0.0016959894542505662,
+          0.0013276318367309286
+        ],
+        "mean": 0.0027418735485151453,
+        "standard_error": 0.0003131659918659572,
+        "ci95_student_t": [
+          0.0020525998477727947,
+          0.003431147249257496
+        ],
+        "ci_family_bonferroni": [
+          0.001614336082035362,
+          0.0038694110149949286
+        ],
+        "family_alpha": 0.05,
+        "family_comparisons": 12,
+        "assumptions": "Independent replicate differences and approximate t inference; fixed-corpus split repetitions do not sample new corpora."
+      },
+      "positive_gain_seed_count": 6,
+      "practical_drop_threshold": 0.01,
+      "positive_gain_ci": false,
+      "practical_drop_ci": false,
+      "reproduced_gain_sign": false,
+      "outcome": "not_established",
+      "interpretation": "Operational evidence for a prespecified sustained-window event only. No identification of split-noise annealing mechanism or universal natural acceleration."
+    },
+    {
+      "dataset": "breast_cancer",
+      "random_strength": 10.0,
+      "fixed_boundary": 512,
+      "contrast_points": 64,
+      "mean_gain": {
+        "n": 12,
+        "values": [
+          -4.312093884216165e-05,
+          -3.003891600641041e-05,
+          -2.7026427422033817e-05,
+          -1.0994596508385448e-05,
+          -4.775229053012242e-06,
+          -1.8487810967952332e-05,
+          -1.2265137205267173e-05,
+          8.006732196554558e-06,
+          -1.6282577951550134e-06,
+          -1.3570101033505605e-05,
+          1.9422250750820964e-06,
+          -1.4580728863445814e-05
+        ],
+        "mean": -1.3878265535474405e-05,
+        "standard_error": 4.1597801858975415e-06,
+        "ci95_student_t": [
+          -2.3033879993878132e-05,
+          -4.722651077070678e-06
+        ],
+        "ci_family_bonferroni": [
+          -2.8855332438470958e-05,
+          1.0988013675221492e-06
+        ],
+        "family_alpha": 0.05,
+        "family_comparisons": 12,
+        "assumptions": "Independent replicate differences and approximate t inference; fixed-corpus split repetitions do not sample new corpora."
+      },
+      "mean_after_drop": {
+        "n": 12,
+        "values": [
+          0.003366186268533449,
+          0.002540406958092989,
+          0.0033375579308755725,
+          0.003874374687280139,
+          0.003917773965725145,
+          0.002667749658254729,
+          0.003001805475382601,
+          0.0039009156362147523,
+          0.0025752451665087966,
+          0.0022709699242101436,
+          0.004061513767742005,
+          0.0026835480753040764
+        ],
+        "mean": 0.0031831706261770333,
+        "standard_error": 0.00018513678937878925,
+        "ci95_student_t": [
+          0.002775687300167307,
+          0.0035906539521867596
+        ],
+        "ci_family_bonferroni": [
+          0.0025165954811411356,
+          0.003849745771212931
+        ],
+        "family_alpha": 0.05,
+        "family_comparisons": 12,
+        "assumptions": "Independent replicate differences and approximate t inference; fixed-corpus split repetitions do not sample new corpora."
+      },
+      "positive_gain_seed_count": 2,
+      "practical_drop_threshold": 0.01,
+      "positive_gain_ci": false,
+      "practical_drop_ci": false,
+      "reproduced_gain_sign": false,
+      "outcome": "not_established",
+      "interpretation": "Operational evidence for a prespecified sustained-window event only. No identification of split-noise annealing mechanism or universal natural acceleration."
+    }
+  ],
+  "used_test_to_choose_grid": false,
+  "double_descent_declared": false,
+  "noise_annealing_mechanism_identified": false,
+  "synthetic_null_pvalues_transportable": false,
+  "gpu_jobs": 0,
+  "paid_api_spend": 0,
+  "download_bytes": 0,
+  "elapsed_seconds": 198.93699999991804,
+  "artifact_hashes": {
+    "cells.jsonl": "9bd8c04eb053d34658e04f5d63c3ec9797bbcc686188b8abfc085a6262da4be4",
+    "predictions.npz": "c11dd216d71c89f9575ccd4aca2ba826ea2f385fec504f97b2a0908d71465d0a",
+    "data.npz": "31ad1a41f0e867fb8dc30339bd534cf7d78bd721c2871d96f0d95696b056885e",
+    "models.json": "1e4a2f0976be41a3b1cf74cf6c07d0790ff91801596dbc54905387b59e5680f6"
+  },
+  "scientific_validity": "not_assessed",
+  "limitations": [
+    "Two fixed small environments and 12 paired replicates per environment.",
+    "Breast-cancer split/model repetitions are conditional on one fixed corpus and do not sample new corpora.",
+    "Whole-run random_strength interventions change split decisions and paths; they do not isolate time-varying split-score noise.",
+    "Student-t intervals use approximate inference for independent replicate differences.",
+    "A maximum scan is a descriptive scalar; synthetic-null p-values cannot be transported to these model trajectories.",
+    "Failure of a prespecified fixed-boundary gate is not evidence against all acceleration locations or configurations.",
+    "Exact zero classification errors are separate from zero LogLoss and do not by themselves establish double descent."
+  ]
+}

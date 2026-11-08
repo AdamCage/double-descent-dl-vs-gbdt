@@ -1,0 +1,147 @@
+{
+  "schema_version": 1,
+  "stage_id": "R16",
+  "review_mode": "subagent_review",
+  "harness": "codex",
+  "author_agent": "/root",
+  "coauthor_agents": [
+    "/root/alignment_brainstorm"
+  ],
+  "reviewer_agent": "/root/reset_critic",
+  "reviewer_independence": "Distinct Codex child agent. Authored none of the evaluated scientific PLANs, protocols, implementation, tests, source audit or future REPORT/results. Read those artifacts independently, identified pre-outcome design issues and reviewed author corrections; wrote only review files. Independently ran16 pure/handwritten-fixture tests. No actual study ACK/outcome aggregation, model calls, paid API, training or payload downloads. Local independent team review, not external peer review.",
+  "reviewed_at_utc": "2026-11-08T09:18:30.686123+00:00",
+  "verdict": "accept",
+  "blocking_issues": [],
+  "authorization_decision": {
+    "path": "research/decisions/alignment-portfolio-authorization-2026-11-08.json",
+    "sha256": "c0ad0d0aa0fdb84d70f4ddfe7b613a22436400003427d37882284f1bdbbb38b1"
+  },
+  "reviewed_artifacts": [
+    {
+      "path": "research/plans/R16.json",
+      "sha256": "0c744a73f7e88cdd57b9ed433965a26e3dfcb8ebede901d5b8dce3bd9aced503"
+    },
+    {
+      "path": "research/plans/R17.json",
+      "sha256": "df5039d8a78aeb9b85d13a395b0b79d7fb806ac0949701e7538efcff757fba5e"
+    },
+    {
+      "path": "research/stages/R16/PLAN.md",
+      "sha256": "b4ae1e835ae5955875b005236bf30770eb6b856682ff172c81270d2e2c450a2f"
+    },
+    {
+      "path": "research/stages/R17/PLAN.md",
+      "sha256": "ddb06f97cfee3409522ea6f9a92dc738b00da45bc84c17db8810effa4d19c8ed"
+    },
+    {
+      "path": "research/stages/R16/inputs/analysis-protocol.json",
+      "sha256": "b5d447ba7263e2584272d7a08c0ada204d8b0157e36d36375d33d5f8a5531e42"
+    },
+    {
+      "path": "research/stages/R17/inputs/analysis-protocol.json",
+      "sha256": "704cfce66e5b0321539ee8e9b766fe8370950d214ad72016fa06a3223827908d"
+    },
+    {
+      "path": "research/stages/R15/inputs/download-spec.json",
+      "sha256": "e28633394bacca464ffa4190527dd0d55b4db25ddc019c5f17a6bbb8e958c66c"
+    },
+    {
+      "path": "research/stages/R15/inputs/dataset-LICENSE",
+      "sha256": "c0dadc3d3f06dc19f2fed56f39c8d04d4d4a8a5cc8cf06522ee9d34107fd2a31"
+    },
+    {
+      "path": "research/stages/R15/inputs/dataset-README.md",
+      "sha256": "8460079e18374955310b16b82a25e2de9c7e9542f268d2698c01ffb4caddb616"
+    },
+    {
+      "path": "research/stages/R15/inputs/design-review.json",
+      "sha256": "e01fe100381f53e73bd39261e887ce969c22c7a6b86486f0f7ecaa076c7ae231"
+    },
+    {
+      "path": "docs/research-reset/cot-source-audit-2026-11-08.md",
+      "sha256": "3f98afb2e3c659be7bfd118d7810222d412c47d13041db37e2b7c737feb330b7"
+    },
+    {
+      "path": "docs/decisions/0006-alignment-portfolio-reset.md",
+      "sha256": "2ffe8716ca9f4a1cc9b5e5570fa5ab5887c685e90243742f65d33eb591ff56c6"
+    },
+    {
+      "path": "research/decisions/alignment-portfolio-authorization-2026-11-08.json",
+      "sha256": "c0ad0d0aa0fdb84d70f4ddfe7b613a22436400003427d37882284f1bdbbb38b1"
+    },
+    {
+      "path": "artifacts/intake/cot-audit-source/slim.parquet",
+      "sha256": "cf41ae989be031362fed849a89387be87ca5d8231f89faa94ff8c1a96763f6ec"
+    },
+    {
+      "path": "artifacts/intake/cot-audit-source/download_manifest.json",
+      "sha256": "9f73748295f546573a5810b0bf122e59504b829bf17b7755c0d178a254d220af"
+    },
+    {
+      "path": "artifacts/intake/cot-audit-source/schema_profile.json",
+      "sha256": "06f4ceec6dc719c0e103be94e3587b676da27deacc8a1fa0f4f7a4ad98ffc0f4"
+    },
+    {
+      "path": "artifacts/intake/cot-audit-source/intake_report.json",
+      "sha256": "57f4e199ee18e0997d64cf9111f8c3791333f59c8dde95a733ec78e42cd39e7e"
+    },
+    {
+      "path": "src/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "src/cot_audit.py",
+      "sha256": "4742c0db97859cf231d40dbf239bc6f5348abc61c3ec1e322e76da819f3f7ab9"
+    },
+    {
+      "path": "scripts/cot_audit.py",
+      "sha256": "d45019bd96a9346579dfda4c86c1d401e62ead2a2abca55a880a811f9c0956ac"
+    },
+    {
+      "path": "scripts/run_unit_checks.py",
+      "sha256": "d2fc3c360195cd7f8d69689b0dc60940dcd416e2b31b9396e60bfeafb9528c52"
+    },
+    {
+      "path": "tests/test_cot_audit.py",
+      "sha256": "0ab5d83d214a63e106f490100696468dcd37570063a770382e43b3c047ba3ac0"
+    },
+    {
+      "path": "pyproject.toml",
+      "sha256": "5d43d6f7f88312b18299a1ec7e8ac921d512c271ac022de4ad0720eb5883e182"
+    },
+    {
+      "path": "uv.lock",
+      "sha256": "ac89eef670e3774086fff7a06df62f1ba760f85d6c76378ac915ca32b76523b4"
+    }
+  ],
+  "checks": {
+    "question_and_scope": "All8 historical released models,28 unordered pairs,3 explicit file-parent datasets =84 cells, fixed lexicographic model order. Endpoint is source judge cue_acknowledgment among observed bool has_cue rows; non-switches included, null excluded and logged, false may include source parse failure. This is not published subdataset-macro F reproduction, latent faithfulness, causal recall or corrected model ranking.",
+    "estimands": "Reviewed duplicate-generation mean inside model/question/context/exact-version; equal version, common-context and release-core-question weighting. U0 common question/context native versions; U1 common-exact-version question/context subset with native-all-observed versions; EXACT same U1 question/context but common versions. Total=EXACT-U0, composition=U1native-U0native, version=EXACT-U1native. Algebraic closure retained. Different populations remain explicit; no missing counterfactual imputation.",
+    "integrity_before_aggregation": "Full metadata validation before ACK aggregation: expected24source files/payloadSHAs; contiguous unique per-file rowindices; one model/file/dataset map; recomputed ordered-choices SHA; same-q unordered choices and correct_text consistency; correct answer letter/index consistency only within same ordered choices; identical nonempty input contradictions hard fail. Valid cued ACK row requires nonempty baseline anchor and valid exact input/choices/target signature. Invalid keys hard fail, not unknown-version pooling. Missing baselines reported with failure ledger; baseline prompt variants reported, not automatically treated as confounding proof.",
+    "split_and_reserve": "Both protocols have identical pre-outcome three-way split: SHA256(20261108|minimum canonical dataset|core_id alias cluster), full hex integer mod20:0..5discovery,6..12confirmation,13..19reserve. Union aliases through baseline input hashes across all datasets before split; cluster remains in one partition. Active audit filters selected question IDs before ACK validity/aggregation. Heldout and reserve outcomes are statistically unused; Parquet may decode unselected values in memory and explicit quality flag says so. Tests mutate heldout/reserve outcome values to unreadable objects and show identical selected estimates/bootstrap. No reserve inference under this review.",
+    "bootstrap_and_intervals": "5000 global Efron cluster multiplicities shared by every dataset/pair; aliases spanning datasets share weight. Bootstrap universe selected clusters with valid cued ACK; ratio means retain equal release-core-question estimands. Frozen seeds16016discovery/17017confirmation, batches32. Each delta endpoint has separate centered max absolute standardized bootstrap family, fixed marginal bootstrapSD ddof1,95percent higher quantile. Common joint finite mask across all support-tested cells must retain>=99percent; otherwise whole family noCI. SE<=1e-12 gets noCI/inconclusive. No nested bootstrap-t, finite-sample guarantee, or joint95percent claim across3 endpoint families.",
+    "support_and_decisions": "Support eligibility U1cluster count>=50discovery/100confirmation and question coverage>=.25, finite point estimands. Discovery go uses only support eligibility>=4cells spanning>=2datasets, not SE, effect or CI. Inferential eligibility separately requires valid primary CI. Confirmation sensitivity requires>=2cells spanning>=2datasets with absolute total>=.05 and primary CI low>.02 or high<-.02. Robustness requires support analyzability and ALL supporteligible primaryCIs present and inside[-.05,.05]; degenerate/missingCI prevents strong null. All84cells retained even unsupported. No post-discovery pair/threshold selection.",
+    "power_and_limits": "Three-way split adopted before outcome calculations after explicit user request for further hypotheses. Confirmation35percent reduces precision; GPQA Diamond198 questions cannot realistically satisfy100confirmation clusters and is knowingly descriptive/unsupported. At least2dataset criterion therefore primarily relies on BBH/MMLU. This is a design limitation, not permission to lower thresholds after outcomes.",
+    "implementation_and_resources": "Reviewed input/spec SHA checks before data access, all8models/3datasets/24source requirement, new output directory, failure preservation and per-question/bootstraps/settings outputs. CLI numeric env and Arrow CPU/I/O capped4; batch2048 reads no parallel Arrow decoding. No network/model/train/GPU operations. Outer1500s task/1800s attempt and cumulative explicit charter guards remain necessary; actual outputs<=256MiB must be verified postrun.",
+    "independent_tests": "Independently ran uv run python -m unittest discover -s tests -p test_cot_audit.py -v:16/16 PASS,0.530s. Handwritten fixtures cover weights, decomposition, context intersections, baseline alias split, cross-dataset shared bootstrap, missing labels/invalid signature/anchors/integrity, same-question reordered choices, support-only zeroSE go, joint finite-mask failure, mixed null/string context, unread heldout/reserve invariance, SHA guard and full8x3 I/O contract. No actual study endpoint computed by reviewer.",
+    "frozen_bindings": "Verified source4742c0db97859cf231d40dbf239bc6f5348abc61c3ec1e322e76da819f3f7ab9, CLId45019bd96a9346579dfda4c86c1d401e62ead2a2abca55a880a811f9c0956ac, tests0ab5d83d214a63e106f490100696468dcd37570063a770382e43b3c047ba3ac0. MachineR16 SHA0c744a73f7e88cdd57b9ed433965a26e3dfcb8ebede901d5b8dce3bd9aced503;R17df5039d8a78aeb9b85d13a395b0b79d7fb806ac0949701e7538efcff757fba5e. Actual slimcf41ae989be031362fed849a89387be87ca5d8231f89faa94ff8c1a96763f6ec bound in both protocols; copied once to counted intake. No artifacts/research/R16 or R17 existed at this preflight; pending registry activation is operational, not design change."
+  },
+  "nonblocking_notes": [
+    "Acceptance is readiness for a bounded descriptive audit. It does not establish empirical sensitivity, robustness, novelty, journal readiness or alignment safety. Actual metadata could fail; preserve failure and do not relax definitions after outcomes.",
+    "Question aliases share bootstrap multiplicity while point weights remain equal released core IDs. Counts of raw rows, generations and aliases are not independent sample sizes. Resampling approximates question variation conditional on cached generations and source judge labels; it does not capture annotator or new-model-generation uncertainty.",
+    "Exact released-input equality may omit system/provider prompts. Common-input support restriction changes population and can select on model-dependent baseline answers. Composition/version decomposition is descriptive, not causal correction or proof original adaptive estimand is wrong.",
+    "Novelty is limited by existing Meek adaptive-cue/state-transition work and OpenAI beyond-gmean-squared matching/behavior-class limitations. Standard matching, maxT, baseline-correctness algebra and decompositions are not new methods. A meaningful scientific contribution depends on heldout empirical evidence and honest practical implications.",
+    "No reserve outcome analysis is authorized. A next hypothesis needs a separately frozen preregistration and independent review before one use of reserve. Multiple attempted hypotheses must be disclosed; per-study nominal familywise intervals do not imply program-wide95percent validity.",
+    "R17 common method description refers to frozen R16PLAN; both PLANs/protocols and both machine plans are hashbound here. R16 closure and original snapshot must remain verified/restorable as dependency evidence.",
+    "Scientific outputs, decomposition identities, support masks, bootstrap arrays and report numerical claims require independent postrun audit before claim acceptance/closure; pure tests cannot establish a real positive finding."
+  ],
+  "required_before_dispatch": [
+    "uv run python scripts/research.py validate-plan R16",
+    "Frozen dependencies and repository checks pass",
+    "All dependencies closed/verified; explicit new-charter cumulative resource check includes R15 and all retained evidence",
+    "Activate only accepted frozen stage under single-dispatcher lock",
+    "R17 dispatch only after R16 integrity and support-only discovery_go, independent of effect or SE",
+    "Verify actual output bytes, source bindings and no unselected/reserve contributions after run"
+  ],
+  "scientific_validity": "not_assessed"
+}

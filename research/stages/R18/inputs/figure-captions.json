@@ -1,0 +1,24 @@
+{
+  "figures": [
+    {
+      "id": "paper_total_shift",
+      "title": "All supported confirmation gap changes",
+      "caption": "All 56 total-shift intervals on BBH and MMLU, in percentage points. Approximate intervals are simultaneous within the total-shift family using 5000 shared question-cluster bootstrap draws. They describe the change between comparison populations; they are not raw-gap intervals or causal effects. GPQA has no eligible confirmation cell. Model IDs: M1 Claude-3.5-Sonnet; M2 Claude-3.7-Sonnet; M3 DeepSeek-chat-v3-0324; M4 DeepSeek-R1-0528; M5 Qwen-2.5-72B-Instruct; M6 Qwen3-235B-A22B-2507; M7 Qwen3-235B-A22B-thinking-2507; M8 QwQ-32B."
+    },
+    {
+      "id": "paper_support",
+      "title": "Support for every declared confirmation comparison",
+      "caption": "All 84 model-pair/dataset cells, including unsupported GPQA. Dashed gates are the frozen 100 independent exact-overlap clusters and 25% question coverage. Points are correlated pair comparisons, not independent replications. MMLU retains roughly 31-36% of native common questions; unsupported cells are never imputed to zero."
+    },
+    {
+      "id": "paper_examples",
+      "title": "Observed gaps on different populations",
+      "caption": "Descriptive examples: largest absolute eligible total shift within each fixed BBH/MMLU dataset, with frozen source order breaking ties. BBH M6 minus M8 changes from +4.20 to -11.32 points; MMLU M3 minus M6 changes from -2.87 to +8.76 points. Displayed intervals concern the total shift and share the full 56-cell simultaneous family. Separate native/exact gaps have no registered CI; observed sign changes are not corrected true model rankings."
+    },
+    {
+      "id": "paper_design_support",
+      "title": "A conditional common-target support constraint",
+      "caption": "Hypothetical binary baselines X/Y leave no shared target different from both baselines. This elementary set identity assumes aligned semantic answers and valid fixed baselines; it is not an empirical compliance or new-theorem claim. A fully crossed target design includes the cued own-baseline condition. Nominal MC versus KMC call counts exclude uncued baselines and repeats and are not measured runtime or safety gains."
+    }
+  ]
+}

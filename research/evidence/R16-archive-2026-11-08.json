@@ -1,0 +1,11 @@
+{
+  "archive": "research/evidence/R16-runs-2026-11-08-v1.zip",
+  "sha256": "0aec7254edbc9b2c2e73cb1ad8cf96ad8ded81b8f8043492eafd666372574089",
+  "bytes": 96727406,
+  "detached_verified": true,
+  "files": 76,
+  "unique_blobs": 52,
+  "restored_bytes": 185658843,
+  "unique_bytes": 96692354,
+  "includes": "BothR16attempts including preserved failure and operationally closed narrow-H1 discovery; closure also supplied separately."
+}

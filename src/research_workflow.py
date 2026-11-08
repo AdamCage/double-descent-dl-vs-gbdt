@@ -312,7 +312,7 @@ class Workflow:
         authorization = self.validate_authorization(plan["stage_id"])
         if authorization is not None:
             paths.add(authorization["path"])
-        for value in ("src/research_workflow.py", "scripts/research.py", "pyproject.toml", "uv.lock"):
+        for value in ("src/research_workflow.py", "src/resource_ledger.py", "scripts/research.py", "pyproject.toml", "uv.lock"):
             if (self.root / value).is_file():
                 paths.add(value)
         for value in paths:
@@ -389,6 +389,9 @@ class Workflow:
                 raise
 
     def run(self, stage: str) -> dict[str, Any]:
+        # Import at call time: resource_ledger uses this module's hashing helper.
+        from src.resource_ledger import append_entry, report as resource_report
+
         entry = self.stage(stage)
         if not entry.get("execution_authorized", entry["kind"] == "engineering"):
             raise WorkflowError(f"Execution is not authorized for {stage}; register the bounded plan first")
@@ -403,6 +406,23 @@ class Workflow:
             authorization = self.validate_authorization(stage)
             plan_path = confined(self.root, entry["plan"], must_exist=True)
             plan = load_json(plan_path)
+            # Older declarations (Markdown or JSON without resource budgets)
+            # retain their original semantics; a declared budget must validate.
+            if authorization is not None and Path(authorization["path"]).suffix.lower() == ".json":
+                charter = load_json(confined(self.root, authorization["path"], must_exist=True))
+                if "budgets" in charter:
+                    try:
+                        resources = resource_report(self.root, charter_path=authorization["path"],
+                                                    expected_sha256=authorization["sha256"])
+                    except (OSError, ValueError, KeyError, TypeError) as exc:
+                        raise WorkflowError(f"Cannot validate cumulative resource budget: {exc}") from exc
+                    if not resources["computational_activation_ready"]:
+                        raise WorkflowError("Cumulative resource preflight is not ready: "
+                                            f"unmeasured={resources['unmeasured_attempts']}, "
+                                            f"reconciliation={resources['reconciliation_problems']}; "
+                                            "inspect the resource report before recovery")
+                    if resources["remaining_wall_seconds"] < plan["budget"]["max_wall_seconds"]:
+                        raise WorkflowError("Cumulative remaining wall budget cannot cover declared max_wall_seconds")
             attempt_wall_limit = self._attempt_budget(stage, plan)
             # Bind the precise accepted ancestry, not merely dependency names.
             for dep in entry["depends_on"]:
@@ -471,6 +491,14 @@ class Workflow:
                 manifest.update(status="failed" if failure else "complete", finished_at=utc_now(),
                                 elapsed_seconds=time.monotonic() - started)
                 write_json(attempt / "manifest.json", manifest)
+                try:
+                    append_entry(self.root, {
+                        "kind": "attempt", "stage_id": stage, "attempt_id": attempt_id,
+                        "elapsed_seconds": manifest["elapsed_seconds"], "status": manifest["status"],
+                        "note": "Automatically recorded by the workflow runner; scientific_validity not_assessed.",
+                    })
+                except (OSError, ValueError) as exc:
+                    raise WorkflowError(f"Resource ledger append failed; evidence retained at {attempt}: {exc}") from exc
             if failure:
                 raise WorkflowError(f"Attempt {attempt_id} failed; evidence retained at {attempt}: {failure}")
             return {"stage_id": stage, "attempt_id": attempt_id, "status": "complete",
@@ -582,8 +610,9 @@ class Workflow:
             review.update(author_agent="", reviewer_agent="", review_mode="subagent_review")
         return review
 
-    def _check_review(self, stage: str, attempt: Path, review: dict[str, Any], *, live_sources: bool = True) -> None:
-        result = self.verify(stage, attempt.name, live_sources=live_sources)
+    def _check_review(self, stage: str, attempt: Path, review: dict[str, Any], *, live_sources: bool = True,
+                      verify_live_sources: bool | None = None) -> None:
+        result = self.verify(stage, attempt.name, live_sources=live_sources if verify_live_sources is None else verify_live_sources)
         plan = load_json(attempt / "plan.json")
         manifest = load_json(attempt / "manifest.json")
         if any(review.get(key) != value for key, value in {
@@ -598,13 +627,13 @@ class Workflow:
             harness = reviewer["harness"].strip().casefold()
             if harness not in ("cursor", "human", "codex"):
                 raise WorkflowError("Chartered review requires Cursor subagent or an actual human/Codex reviewer")
-            if harness == "cursor":
+            if harness in ("cursor", "codex"):
                 agents = [review.get(key) for key in ("author_agent", "reviewer_agent")]
                 if (any(not isinstance(agent, str) or not agent.strip() for agent in agents)
                         or agents[0].strip().casefold() == agents[1].strip().casefold()):
-                    raise WorkflowError("Cursor review requires nonempty distinct author_agent and reviewer_agent")
+                    raise WorkflowError("Agent review requires nonempty distinct author_agent and reviewer_agent")
                 if review.get("review_mode") != "subagent_review":
-                    raise WorkflowError("Cursor review must record review_mode=subagent_review")
+                    raise WorkflowError("Agent review must record review_mode=subagent_review")
                 # These are accountable caller-supplied labels, not proof of
                 # independent identities, contexts, or scientific correctness.
         report = review.get("report", {})
@@ -633,10 +662,12 @@ class Workflow:
         if review.get("verdict") not in ("accept", "revise", "reject"):
             raise WorkflowError("Review needs a verdict")
 
-    def review(self, stage: str, review_path: Path, attempt_id: str | None = None) -> dict[str, Any]:
+    def review(self, stage: str, review_path: Path, attempt_id: str | None = None, *, historical: bool = False) -> dict[str, Any]:
         attempt = self.attempt(stage, attempt_id)
         review = load_json(review_path)
-        self._check_review(stage, attempt, review)
+        if historical and review.get("verdict") not in ("revise", "reject"):
+            raise WorkflowError("Historical review import only permits revise or reject; accepting review requires live sources")
+        self._check_review(stage, attempt, review, verify_live_sources=not historical)
         with self.lock(stage):
             target = attempt / "review.json"
             if target.exists():

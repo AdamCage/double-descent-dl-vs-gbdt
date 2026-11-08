@@ -134,6 +134,341 @@
       "assessment": "evidence_supported",
       "review_status": "cursor_team_reviewed",
       "scientific_validity": "not_assessed"
+    },
+    {
+      "id": "R8-detector-catalog",
+      "statement": "On catalog R8-synthetic-trajectories-2026-11-07 in attempt 20261107T140907-bd7e4a5a5e, the global-mean detector left fast_plateau_moderate unmarked and placed late_tail at t_star 79, while the predeclared local window of 5 placed those series at t_star 70 and 90. smooth_exponential was unmarked by both, and single_late_drop was marked by the global detector at t_star 50. The local detector also marked excluded series two_drops. This comparison does not establish a CatBoost mechanism.",
+      "scope": "Catalog R8-synthetic-trajectories-2026-11-07 scored in attempt 20261107T140907-bd7e4a5a5e. Five deterministic series only.",
+      "limitations": [
+        "The comparison covers five deterministic series in catalog R8-synthetic-trajectories-2026-11-07 only.",
+        "The local detector marked excluded series two_drops at t_star 45. A positive candidate does not identify multiple changes.",
+        "No CatBoost model was fit. The comparison does not establish a CatBoost mechanism.",
+        "This is not a confirmation sample and not an external replication.",
+        "scientific_validity remains not_assessed. This is local Cursor team review by reviewer e078bfb0-20d5-4dcf-8549-220576f37ac2."
+      ],
+      "evidence": [
+        {
+          "path": "artifacts/research/R8/20261107T140907-bd7e4a5a5e/tasks/score-catalog/scores.json",
+          "sha256": "36882c2612f0c2b58285b099d7b817e29d3a6013dd21610f3d986bafbf1331fc"
+        },
+        {
+          "path": "research/stages/R8/inputs/catalog.json",
+          "sha256": "1680b0d4eded65c3ac695388ba4988f0d3824cafd582828b25f92fb0c4d060ee"
+        }
+      ],
+      "scientific_review": {
+        "path": "research/decisions/R8-detector-claim.json",
+        "sha256": "6b805fc3e0462178b24c629b818221ea7e3f87bc61dba4cd275c9041765e2188"
+      },
+      "assessment": "evidence_supported",
+      "review_status": "cursor_team_reviewed",
+      "scientific_validity": "not_assessed"
+    },
+    {
+      "id": "R9-iteration-threshold-not-identified",
+      "statement": "On R9 discovery attempt 20261107T141434-ba64acb5eb, seeds 7101 and 7102, every cell on the iteration grid 1, 2, 4, 8, 16, 32, 64 had interpolating false under relative training residual tolerance 1e-8. Both bracket_status values are not_identifiable. The smallest residuals are 0.005397518627629901 at 64 iterations on seed 7101 and 0.0047802282799166524 at 64 iterations on seed 7102. Double descent was not declared, and confirmation seeds 9101-9105 were not fit.",
+      "scope": "R9 discovery attempt 20261107T141434-ba64acb5eb. CatBoost iteration grid on seeds 7101 and 7102 only. Tolerance 1e-8.",
+      "limitations": [
+        "not_identifiable means the 1e-8 threshold was not observed on this grid. It is not a finding that double descent is absent.",
+        "Two discovery draws only. Confirmation seeds 9101-9105 were not fit.",
+        "The small clean-MSE rise after iteration 16 is descriptive and is not part of this claim.",
+        "scientific_validity remains not_assessed. This is local Cursor team review by reviewer b424b442-3a85-4957-b13b-8122a3040724, not an external replication."
+      ],
+      "evidence": [
+        {
+          "path": "artifacts/research/R9/20261107T141434-ba64acb5eb/tasks/discovery-fit/cells.jsonl",
+          "sha256": "a3ec302a67390df662de35d2aa68e1eff85cc33b08537ec8fbc21401ae9ed075"
+        },
+        {
+          "path": "artifacts/research/R9/20261107T141434-ba64acb5eb/tasks/discovery-fit/analysis.json",
+          "sha256": "f8255a598c1c3a8b8a68a9ff394d75f981fd68c4f8bf75dade39647c556d53a3"
+        },
+        {
+          "path": "artifacts/research/R9/20261107T141434-ba64acb5eb/tasks/discovery-fit/seed-audit.json",
+          "sha256": "8ffc85ab2f1fb59b3f9610872422b64bf74a0234119ec3c4c3090b954707ae3d"
+        }
+      ],
+      "scientific_review": {
+        "path": "research/decisions/R9-iteration-claim.json",
+        "sha256": "0e00b4c61430b15fa40f8e346f47644ae5640e1a6e5bc4fc36b7892af9459a0e"
+      },
+      "assessment": "evidence_supported",
+      "review_status": "cursor_team_reviewed",
+      "scientific_validity": "not_assessed"
+    },
+    {
+      "id": "R10-acceleration-failure-envelope",
+      "statement": "On the frozen R10 benchmark, the uncalibrated local rule flagged all 2400 null evaluation trajectories. The calibrated scan null rates ranged 0-.10; on large_ar linear it flagged 20/200 (pointwise exact 95% CI .0621594-.150213), showing that its marginal rank guarantee must not be interpreted as conditional 5% control after one calibration. On small_iid last_tenth both global and scan flagged 200/200, refuting the prespecified detection-rate advantage; on fast_plateau_tail scan power fell from 1 at small noise to .07/.015 at large iid/AR noise. These findings concern declared synthetic laws, not arbitrary CatBoost trajectories.",
+      "scope": "R10 frozen independent evaluation, attempt20261107T192414-36aee5d99b, 2388 calibration and4800 evaluation curves.",
+      "limitations": [
+        "Known analytic forms, one length256, windows8/16/32 and four Gaussian AR(1) noise conditions only; no general-purpose detector novelty or priority is established.",
+        "Evaluation binomial intervals are pointwise and conditional on one shared calibration. They do not include calibration uncertainty or provide simultaneous inference across72 rows. The worst-cell example is descriptive, not a multiplicity-adjusted hypothesis test.",
+        "The rank guarantee is marginal over exchangeable calibration/test curves from each included null law. Observed20/200 flags do not contradict that guarantee and do not by themselves prove a universal conditionalFPR.",
+        "Empirical flag rates are not proof of population probabilities1 or0. Power on fast_plateau_tail falls from200/200 under small noise to14/200 and3/200 under large iid/AR noise.",
+        "Global versus scan rate advantage on small_iid last_tenth was refuted. Improved localization there is descriptive and cannot be substituted as successful confirmation of P3.",
+        "Synthetic thresholds do not supply valid p-values for arbitrary CatBoost learning curves. No natural CatBoost mechanism, double descent, external review, human approval or publication readiness is established.",
+        "Independent review audited raw saved arrays and all summaries and used direct OLS on eight saved trajectories; it did not independently regenerate all curves or rescore the entire matrix."
+      ],
+      "evidence": [
+        {
+          "path": "artifacts/research/R10/20261107T192414-36aee5d99b/tasks/calibrate-evaluate/analysis.json",
+          "sha256": "e3bf51e3f41d21f26fc00b7b784606a451ef0d587ff2e1767f519ec91872390d"
+        },
+        {
+          "path": "artifacts/research/R10/20261107T192414-36aee5d99b/tasks/calibrate-evaluate/calibration.json",
+          "sha256": "3967d880e9f2a0abfa5f6199a2db63c20e3255b69b335782c70e0ef785bdc622"
+        },
+        {
+          "path": "artifacts/research/R10/20261107T192414-36aee5d99b/tasks/calibrate-evaluate/curves.jsonl",
+          "sha256": "cc61cde47e19c31f58dc907ed56212d1566270a6b930cf447c3be2dcffc53111"
+        },
+        {
+          "path": "artifacts/research/R10/20261107T192414-36aee5d99b/tasks/calibrate-evaluate/curves.npz",
+          "sha256": "0a3a93ff6e9c1c47418c223b138a64f52ec23eb1b399f6e3e1b8d95d1e94aff4"
+        }
+      ],
+      "scientific_review": {
+        "path": "research/decisions/R10-audit-claim.json",
+        "sha256": "257dec40b5b16532ceb9fe38907f77e5e1d3ff6f609ad17060e59e9eed2d9855"
+      },
+      "assessment": "evidence_supported",
+      "review_status": "codex_team_reviewed",
+      "scientific_validity": "not_assessed"
+    },
+    {
+      "id": "R11-schedule-clock-dependence",
+      "statement": "On R11 fixed equal-total schedules, stepup-minus-constant train descent-speed gain was positive in tree-index time in both environments (synthetic mean 0.004256879126726967, adjusted 95% family4 CI [0.00319455579167358,0.005319202461780355]; breast_cancer mean 0.0016625764263010839, CI [0.0013709968758980947,0.001954155976704073]). The prespecified cumulative-learning-rate clock gave negative corresponding contrasts (synthetic mean -0.02412183355432826, CI [-0.03371496643591244,-0.01452870067274408]; breast_cancer mean -0.05136558044625129, CI [-0.05352673234988818,-0.04920442854261439]). Stepdown-minus-constant was supported negative only on synthetic; the breast-cancer primary adjusted interval crossed zero. This is a whole-schedule, clock-dependent optimization control, not a natural CatBoost mechanism or double-descent result.",
+      "scope": "R11 fixed schedule intervention, accepted retryattempt20261107T194028-229b223740,12pairedseedunits perenvironment.",
+      "limitations": [
+        "This is a whole-schedule intervention, including different pre-boundary training histories, not an isolated LR jump with identical initial trees/gradients.",
+        "Tree-clock and cumulative-LR-clock slopes have different units. Their numerical effect sizes must not be subtracted or compared as a common estimand; the claim concerns signs of within-clock schedule-minus-constant contrasts.",
+        "Cumulative prescribed LR is a diagnostic clock, not a proved exact optimization time for CatBoost or a fixed quadratic operator.",
+        "Each of the primary and LR-clock families has4 nominal Bonferroni-adjusted intervals. They do not jointly provide95%coverage across all8 quantities; n12 Student-t inference is approximate.",
+        "Synthetic repeats are new data/split/model units. Breast-cancer repeats are split/model units conditional on one fixed corpus, not independent new corpora or clinical validation.",
+        "First successful numerical attempt is preserved with operational revise for missing inference-resource assurance; actual excess CPU was unmeasured. Both attempts remain charged, share the same12 units and exactly identical raw prediction values, and do not form independent replications.",
+        "Observed scheduled acceleration is a positive optimization control, not naturally discovered late acceleration, a new general method/theorem, a CatBoost annealing mechanism or double descent. Novelty priority and journal readiness are not certified.",
+        "All raw arrays and72 model hashes were checked, while detailed model inference was spotchecked on6 models rather than independently rerunning training."
+      ],
+      "evidence": [
+        {
+          "path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/analysis.json",
+          "sha256": "f83c00cc8844af56c1073e756db80f3e9596e04306ff7d4943622ef330cb05c3"
+        },
+        {
+          "path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/cells.jsonl",
+          "sha256": "df64212083191fb78579c5883b282318d8a00ce669eff2d643c10693f4d83185"
+        },
+        {
+          "path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/predictions.npz",
+          "sha256": "3045935cd2290cc944d0a8d0e3d4aa871fbece4b4cc307c6c9f15620e013c0f3"
+        },
+        {
+          "path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/data.npz",
+          "sha256": "e95b1bd73f14a578e9662a813e424739b93032c01812492bd8c6bf53a9c9cba4"
+        },
+        {
+          "path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models.json",
+          "sha256": "398160c18ebddba0fbffaf5f74682ceab1e9d180af19fd6852b0b82dbd43fdb2"
+        }
+      ],
+      "scientific_review": {
+        "path": "research/decisions/R11-clock-claim.json",
+        "sha256": "10d343708b14aba5e7f66437f62af5a4a3a8ab65d38955827cdcf2f7ec43e6fd"
+      },
+      "assessment": "evidence_supported",
+      "review_status": "codex_team_reviewed",
+      "scientific_validity": "not_assessed"
+    },
+    {
+      "id": "A1-loss-clock-nonidentifiability",
+      "statement": "Every finite positive nonincreasing scalar loss sequence can be reproduced exactly by gradient descent on f(x)=x^2/2 using eta_t=1-sqrt(L_(t+1)/L_t) in [0,1). For fixed symmetric PSD squared-loss residual dynamics r_(t+1)=(I-eta K)r_t with stable constant step 0<=eta lambda_i<=2, absolute loss decrements are nonnegative and nonincreasing. These elementary facts do not identify a CatBoost mechanism from loss shape.",
+      "scope": "Exact algebra on finite positive nonincreasing loss sequences and fixed stable symmetric PSD squared-loss residual dynamics only.",
+      "limitations": [
+        "These are elementary algebraic facts, not a claim to a novel theorem or a new general change-point method. Research priority is not established by this review.",
+        "The constructive statement is an existence result with a schedule chosen for the specified finite sequence. It does not predict or identify the actual learning-rate schedule or mechanism of a fitted CatBoost model.",
+        "Strict positivity excludes terminal zero loss; extending to zero would require a separate endpoint case permitting eta=1.",
+        "The spectral statement assumes a fixed real finite-dimensional symmetric PSD K, constant step, positive normalizer n and squared Euclidean training loss. It does not automatically apply to classification LogLoss, adaptive tree selection or a general tree-kernel approximation.",
+        "Exact algebra does not supply a finite-precision tolerance, a statistical detection threshold, empirical calibration validity, or evidence of a naturally occurring CatBoost acceleration effect.",
+        "A known constant learning rate removes the particular variable-step quadratic alternative, without uniquely identifying another mechanism from scalar loss shape.",
+        "Local Codex team review is not independent experimental replication, external scientific approval, or certification of publication readiness."
+      ],
+      "evidence": [
+        {
+          "path": "docs/methods/acceleration-identifiability.md",
+          "sha256": "891640dd43ec8f12bc2e1cb717465b2933379a6c3315adb63024a261d54e5e73"
+        }
+      ],
+      "scientific_review": {
+        "path": "research/decisions/A1-identifiability-claim.json",
+        "sha256": "02569cc5ae61f069277dd3155f751fe7ecdde17a6e8f0fefed0dc7f923622ce8"
+      },
+      "assessment": "evidence_supported",
+      "review_status": "codex_team_reviewed",
+      "scientific_validity": "not_assessed"
+    },
+    {
+      "id": "R12-randomness-without-fixed-late-event",
+      "statement": "On the frozen R12 continuous-fit study with constant learning rate .05, increasing whole-run random_strength from 0 to 10 increased the normalized maximum train slope-scan score in both environments: synthetic mean paired difference 0.017136016867994843 (adjusted family4 95% CI [0.00759461814522553,0.026677415590764156]) and breast_cancer 0.003238597748487245 (CI [0.0014128320519830092,0.005064363444991481]). All six prespecified fixed late-event gates at tree 512 with 64-point windows returned not_established under the family12 gain/drop intervals, practical after-drop >.01, and at least 10/12 positive-gain rule. Descriptively, 63/72 models reached exact zero train classification errors at first-zero iterations 123-988, while training LogLoss at first zero reached 0.14022221881182134. Whole-run parameter effects do not identify split-noise annealing, a natural late-acceleration mechanism, or double descent; failure of this fixed-window gate does not exclude events elsewhere.",
+      "scope": "R12 fixed continuous-fit72model study, attempt20261107T194939-7c18953a98,12newpairedseedunits perenvironment; fixedlateevent boundary512/64points.",
+      "limitations": [
+        "Whole-run random_strength interventions change tree partitions, gradient history and entire loss range. A positive normalized maximum-scan contrast does not isolate the internal annealing law, a localized late event or a causal mechanism of natural acceleration.",
+        "The primary max scan can concern early dynamics. All six fixed late-window gatesnot_established apply only to boundary512 and64-point windows with practical drop.01 and>=10/12 positive gains. This is not evidence that acceleration is absent everywhere.",
+        "Onlytwo small fixed environments and12 paired seed units; breast-cancer repeats condition on one corpus and do not sample independent new corpora or provide clinical validation.",
+        "Student-t inference atn12 is approximate. Separate family4 scan, family4 fixed-boundary and family12 gate intervals do not provide a joint95% guarantee over all20 reported intervals. rs1 contrasts remain exploratory.",
+        "R10 synthetic nulls are not established exchangeable with these1025-point CatBoost curves. No synthetic p-value or valid transported threshold is claimed; no optional calibration was supplied.",
+        "Sixty-three of72 models reached exactzero classification error at iterations123..988; maximum training LogLoss at firstzero was.14022221881182134. These descriptive values distinguish0-1 interpolation from surrogate loss and do not by themselves establish double descent.",
+        "This local subagent review checked all saved raw arrays/metrics and72 model hashes; detailed saved-model predictions/leaves were spotchecked on6 models. It did not rerun training or supply external review, priority certification or journal-readiness approval."
+      ],
+      "evidence": [
+        {
+          "path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/analysis.json",
+          "sha256": "4f03363af83d21af360489286edb99045762b64e932caa80027d018ab1e48224"
+        },
+        {
+          "path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/cells.jsonl",
+          "sha256": "9bd8c04eb053d34658e04f5d63c3ec9797bbcc686188b8abfc085a6262da4be4"
+        },
+        {
+          "path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/predictions.npz",
+          "sha256": "c11dd216d71c89f9575ccd4aca2ba826ea2f385fec504f97b2a0908d71465d0a"
+        },
+        {
+          "path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/data.npz",
+          "sha256": "31ad1a41f0e867fb8dc30339bd534cf7d78bd721c2871d96f0d95696b056885e"
+        },
+        {
+          "path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models.json",
+          "sha256": "1e4a2f0976be41a3b1cf74cf6c07d0790ff91801596dbc54905387b59e5680f6"
+        }
+      ],
+      "scientific_review": {
+        "path": "research/decisions/R12-randomness-claim.json",
+        "sha256": "fb9254a9af65439bf15f003a176208b8f6b9cded283a84c1edb1b8b0ae817186"
+      },
+      "assessment": "evidence_supported",
+      "review_status": "codex_team_reviewed",
+      "scientific_validity": "not_assessed"
+    },
+    {
+      "id": "H2-confirmed-comparison-population-sensitivity",
+      "statement": "On the preregistered H2 scope-only confirmation attempt 20261108T100025-c526dea890, 16 of 56 support- and inference-eligible pair/dataset comparisons (9 BBH, 7 MMLU; 84 declared, including 28 unsupported GPQA cells) met the fixed materiality rule: absolute native-to-exact-input ACK-gap shift at least 0.05 and its simultaneous 95% cluster-bootstrap interval wholly outside [-0.02, 0.02]. The largest eligible shift was BBH Qwen3-235B-A22B-2507 minus QwQ-32B: native gap +0.04197651663405097 to exact-overlap gap -0.11323051948051949, shift -0.15520703611457046, interval [-0.1919879710837689, -0.11842610114537203]. This uses previously unused 35% question clusters, historical 2025 released judge annotations and equal released-question weights. It does not reproduce the paper macro estimator or measure latent faithfulness. All 84 version-restriction components equal zero under the observed single-version structure; the shifts describe support/composition changes, not causal cue-version effects or corrected true rankings. The narrower H1 discovery and H2 exploratory reuse are disclosed; reserve outcomes remain unused.",
+      "scope": "Pinned Meek public release a7a8b25ae467db9d80d63e55ac053b48753b2d36; scope-only contexts, equal released core-question weights, native adaptive versus common exact inputs; confirmation 35% clusters. Historical cached outputs only; no causal or internal-reasoning inference.",
+      "limitations": [
+        "The outcome is a historical released judge annotation, not ground-truth internal reasoning. False can include source parsing failures.",
+        "Equal-question weighting differs from the published subdataset macro estimator; the native adaptive policy is intentional and is not shown flawed.",
+        "Matching changes question and cue-kind composition. A zero version component is algebraic under the observed structure, not causal evidence.",
+        "Intervals use approximate conditional empirical cluster resampling, separately simultaneous by endpoint and split. No joint programme-wide, finite-sample or population-safety guarantee.",
+        "All 28 GPQA comparisons lack the frozen 100-cluster confirmation support; no GPQA significance inference.",
+        "H1 overconditioned U0 and remains preserved. H2 discovery reused H1 questions; H2 confirmation ACK had not been used for design.",
+        "This is local distinct Codex-team review, not external peer review, priority certification or journal-readiness approval."
+      ],
+      "evidence": [
+        {
+          "path": "artifacts/research/R17/20261108T100025-c526dea890/tasks/ack-audit/audit/analysis.json",
+          "sha256": "356880a535e0478a3cb74b0a4dda3379b73f2da3ec4e77955096ace1dbe076fa"
+        },
+        {
+          "path": "artifacts/research/R17/20261108T100025-c526dea890/tasks/ack-audit/audit/dataquality.json",
+          "sha256": "1eeec603882aabb324234d5e3092e6a33ecf27ed60e99b3f026fc078b3e2a26d"
+        },
+        {
+          "path": "artifacts/research/R17/20261108T100025-c526dea890/tasks/ack-audit/audit/per_question.parquet",
+          "sha256": "1294a650ef2799eb5291e9a3cd86f3404581ef48605fc405f05f856ef4ddd788"
+        },
+        {
+          "path": "artifacts/research/R17/20261108T100025-c526dea890/tasks/ack-audit/audit/bootstrap.npz",
+          "sha256": "55922628257313f5f55e7bd23f79461e27c86bb7c295b90fdb502e4f00260b17"
+        },
+        {
+          "path": "artifacts/research/R17/20261108T100025-c526dea890/manifest.json",
+          "sha256": "956014d23074a0c07617f5607fde9b208cd699dca14094450767a01ace9207f1"
+        },
+        {
+          "path": "research/stages/R17/REPORT.md",
+          "sha256": "205104d4401f247605d9dd54e9fc4c538c34b26e16b7be7c671def87e8030c50"
+        },
+        {
+          "path": "research/stages/R17/inputs/analysis-protocol.json",
+          "sha256": "912da166ea5ec241bbccb07615ed1eaddb4690bb65b0992566f7a12b93d5cd7b"
+        },
+        {
+          "path": "research/stages/R17/inputs/design-review-H2.json",
+          "sha256": "c4be1f1f412f587c776c24e8453c883984bfce8849f733e7613544cd77b636c3"
+        }
+      ],
+      "scientific_review": {
+        "path": "research/decisions/H2-sensitivity-claim.json",
+        "sha256": "cbff7134b802eaaf7ab0620e3705bf3b8d3f8a8d35aa942b4d3e72695e6ac14c"
+      },
+      "assessment": "evidence_supported",
+      "review_status": "cursor_team_reviewed",
+      "review_harness": "codex",
+      "scientific_validity": "not_assessed"
+    },
+    {
+      "id": "H2-exploratory-discovery-summary",
+      "statement": "Under the frozen H2 scope-only exploratory discovery attempt 20261108T095410-f87b41e0ef, 17 cells (10 BBH and 7 MMLU) among 57 support- and inference-eligible cells met the fixed descriptive sensitivity rule; all 84 declared cells were retained. These 30% question clusters had already been inspected for H1. This is exploratory reuse, not independent confirmation, a replication of H1, or evidence about latent reasoning. The separately frozen confirmation criterion was assessed on unused questions.",
+      "scope": "Exploratory descriptive summary of the pinned historical release, equal-question weights, scope-only H2 context.",
+      "limitations": [
+        "Discovery reuses H1-inspected questions; no independent confirmation or new-model replication.",
+        "Simultaneous bootstrap families are approximate and separate by endpoint and split.",
+        "Released judge annotation, not latent faithfulness; matching changes population."
+      ],
+      "evidence": [
+        {
+          "path": "artifacts/research/R17D/20261108T095410-f87b41e0ef/tasks/ack-audit/audit/analysis.json",
+          "sha256": "99d7a0c9e07886959fa13c44064d7de41789ba8018410523bc795b92a34c316c"
+        },
+        {
+          "path": "artifacts/research/R17D/20261108T095410-f87b41e0ef/tasks/ack-audit/audit/dataquality.json",
+          "sha256": "bda5a5ae8ace9a8ac73a14ce36a8128969ef1f3696793f5935aafff004dbd573"
+        },
+        {
+          "path": "research/stages/R17D/REPORT.md",
+          "sha256": "535e9bded100579ec0fc67bca392cd6a9329ba308bc3a22030cc1a7314a6498f"
+        },
+        {
+          "path": "research/reviews/R17D-v1.json",
+          "sha256": "e5a567904fa0880cfe63befb3d6c458d1c073d456b0a00e8041f2449d1865f82"
+        }
+      ],
+      "scientific_review": {
+        "path": "research/decisions/H2-discovery-descriptive-claim.json",
+        "sha256": "6cb40a025ed733d43bc0a99b3937566252bc9f18182b1e63a98bbd5d87f79ef7"
+      },
+      "assessment": "evidence_supported",
+      "review_status": "cursor_team_reviewed",
+      "review_harness": "codex",
+      "scientific_validity": "not_assessed"
+    },
+    {
+      "id": "H2-conditional-design-support-identity",
+      "statement": "For a common semantically aligned answer set A with K options and valid fixed baseline answers b_m in A, a policy allowing each model only targets different from its own baseline has shared admissible targets A minus the set of distinct b_m. Their count is K minus the number of distinct baselines. In particular, two disagreeing binary baselines leave no shared contrastive target. This is an elementary conditional set identity, not a new theorem or verified per-row compliance claim. Crossing all K targets including the cued own-baseline condition uses KMC nominal calls rather than MC for M models and C cue kinds, excluding uncued baselines and repeats; these are evaluation counts, not measured runtime.",
+      "scope": "Conditional elementary design argument for aligned semantic answers and valid baselines, not an empirical claim about every released row.",
+      "limitations": [
+        "Known elementary support argument, not new set theory or matching method; no first-priority claim.",
+        "Assumes valid fixed baseline answers and aligned semantic options; actual released row compliance is unverified.",
+        "Target contrast with a baseline is not objective wrongness; exact semantic targets need not have identical rendered input or provider context.",
+        "Nominal call counts exclude uncued baselines/repeats and do not prove runtime, token-cost or safety improvement."
+      ],
+      "evidence": [
+        {
+          "path": "docs/research-reset/cot-design-support-note-2026-11-08.md",
+          "sha256": "2a7e76405dd70c46dea5164295ca82c009d89f68119fa164b1b5f97ecebfa33d"
+        },
+        {
+          "path": "research/reviews/cot-design-support-proof-review.json",
+          "sha256": "a1ba5e822cb2497ca72ddf006461a9ab6d89656ef1d385b3780f288e9489285b"
+        }
+      ],
+      "scientific_review": {
+        "path": "research/decisions/H2-design-support-claim.json",
+        "sha256": "915f49e0f5c665fc9e522d951f1729a3d995aedc833f0616226d0d9b2286df47"
+      },
+      "assessment": "evidence_supported",
+      "review_status": "cursor_team_reviewed",
+      "review_harness": "codex",
+      "scientific_validity": "not_assessed"
     }
   ],
   "historical_observations": [

@@ -1,0 +1,92 @@
+{
+  "attempt_id": "20261107T214015-f184806e46",
+  "author_agent": "/root/workflow_audit",
+  "criteria": [
+    {
+      "id": "C1",
+      "verdict": "pass",
+      "evidence": [
+        "figures/gallery/figure_manifest.json",
+        "figures/task-runtime.json",
+        "validation/validation.json"
+      ],
+      "reason": "Independently reran readonly gallery verification:189unique entries,187readablePNG/SVGpairs,2HTML,16complete hashedCSVtables. Overview inspected all187PNGs on7contact sheets and9fullresolution panels acrossR10/R11/R12/R2/R4, including both prior blockers. R12gate/fixed-gain small-value ticks now use clear scientific exponents; no remaining blocking overlap found. R2unassessed and firstzero censoring remain honest. Entire16CSV set is byteidentical to attempt2, whose everycell was independently compared against frozen sources. Runtime controls recorded; source images unchanged."
+    },
+    {
+      "id": "C2",
+      "verdict": "pass",
+      "evidence": [
+        "package/science-package/package-manifest.json",
+        "package/task-runtime.json",
+        "validation/validation.json"
+      ],
+      "reason": "Independently hashed all901packaged files/bytecounts (1320440971bytes), and every perstage frozen source-file binding. Requirements have neitherTorch norEpistemeOS; finalpaperhash remains90a02f57759bd976e123732125405f091212f0adc6596ce55d2c6d3e7dda4684. Selected evidence, distinctcode versions and explicitreview packets/priorR11attempt are preserved. No whole-project runtime import is needed for scientific replay."
+    },
+    {
+      "id": "C3",
+      "verdict": "pass",
+      "evidence": [
+        "validation/validation.json",
+        "validation/task-runtime.json"
+      ],
+      "reason": "Read actual successful verify\u2192packagedR10replay\u2192verify records, independently compared every saved replayloss value in finite7188x256matrix, analysis/calibrationJSON andcurvemetadata to original: exactlyequal. Rechecked package901file inventory after replay. No reviewerredispatch/fits. Independent historical verify passed1315files with exactboundplan/manifest."
+    }
+  ],
+  "limitations": [
+    "Contact-sheet overview covered all187PNGs; detailed individual full-resolution inspection covered9representative panels, not every label of every figure. Byte/format/inventory checks covered allstaticfiles.",
+    "The gate right after-drop axis remains dense but distinguishable; some scientific exponent offset text is close to long axis labels. These are nonblocking presentation limitations, not changed numerical values.",
+    "Late-window plots retain broad y ranges from the full trajectories, reducing local visual resolution; fixed-window inferential panels separately quantify the prespecified effect.",
+    "HTML companions include inlinePlotly with no external script src tags. This review inspected source and outputbytes, not actual browserhover/zoom interaction.",
+    "R10replay checks relocated packagedpaths in the existing environment, not a fresh dependency installation or cross-platform bitwise reproducibility; originalseed replay is not independent scientific replication.",
+    "Attempt1failure and attempt2completed/readability-revise remain preserved andcharged. Explicitamendment2to3 stayed within parentmax3 andunchangedstage/global caps; no scientific n was added.",
+    "R13 closes a derivative methodological release milestone only. It establishes no newdouble-descent mechanism, natural annealing explanation, noveltypriority, journalreadiness or completion of the original scientificgoal."
+  ],
+  "manifest_sha256": "98f829766c9e71b4db3a66be205c955c2ea38043196dc6cf135f8164d6cad4e1",
+  "plan_sha256": "8bf97a5a6d2700df95bee017e1168ed6e02428a3743fc8a738326d5c58124e87",
+  "predictions": [
+    {
+      "id": "P1",
+      "outcome": "supported: full187staticPNG/SVGpairs+2HTML and16sourceCSVtables, allhash/count checks pass; prior blocking tinydecimal tick collisions corrected in actual finalpanels.",
+      "evidence": [
+        "figures/gallery/figure_manifest.json",
+        "validation/validation.json"
+      ]
+    },
+    {
+      "id": "P2",
+      "outcome": "supported: all901packagefiles verified with distinctfrozenstage sourcecode, complete selected evidence/provenance, minimalrequirements and retainedtechnicalhistory; paperunchanged.",
+      "evidence": [
+        "package/science-package/package-manifest.json",
+        "validation/validation.json"
+      ]
+    },
+    {
+      "id": "P3",
+      "outcome": "supported: actualsame-seed portableR10replay fullraw+JSON+metadata exact, packageunchanged, nofits/network/GPU/API, no additionalindependent n.",
+      "evidence": [
+        "validation/validation.json"
+      ]
+    }
+  ],
+  "report": {
+    "path": "research/stages/R13/REPORT.md",
+    "sha256": "b3c45cb183715ec1121ff61ef8b74faaf91f4e86b4203f323ae4d8485e1fd760"
+  },
+  "review_mode": "subagent_review",
+  "reviewer": {
+    "name": "Independent Codex R13 final delivery reviewer",
+    "harness": "codex",
+    "role": "stage_reviewer",
+    "independence": "Distinct subagent, not author of renderer/builder/wrapper/validator/formatter/REPORT. Reviewed actual187PNG overview on7contact sheets and9individual full-resolutionPNG, all901package filebytes, all16CSV invariance and existingportable replay. Nofit/newdispatcher or source/result mutation. Contact sheets are additional QA copies only."
+  },
+  "reviewer_agent": "/root/science_critique",
+  "schema_version": 1,
+  "scientific_validity": "not_assessed",
+  "stage_id": "R13",
+  "verdict": "accept",
+  "coauthor_agents": [
+    "/root",
+    "/root/literature",
+    "/root/catboost_study"
+  ]
+}

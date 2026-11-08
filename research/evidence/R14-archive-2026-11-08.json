@@ -1,0 +1,18 @@
+{
+  "stage_id": "R14",
+  "attempt_id": "20261108T073937-26f816e66d",
+  "archive": {
+    "path": "research/evidence/R14-runs-2026-11-08-v1.zip",
+    "sha256": "fc150cb12bb8c26878c6eca6f8949f1bc6d769c6a96da45477cbd8dbbb676af0",
+    "bytes": 160306762,
+    "files": 1152,
+    "unique_blobs": 1148,
+    "restored_bytes": 159794491
+  },
+  "detached_verify": {
+    "passed": true,
+    "command": "uv run python artifacts/intake/R13-archive-recovery/RESTORE.py verify research/evidence/R14-runs-2026-11-08-v1.zip"
+  },
+  "scientific_outcome": "forecastcandidateSTOP;P2refuted;broaderP3costnot_established",
+  "scientific_validity": "not_assessed"
+}

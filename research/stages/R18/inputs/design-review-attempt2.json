@@ -1,0 +1,489 @@
+{
+  "schema_version": 1,
+  "stage_id": "R18",
+  "review_mode": "subagent_review",
+  "harness": "codex",
+  "author_agent": "/root",
+  "coauthor_agents": [
+    "/root/cot_intake",
+    "/root/alignment_brainstorm"
+  ],
+  "reviewer_agent": "/root/reset_critic",
+  "reviewer_independence": "Distinct Codex child /root/reset_critic; authored none of the evaluated implementation, producer, tests, plans, manuscript or numerical claims. Authored independent checkers and reviews only. Inspected exact three-line production diff and handmade regression tests; independently ran all16 renderer fixtures and verified full70-file evidence and all12 unchanged reference files. Local team review, not external peer review.",
+  "reviewed_at_utc": "2026-11-08T11:11:32.024391+00:00",
+  "verdict": "accept",
+  "blocking_issues": [],
+  "authorization_decision": {
+    "path": "research/decisions/alignment-h2-authorization-2026-11-08.json",
+    "sha256": "76eb82a9b82c8ad0c7832d0c55b7d3e445e9f412579e57390aca56f7c1bc66cd"
+  },
+  "reviewed_artifacts": [
+    {
+      "path": "artifacts/intake/R18-pdf-operation-started.json",
+      "sha256": "8d42b02e8c88429b7eff27b7287b7db7bf75db4beb013cb75d92bdee46bb0e47"
+    },
+    {
+      "path": "artifacts/intake/cot-R18-attempt2-preflight-checks.json",
+      "sha256": "e3ab179a85b5951e5977572420a91c767af275aeaa3d1c01f81cc44780f521af"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/LICENSE-dataset",
+      "sha256": "c0dadc3d3f06dc19f2fed56f39c8d04d4d4a8a5cc8cf06522ee9d34107fd2a31"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/PORTFOLIO.md",
+      "sha256": "bf3516ea2cf14d5d5d3fdb41306d8e552426e9ccc0e34216d9001150296e2d05"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/README.md",
+      "sha256": "0042cf4efa745ec14e99acc129d92efe7090a9db9f4969883356508d1a3dda8a"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/docs/0007-scope-only-comparison.md",
+      "sha256": "a89d3e4b94dd71cce1c8f8a7f5afb150cf2bc72ce592427515fb0104c9f04511"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/docs/cot-audit-priority.txt",
+      "sha256": "9e952fb07bb9f08f33b3e9052936368c73924a75260d78b0b88ba78f09fce6df"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/docs/cot-design-support-note.md",
+      "sha256": "2a7e76405dd70c46dea5164295ca82c009d89f68119fa164b1b5f97ecebfa33d"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/docs/cot-scope-comparison.md",
+      "sha256": "9d431d9fd434b24c06bf95bde9e817e128bd71070097af52b6228ddff3952679"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/docs/research-reset/cot-design-support-note-2026-11-08.md",
+      "sha256": "2a7e76405dd70c46dea5164295ca82c009d89f68119fa164b1b5f97ecebfa33d"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/history/H1-R16-report.md",
+      "sha256": "76c8b6d8c7e89f61fb32b54af0010a18b6d17d2db21210615a97e8675b8fae4c"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/history/H1-R16-review.json",
+      "sha256": "3e68f04eac7f70ed954d764d336d7b3e20e5b2680b4444e96de87ab4bbad0e33"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/history/H1-failed-attempt-review.json",
+      "sha256": "029507da4390203f4c89c6cdf672e04f2f208cbb00e873d7db2c9aed27a4f2a3"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/history/H1-failed-intake-report.md",
+      "sha256": "80b0ea956cbd14993215f7c05d1c7bbd3512ff87381a3d9180740508c67ab02a"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/history/H1-unexecuted-confirmation-preservation.json",
+      "sha256": "8236247527528e3d9fdfd825b1e540cb75b69ceebceaec064fe0adf0c4451699"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/history/R18-attempt1-operational-review.json",
+      "sha256": "b0a28812694445b12c18ba97af89e6d3e0043fa1988dc37f9e3ed54306104ae9"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/history/R18-attempt1-passed-replay-report.json",
+      "sha256": "c0f63544529c60b74518f2fc9e08a94237695f001cf88bb8f9ee9820f4d5a7f6"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/history/R18-attempt1-report.md",
+      "sha256": "0eda0d2d1816ae71d00a22257e3a802618a986ff4abea2748f21995b82306fcc"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/history/R18-attempt1-visual-review.json",
+      "sha256": "c863af240aeb760c76418a021dabf676097321f35b8b08c604fbe72b54f19dbf"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/inputs/download-spec.json",
+      "sha256": "e28633394bacca464ffa4190527dd0d55b4db25ddc019c5f17a6bbb8e958c66c"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/inputs/intake_profile.json",
+      "sha256": "06f4ceec6dc719c0e103be94e3587b676da27deacc8a1fa0f4f7a4ad98ffc0f4"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/inputs/metadata_audit.json",
+      "sha256": "c6b267d3e253f6d8f404073f94fa330d669a9dc94afca6901821f23ffa89593a"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/inputs/slim.parquet",
+      "sha256": "cf41ae989be031362fed849a89387be87ca5d8231f89faa94ff8c1a96763f6ec"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/protocols/confirmation.json",
+      "sha256": "912da166ea5ec241bbccb07615ed1eaddb4690bb65b0992566f7a12b93d5cd7b"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/protocols/discovery.json",
+      "sha256": "d795e8c6d4767cb436e511b88fc4630204995882839f97a773320d13f558d327"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/provenance/R17-closure.json",
+      "sha256": "452fbb82cd759d8f1491d6cb37290f15340599fbcd52bf26df06dbb035ff5a3e"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/provenance/R17-machine-plan.json",
+      "sha256": "b8db456c3302d9236dc9a7262675709d4dbaadd6c79794e13d1bfdd9a9f9982b"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/provenance/R17-manifest.json",
+      "sha256": "956014d23074a0c07617f5607fde9b208cd699dca14094450767a01ace9207f1"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/provenance/R17D-closure.json",
+      "sha256": "92094ce7936e512de17d8d5b1d1b118a2c7ceb61713bff610986351e366b6fde"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/provenance/R17D-machine-plan.json",
+      "sha256": "2a911b5a618ebd123f586d5fb8f6d546e6b2b481fdd0ed786808667e605f1c22"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/provenance/R17D-manifest.json",
+      "sha256": "013d64068eb35df60f5ae0287493d0dcdcd0e520becec0494f5d9a8417ee2d0c"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/provenance/authorization.json",
+      "sha256": "76eb82a9b82c8ad0c7832d0c55b7d3e445e9f412579e57390aca56f7c1bc66cd"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/provenance/dataset-README.txt",
+      "sha256": "8460079e18374955310b16b82a25e2de9c7e9542f268d2698c01ffb4caddb616"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/provenance/download_manifest.json",
+      "sha256": "9f73748295f546573a5810b0bf122e59504b829bf17b7755c0d178a254d220af"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/provenance/input_origins.json",
+      "sha256": "b6acb78d35705461936a7c2ede8b3bd99c3b80786053b6613259bd026d83854d"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/provenance/intake_report.json",
+      "sha256": "57f4e199ee18e0997d64cf9111f8c3791333f59c8dde95a733ec78e42cd39e7e"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/provenance/original-pyproject.toml",
+      "sha256": "5d43d6f7f88312b18299a1ec7e8ac921d512c271ac022de4ad0720eb5883e182"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/reference/confirmation/analysis.json",
+      "sha256": "356880a535e0478a3cb74b0a4dda3379b73f2da3ec4e77955096ace1dbe076fa"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/reference/confirmation/bootstrap.npz",
+      "sha256": "55922628257313f5f55e7bd23f79461e27c86bb7c295b90fdb502e4f00260b17"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/reference/confirmation/dataquality.json",
+      "sha256": "1eeec603882aabb324234d5e3092e6a33ecf27ed60e99b3f026fc078b3e2a26d"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/reference/confirmation/pairs.csv",
+      "sha256": "a323e0f4456b9b2f0d8b4d597cd73cad57aff6f32cdfecccfd6bd33ebbd99624"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/reference/confirmation/per_question.parquet",
+      "sha256": "1294a650ef2799eb5291e9a3cd86f3404581ef48605fc405f05f856ef4ddd788"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/reference/confirmation/protocol.json",
+      "sha256": "912da166ea5ec241bbccb07615ed1eaddb4690bb65b0992566f7a12b93d5cd7b"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/reference/discovery/analysis.json",
+      "sha256": "99d7a0c9e07886959fa13c44064d7de41789ba8018410523bc795b92a34c316c"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/reference/discovery/bootstrap.npz",
+      "sha256": "10b941473bd2bfef66ea509e60f8692e06b0aad35d3d9e754a528a91e0f4456f"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/reference/discovery/dataquality.json",
+      "sha256": "bda5a5ae8ace9a8ac73a14ce36a8128969ef1f3696793f5935aafff004dbd573"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/reference/discovery/pairs.csv",
+      "sha256": "d1e7811d23c2c422a616d900f9a10dd5e440451d27b5ba66fbf4c661621ec28e"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/reference/discovery/per_question.parquet",
+      "sha256": "eefa51a9616fa0631551a98bb288091cf5fddf5f1c95e5d13ed1c2ccb7cbcc33"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/reference/discovery/protocol.json",
+      "sha256": "d795e8c6d4767cb436e511b88fc4630204995882839f97a773320d13f558d327"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/reference_origins.json",
+      "sha256": "00817d26a30ec5412021f92c0e7655cef34b13ff05b2c7eb065ee33ce608a399"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/reports/R17-report.md",
+      "sha256": "205104d4401f247605d9dd54e9fc4c538c34b26e16b7be7c671def87e8030c50"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/reports/R17D-report.md",
+      "sha256": "535e9bded100579ec0fc67bca392cd6a9329ba308bc3a22030cc1a7314a6498f"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/requirements-figures.txt",
+      "sha256": "783c4a80b168e1b88a8278bfd52ef5b6dfda63c069b587396837d8bc7de2fdb6"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/requirements.txt",
+      "sha256": "a71b64a2384799308326a9cd962d9cf9ea4c22aca23a28a2b9f34564c5e4501b"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/reviews/H2-design-support-claim.json",
+      "sha256": "915f49e0f5c665fc9e522d951f1729a3d995aedc833f0616226d0d9b2286df47"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/reviews/H2-discovery-descriptive-claim.json",
+      "sha256": "6cb40a025ed733d43bc0a99b3937566252bc9f18182b1e63a98bbd5d87f79ef7"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/reviews/H2-sensitivity-claim.json",
+      "sha256": "cbff7134b802eaaf7ab0620e3705bf3b8d3f8a8d35aa942b4d3e72695e6ac14c"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/reviews/R17-operational-review.json",
+      "sha256": "8865f38a8ffbb90a8dca97e65f8ade9dd2891bff174a3bca1ccc8071e6ef26e5"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/reviews/R17D-operational-review.json",
+      "sha256": "71d437ee9886cd8ebd4e1065550faf27092c3110ef43eb841b84e63974917a24"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/reviews/cot-design-support-proof-review.json",
+      "sha256": "a1ba5e822cb2497ca72ddf006461a9ab6d89656ef1d385b3780f288e9489285b"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/reviews/manuscript-scientific-review.json",
+      "sha256": "347c425fe1fa672122023e42622ccd8d46dc76cb5ea47b9c3c52b01406499465"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/scripts/build_cot_portfolio.py",
+      "sha256": "7d86fd4faa877a71665293da2d16d78276aacbe6719efb1db05a7013cd447422"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/scripts/cot_audit.py",
+      "sha256": "73054927bc3a79a684a9542dee9acfa438f447f665e630be87d6e1026335cd20"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/scripts/plot_cot_audit.py",
+      "sha256": "1702219f31b4e9c20a89f97f6bf101950ef36f6899db5927c340cad2e7b731e6"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/scripts/replay_cot_portfolio.py",
+      "sha256": "aecec273e31e9c83ece72cb6b8af4122acefd573b0457f3fcb9da4389648aa82"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/src/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/src/cot_audit.py",
+      "sha256": "2a66461e2b9313f2d8ee735a5fe65331d3d1666cab3f092defab514a02ec749b"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/src/cot_figures.py",
+      "sha256": "e8d92c3a77e64457d869694db412c26bdf349a784a1a19dfeb1a699e69780248"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/tests/test_cot_audit.py",
+      "sha256": "37b83d1bb670c97868c0d9834c682dc652ef0785c42d7b46abc70d46ec2391c0"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/tests/test_cot_figures.py",
+      "sha256": "0c9529d80e18b4159020b3589fcbb132e3b7f8c9461cfd4e14abe75cc77df065"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/tests/test_replay_cot_portfolio.py",
+      "sha256": "9e36f9a8bdc1482c81cb1298b006f366b9bc38a41c40d85ec4036262d93fd051"
+    },
+    {
+      "path": "artifacts/intake/cot-portfolio-evidence/uv.lock",
+      "sha256": "ac89eef670e3774086fff7a06df62f1ba760f85d6c76378ac915ca32b76523b4"
+    },
+    {
+      "path": "artifacts/research/R18/20261108T104100-7836d70ed3/inputs/src/cot_figures.py",
+      "sha256": "bb5aea558d4d871286513baa95d862527876f6db0bab5d09c3d9991d27840659"
+    },
+    {
+      "path": "artifacts/research/R18/20261108T104100-7836d70ed3/manifest.json",
+      "sha256": "32ab301be1786e139e97d08614c3a2e20e2d653c53d66910b84478f9d295e9ea"
+    },
+    {
+      "path": "artifacts/research/R18/20261108T104100-7836d70ed3/tasks/replay/replay/replay_report.json",
+      "sha256": "c0f63544529c60b74518f2fc9e08a94237695f001cf88bb8f9ee9820f4d5a7f6"
+    },
+    {
+      "path": "docs/literature/cot-audit-priority-2026-11-08.md",
+      "sha256": "9e952fb07bb9f08f33b3e9052936368c73924a75260d78b0b88ba78f09fce6df"
+    },
+    {
+      "path": "docs/research-reset/cot-design-support-note-2026-11-08.md",
+      "sha256": "2a7e76405dd70c46dea5164295ca82c009d89f68119fa164b1b5f97ecebfa33d"
+    },
+    {
+      "path": "manuscript/cot_input_comparability.md",
+      "sha256": "230a21f145ade23000f43ac82aa913d2459d81dca014ce55395fc44ac70ebf2e"
+    },
+    {
+      "path": "pyproject.toml",
+      "sha256": "5d43d6f7f88312b18299a1ec7e8ac921d512c271ac022de4ad0720eb5883e182"
+    },
+    {
+      "path": "research/claims.json",
+      "sha256": "d268824fb9d6d072e1e5356cad03d6a23a7856441c1b3835c6a5f6d4c2c1d256"
+    },
+    {
+      "path": "research/decisions/H2-design-support-claim.json",
+      "sha256": "915f49e0f5c665fc9e522d951f1729a3d995aedc833f0616226d0d9b2286df47"
+    },
+    {
+      "path": "research/decisions/H2-discovery-descriptive-claim.json",
+      "sha256": "6cb40a025ed733d43bc0a99b3937566252bc9f18182b1e63a98bbd5d87f79ef7"
+    },
+    {
+      "path": "research/decisions/H2-sensitivity-claim.json",
+      "sha256": "cbff7134b802eaaf7ab0620e3705bf3b8d3f8a8d35aa942b4d3e72695e6ac14c"
+    },
+    {
+      "path": "research/decisions/alignment-h2-authorization-2026-11-08.json",
+      "sha256": "76eb82a9b82c8ad0c7832d0c55b7d3e445e9f412579e57390aca56f7c1bc66cd"
+    },
+    {
+      "path": "research/evidence/R17-closure.json",
+      "sha256": "452fbb82cd759d8f1491d6cb37290f15340599fbcd52bf26df06dbb035ff5a3e"
+    },
+    {
+      "path": "research/evidence/R17D-closure.json",
+      "sha256": "92094ce7936e512de17d8d5b1d1b118a2c7ceb61713bff610986351e366b6fde"
+    },
+    {
+      "path": "research/plans/R18.json",
+      "sha256": "95057573e43ad184d3e66c313b5432856467bd14ba3a5bbf8c0add092fa3d06c"
+    },
+    {
+      "path": "research/reviews/R18-attempt1-v1.json",
+      "sha256": "b0a28812694445b12c18ba97af89e6d3e0043fa1988dc37f9e3ed54306104ae9"
+    },
+    {
+      "path": "research/reviews/R18-attempt1-visual-qa.json",
+      "sha256": "c863af240aeb760c76418a021dabf676097321f35b8b08c604fbe72b54f19dbf"
+    },
+    {
+      "path": "research/reviews/cot-manuscript-scientific-review-v2.json",
+      "sha256": "347c425fe1fa672122023e42622ccd8d46dc76cb5ea47b9c3c52b01406499465"
+    },
+    {
+      "path": "research/stages/R18/AMENDMENT-attempt2.md",
+      "sha256": "8f7e1d6a70347272226cefbea788974e0136b504a749f223ad1379998d50a51c"
+    },
+    {
+      "path": "research/stages/R18/PLAN.md",
+      "sha256": "b6a81c5f03b62e71e993af5c590e6b51b79b3dcb1a77daea771a3a06fd36a6c2"
+    },
+    {
+      "path": "research/stages/R18/REPORT-attempt1.md",
+      "sha256": "0eda0d2d1816ae71d00a22257e3a802618a986ff4abea2748f21995b82306fcc"
+    },
+    {
+      "path": "research/stages/R18/inputs/design-review.json",
+      "sha256": "83af79a5ac7142451bc520f30f13b7118caf0ea8c73db1594c8577477f2642fa"
+    },
+    {
+      "path": "research/stages/R18/inputs/evidence-spec-attempt2.json",
+      "sha256": "bc0d8b9143c78788b7e42235ae8d24f2609658179f08446f3139dcedab5b737e"
+    },
+    {
+      "path": "research/stages/R18/inputs/figure-captions.json",
+      "sha256": "6d79401d7ae4006715995676c8facab128d4fd21f1453ffcc393120706f1eb5a"
+    },
+    {
+      "path": "research/stages/R18/inputs/figure-spec.json",
+      "sha256": "c513c3eaa9660748727fe6c23e9024635d0602ee61e8156d39b6688a392a4a8b"
+    },
+    {
+      "path": "research/stages/R18/inputs/mark_artifact_operation_started.mjs",
+      "sha256": "968d66a7b491c7728f2ab009dcb54ac0025d6f474de6f3734f66b8809f6c18a8"
+    },
+    {
+      "path": "research/stages/R18/inputs/pdf-runtime.json",
+      "sha256": "3f62537be040ce2497674038f7df39ebd2d715be5a0a41649ccdd7bd043b8dca"
+    },
+    {
+      "path": "scripts/build_cot_portfolio.py",
+      "sha256": "7d86fd4faa877a71665293da2d16d78276aacbe6719efb1db05a7013cd447422"
+    },
+    {
+      "path": "scripts/plot_cot_audit.py",
+      "sha256": "1702219f31b4e9c20a89f97f6bf101950ef36f6899db5927c340cad2e7b731e6"
+    },
+    {
+      "path": "scripts/replay_cot_portfolio.py",
+      "sha256": "aecec273e31e9c83ece72cb6b8af4122acefd573b0457f3fcb9da4389648aa82"
+    },
+    {
+      "path": "src/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "src/cot_figures.py",
+      "sha256": "e8d92c3a77e64457d869694db412c26bdf349a784a1a19dfeb1a699e69780248"
+    },
+    {
+      "path": "tests/test_cot_figures.py",
+      "sha256": "0c9529d80e18b4159020b3589fcbb132e3b7f8c9461cfd4e14abe75cc77df065"
+    },
+    {
+      "path": "tests/test_replay_cot_portfolio.py",
+      "sha256": "9e36f9a8bdc1482c81cb1298b006f366b9bc38a41c40d85ec4036262d93fd051"
+    },
+    {
+      "path": "uv.lock",
+      "sha256": "ac89eef670e3774086fff7a06df62f1ba760f85d6c76378ac915ca32b76523b4"
+    }
+  ],
+  "checks": {
+    "plan_and_dependencies": "Same derivative-only frozen R18 delivery; max2 attempts,1800s each/3600s total, serial figures→fresh detached two-phase replay→package. First attempt278.735s charged; first188605381bytes task outputs preserved. Combined task-output limit512MiB and cumulative24h/20GiB/2GiB child budgets do not reset. Deadline13:12UTC. No scientific/source/threshold/data adaptation, reserve aggregation or external operation.",
+    "figure_contract": "Verified frozen figure-spec JSON equals renderer delivery_spec exactly:111 PNG/SVG pairs, original107 complete views plus4 fixed paper summaries. Eight tables retain168cells/1008estimates/504intervals/8model IDs/48quality rows/2split rows/84cross-split cells/24intake columns. All supported, unsupported and null cases remain; exactzero is distinct from unavailable. Only registered delta CIs displayed, separate endpoint/split families. Frozen order/signs, saturation with unclipped numeric labels, source hashes, input-change guard and complete matrix validation reviewed.",
+    "paper_summaries": "Reviewed all56 eligible confirmation interval forest, all84 support points, descriptive largest-absolute eligible BBH/MMLU examples with source-order ties, and conditional hypothetical binary support diagram. Examples are selected after confirmation only for illustration, not new tests; raw gaps have no invented CIs, only separately labeled total-shift intervals. Captions include complete fixed M1-M8 model mapping, allGPQA support caveat, proxy/causal/ranking limits and MC/KMC assumptions. Four12x6inch layouts use12pt main/10pt footer text.",
+    "visual_preflight": "Read both new real-Agg canvas bbox regressions: actual title/footer; text/mark canvas bounds after draw; every N/A insideaxes and disjoint x tick text; first/last N/A present; last pairversion2.2 offset covered. Regressions reproduce old source failure and new source pass per author; reviewer independently ran all16 fixture testsPASS11.654s. Actual new111figure gallery and everyPDFpage remain mandatory postrun checks by distinct visual reviewer; no actual retry rerender by reviewer.",
+    "portable_evidence": "Independently rehashed exact70 files/112548358bytes against new evidence-spec, complete fileset and no symlinks. All12 scientific reference files byte-identical to first frozen snapshot; original producer/input/protocols unchanged. Plot/testcopies reflect only authorized geometry repair. Four first-run history records retain old report, operational/visual REVISE and original passed replay report byte-exact. Old report is not rewritten/rebound to new plot SHA; fresh replay required.",
+    "replay_contract": "Read full standalone replay source. It validates original frozen21 required source/input/protocol/reference files and SHA bindings before importing the exact producer under an isolated module name; checks shared H2 contexts, exclusion ledger and settings. CPU4, no bytecache; socket DNS/connect blocked during import/execution. Serial discovery/confirmation only, retaining reserve statistical non-use. It compares all scientific JSON keys (excluding ONLY analysis ROOT timing/environment), exact count/bool/type semantics, allNPZ arrays/dtypes/shapes/IDs/NaN masks, full Parquet logical schema/KVmetadata/ordered rows/nulls, and typed CSV cells with absolute1e-12/relative0 tolerance. New output outside evidence ancestry, failures/logs/reports preserved. This is computational reproduction, not new-model replication.",
+    "packager_contract": "Read full packager and subsequent narrow replay-report binding addition; latest7d86 change removes internal operator marker instructions from generated user README only. Source Markdown copied byte-exact; full gallery and<=200MiB evidence copy/hash checked; existing passed replay report copied byte-exact and validated against every reported required/additional copied file, source identity and sizes. Four known explicitly captioned figures only. Local links/assets, symlink/path containment, immutable inputs and failed outputs guarded. No study numbers or scientific estimator generated by builder.",
+    "PDF_contract": "PDF runtime, manuscript230a, captions and package source unchanged. Bound successful artifact marker ALREADY executed once before initial R18 authoring; its log is retained. DO NOT repeat marker for attempt2. Actual retry PDF must again have everypage rendered/inspected, runtime/font/source hashes checked; no PDF acceptance follows from preflight.",
+    "manuscript_and_science": "Final Markdown230a21f145ade23000f43ac82aa913d2459d81dca014ce55395fc44ac70ebf2e has distinct v2 scientific review347c... and3 accepted bounded claims. Narrative, primary prior, thresholds, support, numerical examples, H1 history, AI/human contribution boundaries and journal/priority limits reviewed separately. Do not expand scope or change scientific source/thresholds during derivative delivery.",
+    "independent_checks": "Independent final renderer16/16 pure/handmade regressionsPASS11.654s. New full repository CI reports239 tests passed/9explicit opt-in skips/returncode0, structural problems[]. Full70evidence bindings and12reference files verified read-only. Previous complete numeric/CSV/replay/package checks passed for first attempt; those do not substitute for fresh checks against changed second snapshot.",
+    "pre_execution_state": "Finalmachine95057573e43ad184d3e66c313b5432856467bd14ba3a5bbf8c0add092fa3d06c; renderere8d92c3a77e64457d869694db412c26bdf349a784a1a19dfeb1a699e69780248; tests0c9529d80e18b4159020b3589fcbb132e3b7f8c9461cfd4e14abe75cc77df065. CLI170/replayaecec/packager7d86/producer2a66/manuscript230a unchanged. First attempt exists and is explicitly REVISE; second has not run at review time. New source binding requires new output and a genuine new serial replay. No source change allowed after acceptance.",
+    "geometry_repair": "Independently compared current renderer with first frozen source: exactly3 substitutions of invert_yaxis() with set_ylim(len(cells)-.5,-.5), on generic interval forest, pair gap/delta panels and pair support panel. No change to numbers, weights, intervals, captions, paper figures, CSV or matrix. Explicit half-category margins cover annotation-only last Version shift:N/A rows and first/last all-N/A forest rows."
+  },
+  "nonblocking_notes": [
+    "Preflight accepts readiness only. Actual gallery completeness/CSV values, detached replay success, byte-identical package evidence/manuscript, every PDF page and local links must be checked after production. A zero exit code alone is insufficient.",
+    "All56 confirmation primary intervals concern a historical released judge proxy and changes in support/composition. No causal cue-version effect, true model ranking, latent faithfulness or current frontier-model safety is established.",
+    "No new theorem/matching method or world-first/journal-readiness approval follows. External priority is explicitly limited by Meek, Dilgren/Wiegreffe and OpenAI prior; the contribution is this bounded heldout empirical audit and reproducible practical artifacts.",
+    "111 plots are artifact coverage, not111 independent scientific results. Model pairs, cue kinds, aliases and bootstrap replicates are not independent experimental repetitions.",
+    "Summary captions and selected examples may illustrate verified evidence but cannot add unregistered raw-gap significance or strengthen5pp point/2pp interval criterion into a5pp lower confidence bound.",
+    "The compact table contains all source fields, including statistically unused reserve outcomes. Replay code must continue to aggregate only the two frozen H2 phases; reserve remains unused for any new hypothesis.",
+    "PDF skill generic output-folder conventions defer to user/repository instruction to retain new research artifacts under artifacts/research. No approval question is required for authorized reversible local delivery.",
+    "First run numerical reproduction and PDF were valid within their stated scope, but56 pair plots had clipping. This is last authorized technical attempt; no omitted failure, input retuning or attempt-budget reset is authorized."
+  ],
+  "required_before_dispatch": [
+    "Validate final R18 plan/closed dependencies/claims and exact current hashes against this review",
+    "Check cumulative resources including first attempt, both source snapshots and archives; combined task outputs<=512MiB",
+    "Activate exact accepted attempt2 packet; use one registered dispatcher; DO NOT repeat artifact marker",
+    "Execute figures then fresh detached two-phase replay then package serially with all bound inputs immutable"
+  ],
+  "required_after_dispatch": [
+    "Verify full111PNG/SVG/eightCSV matrix and every source-derived table value; independently inspect all actual figure layouts and corrected56 pairplots/all-N/A forests",
+    "Verify all12 full-file replay comparisons and exact copied new-source/input/protocol/report bindings; retain old passed report unchanged as history",
+    "Render/inspect EVERY actual PDFpage; check full model legend/captions/text/fonts/pagecount/links and original230aMarkdown identity",
+    "Check combined output/runtime/cumulative caps and both attempts preserved; distinct operational/numerical/visual review then close/archive/detached-verify and exactSTATE"
+  ],
+  "scientific_validity": "not_assessed",
+  "review_scope": "R18 attempt2 bounded layout repair readiness; first run remains REVISE and is preserved. No production retry performed by reviewer.",
+  "supersedes_for_dispatch_only": "research/stages/R18/inputs/design-review.json"
+}

@@ -1,0 +1,1099 @@
+{
+  "schema_version": 1,
+  "phase": "independent_evaluation",
+  "n_curves": 7188,
+  "n_calibration": 2388,
+  "n_evaluation": 4800,
+  "protocol_sha256": "0f36466a9ebc3ff75c1dbba412f079f23f2959d0ff23b2842f004b0e22135dd7",
+  "rates": [
+    {
+      "noise_id": "small_iid",
+      "family": "linear",
+      "detector": "global",
+      "role": "null",
+      "n": 200,
+      "flagged": 0,
+      "rate": 0.0,
+      "pointwise_95_cp": [
+        0.0,
+        0.018275340355136237
+      ],
+      "median_absolute_localization_error_given_flag": null,
+      "localized_within_max_window": 0.0
+    },
+    {
+      "noise_id": "small_iid",
+      "family": "linear",
+      "detector": "local",
+      "role": "null",
+      "n": 200,
+      "flagged": 200,
+      "rate": 1.0,
+      "pointwise_95_cp": [
+        0.9817246596448638,
+        1.0
+      ],
+      "median_absolute_localization_error_given_flag": null,
+      "localized_within_max_window": 0.0
+    },
+    {
+      "noise_id": "small_iid",
+      "family": "linear",
+      "detector": "scan",
+      "role": "null",
+      "n": 200,
+      "flagged": 12,
+      "rate": 0.06,
+      "pointwise_95_cp": [
+        0.03138395389348344,
+        0.10246183130832447
+      ],
+      "median_absolute_localization_error_given_flag": null,
+      "localized_within_max_window": 0.0
+    },
+    {
+      "noise_id": "small_iid",
+      "family": "exponential",
+      "detector": "global",
+      "role": "null",
+      "n": 200,
+      "flagged": 0,
+      "rate": 0.0,
+      "pointwise_95_cp": [
+        0.0,
+        0.018275340355136237
+      ],
+      "median_absolute_localization_error_given_flag": null,
+      "localized_within_max_window": 0.0
+    },
+    {
+      "noise_id": "small_iid",
+      "family": "exponential",
+      "detector": "local",
+      "role": "null",
+      "n": 200,
+      "flagged": 200,
+      "rate": 1.0,
+      "pointwise_95_cp": [
+        0.9817246596448638,
+        1.0
+      ],
+      "median_absolute_localization_error_given_flag": null,
+      "localized_within_max_window": 0.0
+    },
+    {
+      "noise_id": "small_iid",
+      "family": "exponential",
+      "detector": "scan",
+      "role": "null",
+      "n": 200,
+      "flagged": 0,
+      "rate": 0.0,
+      "pointwise_95_cp": [
+        0.0,
+        0.018275340355136237
+      ],
+      "median_absolute_localization_error_given_flag": null,
+      "localized_within_max_window": 0.0
+    },
+    {
+      "noise_id": "small_iid",
+      "family": "early_plateau",
+      "detector": "global",
+      "role": "null",
+      "n": 200,
+      "flagged": 0,
+      "rate": 0.0,
+      "pointwise_95_cp": [
+        0.0,
+        0.018275340355136237
+      ],
+      "median_absolute_localization_error_given_flag": null,
+      "localized_within_max_window": 0.0
+    },
+    {
+      "noise_id": "small_iid",
+      "family": "early_plateau",
+      "detector": "local",
+      "role": "null",
+      "n": 200,
+      "flagged": 200,
+      "rate": 1.0,
+      "pointwise_95_cp": [
+        0.9817246596448638,
+        1.0
+      ],
+      "median_absolute_localization_error_given_flag": null,
+      "localized_within_max_window": 0.0
+    },
+    {
+      "noise_id": "small_iid",
+      "family": "early_plateau",
+      "detector": "scan",
+      "role": "null",
+      "n": 200,
+      "flagged": 0,
+      "rate": 0.0,
+      "pointwise_95_cp": [
+        0.0,
+        0.018275340355136237
+      ],
+      "median_absolute_localization_error_given_flag": null,
+      "localized_within_max_window": 0.0
+    },
+    {
+      "noise_id": "small_iid",
+      "family": "late_hinge",
+      "detector": "global",
+      "role": "alternative",
+      "n": 200,
+      "flagged": 200,
+      "rate": 1.0,
+      "pointwise_95_cp": [
+        0.9817246596448638,
+        1.0
+      ],
+      "median_absolute_localization_error_given_flag": 2.0,
+      "localized_within_max_window": 1.0
+    },
+    {
+      "noise_id": "small_iid",
+      "family": "late_hinge",
+      "detector": "local",
+      "role": "alternative",
+      "n": 200,
+      "flagged": 200,
+      "rate": 1.0,
+      "pointwise_95_cp": [
+        0.9817246596448638,
+        1.0
+      ],
+      "median_absolute_localization_error_given_flag": 48.0,
+      "localized_within_max_window": 0.385
+    },
+    {
+      "noise_id": "small_iid",
+      "family": "late_hinge",
+      "detector": "scan",
+      "role": "alternative",
+      "n": 200,
+      "flagged": 200,
+      "rate": 1.0,
+      "pointwise_95_cp": [
+        0.9817246596448638,
+        1.0
+      ],
+      "median_absolute_localization_error_given_flag": 1.0,
+      "localized_within_max_window": 1.0
+    },
+    {
+      "noise_id": "small_iid",
+      "family": "fast_plateau_tail",
+      "detector": "global",
+      "role": "alternative",
+      "n": 200,
+      "flagged": 0,
+      "rate": 0.0,
+      "pointwise_95_cp": [
+        0.0,
+        0.018275340355136237
+      ],
+      "median_absolute_localization_error_given_flag": null,
+      "localized_within_max_window": 0.0
+    },
+    {
+      "noise_id": "small_iid",
+      "family": "fast_plateau_tail",
+      "detector": "local",
+      "role": "alternative",
+      "n": 200,
+      "flagged": 200,
+      "rate": 1.0,
+      "pointwise_95_cp": [
+        0.9817246596448638,
+        1.0
+      ],
+      "median_absolute_localization_error_given_flag": 1.0,
+      "localized_within_max_window": 0.77
+    },
+    {
+      "noise_id": "small_iid",
+      "family": "fast_plateau_tail",
+      "detector": "scan",
+      "role": "alternative",
+      "n": 200,
+      "flagged": 200,
+      "rate": 1.0,
+      "pointwise_95_cp": [
+        0.9817246596448638,
+        1.0
+      ],
+      "median_absolute_localization_error_given_flag": 0.5,
+      "localized_within_max_window": 1.0
+    },
+    {
+      "noise_id": "small_iid",
+      "family": "last_tenth",
+      "detector": "global",
+      "role": "alternative",
+      "n": 200,
+      "flagged": 200,
+      "rate": 1.0,
+      "pointwise_95_cp": [
+        0.9817246596448638,
+        1.0
+      ],
+      "median_absolute_localization_error_given_flag": 25.0,
+      "localized_within_max_window": 1.0
+    },
+    {
+      "noise_id": "small_iid",
+      "family": "last_tenth",
+      "detector": "local",
+      "role": "alternative",
+      "n": 200,
+      "flagged": 200,
+      "rate": 1.0,
+      "pointwise_95_cp": [
+        0.9817246596448638,
+        1.0
+      ],
+      "median_absolute_localization_error_given_flag": 0.0,
+      "localized_within_max_window": 1.0
+    },
+    {
+      "noise_id": "small_iid",
+      "family": "last_tenth",
+      "detector": "scan",
+      "role": "alternative",
+      "n": 200,
+      "flagged": 200,
+      "rate": 1.0,
+      "pointwise_95_cp": [
+        0.9817246596448638,
+        1.0
+      ],
+      "median_absolute_localization_error_given_flag": 6.0,
+      "localized_within_max_window": 1.0
+    },
+    {
+      "noise_id": "small_ar",
+      "family": "linear",
+      "detector": "global",
+      "role": "null",
+      "n": 200,
+      "flagged": 97,
+      "rate": 0.485,
+      "pointwise_95_cp": [
+        0.41391482961504394,
+        0.5565363642507839
+      ],
+      "median_absolute_localization_error_given_flag": null,
+      "localized_within_max_window": 0.0
+    },
+    {
+      "noise_id": "small_ar",
+      "family": "linear",
+      "detector": "local",
+      "role": "null",
+      "n": 200,
+      "flagged": 200,
+      "rate": 1.0,
+      "pointwise_95_cp": [
+        0.9817246596448638,
+        1.0
+      ],
+      "median_absolute_localization_error_given_flag": null,
+      "localized_within_max_window": 0.0
+    },
+    {
+      "noise_id": "small_ar",
+      "family": "linear",
+      "detector": "scan",
+      "role": "null",
+      "n": 200,
+      "flagged": 8,
+      "rate": 0.04,
+      "pointwise_95_cp": [
+        0.017424808994480595,
+        0.07729196822601608
+      ],
+      "median_absolute_localization_error_given_flag": null,
+      "localized_within_max_window": 0.0
+    },
+    {
+      "noise_id": "small_ar",
+      "family": "exponential",
+      "detector": "global",
+      "role": "null",
+      "n": 200,
+      "flagged": 0,
+      "rate": 0.0,
+      "pointwise_95_cp": [
+        0.0,
+        0.018275340355136237
+      ],
+      "median_absolute_localization_error_given_flag": null,
+      "localized_within_max_window": 0.0
+    },
+    {
+      "noise_id": "small_ar",
+      "family": "exponential",
+      "detector": "local",
+      "role": "null",
+      "n": 200,
+      "flagged": 200,
+      "rate": 1.0,
+      "pointwise_95_cp": [
+        0.9817246596448638,
+        1.0
+      ],
+      "median_absolute_localization_error_given_flag": null,
+      "localized_within_max_window": 0.0
+    },
+    {
+      "noise_id": "small_ar",
+      "family": "exponential",
+      "detector": "scan",
+      "role": "null",
+      "n": 200,
+      "flagged": 0,
+      "rate": 0.0,
+      "pointwise_95_cp": [
+        0.0,
+        0.018275340355136237
+      ],
+      "median_absolute_localization_error_given_flag": null,
+      "localized_within_max_window": 0.0
+    },
+    {
+      "noise_id": "small_ar",
+      "family": "early_plateau",
+      "detector": "global",
+      "role": "null",
+      "n": 200,
+      "flagged": 0,
+      "rate": 0.0,
+      "pointwise_95_cp": [
+        0.0,
+        0.018275340355136237
+      ],
+      "median_absolute_localization_error_given_flag": null,
+      "localized_within_max_window": 0.0
+    },
+    {
+      "noise_id": "small_ar",
+      "family": "early_plateau",
+      "detector": "local",
+      "role": "null",
+      "n": 200,
+      "flagged": 200,
+      "rate": 1.0,
+      "pointwise_95_cp": [
+        0.9817246596448638,
+        1.0
+      ],
+      "median_absolute_localization_error_given_flag": null,
+      "localized_within_max_window": 0.0
+    },
+    {
+      "noise_id": "small_ar",
+      "family": "early_plateau",
+      "detector": "scan",
+      "role": "null",
+      "n": 200,
+      "flagged": 0,
+      "rate": 0.0,
+      "pointwise_95_cp": [
+        0.0,
+        0.018275340355136237
+      ],
+      "median_absolute_localization_error_given_flag": null,
+      "localized_within_max_window": 0.0
+    },
+    {
+      "noise_id": "small_ar",
+      "family": "late_hinge",
+      "detector": "global",
+      "role": "alternative",
+      "n": 200,
+      "flagged": 200,
+      "rate": 1.0,
+      "pointwise_95_cp": [
+        0.9817246596448638,
+        1.0
+      ],
+      "median_absolute_localization_error_given_flag": 2.0,
+      "localized_within_max_window": 1.0
+    },
+    {
+      "noise_id": "small_ar",
+      "family": "late_hinge",
+      "detector": "local",
+      "role": "alternative",
+      "n": 200,
+      "flagged": 200,
+      "rate": 1.0,
+      "pointwise_95_cp": [
+        0.9817246596448638,
+        1.0
+      ],
+      "median_absolute_localization_error_given_flag": 43.5,
+      "localized_within_max_window": 0.425
+    },
+    {
+      "noise_id": "small_ar",
+      "family": "late_hinge",
+      "detector": "scan",
+      "role": "alternative",
+      "n": 200,
+      "flagged": 200,
+      "rate": 1.0,
+      "pointwise_95_cp": [
+        0.9817246596448638,
+        1.0
+      ],
+      "median_absolute_localization_error_given_flag": 1.0,
+      "localized_within_max_window": 1.0
+    },
+    {
+      "noise_id": "small_ar",
+      "family": "fast_plateau_tail",
+      "detector": "global",
+      "role": "alternative",
+      "n": 200,
+      "flagged": 0,
+      "rate": 0.0,
+      "pointwise_95_cp": [
+        0.0,
+        0.018275340355136237
+      ],
+      "median_absolute_localization_error_given_flag": null,
+      "localized_within_max_window": 0.0
+    },
+    {
+      "noise_id": "small_ar",
+      "family": "fast_plateau_tail",
+      "detector": "local",
+      "role": "alternative",
+      "n": 200,
+      "flagged": 200,
+      "rate": 1.0,
+      "pointwise_95_cp": [
+        0.9817246596448638,
+        1.0
+      ],
+      "median_absolute_localization_error_given_flag": 1.0,
+      "localized_within_max_window": 0.85
+    },
+    {
+      "noise_id": "small_ar",
+      "family": "fast_plateau_tail",
+      "detector": "scan",
+      "role": "alternative",
+      "n": 200,
+      "flagged": 200,
+      "rate": 1.0,
+      "pointwise_95_cp": [
+        0.9817246596448638,
+        1.0
+      ],
+      "median_absolute_localization_error_given_flag": 1.0,
+      "localized_within_max_window": 1.0
+    },
+    {
+      "noise_id": "small_ar",
+      "family": "last_tenth",
+      "detector": "global",
+      "role": "alternative",
+      "n": 200,
+      "flagged": 200,
+      "rate": 1.0,
+      "pointwise_95_cp": [
+        0.9817246596448638,
+        1.0
+      ],
+      "median_absolute_localization_error_given_flag": 25.0,
+      "localized_within_max_window": 1.0
+    },
+    {
+      "noise_id": "small_ar",
+      "family": "last_tenth",
+      "detector": "local",
+      "role": "alternative",
+      "n": 200,
+      "flagged": 200,
+      "rate": 1.0,
+      "pointwise_95_cp": [
+        0.9817246596448638,
+        1.0
+      ],
+      "median_absolute_localization_error_given_flag": 0.0,
+      "localized_within_max_window": 1.0
+    },
+    {
+      "noise_id": "small_ar",
+      "family": "last_tenth",
+      "detector": "scan",
+      "role": "alternative",
+      "n": 200,
+      "flagged": 200,
+      "rate": 1.0,
+      "pointwise_95_cp": [
+        0.9817246596448638,
+        1.0
+      ],
+      "median_absolute_localization_error_given_flag": 6.0,
+      "localized_within_max_window": 1.0
+    },
+    {
+      "noise_id": "large_iid",
+      "family": "linear",
+      "detector": "global",
+      "role": "null",
+      "n": 200,
+      "flagged": 0,
+      "rate": 0.0,
+      "pointwise_95_cp": [
+        0.0,
+        0.018275340355136237
+      ],
+      "median_absolute_localization_error_given_flag": null,
+      "localized_within_max_window": 0.0
+    },
+    {
+      "noise_id": "large_iid",
+      "family": "linear",
+      "detector": "local",
+      "role": "null",
+      "n": 200,
+      "flagged": 200,
+      "rate": 1.0,
+      "pointwise_95_cp": [
+        0.9817246596448638,
+        1.0
+      ],
+      "median_absolute_localization_error_given_flag": null,
+      "localized_within_max_window": 0.0
+    },
+    {
+      "noise_id": "large_iid",
+      "family": "linear",
+      "detector": "scan",
+      "role": "null",
+      "n": 200,
+      "flagged": 8,
+      "rate": 0.04,
+      "pointwise_95_cp": [
+        0.017424808994480595,
+        0.07729196822601608
+      ],
+      "median_absolute_localization_error_given_flag": null,
+      "localized_within_max_window": 0.0
+    },
+    {
+      "noise_id": "large_iid",
+      "family": "exponential",
+      "detector": "global",
+      "role": "null",
+      "n": 200,
+      "flagged": 0,
+      "rate": 0.0,
+      "pointwise_95_cp": [
+        0.0,
+        0.018275340355136237
+      ],
+      "median_absolute_localization_error_given_flag": null,
+      "localized_within_max_window": 0.0
+    },
+    {
+      "noise_id": "large_iid",
+      "family": "exponential",
+      "detector": "local",
+      "role": "null",
+      "n": 200,
+      "flagged": 200,
+      "rate": 1.0,
+      "pointwise_95_cp": [
+        0.9817246596448638,
+        1.0
+      ],
+      "median_absolute_localization_error_given_flag": null,
+      "localized_within_max_window": 0.0
+    },
+    {
+      "noise_id": "large_iid",
+      "family": "exponential",
+      "detector": "scan",
+      "role": "null",
+      "n": 200,
+      "flagged": 0,
+      "rate": 0.0,
+      "pointwise_95_cp": [
+        0.0,
+        0.018275340355136237
+      ],
+      "median_absolute_localization_error_given_flag": null,
+      "localized_within_max_window": 0.0
+    },
+    {
+      "noise_id": "large_iid",
+      "family": "early_plateau",
+      "detector": "global",
+      "role": "null",
+      "n": 200,
+      "flagged": 0,
+      "rate": 0.0,
+      "pointwise_95_cp": [
+        0.0,
+        0.018275340355136237
+      ],
+      "median_absolute_localization_error_given_flag": null,
+      "localized_within_max_window": 0.0
+    },
+    {
+      "noise_id": "large_iid",
+      "family": "early_plateau",
+      "detector": "local",
+      "role": "null",
+      "n": 200,
+      "flagged": 200,
+      "rate": 1.0,
+      "pointwise_95_cp": [
+        0.9817246596448638,
+        1.0
+      ],
+      "median_absolute_localization_error_given_flag": null,
+      "localized_within_max_window": 0.0
+    },
+    {
+      "noise_id": "large_iid",
+      "family": "early_plateau",
+      "detector": "scan",
+      "role": "null",
+      "n": 200,
+      "flagged": 0,
+      "rate": 0.0,
+      "pointwise_95_cp": [
+        0.0,
+        0.018275340355136237
+      ],
+      "median_absolute_localization_error_given_flag": null,
+      "localized_within_max_window": 0.0
+    },
+    {
+      "noise_id": "large_iid",
+      "family": "late_hinge",
+      "detector": "global",
+      "role": "alternative",
+      "n": 200,
+      "flagged": 200,
+      "rate": 1.0,
+      "pointwise_95_cp": [
+        0.9817246596448638,
+        1.0
+      ],
+      "median_absolute_localization_error_given_flag": 9.5,
+      "localized_within_max_window": 0.995
+    },
+    {
+      "noise_id": "large_iid",
+      "family": "late_hinge",
+      "detector": "local",
+      "role": "alternative",
+      "n": 200,
+      "flagged": 200,
+      "rate": 1.0,
+      "pointwise_95_cp": [
+        0.9817246596448638,
+        1.0
+      ],
+      "median_absolute_localization_error_given_flag": 64.5,
+      "localized_within_max_window": 0.29
+    },
+    {
+      "noise_id": "large_iid",
+      "family": "late_hinge",
+      "detector": "scan",
+      "role": "alternative",
+      "n": 200,
+      "flagged": 200,
+      "rate": 1.0,
+      "pointwise_95_cp": [
+        0.9817246596448638,
+        1.0
+      ],
+      "median_absolute_localization_error_given_flag": 9.0,
+      "localized_within_max_window": 0.63
+    },
+    {
+      "noise_id": "large_iid",
+      "family": "fast_plateau_tail",
+      "detector": "global",
+      "role": "alternative",
+      "n": 200,
+      "flagged": 2,
+      "rate": 0.01,
+      "pointwise_95_cp": [
+        0.0012133490137360304,
+        0.03565466839723975
+      ],
+      "median_absolute_localization_error_given_flag": 13.5,
+      "localized_within_max_window": 0.01
+    },
+    {
+      "noise_id": "large_iid",
+      "family": "fast_plateau_tail",
+      "detector": "local",
+      "role": "alternative",
+      "n": 200,
+      "flagged": 200,
+      "rate": 1.0,
+      "pointwise_95_cp": [
+        0.9817246596448638,
+        1.0
+      ],
+      "median_absolute_localization_error_given_flag": 64.5,
+      "localized_within_max_window": 0.265
+    },
+    {
+      "noise_id": "large_iid",
+      "family": "fast_plateau_tail",
+      "detector": "scan",
+      "role": "alternative",
+      "n": 200,
+      "flagged": 14,
+      "rate": 0.07,
+      "pointwise_95_cp": [
+        0.038795570429562824,
+        0.1146597335371105
+      ],
+      "median_absolute_localization_error_given_flag": 1.0,
+      "localized_within_max_window": 0.07
+    },
+    {
+      "noise_id": "large_iid",
+      "family": "last_tenth",
+      "detector": "global",
+      "role": "alternative",
+      "n": 200,
+      "flagged": 200,
+      "rate": 1.0,
+      "pointwise_95_cp": [
+        0.9817246596448638,
+        1.0
+      ],
+      "median_absolute_localization_error_given_flag": 26.0,
+      "localized_within_max_window": 0.965
+    },
+    {
+      "noise_id": "large_iid",
+      "family": "last_tenth",
+      "detector": "local",
+      "role": "alternative",
+      "n": 200,
+      "flagged": 200,
+      "rate": 1.0,
+      "pointwise_95_cp": [
+        0.9817246596448638,
+        1.0
+      ],
+      "median_absolute_localization_error_given_flag": 87.5,
+      "localized_within_max_window": 0.365
+    },
+    {
+      "noise_id": "large_iid",
+      "family": "last_tenth",
+      "detector": "scan",
+      "role": "alternative",
+      "n": 200,
+      "flagged": 200,
+      "rate": 1.0,
+      "pointwise_95_cp": [
+        0.9817246596448638,
+        1.0
+      ],
+      "median_absolute_localization_error_given_flag": 6.0,
+      "localized_within_max_window": 1.0
+    },
+    {
+      "noise_id": "large_ar",
+      "family": "linear",
+      "detector": "global",
+      "role": "null",
+      "n": 200,
+      "flagged": 103,
+      "rate": 0.515,
+      "pointwise_95_cp": [
+        0.44346363574921616,
+        0.5860851703849561
+      ],
+      "median_absolute_localization_error_given_flag": null,
+      "localized_within_max_window": 0.0
+    },
+    {
+      "noise_id": "large_ar",
+      "family": "linear",
+      "detector": "local",
+      "role": "null",
+      "n": 200,
+      "flagged": 200,
+      "rate": 1.0,
+      "pointwise_95_cp": [
+        0.9817246596448638,
+        1.0
+      ],
+      "median_absolute_localization_error_given_flag": null,
+      "localized_within_max_window": 0.0
+    },
+    {
+      "noise_id": "large_ar",
+      "family": "linear",
+      "detector": "scan",
+      "role": "null",
+      "n": 200,
+      "flagged": 20,
+      "rate": 0.1,
+      "pointwise_95_cp": [
+        0.0621593662540661,
+        0.1502127878677559
+      ],
+      "median_absolute_localization_error_given_flag": null,
+      "localized_within_max_window": 0.0
+    },
+    {
+      "noise_id": "large_ar",
+      "family": "exponential",
+      "detector": "global",
+      "role": "null",
+      "n": 200,
+      "flagged": 0,
+      "rate": 0.0,
+      "pointwise_95_cp": [
+        0.0,
+        0.018275340355136237
+      ],
+      "median_absolute_localization_error_given_flag": null,
+      "localized_within_max_window": 0.0
+    },
+    {
+      "noise_id": "large_ar",
+      "family": "exponential",
+      "detector": "local",
+      "role": "null",
+      "n": 200,
+      "flagged": 200,
+      "rate": 1.0,
+      "pointwise_95_cp": [
+        0.9817246596448638,
+        1.0
+      ],
+      "median_absolute_localization_error_given_flag": null,
+      "localized_within_max_window": 0.0
+    },
+    {
+      "noise_id": "large_ar",
+      "family": "exponential",
+      "detector": "scan",
+      "role": "null",
+      "n": 200,
+      "flagged": 0,
+      "rate": 0.0,
+      "pointwise_95_cp": [
+        0.0,
+        0.018275340355136237
+      ],
+      "median_absolute_localization_error_given_flag": null,
+      "localized_within_max_window": 0.0
+    },
+    {
+      "noise_id": "large_ar",
+      "family": "early_plateau",
+      "detector": "global",
+      "role": "null",
+      "n": 200,
+      "flagged": 0,
+      "rate": 0.0,
+      "pointwise_95_cp": [
+        0.0,
+        0.018275340355136237
+      ],
+      "median_absolute_localization_error_given_flag": null,
+      "localized_within_max_window": 0.0
+    },
+    {
+      "noise_id": "large_ar",
+      "family": "early_plateau",
+      "detector": "local",
+      "role": "null",
+      "n": 200,
+      "flagged": 200,
+      "rate": 1.0,
+      "pointwise_95_cp": [
+        0.9817246596448638,
+        1.0
+      ],
+      "median_absolute_localization_error_given_flag": null,
+      "localized_within_max_window": 0.0
+    },
+    {
+      "noise_id": "large_ar",
+      "family": "early_plateau",
+      "detector": "scan",
+      "role": "null",
+      "n": 200,
+      "flagged": 0,
+      "rate": 0.0,
+      "pointwise_95_cp": [
+        0.0,
+        0.018275340355136237
+      ],
+      "median_absolute_localization_error_given_flag": null,
+      "localized_within_max_window": 0.0
+    },
+    {
+      "noise_id": "large_ar",
+      "family": "late_hinge",
+      "detector": "global",
+      "role": "alternative",
+      "n": 200,
+      "flagged": 200,
+      "rate": 1.0,
+      "pointwise_95_cp": [
+        0.9817246596448638,
+        1.0
+      ],
+      "median_absolute_localization_error_given_flag": 6.0,
+      "localized_within_max_window": 0.985
+    },
+    {
+      "noise_id": "large_ar",
+      "family": "late_hinge",
+      "detector": "local",
+      "role": "alternative",
+      "n": 200,
+      "flagged": 200,
+      "rate": 1.0,
+      "pointwise_95_cp": [
+        0.9817246596448638,
+        1.0
+      ],
+      "median_absolute_localization_error_given_flag": 56.0,
+      "localized_within_max_window": 0.29
+    },
+    {
+      "noise_id": "large_ar",
+      "family": "late_hinge",
+      "detector": "scan",
+      "role": "alternative",
+      "n": 200,
+      "flagged": 200,
+      "rate": 1.0,
+      "pointwise_95_cp": [
+        0.9817246596448638,
+        1.0
+      ],
+      "median_absolute_localization_error_given_flag": 24.5,
+      "localized_within_max_window": 0.56
+    },
+    {
+      "noise_id": "large_ar",
+      "family": "fast_plateau_tail",
+      "detector": "global",
+      "role": "alternative",
+      "n": 200,
+      "flagged": 1,
+      "rate": 0.005,
+      "pointwise_95_cp": [
+        0.00012658102786701825,
+        0.027541898457205637
+      ],
+      "median_absolute_localization_error_given_flag": 14.0,
+      "localized_within_max_window": 0.005
+    },
+    {
+      "noise_id": "large_ar",
+      "family": "fast_plateau_tail",
+      "detector": "local",
+      "role": "alternative",
+      "n": 200,
+      "flagged": 200,
+      "rate": 1.0,
+      "pointwise_95_cp": [
+        0.9817246596448638,
+        1.0
+      ],
+      "median_absolute_localization_error_given_flag": 53.5,
+      "localized_within_max_window": 0.29
+    },
+    {
+      "noise_id": "large_ar",
+      "family": "fast_plateau_tail",
+      "detector": "scan",
+      "role": "alternative",
+      "n": 200,
+      "flagged": 3,
+      "rate": 0.015,
+      "pointwise_95_cp": [
+        0.003104107621553509,
+        0.04320828191771261
+      ],
+      "median_absolute_localization_error_given_flag": 2.0,
+      "localized_within_max_window": 0.015
+    },
+    {
+      "noise_id": "large_ar",
+      "family": "last_tenth",
+      "detector": "global",
+      "role": "alternative",
+      "n": 200,
+      "flagged": 200,
+      "rate": 1.0,
+      "pointwise_95_cp": [
+        0.9817246596448638,
+        1.0
+      ],
+      "median_absolute_localization_error_given_flag": 26.0,
+      "localized_within_max_window": 0.905
+    },
+    {
+      "noise_id": "large_ar",
+      "family": "last_tenth",
+      "detector": "local",
+      "role": "alternative",
+      "n": 200,
+      "flagged": 200,
+      "rate": 1.0,
+      "pointwise_95_cp": [
+        0.9817246596448638,
+        1.0
+      ],
+      "median_absolute_localization_error_given_flag": 71.5,
+      "localized_within_max_window": 0.33
+    },
+    {
+      "noise_id": "large_ar",
+      "family": "last_tenth",
+      "detector": "scan",
+      "role": "alternative",
+      "n": 200,
+      "flagged": 200,
+      "rate": 1.0,
+      "pointwise_95_cp": [
+        0.9817246596448638,
+        1.0
+      ],
+      "median_absolute_localization_error_given_flag": 6.0,
+      "localized_within_max_window": 1.0
+    }
+  ],
+  "max_scale_invariance_error": 8.359979375427429e-14,
+  "independent_unit": "whole generated trajectory; paired detectors and scaled copies are not additional repetitions",
+  "interval_scope": "Pointwise exact binomial intervals, conditional on the shared frozen calibration. Not simultaneous intervals; calibration uncertainty is not included.",
+  "mechanism_claim": false,
+  "double_descent_declared": false,
+  "scientific_validity": "not_assessed",
+  "download_bytes": 0,
+  "paid_api_calls": 0,
+  "gpu_jobs": 0
+}

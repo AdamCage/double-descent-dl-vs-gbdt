@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "stage_id": "R15",
+  "status": "frozen",
+  "question": "Can the full pinned24-file public release be byte/hash verified and transformed into an all-row21-column slim table with exact text hashes/provenance under fixed budgets without outcome analysis?",
+  "scope": "Engineering data intake only; no model calls/training, hypothesis/score computations or scientific novelty claim. All declared public files, no selection on outcomes.",
+  "authorization_decision": {
+    "path": "research/decisions/alignment-portfolio-authorization-2026-11-08.json",
+    "sha256": "c0ad0d0aa0fdb84d70f4ddfe7b613a22436400003427d37882284f1bdbbb38b1"
+  },
+  "budget": {
+    "max_wall_seconds": 1800,
+    "total_wall_seconds": 3600,
+    "max_attempts": 2
+  },
+  "tasks": [
+    {
+      "id": "unit-checks",
+      "argv": [
+        "{python}",
+        "{repo}/scripts/run_unit_checks.py",
+        "--pattern",
+        "test_cot_intake.py"
+      ],
+      "inputs": [
+        "research/stages/R15/PLAN.md",
+        "research/stages/R15/inputs/download-spec.json",
+        "research/stages/R15/inputs/design-review.json",
+        "research/stages/R15/inputs/dataset-LICENSE",
+        "research/stages/R15/inputs/dataset-README.md",
+        "docs/research-reset/cot-source-audit-2026-11-08.md",
+        "docs/decisions/0006-alignment-portfolio-reset.md",
+        "src/__init__.py",
+        "src/cot_data.py",
+        "scripts/cot_intake.py",
+        "tests/test_cot_intake.py",
+        "pyproject.toml",
+        "uv.lock",
+        "scripts/run_unit_checks.py"
+      ],
+      "outputs": [
+        "checks.json"
+      ],
+      "timeout_seconds": 90
+    },
+    {
+      "id": "intake",
+      "argv": [
+        "{python}",
+        "{repo}/scripts/cot_intake.py",
+        "--spec",
+        "{repo}/research/stages/R15/inputs/download-spec.json",
+        "--output",
+        "intake"
+      ],
+      "inputs": [
+        "research/stages/R15/PLAN.md",
+        "research/stages/R15/inputs/download-spec.json",
+        "research/stages/R15/inputs/design-review.json",
+        "research/stages/R15/inputs/dataset-LICENSE",
+        "research/stages/R15/inputs/dataset-README.md",
+        "docs/research-reset/cot-source-audit-2026-11-08.md",
+        "docs/decisions/0006-alignment-portfolio-reset.md",
+        "src/__init__.py",
+        "src/cot_data.py",
+        "scripts/cot_intake.py",
+        "tests/test_cot_intake.py",
+        "pyproject.toml",
+        "uv.lock"
+      ],
+      "outputs": [
+        "intake/download_manifest.json",
+        "intake/acquisition.jsonl",
+        "intake/slim.parquet",
+        "intake/schema_profile.json",
+        "intake/intake_report.json"
+      ],
+      "timeout_seconds": 1500
+    }
+  ],
+  "exit_criteria": [
+    {
+      "id": "C1",
+      "description": "All24 pinned payload hashes/sizes verified, complete physical request/chunk accounting and failure preservation.",
+      "task_ids": [
+        "unit-checks",
+        "intake"
+      ]
+    },
+    {
+      "id": "C2",
+      "description": "Every input row and all21declared analysis columns preserved with exact3text hashes/lengths and source/row/content/ordered-choice provenance; schema/slim cap verified.",
+      "task_ids": [
+        "intake"
+      ]
+    },
+    {
+      "id": "C3",
+      "description": "All declared caps honored, no model calls/fits/outcome statistics or untrusted transcript execution.",
+      "task_ids": [
+        "intake"
+      ]
+    }
+  ],
+  "predictions": [
+    {
+      "id": "P1",
+      "statement": "All24 source payload hashes and exact byte counts match the pinned LFS manifest."
+    },
+    {
+      "id": "P2",
+      "statement": "All rows and specified analysis metadata survive batch extraction with exact text hashes and complete provenance under256MiB slim cap."
+    },
+    {
+      "id": "P3",
+      "statement": "The intake completes within declared payload/HTTP/wall/storage controls with no scientific outcome calculation/model training."
+    }
+  ]
+}

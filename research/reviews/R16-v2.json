@@ -1,0 +1,110 @@
+{
+  "attempt_id": "20261108T093900-48ff41116f",
+  "author_agent": "/root",
+  "criteria": [
+    {
+      "evidence": [
+        "unit-checks/checks.json",
+        "ack-audit/audit/dataquality.json",
+        "ack-audit/audit/analysis.json",
+        "ack-audit/audit/protocol.json"
+      ],
+      "id": "C1",
+      "verdict": "pass"
+    },
+    {
+      "evidence": [
+        "ack-audit/audit/analysis.json",
+        "ack-audit/audit/bootstrap.npz",
+        "ack-audit/audit/per_question.parquet",
+        "ack-audit/audit/pairs.csv"
+      ],
+      "id": "C2",
+      "verdict": "pass"
+    },
+    {
+      "evidence": [
+        "ack-audit/audit/analysis.json",
+        "ack-audit/audit/protocol.json",
+        "ack-audit/audit/dataquality.json"
+      ],
+      "id": "C3",
+      "verdict": "pass"
+    }
+  ],
+  "limitations": [
+    "Operational acceptance means faithful completion/assessment of the FROZEN narrower scope, not scientific success of the intended research objective. scientific_validity remains not_assessed. H1 is not_evaluated_on_discovery; there is no confirmation, true ranking correction, latent faithfulness or current frontier-model result.",
+    "The frozen context=(scope,cue) used literal cue text carrying target letters, already restricting nativeU0 to common cue content. This overconditions the intended native adaptive vs common input comparison. All5scope cue examples independently inspected. The source semantic finding must remain visible; do not relabel this run retrospectively as scope-only.",
+    "The first R16 integrity failure remains preserved with a distinct bound revise review; its failure is not a negative H1. The conservative pre-outcome amendment removes4questionIDs/2wholebaselineclusters and192rows; it neither fixes gold labels nor establishes source cause or invalid ACK annotations.",
+    "No confirmation/reserve ACK row was returned to the independent reviewer scanner. The production Arrow batches may internally decode unselected values, explicitly disclosed, but their outcomes are not aggregated, displayed or used. Task metadata across allpartitions has been examined and cannot later serve as unseen metadata confirmation.",
+    "Question-weighted released proxy differs from original subdataset-macro scores. False ACK may include source judge parse failures. Exact released-input hashes may exclude system/provider configuration. Population restriction/decomposition remains descriptive, with no missing counterfactual identification.",
+    "Raw rows/versions/aliases are not independent samples. Bootstrap is empirical question-cluster resampling conditional on historical cached generations/judge labels; nominal simultaneous coverage is separate for each endpoint/split, not finite-sample or whole-program95percent guarantee.",
+    "No blanket robustness statement is supported: missing/degenerate CIs prevent the frozen equivalence gate. Unsupported GPQA point ranges remain reported instead of promoted into reliable effects.",
+    "Any successor scope-only estimand requires separate pre-outcome plans/source review, explicit preservation/supersession of original unexecuted H1confirmation plans, and untouched confirmation outcomes. Reusing discovery data is exploratory and must be disclosed. Do not modify live R16 inputs before accepted operational closure.",
+    "Engineering budgets observed: analysis60.078s, attempt61.781s, CPU/Arrow4, outputwithin256MiB, noAPI/GPU/training/newdownload. Global cumulative budgets must still be reconciled before successor stages. Plot count and code completion do not establish journal novelty."
+  ],
+  "manifest_sha256": "bd17dd406e3380955ec663dfd241bc8325c021d94a4ffe1198a99b1977040e5a",
+  "plan_sha256": "f04a0ecdf6210f58dc97bc4803805e68efa736a1a677b886467b8ba7f9452274",
+  "predictions": [
+    {
+      "evidence": [
+        "ack-audit/audit/analysis.json",
+        "ack-audit/audit/dataquality.json",
+        "ack-audit/audit/per_question.parquet"
+      ],
+      "id": "P1",
+      "outcome": "supported for the exact frozen literal-cue-context estimand. Independent full metadata/design audit matched all14conflicts/4q/2wholeclusters and192excludedrows before outcomes; postrun ledger exactly matches the frozen audit. Independently reconstructed2858selected discovery questions,33108per-question comparison rows,all84cell point estimates/support counts,all5000globalbootstrap draws and all endpoint maxT intervals. Maxbootstrap difference2.22e-16. Source semantic inspection establishes cue is literal text including target in all5families, so this is a narrower comparison than intended native adaptive-policy comparison."
+    },
+    {
+      "evidence": [
+        "ack-audit/audit/analysis.json",
+        "ack-audit/audit/bootstrap.npz"
+      ],
+      "id": "P2",
+      "outcome": "unconfirmed: H1 confirmation was not run, and discovery is not a confirmation test. Discovery sensitivity_rule_pass=false,0material cells. Do not interpret this as rejection of the intended native-policy hypothesis or as robust equality. Original H1confirmation planning is to be preserved and explicitly superseded only by a separately frozen new estimand."
+    },
+    {
+      "evidence": [
+        "ack-audit/audit/analysis.json",
+        "ack-audit/audit/dataquality.json",
+        "ack-audit/audit/per_question.parquet"
+      ],
+      "id": "P3",
+      "outcome": "supported:57support-eligible cells span all3datasets (BBH28,GPQA1,MMLU28), so support-only discovery_go=true. PrimaryCI eligibility is separately25 (BBH9,GPQA0,MMLU16); effect/SE does not control the structural go gate."
+    },
+    {
+      "evidence": [
+        "ack-audit/audit/analysis.json",
+        "ack-audit/audit/bootstrap.npz"
+      ],
+      "id": "P4",
+      "outcome": "inconclusive:32support-eligible cells lack a nondegenerate primaryCI, so the frozen ALLsupport-eligible equivalence rule cannot pass. No general robustness/null claim. BBH delta_total range[-.000435,.001836],MMLU[-.001208,.002178]; GPQA[-.047778,.046875] point shifts lack primary inferential eligibility."
+    }
+  ],
+  "report": {
+    "path": "research/stages/R16/REPORT.md",
+    "sha256": "76c8b6d8c7e89f61fb32b54af0010a18b6d17d2db21210615a97e8675b8fae4c"
+  },
+  "review_mode": "subagent_review",
+  "reviewer": {
+    "name": "/root/reset_critic",
+    "harness": "codex",
+    "role": "stage_reviewer",
+    "independence": "Distinct child agent; authored no evaluated R16 plans/protocol/source/tests, actual outputs or REPORT. Independently reviewed design/amendment/complete metadata ledger and reimplemented selected-discovery aggregation plus all5000bootstrap draws/intervals. Scanner returned ONLY discovery rows; confirmation/reserve ACK not inspected or used. Wrote review and independent verification artifacts only. Local team review, not external peer review."
+  },
+  "reviewer_agent": "/root/reset_critic",
+  "schema_version": 1,
+  "scientific_validity": "not_assessed",
+  "stage_id": "R16",
+  "verdict": "accept",
+  "independent_numerical_verification": {
+    "path": "artifacts/intake/R16-independent-review/verification.json",
+    "sha256": "e46181b56c4fa51c20a3392cac95cb96c6d3d2b5d671ebf95a7bf76e53e3b838",
+    "all84points_and_support_counts": true,
+    "per_question_rows_verified": 33108,
+    "bootstrap_draws_verified": 5000,
+    "endpoint_families_recomputed": 3,
+    "max_bootstrap_abs_error": 2.220446049250313e-16,
+    "confirmation_or_reserve_outcomes_used": false
+  }
+}

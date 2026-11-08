@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "protocol_id": "R14-finite-label-response-forecast-v1",
+  "mode": "discovery",
+  "seeds": [14001, 14002, 14003, 14004],
+  "teachers": ["linear", "interaction"],
+  "n_train": 128,
+  "n_evaluation": 256,
+  "n_raw_features": 4,
+  "train_noise_sigma": 0.1,
+  "seed_offsets": {
+    "train": 100000,
+    "evaluation": 200000,
+    "label_noise": 300000,
+    "model": 400000,
+    "pilot": 500000,
+    "response": 600000
+  },
+  "threshold_levels": [1, 3, 7, 15],
+  "prefix_budgets": [4, 12, 28, 60],
+  "iterations": 512,
+  "pilot_iterations": 32,
+  "epsilon_values": [0.01, 0.1],
+  "pilot_directions": 2,
+  "response_directions": 4,
+  "threads": 4,
+  "replay_atol": 1e-10,
+  "replay_rtol": 0,
+  "expected_contexts": 32,
+  "expected_fits": 416,
+  "expected_forecast_rows": 64,
+  "forecast": {
+    "ridge_alpha": 1,
+    "baseline_ids": ["B0", "B1", "B2", "B3", "B4", "A"],
+    "fold": "leave_one_data_draw_out",
+    "B4": "log10(1+C) plus training-fold mean target-minus-probe; slope1",
+    "invalid_actual_delta": "keep full fixed matrix; no OOF; inconclusive and go=false"
+  },
+  "decision_gates": {
+    "relative_mae_improvement": 0.2,
+    "min_draws_not_worse": 3,
+    "min_target_range": 0.1,
+    "max_cheap_full_wall_ratio": 0.5,
+    "draw_rule": "for each B2/B3/B4 separately, A no worse in at least3 of4 draws",
+    "teacher_rule": "A no worse than each B2/B3/B4 separately in both teachers"
+  },
+  "budget": {
+    "max_wall_seconds": 1200,
+    "max_storage_bytes": 1073741824,
+    "gpu_jobs": 0,
+    "paid_api_calls": 0,
+    "dataset_download_bytes": 0,
+    "max_parallel_model_jobs": 1
+  },
+  "scope": "Discovery audit conditional on an available full baseline fit/frozen operator; no double-descent endpoint, priority certificate or independent confirmation."
+}

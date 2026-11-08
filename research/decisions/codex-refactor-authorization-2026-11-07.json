@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "decision_id": "DD-CODEX-REFACTOR-2026-11-07",
+  "authority": "user",
+  "status": "accepted",
+  "user_instruction": "Реализуй рефакторинг исследования по reviews/07-11-2026-v2.md; разрешаю изменять и добавлять stages и начать с нуля, сохранив исходные цели.",
+  "scope": "Codex with distinct subagents: scientific refactor, frozen protocols, bounded local studies, analysis, review, manuscript and reproducibility package. Novelty is assessed, not guaranteed.",
+  "harness": "codex",
+  "stages": [
+    "R10",
+    "R11",
+    "R12"
+  ],
+  "future_stages": "Within original scientific goals and unchanged cumulative budgets, with a new frozen plan and distinct review.",
+  "require_distinct_stage_review_subagent": true,
+  "require_distinct_review_subagent": true,
+  "parent_authorization": {
+    "path": "research/decisions/autonomous-research-authorization.json",
+    "sha256": "4f2eca57802835816b688668838545df60fd568c99069c291d2e42cb4f5371c9"
+  },
+  "policy_document": {
+    "path": "docs/decisions/0004-v2-research-refactor.md",
+    "sha256": "648b1bd91d2378e31f40e8d7feaf6bb0ce33d815a468660486526700088f251a"
+  },
+  "budgets": {
+    "total_runner_wall_seconds": 86400,
+    "target_stage_wall_seconds": 14400,
+    "max_stage_wall_seconds": 28800,
+    "max_model_task_wall_seconds": 7200,
+    "max_attempts_per_stage": 3,
+    "max_cpu_threads_per_model_job": 4,
+    "max_parallel_model_jobs": 1,
+    "gpu_jobs": 0,
+    "paid_api_spend": 0,
+    "new_storage_bytes": 21474836480,
+    "public_dataset_download_bytes": 2147483648
+  },
+  "r1_budgets": {
+    "agent_preparation_and_review_minutes": 120,
+    "max_wall_seconds": 900,
+    "total_wall_seconds": 1800,
+    "max_attempts": 2,
+    "document_download_bytes": 209715200,
+    "max_document_bytes": 26214400,
+    "max_retrieval_attempts_per_source": 2,
+    "max_http_requests": 48,
+    "max_additional_primary_sources": 4,
+    "new_storage_bytes": 2147483648,
+    "dataset_download_bytes": 0,
+    "model_training_jobs": 0
+  },
+  "external_publication_or_messaging": false
+}

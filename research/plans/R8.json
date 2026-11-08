@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "stage_id": "R8",
+  "status": "frozen",
+  "question": "On the frozen synthetic catalog, do the unchanged global-mean velocity detector and the predeclared local window of 5 score the fast-plateau-moderate series and the last-20-percent drop differently?",
+  "scope": "Discovery only. Five deterministic series. No model fit, no download, no window search after scores, no mechanism claim. scientific_validity remains not_assessed.",
+  "authorization_decision": {
+    "path": "research/decisions/autonomous-research-authorization.json",
+    "sha256": "4f2eca57802835816b688668838545df60fd568c99069c291d2e42cb4f5371c9"
+  },
+  "budget": {"max_wall_seconds": 120, "total_wall_seconds": 240, "max_attempts": 2},
+  "tasks": [
+    {
+      "id": "score-catalog",
+      "argv": ["{python}", "{repo}/scripts/r8_score.py", "--catalog", "{repo}/research/stages/R8/inputs/catalog.json"],
+      "inputs": [
+        "scripts/r8_score.py",
+        "src/__init__.py",
+        "src/detector_catalog.py",
+        "src/dynamics.py",
+        "tests/test_detector_catalog.py",
+        "research/stages/R8/PLAN.md",
+        "research/stages/R8/inputs/catalog.json",
+        "research/stages/R8/inputs/design-review.json",
+        "research/escalations/2026-11-07-review.md",
+        "docs/research-program.md"
+      ],
+      "outputs": ["scores.json"],
+      "timeout_seconds": 60
+    }
+  ],
+  "exit_criteria": [
+    {
+      "id": "C1",
+      "description": "scores.json records all five series with global and local candidate, t_star, velocity_gain and rss_improvement, zero fits and downloads, mechanism_claim false, and scientific_validity not_assessed.",
+      "task_ids": ["score-catalog"]
+    },
+    {
+      "id": "C2",
+      "description": "catalog_sha256 matches the catalog bytes, two_drops keeps claim_role excluded_multiple, exclusions are copied, and no extra series is present.",
+      "task_ids": ["score-catalog"]
+    }
+  ],
+  "predictions": [
+    {"id": "P1", "statement": "fast_plateau_moderate has global.candidate false."},
+    {"id": "P2", "statement": "fast_plateau_moderate has local.candidate true and local.t_star 70."},
+    {"id": "P3", "statement": "smooth_exponential has global.candidate false and local.candidate false."},
+    {"id": "P4", "statement": "late_tail has global.t_star 79 and local.candidate true with local.t_star 90."},
+    {"id": "P5", "statement": "single_late_drop has global.t_star 50."},
+    {"id": "P6", "statement": "single_late_drop has global.candidate true."},
+    {"id": "P7", "statement": "two_drops keeps claim_role excluded_multiple and the root mechanism_claim is false."}
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "archive": "research/evidence/R18-runs-2026-11-08-v1.zip",
+  "sha256": "e6b792879d2d4100d7daf35ca618f5b49e58b8e8de56d3e0f3ce84790479181e",
+  "bytes": 155556914,
+  "files": 1347,
+  "unique_blobs": 473,
+  "restored_bytes": 603199498,
+  "unique_bytes": 155143567,
+  "detached_stream_verify": true,
+  "verifier": "artifacts/intake/R18-archive-check/RESTORE.py",
+  "restored_samples": [
+    {
+      "bytes": 856679,
+      "path": "20261108T111319-cf1d82f2a8/tasks/package/portfolio/manuscript.pdf",
+      "sha256": "c20f3f91edac9f23f18333e6d9d5c255d26de7852bf61762aec4358bd8f53fec"
+    },
+    {
+      "bytes": 45321,
+      "path": "20261108T111319-cf1d82f2a8/tasks/figures/gallery/figures/confirmation_pair_m06_m08.svg",
+      "sha256": "458c03f7ee817c4b2687789c4978281b736526f149db345577ca421150e29a52"
+    },
+    {
+      "bytes": 16714,
+      "path": "20261108T111319-cf1d82f2a8/tasks/replay/replay/replay_report.json",
+      "sha256": "c6aa615510df6df2e6f5329ac1c734e4cdbd4ac2687c2691e2aff07996b5977f"
+    },
+    {
+      "bytes": 66462,
+      "path": "20261108T111319-cf1d82f2a8/inputs/src/cot_figures.py",
+      "sha256": "e8d92c3a77e64457d869694db412c26bdf349a784a1a19dfeb1a699e69780248"
+    },
+    {
+      "bytes": 9499,
+      "path": "20261108T104100-7836d70ed3/review.json",
+      "sha256": "78ddfbf94927a38488c07ffe09ab2a9242898b7fc3be23ad02cc6e93d5bcd704"
+    }
+  ],
+  "full_workflow_restore_materialized": false,
+  "limit": "All full-workflow members/blobs verified directly from archive; five proof samples restored. Full portable release separately restored in its entirety. Older stage dependency archives were not rematerialized.",
+  "closure": {
+    "path": "research/evidence/R18-closure.json",
+    "sha256": "21298ed4ba53098f2954461d6b6d29a1b1426456273731ed239b92a3e705ecfa"
+  }
+}

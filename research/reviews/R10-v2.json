@@ -1,0 +1,97 @@
+{
+  "attempt_id": "20261107T192414-36aee5d99b",
+  "author_agent": "/root",
+  "criteria": [
+    {
+      "id": "C1",
+      "verdict": "pass",
+      "evidence": [
+        "calibrate-evaluate/curves.npz",
+        "calibrate-evaluate/curves.jsonl"
+      ],
+      "reason": "Loaded loss array shape7188x256 and verified every value finite. Metadata indexes exactly0..7187, all7188 entropy tuples unique,2388 calibration and4800 evaluation. Full36 phase/noise/family cells have the prescribed counts:12 calibration cells of199 and24 evaluation cells of200. Phase entropy1/2 is disjoint; no curve selection."
+    },
+    {
+      "id": "C2",
+      "verdict": "pass",
+      "evidence": [
+        "calibrate-evaluate/calibration.json",
+        "calibrate-evaluate/analysis.json",
+        "calibrate-evaluate/environment.json",
+        "calibrate-evaluate/curves.jsonl"
+      ],
+      "reason": "Independently sorted all calibration scores: every threshold is order190 of199 and each noise threshold is the maximum of its three per-null thresholds. All72 summaries independently checked against metadata, including flag counts/rates, exact pointwise beta intervals, conditional median localization and all-curve within32 localization fractions. Scan flag equals strict threshold exceedance. Eight saved trajectories were independently checked by direct OLS over the declared boundaries/windows. False mechanism/DD and zero resource-use fields are present."
+    },
+    {
+      "id": "C3",
+      "verdict": "pass",
+      "evidence": [
+        "unit-checks/checks.json",
+        "calibrate-evaluate/environment.json"
+      ],
+      "reason": "Recorded unit artifact has6 tests, zero failures/errors/skips. Independent historical verify passed with checked_files10 and the bound plan/manifest hashes. Frozen source closure, protocol, uv.lock and workflow controls are preserved in the attempt; this operational integrity check does not establish scientific truth."
+    }
+  ],
+  "limitations": [
+    "Known analytic forms, one length256, windows8/16/32 and four Gaussian AR(1) noise conditions only; no general-purpose detector novelty or priority is established.",
+    "Evaluation binomial intervals are pointwise and conditional on one shared calibration. They do not include calibration uncertainty or provide simultaneous inference across72 rows. The worst-cell example is descriptive, not a multiplicity-adjusted hypothesis test.",
+    "The rank guarantee is marginal over exchangeable calibration/test curves from each included null law. Observed20/200 flags do not contradict that guarantee and do not by themselves prove a universal conditionalFPR.",
+    "Empirical flag rates are not proof of population probabilities1 or0. Power on fast_plateau_tail falls from200/200 under small noise to14/200 and3/200 under large iid/AR noise.",
+    "Global versus scan rate advantage on small_iid last_tenth was refuted. Improved localization there is descriptive and cannot be substituted as successful confirmation of P3.",
+    "Synthetic thresholds do not supply valid p-values for arbitrary CatBoost learning curves. No natural CatBoost mechanism, double descent, external review, human approval or publication readiness is established.",
+    "Independent review audited raw saved arrays and all summaries and used direct OLS on eight saved trajectories; it did not independently regenerate all curves or rescore the entire matrix."
+  ],
+  "manifest_sha256": "42dcdc5ddc70026e364190d572bc2a9a2acdb3dd76090526aa8cba70df4d3e1c",
+  "plan_sha256": "669285e14b959243a077631ab85691ad0d8df77f683a2a98db80caf2fe4ab256",
+  "predictions": [
+    {
+      "id": "P1",
+      "outcome": "supported: local baseline flags200/200 noisy-linear trajectories in each of four noise conditions, exceeding.5 in every condition. It also flags all2400 null evaluation curves across the three null families.",
+      "evidence": [
+        "calibrate-evaluate/curves.jsonl",
+        "calibrate-evaluate/analysis.json"
+      ]
+    },
+    {
+      "id": "P2",
+      "outcome": "supported under the declared observed<=.10 rule: scan noisy-linear rates are.06,.04,.04,.10 and the other eight null/noise rates are0. This is not a proof of conditional5% control; large_ar linear has20/200 and pointwise95% CP interval[.0621593662540661,.1502127878677559].",
+      "evidence": [
+        "calibrate-evaluate/analysis.json",
+        "calibrate-evaluate/calibration.json",
+        "calibrate-evaluate/curves.jsonl"
+      ]
+    },
+    {
+      "id": "P3",
+      "outcome": "refuted under the predeclared descriptive rule: small_iid last_tenth has200/200 detections for both scan and global, so scan detection does not exceed global. Localization medians6 versus25 do not replace this failed rate prediction.",
+      "evidence": [
+        "calibrate-evaluate/analysis.json",
+        "calibrate-evaluate/curves.jsonl"
+      ]
+    },
+    {
+      "id": "P4",
+      "outcome": "supported: stored maximum affine invariance error8.359979375427429e-14 is below1e-10; scaled copies do not count as extra independent repetitions.",
+      "evidence": [
+        "calibrate-evaluate/analysis.json",
+        "calibrate-evaluate/curves.jsonl"
+      ]
+    }
+  ],
+  "report": {
+    "path": "research/stages/R10/REPORT.md",
+    "sha256": "58a13b8907316c7c7482874a6a9f9bccf3eb15ed9d7a11180d9680054c85859a"
+  },
+  "review_mode": "subagent_review",
+  "reviewer": {
+    "name": "R10 independent Codex subagent reviewer",
+    "harness": "codex",
+    "role": "stage_reviewer",
+    "independence": "Distinct subagent /root/science_critique. Reviewer advised high-level design and reviewed preflight but did not author implementation, report, numerical conclusions or claim. Reviewer inspected saved arrays/metadata, independently audited every summary and CI plus eight saved-curve OLS spotchecks; no scientific matrix was regenerated. This is local team review, not external replication."
+  },
+  "reviewer_agent": "/root/science_critique",
+  "schema_version": 1,
+  "scientific_validity": "not_assessed",
+  "stage_id": "R10",
+  "verdict": "accept"
+}

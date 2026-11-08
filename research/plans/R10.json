@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "stage_id": "R10",
+  "status": "frozen",
+  "question": "What false alarms, power and localization occur in a fixed independent benchmark of whole-curve acceleration diagnostics?",
+  "scope": "Frozen synthetic benchmark; 2388 calibration and 4800 independent evaluation trajectories. Known statistical methods; no CatBoost mechanism claim.",
+  "authorization_decision": {
+    "path": "research/decisions/codex-refactor-authorization-2026-11-07.json",
+    "sha256": "8559055cea21e6f58bdd58b07930e5d9ab505a84a1ea58c72721c0c5e4e2119d"
+  },
+  "budget": {
+    "max_wall_seconds": 600,
+    "total_wall_seconds": 1200,
+    "max_attempts": 2
+  },
+  "tasks": [
+    {
+      "id": "unit-checks",
+      "argv": [
+        "{python}",
+        "{repo}/scripts/run_unit_checks.py",
+        "--pattern",
+        "test_acceleration_audit.py"
+      ],
+      "inputs": [
+        "scripts/run_unit_checks.py",
+        "tests/test_acceleration_audit.py",
+        "src/acceleration_audit.py",
+        "src/__init__.py",
+        "uv.lock"
+      ],
+      "outputs": [
+        "checks.json"
+      ],
+      "timeout_seconds": 60
+    },
+    {
+      "id": "calibrate-evaluate",
+      "argv": [
+        "{python}",
+        "{repo}/scripts/r10_calibrate.py",
+        "--protocol",
+        "{repo}/research/stages/R10/inputs/protocol.json"
+      ],
+      "inputs": [
+        "src/__init__.py",
+        "src/acceleration_audit.py",
+        "src/dynamics.py",
+        "src/detector_catalog.py",
+        "scripts/r10_calibrate.py",
+        "tests/test_acceleration_audit.py",
+        "research/stages/R10/PLAN.md",
+        "research/stages/R10/inputs/protocol.json",
+        "research/stages/R10/inputs/design-review.json",
+        "docs/decisions/0004-v2-research-refactor.md",
+        "docs/literature/2026-11-07-v2-audit.md",
+        "uv.lock"
+      ],
+      "outputs": [
+        "curves.npz",
+        "curves.jsonl",
+        "calibration.json",
+        "analysis.json",
+        "environment.json"
+      ],
+      "timeout_seconds": 480
+    }
+  ],
+  "exit_criteria": [
+    {
+      "id": "C1",
+      "description": "Complete 7188 raw curves and metadata, exactly 2388 calibration and 4800 evaluation; disjoint seed phases and full finite matrix.",
+      "task_ids": [
+        "calibrate-evaluate"
+      ]
+    },
+    {
+      "id": "C2",
+      "description": "Frozen rank190 thresholds and all72 detector/family/noise summaries with exact pointwise intervals, localization, environment and no mechanism/DD claim.",
+      "task_ids": [
+        "calibrate-evaluate"
+      ]
+    },
+    {
+      "id": "C3",
+      "description": "Nonempty meaningful unit checks pass and source/protocol snapshot exists.",
+      "task_ids": [
+        "unit-checks",
+        "calibrate-evaluate"
+      ]
+    }
+  ],
+  "predictions": [
+    {
+      "id": "P1",
+      "statement": "On noisy linear curves the uncalibrated local rule flags more than half in each noise condition."
+    },
+    {
+      "id": "P2",
+      "statement": "Calibrated scan observed FPR does not exceed .10 in any included null/noise condition."
+    },
+    {
+      "id": "P3",
+      "statement": "On small_iid last_tenth, calibrated scan detection exceeds global-rule detection."
+    },
+    {
+      "id": "P4",
+      "statement": "Maximum affine invariance error is less than 1e-10."
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "stage_id": "R16",
+  "review_kind": "narrow_metadata_only_scan_preflight",
+  "review_mode": "subagent_review",
+  "harness": "codex",
+  "author_agent": "/root",
+  "implementation_author": "/root/alignment_brainstorm",
+  "reviewer_agent": "/root/reset_critic",
+  "reviewer_independence": "Distinct child agent. Authored none of evaluated source, tests, amendment or PLANs. Read them independently and ran17 pure/handmade-fixture tests; no actual metadata scan or ACK outcome aggregation in this review. Wrote only this bound preflight.",
+  "reviewed_at_utc": "2026-11-08T09:31:43.911646+00:00",
+  "verdict": "accept",
+  "blocking_issues": [],
+  "scope": "ONLY one recorded --metadata-only scan of the already pinned slim under the existing zero-paid-API/zero-GPU charter. This is NOT acceptance of numerical retry or amended H1 inference.",
+  "reviewed_artifacts": [
+    {
+      "path": "src/cot_audit.py",
+      "sha256": "f278b5a3adcae1535f04a499347c9ac68b2e60f9c92796fec1352879ee33c4c4"
+    },
+    {
+      "path": "scripts/cot_audit.py",
+      "sha256": "73054927bc3a79a684a9542dee9acfa438f447f665e630be87d6e1026335cd20"
+    },
+    {
+      "path": "tests/test_cot_audit.py",
+      "sha256": "2315cbcb1b9bce801154832114fa90ca57ebfa23487baea6902f5ea297dac0e4"
+    },
+    {
+      "path": "research/stages/R16/inputs/analysis-protocol.json",
+      "sha256": "e662c64c50534adea489faa40a83ee095df19c2d26d615cc8d50c4151fd66d5e"
+    },
+    {
+      "path": "research/stages/R17/inputs/analysis-protocol.json",
+      "sha256": "50e097141f639c0e61891a00eb479efd1c3080e9e7ba439e4148e751c1772c41"
+    },
+    {
+      "path": "research/stages/R16/AMENDMENT-metadata-population.md",
+      "sha256": "6fb4d9ac6c0e76f16fb252881dc9b0eb473746771beddbce65ffe95db5075b68"
+    },
+    {
+      "path": "research/stages/R16/PLAN.md",
+      "sha256": "f60d64943c715560ad0bcbfe29f64e555f75c1f771e74e62ba159eea8f68d60b"
+    },
+    {
+      "path": "research/stages/R17/PLAN.md",
+      "sha256": "3ffc405233a1195738b7704b33b1504d76c0f0858fe6e16e9362cf53a7bde109"
+    },
+    {
+      "path": "research/reviews/R16-attempt1-failure.json",
+      "sha256": "029507da4390203f4c89c6cdf672e04f2f208cbb00e873d7db2c9aed27a4f2a3"
+    },
+    {
+      "path": "artifacts/intake/cot-audit-source/slim.parquet",
+      "sha256": "cf41ae989be031362fed849a89387be87ca5d8231f89faa94ff8c1a96763f6ec"
+    },
+    {
+      "path": "research/stages/R15/inputs/download-spec.json",
+      "sha256": "e28633394bacca464ffa4190527dd0d55b4db25ddc019c5f17a6bbb8e958c66c"
+    },
+    {
+      "path": "research/decisions/alignment-portfolio-authorization-2026-11-08.json",
+      "sha256": "c0ad0d0aa0fdb84d70f4ddfe7b613a22436400003427d37882284f1bdbbb38b1"
+    },
+    {
+      "path": "uv.lock",
+      "sha256": "ac89eef670e3774086fff7a06df62f1ba760f85d6c76378ac915ca32b76523b4"
+    }
+  ],
+  "checks": {
+    "metadata_only_branch": "Reviewed branch reads META_COLUMNS then DESIGN_COLUMNS only. Neither includes cue_acknowledgment/model_answer/output/reasoning/is_correct/factor-utilization outcomes. It never calls audit_records, estimator/bootstraps or numerical sensitivity gates. Full8models/3datasets/24source provenance and input/spec SHA guards apply before reads.",
+    "uniform_quarantine": "All nonempty exact input hashes collect all four original known metadata checks and associated q IDs. Conflicting inputs quarantine EVERY affected ORIGINAL baseline-union cluster, preserving original canonical keys and hash bucket assignments across all three partitions. Complete conflicts/values/IDs/cluster keys/excluded questions/counts retained. Within-question contradictions and source/schema/provenance corruption remain hard failures; this is not a single-ID exception.",
+    "design_validation": "All retained has_cue=true design rows, across discovery/confirmation/reserve uniformly, require valid input/choices/target signature and nonempty baseline anchor; no ACK values determine eligibility. Metadata audit is written before design validation, then completed or design failure preserved.",
+    "separation": "Statistical split and numeric thresholds unchanged; metadata-only task labels/integrity are observed for all partitions, while generated-model outcomes remain unqueried. Any later metadata hypothesis cannot treat reserve metadata as unobserved. Full conflict ledger must be independently checked before numerical retry.",
+    "independent_tests": "Independently17/17 PASS0.547s. Fixture explicitly wraps ParquetFile to reject any requested ACK/model-answer/output/reasoning/is_correct column in --metadata-only mode, verifies only metadata_audit.json and protocol.json outputs. Additional test covers cross-q conflicting cued input touching two ORIGINAL clusters across discovery/reserve plus a cross-dataset alias; quarantined unreadable ACK cannot affect retained estimator; within-q contradiction still hard fails.",
+    "resources": "Same input<=256MiB and ArrowCPU/I/O4; streaming batches2048. No network, model training, new source download, API or GPU. Root must record command/PID/runtime/outputs, outer timeout<=1500s and actual output<=256MiB within cumulative charter."
+  },
+  "conditions_after_scan": [
+    "Check complete source/model/file/row identity and all metadata/design validity, no partial-pass substitution.",
+    "Independently inspect full conflict/exclusion ledger and source cause limitations; preserve failed original attempt.",
+    "Bind ledger, amended PLAN/protocol/source and new design-review-amended.json before a NEW numerical attempt. No actual H1 retry is accepted by this narrow scan review."
+  ],
+  "limitations": [
+    "Contradictory reference metadata does not prove wrong model ACK labels or an upstream dataset/code bug. Conservative quarantine explicitly narrows study population.",
+    "No H1 effect, null, analyzability, journal readiness or alignment-safety conclusion is accepted. Scientific validity not assessed."
+  ],
+  "scientific_validity": "not_assessed"
+}

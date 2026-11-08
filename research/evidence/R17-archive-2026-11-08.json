@@ -1,0 +1,12 @@
+{
+  "verified": true,
+  "files": 49,
+  "unique_blobs": 45,
+  "restored_bytes": 101041459,
+  "unique_bytes": 101032980,
+  "scientific_validity": "not_assessed",
+  "archive": "research/evidence/R17-runs-2026-11-08-v1.zip",
+  "sha256": "335f3a843e30bb37a208564c70969463cbc07d5388e2685b966c8b681cc3aef7",
+  "bytes": 101061209,
+  "detached_verified": true
+}

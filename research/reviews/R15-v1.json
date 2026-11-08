@@ -1,0 +1,94 @@
+{
+  "attempt_id": "20261108T090628-8efd502cb8",
+  "author_agent": "/root",
+  "criteria": [
+    {
+      "evidence": [
+        "intake/intake/download_manifest.json",
+        "intake/intake/acquisition.jsonl",
+        "intake/intake/intake_report.json"
+      ],
+      "id": "C1",
+      "verdict": "pass"
+    },
+    {
+      "evidence": [
+        "intake/intake/schema_profile.json",
+        "intake/intake/slim.parquet"
+      ],
+      "id": "C2",
+      "verdict": "pass"
+    },
+    {
+      "evidence": [
+        "intake/intake/acquisition.jsonl",
+        "intake/intake/intake_report.json"
+      ],
+      "id": "C3",
+      "verdict": "pass"
+    }
+  ],
+  "limitations": [
+    "This accepts operational engineering completion only; scientific_validity remains not_assessed. Source label validity, cross-model question/treatment comparability, novelty, effects, latent faithfulness and journal readiness are not established.",
+    "Independent postrun reads were raw-file byte hashes, Parquet schemas/footers and source provenance columns only. No study ACK, model answers, output/reasoning values, rates or rankings were read by this reviewer before separate scientific freeze. Retained-value semantics rely on reviewed deterministic source plus independent pure/mock fixtures; source label truth is not verified.",
+    "Rows446208 are release records, not independent experimental units. Future uncertainty must cluster question aliases and use separately frozen discovery/confirmation/reserve allocations.",
+    "Reported network bytes are application-returned payload bytes, including any retry chunks, not TCP/TLS overhead. All48 physical initial/redirect requests and payload chunks reconcile exactly with acquisition log; no retries occurred.",
+    "The accounting mirror is required before further runs and was independently verified byte-exact. Global charter wall/storage/dataset/HTTP consumption is cumulative and must be checked independently before R16; R15 operational acceptance does not reset it.",
+    "R16/R17 require their own pre-outcome plan/source/protocol review;35percent reserve outcomes remain untouched until a separately preregistered new hypothesis and review. Historical cached2025model outputs do not establish2026frontier-model or deployment-safety conclusions."
+  ],
+  "manifest_sha256": "a4081216beb27c0183138648c99115bebdfbadaee82ed84004ef5e4f1f7bcbed",
+  "plan_sha256": "424af380c2aa40e3ece0e3fe6e75e062c7487ec10399c3fa9fd2c3bb0d59f2e3",
+  "predictions": [
+    {
+      "evidence": [
+        "intake/intake/download_manifest.json",
+        "intake/intake/acquisition.jsonl",
+        "intake/intake/intake_report.json"
+      ],
+      "id": "P1",
+      "outcome": "supported: independently rehashed all24 pinned raw payloads and verified exact sizes.940116134 payload bytes;48 physical initial/redirect requests; all files complete on first attempt and immutable revision matches frozen spec."
+    },
+    {
+      "evidence": [
+        "intake/intake/schema_profile.json",
+        "intake/intake/slim.parquet",
+        "unit-checks/checks.json"
+      ],
+      "id": "P2",
+      "outcome": "supported as engineering transformation:446208 raw-footer rows equal446208 slim rows; per-file row counts, all source row indices and payload provenance independently checked.21 declared retained columns and9 text hash/length descriptors present; slim88613869 bytes, SHA256 cf41ae989be031362fed849a89387be87ca5d8231f89faa94ff8c1a96763f6ec. Exact-value transformation semantics verified by source review and seven pure/mock fixtures without inspecting study outcomes."
+    },
+    {
+      "evidence": [
+        "intake/intake/intake_report.json",
+        "intake/intake/acquisition.jsonl",
+        "unit-checks/checks.json"
+      ],
+      "id": "P3",
+      "outcome": "supported: actual intake report/API0/GPU0/statistical_endpoints_computed=false; ArrowCPU/I/O4, HTTPworkers4; elapsed79.703s and byte/request/slim caps respected. Acquisition mirror byte-exact under artifacts/intake/R15-accounting, so cumulative accounting includes this attempt. No numerical scientific conclusion is authorized by this engineering stage."
+    }
+  ],
+  "report": {
+    "path": "research/stages/R15/REPORT.md",
+    "sha256": "1b646726bac598a7ae4beef0fc70c306d63b446d043b6d67f226881f45999bd8"
+  },
+  "review_mode": "subagent_review",
+  "reviewer": {
+    "harness": "codex",
+    "independence": "Distinct child agent /root/reset_critic; authored no R15 implementation, PLAN, acquisition, outputs or REPORT. Independently reviewed frozen design/code, reran7 pure/mock tests, rehashed24 actual raw payloads and checked metadata/provenance only. No ACK, model-answer, output or reasoning values requested. Wrote this review; local independent team review, not external peer review.",
+    "name": "/root/reset_critic",
+    "role": "stage_reviewer"
+  },
+  "reviewer_agent": "/root/reset_critic",
+  "schema_version": 1,
+  "scientific_validity": "not_assessed",
+  "stage_id": "R15",
+  "verdict": "accept",
+  "independent_checks": {
+    "raw_files_rehashed": 24,
+    "per_file_row_counts_match": true,
+    "source_rows_checked": 446208,
+    "outcome_columns_requested": [],
+    "pure_mock_tests_passed": 7,
+    "actual_report_read_and_bound": true
+  }
+}

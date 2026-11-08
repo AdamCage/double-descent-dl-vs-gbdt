@@ -1,0 +1,114 @@
+{
+  "attempt_id": "20261108T100025-c526dea890",
+  "author_agent": "/root",
+  "criteria": [
+    {
+      "evidence": [
+        "unit-checks/checks.json",
+        "ack-audit/audit/analysis.json",
+        "ack-audit/audit/dataquality.json",
+        "ack-audit/audit/protocol.json"
+      ],
+      "id": "C1",
+      "verdict": "pass"
+    },
+    {
+      "evidence": [
+        "ack-audit/audit/analysis.json",
+        "ack-audit/audit/bootstrap.npz",
+        "ack-audit/audit/per_question.parquet",
+        "ack-audit/audit/pairs.csv"
+      ],
+      "id": "C2",
+      "verdict": "pass"
+    },
+    {
+      "evidence": [
+        "ack-audit/audit/analysis.json",
+        "ack-audit/audit/dataquality.json",
+        "ack-audit/audit/protocol.json"
+      ],
+      "id": "C3",
+      "verdict": "pass"
+    }
+  ],
+  "limitations": [
+    "This supports the prespecified H2 empirical comparison-sensitivity criterion on a heldoutquestion split of one historical release, not a new matchingmethod, prioritycertification, externalpeerreview or journalacceptance.",
+    "H2was chosen after source-semantic discovery fromH1; H1narrowliteralcue result, failedmetadata attempt andsupersededH1confirmation plans remain preserved. H2discovery reusedH1questions. BothH2plans/source/numericrules were frozen beforeH2discovery; confirmation outcomes were not previously aggregated/displayed/used fordesign. Reserve ACK/factor grades remain unused.",
+    "Outcome is released historicaljudge acknowledgment,not latentfaithfulness/internalreasoning truth/deploymentsafety. Falsemayincludeoldjudgeparsefail. Equalreleasedquestion estimator differs fromsourcepaper subdataset-macro metric; nativeadaptivepolicy is intentional,notshownflawed.",
+    "Native-to-exactrestriction changes observedquestion and cue-kind composition; all84versioncomponents arezero undertheobservedsingleversion structure. Shifts do notidentifycausalcue-version effects, missingcounterfactuals oracorrectedtrueglobalranking.",
+    "LargestBBH rawgapsignchange and MMLUillustration aredescriptivelyselected examples. CIs coverdelta_total in thesame56comparisonfamily; therearenoregisteredCIsforindividualrawgaps,soaseparate-gapsignificantrankreversal isnot established.",
+    "Bootstrap isapproximate empiricalquestion-cluster resampling conditionaloncachedmodelgenerations/judgelabels. Itpreserves exactbaselineinputaliases butnotguarantees exchangeability ofsemantic/template/taskfamilies. CIsare separatelynominalsimultaneousbyendpoint/split,notjointprogramme-wide95percent orfinite-sample/deploymentguarantee.",
+    "All28GPQAcomparisoncells lack100U1cluster confirmation support; noGPQAinference. OnlyBBHandMMLUmeet theprimarycriterion. No rawrow/context/modelpair counttreatedasindependentn; heldoutquestionsarefromsamethreebenchmarks,notOODfamilies/newmodelruns.",
+    "Metadataquarantine fixedbeforeACK excludes4q/2wholeclusters/192rows withoutcorrectingreference labels orprovingupstreamcause/invalidACK. Allmetadataacrossreservewasalreadyobserved andcannotbeclaimedunseenforfuturemetadatahypotheses.",
+    "Analysis28.610s/attempt30.156s,CPU4/API0/GPU0/training0/newdownload0 andactualoutputcap respected. Cumulativebudgetsandfinalderivativevisual/replayQA stillapply. Scientificvalidityfieldremainsnot_assessed operationally; separate bounded claimdecision records supportedscientificstatement."
+  ],
+  "manifest_sha256": "956014d23074a0c07617f5607fde9b208cd699dca14094450767a01ace9207f1",
+  "plan_sha256": "b8db456c3302d9236dc9a7262675709d4dbaadd6c79794e13d1bfdd9a9f9982b",
+  "predictions": [
+    {
+      "evidence": [
+        "ack-audit/audit/analysis.json",
+        "ack-audit/audit/dataquality.json",
+        "ack-audit/audit/per_question.parquet"
+      ],
+      "id": "P1",
+      "outcome": "supported: independently reconstructed all3268confirmationquestionIDs/3215baseline-input clusters,88772per-question comparison rows,all84cellpoints and supportcounts,all5000globalbootstrap draws(maxerror7.77e-16) andall3endpointfamily CIs; exactpre-outcome metadata ledger and scope_onlylabels/protocol/source match. Allcomparisonperqrecords have oneversion/model/context, supporting algebraiczero Delta_version inall84cells."
+    },
+    {
+      "evidence": [
+        "ack-audit/audit/analysis.json",
+        "ack-audit/audit/bootstrap.npz"
+      ],
+      "id": "P2",
+      "outcome": "supported on the previously unused confirmation question split:16of56support/inference-eligible cells(9BBH,7MMLU) meet lockedabsDelta_total>=.05 andmaxT95%CI whollyoutside[-.02,.02]. All84declared;28GPQA unsupported. LargesteligibleobservedBBH Qwen3-235B-A22B-2507 minusQwQ-32B shift-.15520703611457046,CI[-.1919879710837689,-.11842610114537203],nativepoint+.04197651663405097 toexactpoint-.11323051948051949. Pointsignchange is descriptive,notseparate-gap significance orcorrectedranking."
+    },
+    {
+      "evidence": [
+        "ack-audit/audit/analysis.json",
+        "ack-audit/audit/dataquality.json",
+        "ack-audit/audit/per_question.parquet"
+      ],
+      "id": "P3",
+      "outcome": "supported:56support/inference-eligible comparisons spanBBH28+MMLU28. Structuralanalyzability true; all28GPQA cellsfailfrozen100U1cluster support. Nativeandmatched denominators/aliases/unsupportedpoints remain explicit."
+    },
+    {
+      "evidence": [
+        "ack-audit/audit/analysis.json",
+        "ack-audit/audit/bootstrap.npz"
+      ],
+      "id": "P4",
+      "outcome": "blanketrobustness not supported/notclaimed. Source robustness label=inconclusive records no equivalence pass, while primarysensitivityP2 is supported.16confirmedmaterial shifts preclude ALLsupport-eligible intervals inside±.05. Nozero-SE/version component is used toclaimno causal effect."
+    }
+  ],
+  "report": {
+    "path": "research/stages/R17/REPORT.md",
+    "sha256": "205104d4401f247605d9dd54e9fc4c538c34b26e16b7be7c671def87e8030c50"
+  },
+  "review_mode": "subagent_review",
+  "reviewer": {
+    "name": "/root/reset_critic",
+    "harness": "codex",
+    "role": "stage_reviewer",
+    "independence": "Distinct child; authored no evaluated H2plans/protocol/source/tests, primary outputs or REPORT. Independently reimplemented all CONFIRMATION-only scalar aggregation,5000globalcluster bootstrap draws and all3interval families; scanner returns only selectedconfirmation rows before ACK enters Python. H1/H2discovery reuse explicitly known; reserve ACK/factor outcomes not used. Only review/checker artifacts authored by reviewer. Local independent team review, not external peer review."
+  },
+  "reviewer_agent": "/root/reset_critic",
+  "schema_version": 1,
+  "scientific_validity": "not_assessed",
+  "stage_id": "R17",
+  "verdict": "accept",
+  "independent_verification": {
+    "path": "artifacts/intake/R17-independent-review/verification.json",
+    "sha256": "c5b49a4f49c4a95077f857d470900a85d03009357e09f459be1a9b27f5281771",
+    "checker": {
+      "path": "artifacts/intake/cot-independent-review/check_scope_audit.py",
+      "sha256": "7330c7a3d3aeebea1e807b94fd63dcad179091e7bbdfc10f012b2ee41284f673"
+    },
+    "all84points_and_support_verified": true,
+    "per_question_rows": 88772,
+    "bootstrap_draws": 5000,
+    "max_bootstrap_abs_error": 7.771561172376096e-16,
+    "all3endpoint_families_recomputed": true,
+    "reserve_outcomes_used": false
+  }
+}

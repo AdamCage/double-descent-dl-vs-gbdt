@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-11-08T11:31:04.574058+00:00",
+  "status": "VERIFIED_AND_SAMPLE_RESTORED",
+  "scope": "R15-R18 CoT/H2 independent review recovery supplement; integrity only",
+  "archive": "research/evidence/cot-review-proof-2026-11-08-v1.zip",
+  "sha256": "ac51c26f76f141e7295b1051cbdfdb541cff29d784240728695f93ffb5fb8105",
+  "bytes": 126270965,
+  "index_sha256": "4c527776f32628ccf6aeb745685d9c3d0a6f8b1e63a311de50c46ab7c61ac32b",
+  "indexed_files": 811,
+  "archive_members_verified": 812,
+  "payload_bytes_verified": 154349728,
+  "final_allowlist": {
+    "path": "artifacts/intake/cot-review-recovery/final-inventory.json",
+    "sha256": "bf96dedd2ebd5af8d54a240d8790d79b0c3a2e45cf70e902edaa8b8ffbe10ccf",
+    "files": 806,
+    "bytes": 151944054
+  },
+  "detached_verification": {
+    "path": "artifacts/intake/cot-review-recovery-verification-20261108-v1/detached-verification.json",
+    "sha256": "60f61609ea598229254be0abe49269bd1aeba63f68484dd65d9eb09fcff2d104",
+    "all_entries_verified": true,
+    "separate_process": true,
+    "verifier_extracted_from_archive": true,
+    "original_project_sources_opened": false,
+    "extra_missing_duplicate_unsafe_members": 0
+  },
+  "restore": {
+    "new_directory": "artifacts/intake/cot-review-recovery-verification-20261108-v1/restored-proof-samples",
+    "ordinary_files": true,
+    "overwrites": false,
+    "samples": [
+      {
+        "path": "artifacts/intake/cot-independent-review/check_scope_audit.py",
+        "bytes": 11820,
+        "sha256": "7330c7a3d3aeebea1e807b94fd63dcad179091e7bbdfc10f012b2ee41284f673"
+      },
+      {
+        "path": "artifacts/intake/cot-metadata-independent-review/verification.json",
+        "bytes": 605,
+        "sha256": "99ad3fa2fbad1ca6027dcb8cbd9892b456fef33c762bf5369265a034814b80a5"
+      },
+      {
+        "path": "research/reviews/R17-v1.json",
+        "bytes": 7399,
+        "sha256": "afe449669bad2e1313201f90b91a3986e480268b6f2c31dd113e4c9c4a4a1928"
+      },
+      {
+        "path": "research/reviews/R18-attempt1-v1.json",
+        "bytes": 9662,
+        "sha256": "b0a28812694445b12c18ba97af89e6d3e0043fa1988dc37f9e3ed54306104ae9"
+      },
+      {
+        "path": "research/reviews/R18-attempt2-v1.json",
+        "bytes": 11972,
+        "sha256": "bf0069b6e4ca04ede26e7e1feb83fda8960eea962ec82a49552f0a046e6f055a"
+      },
+      {
+        "path": "artifacts/intake/R18-independent-visual-qa/20261108T104100-7836d70ed3/png-overview-01.png",
+        "bytes": 1006706,
+        "sha256": "a628480be06eac3c140fce6c2b882c6c1fe3a7d7230b335e20a3262df25ae067"
+      },
+      {
+        "path": "artifacts/intake/R18-independent-visual-qa/20261108T111319-cf1d82f2a8/png-overview-01.png",
+        "bytes": 1009804,
+        "sha256": "6d717394f67431dcd1e5ce3b0ce883ca28e93efa62ec4edc68a5333c98a7ef47"
+      }
+    ],
+    "bytes": 2057968,
+    "all_byte_hash_checks_pass": true
+  },
+  "storage_budget": {
+    "limit_bytes": 262144000,
+    "archive_plus_samples_bytes": 128328933,
+    "within_limit": true
+  },
+  "review_proof_coverage": {
+    "externally_bound_independent_proof_gaps": 0,
+    "includes_both_R18_attempts_actual_numeric_and_visual_QA": true,
+    "final_R18_closure_sha256": "21298ed4ba53098f2954461d6b6d29a1b1426456273731ed239b92a3e705ecfa",
+    "final_R18_operational_review_sha256": "bf0069b6e4ca04ede26e7e1feb83fda8960eea962ec82a49552f0a046e6f055a",
+    "binding_statuses": {
+      "included-direct-match": 1173,
+      "archive-held-reference-match": 1927,
+      "historical-digest-preserved-in-inventory": 101,
+      "live-path-changed": 16,
+      "payload-or-large-reference-not-rehashed": 48
+    }
+  },
+  "history_limitations": {
+    "earlier_unexecuted_R17_planning_versions_not_byte_preserved": [
+      {
+        "target": "research/plans/R17.json",
+        "expected_sha256": "df5039d8a78aeb9b85d13a395b0b79d7fb806ac0949701e7538efcff757fba5e"
+      },
+      {
+        "target": "research/stages/R17/PLAN.md",
+        "expected_sha256": "ddb06f97cfee3409522ea6f9a92dc738b00da45bc84c17db8810effa4d19c8ed"
+      },
+      {
+        "target": "research/stages/R17/inputs/analysis-protocol.json",
+        "expected_sha256": "50e097141f639c0e61891a00eb479efd1c3080e9e7ba439e4148e751c1772c41"
+      },
+      {
+        "target": "research/stages/R17/inputs/analysis-protocol.json",
+        "expected_sha256": "704cfce66e5b0321539ee8e9b766fe8370950d214ad72016fa06a3223827908d"
+      }
+    ],
+    "repeated_binding_entries": 16,
+    "interpretation": "Historical unexecuted planning variants only; no fabricated repairs, no missing independent proof, not a numerical provenance failure. Exact executed inputs remain in separate run archives."
+  },
+  "excluded": [
+    "all raw dataset payloads, slim.parquet, NPZ/Parquet scientific outputs",
+    "entire 112MB artifacts/intake/cot-portfolio-evidence tree",
+    "all original run output galleries/packages/replay outputs and all existing ZIP payloads",
+    "R0-R14 archives/output trees; protected .research stores; .env; .venv; SQLite/WAL/SHM",
+    "fontcache and Python bytecode caches; external runtime/modules/fonts"
+  ],
+  "dependency_note": "Separate scientific run archives and final portable ZIP are delivered by parent; no large archive or data payload is duplicated here. R18 main archive receipt was not yet present when the supplement allowlist was frozen.",
+  "scientific_validity": "not_assessed; backup author is not a scientific reviewer",
+  "limitations": "Local SHA256 integrity/recovery verification, not signature, external peer review or independent scientific replication."
+}

@@ -1,0 +1,168 @@
+{
+  "schema_version": 1,
+  "review_type": "publication_integration",
+  "reviewed_at_utc": "2026-11-08T21:09:10Z",
+  "review_local_date": "2026-11-09",
+  "harness": "codex",
+  "review_mode": "subagent_review",
+  "author_agent": "/root",
+  "implementation_author_agent": "/root/release_ci",
+  "reviewer_agent": "/root/reset_critic",
+  "reviewer_independence": "Distinct child reviewer; authored none of the evaluated source CI implementation/tests, transport attributes, source controls, staged snapshot, release manuscript, asset manifest, release notes or parent validation receipts. Authored this review and independent QA only. Additional scoped secret scans were performed read-only by distinct /root/reset_critic/publish_secret_scan. Local team review, not external security audit or peer review.",
+  "scope": "Readiness of the current staged source transport and authorized GitHub publication integration. Checks source-only CI separation, exact-byte Git transport, scoped secret/large-file scans, clean staged checkout, asset metadata and honest claim presentation. No new scientific claim or stage-validity assessment; no git mutation or publication performed by reviewer.",
+  "verdict": "accept",
+  "blocking_findings": [],
+  "bindings": [
+    {
+      "path": "scripts/check_source_checkout.py",
+      "sha256": "ec05331e809ee1c381131198a0a65969139f86c4a02d90e8bac07842409baa3f"
+    },
+    {
+      "path": "tests/test_source_checkout.py",
+      "sha256": "ca3aaa057b5bccb7edfeed1319c3e650792e5f47344dfa97c0b1a3d1724b4de2"
+    },
+    {
+      "path": "scripts/check_repository.py",
+      "sha256": "87c281d317011f81b0e02916ac06adfc82a468cf1f2b33e8c357c5fa9b42b319"
+    },
+    {
+      "path": "tests/test_repository_check.py",
+      "sha256": "fe9f8a57b7e2756afbc044b55a2a377af9108a0b88a7d8759bed5b35f9b31af1"
+    },
+    {
+      "path": ".github/workflows/verify.yml",
+      "sha256": "c46c8244d20c91e1a28e809ab0ef946fb49e73a8661f83cc6b1b46c050a566e0"
+    },
+    {
+      "path": ".gitattributes",
+      "sha256": "799a1ba8a6546d07ae3f0058b4a4b2ff80a2c90d8675037632f0e9b16da4e8c9"
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "0b9a969d8424e5bbd18094a6cfdabbcad6bca6798eb3e502f89763273baa94f0"
+    },
+    {
+      "path": "README.md",
+      "sha256": "41cb5c8e46fee0a39d29b95e51eff8c94d3e15e5ac1e820b7e7ed88b2488ccca"
+    },
+    {
+      "path": "docs/portfolio/cot-audit-overview.md",
+      "sha256": "8ef15e627229f851e561ed392b705d16346174b84273e2a049da835936858938"
+    },
+    {
+      "path": "docs/releases/research-cot-audit-2026-11-08-assets.json",
+      "sha256": "353b367c000048645b344263143035419b4bc773a139a5fd83bbadd84167eb69"
+    },
+    {
+      "path": "docs/releases/research-cot-audit-2026-11-08.md",
+      "sha256": "93e855c1d5fcc465e3f3b00d7c4d80a37d99edb36db152c54e1b5753147c2bf8"
+    },
+    {
+      "path": "docs/releases/SHA256SUMS.txt",
+      "sha256": "57cd8d16a2c00de793aedf14d92007a6457c31ffc71c962257b2d778fde67cb8"
+    },
+    {
+      "path": "research/evidence/legacy-2026-11-07/inventory.json",
+      "sha256": "fc1fa3153bed5c6f4d50bc7994167f59f8efc8b8e8f1f8fbcc3554b927f534f9"
+    },
+    {
+      "path": "manuscript/cot_input_comparability.md",
+      "sha256": "230a21f145ade23000f43ac82aa913d2459d81dca014ce55395fc44ac70ebf2e"
+    },
+    {
+      "path": "research/reviews/cot-manuscript-scientific-review-v2.json",
+      "sha256": "347c425fe1fa672122023e42622ccd8d46dc76cb5ea47b9c3c52b01406499465"
+    },
+    {
+      "path": "research/evidence/github-release-2026-11-09/github-release-full-checks.json",
+      "sha256": "d2f3d80caf81624029a356467cff90e28659af3d52d2ef4a7fba15eb365794b9"
+    },
+    {
+      "path": "research/evidence/github-release-2026-11-09/github-release-source-checks.json",
+      "sha256": "ad9db4ad352840631984da3003604b14b1808f90fa2ad85616e46a696e8fe90b"
+    },
+    {
+      "path": "research/evidence/github-release-2026-11-09/github-release-index-byte-checks.json",
+      "sha256": "e5a3c90cd03806cb0ff3e5516e80e818fcca22b004e7ddaab769af1a115afaff"
+    },
+    {
+      "path": "research/evidence/github-release-2026-11-09/github-release-clean-checkout-attempt1-failed.json",
+      "sha256": "821aa022980f2fb7b089e19b7e46285c5ab948700809091305d43edf05dc6080"
+    },
+    {
+      "path": "research/evidence/github-release-2026-11-09/github-release-clean-checkout-checks.json",
+      "sha256": "f3e77bc56acc0d6cc44a449671c5d39d9d7b941746ca4d92a5973e3bcf2ce99f"
+    }
+  ],
+  "checks": {
+    "source_only_CI": "Read complete new checker, nine regression tests and workflow diff. Default full check_repository, run and claim admission remain available and are not weakened by source-only CI. Artifact references are always unverified even when locally present; source hashes, claim/decision statements and evidence metadata, task paths, authorizations and portable legacy snapshots are checked. Independent9/9 focused tests passed in0.237s; actual audit426 source/control files and741 explicitly unverified artifact references.",
+    "full_default_validation": {
+      "passed": true,
+      "tests_total": 248,
+      "tests_passed": 239,
+      "tests_skipped": 9,
+      "structural_problems": [],
+      "scope": "Parent full local default check with original evidence present. No fitting/API/GPU/new-model research runs."
+    },
+    "clean_staged_checkout": {
+      "passed": true,
+      "indexed_files_materialized": 1000,
+      "source_controls_checked": 426,
+      "tests_total": 248,
+      "tests_passed": 239,
+      "tests_skipped": 9,
+      "artifact_references_unverified": 741,
+      "evidence_validation": "not_performed_source_checkout",
+      "stage_execution_preflight": "not_performed",
+      "scientific_claim_admission": "not_performed",
+      "scope": "Distinct implementation agent materialized the real staged index in a new temporary directory. Cwd and imports use clean source; original venv supplies installed dependencies only, PYTHONPATH empty; no original live evidence/model/network access. Reviewer verified the persisted PASS report and all explicit scope labels."
+    },
+    "transport": "Root * -text prevents evidence-breaking CRLF/LF normalization without rewriting live frozen bytes. Parent index audit verifies all nonvendor files among1000 indexed files match exact live bytes; nested vendor LF rules and vendor index are unchanged. Reviewer independently compared all640 then-changed staged raw blobs with worktree bytes: no mismatch, no symlink, no file above50MiB and no archive in that staged subset. Byte-only historical differences preserve original accepted SHA bindings; they are not scientific changes.",
+    "secret_scan": "No confirmed credentials in scoped read-only scans:269 modified/new nonartifact UTF8 files(3078202bytes/49005lines), plus exactly14 newly included legacy portable JSON/CSV/log snapshots(1362403bytes/15672lines). All14 snapshot SHAs match original inventory. No .env or credential/key file opened; no suspected secret value printed. Checks include API keys without common prefixes, Authorization/Bearer, credential URLs/query parameters, env dumps, private keys, JWTs and entropy/context follow-up. Legacy AppData hits are runtime/library diagnostics. This is not an exhaustive binary archive secret audit.",
+    "release_assets": "Manifest24 payloads total3338297545bytes, plus manifest and SHA256SUMS gives26 intended attachments. Names unique; repo/tag URLs, existing paths, byte sizes and all24 checksum records consistent; all payloads below2GiB. Actual PDF SHA matches reviewed finalc20f3f91edac9f23f18333e6d9d5c255d26de7852bf61762aec4358bd8f53fec. Large archives/cache copies are excluded from ordinary Git. Complete archive internals were checked separately by the designated archive verifier; reviewer independently checked metadata and finalPDF identity, not a second full3.3GB archive replay.",
+    "claim_presentation": "Release text retains16 of56 supported/inference-eligible comparisons,9BBH/7MMLU, maximum15.52pp and all28 GPQA unsupported. Historical released ACK proxy, changing comparison population, existing matching prior, approximate bootstrap intervals, AI authorship/local agent review and no corrected ranking/latent-faithfulness/causal/journal-priority certification are explicit. Original H1 and negative DD history remain. Manuscript230a is unchanged. Public README links now target Release URLs and stale R14-next instructions are removed."
+  },
+  "resolved_findings": [
+    {
+      "id": "P1",
+      "issue": "Broad staging would include10.7GB of untracked archives/intake duplicates.",
+      "resolution": "Explicit source staging and ignore rules; large verified payloads become deliberate Release assets, not ordinary Git blobs. Known truncated5.826GB R13 transfer excluded with reason; all3original attempts remain in verified deduplicated ZIP."
+    },
+    {
+      "id": "P2",
+      "issue": "Default source checkout CI required unavailable live evidence.",
+      "resolution": "Added an explicit separate source-only command/workflow. Full byte-bound local gate and scientific admission remain unchanged; unavailable artifacts are explicitly unverified."
+    },
+    {
+      "id": "P3",
+      "issue": "Automatic LF transport would break historical live-byte SHA bindings.",
+      "resolution": "Exact-byte root attribute plus raw index audit; no frozen worktree bytes or vendored index rewritten."
+    },
+    {
+      "id": "P4",
+      "issue": "Initial real clean staged checkout omitted14 small portable legacy snapshots through broad existing ignore patterns.",
+      "resolution": "FAIL receipt preserved. All14 exact inventory-bound files were independently scanned for secrets and added; actual clean staged rerun passes without weakening checker."
+    },
+    {
+      "id": "P5",
+      "issue": "README local ignored artifact links and stale R14-next instructions.",
+      "resolution": "Current public Release URLs, closed-stage status and scoped source-only/full-evidence instructions reviewed."
+    }
+  ],
+  "limitations": [
+    "This review is pre-publication integration acceptance. It does not certify that a commit/tag was pushed, remote Actions passed, assets were uploaded or the public Release exists. Parent must verify the actual remote commit/tag and all26 attachment names/sizes/digests before publication and report outcome honestly.",
+    "Source-only PASS does not verify Release payload bytes, execute a stage, admit a scientific claim or certify scientific truth. Default full local validation separately passed with evidence present. A source checkout must restore evidence before full validation.",
+    "No new model call, experiment, scientific inference, reserve-outcome use or scientific approval is introduced. Existing accepted scientific reviews and their limitations remain authoritative.",
+    "Scoped scans found no confirmed secret; they do not prove all historical binary/corpus/archive contents secret-free. .env and credential/key files were intentionally excluded from reads and staging. Private runtime paths are provenance, not credential values.",
+    "The temporary clean checkout reused existing pinned installed dependencies; it was not a separate fresh dependency installation or external scientific replication. Exact runtime/hardware numerical portability remains bounded by the original report.",
+    "New small publication receipts and this review are appended after the verified1000-file clean snapshot. They must be staged with exact bytes; no evaluated implementation/control/asset metadata may change without renewed targeted verification."
+  ],
+  "external_constraint_sources": [
+    "https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github",
+    "https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases"
+  ],
+  "scientific_validity": "not_assessed",
+  "scientific_claim_admission": "not_performed",
+  "remote_publication_verified": false,
+  "next_operational_step": "Parent stages the new small receipts/review with exact bytes, commits and pushes authorized source, checks the remote commit/tag and CI, creates a draft GitHub Release, uploads the26 intended attachments, verifies every remote name/size/SHA256 digest against the bound manifest and checksum metadata, then publishes. Remote CI/upload/publication have not been assessed by this preflight."
+}

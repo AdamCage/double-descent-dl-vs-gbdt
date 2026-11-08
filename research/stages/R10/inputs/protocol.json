@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "protocol_id": "R10-whole-curve-acceleration-audit-v1",
+  "salt": 2026110710,
+  "length": 256,
+  "windows": [8, 16, 32],
+  "legacy_local_window": 5,
+  "alpha": 0.05,
+  "calibration_count": 199,
+  "evaluation_count": 200,
+  "null_families": ["linear", "exponential", "early_plateau"],
+  "alternative_families": ["late_hinge", "fast_plateau_tail", "last_tenth"],
+  "noise_conditions": [
+    {"id": "small_iid", "sigma": 0.002, "rho": 0.0},
+    {"id": "small_ar", "sigma": 0.002, "rho": 0.8},
+    {"id": "large_iid", "sigma": 0.01, "rho": 0.0},
+    {"id": "large_ar", "sigma": 0.01, "rho": 0.8}
+  ],
+  "amplitude_scales": [0.1, 10.0]
+}

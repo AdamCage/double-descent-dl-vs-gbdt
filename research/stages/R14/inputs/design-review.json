@@ -1,0 +1,147 @@
+{
+  "schema_version": 1,
+  "stage_id": "R14",
+  "review_mode": "subagent_review",
+  "harness": "codex",
+  "author_agent": "/root/r14_implementation",
+  "coauthor_agents": [
+    "/root",
+    "/root/catboost_study",
+    "/root/literature",
+    "/root/r14_figures"
+  ],
+  "reviewer_agent": "/root/r14_reviewer",
+  "reviewer_independence": "New distinct Codex subagent. Authored none of the evaluated scientific design, helper/runner, renderer, source cards or future result/REPORT. Read-only review identified timing semantics; authors implemented corrections. Reviewer changed only this review and ran pure/mock tests, no CatBoost fit or study-data generation. Logical local team identity, not external peer review.",
+  "verdict": "accept",
+  "blocking_issues": [],
+  "authorization_decision": {
+    "path": "research/decisions/codex-refactor-authorization-2026-11-07.json",
+    "sha256": "8559055cea21e6f58bdd58b07930e5d9ab505a84a1ea58c72721c0c5e4e2119d"
+  },
+  "reviewed_artifacts": [
+    {
+      "path": "docs/decisions/0005-frozen-response-discovery.md",
+      "sha256": "69baa5e76ea33c88826f8ca33e34522189b7c32d00aa0200a1b7e4c41d0b5d6b"
+    },
+    {
+      "path": "docs/literature/C2-author-code-note-2026-11-08.md",
+      "sha256": "6c8ef5315c0d3c858b2210ba1c23340b8df9b3faece4e08ee4db0bc573798724"
+    },
+    {
+      "path": "docs/literature/C2-priority-risk-note-2026-11-08.md",
+      "sha256": "5076e1dccadf0ea54c384b86029f51dc22256c960f098d7ef2c747478bdfc527"
+    },
+    {
+      "path": "docs/literature/C2-source-cards-2026-11-08.md",
+      "sha256": "fa632cde6ba65fe5b5cb00e7a345765f36dee6caa645a9362222d72c95d11f5c"
+    },
+    {
+      "path": "docs/literature/next-question-scout-2026-11-07.md",
+      "sha256": "5541091a936d102be82cd6f64c55241833cfe74dece8cc751620fb7b00eb7e66"
+    },
+    {
+      "path": "pyproject.toml",
+      "sha256": "5d43d6f7f88312b18299a1ec7e8ac921d512c271ac022de4ad0720eb5883e182"
+    },
+    {
+      "path": "research/decisions/codex-refactor-authorization-2026-11-07.json",
+      "sha256": "8559055cea21e6f58bdd58b07930e5d9ab505a84a1ea58c72721c0c5e4e2119d"
+    },
+    {
+      "path": "research/plans/R14.json",
+      "sha256": "2cdb3c1411ea7155a3a89c0abc1bfe8b4f58e85b9c8ae3a552347cdc336f41df"
+    },
+    {
+      "path": "research/stages/R14/PLAN.md",
+      "sha256": "e5fe158f189c672a8ec02e691ea83be65614ac24b203035fd37ae92104670bae"
+    },
+    {
+      "path": "research/stages/R14/TECHNICAL.md",
+      "sha256": "b18401bb491bd4c15c3f0f9994ac265c3a689b3d13ced377f2c98ce233247a82"
+    },
+    {
+      "path": "research/stages/R14/draft-design-review.md",
+      "sha256": "48e56e2a300a90dcf8fbe66e4da057ce155aea5a0a553966cde5087f453c386f"
+    },
+    {
+      "path": "research/stages/R14/inputs/figure-spec.json",
+      "sha256": "fff5f16b8a746ea5546e764cdf5aa1d5205c9e3f8b65473152069b0e96007c36"
+    },
+    {
+      "path": "research/stages/R14/inputs/protocol.json",
+      "sha256": "e89f754df1260724aef4b813491efc867ef36bbf240fe9ed2d0b670b8bc97969"
+    },
+    {
+      "path": "scripts/plot_response_forecast.py",
+      "sha256": "a2a63a2656dc828202a4870182ebd90068af5c45482dd1aef6472ba635283192"
+    },
+    {
+      "path": "scripts/plot_v2_research.py",
+      "sha256": "8b921a6a4df07086da8a694a124e7daecb3626d0646e464ef4bb76547c85f7bb"
+    },
+    {
+      "path": "scripts/r14_run.py",
+      "sha256": "e1ee1fd0d47d8e6ae26a37ac25e7f537124db4ff06562975f6f20c92a96dac27"
+    },
+    {
+      "path": "scripts/run_unit_checks.py",
+      "sha256": "d2fc3c360195cd7f8d69689b0dc60940dcd416e2b31b9396e60bfeafb9528c52"
+    },
+    {
+      "path": "src/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "src/boosting_response.py",
+      "sha256": "16cc52c2953e0a94c548ec3f9a381ce528126da613babf9293a6a7597c0977b5"
+    },
+    {
+      "path": "src/response_forecast.py",
+      "sha256": "2b99acb3a2942b0b1121383093ca0c7b48cfa730f39876b1d6b93f71cc1e47a7"
+    },
+    {
+      "path": "tests/test_boosting_response.py",
+      "sha256": "df2ebbd457003934d0f3ed22b2bb3a70e0c7966a1c52fb426feb23848c84057d"
+    },
+    {
+      "path": "tests/test_plot_response_forecast.py",
+      "sha256": "3d7dd300d2df6ed57eabde3b88df3a063821600c05b0b6418ef77cb0d65deda5"
+    },
+    {
+      "path": "tests/test_response_forecast.py",
+      "sha256": "e5a34810135886433570bc8ca695fe82e8c8097a43451da71e04427003de0be1"
+    },
+    {
+      "path": "uv.lock",
+      "sha256": "ac89eef670e3774086fff7a06df62f1ba760f85d6c76378ac915ca32b76523b4"
+    }
+  ],
+  "checks": {
+    "plan_and_scope": "Read frozen scientific PLAN, machine plan, protocol, prior independent design review, decision0005 and primary-source cards/limitations. Exact32contexts/416fits/384directions/64rows, draw unit4, paired fixed channels, held-out whole-draw folds, explicit stopping and unchanged parent budgets are coherent. No scientific data exists at preflight.",
+    "conditional_replay": "Read known-control recurrence with pre-update residual operator, actual resolved float32 eta and L2, zero bias, unit weights and empty-leaf semantics. Native target casting exposes actual perturbation and pair rounding. Every study context must still pass fixed atol1e-10/rtol0 baseline checks at32/512. Signed cross retained; discrepancy is not nonnegative extra variance.",
+    "fresh_short_control": "Reviewed author-executed nonstudy seed71,12train/3evaluation,threads1 fresh32/full512-prefix32 smoke assertions and raw log in TECHNICAL. Predictions errors0 on both splits, exact leaf indices/counts/values, long replay max7.771561172376096e-16 at unchanged tolerance. Reviewer did not refit; this toy check is not proof of arbitrary-data prefix invariance or independent science replication.",
+    "forecasters": "All B0..B4/A fixed before data. Train-fold centering/scaling/intercept and ridge alpha1 match design; B4 uses only train-fold mean target-minus-probe. Full-response endpoints never enter feature transform. Held-out-target perturbation regression verifies held-out predictions unchanged. At least20percent aggregate gain against EVERY baseline with positive baselineMAE; zero-baselineMAE gain undefined/false. At least3of4 draws evaluated separately per B2/B3/B4, both teachers each, range gate and actual-cost gate retained.",
+    "timings": "Blocking draft issue resolved before data: native prediction timer separated from calc_leaf_indexes/weights/count extraction; all base/cheap/full leaf costs retained separately. Primary P3 now fit+nativepredict+decomposition only, same on both sides. Pure mocked-clock test independently passed and demonstrates exclusion of100seconds leaf audit from8seconds prediction. Shared basefit/operator and end-to-end/forecast/I/O costs reported separately.",
+    "evidence_and_limits": "Inputs saved before fit; model/fit raw files, context inputs, atomic consolidated arrays, model/source/target hashes, progress/failure/budget records retained. One serial fit at a time, all native inference/staged/leaf APIs explicit threads<=4; CLI caps numeric libraries before imports and run_study runtime-caps pools. Wall/storage guard and outer workflow timeout/lock remain necessary.",
+    "figure_matrix": "Read exact pre-run figure-spec. Normal branch113PNG/SVGpairs/7CSV; invalid native-zero-delta branch89pairs/6CSV with explicit unavailable OOF, all32contexts/384directions and147456raw response rows retained. Timing2816rows, cost11, completeOOF fold24. Loader validates all raw response norms/cross/identity, endpoint means, matrix identity, complete OOF models/residuals and source MAEs; delivery rejects missing/duplicate figures/tables. Shared R13 source unchanged.",
+    "independent_tests": "Reviewer independently ran test_response_forecast.py14PASS, test_boosting_response.py8purePASS+2explicit model smoke skips, test_plot_response_forecast.py6PASS. Total28executed pure/mock checks and2model skips. These include full mocked output contract without random study generation/fitting, all-baseline/draw gates, actual native rounding, unavailable-OOF branches, corruption/completeness and real tiny figure save/relabel. No scientific renderer or new CatBoost fits run by reviewer.",
+    "pre_execution_state": "At final hash read, R14 registered depends_onR13, execution_authorized=false, no artifacts/research/R14 and no active dispatcher lock. Final scientificPLAN hash e5fe158f189c672a8ec02e691ea83be65614ac24b203035fd37ae92104670bae; machine2cdb3c1411ea7155a3a89c0abc1bfe8b4f58e85b9c8ae3a552347cdc336f41df; protocol e89f754df1260724aef4b813491efc867ef36bbf240fe9ed2d0b670b8bc97969. Normal false-to-true activation after this review and cumulative-resource checks changes registry state, not scientific design."
+  },
+  "nonblocking_notes": [
+    "Onlyfour independent data draws andtwo fixed generators; both teachers occur in training folds. Discovery LODO is not confirmation, unseen-teacher/domain transfer, or64iid repeats; no rowwise significance or tightCI is supported.",
+    "Known LeafRefit-type conditional replay, per-new-tree EFC adaptation, operator noise gain, collision floor and norm identity are not new scientific results. No novelty, first-priority, universal mechanism or journal-readiness conclusion is accepted by this preflight.",
+    "Synthetic teacher labels are descriptive quality diagnostics only; primary target is finite-label-response approximation discrepancy on unlabeled evaluation covariates. This does not measure causal extra variance or prove that perturbation harms prediction quality.",
+    "Rounded native-label directions differ from ideal Gaussian perturbations. Frobenius expectation is not automatically exact for their actual rounding law.",
+    "P3 is conditional on an available full basefit/frozen operator and environment-specific measured timings. Shared/evidence/forecast/discovery costs must stay visible; a cheap standalone service or universal speedup does not follow.",
+    "Preflight code/pure fixtures cannot establish actual plot legibility, full matrix completion, native model agreement, empirical effect or useful forecast range. Actual raw-evidence recomputation and visual QA are required before REPORT acceptance/close.",
+    "If A fails any frozen forecast/cost/range gate, stop this candidate and retain negative/inconclusive outcome. Do not promote B3/B4 or alter grids/alphas/endpoints post hoc into a new positive claim. Positive discovery permits only separately frozen new-data confirmation.",
+    "This stage addresses one bounded question about applicability of a boosting explanation; full original cross-model double-descent research remains incomplete even if its engineering and discovery gates pass."
+  ],
+  "required_before_dispatch": [
+    "uv run python scripts/research.py validate-plan R14",
+    "Repository checks and frozen dependencies pass",
+    "Reconcile cumulative runner/storage budgets including interrupted archive and all retained attempts",
+    "Activate only the accepted frozen R14 under the existing single-dispatcher lock"
+  ],
+  "scientific_validity": "not_assessed"
+}

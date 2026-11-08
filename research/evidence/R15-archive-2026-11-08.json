@@ -1,0 +1,9 @@
+{
+  "archive": "research/evidence/R15-runs-2026-11-08-v1.zip",
+  "sha256": "4275065917fc53e8a90056a98813822326a981ff8bcacc5f244df460992c3193",
+  "bytes": 1029398764,
+  "detached_verified": true,
+  "files": 56,
+  "unique_blobs": 52,
+  "note": "Pre-closure task/input/manifest evidence; operational review/closure supplied separately. Raw data not recopied into later stages."
+}

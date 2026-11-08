@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "stage_id": "R13",
+  "mode": "derivative_release_only",
+  "selected_attempts": {
+    "R10": "20261107T192414-36aee5d99b",
+    "R11": "20261107T194028-229b223740",
+    "R12": "20261107T194939-7c18953a98"
+  },
+  "frozen_runs": {
+    "R10": "artifacts/intake/R13/frozen-runs/R10/20261107T192414-36aee5d99b",
+    "R11": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740",
+    "R12": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98"
+  },
+  "scientific_task_directories": {
+    "R10": "artifacts/intake/R13/frozen-runs/R10/20261107T192414-36aee5d99b/tasks/calibrate-evaluate",
+    "R11": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study",
+    "R12": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study"
+  },
+  "secondary_control_directories": {
+    "R2": "artifacts/intake/R13/review-packets/secondary-controls/R2",
+    "R3": "artifacts/intake/R13/review-packets/secondary-controls/R3",
+    "R4": "artifacts/intake/R13/review-packets/secondary-controls/R4"
+  },
+  "figure_read_sources": [
+    "artifacts/intake/R13/frozen-runs/R10/20261107T192414-36aee5d99b/tasks/calibrate-evaluate/analysis.json",
+    "artifacts/intake/R13/frozen-runs/R10/20261107T192414-36aee5d99b/tasks/calibrate-evaluate/calibration.json",
+    "artifacts/intake/R13/frozen-runs/R10/20261107T192414-36aee5d99b/tasks/calibrate-evaluate/curves.jsonl",
+    "artifacts/intake/R13/frozen-runs/R10/20261107T192414-36aee5d99b/tasks/calibrate-evaluate/curves.npz",
+    "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/analysis.json",
+    "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/cells.jsonl",
+    "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/analysis.json",
+    "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/cells.jsonl",
+    "artifacts/intake/R13/review-packets/secondary-controls/R2/cells.jsonl",
+    "artifacts/intake/R13/review-packets/secondary-controls/R3/cells.jsonl",
+    "artifacts/intake/R13/review-packets/secondary-controls/R4/cells.jsonl"
+  ],
+  "expected_static_png_svg_pairs": 187,
+  "expected_interactive_html": 2,
+  "expected_figure_entries": 189,
+  "expected_r10_replay_shape": [
+    7188,
+    256
+  ],
+  "review_packet_root": "artifacts/intake/R13/review-packets",
+  "manuscript": "manuscript/acceleration_audit_v2.md",
+  "manuscript_binding_status": "Final manuscript declared stable by coordinator; exact independent manuscript review accepted with R13 artifact checks pending.",
+  "pending_review_documents": [
+    "research/stages/R13/inputs/design-review.json"
+  ],
+  "intake_manifest": "research/stages/R13/inputs/intake-manifest.json",
+  "actual_model_fits": 0,
+  "gpu_jobs": 0,
+  "paid_api_calls": 0,
+  "network_requests": 0,
+  "cpu_threads": 4,
+  "max_stage_storage_bytes": 8589934592,
+  "interpretation": "Deterministic delivery and replay of accepted prior evidence; no new n, independent scientific replication, novelty certification or primary hypothesis selection.",
+  "scientific_validity": "not_assessed",
+  "manuscript_sha256": "90a02f57759bd976e123732125405f091212f0adc6596ce55d2c6d3e7dda4684",
+  "manuscript_review": {
+    "path": "research/stages/R13/inputs/manuscript-review.json",
+    "sha256": "2360bc0016886189cd6d6167a7876c24328765bd93ffe5f12a7b27765acf9e8d"
+  },
+  "full_original_user_goal_achieved": false,
+  "release_scope": "Completed methodological branch delivery; original cross-model double-descent mechanisms remain open.",
+  "expected_source_tables": {
+    "r10_rates": 72,
+    "r10_scan_scores": 7188,
+    "r10_localization_flagged": 6020,
+    "r10_example_trajectories": 30720,
+    "r11_primary_contrasts": 4,
+    "r11_clock_diagnostic_contrasts": 4,
+    "r11_all_trajectory_metrics": 55512,
+    "r12_scan_score_contrasts": 4,
+    "r12_fixed_boundary_gain_contrasts": 4,
+    "r12_fixed_late_acceleration_gates": 6,
+    "r12_all_trajectory_metrics": 221400,
+    "r12_first_zero_errors": 72,
+    "r12_descriptive_diagnostics": 144,
+    "r2_existing_confirmation_cells": 1440,
+    "r3_existing_confirmation_cells": 145,
+    "r4_existing_confirmation_cells": 155
+  }
+}

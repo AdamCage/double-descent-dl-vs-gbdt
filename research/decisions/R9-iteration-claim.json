@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "claim_id": "R9-iteration-threshold-not-identified",
+  "statement": "On R9 discovery attempt 20261107T141434-ba64acb5eb, seeds 7101 and 7102, every cell on the iteration grid 1, 2, 4, 8, 16, 32, 64 had interpolating false under relative training residual tolerance 1e-8. Both bracket_status values are not_identifiable. The smallest residuals are 0.005397518627629901 at 64 iterations on seed 7101 and 0.0047802282799166524 at 64 iterations on seed 7102. Double descent was not declared, and confirmation seeds 9101-9105 were not fit.",
+  "statement_sha256": "00f0f181a42968a14de38e23f661ff3b010d27f6a938c411ed25dadabb8da506",
+  "evidence": [
+    {
+      "path": "artifacts/research/R9/20261107T141434-ba64acb5eb/tasks/discovery-fit/cells.jsonl",
+      "sha256": "a3ec302a67390df662de35d2aa68e1eff85cc33b08537ec8fbc21401ae9ed075"
+    },
+    {
+      "path": "artifacts/research/R9/20261107T141434-ba64acb5eb/tasks/discovery-fit/analysis.json",
+      "sha256": "f8255a598c1c3a8b8a68a9ff394d75f981fd68c4f8bf75dade39647c556d53a3"
+    },
+    {
+      "path": "artifacts/research/R9/20261107T141434-ba64acb5eb/tasks/discovery-fit/seed-audit.json",
+      "sha256": "8ffc85ab2f1fb59b3f9610872422b64bf74a0234119ec3c4c3090b954707ae3d"
+    }
+  ],
+  "reviewer": "R9 operational reviewer",
+  "harness": "cursor",
+  "verdict": "accepted",
+  "review_mode": "subagent_review",
+  "author_agent": "research-owner-r8r9",
+  "reviewer_agent": "b424b442-3a85-4957-b13b-8122a3040724",
+  "authorization_decision": {
+    "path": "research/decisions/autonomous-research-authorization.json",
+    "sha256": "4f2eca57802835816b688668838545df60fd568c99069c291d2e42cb4f5371c9"
+  },
+  "scientific_validity": "not_assessed",
+  "limitations": [
+    "not_identifiable means the 1e-8 threshold was not observed on this grid. It is not a finding that double descent is absent.",
+    "Two discovery draws only. Confirmation seeds 9101-9105 were not fit.",
+    "The small clean-MSE rise after iteration 16 is descriptive and is not part of this claim.",
+    "scientific_validity remains not_assessed. This is local Cursor team review by reviewer b424b442-3a85-4957-b13b-8122a3040724, not an external replication."
+  ]
+}

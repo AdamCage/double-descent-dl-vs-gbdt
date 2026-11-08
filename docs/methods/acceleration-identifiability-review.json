@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "review_id": "DD-IDENTIFIABILITY-MATH-2026-11-07",
+  "harness": "codex",
+  "review_mode": "subagent_review",
+  "author_agent": "/root",
+  "contributing_agents": ["/root/science_critique"],
+  "reviewer_agent": "/root/workflow_audit",
+  "reviewer_independence": "This reviewer did not author the mathematical propositions, their constructive argument, or the document under review. This is local team review, not external peer review or independent experimental replication.",
+  "reviewed_artifacts": [
+    {
+      "path": "docs/methods/acceleration-identifiability.md",
+      "sha256": "891640dd43ec8f12bc2e1cb717465b2933379a6c3315adb63024a261d54e5e73"
+    }
+  ],
+  "review_scope": "Independent algebraic verification of the two stated constructions and the limits of their scientific interpretation. No research matrix or model training was executed. The literature audit was read for context; its source claims and research priority were not independently re-reviewed here.",
+  "verdict": "accept",
+  "blocking_issues": [],
+  "checks": {
+    "constructive_representation": "For every finite nonincreasing sequence with L_T>0, L_(t+1)/L_t lies in (0,1]. Thus eta_t=1-sqrt(L_(t+1)/L_t) lies in [0,1). Starting from x_0=sqrt(2L_0)>0, induction gives x_t=sqrt(2L_t) and gradient descent on the single fixed objective x^2/2 exactly reproduces each observed loss. Equal adjacent losses give eta_t=0; strict decreases give 0<eta_t<1. The statement excludes zero terminal loss, which would require a separate endpoint convention allowing eta=1.",
+    "exact_clock": "Since 1-eta_s=sqrt(L_(s+1)/L_s)>0, -2 log(1-eta_s)=log(L_s/L_(s+1)). Summing telescopes to tau_t=log(L_0/L_t), so L_t=L_0 exp(-tau_t) exactly, including tau_0=0 and intervals with eta=0. This clock is constructed from the selected scalar quadratic model and is not identified as CatBoost's cumulative learning rate.",
+    "spectral_loss": "For a real finite-dimensional symmetric PSD K, an orthonormal eigenbasis writes the initial residual coefficients as a_i. The fixed update gives coefficient a_i(1-eta lambda_i)^t. Squaring and summing gives the stated L_t=sum_i a_i^2 q_i^t/(2n), with n>0 and q_i=(1-eta lambda_i)^2 in [0,1] under 0<=eta lambda_i<=2. At t=0, q_i^0=1 is the zeroth-power convention inherited from the recurrence, including q_i=0.",
+    "decrement_monotonicity": "D_t is nonnegative. More explicitly, D_t-D_(t+1)=sum_i a_i^2(1-q_i)^2 q_i^t/(2n)>=0. Endpoints are valid: q_i=0 removes that component after the first update, while q_i=1 contributes constant loss and zero decrement. Thus absolute per-step decreases cannot increase in the exact stated model; strict or sustained increase contradicts at least one assumption.",
+    "interpretation_boundaries": "The constructive example establishes nonidentifiability from scalar loss alone when the optimization schedule is not otherwise fixed. It does not prove that learning-rate changes caused any observed CatBoost event. The document explicitly says that a known constant rate removes that particular alternative, without asserting unique identification of another mechanism. The PSD result concerns squared training loss for a fixed linear residual operator; its violation does not select among changing operators, steps, loss, regularization, stochasticity or measurement error, and does not directly apply to CatBoost LogLoss.",
+    "novelty_and_practical_scope": "The document explicitly calls the argument elementary algebra rather than a new theorem. Its useful contribution is a transparent counterexample and restricted diagnostic control. This review establishes neither research priority nor novelty of a general detector, a natural CatBoost acceleration effect, a cross-model mechanism, or publication readiness. The separation of optimization, held-out risk shape and measured interpolation is scientifically appropriate. A scheduled learning-rate jump remains a designed positive control, not a reproduction of an unexplained natural event.",
+    "calibration_caution": "The statement that synthetic rank thresholds become descriptive when applied to CatBoost is appropriately limited: exchangeability with the synthetic calibration population has not been established. This mathematical note does not independently validate the R10 rank implementation or the R11 measurements."
+  },
+  "nonblocking_clarifications": [
+    "For a future formal presentation, explicitly state n>0 and q^0=1 for t=0. These are standard conventions already implied by the residual recurrence and do not invalidate the present formulas.",
+    "The held-out rise-then-fall question is an audit prompt, not a complete standalone operational definition of double descent; any empirical claim still needs its frozen shape and effect-size criteria."
+  ],
+  "limitations": [
+    "Exact algebra only; finite-precision tolerances, measurement noise and statistical power require separate protocols.",
+    "The nonidentifiability example deliberately changes the step schedule after specifying the observed sequence; it is an existence result, not a predictive generative explanation of CatBoost.",
+    "The PSD argument assumes one fixed symmetric operator, constant step and squared Euclidean training loss. No transfer to adaptive GBDT or classification LogLoss is asserted.",
+    "This review is bound to the listed document bytes. A substantive revision requires a new review binding.",
+    "Local Codex team review does not constitute external scientific approval or independent experimental replication."
+  ],
+  "scientific_validity": "not_assessed"
+}

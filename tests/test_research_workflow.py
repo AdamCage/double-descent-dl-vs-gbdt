@@ -76,6 +76,38 @@ class WorkflowTest(unittest.TestCase):
         self.workflow = Workflow(self.root)
         return binding
 
+    def test_historical_nonaccepting_review_preserves_retry_history(self) -> None:
+        attempt = self.run_smoke()
+        path = self.accepted_review(attempt)
+        review = load_json(path)
+        review.update(verdict="revise")
+        review["criteria"][0]["verdict"] = "partial"
+        write_json(path, review)
+        (self.root / "input.txt").write_text("fixed source for a new attempt\n", encoding="utf-8")
+        with self.assertRaises(WorkflowError):
+            self.workflow.review("R0", path, attempt.name)
+        self.assertTrue(self.workflow.review("R0", path, attempt.name, historical=True)["review_recorded"])
+        self.workflow._check_review("R0", attempt, load_json(attempt / "review.json"), live_sources=False)
+        with self.assertRaises(WorkflowError):
+            self.workflow.close("R0", attempt.name)
+
+    def test_historical_review_cannot_admit_an_accepting_decision(self) -> None:
+        attempt = self.run_smoke()
+        with self.assertRaisesRegex(WorkflowError, "only permits revise or reject"):
+            self.workflow.review("R0", self.accepted_review(attempt), attempt.name, historical=True)
+        self.assertFalse((attempt / "review.json").exists())
+
+    def test_historical_nonaccepting_review_still_rejects_corrupt_evidence(self) -> None:
+        attempt = self.run_smoke()
+        path = self.accepted_review(attempt)
+        review = load_json(path)
+        review["verdict"] = "reject"
+        write_json(path, review)
+        (attempt / "tasks/smoke/answer.txt").write_text("corrupted", encoding="utf-8")
+        with self.assertRaises(WorkflowError):
+            self.workflow.review("R0", path, attempt.name, historical=True)
+        self.assertFalse((attempt / "review.json").exists())
+
     def test_preparation_action_is_distinct_from_execution_and_unmet_dependencies(self) -> None:
         self.registry["stages"][0].update(execution_authorized=False, preparation_authorized=False)
         self.registry["stages"][1].update(execution_authorized=False, preparation_authorized=True)
@@ -213,6 +245,35 @@ class WorkflowTest(unittest.TestCase):
         write_json(path, review)
         self.assertTrue(self.workflow.review("R0", path)["review_recorded"])
         self.assertEqual(self.workflow.close("R0")["status"], "operationally_closed")
+
+    def test_codex_cannot_bypass_distinct_subagent_policy_or_historical_check(self) -> None:
+        binding = self.bind_subagent_review_policy()
+        attempt = self.run_smoke()
+        path = self.accepted_review(attempt)
+        review = load_json(path)
+        review["reviewer"]["harness"] = "codex"
+        for author, reviewer in (("", ""), ("worker", " WORKER ")):
+            review.update(author_agent=author, reviewer_agent=reviewer)
+            write_json(path, review)
+            with self.assertRaisesRegex(WorkflowError, "distinct author_agent"):
+                self.workflow.review("R0", path)
+        review.update(author_agent="codex-author", reviewer_agent="codex-reviewer", review_mode="self_review")
+        write_json(path, review)
+        with self.assertRaisesRegex(WorkflowError, "review_mode=subagent_review"):
+            self.workflow.review("R0", path)
+        review["review_mode"] = "subagent_review"
+        write_json(path, review)
+        self.workflow.review("R0", path)
+        self.workflow.close("R0")
+        write_json(self.root / binding["path"], {"require_distinct_stage_review_subagent": False})
+        self.assertEqual(self.workflow.verify_closure("R0")["status"], "operationally_closed")
+        review["reviewer_agent"] = review["author_agent"]
+        write_json(attempt / "review.json", review)
+        closure = load_json(self.workflow.closure_path("R0"))
+        closure["review_sha256"] = sha256(attempt / "review.json")
+        write_json(self.workflow.closure_path("R0"), closure)
+        with self.assertRaisesRegex(WorkflowError, "distinct author_agent"):
+            self.workflow.verify_closure("R0")
 
     def test_unknown_harness_cannot_bypass_charter_but_actual_external_review_is_allowed(self) -> None:
         self.bind_subagent_review_policy()
@@ -379,6 +440,92 @@ class WorkflowTest(unittest.TestCase):
                    {"elapsed_seconds": 2.1, "status": "failed"})
         with self.assertRaisesRegex(WorkflowError, "total_wall_seconds exhausted"):
             self.workflow.run("R0")
+
+    def bind_resource_policy(self, *, total_wall: float = 100) -> dict[str, str]:
+        decision = self.root / "research/charters/resources.json"
+        write_json(decision, {
+            "budgets": {
+                "total_runner_wall_seconds": total_wall, "max_stage_wall_seconds": 40,
+                "new_storage_bytes": 1000000, "public_dataset_download_bytes": 10,
+            },
+            "r1_budgets": {
+                "document_download_bytes": 100, "max_document_bytes": 50,
+                "new_storage_bytes": 1000000, "dataset_download_bytes": 0,
+                "max_http_requests": 48,
+            },
+        })
+        binding = {"path": "research/charters/resources.json", "sha256": sha256(decision)}
+        self.registry["stages"][0]["authorization_decision"] = binding
+        write_json(self.root / "research/stages.json", self.registry)
+        self.workflow = Workflow(self.root)
+        return binding
+
+    def test_remaining_global_wall_must_cover_the_declared_attempt(self) -> None:
+        self.bind_resource_policy()
+        previous = self.root / "artifacts/research/OTHER/failed/manifest.json"
+        write_json(previous, {"elapsed_seconds": 90, "status": "failed"})
+        with self.assertRaisesRegex(WorkflowError, "remaining wall budget"):
+            self.workflow.run("R0")
+        self.assertFalse((self.root / "artifacts/research/R0").exists())
+        self.assertEqual(load_json(previous)["elapsed_seconds"], 90)
+
+    def test_unmeasured_or_contradictory_global_attempt_blocks_execution(self) -> None:
+        from src.resource_ledger import append_entry
+
+        self.bind_resource_policy()
+        previous = self.root / "artifacts/research/OTHER/interrupted"
+        previous.mkdir(parents=True)
+        with self.assertRaisesRegex(WorkflowError, "resource preflight is not ready"):
+            self.workflow.run("R0")
+        write_json(previous / "manifest.json", {"elapsed_seconds": 1, "status": "failed"})
+        append_entry(self.root, {"kind": "attempt", "stage_id": "OTHER", "attempt_id": "interrupted",
+                                 "elapsed_seconds": 2, "status": "failed"})
+        with self.assertRaisesRegex(WorkflowError, "resource preflight is not ready"):
+            self.workflow.run("R0")
+        self.assertFalse((self.root / "artifacts/research/R0").exists())
+
+    def test_global_storage_exhaustion_blocks_before_attempt_creation(self) -> None:
+        self.bind_resource_policy()
+        (self.root / "research/evidence").mkdir()
+        (self.root / "research/evidence/full.bin").write_bytes(b"x" * 1000001)
+        with self.assertRaisesRegex(WorkflowError, "resource preflight is not ready"):
+            self.workflow.run("R0")
+        self.assertFalse((self.root / "artifacts/research/R0").exists())
+
+    def test_success_and_failure_are_automatically_charged_without_losing_history(self) -> None:
+        from src.resource_ledger import ledger_entries, report
+
+        binding = self.bind_resource_policy()
+        first = self.run_smoke()
+        self.plan["tasks"][0]["argv"] = ["{python}", "-c", "raise SystemExit(7)"]
+        self.save_plan()
+        with self.assertRaisesRegex(WorkflowError, "evidence retained"):
+            self.workflow.run("R0")
+        attempts = list(first.parent.glob("*/manifest.json"))
+        entries = ledger_entries(self.root)
+        self.assertEqual(len(attempts), 2)
+        self.assertEqual(len(entries), 2)
+        for path in attempts:
+            manifest = load_json(path)
+            entry = next(item for item in entries if item["attempt_id"] == manifest["attempt_id"])
+            self.assertEqual(entry["elapsed_seconds"], manifest["elapsed_seconds"])
+            self.assertEqual(entry["status"], manifest["status"])
+        self.assertEqual({item["status"] for item in entries}, {"complete", "failed"})
+        resources = report(self.root, charter_path=binding["path"], expected_sha256=binding["sha256"])
+        self.assertEqual(resources["reconciliation_problems"], [])
+        self.assertAlmostEqual(resources["charged_wall_seconds"], sum(item["elapsed_seconds"] for item in entries))
+        self.assertTrue(self.workflow.verify("R0", first.name, live_sources=False)["verified"])
+
+    def test_declared_but_malformed_global_budget_is_not_a_legacy_exemption(self) -> None:
+        binding = self.bind_resource_policy()
+        decision = self.root / binding["path"]
+        write_json(decision, {"budgets": {}})
+        self.registry["stages"][0]["authorization_decision"]["sha256"] = sha256(decision)
+        write_json(self.root / "research/stages.json", self.registry)
+        self.workflow = Workflow(self.root)
+        with self.assertRaisesRegex(WorkflowError, "Cannot validate cumulative resource budget"):
+            self.workflow.run("R0")
+        self.assertFalse((self.root / "artifacts/research/R0").exists())
 
     def test_finite_budgets_and_secret_input_guards(self) -> None:
         for value in (float("inf"), float("nan"), True, -1):

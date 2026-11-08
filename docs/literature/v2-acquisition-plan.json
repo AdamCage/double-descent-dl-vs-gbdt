@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "plan_id": "v2-primary-source-snapshots-2026-11-07",
+  "prepared_before_acquisition": true,
+  "prepared_on": "2026-11-07",
+  "author_agent": "/root/literature",
+  "authorization": "Explicit parent instruction to acquire four bounded public primary-source document snapshots for the v2 literature audit.",
+  "scope": "Public documents only; no datasets, model fits, credentials, paid services or API calls.",
+  "output_directory": "artifacts/intake/v2-literature",
+  "acquisition_log": "artifacts/intake/v2-literature/acquisition.jsonl",
+  "budgets": {
+    "max_sources": 4,
+    "max_attempts_per_source": 2,
+    "max_http_requests": 8,
+    "max_total_transferred_bytes": 41943040,
+    "max_transferred_bytes_per_source": 10485760,
+    "socket_timeout_seconds": 20,
+    "read_chunk_bytes": 65536,
+    "automatic_redirects": false
+  },
+  "procedure": [
+    "Retrieve the fixed-version HTML URL first using urllib without credentials and with automatic redirects disabled.",
+    "If the first attempt fails or lacks the expected document format/title markers, preserve its record and any partial bytes; then try the declared PDF fallback, or retry the official documentation URL once.",
+    "Charge actual payload bytes toward source and total caps, including retained failed payloads. Stop before exceeding a cap; never retry to bypass it.",
+    "Use exclusive output filenames and retain every attempted acquisition record. Record URL, attempt, retrieval time, status, payload bytes, relative path, SHA-256, version, locator and verification limits.",
+    "For successful HTML require an HTML format marker and declared title/content markers; for PDF require the PDF signature. Format checks do not establish full-text scientific approval.",
+    "No claim about method assumptions is promoted solely because a full-text snapshot was downloaded. Unavailable documents remain explicitly unavailable."
+  ],
+  "sources": [
+    {
+      "source_id": "kanoh-2608.03111v1",
+      "version": "arXiv:2608.03111v1, 2026-08-04",
+      "urls": ["https://arxiv.org/html/2608.03111v1", "https://arxiv.org/pdf/2608.03111v1"],
+      "html_markers": ["double descent", "split-candidate"],
+      "locator": "Introduction; From Split Candidates to Path Features and Tree Kernels; Experiments/Setup/Results",
+      "verification_scope": "Earlier browser check of the listed sections and metadata; snapshot acquisition only does format/marker checks. No independent replication of this paper."
+    },
+    {
+      "source_id": "mosum-2208.04900v3",
+      "version": "arXiv:2208.04900v3, 2023-08-24",
+      "urls": ["https://arxiv.org/html/2208.04900v3", "https://arxiv.org/pdf/2208.04900v3"],
+      "html_markers": ["moving sum", "piecewise"],
+      "locator": "Title, authors, version history and Abstract; detailed theorem assumptions not yet reviewed",
+      "verification_scope": "Metadata and abstract were checked in the browser; a downloaded full-text snapshot does not imply detailed methods/theorem review."
+    },
+    {
+      "source_id": "he-2308.04368v5",
+      "version": "arXiv:2308.04368v5, 2026-01-13",
+      "urls": ["https://arxiv.org/html/2308.04368v5", "https://arxiv.org/pdf/2308.04368v5"],
+      "html_markers": ["multiple testing", "piecewise linear"],
+      "locator": "Title, authors, version history and Abstract; detailed theorem assumptions not yet reviewed",
+      "verification_scope": "Metadata and abstract were checked in the browser; full-text acquisition is not a full scientific review."
+    },
+    {
+      "source_id": "catboost-parameter-tuning",
+      "version": "Official live documentation retrieved on 2026-11-07; no immutable release version asserted",
+      "urls": ["https://catboost.ai/docs/en/concepts/parameter-tuning", "https://catboost.ai/docs/en/concepts/parameter-tuning"],
+      "html_markers": ["learning rate", "random strength"],
+      "locator": "Learning rate and Random strength sections",
+      "verification_scope": "Official prose description only; not a source-code audit of the installed CatBoost version or evidence of a natural acceleration mechanism."
+    }
+  ]
+}

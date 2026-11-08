@@ -1,0 +1,364 @@
+{
+  "models": [
+    {
+      "path": "models/synthetic_13001_rs0.cbm",
+      "sha256": "d4fbe82bff0fdb833512825433606d2c5be6b9c586179e135003faa394c294d0",
+      "bytes": 343080
+    },
+    {
+      "path": "models/synthetic_13001_rs1.cbm",
+      "sha256": "035c66719434ff5b23b4e91a7faa1a9156ed30b7d9b26f343320ec6823fd4a0b",
+      "bytes": 343040
+    },
+    {
+      "path": "models/synthetic_13001_rs10.cbm",
+      "sha256": "db6887195dda68691a4fab44f529d2c748cef4b0846688f55afe29592acb37b8",
+      "bytes": 345120
+    },
+    {
+      "path": "models/synthetic_13002_rs0.cbm",
+      "sha256": "ceae544fcf1eff0ea0903b7b0770a9b3d44e1dfa018863fbfabebb346f59c6e3",
+      "bytes": 343592
+    },
+    {
+      "path": "models/synthetic_13002_rs1.cbm",
+      "sha256": "0436a6237293aa9d3f0cc84522e8094b6acb9a270410994fe105f356193db121",
+      "bytes": 344840
+    },
+    {
+      "path": "models/synthetic_13002_rs10.cbm",
+      "sha256": "80a656921b78fe2073eb6ad7e722215907fdb9c329081b568bb1844161898475",
+      "bytes": 345592
+    },
+    {
+      "path": "models/synthetic_13003_rs0.cbm",
+      "sha256": "a42087de62194d9e4c8ea40bbd3deeaff3acf5baa64984a32940e50d9dc50217",
+      "bytes": 341264
+    },
+    {
+      "path": "models/synthetic_13003_rs1.cbm",
+      "sha256": "3bbaf607123feeadd92e129121b8d09bf1c9d9753533dfcb15a763f7c8abbf36",
+      "bytes": 344088
+    },
+    {
+      "path": "models/synthetic_13003_rs10.cbm",
+      "sha256": "225f5b95cdeb0917adf77b8bb173fce8a9b0bb79f590264c0f85c32dc744b7bc",
+      "bytes": 344144
+    },
+    {
+      "path": "models/synthetic_13004_rs0.cbm",
+      "sha256": "0a78cc15903ff197241499a5ce56310e68ddd7516be9728a62989a67ec6151f7",
+      "bytes": 343544
+    },
+    {
+      "path": "models/synthetic_13004_rs1.cbm",
+      "sha256": "4787c0082824ae9e53943f9c627ec0cca7547e73b3816452571e6c882937e70b",
+      "bytes": 343264
+    },
+    {
+      "path": "models/synthetic_13004_rs10.cbm",
+      "sha256": "cc2d5aa47396f7a2c46021f4cd902641eab29f10c0c580d65617bc9672430b60",
+      "bytes": 344552
+    },
+    {
+      "path": "models/synthetic_13005_rs0.cbm",
+      "sha256": "a0625c243d783333d985e9bcbb6892f839a4b693fe5fc6d76b5b4d06e576bd3d",
+      "bytes": 310336
+    },
+    {
+      "path": "models/synthetic_13005_rs1.cbm",
+      "sha256": "11984e527079d52b7e8801a1f65bc5b99c30d4adf94b65582355d4d985eefcbf",
+      "bytes": 339136
+    },
+    {
+      "path": "models/synthetic_13005_rs10.cbm",
+      "sha256": "699103480ba5dda94d712ad57281e6097cb1297bffc860c4f1c454a99c84bf25",
+      "bytes": 332496
+    },
+    {
+      "path": "models/synthetic_13006_rs0.cbm",
+      "sha256": "afb01912cec4a38686c999b2ac1ecaaa74362ac6fa9a424cf8800a6d70ceb946",
+      "bytes": 343568
+    },
+    {
+      "path": "models/synthetic_13006_rs1.cbm",
+      "sha256": "6bb7cee2b029b1de15eb7e5ac6fc678ba319d6cef9e47b1e7c74ad32a981da5e",
+      "bytes": 344864
+    },
+    {
+      "path": "models/synthetic_13006_rs10.cbm",
+      "sha256": "0a6115325419ec42fabfd3a1aee040155132a19677ba09bc684d594cec39ce5c",
+      "bytes": 345672
+    },
+    {
+      "path": "models/synthetic_13007_rs0.cbm",
+      "sha256": "3243b1f95ab55d94bf327990fb2025bfc507ea81ef5f2171818e7e1c09b19a37",
+      "bytes": 343856
+    },
+    {
+      "path": "models/synthetic_13007_rs1.cbm",
+      "sha256": "894834dfd0572ab6f7ad279cb05ca8f71bcf5e77962858dcef5530039b33e658",
+      "bytes": 345056
+    },
+    {
+      "path": "models/synthetic_13007_rs10.cbm",
+      "sha256": "ec936542a4b19caf88404c0c82599859339d1265a0df51a87e2eb2753c386f99",
+      "bytes": 345616
+    },
+    {
+      "path": "models/synthetic_13008_rs0.cbm",
+      "sha256": "b3cdf97ee901177dee7a4e926306aec96b33107a47500a4ffd1d7f3f73ef3ba1",
+      "bytes": 343528
+    },
+    {
+      "path": "models/synthetic_13008_rs1.cbm",
+      "sha256": "5ce12443c8b7844c94b22b4c3f24c83f5df71b8102e28fd7f8083d0a30e315d3",
+      "bytes": 344704
+    },
+    {
+      "path": "models/synthetic_13008_rs10.cbm",
+      "sha256": "7c2fdd26d839a41c7bb3c85d71d5b2b9a5b512cc0ba6e83a13fd18f8d18347b9",
+      "bytes": 345528
+    },
+    {
+      "path": "models/synthetic_13009_rs0.cbm",
+      "sha256": "57da6027f066b3fc5472f802b81d99d55cad946d39d20cda27b7cf15eef86b06",
+      "bytes": 343632
+    },
+    {
+      "path": "models/synthetic_13009_rs1.cbm",
+      "sha256": "b1ec6665eab0e4e5cd5e3f3929a74cc859740f28221abc5e35565e04048b3d9e",
+      "bytes": 344872
+    },
+    {
+      "path": "models/synthetic_13009_rs10.cbm",
+      "sha256": "235a683a051b519685f5c51be184eab93caf55de62e365eedbe67df173e3a6f9",
+      "bytes": 345648
+    },
+    {
+      "path": "models/synthetic_13010_rs0.cbm",
+      "sha256": "9c282a007090b74f8d9041807cfa39f14d82d358e4bcbafcb7c5a7f1e409f763",
+      "bytes": 341992
+    },
+    {
+      "path": "models/synthetic_13010_rs1.cbm",
+      "sha256": "13b289b94e4b44c9867838a646637a0242a65a2bdc5d2cd4beb29a678fbda9cd",
+      "bytes": 343352
+    },
+    {
+      "path": "models/synthetic_13010_rs10.cbm",
+      "sha256": "8b10280e83f314347a69892a4483a84a866c81d2b3cb60a99a571f2b96c49e9a",
+      "bytes": 345136
+    },
+    {
+      "path": "models/synthetic_13011_rs0.cbm",
+      "sha256": "2d0c67071b72679299e20972b676a806cf310a4b221ba80fa9ebc4456ed7f8ee",
+      "bytes": 343384
+    },
+    {
+      "path": "models/synthetic_13011_rs1.cbm",
+      "sha256": "1d4a4c04e666f8f254bc661cbd6a9293875cb13078f2e5bdb99273124b2fa9c3",
+      "bytes": 344648
+    },
+    {
+      "path": "models/synthetic_13011_rs10.cbm",
+      "sha256": "75d03b6cd3d3330ff72b65cdaf90787ecd9e43b54fde45e0c2b7b528dd10438f",
+      "bytes": 345328
+    },
+    {
+      "path": "models/synthetic_13012_rs0.cbm",
+      "sha256": "dde8788e28aaa2b0b99ba758bbb5acd7a6c5f4586b285b1a0732198ed320fc47",
+      "bytes": 343552
+    },
+    {
+      "path": "models/synthetic_13012_rs1.cbm",
+      "sha256": "b5307e966c72db5df3fc3f538de377fc2f2acebdf070972f9dd1c1fc4581901c",
+      "bytes": 344976
+    },
+    {
+      "path": "models/synthetic_13012_rs10.cbm",
+      "sha256": "f11e674f6eaf64ac8a951cd731e0448138eb2bab77eaaa4d2666072c5b255fe0",
+      "bytes": 345632
+    },
+    {
+      "path": "models/breast_cancer_13001_rs0.cbm",
+      "sha256": "54b31394258042b3e6b4243f888344bb6ed6160f7111e03b4758b175e511f89b",
+      "bytes": 344544
+    },
+    {
+      "path": "models/breast_cancer_13001_rs1.cbm",
+      "sha256": "4e140935dee4a8972c75e0e91c51ea828b260031d6b2a40364fa82eebd717e15",
+      "bytes": 346056
+    },
+    {
+      "path": "models/breast_cancer_13001_rs10.cbm",
+      "sha256": "43c65af6a433b1a67f57aa4dafa6f2b21a6d43caaa37325f8c7310287e74ef41",
+      "bytes": 346872
+    },
+    {
+      "path": "models/breast_cancer_13002_rs0.cbm",
+      "sha256": "2583fe37e0fd1a2c7c3213cca740897d7b4357bb37214af0f4f0b7aa03ea1f4a",
+      "bytes": 344584
+    },
+    {
+      "path": "models/breast_cancer_13002_rs1.cbm",
+      "sha256": "8f65012531b8cbe475f850385cddbe5696a4dfe394232a4b1d04bdb969ddc4f3",
+      "bytes": 345928
+    },
+    {
+      "path": "models/breast_cancer_13002_rs10.cbm",
+      "sha256": "933478b8d9227c4ce7100cd40b4bb3b304b11767b19bca91710fc3fb6a309c6d",
+      "bytes": 346856
+    },
+    {
+      "path": "models/breast_cancer_13003_rs0.cbm",
+      "sha256": "28c8a33abc8f42c2be66ba3dae7781107cb53d20847cff649cd613222e90f5b2",
+      "bytes": 344648
+    },
+    {
+      "path": "models/breast_cancer_13003_rs1.cbm",
+      "sha256": "48a59248da323d991f6e68aad3f22fcce8f61b8844a313e902954ff84cc9fe89",
+      "bytes": 345856
+    },
+    {
+      "path": "models/breast_cancer_13003_rs10.cbm",
+      "sha256": "4567d8823041645661e864cfa9bafbbb3b29a26a21876dc69c520490ad9f2198",
+      "bytes": 346800
+    },
+    {
+      "path": "models/breast_cancer_13004_rs0.cbm",
+      "sha256": "68652392f08516f2b423abcd9063cb43b9639ada1f4d61c7dfc799f2fa6b662b",
+      "bytes": 344776
+    },
+    {
+      "path": "models/breast_cancer_13004_rs1.cbm",
+      "sha256": "d8620f4e326c9eac94e629a3f04def43f3a31236947bbf40f1cad5595fa89c94",
+      "bytes": 345952
+    },
+    {
+      "path": "models/breast_cancer_13004_rs10.cbm",
+      "sha256": "11548772f25c1bec6d990bd9c8bc5d1a7f6e8f19e1ce3d70435176b04da92f59",
+      "bytes": 347144
+    },
+    {
+      "path": "models/breast_cancer_13005_rs0.cbm",
+      "sha256": "0be716a3b6f6477374a0dd0ee271ab44429257500922bbea7ae32e09935631fb",
+      "bytes": 344584
+    },
+    {
+      "path": "models/breast_cancer_13005_rs1.cbm",
+      "sha256": "3d134fadb184aa9ee87ee94a26e3653b5f6578b79aef2fcb41fb5bec710182ee",
+      "bytes": 346008
+    },
+    {
+      "path": "models/breast_cancer_13005_rs10.cbm",
+      "sha256": "c303f04d6c367f3fefb6ddcefebfe0fb28d4759fb9ddd6b4bfe8af1ec3f3552a",
+      "bytes": 347080
+    },
+    {
+      "path": "models/breast_cancer_13006_rs0.cbm",
+      "sha256": "e1318229287f939bd440c6e464f856c8892a93f9aad7bf1a6905c103cc450cb6",
+      "bytes": 344544
+    },
+    {
+      "path": "models/breast_cancer_13006_rs1.cbm",
+      "sha256": "1ac38206e92cd1cefe675ccd93f4108e476bab85ed32ab15092f3378b0ba4b26",
+      "bytes": 345968
+    },
+    {
+      "path": "models/breast_cancer_13006_rs10.cbm",
+      "sha256": "feec9bba1b2960de94fcbd91e048542050ba84f580552471fd8cb8c9187574e6",
+      "bytes": 347008
+    },
+    {
+      "path": "models/breast_cancer_13007_rs0.cbm",
+      "sha256": "7c578bd503fee7f067f1ec75baeb366ecfdf73d2ec635549ec3f7f71d127797b",
+      "bytes": 344608
+    },
+    {
+      "path": "models/breast_cancer_13007_rs1.cbm",
+      "sha256": "4eb735f67af02692f64350cf604eca4d8753629d21834c9fedcbc069c04d549a",
+      "bytes": 346040
+    },
+    {
+      "path": "models/breast_cancer_13007_rs10.cbm",
+      "sha256": "38a5c12d0f7d66b192e56dde46e405822a0d4b1b563bff506d3616ab1011b98d",
+      "bytes": 347064
+    },
+    {
+      "path": "models/breast_cancer_13008_rs0.cbm",
+      "sha256": "a8d38b920825416ced108b7d7721bb809d58c15647717da95d499790f3b204ad",
+      "bytes": 344568
+    },
+    {
+      "path": "models/breast_cancer_13008_rs1.cbm",
+      "sha256": "3cef40dfb059a8105874efcb023ce9c62b17ff3679dccf43f19db96314cc0151",
+      "bytes": 346112
+    },
+    {
+      "path": "models/breast_cancer_13008_rs10.cbm",
+      "sha256": "2cf852fc00a4869ee757276536ae31564430f5635731b00ed73dd3922e3d92f8",
+      "bytes": 346928
+    },
+    {
+      "path": "models/breast_cancer_13009_rs0.cbm",
+      "sha256": "01a28d8dbf5c12b9331b205cc1930d1be3052a615169f5cc52e9df6fc1db17f2",
+      "bytes": 344744
+    },
+    {
+      "path": "models/breast_cancer_13009_rs1.cbm",
+      "sha256": "7aba1b352d57ca89deefa8fbe4df0102e5295950afe16ddc530cc8e755bd1fcd",
+      "bytes": 346256
+    },
+    {
+      "path": "models/breast_cancer_13009_rs10.cbm",
+      "sha256": "2d765b4b88a6986a4d6216fb6304c3213a0224a4fea5a44e43bc4f3700662462",
+      "bytes": 347128
+    },
+    {
+      "path": "models/breast_cancer_13010_rs0.cbm",
+      "sha256": "d5c87259dc94778950ca454f69e8d4b505dba93918311cba9e458c64fc3cab20",
+      "bytes": 344448
+    },
+    {
+      "path": "models/breast_cancer_13010_rs1.cbm",
+      "sha256": "50d128428847ef69989abdfa0b7afc6344da7047c967ebddba27777894265ecd",
+      "bytes": 345864
+    },
+    {
+      "path": "models/breast_cancer_13010_rs10.cbm",
+      "sha256": "16048bea9414bd2ca0bebb0b13a47215b2b9116ba400517b52415f8feeea7041",
+      "bytes": 346592
+    },
+    {
+      "path": "models/breast_cancer_13011_rs0.cbm",
+      "sha256": "ef8ecd447be393dfb2f2790b483a722c9d983e24c1a02e29d12ae83ff7bfbbad",
+      "bytes": 344656
+    },
+    {
+      "path": "models/breast_cancer_13011_rs1.cbm",
+      "sha256": "49eb32052ae0a2bda72b27f6d34e588195e9fc491111d350e74022f6e0b51467",
+      "bytes": 346384
+    },
+    {
+      "path": "models/breast_cancer_13011_rs10.cbm",
+      "sha256": "4dd752ba263c3eda14b4db1609a23411eddc4b8c88cf4998f809bb48342e0e78",
+      "bytes": 346688
+    },
+    {
+      "path": "models/breast_cancer_13012_rs0.cbm",
+      "sha256": "2c87012c2c410991ad76ad6a5a786262c7135f0d196deb91de86511975a31f6c",
+      "bytes": 344512
+    },
+    {
+      "path": "models/breast_cancer_13012_rs1.cbm",
+      "sha256": "67556be0ea2593a51356352f733c3af10d36e5cf4c210ea8af572238df90e6e1",
+      "bytes": 346104
+    },
+    {
+      "path": "models/breast_cancer_13012_rs10.cbm",
+      "sha256": "522a278ea73023396ac7ee9fa469202c0678c75dae5c048fca99eff62e6726fb",
+      "bytes": 347168
+    }
+  ]
+}

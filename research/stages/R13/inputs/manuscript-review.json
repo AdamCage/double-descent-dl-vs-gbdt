@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "review_id": "R13-manuscript-consistency-and-contribution-review",
+  "harness": "codex",
+  "review_mode": "subagent_review",
+  "author_agent": "/root",
+  "contributing_authors": [
+    "/root/literature"
+  ],
+  "reviewer_agent": "/root/science_critique",
+  "reviewer_independence": "Reviewer did not author this manuscript or the evaluated numerical conclusions/implementations. This reviewer previously supplied input to the elementary quadratic construction and therefore audits only its faithful scope here; independent mathematical sign-off is the separate noncontributor /root/workflow_audit review bound through A1. This reviewer independently audited R10/R11/R12 raw evidence in their separate result reviews.",
+  "reviewed_artifacts": [
+    {
+      "path": "manuscript/acceleration_audit_v2.md",
+      "sha256": "90a02f57759bd976e123732125405f091212f0adc6596ce55d2c6d3e7dda4684"
+    },
+    {
+      "path": "research/claims.json",
+      "sha256": "8facf2f69c52245fb482b31c37654bc138adfaba57fe886c3bb4d2d6fd579cc9"
+    },
+    {
+      "path": "docs/methods/acceleration-identifiability-review.json",
+      "sha256": "0af244ecb011218c61bbb2b01e08cc523ef54ce75d3d761fa0a14c29c3fe14ac"
+    }
+  ],
+  "review_scope": "Faithfulness of scientific manuscript to accepted evidence and claims, statistical scope/provenance, and substantive contribution relative to the full original user goal. R13 plotting/release implementation and actual generated artifacts are outside this review and not yet executed. No training or new scientific analysis performed.",
+  "verdict": "accept",
+  "blocking_text_issues": [],
+  "operational_claims_pending_R13": [
+    "Released plots distinguish censored cases and graphical appendix includes every condition/per-seed panels/CSV/PNG/SVG/interactive companions.",
+    "Standalone release separates frozen stage code, includes all selected attempts and pins a minimal dependency closure with verifier/replay entrypoint.",
+    "Portable archive digests, final commands and restoration/replay verification inSTATE/handoff."
+  ],
+  "operational_claim_rule": "Before final delivery, either verify these assertions against actual R13 outputs and its result review, or phrase them as the declared generation protocol. This manuscript review does not certify future artifact existence.",
+  "scientific_consistency_checks": {
+    "R10": "All displayed counts, conditional pointwise interval, scan null0-10%, plateau-tail power7%/1.5%, late-hinge localization63%/56% versus global99.5%/98.5%, last-tenth rate refutation and localization25vs6 are supported by the already independently audited full72-row analysis/raw metadata. Selected worst-cell CP interval is explicitly descriptive and not simultaneous; marginal rank validity is correctly separated from conditional calibration with the now-correct joint-exchangeability statement. Local candidate is correctly identified as uncalibrated, not an established significance test.",
+    "R11": "All displayed means/adjusted intervals/outcomes match the accepted claim and raw recomputation. Both clocks, different units, complete-schedule prehistory and two separate families of4 are explicit. Breast-cancer stepdown remains inconclusive after adjustment; unadjusted negativity is not substituted. Preserved technical attempt, identical retry predictions and unchanged n are accurately described.",
+    "R12": "Both rs10-minus0 scan-score estimates/intervals match accepted evidence. rs1 remains exploratory, all6 late gates remainnot_established, fixed512/64-point scope is preserved and no universal absence/annealing/DD claim is made. Exactzero63/72, firstzero123..988, maxLogLoss.140222 and9 right-censored firstpassage times are supported by the complete raw error trajectories. Separate family4 scan/family4 diagnostic/family12 gate intervals should not be read as one joint family.",
+    "A1": "The article keeps strict positivity, variable steps, one fixed quadratic, exact constructed clock versus diagnostic CatBoost sumLR, and fixed symmetricPSD/squared-loss/constant-step conditions. It calls both arguments elementary known controls, not theorem novelty. Separate noncontributor proof review and contributor exclusion are accurately disclosed.",
+    "provenance": "New claims are in the registry with exact evidence-bound independent local review. Cursor history is separated from Codex authorship, external peer review/independent experimental replication are not claimed. Old R2-R5 controls remain secondary rather than being repurposed as new supporting experiments."
+  },
+  "full_goal_assessment": {
+    "full_original_user_goal_achieved": false,
+    "current_result": "A reproducible, bounded methodological study of acceleration diagnostics, prescribed learning-rate clocks and whole-run randomness controls. It has research and practical audit value as a technical/methodological note.",
+    "novelty_status": "Original measurements under this declared protocol are supported. A substantial new scientific mechanism, new statistical method, or established priority over closely related work is not demonstrated. The targeted literature audit is insufficient to certify novelty of the complete empirical story.",
+    "journal_readiness": "not_established",
+    "scope_preservation": "The original goal remains mechanisms and conditions of double descent across model families. R10-R12 concern a methodological slice, primarily train-loss acceleration in CatBoost. R13 graphics/packaging improves reproducibility but does not fill the missing scientific questions or justify redefining the user goal as complete.",
+    "concrete_scientific_gaps": [
+      "No newly established interpolation-aligned held-out-risk double-descent effect with capacity and optimization axes separately controlled in both MLP and GBDT. R12 classification interpolation times do not themselves test risk-peak shape, shift or mechanism.",
+      "Known linear noise/ridge/early-stopping/tree-averaging controls fromR2-R5 remain controls, not a new cross-model explanatory result or clear advance over Kanoh/Nakkiran/Curth.",
+      "No reproducible natural late event was established by the declared R12 gate, and whole-run random_strength does not intervene specifically on annealing. Explaining an unestablished natural event would be premature.",
+      "R10 compares repository rules and a calibrated custom scan on a finite analytic catalog. There is no strong published slope-change baseline implementation/comparison under matched assumptions, and no validated false-alarm transfer to actual model-training trajectories.",
+      "R11 schedule/clock dependence is an informative positive control built from known optimization facts; its sign reversal is not evidence of a new GBDT mechanism. R12 maximum-score shifts can reflect early dynamics and range normalization.",
+      "Two small environments, one synthetic generator and one fixed real corpus do not establish broad practical generalization, model-family transfer or independent-corpus robustness. Twelve seed units and t intervals also leave distributional adequacy uncertain.",
+      "The historical Qwen baseline/corpus proximity/metadata questions remain unresolved. Excluding that corpus is appropriate for current claims but does not mean the earlier audit requests were completed.",
+      "No demonstrated downstream benefit beyond the audit protocol itself, and no independent external replication, comprehensive novelty assessment or evidence supporting publication-level significance."
+    ],
+    "bounded_next_research_question": "After a faithful small replication of the closest published GBDT split-candidate setting, does an interpolation-aligned held-out-risk peak persist when model capacity and optimization progress are varied separately in MLP and CatBoost, and does a predeclared clock/schedule intervention change that relation? Use a bounded train-only discovery/preflight to establish an informative capacity bracket, then an independent frozen confirmation with measured train errors/residuals, held-out shape criteria, paired interventions and explicit no-effect/non-identifiable outcomes. Do not enlarge the menu until a desired curve appears. First state the prediction that distinguishes the proposed result from the closest published explanation; do not treat another known peak as novelty.",
+    "continuation_recommendation": "Close and release R13 only as a reproducibility milestone. Keep the broader research goal incomplete and continue an explicitly frozen scientific branch addressing the original mechanism/generalization question within existing authority and budgets."
+  },
+  "limitations": [
+    "This is manuscript/evidence consistency review, not external peer review or publication acceptance.",
+    "The reviewer did not rerun literature retrieval or establish exhaustive research priority.",
+    "The reviewer contributed to A1 construction and relies on the separate independent mathematical review for that claim.",
+    "R13 operational outputs remain unverified until actual execution and result review."
+  ],
+  "scientific_validity": "not_assessed",
+  "previous_text_assessment": {
+    "manuscript_sha256": "20bdd1c65d80bff9131a20d77b1f806ac13cc7894b2e2aa697c210ab65d979ee",
+    "verdict": "revise",
+    "issues": [
+      {
+        "location": "Abstract, independent-fit wording",
+        "problem": "72 independent-fit randomness-intervention cells can imply72 independent statistical units although there are12 paired seed units per environment and the arms share data.",
+        "required_change": "Use72 continuous-fit cells and explicitly identify12 paired seed units per environment, or otherwise remove independent-fit."
+      },
+      {
+        "location": "Methods4.1, rank guarantee",
+        "problem": "A calibration score and a future score exchangeable is weaker/less precise than the joint exchangeability needed by the calibration order-statistic bound.",
+        "required_change": "State that all199 calibration scores and the future score are jointly exchangeable under the included null law; retain marginal-over-calibration, strict-exceedance and per-law max-threshold qualifications."
+      },
+      {
+        "location": "Methods4.3, retained per-object data",
+        "problem": "Text says every object tree-leaf assignments/exact errors/gradient summaries are retained. The implementation saves raw margins for every object, split-level error/gradient summaries and train-only leaf-index matrices.",
+        "required_change": "Distinguish raw margins for all objects, split-level metric summaries and training-object tree-leaf assignments. Saved models permit later reconstruction but do not mean validation/test leaf arrays were retained."
+      }
+    ],
+    "note": "Issues were sent to author before this finalized review. Author corrected the three statements; final paper was re-read at the exact locations and bound below."
+  },
+  "resolved_text_issues": [
+    "Abstract now states72 continuous-fit cells with12 paired seed units per environment.",
+    "Rank paragraph now states joint exchangeability of all199 calibration scores and the future score.",
+    "Methods4.3 now distinguishes object-level raw margins, split-level error/gradient summaries and training-object leaf assignments."
+  ],
+  "acceptance_scope": "Accepted for faithful scientific presentation of the bounded A1/R10/R11/R12 claims after three wording corrections. Present-tense release/graphical-appendix assertions are conditional on actual R13 output/result verification before delivery. This acceptance explicitly does not establish the full original user goal, scientific priority or journal readiness."
+}

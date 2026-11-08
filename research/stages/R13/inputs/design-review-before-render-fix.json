@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "stage_id": "R13",
+  "review_mode": "subagent_review",
+  "harness": "codex",
+  "author_agent": "/root/workflow_audit",
+  "coauthor_agents": [
+    "/root",
+    "/root/literature"
+  ],
+  "reviewer_agent": "/root/science_critique",
+  "reviewer_independence": "Reviewer authored neither renderer, builder, wrapper, validator, scientific plans nor evaluated delivery claims. Reviewer separately reviewed manuscript/evidence and did not author the manuscript. No scientific fits or full R13 delivery execution performed.",
+  "verdict": "accept",
+  "blocking_issues": [],
+  "nonblocking_notes": [
+    "Full visual readability must be checked after actual rendering; preflight cannot certify that187 captions/legends are readable solely from image dimensions.",
+    "The actual replay checks relocated paths in the existing environment, not a clean dependency installation or cross-platform binary reproducibility. Current documentation correctly limits that guarantee."
+  ],
+  "reviewed_artifacts": [
+    {
+      "path": "research/stages/R13/PLAN.md",
+      "sha256": "656c0cf6ed697de30a20b1005af529e19157c3bbe167578505c1361604576cdd"
+    },
+    {
+      "path": "research/plans/R13.json",
+      "sha256": "f678d08508f20ed9715e6947de243e71bacceb40ccd3e3dc233dee2ba1f6b49c"
+    },
+    {
+      "path": "research/stages/R13/inputs/release-spec.json",
+      "sha256": "fb24e3e61fbfe8d4d377afe2e804e19a394129c9d38711691007f032281e6cfe"
+    },
+    {
+      "path": "research/stages/R13/inputs/intake-manifest.json",
+      "sha256": "e810683f8c2182155a6cfe4307128f3ebf1e9e10e1c8bdaefa193285366f2fb5"
+    },
+    {
+      "path": "research/stages/R13/inputs/run_derivative_task.py",
+      "sha256": "1fe9185c19c38e151b23c7dcc1991eeb2abb7ab388d8c47cba01f16a21959281"
+    },
+    {
+      "path": "scripts/plot_v2_research.py",
+      "sha256": "68a05ab48fa42f5f4dfd62f1bc4a35fbd71df1af5b11df826ede5db1c1081b25"
+    },
+    {
+      "path": "scripts/build_science_package.py",
+      "sha256": "0e69672d2949753da41cb41a441ee8e3465ebeece0d75f0b04b2779aed425f0a"
+    },
+    {
+      "path": "scripts/verify_science_release.py",
+      "sha256": "7d002ff66f39d18b957dc4bc3d62f8007dd86fa37469678429db1d5c05bb749b"
+    },
+    {
+      "path": "tests/test_release_validation.py",
+      "sha256": "e180b0ac5bf9c18e31c0476e9723586a608d10871cb2b50ff0219d6e386e0597"
+    }
+  ],
+  "checks": {
+    "intake": "Independently hashed all462 copied files,1209091777bytes: every size/SHA binding matches. Every copied intake file appears explicitly in machine inputs. No forbidden artifacts/research live inputs, .env/.venv/.git paths were found.478 unique declared input paths include the pending design review. Selected complete attempts and prior technicalR11 attempt are preserved.",
+    "source_and_task_design": "Sequential figures/package/validation tasks with900/240/480s timeouts,1800s attempt,3600s total,2attempts. Fixed189figure entries,16 table sources, standalone package and R10 exact replay; no data/seed/grid changes, new model fitting or independent replication. Workflow handles timeout/process-tree termination and single lock.",
+    "resource_wrapper": "Wrapper fixes OMP/MKL/OPENBLAS/NUMEXPR4, CUDAempty, disablespyc and uses a local Matplotlib cache. It checks symlinks/junctions and storage before/after child execution and records exit/runtime/controls.8GiB is a boundary check, not OS quota, as documented. Copies are inside accounted intake/artifact roots; no overall budget reset.",
+    "builder": "Inspects frozen manifests/plans/source hashes and complete task inventories; scientific allowlists and AST local imports are perstage. Copies full attempts and explicit reviews plus separatecode/Rxx, without merging versions. Refuses existing outputs, secret-named paths, symlink/junction traversal, destination collisions and size/count excess. Requirements derive exact installed active-base metadata closure and explicitly rejecttorch/EpistemeOS. Original uv.lock is provenance only.",
+    "pure_self_test": "uv run python scripts/build_science_package.py --self-test passed. FakeR10/R11/R12 runners only, no scientificfit: separate versions, minimal closure, standalone replay, frozen calibration replay, explicit review packets, integrity after replay, exclusive outputs, tamper detection and credential-name rejection.",
+    "replay_and_validator": "Replay external new-directory/protocol and disabled-cache controls remain unchanged. Corrected validator enforces189 unique structured figure entries, readable187PNG/SVG pairs+2HTML, exact16table names/counts and hashes, full7188x256 finite exact R10 arrays and JSON/metadata equality, with package verify before and after replay. Actual renderer/package/replay outputs still require result review.",
+    "renderer_science_scope": "Code keeps all declared conditions and every R11/R12 seed, deterministic firstfiveR10 examples, fixed known-boundary zooms, separate axes and split metrics. Bands are observed minmax, CP intervals conditional pointwise, t-families are labeled, R12 maximizing positions/flags are descriptive and missing firstzero events are shown separately rather than at a fabricated eventtime. Static plotting cannot establish a new mechanism or independent sample.",
+    "goal_scope": "This derivative stage can complete a reproducibility milestone of the bounded methodological line only. Manuscript review explicitly leaves the original cross-model double-descent scientific objective incomplete. Graphics/package success cannot certify novelty, journal readiness or goal completion.",
+    "validator_regressions": "Independently ran five tests in tests.test_release_validation: allpass, no fitting. Covered complete toy inventory, empty/duplicate/escaping/truncated tables, missing/extra files, reused/mixed-kind figure paths, equal-but-wrong replay shape and nonfinite replay. Validator source was independently reread after correction; expected16 table matrices match release-spec.",
+    "machine_transition": "Machine draft and current registryexecutionfalse reviewed. Final source/test/spec hashes and explicit validation input for tests/test_release_validation.py are bound. Planned draft-to-frozen transition after acceptance is not a scientific change; final validate-plan/cumulative budgets remain mandatory."
+  },
+  "scientific_validity": "not_assessed",
+  "previous_round": {
+    "path": "research/stages/R13/inputs/design-review-round1.json",
+    "sha256": "c7282e59efe114faefcb8683ce48bc5f9d2a1c8785fa9b6a4aabfe7064128322",
+    "verdict": "revise"
+  },
+  "resolved_validator_issues": [
+    "Exact189 figure rows and figure_count, unique IDs and global outputpaths, disjoint exact PNG/SVG pair versus HTML kinds, suffix/hash/readability/confined regular file checks and exact figures inventory now enforced.",
+    "Exact16 CSV names and expected row matrices, unique/confined paths, nonempty columns, matching declared rows and bytehashes, exact table inventory and nonempty gallery index now enforced. Expected row counts agree with frozen release-spec; R10 localization6020 independently confirmed from all alternative flag counts.",
+    "Replay explicitly requires both arrays shape7188x256, finite values and exact equality before success.",
+    "R12 chart label now says OLS scan (calibrated only in R10), eliminating implied transferred calibration."
+  ]
+}

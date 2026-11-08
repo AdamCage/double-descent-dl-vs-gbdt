@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "claim_id": "R8-detector-catalog",
+  "statement": "On catalog R8-synthetic-trajectories-2026-11-07 in attempt 20261107T140907-bd7e4a5a5e, the global-mean detector left fast_plateau_moderate unmarked and placed late_tail at t_star 79, while the predeclared local window of 5 placed those series at t_star 70 and 90. smooth_exponential was unmarked by both, and single_late_drop was marked by the global detector at t_star 50. The local detector also marked excluded series two_drops. This comparison does not establish a CatBoost mechanism.",
+  "statement_sha256": "57c0c3f2a6b06a9fc61911223f535b575defe7f4af140dc07eff699eb6b66622",
+  "evidence": [
+    {
+      "path": "artifacts/research/R8/20261107T140907-bd7e4a5a5e/tasks/score-catalog/scores.json",
+      "sha256": "36882c2612f0c2b58285b099d7b817e29d3a6013dd21610f3d986bafbf1331fc"
+    },
+    {
+      "path": "research/stages/R8/inputs/catalog.json",
+      "sha256": "1680b0d4eded65c3ac695388ba4988f0d3824cafd582828b25f92fb0c4d060ee"
+    }
+  ],
+  "reviewer": "R8 operational reviewer",
+  "harness": "cursor",
+  "verdict": "accepted",
+  "review_mode": "subagent_review",
+  "author_agent": "research-owner-r8r9",
+  "reviewer_agent": "e078bfb0-20d5-4dcf-8549-220576f37ac2",
+  "authorization_decision": {
+    "path": "research/decisions/autonomous-research-authorization.json",
+    "sha256": "4f2eca57802835816b688668838545df60fd568c99069c291d2e42cb4f5371c9"
+  },
+  "scientific_validity": "not_assessed",
+  "limitations": [
+    "The comparison covers five deterministic series in catalog R8-synthetic-trajectories-2026-11-07 only.",
+    "The local detector marked excluded series two_drops at t_star 45. A positive candidate does not identify multiple changes.",
+    "No CatBoost model was fit. The comparison does not establish a CatBoost mechanism.",
+    "This is not a confirmation sample and not an external replication.",
+    "scientific_validity remains not_assessed. This is local Cursor team review by reviewer e078bfb0-20d5-4dcf-8549-220576f37ac2."
+  ]
+}

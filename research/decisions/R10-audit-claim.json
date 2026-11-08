@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "claim_id": "R10-acceleration-failure-envelope",
+  "statement": "On the frozen R10 benchmark, the uncalibrated local rule flagged all 2400 null evaluation trajectories. The calibrated scan null rates ranged 0-.10; on large_ar linear it flagged 20/200 (pointwise exact 95% CI .0621594-.150213), showing that its marginal rank guarantee must not be interpreted as conditional 5% control after one calibration. On small_iid last_tenth both global and scan flagged 200/200, refuting the prespecified detection-rate advantage; on fast_plateau_tail scan power fell from 1 at small noise to .07/.015 at large iid/AR noise. These findings concern declared synthetic laws, not arbitrary CatBoost trajectories.",
+  "statement_sha256": "5471bb1e3b3913c03649f2a51d5fc877f4581d1cd79ff1567c8f6c768b58fab5",
+  "evidence": [
+    {
+      "path": "artifacts/research/R10/20261107T192414-36aee5d99b/tasks/calibrate-evaluate/analysis.json",
+      "sha256": "e3bf51e3f41d21f26fc00b7b784606a451ef0d587ff2e1767f519ec91872390d"
+    },
+    {
+      "path": "artifacts/research/R10/20261107T192414-36aee5d99b/tasks/calibrate-evaluate/calibration.json",
+      "sha256": "3967d880e9f2a0abfa5f6199a2db63c20e3255b69b335782c70e0ef785bdc622"
+    },
+    {
+      "path": "artifacts/research/R10/20261107T192414-36aee5d99b/tasks/calibrate-evaluate/curves.jsonl",
+      "sha256": "cc61cde47e19c31f58dc907ed56212d1566270a6b930cf447c3be2dcffc53111"
+    },
+    {
+      "path": "artifacts/research/R10/20261107T192414-36aee5d99b/tasks/calibrate-evaluate/curves.npz",
+      "sha256": "0a3a93ff6e9c1c47418c223b138a64f52ec23eb1b399f6e3e1b8d95d1e94aff4"
+    }
+  ],
+  "reviewer": "Independent Codex subagent /root/science_critique",
+  "harness": "codex",
+  "verdict": "accepted",
+  "review_mode": "subagent_review",
+  "author_agent": "/root",
+  "reviewer_agent": "/root/science_critique",
+  "authorization_decision": {
+    "path": "research/decisions/codex-refactor-authorization-2026-11-07.json",
+    "sha256": "8559055cea21e6f58bdd58b07930e5d9ab505a84a1ea58c72721c0c5e4e2119d"
+  },
+  "scientific_validity": "not_assessed",
+  "limitations": [
+    "Known analytic forms, one length256, windows8/16/32 and four Gaussian AR(1) noise conditions only; no general-purpose detector novelty or priority is established.",
+    "Evaluation binomial intervals are pointwise and conditional on one shared calibration. They do not include calibration uncertainty or provide simultaneous inference across72 rows. The worst-cell example is descriptive, not a multiplicity-adjusted hypothesis test.",
+    "The rank guarantee is marginal over exchangeable calibration/test curves from each included null law. Observed20/200 flags do not contradict that guarantee and do not by themselves prove a universal conditionalFPR.",
+    "Empirical flag rates are not proof of population probabilities1 or0. Power on fast_plateau_tail falls from200/200 under small noise to14/200 and3/200 under large iid/AR noise.",
+    "Global versus scan rate advantage on small_iid last_tenth was refuted. Improved localization there is descriptive and cannot be substituted as successful confirmation of P3.",
+    "Synthetic thresholds do not supply valid p-values for arbitrary CatBoost learning curves. No natural CatBoost mechanism, double descent, external review, human approval or publication readiness is established.",
+    "Independent review audited raw saved arrays and all summaries and used direct OLS on eight saved trajectories; it did not independently regenerate all curves or rescore the entire matrix."
+  ],
+  "assessment_basis": "Report, complete saved raw arrays/metadata, all72 independently checked summary rows/intervals, every calibration order statistic and eight direct saved-curve OLS spotchecks; no scientific matrix rerun. This supports only the exact bounded empirical statement, not novelty certification."
+}

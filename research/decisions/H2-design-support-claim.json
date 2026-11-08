@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "claim_id": "H2-conditional-design-support-identity",
+  "statement": "For a common semantically aligned answer set A with K options and valid fixed baseline answers b_m in A, a policy allowing each model only targets different from its own baseline has shared admissible targets A minus the set of distinct b_m. Their count is K minus the number of distinct baselines. In particular, two disagreeing binary baselines leave no shared contrastive target. This is an elementary conditional set identity, not a new theorem or verified per-row compliance claim. Crossing all K targets including the cued own-baseline condition uses KMC nominal calls rather than MC for M models and C cue kinds, excluding uncued baselines and repeats; these are evaluation counts, not measured runtime.",
+  "statement_sha256": "fe53a511c0827b16185f127ba90ca97c35e72ce1cebefdd166e629d5074c87bf",
+  "scope": "Conditional elementary design argument for aligned semantic answers and valid baselines, not an empirical claim about every released row.",
+  "author_agent": "/root/alignment_brainstorm",
+  "coauthor_agents": [
+    "/root"
+  ],
+  "evidence": [
+    {
+      "path": "docs/research-reset/cot-design-support-note-2026-11-08.md",
+      "sha256": "2a7e76405dd70c46dea5164295ca82c009d89f68119fa164b1b5f97ecebfa33d"
+    },
+    {
+      "path": "research/reviews/cot-design-support-proof-review.json",
+      "sha256": "a1ba5e822cb2497ca72ddf006461a9ab6d89656ef1d385b3780f288e9489285b"
+    }
+  ],
+  "authorization_decision": {
+    "path": "research/decisions/alignment-h2-authorization-2026-11-08.json",
+    "sha256": "76eb82a9b82c8ad0c7832d0c55b7d3e445e9f412579e57390aca56f7c1bc66cd"
+  },
+  "limitations": [
+    "Known elementary support argument, not new set theory or matching method; no first-priority claim.",
+    "Assumes valid fixed baseline answers and aligned semantic options; actual released row compliance is unverified.",
+    "Target contrast with a baseline is not objective wrongness; exact semantic targets need not have identical rendered input or provider context.",
+    "Nominal call counts exclude uncued baselines/repeats and do not prove runtime, token-cost or safety improvement."
+  ],
+  "reviewer": "Independent Codex child agent /root/reset_critic",
+  "harness": "codex",
+  "reviewer_agent": "/root/reset_critic",
+  "review_mode": "subagent_review",
+  "verdict": "accepted",
+  "assessment": "evidence_supported",
+  "scientific_validity": "not_assessed",
+  "reviewed_at_utc": "2026-11-08T10:17:23.273945+00:00",
+  "assessment_basis": "Independently checked the conditional set identity: the intersection of A minus each baseline equals A minus the distinct baselines. Checked the binary obstruction, contrastive versus objectively wrong targets, and MC versus KMC evaluation counts. The assumptions of aligned semantic answers and valid frozen baselines are explicit. This is an elementary support argument, with no empirical per-row compliance or new-theorem claim. The bound proof review validates the source note.",
+  "reviewer_independence": "Distinct child agent. Authored none of the evaluated source note, plans, primary implementation, results, proposal statement or manuscript. Authored only independent checks and reviews. This is local team review, not external peer review.",
+  "proposal_binding": {
+    "path": "research/decisions/H2-design-support-claim-proposal.json",
+    "sha256": "1f32f114d41e810a5be39dc8f1f736c6156241ac81ecf93ae36ccc685e8871b5"
+  }
+}

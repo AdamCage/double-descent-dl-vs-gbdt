@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "stage_id": "R12",
+  "review_mode": "subagent_review",
+  "harness": "codex",
+  "author_agent": "/root/catboost_study",
+  "reviewer_agent": "/root/science_critique",
+  "reviewer_independence": "Reviewer did not author implementation, protocol, report or evaluated conclusions. Reviewed code/scientific and machine draft plans and ran only default non-fitting unit tests; no scientific grid execution.",
+  "verdict": "revise",
+  "blocking_issues": [
+    "R12 fitting smoke decorator checks R12_TINY_FIT_SMOKE while registered run_unit_checks.py --model-smoke sets RESEARCH_MODEL_SMOKE. Registered unit task therefore silently skips its intended continuation-independent CatBoost smoke. Unify the opt-in variable in the R12 test without changing the shared wrapper during active R11 execution."
+  ],
+  "reviewed_artifacts": [
+    {
+      "path": "src/acceleration_randomness.py",
+      "sha256": "98ad4e61c03eb17e2456368225adb58f9059e6f02690f9df8648c999119a4671"
+    },
+    {
+      "path": "scripts/r12_run.py",
+      "sha256": "78dc16d979a09ef9600fad9ea21e1192d483da806bf7e059950eb226cc2f0bfc"
+    },
+    {
+      "path": "tests/test_acceleration_randomness.py",
+      "sha256": "1fa431fcafe504161b1e21601a3b490cd3040173fff24eb2ba19bfc96a8d905a"
+    },
+    {
+      "path": "src/acceleration_boosting.py",
+      "sha256": "8785379e0e9d9c02775aa73a34654d9cf4d98e999a4547564b21d40f0a2e1a73"
+    },
+    {
+      "path": "src/acceleration_audit.py",
+      "sha256": "aedff24c1274b7fc741c4bdd864e1e7c0ce9fc13d53aad0f967e2a218b8f4683"
+    },
+    {
+      "path": "research/stages/R12/PLAN.md",
+      "sha256": "ccba198f5591910bd34cc352bcb01e75b9f8c741c52d15c135b325d04ce3945b"
+    },
+    {
+      "path": "research/stages/R12/inputs/protocol.json",
+      "sha256": "02de1fdb0fd4dd4c2d73da7091c8e268c1e935e1a5334b9c8ef99a10fa9cfb3c"
+    },
+    {
+      "path": "research/plans/R12.json",
+      "sha256": "87dccf1eac2f00f39cc94215e498d041c48220ac4d09d9055578b32691152a7b"
+    },
+    {
+      "path": "scripts/run_unit_checks.py",
+      "sha256": "d2fc3c360195cd7f8d69689b0dc60940dcd416e2b31b9396e60bfeafb9528c52"
+    }
+  ],
+  "checks": {
+    "matrix": "Two datasets,12 new seeds13001-13012, three whole-run strengths0/1/10, each a single continuous1024-tree fit at constantLR.05. Seventy-two final models,1025 raw timepoints, paired data/split/model seed channels. No fit continuation, grid selection by test or adaptation.",
+    "inference_resources": "R12 fit receives protocol4; raw_trajectories receives protocol4 and explicitly forwards to staged/final prediction; calc_leaf_indexes explicitly receives protocol4. Tiny optional smoke uses1. No unbounded CatBoost inference API call found in the R12 scientific path.",
+    "primary_and_diagnostic_contrasts": "Primary scalar is max scan of whole train trajectory. Its paired rs1/rs10-minus0 contrasts use family4 intervals; onlyrs10 has positive prediction. Separate signed fixed512-boundary contrasts use64 points449:513 and512:576 and separate family4 intervals without sign claims. Whole-run intervention cannot isolate noise annealing or identify event timing from scan-score difference.",
+    "late_event_gate": "Six groups, conjunctive lowerCI(mean gain)>0, lowerCI(mean loss512-loss575)>.01, and at least10/12 positive gains. Six gain and six drop intervals use Bonferroni family12. These formulas and exact slice endpoints match source. Failure is not_established only, not universal absence. Student-t family coverage remains approximate atn12.",
+    "data_and_artifacts": "Shared generator exactly matches declared synthetic and bundled breast-cancer data. Paired hashes, full raw margins/data/indices, models, full resolvedparams, exact zero errors, leaf counts/occupancy/indices are saved. Machine output list binds all72 CBMs plus six scientific files; full local imported source closure is declared with automatic workflow/resource controls.",
+    "threshold_scope": "Machine argv does not pass optional --calibration; descriptive scan flags are therefore null and calibration_binding null in this registered run. No R10 threshold p-value or guarantee is transported to CatBoost or different length. Raw score/positions and legacy flags remain available.",
+    "unit_tests": "Default seven-test selection: six non-fitting tests passed, one fitting smoke skipped. Tests cover fixed-grid fields, exact-error semantics, descriptive-threshold labeling, paired completeness, signs/gates and negative/nonpractical cases. Correct the opt-in mismatch so registered unit task actually executes smoke.",
+    "budget": "3600seconds per attempt,7200total,2attempts;60/3500second unit/scientific task timeouts;2GiB outputs; CPU4, GPU/API/download0. Sequential dependencyR11 and current registryexecutionfalse inspected. One complete pass or saved technical failure only.",
+    "scientific_scope": "Known scans and ordinary whole-run parameter contrasts; no novelty/priority certification, no universal CatBoost acceleration, no annealing causality or double-descent claim. Natural late-event label is an operational fixed-window result only."
+  },
+  "limitations": [
+    "Onlytwo small environments; breast-cancer replication is conditional on one corpus.",
+    "Twelve independent seed units and approximate t intervals may be sensitive to nonnormality; no exact finite-sample family inference claimed.",
+    "Positive max-scan score contrast can concern early behavior, full-curve range normalization, changing partitions and training paths; it does not establish a late event without the separate gate.",
+    "Separate family4 scan, family4 boundary and family12 gate intervals do not jointly provide95%coverage across all quantities.",
+    "R12 fixed512 boundary/64-point gate may miss acceleration elsewhere or on another timescale.",
+    "Default CI must not train models; only the explicit registered research smoke may fit a toy model."
+  ],
+  "scientific_validity": "not_assessed"
+}

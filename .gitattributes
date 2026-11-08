@@ -1,0 +1,4 @@
+# Research bindings hash exact bytes, including historical CRLF line endings.
+# Do not normalize source, protocol, review or evidence files during transport.
+# Vendored dependencies retain their own nested .gitattributes rules.
+* -text

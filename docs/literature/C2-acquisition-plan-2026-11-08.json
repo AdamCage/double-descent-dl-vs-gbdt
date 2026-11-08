@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "plan_id": "C2-primary-methods-2026-11-08",
+  "prepared_before_acquisition": true,
+  "prepared_on": "2026-11-08",
+  "author_agent": "/root/literature",
+  "authorization": "Parent instruction following the user's 8 November permission to reprofile the research; bounded primary-source intake only, no scientific fits.",
+  "scope": "Public primary-source documents; no credentials, paid services, paywall bypass, datasets or model execution.",
+  "output_directory": "artifacts/intake/C2-literature",
+  "acquisition_log": "artifacts/intake/C2-literature/acquisition.jsonl",
+  "budgets": {
+    "max_sources": 4,
+    "max_attempts_per_source": 2,
+    "max_http_requests": 8,
+    "max_total_transferred_bytes": 41943040,
+    "max_transferred_bytes_per_source": 10485760,
+    "socket_timeout_seconds": 20,
+    "per_attempt_wall_guard_seconds": 60,
+    "read_chunk_bytes": 65536,
+    "automatic_redirects": false,
+    "existing_cumulative_document_cap_bytes": 209715200,
+    "existing_cumulative_request_cap": 48
+  },
+  "procedure": [
+    "Check cumulative acquisition-log document/request totals before requests; enforce the smaller of the local and remaining cumulative limits.",
+    "Retrieve only the exact declared public URLs, using urllib without credentials, with redirects disabled and bounded payload reads.",
+    "Use at most two attempts per source; retain failed attempt metadata and any partial payload. Never change a path or add a source to evade the request or byte cap.",
+    "For successful HTML check format and document title markers; for PDF check the PDF signature. Acquisition is not full scientific approval.",
+    "Record URL, attempt, request index, status, bytes, retained-file path and SHA-256, UTC retrieval time, version, locator, verification limits and acquisition-plan hash.",
+    "Use legally public official publisher content only for Wang et al.; if full text cannot be retrieved, try the publisher abstract and retain that narrower verification scope.",
+    "Reuse the already acquired fixed Kanoh v1 snapshot and its checked hash without another network request."
+  ],
+  "sources": [
+    {
+      "source_id": "allerbo-schon-2605.21167v2",
+      "version": "arXiv:2605.21167v2, 2026-11-04",
+      "urls": ["https://arxiv.org/html/2605.21167v2", "https://arxiv.org/pdf/2605.21167v2"],
+      "html_markers": ["feature-similarity", "complexity"],
+      "locator": "Definition of FC/EFC; practice/aggregation section; gradient-boosting experimental details and assumptions",
+      "intended_use": "Exact complexity-baseline definition and limits; not a newly proposed general metric."
+    },
+    {
+      "source_id": "brophy-hammoudeh-lowd-jmlr23",
+      "version": "JMLR 24(154):1-48, 2023, official published article 22-0449",
+      "urls": ["https://www.jmlr.org/papers/volume24/22-0449/22-0449.pdf", "https://jmlr.org/papers/v24/22-0449.html"],
+      "html_markers": ["adapting and evaluating", "influence"],
+      "locator": "Fixed-structure assumption, LeafRefit/LeafInfluence definitions, experiment scope and structural-sensitivity discussion",
+      "intended_use": "Specify what a faithful fixed-structure/refit influence baseline does and does not estimate."
+    },
+    {
+      "source_id": "jeffares-curth-2411.00247v1",
+      "version": "arXiv:2411.00247v1, 2024-10-31; NeurIPS 2024",
+      "urls": ["https://arxiv.org/html/2411.00247v1", "https://arxiv.org/pdf/2411.00247v1"],
+      "html_markers": ["telescoping", "gradient boosting"],
+      "locator": "Telescoping/smoother representation, effective train/test parameters and gradient-boosting comparison",
+      "intended_use": "Closest representation-complexity comparison; not a claim that label perturbation derivatives equal frozen-history weights."
+    },
+    {
+      "source_id": "wang-zhao-fan-search-df",
+      "version": "DOI:10.1080/10618600.2024.2388545; JCGS 34(2):630-641, 2025",
+      "urls": ["https://www.tandfonline.com/doi/full/10.1080/10618600.2024.2388545", "https://www.tandfonline.com/doi/abs/10.1080/10618600.2024.2388545"],
+      "html_markers": ["search cost", "self-consistency"],
+      "locator": "Abstract; full-text modified search degrees-of-freedom definition and tree example only if legitimately accessible",
+      "intended_use": "Prior art on search cost, with abstract-only limits if full text is unavailable; no paywall bypass."
+    }
+  ],
+  "reused_source": {
+    "source_id": "kanoh-2608.03111v1",
+    "path": "artifacts/intake/v2-literature/kanoh-2608.03111v1-attempt1.html",
+    "sha256": "29cc4b9f3f1ba56b4d0357f421d5c052299bef4ff25b2f964574ee35bbdb010f",
+    "new_requests": 0
+  }
+}

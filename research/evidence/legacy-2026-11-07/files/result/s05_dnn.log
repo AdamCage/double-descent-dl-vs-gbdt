@@ -1,0 +1,18 @@
+2026-11-06 01:23:53 | INFO     | pipeline | Pipeline started  mode=full  seed=42
+2026-11-06 01:23:53 | INFO     | pipeline | === 05 DNN training ===
+2026-11-06 01:24:00 | INFO     | pipeline | Device: cpu
+2026-11-06 01:24:00 | INFO     | pipeline |   Model-wise: width=8  params=32881  epochs=800  noise_regime=clean
+2026-11-06 02:11:55 | INFO     | pipeline |     -> train_loss=0.0000  val_loss=0.0063  train_acc=1.000  val_acc=0.999  settled=True
+2026-11-06 02:11:55 | INFO     | pipeline |   Model-wise: width=16  params=65889  epochs=800  noise_regime=clean
+2026-11-06 03:01:04 | INFO     | pipeline |     -> train_loss=0.0000  val_loss=0.0048  train_acc=1.000  val_acc=0.999  settled=False
+2026-11-06 03:01:04 | INFO     | pipeline |   Model-wise: width=32  params=132289  epochs=800  noise_regime=clean
+2026-11-06 04:02:00 | INFO     | pipeline |     -> train_loss=0.0000  val_loss=0.0037  train_acc=1.000  val_acc=0.999  settled=True
+2026-11-06 04:02:00 | INFO     | pipeline |   Model-wise: width=64  params=266625  epochs=800  noise_regime=clean
+2026-11-06 05:13:45 | INFO     | pipeline |     -> train_loss=0.0000  val_loss=0.0025  train_acc=1.000  val_acc=1.000  settled=True
+2026-11-06 05:13:45 | INFO     | pipeline |   Model-wise: width=128  params=541441  epochs=800  noise_regime=clean
+2026-11-06 07:10:34 | INFO     | pipeline |     -> train_loss=0.0000  val_loss=0.0023  train_acc=1.000  val_acc=1.000  settled=False
+2026-11-06 07:10:34 | INFO     | pipeline |   Model-wise: width=256  params=1115649  epochs=800  noise_regime=clean
+2026-11-06 10:42:19 | INFO     | pipeline |     -> train_loss=0.0000  val_loss=0.0020  train_acc=1.000  val_acc=1.000  settled=False
+2026-11-06 10:42:19 | INFO     | pipeline |   Model-wise: width=512  params=2362369  epochs=800  noise_regime=clean
+2026-11-06 19:02:08 | INFO     | pipeline |     -> train_loss=0.0000  val_loss=0.0038  train_acc=1.000  val_acc=1.000  settled=False
+2026-11-06 19:02:08 | INFO     | pipeline |   Model-wise: width=1024  params=5249025  epochs=800  noise_regime=clean

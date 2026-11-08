@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "decision_id": "ALIGNMENT-SCOPE-COMPARISON-H2-2026-11-08",
+  "authority": "user",
+  "status": "accepted",
+  "user_instruction": "Пользователь разрешил новые гипотезы/stages и дал ещё4часа; закончить сегодня. НоваяH2постановка замораживается до неиспользованнойconfirmation.",
+  "scope": "Bounded alignment/CoT-monitorability statistical reanalysis of public existing outputs and portfolio/report delivery today. No new model training, model API calls, GPU, application submissions or external publication. Scientific novelty and journal readiness are assessed, not guaranteed.",
+  "harness": "codex",
+  "stages": [
+    "R17D",
+    "R17",
+    "R18"
+  ],
+  "future_stages": "Only explicitly preregistered offline alignment/public-cached-data questions on statistically unused reserve, or derivative delivery, within the same cumulative budgets and distinct review. No budget reset.",
+  "require_distinct_stage_review_subagent": true,
+  "require_distinct_review_subagent": true,
+  "parent_authorization": {
+    "path": "research/decisions/alignment-portfolio-authorization-2026-11-08.json",
+    "sha256": "c0ad0d0aa0fdb84d70f4ddfe7b613a22436400003427d37882284f1bdbbb38b1"
+  },
+  "policy_document": {
+    "path": "docs/decisions/0007-scope-only-comparison.md",
+    "sha256": "a89d3e4b94dd71cce1c8f8a7f5afb150cf2bc72ce592427515fb0104c9f04511"
+  },
+  "budgets": {
+    "total_runner_wall_seconds": 86400,
+    "target_stage_wall_seconds": 14400,
+    "max_stage_wall_seconds": 28800,
+    "max_model_task_wall_seconds": 7200,
+    "max_attempts_per_stage": 3,
+    "max_cpu_threads_per_model_job": 4,
+    "max_parallel_model_jobs": 1,
+    "gpu_jobs": 0,
+    "paid_api_spend": 0,
+    "new_storage_bytes": 21474836480,
+    "public_dataset_download_bytes": 2147483648
+  },
+  "r1_budgets": {
+    "agent_preparation_and_review_minutes": 120,
+    "max_wall_seconds": 900,
+    "total_wall_seconds": 1800,
+    "max_attempts": 2,
+    "document_download_bytes": 209715200,
+    "max_document_bytes": 26214400,
+    "max_retrieval_attempts_per_source": 2,
+    "max_http_requests": 384,
+    "max_additional_primary_sources": 4,
+    "new_storage_bytes": 2147483648,
+    "dataset_download_bytes": 2147483648,
+    "model_training_jobs": 0
+  },
+  "external_publication_or_messaging": false,
+  "network_budget_scope": "Legacy r1_budgets fields retained for report schema compatibility; dataset allowance now explicitly covers R15 public intake, not a retrospective change to R1. Up to2 attempts of<=1e9 dataset payload bytes and144 physical HTTP requests each; global dataset cap2GiB unchanged. Existing measured consumption remains charged.",
+  "delivery_deadline": "2026-11-08T13:12:00Z"
+}

@@ -1,0 +1,96 @@
+{
+  "attempt_id": "20261107T192904-5420604589",
+  "author_agent": "/root/catboost_study",
+  "criteria": [
+    {
+      "id": "C1",
+      "verdict": "pass",
+      "evidence": [
+        "unit-checks/checks.json",
+        "schedule-study/cells.jsonl",
+        "schedule-study/models.json"
+      ],
+      "reason": "First attempt has72 distinct cells,256 trees per cell and257 logloss points on every split. Preserved verified output manifest binds models and task outputs. This complete successful numeric task is not a missing observation."
+    },
+    {
+      "id": "C2",
+      "verdict": "partial",
+      "evidence": [
+        "schedule-study/cells.jsonl",
+        "schedule-study/predictions.npz",
+        "schedule-study/data.npz"
+      ],
+      "reason": "Full raw prediction/data/hash evidence is present; complete independent numerical validation is deferred because this attempt requires a technical retry. No numerical failure is inferred from the resource-assurance defect."
+    },
+    {
+      "id": "C3",
+      "verdict": "pass",
+      "evidence": [
+        "schedule-study/analysis.json"
+      ],
+      "reason": "Four primary and four clock diagnostics are present, each preserving12 paired values. Their scientific direction is not scored for this technical-review decision and does not select the retry grid."
+    },
+    {
+      "id": "C4",
+      "verdict": "partial",
+      "evidence": [
+        "schedule-study/environment.json",
+        "schedule-study/analysis.json"
+      ],
+      "reason": "GPU/API/download fields are zero and no DD/natural-mechanism/p-value-transport claim is made. However the general CPU<=4 resource contract was not assured: frozen inference calls omit thread_count while installed predict and staged_predict defaults are-1. Actual excess threads or CPU use was not measured, so no excess is asserted."
+    }
+  ],
+  "limitations": [
+    "Resource-assurance gap is established from source/API defaults; actual CPU/thread excess is unknown and unmeasured.",
+    "The successful task and its full196.672-second attempt remain in evidence and cumulative budgets. Retry must preserve the same scientific design and not count as a new independent sample.",
+    "This revise is operational and technical. It neither rejects numerical conclusions by their shape nor treats existing successful observations as absent.",
+    "Full independent scientific claim review is deferred to the corrected attempt; first-attempt outputs must remain available for reconciliation."
+  ],
+  "manifest_sha256": "3bc4bb2e3de9728d4b658e1fd3d82c3159d899abac1fbd41ca7184950252294b",
+  "plan_sha256": "33328abb7ecf995c370af4cc3ded98ba79597f20e280a78b317ba20caec4afb4",
+  "predictions": [
+    {
+      "id": "P1",
+      "outcome": "not_assessed_technical_retry: this completed numerical task is preserved. Its outcome does not select or change the scientific matrix, seed list, or predictions. The technical correction supplies explicit inference thread limits; retry is not an additional independent repetition.",
+      "evidence": [
+        "schedule-study/analysis.json",
+        "schedule-study/cells.jsonl"
+      ]
+    },
+    {
+      "id": "P2",
+      "outcome": "not_assessed_technical_retry: this completed numerical task is preserved. Its outcome does not select or change the scientific matrix, seed list, or predictions. The technical correction supplies explicit inference thread limits; retry is not an additional independent repetition.",
+      "evidence": [
+        "schedule-study/analysis.json",
+        "schedule-study/cells.jsonl"
+      ]
+    },
+    {
+      "id": "P3",
+      "outcome": "not_assessed_technical_retry: this completed numerical task is preserved. Its outcome does not select or change the scientific matrix, seed list, or predictions. The technical correction supplies explicit inference thread limits; retry is not an additional independent repetition.",
+      "evidence": [
+        "schedule-study/analysis.json",
+        "schedule-study/cells.jsonl"
+      ]
+    }
+  ],
+  "report": {
+    "path": "research/stages/R11/REPORT-attempt1.md",
+    "sha256": "4be11cb9444e1241fdb4de64fe7531fa125d8cabe31d723e802aa55c3a4e4239"
+  },
+  "review_mode": "subagent_review",
+  "reviewer": {
+    "name": "Independent Codex R11 technical-attempt reviewer",
+    "harness": "codex",
+    "role": "stage_reviewer",
+    "independence": "Distinct subagent /root/science_critique; not author of code, protocol, report or numerical conclusion. Reviewed preserved first-attempt completeness and installed API signatures; no claim review or scientific matrix rerun."
+  },
+  "reviewer_agent": "/root/science_critique",
+  "schema_version": 1,
+  "scientific_validity": "not_assessed",
+  "stage_id": "R11",
+  "verdict": "revise",
+  "coauthor_agents": [
+    "/root"
+  ]
+}

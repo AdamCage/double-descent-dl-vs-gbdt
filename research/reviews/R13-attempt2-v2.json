@@ -1,0 +1,92 @@
+{
+  "attempt_id": "20261107T210937-844511dd10",
+  "author_agent": "/root/workflow_audit",
+  "criteria": [
+    {
+      "id": "C1",
+      "verdict": "partial",
+      "evidence": [
+        "figures/gallery/figure_manifest.json",
+        "validation/validation.json"
+      ],
+      "reason": "partial: full machine inventory187PNG/SVG+2HTML+16CSV passed; actual primaryR12gate/fixedgain panel tinydecimal labels collide. Numerics intact.",
+      "evidence_scope_note": "Schema citation restricted to registered task output_hashes. Detailed existing PNG/CSV/raw/code/requirements checks and exact individual hashes remain in reviewer reasons and research/reviews/R13-attempt2-qa.json; scientific/operational judgment unchanged."
+    },
+    {
+      "id": "C2",
+      "verdict": "pass",
+      "evidence": [
+        "package/science-package/package-manifest.json",
+        "validation/validation.json"
+      ],
+      "reason": "pass on checked content: all901packagebytes/hashes and perstage frozen sourcehashes matched; requirementsnoTorch/Episteme; paperhash90a02f57759bd976e123732125405f091212f0adc6596ce55d2c6d3e7dda4684. Everycell ofall16CSV independently compared to frozen sources, including221400R12rows; allmatch.",
+      "evidence_scope_note": "Schema citation restricted to registered task output_hashes. Detailed existing PNG/CSV/raw/code/requirements checks and exact individual hashes remain in reviewer reasons and research/reviews/R13-attempt2-qa.json; scientific/operational judgment unchanged."
+    },
+    {
+      "id": "C3",
+      "verdict": "pass",
+      "evidence": [
+        "validation/validation.json"
+      ],
+      "reason": "pass on checkedoutput: existingportable rawmatrix7188x256finite exactequal, analysis/calibrationJSON andcurvemetadata exactequal, package901-fileinventory unchanged. No replayredispatch.",
+      "evidence_scope_note": "Schema citation restricted to registered task output_hashes. Detailed existing PNG/CSV/raw/code/requirements checks and exact individual hashes remain in reviewer reasons and research/reviews/R13-attempt2-qa.json; scientific/operational judgment unchanged."
+    }
+  ],
+  "limitations": [
+    "13PNGs visuallyinspected; all187formats/inventories/hashes machinechecked, notindividually visuallycertified.",
+    "Fixedlatezoom retains broad fulltrajectory y scale, reducing local resolution; separate inferencepanels quantifyfixedwindow.",
+    "This is a completed derivative task with a readability revision, not missing scientific observations or an independent replication.",
+    "ReadablePNG/SVG delivery is an actualcriterion; byte/format verification alone cannot override visualcollision.",
+    "No scientific number/grid/testselection changes or new n are justified by this revision.",
+    "Allpriorattempts muststaypreserved/charged. Attempt3requires explicitauthorizedamendment withinparentmax3, notsilentreset.",
+    "Originalscientificgoal,novelty andjournalreadiness remainunestablished."
+  ],
+  "manifest_sha256": "da82e5cf4b9ae4808967d92259dc3925ea9c6e15d24607e895e89804bd1f9a95",
+  "plan_sha256": "df4ceb81c8a7cb60b7f3d8a1e9034cb1bae0ea2c07cb2cf1a9752fc1639c7f21",
+  "predictions": [
+    {
+      "id": "P1",
+      "outcome": "partial: full187staticpairs+2HTML/16sourceCSV output anddatahashes complete, but actualR12gate/fixedgain ticklabels are unreadable. Deliveryreadability requires technicalrevision.",
+      "evidence": [
+        "figures/gallery/figure_manifest.json",
+        "validation/validation.json"
+      ]
+    },
+    {
+      "id": "P2",
+      "outcome": "supported: all901packagefiles verified; distinct frozenstagecode,complete selectedevidence/reviewprovenance,minimalrequirements/priorR11attempt retained.",
+      "evidence": [
+        "package/science-package/package-manifest.json"
+      ],
+      "evidence_scope_note": "Schema citation restricted to registered task output_hashes. Detailed existing PNG/CSV/raw/code/requirements checks and exact individual hashes remain in reviewer reasons and research/reviews/R13-attempt2-qa.json; scientific/operational judgment unchanged."
+    },
+    {
+      "id": "P3",
+      "outcome": "supported: actualportableR10raw7188x256+JSON/metadataexact andpackageunchanged; same-seed replaynotindependentscientificreplication. Reviewercomparedexistingreplay,no redispatch.",
+      "evidence": [
+        "validation/validation.json"
+      ],
+      "evidence_scope_note": "Schema citation restricted to registered task output_hashes. Detailed existing PNG/CSV/raw/code/requirements checks and exact individual hashes remain in reviewer reasons and research/reviews/R13-attempt2-qa.json; scientific/operational judgment unchanged."
+    }
+  ],
+  "report": {
+    "path": "research/stages/R13/REPORT-attempt2.md",
+    "sha256": "050fdb966536da1bd32670afd4814aa06669f2055e0c7d3a019e58cc101a5d7e"
+  },
+  "review_mode": "subagent_review",
+  "reviewer": {
+    "name": "Independent Codex R13 delivery reviewer",
+    "harness": "codex",
+    "role": "stage_reviewer",
+    "independence": "Distinct subagent; not author of renderer/builder/validator/wrapper/REPORT. Read-only actualQA and allCSV/package/evidence comparisons; nofit/replaydispatch."
+  },
+  "reviewer_agent": "/root/science_critique",
+  "schema_version": 1,
+  "scientific_validity": "not_assessed",
+  "stage_id": "R13",
+  "verdict": "revise",
+  "coauthor_agents": [
+    "/root",
+    "/root/literature"
+  ]
+}

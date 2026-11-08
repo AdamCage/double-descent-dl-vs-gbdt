@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "stage_id": "R11",
+  "review_mode": "subagent_review",
+  "harness": "codex",
+  "author_agent": "/root/catboost_study",
+  "reviewer_agent": "/root/science_critique",
+  "reviewer_independence": "Reviewer did not author the implementation, scientific protocol, analysis, or conclusions. Seven unit tests, including one tiny technical continuation fit, were run; the scientific matrix was not executed.",
+  "verdict": "revise",
+  "blocking_issues": [
+    "Default unittest discovery currently executes a CatBoost fit in test_tiny_two_stage_model_preserves_bias_and_stages. AGENTS.md requires CI without model training. Move this to an explicitly invoked opt-in R11 preflight smoke task/script; default CI should not fit a model."
+  ],
+  "requested_preflight_checks": [
+    "Exercise nonzero initial prevalence logit in the opt-in continuation smoke. The balanced16-row training split in the current test checks zero bias only.",
+    "Check that init_model continuation preserves the complete first-segment raw-prediction prefix, in addition to final tree count and retained bias.",
+    "Bind all72 models/*.cbm as explicit machine-plan outputs, as well as predictions/data/cells/analysis/environment/model manifest. Complete source closure includes the opt-in smoke implementation and scripts/run_unit_checks.py."
+  ],
+  "reviewed_artifacts": [
+    {"path": "src/acceleration_boosting.py", "sha256": "8bb28cd9fbe77c692c1a08c7705a17ccae776382cbda77865d9c0568a396f242"},
+    {"path": "scripts/r11_run.py", "sha256": "10471400ecd602e5d76293dc95455bc7b0be35bc8503da80aebddd63b8cff82c"},
+    {"path": "tests/test_acceleration_boosting.py", "sha256": "41c4038de394adeb775f0fe6d8d73497807382dd8ab07b458020f1587b8f8605"},
+    {"path": "research/stages/R11/PLAN.md", "sha256": "b898866761e4a14db532e291a4e15d57d8f9f05c9380f297ef3032271ac6bdc0"},
+    {"path": "research/stages/R11/inputs/protocol.json", "sha256": "67e09270f43c54bb2299918676a225d28d1a2411ff5c25218edd2a95f3ef66c1"}
+  ],
+  "checks": {
+    "scientific_design": "No substantive statistical blocker found in the frozen scientific values. Three schedules over two datasets and12 seed units yield72 final models. All arms use the same two-fit continuation mechanism, preventing continuation itself from being unique to stepup/down arms. Contrast concerns complete schedule regimes, not an isolated instantaneous jump with identical prehistory.",
+    "learning_rate_budget": "Each arm has128 steps at each of two rates summing to.22, so the total prescribed LR sum is28.16. Cumulative LR clock includes zero at t0 and assigns rates to the correct tree segments. It is a descriptive prescribed clock, not a guarantee of equal gradient paths or partitions.",
+    "boundary_and_intervals": "For boundary128 and32 points, before97:129 and after128:160 exactly match the scientific plan. Primary four contrasts use paired seed differences. Two-sided Student-t intervals with per-comparison alpha=.05/4 have nominal Bonferroni family coverage under the stated approximation. Four clock diagnostics form a separate declared family; no joint eight-contrast95% claim is justified.",
+    "data_and_predictions": "Synthetic data regenerated per seed; breast cancer repeats are conditional on one fixed corpus. Splits are disjoint and stratified, model/split channels separated and paired across schedules; no preprocessing or test selection. Raw logits, labels, row order, split indices, per-iteration exact classification errors, margins, gradient summaries and models are saved. t0 verifies the fitted bias against the train-prevalence logit.",
+    "unit_tests": "uv run python -m unittest tests.test_acceleration_boosting -v: seven tests passed. This included one tiny continuation fit, not the scientific grid. The fit must be removed from default CI discovery before acceptance.",
+    "math_note": "The algebra in docs/methods/acceleration-identifiability.md is correct on its stated domain, including zero steps for plateaus and positive loss excluding eta=1. However this reviewer supplied the constructive quadratic argument earlier and therefore cannot serve as the independent scientific reviewer of that mathematical conclusion. A separate non-contributing subagent must bind-review it."
+  },
+  "scientific_validity": "not_assessed"
+}

@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "stage_id": "R17",
+  "status": "frozen",
+  "question": "How much do historical cross-model released-acknowledgment gaps change under exact released-input support restriction?",
+  "scope": "confirmation only; all eight frozen models,28pairs,three datasets; no reserve outcomes, causal inference, paid API/GPU or model training. All supported/inconclusive/negative outcomes retained. Pre-outcome amended population excludes entire original baseline-union clusters with conflicting same-input cross-question reference metadata; all other integrity gates retained.",
+  "authorization_decision": {
+    "path": "research/decisions/alignment-portfolio-authorization-2026-11-08.json",
+    "sha256": "c0ad0d0aa0fdb84d70f4ddfe7b613a22436400003427d37882284f1bdbbb38b1"
+  },
+  "budget": {
+    "max_wall_seconds": 1800,
+    "total_wall_seconds": 3600,
+    "max_attempts": 2
+  },
+  "tasks": [
+    {
+      "id": "unit-checks",
+      "argv": [
+        "{python}",
+        "{repo}/scripts/run_unit_checks.py",
+        "--pattern",
+        "test_cot_audit.py"
+      ],
+      "inputs": [
+        "research/stages/R17/PLAN.md",
+        "research/stages/R17/inputs/analysis-protocol.json",
+        "research/stages/R17/inputs/design-review-amended.json",
+        "research/stages/R15/inputs/download-spec.json",
+        "research/stages/R15/inputs/dataset-LICENSE",
+        "research/stages/R15/inputs/dataset-README.md",
+        "docs/research-reset/cot-source-audit-2026-11-08.md",
+        "artifacts/intake/cot-audit-source/slim.parquet",
+        "artifacts/intake/cot-audit-source/download_manifest.json",
+        "artifacts/intake/cot-audit-source/schema_profile.json",
+        "artifacts/intake/cot-audit-source/intake_report.json",
+        "src/__init__.py",
+        "src/cot_audit.py",
+        "scripts/cot_audit.py",
+        "tests/test_cot_audit.py",
+        "pyproject.toml",
+        "uv.lock",
+        "scripts/run_unit_checks.py",
+        "research/stages/R16/AMENDMENT-metadata-population.md",
+        "research/reviews/R16-attempt1-failure.json",
+        "artifacts/intake/cot-metadata-audit/metadata_audit.json",
+        "research/stages/R16/inputs/metadata-scan-review.json"
+      ],
+      "outputs": [
+        "checks.json"
+      ],
+      "timeout_seconds": 90
+    },
+    {
+      "id": "ack-audit",
+      "argv": [
+        "{python}",
+        "{repo}/scripts/cot_audit.py",
+        "--input",
+        "{repo}/artifacts/intake/cot-audit-source/slim.parquet",
+        "--spec",
+        "{repo}/research/stages/R15/inputs/download-spec.json",
+        "--protocol",
+        "{repo}/research/stages/R17/inputs/analysis-protocol.json",
+        "--split",
+        "confirmation",
+        "--output",
+        "audit"
+      ],
+      "inputs": [
+        "research/stages/R17/PLAN.md",
+        "research/stages/R17/inputs/analysis-protocol.json",
+        "research/stages/R17/inputs/design-review-amended.json",
+        "research/stages/R15/inputs/download-spec.json",
+        "research/stages/R15/inputs/dataset-LICENSE",
+        "research/stages/R15/inputs/dataset-README.md",
+        "docs/research-reset/cot-source-audit-2026-11-08.md",
+        "artifacts/intake/cot-audit-source/slim.parquet",
+        "artifacts/intake/cot-audit-source/download_manifest.json",
+        "artifacts/intake/cot-audit-source/schema_profile.json",
+        "artifacts/intake/cot-audit-source/intake_report.json",
+        "src/__init__.py",
+        "src/cot_audit.py",
+        "scripts/cot_audit.py",
+        "tests/test_cot_audit.py",
+        "pyproject.toml",
+        "uv.lock",
+        "research/stages/R16/AMENDMENT-metadata-population.md",
+        "research/reviews/R16-attempt1-failure.json",
+        "artifacts/intake/cot-metadata-audit/metadata_audit.json",
+        "research/stages/R16/inputs/metadata-scan-review.json"
+      ],
+      "outputs": [
+        "audit/analysis.json",
+        "audit/dataquality.json",
+        "audit/per_question.parquet",
+        "audit/bootstrap.npz",
+        "audit/pairs.csv",
+        "audit/protocol.json"
+      ],
+      "timeout_seconds": 1500
+    }
+  ],
+  "exit_criteria": [
+    {
+      "id": "C1",
+      "description": "Frozen input integrity, all84cells/provenance, dependency clustering, disjoint selected split and untouched reserve verified.",
+      "task_ids": [
+        "unit-checks",
+        "ack-audit"
+      ]
+    },
+    {
+      "id": "C2",
+      "description": "All predeclared estimands, support/undefined cells, simultaneous intervals and predictions assessed honestly; any hypothesis outcome allowed.",
+      "task_ids": [
+        "ack-audit"
+      ]
+    },
+    {
+      "id": "C3",
+      "description": "Budgets CPU4/API0/GPU0/training0 honored; no outcome-adapted thresholds or omitted failed observations.",
+      "task_ids": [
+        "ack-audit"
+      ]
+    }
+  ],
+  "predictions": [
+    {
+      "id": "P1",
+      "statement": "Frozen metadata/keys/provenance and all estimand decomposition/split controls pass; any mismatch is technical failure."
+    },
+    {
+      "id": "P2",
+      "statement": "Confirmation only: at least2support/inference-eligible cells across at least2datasets have absolute delta_total>=.05 and maxT95%interval wholly outside[-.02,.02]; discovery never confirms this."
+    },
+    {
+      "id": "P3",
+      "statement": "At least4SUPPORT-eligible cells across>=2datasets establish structural analyzability; discovery go depends only on this and integrity, not effects or SE."
+    },
+    {
+      "id": "P4",
+      "statement": "Robustness can be stated only if analyzability holds and ALL support-eligible primary intervals exist within[-.05,.05]; otherwise inconclusive unless sensitivity gate passes."
+    }
+  ]
+}

@@ -1,0 +1,282 @@
+{
+  "schema_version": 1,
+  "stage_id": "R14",
+  "attempt_id": "20261108T073937-26f816e66d",
+  "reviewer_agent": "/root/r14_final_review",
+  "status": "complete_operational_review",
+  "scientific_validity": "not_assessed",
+  "manifest_sha256": "29d2cf114c9886b61f10ad5b7f5955ac4b63f157edc6fdc46e2e012919347f05",
+  "plan_sha256": "2cdb3c1411ea7155a3a89c0abc1bfe8b4f58e85b9c8ae3a552347cdc336f41df",
+  "report_sha256": "34763eb84b76dc80d0cdd28f0709d341db1fe586834c0fc58fccc548d7ed6ba0",
+  "artifacts": [
+    {
+      "path": "artifacts/intake/R14-final-review/rerun_prior_independent_audit.py",
+      "sha256": "08240e7c95c1d8d8e37e210fa99aee3ca120bcaff2c0395032ae9eb1b07d8a7c"
+    },
+    {
+      "path": "artifacts/intake/R14-final-review/pure-audit-result.json",
+      "sha256": "72851d8657d2d630ad734f717c057605378f1f840320e2784127e71280d529b4"
+    },
+    {
+      "path": "artifacts/intake/R14-final-review/native_audit.py",
+      "sha256": "46af1b5b68acc34ea248ca03cecfb38b6fd2464165c4674d4cb08b2ff2ddcad8"
+    },
+    {
+      "path": "artifacts/intake/R14-final-review/native-audit-result.json",
+      "sha256": "4da2b92f63d82af997fc73a946d99ab86300520f9c2d8701232ffbda2c25447e"
+    },
+    {
+      "path": "artifacts/intake/R14-final-review/gates-cost-audit-result.json",
+      "sha256": "e6755f409d2048447021fbccdea0fb0c500d0ebce9d00fbc23143eac77117e41"
+    },
+    {
+      "path": "artifacts/intake/R14-final-review/live-verify.json",
+      "sha256": "10c025cc6f8df473a49514b1515fea8874fee6f07e6ad15b89519698169b8f9e"
+    },
+    {
+      "path": "research/reviews/R14-final-visual-qa.json",
+      "sha256": "e6f25c0172d85100231efb0b39e79b61528e0645b8c44d635e41ecfc1be5df75"
+    }
+  ],
+  "pure_math_audit": {
+    "verified": true,
+    "attempt": "20261108T073937-26f816e66d",
+    "contexts": 32,
+    "directions": 384,
+    "model_and_fit_hashes_checked": 416,
+    "OOF_rows_checked": 64,
+    "baseline_replays_checked": 128,
+    "max_errors": {
+      "consolidated_context_inputs": 0.0,
+      "frozen_seed_inputs": 0.0,
+      "frozen_seed_noise": 0.0,
+      "nominal_teacher_labels": 0.0,
+      "native_base_labels": 0.0,
+      "frozen_seed_directions": 0.0,
+      "train_only_quantile": 0.0,
+      "binary_threshold_train": 0.0,
+      "binary_threshold_evaluation": 0.0,
+      "independent_partition_operators": 0.0,
+      "native_baseline_replay": 7.993605777301127e-15,
+      "per_tree_efc": 0.0,
+      "efc_weights": 0.0,
+      "baseline_feature_train_mse": 0.0,
+      "baseline_feature_collision_mse_floor": 1.1102230246251565e-16,
+      "baseline_feature_trajectory_weighted_per_tree_efc_proxy": 0.0,
+      "baseline_feature_frozen_eval_noise_gain": 0.0,
+      "baseline_feature_frozen_train_noise_gain": 0.0,
+      "baseline_feature_largest_train_singular_value": 0.0,
+      "raw_base_label_binding": 0.0,
+      "raw_fit_prediction_leaf_binding": 0.0,
+      "raw_fit_label_binding": 0.0,
+      "native_perturbation_delta": 0.0,
+      "full_response_arrays": 0.0,
+      "frozen_response_arrays": 0.0,
+      "structural_response_arrays": 0.0,
+      "response_metric_normalized_full": 0.0,
+      "response_metric_normalized_frozen": 0.0,
+      "response_metric_normalized_structural_discrepancy": 0.0,
+      "response_metric_normalized_twice_cross": 0.0,
+      "direction_clean_quality": 0.0,
+      "endpoint_cheap_discrepancy": 0.0,
+      "endpoint_full_discrepancy": 0.0,
+      "forecast_base_feature": 1.1102230246251565e-16,
+      "pre_response_feature_snapshot": 1.1102230246251565e-16,
+      "pre_response_probe_snapshot": 0.0,
+      "independent_OOF_B0": 0.0,
+      "draw_MAE_B0": 0.0,
+      "teacher_MAE_B0": 5.551115123125783e-17,
+      "aggregate_MAE_B0": 0.0,
+      "independent_OOF_B1": 3.3306690738754696e-16,
+      "draw_MAE_B1": 5.551115123125783e-17,
+      "teacher_MAE_B1": 5.551115123125783e-17,
+      "aggregate_MAE_B1": 5.551115123125783e-17,
+      "independent_OOF_B2": 8.770761894538737e-15,
+      "draw_MAE_B2": 3.0531133177191805e-16,
+      "teacher_MAE_B2": 1.1102230246251565e-16,
+      "aggregate_MAE_B2": 1.1102230246251565e-16,
+      "independent_OOF_B3": 5.551115123125783e-16,
+      "draw_MAE_B3": 1.1102230246251565e-16,
+      "teacher_MAE_B3": 5.551115123125783e-17,
+      "aggregate_MAE_B3": 0.0,
+      "independent_OOF_B4": 0.0,
+      "draw_MAE_B4": 0.0,
+      "teacher_MAE_B4": 2.7755575615628914e-17,
+      "aggregate_MAE_B4": 0.0,
+      "independent_OOF_A": 7.216449660063518e-15,
+      "draw_MAE_A": 6.661338147750939e-16,
+      "teacher_MAE_A": 2.220446049250313e-16,
+      "aggregate_MAE_A": 5.551115123125783e-17,
+      "target_range": 0.0,
+      "timing_totals_base_fit_seconds": 0.0,
+      "timing_totals_base_prediction_seconds": 0.0,
+      "timing_totals_base_leaf_evidence_seconds": 0.0,
+      "timing_totals_base_operator_seconds": 0.0,
+      "timing_totals_base_feature_seconds": 0.0,
+      "timing_totals_cheap_fit_seconds": 0.0,
+      "timing_totals_cheap_prediction_seconds": 0.0,
+      "timing_totals_cheap_decomposition_seconds": 0.0,
+      "timing_totals_cheap_leaf_evidence_seconds": 0.0,
+      "timing_totals_full_fit_seconds": 0.0,
+      "timing_totals_full_prediction_seconds": 0.0,
+      "timing_totals_full_decomposition_seconds": 0.0,
+      "timing_totals_full_leaf_evidence_seconds": 0.0,
+      "timing_totals_label_preparation_seconds": 0.0,
+      "timing_totals_io_seconds": 0.0,
+      "timing_totals_context_elapsed_seconds": 0.0,
+      "direction_timing_totals_cheap_fit": 0.0,
+      "direction_timing_totals_cheap_prediction": 0.0,
+      "direction_timing_totals_cheap_decomposition": 0.0,
+      "direction_timing_totals_cheap_leaf_evidence": 0.0,
+      "direction_timing_totals_full_fit": 0.0,
+      "direction_timing_totals_full_prediction": 0.0,
+      "direction_timing_totals_full_decomposition": 0.0,
+      "direction_timing_totals_full_leaf_evidence": 0.0,
+      "primary_cost_ratio": 0.0
+    },
+    "fits_performed": 0,
+    "native_model_inference_performed": 0,
+    "source_mutations": 0
+  },
+  "pure_audit_provenance": "Current reviewer independently read and reran the separate mathematical audit originally authored by /root/r14_reviewer; evaluated implementation functions were not used for reconstruction/augmented-lstsq OOF calculations. Prior QA record remains partial and unchanged.",
+  "native_audit": {
+    "verified": true,
+    "reviewer_agent": "/root/r14_final_review",
+    "models_checked": 416,
+    "calls": {
+      "prediction": 832,
+      "leaf_indices": 832,
+      "prefix32_prediction": 64
+    },
+    "native_prediction_max_error": 0,
+    "native_leaves_exact": true,
+    "unit_weights_exact": true,
+    "metadata_display_rounding": {
+      "count": 832,
+      "fields": [
+        "bayesian_matrix_reg",
+        "learning_rate"
+      ],
+      "max_absolute_error": 9.883885376815726e-12,
+      "first_two_examples": [
+        {
+          "id": "linear_s14001_p4__base",
+          "field": "bayesian_matrix_reg",
+          "saved": 0.10000000149011612,
+          "loaded": 0.1000000015,
+          "absolute_error": 9.883885376815726e-12
+        },
+        {
+          "id": "linear_s14001_p4__base",
+          "field": "learning_rate",
+          "saved": 0.10000000149011612,
+          "loaded": 0.1000000015,
+          "absolute_error": 9.883885376815726e-12
+        }
+      ],
+      "tolerance": 1e-10,
+      "scope": "Only get_all_params decimal display; study replay/native tolerances unchanged"
+    },
+    "fits_performed": 0,
+    "new_data_draws": 0,
+    "source_mutations": 0,
+    "thread_count": 4
+  },
+  "gates_and_cost_audit": {
+    "reviewer_agent": "/root/r14_final_review",
+    "verified": true,
+    "aggregate_gain_gate": {
+      "B0": true,
+      "B1": false,
+      "B2": false,
+      "B3": false,
+      "B4": true
+    },
+    "draws_not_worse_per_baseline": {
+      "B2": 3,
+      "B3": 3,
+      "B4": 4
+    },
+    "teacher_gates": {
+      "linear": {
+        "B2": true,
+        "B3": true,
+        "B4": true
+      },
+      "interaction": {
+        "B2": true,
+        "B3": true,
+        "B4": true
+      }
+    },
+    "P2_forecast": false,
+    "range_gate": true,
+    "go": false,
+    "P3_probe_ratio": 0.15061972407846652,
+    "P3_whole_forecaster_given_only_basefit_operator": "not_established",
+    "additional_cost_ratio_bounds": [
+      0.16050528441309422,
+      0.7778347138472665
+    ],
+    "mixed_EFC_base_prediction_seconds": 14.976943103596568,
+    "cold_forecast_full_ratio": 1.079786074243844,
+    "secondary_cheap_C_gt_D_count": 31,
+    "secondary_C_lt_D_count": 33,
+    "secondary_negative_full_eval_cross": 73,
+    "secondary_group_mean_D_monotonic": {
+      "linear_0.01": [
+        0.00015837772927447628,
+        2.029167091016619,
+        5.182222588362264,
+        13.534265660897692
+      ],
+      "linear_0.1": [
+        3.2369458323345484e-05,
+        0.1420957939666503,
+        0.37682494123741095,
+        0.5824951208182929
+      ],
+      "interaction_0.01": [
+        0.004547976908304916,
+        6.491750242852964,
+        90.97419424217532,
+        176.91774675821534
+      ],
+      "interaction_0.1": [
+        0.005690066711613033,
+        0.6271579172157291,
+        1.8808073007673873,
+        4.568704210846882
+      ]
+    },
+    "report_sha256": "34763eb84b76dc80d0cdd28f0709d341db1fe586834c0fc58fccc548d7ed6ba0",
+    "fits_performed": 0,
+    "new_data_draws": 0,
+    "source_mutations": 0
+  },
+  "visual_co_reviewer": "/root/r14_final_review/visual_qa",
+  "visual_qa": {
+    "path": "research/reviews/R14-final-visual-qa.json",
+    "sha256": "e6f25c0172d85100231efb0b39e79b61528e0645b8c44d635e41ecfc1be5df75",
+    "scope": "All113 overview and9 full-resolution inspected by visual co-reviewer; parent reviewer personally inspected MAE, cost-scope and source-decision panels."
+  },
+  "secondary_group_mean_clean_evaluation_mse_decreases_by_prefix": {
+    "linear": [
+      0.4194762265523797,
+      0.19825628943604715,
+      0.11227003002876217,
+      0.07066754574978641
+    ],
+    "interaction": [
+      0.6652347355523242,
+      0.3933372601303143,
+      0.3223878305335396,
+      0.24845833515781252
+    ]
+  },
+  "C3_assessment": "Pass for complete faithful operational assessment including inconclusive outcomes, explicitly permitted by C3. Broader P3 method-cost is not established; no positive method-cost, utility, confirmation or novelty claim follows. P2 failure independently stops this candidate.",
+  "new_fits": 0,
+  "new_study_draws": 0,
+  "evaluated_source_or_output_mutations": 0,
+  "full_goal_achieved": false
+}

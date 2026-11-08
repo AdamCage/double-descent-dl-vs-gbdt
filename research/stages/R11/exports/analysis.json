@@ -1,0 +1,333 @@
+{
+  "schema_version": 1,
+  "protocol_id": "R11-schedule-controls-2026-11-07",
+  "protocol_sha256": "67e09270f43c54bb2299918676a225d28d1a2411ff5c25218edd2a95f3ef66c1",
+  "n_cells": 72,
+  "expected_cells": 72,
+  "seeds": [
+    12001,
+    12002,
+    12003,
+    12004,
+    12005,
+    12006,
+    12007,
+    12008,
+    12009,
+    12010,
+    12011,
+    12012
+  ],
+  "datasets": [
+    "synthetic",
+    "breast_cancer"
+  ],
+  "schedules": {
+    "constant": [
+      0.11,
+      0.11
+    ],
+    "stepup": [
+      0.02,
+      0.2
+    ],
+    "stepdown": [
+      0.2,
+      0.02
+    ]
+  },
+  "primary_contrasts": [
+    {
+      "dataset": "synthetic",
+      "schedule_minus_constant": "stepup",
+      "outcome": "supported",
+      "n": 12,
+      "values": [
+        0.0032312637490453117,
+        0.004532004954066518,
+        0.0046020193176482364,
+        0.001576660102534289,
+        0.002802015091386747,
+        0.0039021720104224786,
+        0.006209573237787383,
+        0.004280898378925776,
+        0.004694876684147161,
+        0.00520884537666392,
+        0.005099821022361495,
+        0.004942399595734292
+      ],
+      "mean": 0.004256879126726967,
+      "standard_error": 0.0003563800061831621,
+      "ci95_student_t": [
+        0.003472492021764461,
+        0.005041266231689474
+      ],
+      "ci_family_bonferroni": [
+        0.00319455579167358,
+        0.005319202461780355
+      ],
+      "family_alpha": 0.05,
+      "family_comparisons": 4,
+      "assumptions": "Independent replicate differences and approximate t inference; fixed-corpus split repetitions do not sample new corpora."
+    },
+    {
+      "dataset": "synthetic",
+      "schedule_minus_constant": "stepdown",
+      "outcome": "supported",
+      "n": 12,
+      "values": [
+        -0.0007120666217324149,
+        -0.0008121997830539171,
+        -0.0006576087161613421,
+        -0.0005815430942245963,
+        -0.001724032532229656,
+        -0.000673096084360019,
+        -0.0004746126634470036,
+        -0.0015975042292008562,
+        -0.00046890775157142387,
+        -0.00045027566279409205,
+        -0.0010440824385190709,
+        -0.0009009962250589716
+      ],
+      "mean": -0.0008414104835294469,
+      "standard_error": 0.00012212878744598723,
+      "ci95_student_t": [
+        -0.0011102141323180508,
+        -0.0005726068347408429
+      ],
+      "ci_family_bonferroni": [
+        -0.0012054608189429527,
+        -0.0004773601481159411
+      ],
+      "family_alpha": 0.05,
+      "family_comparisons": 4,
+      "assumptions": "Independent replicate differences and approximate t inference; fixed-corpus split repetitions do not sample new corpora."
+    },
+    {
+      "dataset": "breast_cancer",
+      "schedule_minus_constant": "stepup",
+      "outcome": "supported",
+      "n": 12,
+      "values": [
+        0.00181420745872332,
+        0.0011789864157210439,
+        0.001901831532668553,
+        0.0012531255886693632,
+        0.001536250112675659,
+        0.001914681126798259,
+        0.0011810295831449988,
+        0.0017969721284628636,
+        0.0018981749060040325,
+        0.0014443952078855291,
+        0.002238543526894153,
+        0.0017927195279652337
+      ],
+      "mean": 0.0016625764263010839,
+      "standard_error": 9.781684967908448e-05,
+      "ci95_student_t": [
+        0.0014472829917505045,
+        0.0018778698608516633
+      ],
+      "ci_family_bonferroni": [
+        0.0013709968758980947,
+        0.001954155976704073
+      ],
+      "family_alpha": 0.05,
+      "family_comparisons": 4,
+      "assumptions": "Independent replicate differences and approximate t inference; fixed-corpus split repetitions do not sample new corpora."
+    },
+    {
+      "dataset": "breast_cancer",
+      "schedule_minus_constant": "stepdown",
+      "outcome": "inconclusive",
+      "n": 12,
+      "values": [
+        -8.271368530970584e-05,
+        -0.00022804500825832183,
+        -0.00012021433241421684,
+        -0.00025057587214579184,
+        -7.649973162869559e-05,
+        -0.00017897213076094163,
+        -0.00014567454933521533,
+        -0.0005190392848136079,
+        0.00019796201792834087,
+        -0.00013629126949111652,
+        4.7562964792033174e-05,
+        -0.0001386648953825286
+      ],
+      "mean": -0.0001359304814016473,
+      "standard_error": 4.939951763387814e-05,
+      "ci95_student_t": [
+        -0.0002446580866294983,
+        -2.720287617379629e-05
+      ],
+      "ci_family_bonferroni": [
+        -0.0002831841415743753,
+        1.1323178771080662e-05
+      ],
+      "family_alpha": 0.05,
+      "family_comparisons": 4,
+      "assumptions": "Independent replicate differences and approximate t inference; fixed-corpus split repetitions do not sample new corpora."
+    }
+  ],
+  "lr_clock_diagnostic_contrasts": [
+    {
+      "dataset": "synthetic",
+      "schedule_minus_constant": "stepup",
+      "interpretation": "Prespecified diagnostic; cumulative prescribed learning rate changes clock but does not hold learned tree partitions or gradient path fixed.",
+      "n": 12,
+      "values": [
+        -0.028902334416248107,
+        -0.03457705286529881,
+        -0.02384861398743912,
+        -0.04622950141491501,
+        -0.02975756980576993,
+        -0.03076178241306981,
+        -0.008934782730787372,
+        -0.02232308512245109,
+        -0.02452287430466476,
+        -0.011002142478210486,
+        -0.008333546907975492,
+        -0.020268716205109116
+      ],
+      "mean": -0.02412183355432826,
+      "standard_error": 0.0032182299332463153,
+      "ci95_student_t": [
+        -0.031205109879166103,
+        -0.017038557229490416
+      ],
+      "ci_family_bonferroni": [
+        -0.03371496643591244,
+        -0.01452870067274408
+      ],
+      "family_alpha": 0.05,
+      "family_comparisons": 4,
+      "assumptions": "Independent replicate differences and approximate t inference; fixed-corpus split repetitions do not sample new corpora."
+    },
+    {
+      "dataset": "synthetic",
+      "schedule_minus_constant": "stepdown",
+      "interpretation": "Prespecified diagnostic; cumulative prescribed learning rate changes clock but does not hold learned tree partitions or gradient path fixed.",
+      "n": 12,
+      "values": [
+        0.002929172829476954,
+        0.0011565936061210744,
+        0.0025771535720990326,
+        0.002449526297152055,
+        -0.0020528049785124127,
+        0.0010326874276348967,
+        0.005659072825813263,
+        -0.0036605973161226288,
+        0.0038327115612065595,
+        0.0024892181347088717,
+        0.002131215101401983,
+        -2.5106483076598254e-05
+      ],
+      "mean": 0.001543236881491921,
+      "standard_error": 0.0007288160985133576,
+      "ci95_student_t": [
+        -6.087653577186488e-05,
+        0.003147350298755707
+      ],
+      "ci_family_bonferroni": [
+        -0.0006292709331450963,
+        0.0037157446961289383
+      ],
+      "family_alpha": 0.05,
+      "family_comparisons": 4,
+      "assumptions": "Independent replicate differences and approximate t inference; fixed-corpus split repetitions do not sample new corpora."
+    },
+    {
+      "dataset": "breast_cancer",
+      "schedule_minus_constant": "stepup",
+      "interpretation": "Prespecified diagnostic; cumulative prescribed learning rate changes clock but does not hold learned tree partitions or gradient path fixed.",
+      "n": 12,
+      "values": [
+        -0.05042613316421931,
+        -0.05392515196952883,
+        -0.0498303065423231,
+        -0.056135621022698104,
+        -0.0526444364828696,
+        -0.04898812753497634,
+        -0.053672980784387384,
+        -0.04961982986631403,
+        -0.050218691230505014,
+        -0.0525073429812241,
+        -0.04705734061096302,
+        -0.05136100316500669
+      ],
+      "mean": -0.05136558044625129,
+      "standard_error": 0.0007250065054272405,
+      "ci95_student_t": [
+        -0.05296130900566654,
+        -0.04976985188683603
+      ],
+      "ci_family_bonferroni": [
+        -0.05352673234988818,
+        -0.04920442854261439
+      ],
+      "family_alpha": 0.05,
+      "family_comparisons": 4,
+      "assumptions": "Independent replicate differences and approximate t inference; fixed-corpus split repetitions do not sample new corpora."
+    },
+    {
+      "dataset": "breast_cancer",
+      "schedule_minus_constant": "stepdown",
+      "interpretation": "Prespecified diagnostic; cumulative prescribed learning rate changes clock but does not hold learned tree partitions or gradient path fixed.",
+      "n": 12,
+      "values": [
+        0.0009902353799955245,
+        -0.0002865517008065942,
+        0.001075379375920536,
+        0.00017186686609155233,
+        0.001016776747783904,
+        0.00018195498883866548,
+        0.001837660615822387,
+        -0.0019664501746333354,
+        0.004478032032918896,
+        0.0009804961293035546,
+        0.0024297155956324672,
+        0.00027494976222373283
+      ],
+      "mean": 0.0009320054682576076,
+      "standard_error": 0.00045334757293025526,
+      "ci95_student_t": [
+        -6.580581212544615e-05,
+        0.0019298167486406612
+      ],
+      "ci_family_bonferroni": [
+        -0.0004193658131214818,
+        0.002283376749636697
+      ],
+      "family_alpha": 0.05,
+      "family_comparisons": 4,
+      "assumptions": "Independent replicate differences and approximate t inference; fixed-corpus split repetitions do not sample new corpora."
+    }
+  ],
+  "primary_boundary": 128,
+  "contrast_points": 32,
+  "same_continuation_semantics": true,
+  "equal_integrated_learning_rate": true,
+  "used_test_to_choose_grid": false,
+  "double_descent_declared": false,
+  "natural_acceleration_mechanism_identified": false,
+  "synthetic_null_pvalues_transportable": false,
+  "gpu_jobs": 0,
+  "paid_api_spend": 0,
+  "download_bytes": 0,
+  "elapsed_seconds": 55.67200000025332,
+  "artifact_hashes": {
+    "cells.jsonl": "df64212083191fb78579c5883b282318d8a00ce669eff2d643c10693f4d83185",
+    "predictions.npz": "3045935cd2290cc944d0a8d0e3d4aa871fbece4b4cc307c6c9f15620e013c0f3",
+    "data.npz": "e95b1bd73f14a578e9662a813e424739b93032c01812492bd8c6bf53a9c9cba4",
+    "models.json": "398160c18ebddba0fbffaf5f74682ceab1e9d180af19fd6852b0b82dbd43fdb2"
+  },
+  "scientific_validity": "not_assessed",
+  "limitations": [
+    "Three predeclared schedules on two small environments only.",
+    "Scheduled acceleration is a positive control, not a naturally discovered phenomenon.",
+    "Breast-cancer repetitions are conditional on one fixed corpus.",
+    "Student-t intervals assume independent replicate differences and approximate distributional adequacy.",
+    "Train-loss acceleration alone cannot establish double descent or its mechanism."
+  ]
+}

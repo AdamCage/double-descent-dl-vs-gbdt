@@ -23,7 +23,7 @@ def main(argv: list[str] | None = None) -> int:
         child.add_argument("stage")
         if command in ("verify", "review", "close"):
             child.add_argument("--attempt")
-        if command == "verify":
+        if command in ("verify", "review"):
             child.add_argument("--historical", action="store_true", help="Verify frozen evidence without requiring live sources to match")
         if command == "review":
             choice = child.add_mutually_exclusive_group(required=True)
@@ -45,12 +45,14 @@ def main(argv: list[str] | None = None) -> int:
             result = workflow.verify(args.stage, args.attempt, live_sources=not args.historical)
         elif args.command == "review":
             if args.prepare:
+                if args.historical:
+                    raise WorkflowError("Historical review import requires an already scored revise/reject review")
                 if not args.report:
                     raise WorkflowError("review --prepare requires --report")
                 result = workflow.review_template(args.stage, args.report, args.attempt)
                 write_json(args.prepare, result, exclusive=True)
             else:
-                result = workflow.review(args.stage, args.review, args.attempt)
+                result = workflow.review(args.stage, args.review, args.attempt, historical=args.historical)
         else:
             result = workflow.close(args.stage, args.attempt)
         print(json.dumps(result, indent=2, ensure_ascii=False))

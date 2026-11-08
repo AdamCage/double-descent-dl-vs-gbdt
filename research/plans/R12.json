@@ -1,0 +1,196 @@
+{
+  "schema_version": 1,
+  "stage_id": "R12",
+  "status": "frozen",
+  "question": "How does whole-run split-score randomness change acceleration diagnostics at constant learning rate, and is a fixed late event established?",
+  "scope": "Fixed72 continuous CatBoost fits: two environments,12newseedunits,random_strength0/1/10,1024trees. No grid adaptation, no identification of annealing or double descent.",
+  "authorization_decision": {
+    "path": "research/decisions/codex-refactor-authorization-2026-11-07.json",
+    "sha256": "8559055cea21e6f58bdd58b07930e5d9ab505a84a1ea58c72721c0c5e4e2119d"
+  },
+  "budget": {
+    "max_wall_seconds": 3600,
+    "total_wall_seconds": 7200,
+    "max_attempts": 2
+  },
+  "tasks": [
+    {
+      "id": "unit-checks",
+      "argv": [
+        "{python}",
+        "{repo}/scripts/run_unit_checks.py",
+        "--pattern",
+        "test_acceleration_randomness.py",
+        "--model-smoke"
+      ],
+      "inputs": [
+        "src/__init__.py",
+        "src/acceleration_randomness.py",
+        "src/acceleration_boosting.py",
+        "src/acceleration_audit.py",
+        "src/detector_catalog.py",
+        "src/dynamics.py",
+        "uv.lock",
+        "scripts/run_unit_checks.py",
+        "tests/test_acceleration_randomness.py",
+        "research/stages/R12/inputs/protocol.json"
+      ],
+      "outputs": [
+        "checks.json"
+      ],
+      "timeout_seconds": 60
+    },
+    {
+      "id": "randomness-study",
+      "argv": [
+        "{python}",
+        "{repo}/scripts/r12_run.py",
+        "--protocol",
+        "{repo}/research/stages/R12/inputs/protocol.json"
+      ],
+      "inputs": [
+        "src/__init__.py",
+        "src/acceleration_randomness.py",
+        "src/acceleration_boosting.py",
+        "src/acceleration_audit.py",
+        "src/detector_catalog.py",
+        "src/dynamics.py",
+        "uv.lock",
+        "scripts/r12_run.py",
+        "tests/test_acceleration_randomness.py",
+        "research/stages/R12/PLAN.md",
+        "research/stages/R12/inputs/protocol.json",
+        "research/stages/R12/inputs/design-review.json",
+        "docs/decisions/0004-v2-research-refactor.md",
+        "docs/methods/acceleration-identifiability.md",
+        "docs/literature/2026-11-07-v2-audit.md"
+      ],
+      "outputs": [
+        "cells.jsonl",
+        "analysis.json",
+        "predictions.npz",
+        "data.npz",
+        "models.json",
+        "environment.json",
+        "models/synthetic_13001_rs0.cbm",
+        "models/synthetic_13001_rs1.cbm",
+        "models/synthetic_13001_rs10.cbm",
+        "models/synthetic_13002_rs0.cbm",
+        "models/synthetic_13002_rs1.cbm",
+        "models/synthetic_13002_rs10.cbm",
+        "models/synthetic_13003_rs0.cbm",
+        "models/synthetic_13003_rs1.cbm",
+        "models/synthetic_13003_rs10.cbm",
+        "models/synthetic_13004_rs0.cbm",
+        "models/synthetic_13004_rs1.cbm",
+        "models/synthetic_13004_rs10.cbm",
+        "models/synthetic_13005_rs0.cbm",
+        "models/synthetic_13005_rs1.cbm",
+        "models/synthetic_13005_rs10.cbm",
+        "models/synthetic_13006_rs0.cbm",
+        "models/synthetic_13006_rs1.cbm",
+        "models/synthetic_13006_rs10.cbm",
+        "models/synthetic_13007_rs0.cbm",
+        "models/synthetic_13007_rs1.cbm",
+        "models/synthetic_13007_rs10.cbm",
+        "models/synthetic_13008_rs0.cbm",
+        "models/synthetic_13008_rs1.cbm",
+        "models/synthetic_13008_rs10.cbm",
+        "models/synthetic_13009_rs0.cbm",
+        "models/synthetic_13009_rs1.cbm",
+        "models/synthetic_13009_rs10.cbm",
+        "models/synthetic_13010_rs0.cbm",
+        "models/synthetic_13010_rs1.cbm",
+        "models/synthetic_13010_rs10.cbm",
+        "models/synthetic_13011_rs0.cbm",
+        "models/synthetic_13011_rs1.cbm",
+        "models/synthetic_13011_rs10.cbm",
+        "models/synthetic_13012_rs0.cbm",
+        "models/synthetic_13012_rs1.cbm",
+        "models/synthetic_13012_rs10.cbm",
+        "models/breast_cancer_13001_rs0.cbm",
+        "models/breast_cancer_13001_rs1.cbm",
+        "models/breast_cancer_13001_rs10.cbm",
+        "models/breast_cancer_13002_rs0.cbm",
+        "models/breast_cancer_13002_rs1.cbm",
+        "models/breast_cancer_13002_rs10.cbm",
+        "models/breast_cancer_13003_rs0.cbm",
+        "models/breast_cancer_13003_rs1.cbm",
+        "models/breast_cancer_13003_rs10.cbm",
+        "models/breast_cancer_13004_rs0.cbm",
+        "models/breast_cancer_13004_rs1.cbm",
+        "models/breast_cancer_13004_rs10.cbm",
+        "models/breast_cancer_13005_rs0.cbm",
+        "models/breast_cancer_13005_rs1.cbm",
+        "models/breast_cancer_13005_rs10.cbm",
+        "models/breast_cancer_13006_rs0.cbm",
+        "models/breast_cancer_13006_rs1.cbm",
+        "models/breast_cancer_13006_rs10.cbm",
+        "models/breast_cancer_13007_rs0.cbm",
+        "models/breast_cancer_13007_rs1.cbm",
+        "models/breast_cancer_13007_rs10.cbm",
+        "models/breast_cancer_13008_rs0.cbm",
+        "models/breast_cancer_13008_rs1.cbm",
+        "models/breast_cancer_13008_rs10.cbm",
+        "models/breast_cancer_13009_rs0.cbm",
+        "models/breast_cancer_13009_rs1.cbm",
+        "models/breast_cancer_13009_rs10.cbm",
+        "models/breast_cancer_13010_rs0.cbm",
+        "models/breast_cancer_13010_rs1.cbm",
+        "models/breast_cancer_13010_rs10.cbm",
+        "models/breast_cancer_13011_rs0.cbm",
+        "models/breast_cancer_13011_rs1.cbm",
+        "models/breast_cancer_13011_rs10.cbm",
+        "models/breast_cancer_13012_rs0.cbm",
+        "models/breast_cancer_13012_rs1.cbm",
+        "models/breast_cancer_13012_rs10.cbm"
+      ],
+      "timeout_seconds": 3500
+    }
+  ],
+  "exit_criteria": [
+    {
+      "id": "C1",
+      "description": "Exactly72 models with1024trees and1025finite rawtimepoints; allsource/outputs bound; meaningfulunitchecks pass.",
+      "task_ids": [
+        "unit-checks",
+        "randomness-study"
+      ]
+    },
+    {
+      "id": "C2",
+      "description": "Paired datahashes agree; saved models match finalstagedpredictions; realized/occupiedleaves and exactzeroerroriterations recorded.",
+      "task_ids": [
+        "randomness-study"
+      ]
+    },
+    {
+      "id": "C3",
+      "description": "Four scan-score contrasts,four fixedboundary contrasts and sixfamily12conjunctivegates evaluated without hiding negative outcomes.",
+      "task_ids": [
+        "randomness-study"
+      ]
+    },
+    {
+      "id": "C4",
+      "description": "No test-driven grid change,GPU/API/download or syntheticpvalue transport; no DD/annealingmechanism claim.",
+      "task_ids": [
+        "randomness-study"
+      ]
+    }
+  ],
+  "predictions": [
+    {
+      "id": "P1",
+      "statement": "random_strength10-minus0 has positive scan-scorecontrast in bothdatasets under adjustedintervals;strength1 has no signprediction."
+    },
+    {
+      "id": "P2",
+      "statement": "Allsixfixedlateeventgates are evaluated and either established or not_established without adaptingwindow."
+    },
+    {
+      "id": "P3",
+      "statement": "All72trajectories complete,pairedinputs unchanged,noDD or annealingmechanism claim."
+    }
+  ]
+}

@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "stage_id": "R15",
+  "review_mode": "subagent_review",
+  "harness": "codex",
+  "author_agent": "/root",
+  "coauthor_agents": [
+    "/root/cot_intake",
+    "/root/alignment_brainstorm"
+  ],
+  "reviewer_agent": "/root/reset_critic",
+  "reviewer_independence": "Distinct Codex subagent. Authored none of the evaluated R15 plan, specification, source audit, implementation or tests. Reviewed those artifacts read-only and independently ran seven pure/mock tests. Wrote only this bound preflight review. No parquet payload request, transcript outcome analysis, model call, fit or training. Local team review, not external peer review.",
+  "reviewed_at_utc": "2026-11-08T08:59:12.090214+00:00",
+  "verdict": "accept",
+  "blocking_issues": [],
+  "authorization_decision": {
+    "path": "research/decisions/alignment-portfolio-authorization-2026-11-08.json",
+    "sha256": "c0ad0d0aa0fdb84d70f4ddfe7b613a22436400003427d37882284f1bdbbb38b1"
+  },
+  "reviewed_artifacts": [
+    {
+      "path": "research/plans/R15.json",
+      "sha256": "424af380c2aa40e3ece0e3fe6e75e062c7487ec10399c3fa9fd2c3bb0d59f2e3"
+    },
+    {
+      "path": "research/stages/R15/PLAN.md",
+      "sha256": "9bea2541330bef5def21b4e1290c1e535bdf8a47572575a46c263070536958e0"
+    },
+    {
+      "path": "research/stages/R15/inputs/download-spec.json",
+      "sha256": "e28633394bacca464ffa4190527dd0d55b4db25ddc019c5f17a6bbb8e958c66c"
+    },
+    {
+      "path": "research/stages/R15/inputs/dataset-LICENSE",
+      "sha256": "c0dadc3d3f06dc19f2fed56f39c8d04d4d4a8a5cc8cf06522ee9d34107fd2a31"
+    },
+    {
+      "path": "research/stages/R15/inputs/dataset-README.md",
+      "sha256": "8460079e18374955310b16b82a25e2de9c7e9542f268d2698c01ffb4caddb616"
+    },
+    {
+      "path": "docs/research-reset/cot-source-audit-2026-11-08.md",
+      "sha256": "3f98afb2e3c659be7bfd118d7810222d412c47d13041db37e2b7c737feb330b7"
+    },
+    {
+      "path": "docs/decisions/0006-alignment-portfolio-reset.md",
+      "sha256": "2ffe8716ca9f4a1cc9b5e5570fa5ab5887c685e90243742f65d33eb591ff56c6"
+    },
+    {
+      "path": "research/decisions/alignment-portfolio-authorization-2026-11-08.json",
+      "sha256": "c0ad0d0aa0fdb84d70f4ddfe7b613a22436400003427d37882284f1bdbbb38b1"
+    },
+    {
+      "path": "src/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "src/cot_data.py",
+      "sha256": "c22bcacbb8534423fab04b3396f9a016a8dfe81d175863865340c356feb80b18"
+    },
+    {
+      "path": "scripts/cot_intake.py",
+      "sha256": "85ae142cf641aaf599fe757cbcb8ae583a2d87627c8ed47eb5202c246d73936e"
+    },
+    {
+      "path": "scripts/run_unit_checks.py",
+      "sha256": "d2fc3c360195cd7f8d69689b0dc60940dcd416e2b31b9396e60bfeafb9528c52"
+    },
+    {
+      "path": "tests/test_cot_intake.py",
+      "sha256": "c617c8aa4de3cbae82d70ce61a42890676a16b0442684c1a00e727d765a67fd3"
+    },
+    {
+      "path": "pyproject.toml",
+      "sha256": "5d43d6f7f88312b18299a1ec7e8ac921d512c271ac022de4ad0720eb5883e182"
+    },
+    {
+      "path": "uv.lock",
+      "sha256": "ac89eef670e3774086fff7a06df62f1ba760f85d6c76378ac915ca32b76523b4"
+    }
+  ],
+  "checks": {
+    "plan_and_scope": "Engineering intake only: all24 predeclared parquets at immutable revision a7a8b25ae467db9d80d63e55ac053b48753b2d36;940116134 payload bytes. No outcome rates/rankings, tests of scientific hypotheses or model execution. Fixed21 retained source columns and3 exact UTF8 text descriptors cover all24 declared source fields; source row count is not a scientific sample size.",
+    "source_access_and_license": "Read pinned source README and LICENSE. Their local sizes and hashes match the pre-acquisition source packet. Public/ungated source and explicit third-party model training restrictions are recorded. Statistical reanalysis is the stated use; no training. Constituent attribution and LICENSE must accompany derivative evidence.",
+    "network_and_retry": "Read transfer lock/reservation/commit, redirect and retry logic. At most4 HTTP workers,144 physical requests including redirects,2 attempts/file,1e9 returned-payload bytes including failed retries. HTTPS redirects restricted to huggingface.co and subdomains of huggingface.co/hf.co, at most5 hops. Immutable source URLs logged, signed redirect queries/headers/network exception strings suppressed. Failed partial bytes remain and are not overwritten. Tests exercise partial retry, cap exhaustion, wrong hash, redirect request accounting and secret-query suppression.",
+    "schema_and_provenance": "Every actual pinned payload must reverify size/SHA256 before Parquet reads. Strict full-column names and Arrow types checked before reduction. Batch2048 and Arrow threads4. All rows retained with source file/index/payload hash, row content hash and ordered choices hash. Null, false, empty string/list, non-ASCII UTF8 and nonfinite numeric values remain distinct; no outcome normalization or clipping. Slim cap checked during writes and after writer footer; failure leaves partial evidence.",
+    "security_and_execution": "No transcript string execution or deserialization of executable objects. Relative paths reject traversal, Windows reserved names, .env/.git/.venv, backslashes/colon and illegal characters; new/empty output requirement and no final overwrite. No model libraries, credentials, paid APIs or GPU jobs. CLI caps numeric thread environment before source imports.",
+    "budget_accounting": "Read resource_ledger acquisition scanner: dataset_download chunks are counted once as dataset bytes; http_request URL+attempt records count every initial/redirect request. Runtime log under attempt/intake is not automatically visible to global artifacts/intake scanner. The frozen PLAN explicitly requires a byte-exact new artifacts/intake/R15-accounting/<attempt>/acquisition.jsonl mirror after EVERY terminal attempt before any new run; this is a required coordinator action, including failure. Global cumulative resource guard must use the explicitly new charter and must not reset previous wall/storage/network use.",
+    "independent_tests": "Independently executed uv run python -m unittest discover -s tests -p test_cot_intake.py -v:7/7 PASS,0.407s. Tests use pure/mock HTTP and hand-constructed tiny Parquet fixtures, not study payloads. Includes full mocked output contract, no row filtering and failed-schema/slim-cap preservation.",
+    "pre_execution_state": "Actual four final hashes match parent supplied immutable packet: machine PLAN424af380c2aa40e3ece0e3fe6e75e062c7487ec10399c3fa9fd2c3bb0d59f2e3; scientific PLAN9bea2541330bef5def21b4e1290c1e535bdf8a47572575a46c263070536958e0; spec e28633394bacca464ffa4190527dd0d55b4db25ddc019c5f17a6bbb8e958c66c; charter c0ad0d0aa0fdb84d70f4ddfe7b613a22436400003427d37882284f1bdbbb38b1. At read, R15 registry engineering depends R14, preparation=true/execution=false; no artifacts/research/R15 exists. Normal registry activation after resource/repository checks does not change accepted input design."
+  },
+  "nonblocking_notes": [
+    "Preflight establishes code/design readiness only. Actual remote availability, real schemas, total row preservation, all24 payload hashes, slim size and resource compliance must be checked after the run. Any mismatch is failure; do not silently omit rows/files or relax caps.",
+    "Transfer accounting measures bytes returned by application reads and preserved/logged chunks, not lower-level TCP/TLS traffic. This is the repository payload-budget measure; headers and unread redirect bodies are not dataset bytes.",
+    "The internal TransferBudget default wall guard is900seconds, stricter than outer intake1500seconds. It may cause a preserved technical failure; do not extend it after outcomes or hide retries. Outer workflow timeout/lock remains necessary.",
+    "Input SHA256 identifies the released input column, not necessarily system/provider prompts or a causal treatment. No exact counterfactual or latent faithfulness inference follows from intake.",
+    "Observed HF schema metadata was not revision-pinned; actual pinned Parquet footer validation is required and implemented. A schema failure requires a newly reviewed spec/attempt, not a silent adaptation.",
+    "R16/R17 scientific design, endpoint weighting, clustered split, support rules and simultaneous inference require separate bound independent preflight before outcome analysis. This acceptance makes no novelty, alignment-safety, positive-result or journal-readiness claim."
+  ],
+  "required_before_dispatch": [
+    "uv run python scripts/research.py validate-plan R15",
+    "Frozen dependency and repository checks pass",
+    "Explicit new-charter cumulative wall/storage/dataset/HTTP budget check includes all retained attempts and source-doc acquisition",
+    "Activate only the accepted frozen R15 under the single dispatcher lock",
+    "After EVERY terminal attempt, mirror acquisition log byte-exact into a new artifacts/intake/R15-accounting/<attempt> before resource reconciliation or retry"
+  ],
+  "scientific_validity": "not_assessed"
+}

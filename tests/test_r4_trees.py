@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import unittest
+import os
 from pathlib import Path
 
 import numpy as np
@@ -34,6 +35,7 @@ class R4AxisTest(unittest.TestCase):
         self.assertFalse(set(protocol["discovery_data_seeds"]) & set(protocol["confirmation_data_seeds"]))
         self.assertFalse(reduce_menu(1.0, 2, 5, protocol)["used_clean_risk"])
 
+    @unittest.skipUnless(os.environ.get("RESEARCH_MODEL_SMOKE") == "1", "explicit research preflight only")
     def test_a_large_leaf_cap_can_interpolate_outside_research_seeds(self) -> None:
         rng = np.random.default_rng(0)
         features = rng.standard_normal((40, 4))

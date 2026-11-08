@@ -1,0 +1,17 @@
+{
+  "python": "3.12.11 (main, Aug 14 2025, 16:25:44) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "numpy": "2.4.4",
+  "scipy": "1.17.1",
+  "sklearn": "1.8.0",
+  "catboost": "1.2.10",
+  "cpu_threads": 4,
+  "thread_environment": {
+    "OMP_NUM_THREADS": "4",
+    "MKL_NUM_THREADS": "4",
+    "OPENBLAS_NUM_THREADS": "4"
+  },
+  "gpu_jobs": 0,
+  "torch_imported": false,
+  "download_bytes": 0
+}

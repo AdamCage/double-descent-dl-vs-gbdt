@@ -1,0 +1,112 @@
+{
+  "attempt_id": "20261108T095410-f87b41e0ef",
+  "author_agent": "/root",
+  "criteria": [
+    {
+      "evidence": [
+        "unit-checks/checks.json",
+        "ack-audit/audit/analysis.json",
+        "ack-audit/audit/dataquality.json",
+        "ack-audit/audit/protocol.json"
+      ],
+      "id": "C1",
+      "verdict": "pass"
+    },
+    {
+      "evidence": [
+        "ack-audit/audit/analysis.json",
+        "ack-audit/audit/bootstrap.npz",
+        "ack-audit/audit/per_question.parquet",
+        "ack-audit/audit/pairs.csv"
+      ],
+      "id": "C2",
+      "verdict": "pass"
+    },
+    {
+      "evidence": [
+        "ack-audit/audit/analysis.json",
+        "ack-audit/audit/dataquality.json",
+        "ack-audit/audit/protocol.json"
+      ],
+      "id": "C3",
+      "verdict": "pass"
+    }
+  ],
+  "limitations": [
+    "This is exploratory H2 reuse of the original30percent H1discovery, not confirmation/independent replication. No original35percent confirmation or35percent reserve ACK/factor outcome used; scanner filters selecteddiscovery rows before ACK enters Python. ProductionArrow may decode unselectedbatchvalues without statisticaluse, asdisclosed.",
+    "H1narrower literalcue-context result, initial metadatafailure and superseded unexecutedH1confirmation plans remain preserved. Newscope_only estimator was frozen separately beforeH2runs; it doesnot retroactivelyrepairH1 or justifythreshold/model/pairchanges.",
+    "All17material observations are candidate discovery effects under the locked descriptive rule; scientific confirmation must use ALREADYFROZEN R17 on untouched questions. No selection of successfulpairs or additionaldiscoverysweep allowed.",
+    "Native and exact-input estimands condition on different observed question/context populations. Changes are descriptive composition/version restrictions, notcausal cue effects, corrected truefaithfulness/rank, proof nativeadaptivepolicywrong, or identified missingcounterfactuals.",
+    "Equalreleasedcore-question estimator differs from source subdataset-macro metrics. SourceACK is anannotationproxy; false mayincludejudgeparsefailure. Exactinput mayexclude system/providerconfig. Cached2025models do not establish contemporaryfrontier/deploymentsafety.",
+    "Intervals are approximate empiricalquestion-cluster bootstrap conditional on cachedgenerations/judgelabels, separate nominalsimultaneousfamilies perendpoint/split. They do not quantify sourceannotationsemantictruth or supply programme-wide95percent coverage.",
+    "Only1GPQAdiscoverycell meets support; itsother pointshifts remain explicit unsupported. Freshconfirmation with minimum100clusters likely hasnoGPQAeligibility; do notlowercutoff. Separatecuekinds/modelpairs are not independentreplications.",
+    "Fullmetadata conflict ledger exactlymatches14hashes/4BBHq/2wholeclusters/192rows fixedbeforeACK, withoriginalsplitkeys preserved. Exclusion narrows population anddoesnotfixgoldlabels orprove sourcecause/ACKinvalidity.",
+    "Analysis27.031s/attempt28.735s,CPU4/noAPI/GPU/training/download andactualoutputs<=256MiB acceptedoperationally; cumulative budgets stillapply. Scientificnovelty/journalreadiness are notestablished bypositiveexploration alone."
+  ],
+  "manifest_sha256": "013d64068eb35df60f5ae0287493d0dcdcd0e520becec0494f5d9a8417ee2d0c",
+  "plan_sha256": "2a911b5a618ebd123f586d5fb8f6d546e6b2b481fdd0ed786808667e605f1c22",
+  "predictions": [
+    {
+      "evidence": [
+        "ack-audit/audit/analysis.json",
+        "ack-audit/audit/dataquality.json"
+      ],
+      "id": "P1",
+      "outcome": "supported: independent checker reconstructed2858selecteddiscovery questions/2820clusters,77664per-question comparison rows, all84cellpoints/supportcounts, all5000globalbootstrap draws(maxerror4.44e-16), all3endpoint maxTfamilies and exactpre-outcome metadata ledger. Both analysis/dataquality context labels scope_only match frozenprotocol.18fixture checks passed."
+    },
+    {
+      "evidence": [
+        "ack-audit/audit/analysis.json",
+        "ack-audit/audit/bootstrap.npz"
+      ],
+      "id": "P2",
+      "outcome": "not_evaluated_on_discovery; H2confirmation remains unread/unexecuted at review. Exploratory frozen sensitivity_rule_pass=true:17materialcells,10BBH+7MMLU, eachabs(total)>=.05 and endpointfamily CI wholly outside[-.02,.02]. This is exploratory reuse of H1discovery and cannot confirm H2 or an independent replication."
+    },
+    {
+      "evidence": [
+        "ack-audit/audit/analysis.json",
+        "ack-audit/audit/dataquality.json"
+      ],
+      "id": "P3",
+      "outcome": "supported:57supporteligible and57primaryCIeligible cells(BBH28,GPQA1,MMLU28) across3datasets, so support-onlygo=true. Go does not depend on the17positive observations. Confirmation100cluster minimum and all other locked rules remain unchanged."
+    },
+    {
+      "evidence": [
+        "ack-audit/audit/analysis.json",
+        "ack-audit/audit/bootstrap.npz"
+      ],
+      "id": "P4",
+      "outcome": "inconclusive on discovery; blanketrobustness not claimed. Multipleexploratory material shifts precludeallprimaryCIinside±.05, but no confirmation conclusion from this reusedsplit. Supported point shift rangesBBH[-.142996,.124487],MMLU[-.095553,.121365]; GPQA mostcellsunsupported anddescriptive."
+    }
+  ],
+  "report": {
+    "path": "research/stages/R17D/REPORT.md",
+    "sha256": "535e9bded100579ec0fc67bca392cd6a9329ba308bc3a22030cc1a7314a6498f"
+  },
+  "review_mode": "subagent_review",
+  "reviewer": {
+    "name": "/root/reset_critic",
+    "harness": "codex",
+    "role": "stage_reviewer",
+    "independence": "Distinct child. Authored no evaluated H2plan/protocol/source/tests, outputs or REPORT. Independently reviewed frozen H2 and separately reimplemented all selected-discovery aggregation,5000globalbootstrap draws and all3interval families. Wrote only review/checker artifacts. H1discovery had been observed and reuse is exploratory; no confirmation/reserve ACK returned by reviewer scanner. Local team review, not external peer review."
+  },
+  "reviewer_agent": "/root/reset_critic",
+  "schema_version": 1,
+  "scientific_validity": "not_assessed",
+  "stage_id": "R17D",
+  "verdict": "accept",
+  "independent_verification": {
+    "path": "artifacts/intake/R17D-independent-review/verification.json",
+    "sha256": "938c73e2e4471eeca4cad400b29d7aaf6f5a713fe24e7440369422bfa0326cec",
+    "checker": {
+      "path": "artifacts/intake/cot-independent-review/check_scope_audit.py",
+      "sha256": "7330c7a3d3aeebea1e807b94fd63dcad179091e7bbdfc10f012b2ee41284f673"
+    },
+    "all84points_and_support_verified": true,
+    "per_question_rows": 77664,
+    "bootstrap_draws": 5000,
+    "max_bootstrap_abs_error": 4.440892098500626e-16,
+    "all3endpoint_families_recomputed": true,
+    "confirmation_or_reserve_outcomes_used": false
+  }
+}

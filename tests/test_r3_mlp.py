@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import unittest
+import os
 from pathlib import Path
 
 import numpy as np
@@ -28,6 +29,7 @@ class R3ProtocolTest(unittest.TestCase):
         fallback = reduce_menu(10000.0, 2, 5, protocol)
         self.assertEqual(fallback["kept_widths"], protocol["reduction_rule"]["fallback_widths"])
 
+    @unittest.skipUnless(os.environ.get("RESEARCH_MODEL_SMOKE") == "1", "explicit research preflight only")
     def test_short_budget_trains_on_cpu_and_can_interpolate(self) -> None:
         protocol = load_json(ROOT / "research/stages/R3/inputs/protocol.json")
         rng = np.random.default_rng(0)

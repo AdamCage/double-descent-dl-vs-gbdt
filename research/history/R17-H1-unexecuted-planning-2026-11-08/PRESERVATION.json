@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "status": "unexecuted_H1_plan_superseded_before_confirmation_ACK",
+  "reason": "Literal cue text already conditions U0 on target; new H2 compares common scope only. H1 retained as narrow discovery, not retroactive code repair or confirmation refutation.",
+  "files": [
+    {
+      "original_path": "research/plans/R17.json",
+      "archive_path": "research/history/R17-H1-unexecuted-planning-2026-11-08/research/plans/R17.json",
+      "sha256": "230119c5e8a02995889c56b51242fccbb227797f883bea5ef940226f9be56a6f",
+      "bytes": 5842
+    },
+    {
+      "original_path": "research/stages/R17/inputs/analysis-protocol.json",
+      "archive_path": "research/history/R17-H1-unexecuted-planning-2026-11-08/research/stages/R17/inputs/analysis-protocol.json",
+      "sha256": "3d37791eb263b33418144befbae7d93783877d3371892cdfa143003dc6637a01",
+      "bytes": 2016
+    },
+    {
+      "original_path": "research/stages/R17/inputs/design-review-amended.json",
+      "archive_path": "research/history/R17-H1-unexecuted-planning-2026-11-08/research/stages/R17/inputs/design-review-amended.json",
+      "sha256": "6dfa0c7879e53a030c020e6154603371f88a416021f98f9e9719d2890132e377",
+      "bytes": 17510
+    },
+    {
+      "original_path": "research/stages/R17/inputs/design-review.json",
+      "archive_path": "research/history/R17-H1-unexecuted-planning-2026-11-08/research/stages/R17/inputs/design-review.json",
+      "sha256": "a0597a76dc7d37c0913056f34b7636cfa653c7e27761c65a0138ff28374a59da",
+      "bytes": 13313
+    },
+    {
+      "original_path": "research/stages/R17/PLAN.md",
+      "archive_path": "research/history/R17-H1-unexecuted-planning-2026-11-08/research/stages/R17/PLAN.md",
+      "sha256": "3ffc405233a1195738b7704b33b1504d76c0f0858fe6e16e9362cf53a7bde109",
+      "bytes": 3772
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "checked_index_files": 1000,
+  "workingtree_bytes": 273741755,
+  "nonvendor_index_blob_vs_live_bytes": "all_equal",
+  "vendor_changed": false,
+  "vendor_original_nested_lf_rules_preserved": [
+    "EpistemeOS-0.2.0/src/episteme/domains/packs/double_descent_text_v1/__init__.py",
+    "EpistemeOS-0.2.0/src/episteme/domains/packs/double_descent_text_v1/analysis.py",
+    "EpistemeOS-0.2.0/src/episteme/domains/packs/double_descent_text_v1/capture.py",
+    "EpistemeOS-0.2.0/src/episteme/domains/packs/double_descent_text_v1/model.py",
+    "EpistemeOS-0.2.0/src/episteme/domains/packs/double_descent_text_v1/programs.py",
+    "EpistemeOS-0.2.0/tests/test_double_descent_text_pack.py"
+  ],
+  "scope": "Before adding only small validation receipts; every indexed nonvendor file exact live-byte equality, not scientific validation."
+}

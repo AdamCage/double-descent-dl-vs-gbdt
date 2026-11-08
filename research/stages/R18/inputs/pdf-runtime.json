@@ -1,0 +1,11 @@
+{
+  "python_executable": "C:\\Program Files\\WindowsApps\\OpenAI.CodexPrimaryRuntime.v26-1105-1297-0_26.1105.1297.0_x64__3k8sg7r9htsxt\\dependencies\\python\\python.exe",
+  "python_version": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "executable_sha256": "1da8f2782fd63cdfca8b0da1a46778f48c28aa9eda3ddcd852957ec60813157b",
+  "reportlab": "4.4.9",
+  "pypdf": "6.21.4",
+  "use": "Document rendering only; scientific numerical replay uses the frozen project environment. No API/GPU/model calls.",
+  "node_executable": "C:/Program Files/WindowsApps/OpenAI.CodexPrimaryRuntime.v26-1105-1297-0_26.1105.1297.0_x64__3k8sg7r9htsxt/dependencies/node/bin/node.exe",
+  "node_sha256": "a20f46c2084bb1775275d867370f8f785aec8c9677f8d8aeb5cae4caa2c08a81",
+  "artifact_marker_sha256": "968d66a7b491c7728f2ab009dcb54ac0025d6f474de6f3734f66b8809f6c18a8"
+}

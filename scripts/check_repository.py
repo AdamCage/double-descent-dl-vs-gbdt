@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import re
 import subprocess
 import sys
 from datetime import datetime, timezone
@@ -13,6 +14,16 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from src.research_claims import validate_claims
 from src.research_workflow import Workflow
+
+
+def run_unit_tests(root: Path) -> tuple[list[str], subprocess.CompletedProcess[str], int | None]:
+    """Require positive test discovery in addition to the runner's exit status."""
+    command = [sys.executable, "-m", "unittest", "discover", "-s", "tests", "-v"]
+    result = subprocess.run(command, cwd=root, text=True, capture_output=True,
+                            encoding="utf-8", errors="replace")
+    summary = re.search(r"^Ran (\d+) tests? in ", result.stderr, re.MULTILINE)
+    tests_run = int(summary.group(1)) if summary else None
+    return command, result, tests_run
 
 
 def structural_checks(root: Path) -> list[str]:
@@ -85,14 +96,18 @@ def main() -> None:
         problems = structural_checks(root)
     except (OSError, ValueError, KeyError, TypeError) as exc:
         problems = [f"Invalid control document: {exc}"]
-    command = [sys.executable, "-m", "unittest", "discover", "-s", "tests", "-v"]
-    result = subprocess.run(command, cwd=root, text=True, capture_output=True, encoding="utf-8", errors="replace")
+    command, result, tests_run = run_unit_tests(root)
+    if tests_run is None:
+        problems.append("Could not verify the number of executed unit tests")
+    elif tests_run == 0:
+        problems.append("Unit test discovery executed no tests")
     sys.stdout.write(result.stdout)
     sys.stderr.write(result.stderr)
     summary = {
         "schema_version": 1, "checked_utc": datetime.now(timezone.utc).isoformat(),
         "structural_problems": problems, "test_command": command,
         "tests_returncode": result.returncode,
+        "tests_run": tests_run,
         "tests_stdout": result.stdout, "tests_stderr": result.stderr,
         "passed": not problems and result.returncode == 0,
         "scientific_validity": "not_assessed",

@@ -20,8 +20,6 @@ os.environ["OPENBLAS_NUM_THREADS"] = "4"
 os.environ["NUMEXPR_NUM_THREADS"] = "4"
 
 import numpy as np
-import torch
-
 from src.controlled_synthetic import (
     apply_latent_spectrum,
     column_std,
@@ -36,6 +34,8 @@ THREAD_KEYS = ("OMP_NUM_THREADS", "MKL_NUM_THREADS", "OPENBLAS_NUM_THREADS", "NU
 
 
 def limit_threads() -> None:
+    import torch
+
     for key in THREAD_KEYS:
         os.environ[key] = "4"
     torch.set_num_threads(4)
@@ -155,6 +155,8 @@ def freeze_confirmation_grid(export: dict[str, Any], protocol: dict[str, Any], e
 
 
 def _init_network(input_dim: int, width: int, generator: torch.Generator) -> torch.nn.Module:
+    import torch
+
     hidden = torch.nn.Linear(input_dim, width, dtype=torch.float64)
     output = torch.nn.Linear(width, 1, dtype=torch.float64)
     with torch.no_grad():
@@ -169,6 +171,8 @@ def _init_network(input_dim: int, width: int, generator: torch.Generator) -> tor
 
 
 def _parameter_l2(network: torch.nn.Module) -> float:
+    import torch
+
     total = 0.0
     for parameter in network.parameters():
         total += float(torch.sum(parameter.detach() ** 2))
@@ -176,6 +180,8 @@ def _parameter_l2(network: torch.nn.Module) -> float:
 
 
 def _grad_norm(network: torch.nn.Module) -> float:
+    import torch
+
     total = 0.0
     for parameter in network.parameters():
         if parameter.grad is not None:
@@ -185,6 +191,7 @@ def _grad_norm(network: torch.nn.Module) -> float:
 
 def train_mlp(features: np.ndarray, response: np.ndarray, width: int, procedure: str,
               weight_decay: float, protocol: dict[str, Any], model_seed: int) -> dict[str, Any]:
+    import torch
     limit_threads()
     tolerance = float(protocol["relative_train_residual_tolerance"])
     generator = torch.Generator(device="cpu")
@@ -232,6 +239,8 @@ def train_mlp(features: np.ndarray, response: np.ndarray, width: int, procedure:
 
 
 def predict_mlp(network: torch.nn.Module, features: np.ndarray) -> np.ndarray:
+    import torch
+
     with torch.no_grad():
         prediction = network(torch.as_tensor(features, dtype=torch.float64))
     array = prediction.reshape(-1).cpu().numpy()
@@ -342,6 +351,8 @@ def evaluate_predictions(cells: list[dict[str, Any]], protocol: dict[str, Any], 
 
 
 def run_phase(protocol: dict[str, Any], phase: str, widths: list[int], out_dir: Path) -> dict[str, Any]:
+    import torch
+
     validate_protocol(protocol)
     limit_threads()
     if torch.cuda.is_initialized():

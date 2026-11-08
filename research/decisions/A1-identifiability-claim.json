@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "claim_id": "A1-loss-clock-nonidentifiability",
+  "statement": "Every finite positive nonincreasing scalar loss sequence can be reproduced exactly by gradient descent on f(x)=x^2/2 using eta_t=1-sqrt(L_(t+1)/L_t) in [0,1). For fixed symmetric PSD squared-loss residual dynamics r_(t+1)=(I-eta K)r_t with stable constant step 0<=eta lambda_i<=2, absolute loss decrements are nonnegative and nonincreasing. These elementary facts do not identify a CatBoost mechanism from loss shape.",
+  "statement_sha256": "aee6ca02086e893525938065a5fee488901853acb0380cc2da276f3148cdedfd",
+  "evidence": [
+    {
+      "path": "docs/methods/acceleration-identifiability.md",
+      "sha256": "891640dd43ec8f12bc2e1cb717465b2933379a6c3315adb63024a261d54e5e73"
+    }
+  ],
+  "reviewer": "/root/workflow_audit",
+  "harness": "codex",
+  "review_mode": "subagent_review",
+  "author_agent": "/root",
+  "contributing_agents": ["/root/science_critique"],
+  "reviewer_agent": "/root/workflow_audit",
+  "reviewer_independence": "Reviewer independently checked the algebra and did not author either proposition, the constructive argument or the source document. This is local team review, not external peer review.",
+  "verdict": "accepted",
+  "review_record": "docs/methods/acceleration-identifiability-review.json",
+  "reasoning": [
+    "For L_T>0 the ratios L_(t+1)/L_t belong to (0,1], hence the proposed steps are in [0,1). Induction from x_0=sqrt(2L_0) gives x_t=sqrt(2L_t) on the one fixed quadratic objective.",
+    "For a real finite-dimensional symmetric PSD operator and n>0, orthogonal spectral decomposition gives L_t=||r_t||^2/(2n)=sum_i a_i^2 q_i^t/(2n) with q_i=(1-eta lambda_i)^2 in [0,1].",
+    "D_t=L_t-L_(t+1)>=0 and D_t-D_(t+1)=sum_i a_i^2(1-q_i)^2 q_i^t/(2n)>=0. The endpoints q_i=0 and q_i=1 obey the same statements using q_i^0=1 at t=0."
+  ],
+  "limitations": [
+    "These are elementary algebraic facts, not a claim to a novel theorem or a new general change-point method. Research priority is not established by this review.",
+    "The constructive statement is an existence result with a schedule chosen for the specified finite sequence. It does not predict or identify the actual learning-rate schedule or mechanism of a fitted CatBoost model.",
+    "Strict positivity excludes terminal zero loss; extending to zero would require a separate endpoint case permitting eta=1.",
+    "The spectral statement assumes a fixed real finite-dimensional symmetric PSD K, constant step, positive normalizer n and squared Euclidean training loss. It does not automatically apply to classification LogLoss, adaptive tree selection or a general tree-kernel approximation.",
+    "Exact algebra does not supply a finite-precision tolerance, a statistical detection threshold, empirical calibration validity, or evidence of a naturally occurring CatBoost acceleration effect.",
+    "A known constant learning rate removes the particular variable-step quadratic alternative, without uniquely identifying another mechanism from scalar loss shape.",
+    "Local Codex team review is not independent experimental replication, external scientific approval, or certification of publication readiness."
+  ],
+  "scientific_validity": "not_assessed"
+}

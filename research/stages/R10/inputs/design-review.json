@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "stage_id": "R10",
+  "review_mode": "subagent_review",
+  "harness": "codex",
+  "author_agent": "/root",
+  "reviewer_agent": "/root/science_critique",
+  "reviewer_independence": "Reviewer did not author the implementation, scientific protocol, analysis, or conclusions, and did not execute the scientific matrix.",
+  "verdict": "accept",
+  "blocking_issues": [],
+  "review_scope": "Scientific draft PLAN.md, protocol, implementation, six unit tests, machine draft R10.json, its unit-check wrapper, and registry entry with execution_authorized=false. Scientific and machine preflight designs agree. This assessment does not replace validate-plan, frozen status, final workflow resource gates, or result review. Changing only the machine status from draft to frozen after this accepted review is the planned transition, not an altered scientific design.",
+  "reviewed_artifacts": [
+    {"path": "src/acceleration_audit.py", "sha256": "aedff24c1274b7fc741c4bdd864e1e7c0ce9fc13d53aad0f967e2a218b8f4683"},
+    {"path": "scripts/r10_calibrate.py", "sha256": "d8ccd8647e99bb09124a6658838a2ed863c29fc519ddf72647c04bde408d2425"},
+    {"path": "research/stages/R10/PLAN.md", "sha256": "e2c8dbf1aca906adddfe46c7be97206f64326cc2b90a0824b3bdc690397a828d"},
+    {"path": "research/stages/R10/inputs/protocol.json", "sha256": "0f36466a9ebc3ff75c1dbba412f079f23f2959d0ff23b2842f004b0e22135dd7"},
+    {"path": "tests/test_acceleration_audit.py", "sha256": "7f139b9d7ccffd2c37a92577431e50a49a3f57df1d40c279d2a513a8db95c756"},
+    {"path": "research/plans/R10.json", "sha256": "3b46c55c5f350c443859115cd75a476732c21d6fa6518fc349f790ea2eea0c32", "status_at_review": "draft"},
+    {"path": "scripts/run_unit_checks.py", "sha256": "d2fc3c360195cd7f8d69689b0dc60940dcd416e2b31b9396e60bfeafb9528c52", "review_note": "Rechecked additive --model-smoke opt-in; R10 argv omits the flag and still runs only six non-training audit tests. No scientific code or matrix changed."}
+  ],
+  "checks": {
+    "unit_tests": "uv run python -m unittest tests.test_acceleration_audit -v: six tests passed; no scientific matrix executed.",
+    "scan": "OLS segments both include boundary t. Implementation permits boundaries w through length-w-1, uses max across all declared windows/boundaries, clips at zero, requires negative after slope, and normalizes by whole-curve range. Constant curves return zero. This matches the scientific plan.",
+    "rank_bound": "For m=199 and alpha=.05, k=ceil(200*.95)=190. Strictly exceeding the 190th calibration order statistic has marginal probability at most (200-190)/200=.05 under exchangeability of the full calibration/test scores. Ties make the inequality conservative. Taking the maximum over per-null thresholds gives a pathwise larger threshold and thus remains conservative for each included null law. No arbitrary CatBoost validity follows.",
+    "dependence_and_intervals": "AR(1) dependence is inside each curve; distinct seed entropies identify independent simulated units. Evaluation curves are independent conditional on frozen calibration. Pointwise exact binomial intervals estimate conditional evaluation rates; they are not simultaneous and do not include calibration uncertainty. Paired detectors and affine copies are not additional units.",
+    "matrix": "199*3*4=2388 calibration curves; 200*6*4=4800 evaluation curves; total7188 and 6*4*3=72 summary rows. Calibration and evaluation phase entropies are disjoint; family ordering preserves null IDs. All curves, score rows, thresholds, summaries and environment are written.",
+    "predictions": "P1-P4 are specified before evaluation, with explicit falsifiers. Scientific prediction support is separate from operational completeness; no failed-power retry or post-opening adaptation is permitted.",
+    "source_closure": "Machine inputs cover scripts/run_unit_checks.py and tests/test_acceleration_audit.py for unit-checks; scripts/r10_calibrate.py, src/acceleration_audit.py, src/detector_catalog.py, src/dynamics.py, src/__init__.py, protocol, scientific plan, this review, policy and literature notes, uv.lock for calibrate-evaluate. Workflow _source_paths additionally captures registry, registered machine plan, authorization, src/research_workflow.py, scripts/research.py, pyproject.toml and uv.lock. Installed numpy/scipy versions are recorded. If workflow is changed to import additional resource or evidence-control modules before launch, that automatic control closure must include those modules too.",
+    "novelty_scope": "The protocol correctly identifies local slope scans and rank calibration as established ideas. The possible contribution is an empirical diagnostic failure envelope/application, not a new general method or a GBDT mechanism. Synthetic null calibration is explicitly not transported as a p-value guarantee to arbitrary learning curves."
+  },
+  "limitations": [
+    "Only the three declared null shapes, three alternative shapes, four Gaussian AR(1) noise conditions, fixed length and windows are covered.",
+    "Range normalization yields positive affine invariance but does not imply time-warp invariance or robustness to other noise distributions.",
+    "Observed FPR<=.10 is a declared empirical prediction, not proof of conditional FPR<=.05 after one calibration draw.",
+    "The audit can flag a loss acceleration; scalar loss shape alone cannot identify changing representations, curvature, or adaptive tree mechanisms.",
+    "Publication readiness and research priority require broader evidence and literature work; this local review does not establish either."
+  ],
+  "scientific_validity": "not_assessed"
+}

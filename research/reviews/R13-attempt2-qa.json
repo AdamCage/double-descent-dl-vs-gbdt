@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "stage_id": "R13",
+  "attempt_id": "20261107T210937-844511dd10",
+  "review_mode": "subagent_review",
+  "harness": "codex",
+  "author_agent": "/root/workflow_audit",
+  "coauthor_agents": [
+    "/root",
+    "/root/literature"
+  ],
+  "reviewer_agent": "/root/science_critique",
+  "verdict": "revise",
+  "scope": "Partial actualvisualQA and independent fullCSV/package/existingreplay comparison; nofit,newdispatcher or artifact mutation.",
+  "evidence": [
+    {
+      "path": "artifacts/research/R13/20261107T210937-844511dd10/tasks/figures/gallery/figure_manifest.json",
+      "sha256": "6e9e77e34dced2195f7a64a67197a169eb4ec6bbab8bfba39af8859e69ed3fda"
+    },
+    {
+      "path": "artifacts/research/R13/20261107T210937-844511dd10/tasks/validation/validation.json",
+      "sha256": "a556cce5be70677ea4da562026779812aaa1e461f0e9a49252a7ec2a377aba10"
+    },
+    {
+      "path": "artifacts/research/R13/20261107T210937-844511dd10/tasks/package/science-package/package-manifest.json",
+      "sha256": "e13ea70042bc509f4b45733bbb330c6e36c63d6a2d9acb4640b959a0b26f1d4e"
+    },
+    {
+      "path": "artifacts/research/R13/20261107T210937-844511dd10/tasks/figures/gallery/figures/r12_fixed_late_acceleration_gates.png",
+      "sha256": "bc384c83a97fa4c1ebccc1a7f3abf99032189a2b51494d57c63ef2e128045361"
+    },
+    {
+      "path": "artifacts/research/R13/20261107T210937-844511dd10/tasks/figures/gallery/figures/r12_fixed_gain_paired_contrasts.png",
+      "sha256": "9b64ce437ef02ca466e1b64d8533caf489f7b44c3ecc6a799583686cfe41323f"
+    }
+  ],
+  "visually_inspected_png_ids": [
+    "r12_fixed_late_acceleration_gates",
+    "r11_lr_paired_contrasts",
+    "controls_r2_linear_geometric_interpolating",
+    "r12_synthetic_zero_error_timing",
+    "r10_null_rate_heatmap",
+    "r10_null_intervals_large_ar",
+    "r10_examples_fast_plateau_tail_small_iid",
+    "r11_synthetic_clock_comparison",
+    "r12_breast_cancer_fixed_late_zoom",
+    "controls_r4_gbdt_depth",
+    "r12_fixed_gain_paired_contrasts",
+    "r11_tree_paired_contrasts",
+    "r12_breast_cancer_fixed_window_seed_values"
+  ],
+  "C1": "partial: full machine inventory187PNG/SVG+2HTML+16CSV passed; actual primaryR12gate/fixedgain panel tinydecimal labels collide. Numerics intact.",
+  "C2": "pass on checked content: all901packagebytes/hashes and perstage frozen sourcehashes matched; requirementsnoTorch/Episteme; paperhash90a02f57759bd976e123732125405f091212f0adc6596ce55d2c6d3e7dda4684. Everycell ofall16CSV independently compared to frozen sources, including221400R12rows; allmatch.",
+  "C3": "pass on checkedoutput: existingportable rawmatrix7188x256finite exactequal, analysis/calibrationJSON andcurvemetadata exactequal, package901-fileinventory unchanged. No replayredispatch.",
+  "layout_blockers": [
+    "r12_fixed_late_acceleration_gates left tinydecimal tick collision",
+    "r12_fixed_gain_paired_contrasts left and dense right tinydecimal tick collision"
+  ],
+  "faithful_visual_elements": [
+    "R2ridgeNone is unavailable, notzero",
+    "Firstzeroerror censoring separate from reached times",
+    "Observedseedranges,pointwiseCP andadjusted t-families distinguished",
+    "Clock/split scope retained; noDD/naturalmechanismclaim"
+  ],
+  "interactive_scope": "BothHTMLcontain inlinePlotly and noexternalscript src tags. Sourcecheck only, notbrowserhover/zoomtest.",
+  "limitations": [
+    "13PNGs visuallyinspected; all187formats/inventories/hashes machinechecked, notindividually visuallycertified.",
+    "Fixedlatezoom retains broad fulltrajectory y scale, reducing local resolution; separate inferencepanels quantifyfixedwindow.",
+    "This is a completed derivative task with a readability revision, not missing scientific observations or an independent replication."
+  ],
+  "full_original_user_goal_achieved": false,
+  "scientific_validity": "not_assessed"
+}

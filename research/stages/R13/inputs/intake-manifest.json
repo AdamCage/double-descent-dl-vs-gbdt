@@ -1,0 +1,3262 @@
+{
+  "schema_version": 1,
+  "stage_id": "R13",
+  "intake_root": "artifacts/intake/R13",
+  "status": "frozen_read_only_intake",
+  "created_utc": "2026-11-07T20:46:44.273692+00:00",
+  "selected_attempts": {
+    "R10": "20261107T192414-36aee5d99b",
+    "R11": "20261107T194028-229b223740",
+    "R12": "20261107T194939-7c18953a98"
+  },
+  "secondary_controls": {
+    "R2": "20261107T095343-6bc0c457c7",
+    "R3": "20261107T102511-b1cf6c7be9",
+    "R4": "20261107T104140-5bc2019cef"
+  },
+  "retained_prior_attempt": {
+    "stage": "R11",
+    "attempt": "20261107T192904-5420604589",
+    "independent_replication": false
+  },
+  "copied_files": [
+    {
+      "original_path": "artifacts/research/R10/20261107T192414-36aee5d99b/inputs/docs/decisions/0004-v2-research-refactor.md",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R10/20261107T192414-36aee5d99b/inputs/docs/decisions/0004-v2-research-refactor.md",
+      "bytes": 3730,
+      "sha256": "648b1bd91d2378e31f40e8d7feaf6bb0ce33d815a468660486526700088f251a",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R10/20261107T192414-36aee5d99b/inputs/docs/literature/2026-11-07-v2-audit.md",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R10/20261107T192414-36aee5d99b/inputs/docs/literature/2026-11-07-v2-audit.md",
+      "bytes": 9444,
+      "sha256": "b530bc40df2b65bd5e0ed2a08fad9713e7dc5a210b08590a233c6f2966480c5c",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R10/20261107T192414-36aee5d99b/inputs/pyproject.toml",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R10/20261107T192414-36aee5d99b/inputs/pyproject.toml",
+      "bytes": 991,
+      "sha256": "5d43d6f7f88312b18299a1ec7e8ac921d512c271ac022de4ad0720eb5883e182",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R10/20261107T192414-36aee5d99b/inputs/research/decisions/codex-refactor-authorization-2026-11-07.json",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R10/20261107T192414-36aee5d99b/inputs/research/decisions/codex-refactor-authorization-2026-11-07.json",
+      "bytes": 2197,
+      "sha256": "8559055cea21e6f58bdd58b07930e5d9ab505a84a1ea58c72721c0c5e4e2119d",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R10/20261107T192414-36aee5d99b/inputs/research/plans/R10.json",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R10/20261107T192414-36aee5d99b/inputs/research/plans/R10.json",
+      "bytes": 3443,
+      "sha256": "669285e14b959243a077631ab85691ad0d8df77f683a2a98db80caf2fe4ab256",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R10/20261107T192414-36aee5d99b/inputs/research/stages.json",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R10/20261107T192414-36aee5d99b/inputs/research/stages.json",
+      "bytes": 5191,
+      "sha256": "2bec11f5237f861e4e849ce54712910be769aa513f0286588ce0a51134ab7cf7",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R10/20261107T192414-36aee5d99b/inputs/research/stages/R10/PLAN.md",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R10/20261107T192414-36aee5d99b/inputs/research/stages/R10/PLAN.md",
+      "bytes": 7052,
+      "sha256": "e2c8dbf1aca906adddfe46c7be97206f64326cc2b90a0824b3bdc690397a828d",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R10/20261107T192414-36aee5d99b/inputs/research/stages/R10/inputs/design-review.json",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R10/20261107T192414-36aee5d99b/inputs/research/stages/R10/inputs/design-review.json",
+      "bytes": 5646,
+      "sha256": "1e87a651421d566968126d1c3c1059bfab44c3234dcb13003b49e0e809a229e3",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R10/20261107T192414-36aee5d99b/inputs/research/stages/R10/inputs/protocol.json",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R10/20261107T192414-36aee5d99b/inputs/research/stages/R10/inputs/protocol.json",
+      "bytes": 660,
+      "sha256": "0f36466a9ebc3ff75c1dbba412f079f23f2959d0ff23b2842f004b0e22135dd7",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R10/20261107T192414-36aee5d99b/inputs/scripts/r10_calibrate.py",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R10/20261107T192414-36aee5d99b/inputs/scripts/r10_calibrate.py",
+      "bytes": 6589,
+      "sha256": "d8ccd8647e99bb09124a6658838a2ed863c29fc519ddf72647c04bde408d2425",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R10/20261107T192414-36aee5d99b/inputs/scripts/research.py",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R10/20261107T192414-36aee5d99b/inputs/scripts/research.py",
+      "bytes": 2907,
+      "sha256": "63fe04dfe3ced14b3e8760508372d5c321675cfd650b9fbb80f15598c1aaf384",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R10/20261107T192414-36aee5d99b/inputs/scripts/run_unit_checks.py",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R10/20261107T192414-36aee5d99b/inputs/scripts/run_unit_checks.py",
+      "bytes": 1293,
+      "sha256": "d2fc3c360195cd7f8d69689b0dc60940dcd416e2b31b9396e60bfeafb9528c52",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R10/20261107T192414-36aee5d99b/inputs/src/__init__.py",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R10/20261107T192414-36aee5d99b/inputs/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R10/20261107T192414-36aee5d99b/inputs/src/acceleration_audit.py",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R10/20261107T192414-36aee5d99b/inputs/src/acceleration_audit.py",
+      "bytes": 4719,
+      "sha256": "aedff24c1274b7fc741c4bdd864e1e7c0ce9fc13d53aad0f967e2a218b8f4683",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R10/20261107T192414-36aee5d99b/inputs/src/detector_catalog.py",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R10/20261107T192414-36aee5d99b/inputs/src/detector_catalog.py",
+      "bytes": 8095,
+      "sha256": "694cd25c57e6a738659e0fbe9def7fa1008b0ef4d73680cafbb96b957a87bc58",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R10/20261107T192414-36aee5d99b/inputs/src/dynamics.py",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R10/20261107T192414-36aee5d99b/inputs/src/dynamics.py",
+      "bytes": 6563,
+      "sha256": "3b44a6ffbe4652d8dc732a6babdd66c9957f073ec33d7e45b10086c17797e1ad",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R10/20261107T192414-36aee5d99b/inputs/src/research_workflow.py",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R10/20261107T192414-36aee5d99b/inputs/src/research_workflow.py",
+      "bytes": 44603,
+      "sha256": "fed92eea9867e2b54d4e19f3c44a0fab3a5490e804dc54087429a469a70b669d",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R10/20261107T192414-36aee5d99b/inputs/src/resource_ledger.py",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R10/20261107T192414-36aee5d99b/inputs/src/resource_ledger.py",
+      "bytes": 11762,
+      "sha256": "af55db7c171efef7ef1792d287c419d3ae6a6e87dcd52f8be946fb8cbfb7c3d5",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R10/20261107T192414-36aee5d99b/inputs/tests/test_acceleration_audit.py",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R10/20261107T192414-36aee5d99b/inputs/tests/test_acceleration_audit.py",
+      "bytes": 1785,
+      "sha256": "7f139b9d7ccffd2c37a92577431e50a49a3f57df1d40c279d2a513a8db95c756",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R10/20261107T192414-36aee5d99b/inputs/uv.lock",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R10/20261107T192414-36aee5d99b/inputs/uv.lock",
+      "bytes": 157725,
+      "sha256": "ac89eef670e3774086fff7a06df62f1ba760f85d6c76378ac915ca32b76523b4",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R10/20261107T192414-36aee5d99b/manifest.json",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R10/20261107T192414-36aee5d99b/manifest.json",
+      "bytes": 10616,
+      "sha256": "42dcdc5ddc70026e364190d572bc2a9a2acdb3dd76090526aa8cba70df4d3e1c",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R10/20261107T192414-36aee5d99b/plan.json",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R10/20261107T192414-36aee5d99b/plan.json",
+      "bytes": 3443,
+      "sha256": "669285e14b959243a077631ab85691ad0d8df77f683a2a98db80caf2fe4ab256",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R10/20261107T192414-36aee5d99b/report.md",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R10/20261107T192414-36aee5d99b/report.md",
+      "bytes": 5510,
+      "sha256": "58a13b8907316c7c7482874a6a9f9bccf3eb15ed9d7a11180d9680054c85859a",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R10/20261107T192414-36aee5d99b/review.json",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R10/20261107T192414-36aee5d99b/review.json",
+      "bytes": 6066,
+      "sha256": "8240fd32643039dec1c0f606d3b89610f256f6de0f91d9c163211091522eeb24",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R10/20261107T192414-36aee5d99b/tasks/calibrate-evaluate/analysis.json",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R10/20261107T192414-36aee5d99b/tasks/calibrate-evaluate/analysis.json",
+      "bytes": 28114,
+      "sha256": "e3bf51e3f41d21f26fc00b7b784606a451ef0d587ff2e1767f519ec91872390d",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R10/20261107T192414-36aee5d99b/tasks/calibrate-evaluate/calibration.json",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R10/20261107T192414-36aee5d99b/tasks/calibrate-evaluate/calibration.json",
+      "bytes": 3192,
+      "sha256": "3967d880e9f2a0abfa5f6199a2db63c20e3255b69b335782c70e0ef785bdc622",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R10/20261107T192414-36aee5d99b/tasks/calibrate-evaluate/curves.jsonl",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R10/20261107T192414-36aee5d99b/tasks/calibrate-evaluate/curves.jsonl",
+      "bytes": 5825323,
+      "sha256": "cc61cde47e19c31f58dc907ed56212d1566270a6b930cf447c3be2dcffc53111",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R10/20261107T192414-36aee5d99b/tasks/calibrate-evaluate/curves.npz",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R10/20261107T192414-36aee5d99b/tasks/calibrate-evaluate/curves.npz",
+      "bytes": 13578837,
+      "sha256": "0a3a93ff6e9c1c47418c223b138a64f52ec23eb1b399f6e3e1b8d95d1e94aff4",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R10/20261107T192414-36aee5d99b/tasks/calibrate-evaluate/environment.json",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R10/20261107T192414-36aee5d99b/tasks/calibrate-evaluate/environment.json",
+      "bytes": 263,
+      "sha256": "4112be6e59d289623bd957d74832a027e0b46ad755116f35e92c0b4dee531f5e",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R10/20261107T192414-36aee5d99b/tasks/calibrate-evaluate/stderr.log",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R10/20261107T192414-36aee5d99b/tasks/calibrate-evaluate/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R10/20261107T192414-36aee5d99b/tasks/calibrate-evaluate/stdout.log",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R10/20261107T192414-36aee5d99b/tasks/calibrate-evaluate/stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R10/20261107T192414-36aee5d99b/tasks/unit-checks/checks.json",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R10/20261107T192414-36aee5d99b/tasks/unit-checks/checks.json",
+      "bytes": 925,
+      "sha256": "fa61324b3bbb7b56df39a8282afd64da141e3f86bdb93946ff794cbd1b027d82",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R10/20261107T192414-36aee5d99b/tasks/unit-checks/stderr.log",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R10/20261107T192414-36aee5d99b/tasks/unit-checks/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R10/20261107T192414-36aee5d99b/tasks/unit-checks/stdout.log",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R10/20261107T192414-36aee5d99b/tasks/unit-checks/stdout.log",
+      "bytes": 819,
+      "sha256": "2d8f1696cef9e26a95eb69b4f926db4fd291a2c78649eaf1292eb1c47500cf19",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/inputs/docs/decisions/0004-v2-research-refactor.md",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/inputs/docs/decisions/0004-v2-research-refactor.md",
+      "bytes": 3730,
+      "sha256": "648b1bd91d2378e31f40e8d7feaf6bb0ce33d815a468660486526700088f251a",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/inputs/docs/methods/acceleration-identifiability.md",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/inputs/docs/methods/acceleration-identifiability.md",
+      "bytes": 5036,
+      "sha256": "891640dd43ec8f12bc2e1cb717465b2933379a6c3315adb63024a261d54e5e73",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/inputs/pyproject.toml",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/inputs/pyproject.toml",
+      "bytes": 991,
+      "sha256": "5d43d6f7f88312b18299a1ec7e8ac921d512c271ac022de4ad0720eb5883e182",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/inputs/research/decisions/codex-refactor-authorization-2026-11-07.json",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/inputs/research/decisions/codex-refactor-authorization-2026-11-07.json",
+      "bytes": 2197,
+      "sha256": "8559055cea21e6f58bdd58b07930e5d9ab505a84a1ea58c72721c0c5e4e2119d",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/inputs/research/plans/R11.json",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/inputs/research/plans/R11.json",
+      "bytes": 7258,
+      "sha256": "33328abb7ecf995c370af4cc3ded98ba79597f20e280a78b317ba20caec4afb4",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/inputs/research/stages.json",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/inputs/research/stages.json",
+      "bytes": 5632,
+      "sha256": "2623438523c543c38bb81a39fac59c3862f4bb27cc363b28d48728b19160b465",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/inputs/research/stages/R11/PLAN.md",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/inputs/research/stages/R11/PLAN.md",
+      "bytes": 11253,
+      "sha256": "4d425ad32fe3a6b39e0b3b411385abf0600b97a7347878d23b830c06b19825cd",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/inputs/research/stages/R11/inputs/design-review.json",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/inputs/research/stages/R11/inputs/design-review.json",
+      "bytes": 6655,
+      "sha256": "2c79e344f2ab83ceb435721d0353c84c43b15966761c2fd567482beea773e4b2",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/inputs/research/stages/R11/inputs/protocol.json",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/inputs/research/stages/R11/inputs/protocol.json",
+      "bytes": 1847,
+      "sha256": "67e09270f43c54bb2299918676a225d28d1a2411ff5c25218edd2a95f3ef66c1",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/inputs/scripts/r11_run.py",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/inputs/scripts/r11_run.py",
+      "bytes": 845,
+      "sha256": "10471400ecd602e5d76293dc95455bc7b0be35bc8503da80aebddd63b8cff82c",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/inputs/scripts/research.py",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/inputs/scripts/research.py",
+      "bytes": 2907,
+      "sha256": "63fe04dfe3ced14b3e8760508372d5c321675cfd650b9fbb80f15598c1aaf384",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/inputs/scripts/run_unit_checks.py",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/inputs/scripts/run_unit_checks.py",
+      "bytes": 1293,
+      "sha256": "d2fc3c360195cd7f8d69689b0dc60940dcd416e2b31b9396e60bfeafb9528c52",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/inputs/src/__init__.py",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/inputs/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/inputs/src/acceleration_boosting.py",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/inputs/src/acceleration_boosting.py",
+      "bytes": 19181,
+      "sha256": "8785379e0e9d9c02775aa73a34654d9cf4d98e999a4547564b21d40f0a2e1a73",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/inputs/src/research_workflow.py",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/inputs/src/research_workflow.py",
+      "bytes": 44603,
+      "sha256": "fed92eea9867e2b54d4e19f3c44a0fab3a5490e804dc54087429a469a70b669d",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/inputs/src/resource_ledger.py",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/inputs/src/resource_ledger.py",
+      "bytes": 11762,
+      "sha256": "af55db7c171efef7ef1792d287c419d3ae6a6e87dcd52f8be946fb8cbfb7c3d5",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/inputs/tests/test_acceleration_boosting.py",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/inputs/tests/test_acceleration_boosting.py",
+      "bytes": 6111,
+      "sha256": "bd408b347df893d1cbac60eab32e72ed9ef288ead5313ff6d91e6f8ca8079852",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/inputs/uv.lock",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/inputs/uv.lock",
+      "bytes": 157725,
+      "sha256": "ac89eef670e3774086fff7a06df62f1ba760f85d6c76378ac915ca32b76523b4",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/manifest.json",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/manifest.json",
+      "bytes": 27618,
+      "sha256": "e1ff4eb1c8ad4f6cae4026906e59f47a7f48d4765d70a6f091e6d7a11525e66b",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/plan.json",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/plan.json",
+      "bytes": 7258,
+      "sha256": "33328abb7ecf995c370af4cc3ded98ba79597f20e280a78b317ba20caec4afb4",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/report.md",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/report.md",
+      "bytes": 6753,
+      "sha256": "df9741beed00b24494b46ceb0485292dc4855fe5c1fb71bceb4d2cf8a301f1d9",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/review.json",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/review.json",
+      "bytes": 6949,
+      "sha256": "ddd80b9aa91b3cb28c001e92fc3a06f9d3c8e54f422477da9f6d3d2227a09574",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/analysis.json",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/analysis.json",
+      "bytes": 10942,
+      "sha256": "f83c00cc8844af56c1073e756db80f3e9596e04306ff7d4943622ef330cb05c3",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/cells.jsonl",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/cells.jsonl",
+      "bytes": 6451118,
+      "sha256": "df64212083191fb78579c5883b282318d8a00ce669eff2d643c10693f4d83185",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/data.npz",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/data.npz",
+      "bytes": 1643911,
+      "sha256": "e95b1bd73f14a578e9662a813e424739b93032c01812492bd8c6bf53a9c9cba4",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/environment.json",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/environment.json",
+      "bytes": 437,
+      "sha256": "4e4e22bfffbbd22f496940f87a9065ecab5067952b4c91ed3907d44bde9f9fbd",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models.json",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models.json",
+      "bytes": 12793,
+      "sha256": "398160c18ebddba0fbffaf5f74682ceab1e9d180af19fd6852b0b82dbd43fdb2",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12001_constant.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12001_constant.cbm",
+      "bytes": 88656,
+      "sha256": "c7c9314f37a8ea2944e5862658788e946b8d7972717a2e20ed183f8c2c5a8e57",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12001_stepdown.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12001_stepdown.cbm",
+      "bytes": 89528,
+      "sha256": "23e86fb43070e98279df97bd54431ee4adb9c9772972b4880cb93edfb86490bc",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12001_stepup.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12001_stepup.cbm",
+      "bytes": 89280,
+      "sha256": "10eccb2c1e2ee65b371ba466d98cb2bc808520e778dca275245ec3fa4e70ff72",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12002_constant.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12002_constant.cbm",
+      "bytes": 88680,
+      "sha256": "03c7acd4466333c67bf89d19b374c0f0569fdee2aa44367aed3b569fdcefb4b6",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12002_stepdown.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12002_stepdown.cbm",
+      "bytes": 89784,
+      "sha256": "dab19d1d40b4ac543f098e96747af6950eda9f3ed864ec2e7faaede21169ef2f",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12002_stepup.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12002_stepup.cbm",
+      "bytes": 89328,
+      "sha256": "34411b5eef81b023aa5ec701c3d77cfb270392ed93cace82179aa9e0e8e8176b",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12003_constant.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12003_constant.cbm",
+      "bytes": 88768,
+      "sha256": "28592e6c67ac6e56917e7882617e2eec86f7b46ebf392a2440178494ba709659",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12003_stepdown.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12003_stepdown.cbm",
+      "bytes": 89776,
+      "sha256": "04e3586a5fe1d3873dc4364d385d0a2f01a2de2cfd5d5a6ac50f015a338cece9",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12003_stepup.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12003_stepup.cbm",
+      "bytes": 89512,
+      "sha256": "acb138ab786b2a27afc59af1d1bbf662f56a79d3d4d3c31e73034b84cde4ad14",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12004_constant.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12004_constant.cbm",
+      "bytes": 88712,
+      "sha256": "fd84ab182774ebd562be490bbcc4184607bdc5ba6be39df9c3b1a185c4ecb541",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12004_stepdown.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12004_stepdown.cbm",
+      "bytes": 89728,
+      "sha256": "4304961e993b12b2f7ff1533ad36dab21cac6b3942eb0b8f4cd53d670a3be1d8",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12004_stepup.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12004_stepup.cbm",
+      "bytes": 89272,
+      "sha256": "91bd2af185a9132e4ea42266f088650f99bfa2079b2edd339722966389d92ecd",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12005_constant.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12005_constant.cbm",
+      "bytes": 88664,
+      "sha256": "9ce843a56af4c08e2766be1c2a722f516eb035db41157249a9e814e77555869b",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12005_stepdown.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12005_stepdown.cbm",
+      "bytes": 89736,
+      "sha256": "0325a9550dbcde025c67f4906dad24727862235bfbfc6a654037147f69866f88",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12005_stepup.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12005_stepup.cbm",
+      "bytes": 89336,
+      "sha256": "471b51ad44e328eb8f3b6af94f385a25e9e922e522b40990c54b0ea525403651",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12006_constant.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12006_constant.cbm",
+      "bytes": 88720,
+      "sha256": "102dc05ad03347296edde7a63fbe5ddd7e3b01251fa085d19cad2b5e11fe1711",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12006_stepdown.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12006_stepdown.cbm",
+      "bytes": 89776,
+      "sha256": "b70f1c5e836a55557c427d171983ceea9b16980bd516bbd0f77cf89155a80a59",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12006_stepup.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12006_stepup.cbm",
+      "bytes": 89520,
+      "sha256": "43c72305ba92aa389a6a40606248977489a64c7ce15af2ea3c6c67c9241fff21",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12007_constant.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12007_constant.cbm",
+      "bytes": 88576,
+      "sha256": "75d9a7c17f1e8d3212fa3ba914381cb51b7fd20744c1a255f4e2d04bf14ba597",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12007_stepdown.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12007_stepdown.cbm",
+      "bytes": 89648,
+      "sha256": "80ab2c9daa3989d51c3332d1313cd131c3eeaa68e25cd4a6270f936b250527ca",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12007_stepup.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12007_stepup.cbm",
+      "bytes": 89256,
+      "sha256": "427e6f2a1f9a31d4753640ce1fe350790ffc7c937a3ab76f497de3198f3ab9f2",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12008_constant.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12008_constant.cbm",
+      "bytes": 88632,
+      "sha256": "4afae614511ee9c8673f5a96bd0c2927b8f19d1908158e65be063007c26ba9a1",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12008_stepdown.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12008_stepdown.cbm",
+      "bytes": 89672,
+      "sha256": "e2204d54c9796256799ffee0da2cf1e2e488876af6c7ad193137b4dddea9eedb",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12008_stepup.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12008_stepup.cbm",
+      "bytes": 89304,
+      "sha256": "b57b17d54e08b4855ff6377dfd290424327f366ae28d4626b7e97db3d40252d8",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12009_constant.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12009_constant.cbm",
+      "bytes": 88536,
+      "sha256": "79db6a75aad3ef2d7ee5181d6d2250c7a5f54311bbf7c18660280e06424d94c4",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12009_stepdown.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12009_stepdown.cbm",
+      "bytes": 89696,
+      "sha256": "c8503cd3ddafe3d4f3cb8f3049433d953a0eb96de72b9de5c4f5eebbffb75675",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12009_stepup.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12009_stepup.cbm",
+      "bytes": 89328,
+      "sha256": "6acb852097e9b694dab18fa095535eca36c91784e15c04cd58017178272f0168",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12010_constant.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12010_constant.cbm",
+      "bytes": 88512,
+      "sha256": "71a7f45019195d606e864098dbb66d01b2c5719eaf72570df256900821e76dd6",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12010_stepdown.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12010_stepdown.cbm",
+      "bytes": 89512,
+      "sha256": "f12bbc5f01856f4cb9ab4595b5114d2ad9656de88ad87efebe2e3783f0d12225",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12010_stepup.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12010_stepup.cbm",
+      "bytes": 89224,
+      "sha256": "c3a1ecc749a24a6e0d0a7822fec11f9c98742cfa24e891cf33bdaf04bc75614a",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12011_constant.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12011_constant.cbm",
+      "bytes": 88696,
+      "sha256": "8d9e24732a1007f6d397529ad7c7bf621782388515aa5c447a9330dad49e5807",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12011_stepdown.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12011_stepdown.cbm",
+      "bytes": 89776,
+      "sha256": "544bf65ecba1e5f0264b10c412f7e042c70c928d8a4b8e06b823d2aeea3bfc3f",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12011_stepup.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12011_stepup.cbm",
+      "bytes": 89400,
+      "sha256": "77a808111238854b663ab463d5c3853da367bcc2d600815b1a65e98baf45b15a",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12012_constant.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12012_constant.cbm",
+      "bytes": 88720,
+      "sha256": "6602164a6210f8368bf0079124894bf0280327db69e249e0290fc5ec4e5716cd",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12012_stepdown.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12012_stepdown.cbm",
+      "bytes": 89808,
+      "sha256": "dd9f82981b6c1f48eeed2439519e5e27a026bc7794874668fbdfbbaf0b8b8c0b",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12012_stepup.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/breast_cancer_12012_stepup.cbm",
+      "bytes": 89408,
+      "sha256": "d755d0c4a03a614a9ed34cdfa2ee152bb0304075d67614aa77eff5323cdf5272",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12001_constant.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12001_constant.cbm",
+      "bytes": 88072,
+      "sha256": "87491b2cb610cc56b962faa888ed98ede87027f457c99f07ff60fa923ad0d76f",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12001_stepdown.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12001_stepdown.cbm",
+      "bytes": 89048,
+      "sha256": "318c73ec10efeb0c6374ace90ac091de54ceab834816fbe0a8dbaef11f489f3e",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12001_stepup.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12001_stepup.cbm",
+      "bytes": 88648,
+      "sha256": "a604456c4116072346a659841140178909dec276a59e4c494bd8251563c7775c",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12002_constant.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12002_constant.cbm",
+      "bytes": 88152,
+      "sha256": "6257d4f1d997704c6aead85b79b8f4ece602186025154605f36b2bed6ac0782c",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12002_stepdown.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12002_stepdown.cbm",
+      "bytes": 89128,
+      "sha256": "f2d83ee3e6174ab57d9e465bf16aace5a8d46370c0e59591378cf9ffb07ecc99",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12002_stepup.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12002_stepup.cbm",
+      "bytes": 88704,
+      "sha256": "8943824e21bf123fd9706afe79009c96d55f5129bc19c9fc810926917b0fa832",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12003_constant.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12003_constant.cbm",
+      "bytes": 88200,
+      "sha256": "9ef03ce33f23b2aa5524290ff349e3cd5a29c335556afc68d694267470c1db8a",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12003_stepdown.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12003_stepdown.cbm",
+      "bytes": 89176,
+      "sha256": "244411a14bbfe84033ce823b1a1054fd7de27e5575b6c3b561236457c803e7f8",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12003_stepup.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12003_stepup.cbm",
+      "bytes": 88800,
+      "sha256": "6751035b8286eff746ac7ea42d1559ee61c89980189414cb7f0187fb997ec61c",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12004_constant.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12004_constant.cbm",
+      "bytes": 87912,
+      "sha256": "756b3bb51d5df6b76a934f5be8f79aef7e93400e21b308c1479991c253b508fb",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12004_stepdown.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12004_stepdown.cbm",
+      "bytes": 88856,
+      "sha256": "98655e76f721c2fba1676ae16977d125dbfad404490a5bc2fc6dfa0a96af91fe",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12004_stepup.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12004_stepup.cbm",
+      "bytes": 88536,
+      "sha256": "3d49af850652f6b9fca9fad2b184fc03ff1ae0f52904536c634c0196491641d7",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12005_constant.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12005_constant.cbm",
+      "bytes": 87720,
+      "sha256": "83d4d9abf2bad852b93b8a32a8870b2d6a11f0da777be3c977ee29b5e1419636",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12005_stepdown.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12005_stepdown.cbm",
+      "bytes": 89008,
+      "sha256": "10f0ceac2b3648d313c3eef1c68fac004e3d8da2f01764d758dd72c7d284b805",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12005_stepup.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12005_stepup.cbm",
+      "bytes": 88032,
+      "sha256": "d94f802be8832e6bee0d90a737d8f3829285efaa152ee10d02229542deb14782",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12006_constant.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12006_constant.cbm",
+      "bytes": 88272,
+      "sha256": "fae9fe83650904cba6979436a82f570c5c2810ebe78dce06c4ecd023302d75a2",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12006_stepdown.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12006_stepdown.cbm",
+      "bytes": 89168,
+      "sha256": "42cca3b3c80ab3614d4767a28b3a8deac0e47d7b41ff95bf951ad245d4c31c69",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12006_stepup.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12006_stepup.cbm",
+      "bytes": 88776,
+      "sha256": "5a35333e92552d9a7c45fe5ffa25d8d161a8778ffed9398c9dc520d84a9a2b12",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12007_constant.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12007_constant.cbm",
+      "bytes": 88184,
+      "sha256": "4011c55567731f8eefe55a48dbb774f96a9ec5ba49e4f1ea7a85352a23c50284",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12007_stepdown.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12007_stepdown.cbm",
+      "bytes": 89224,
+      "sha256": "b38ca7eac987ac901760db939e8121c9f9247185cd8215345de44589c636c533",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12007_stepup.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12007_stepup.cbm",
+      "bytes": 88784,
+      "sha256": "e0ef5cc3492cdd5b7addd23229165c89e33ab42d638179a0cddaed969b1fb83e",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12008_constant.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12008_constant.cbm",
+      "bytes": 88352,
+      "sha256": "f91221108b00c79ff8728d73f1d942032b04039aab4388caf933d66141f20a32",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12008_stepdown.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12008_stepdown.cbm",
+      "bytes": 89200,
+      "sha256": "cf444d007a4ff5d012543f67742c99a2f9564da18ead0cc583473d7fad7bc199",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12008_stepup.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12008_stepup.cbm",
+      "bytes": 88752,
+      "sha256": "8b850b2fa58f813b6eb2b10ec6333b45693bfb94dbe37546bf6b0800a83143d7",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12009_constant.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12009_constant.cbm",
+      "bytes": 87576,
+      "sha256": "b46a3fb49341eeb3bbbd2bc97bf9c48b3d02dbfd8534199b50d5a541aa8e2cfa",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12009_stepdown.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12009_stepdown.cbm",
+      "bytes": 89176,
+      "sha256": "df16c50dcb8caba85e4f5bab809c56e22b9a1fa4ce189cad618e016335ba14cb",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12009_stepup.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12009_stepup.cbm",
+      "bytes": 88352,
+      "sha256": "36d10e7ee85edacded9cd92c5946c3a65e9b0a957c8ce06064f3e59249e852b7",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12010_constant.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12010_constant.cbm",
+      "bytes": 88064,
+      "sha256": "74c38cc2ebfdfe3cddb42ade15ade58a64846d6c2b241d1c9f123b883f9fed3e",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12010_stepdown.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12010_stepdown.cbm",
+      "bytes": 89296,
+      "sha256": "7855e20e30db7d132aedb4f3ce8325591471a8cbb10dce7665276b1f79aedda9",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12010_stepup.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12010_stepup.cbm",
+      "bytes": 88720,
+      "sha256": "f2a9dcabc0e395bff386efb11148baad6b50b2bf200de8326121f4a932ce3d57",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12011_constant.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12011_constant.cbm",
+      "bytes": 88160,
+      "sha256": "76fe675f9bd0e44908f9b1ec743febbd86f2cacf8e2c5ca2119a0b6c7b9f125a",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12011_stepdown.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12011_stepdown.cbm",
+      "bytes": 89152,
+      "sha256": "f8a45c522fbeb659ed6b8b6de29a51ce2c59ea5c075b0e5cb40d4497def02369",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12011_stepup.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12011_stepup.cbm",
+      "bytes": 88808,
+      "sha256": "9512064ad9c115015f8633e1f5a655e48eaff938a2bebffcc7e533e164aef0f4",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12012_constant.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12012_constant.cbm",
+      "bytes": 88016,
+      "sha256": "51c92b0beccbc52ff2b9e4c95c2fba65e8f97c63d9bc9d2644fc807be4632b19",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12012_stepdown.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12012_stepdown.cbm",
+      "bytes": 89016,
+      "sha256": "e1c7531aa01681b552e8a889ca5145fb14a59d4181f89d8b13683cb007f08583",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12012_stepup.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12012_stepup.cbm",
+      "bytes": 88640,
+      "sha256": "7c29e98ef85af25a540f2029a4c2a4838068e2398c93890dc79da93fe76cb6f3",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/predictions.npz",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/predictions.npz",
+      "bytes": 93017289,
+      "sha256": "3045935cd2290cc944d0a8d0e3d4aa871fbece4b4cc307c6c9f15620e013c0f3",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/stderr.log",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/stdout.log",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/stdout.log",
+      "bytes": 3552,
+      "sha256": "2e4dc4110facd99c70314f5362c0fe782970dc327153c44e02132bffad5fb1ac",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/unit-checks/checks.json",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/unit-checks/checks.json",
+      "bytes": 1656,
+      "sha256": "f2d8cc2c96d45c9ca2e8464f54ac5e99f475b36a7affd33bca45489611ef14f0",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/unit-checks/stderr.log",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/unit-checks/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/unit-checks/stdout.log",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/unit-checks/stdout.log",
+      "bytes": 1550,
+      "sha256": "03227150aa44bfdf56759f147e77ac60179c07096efdfc05f21cc5795845fb4d",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/inputs/docs/decisions/0004-v2-research-refactor.md",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/inputs/docs/decisions/0004-v2-research-refactor.md",
+      "bytes": 3730,
+      "sha256": "648b1bd91d2378e31f40e8d7feaf6bb0ce33d815a468660486526700088f251a",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/inputs/docs/literature/2026-11-07-v2-audit.md",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/inputs/docs/literature/2026-11-07-v2-audit.md",
+      "bytes": 12252,
+      "sha256": "8e3d5f3505b422f9bc1e57d95c22f72a407182022f58566db7222a504c163a94",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/inputs/docs/methods/acceleration-identifiability.md",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/inputs/docs/methods/acceleration-identifiability.md",
+      "bytes": 5036,
+      "sha256": "891640dd43ec8f12bc2e1cb717465b2933379a6c3315adb63024a261d54e5e73",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/inputs/pyproject.toml",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/inputs/pyproject.toml",
+      "bytes": 991,
+      "sha256": "5d43d6f7f88312b18299a1ec7e8ac921d512c271ac022de4ad0720eb5883e182",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/inputs/research/decisions/codex-refactor-authorization-2026-11-07.json",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/inputs/research/decisions/codex-refactor-authorization-2026-11-07.json",
+      "bytes": 2197,
+      "sha256": "8559055cea21e6f58bdd58b07930e5d9ab505a84a1ea58c72721c0c5e4e2119d",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/inputs/research/plans/R12.json",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/inputs/research/plans/R12.json",
+      "bytes": 7318,
+      "sha256": "8ae9d070bba865d347db6d56f767285054d1b7b170f2c534a5d234c82639b32b",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/inputs/research/stages.json",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/inputs/research/stages.json",
+      "bytes": 5631,
+      "sha256": "a5ce023bed15ddb29d4212b11e1ce3667deb63d8e95334e571b4469013a9d321",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/inputs/research/stages/R12/PLAN.md",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/inputs/research/stages/R12/PLAN.md",
+      "bytes": 10572,
+      "sha256": "ccba198f5591910bd34cc352bcb01e75b9f8c741c52d15c135b325d04ce3945b",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/inputs/research/stages/R12/inputs/design-review.json",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/inputs/research/stages/R12/inputs/design-review.json",
+      "bytes": 6554,
+      "sha256": "e4e69d648611935a4753a0d6c0d3a684b82dac95cb5740751bdac2adeecc12ee",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/inputs/research/stages/R12/inputs/protocol.json",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/inputs/research/stages/R12/inputs/protocol.json",
+      "bytes": 2162,
+      "sha256": "02de1fdb0fd4dd4c2d73da7091c8e268c1e935e1a5334b9c8ef99a10fa9cfb3c",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/inputs/scripts/r12_run.py",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/inputs/scripts/r12_run.py",
+      "bytes": 986,
+      "sha256": "78dc16d979a09ef9600fad9ea21e1192d483da806bf7e059950eb226cc2f0bfc",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/inputs/scripts/research.py",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/inputs/scripts/research.py",
+      "bytes": 3099,
+      "sha256": "8c2db44ce6fa3742b796f671e9813b4d485674a2d0aa3c300d8b21b85940c0fb",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/inputs/scripts/run_unit_checks.py",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/inputs/scripts/run_unit_checks.py",
+      "bytes": 1293,
+      "sha256": "d2fc3c360195cd7f8d69689b0dc60940dcd416e2b31b9396e60bfeafb9528c52",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/inputs/src/__init__.py",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/inputs/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/inputs/src/acceleration_audit.py",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/inputs/src/acceleration_audit.py",
+      "bytes": 4719,
+      "sha256": "aedff24c1274b7fc741c4bdd864e1e7c0ce9fc13d53aad0f967e2a218b8f4683",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/inputs/src/acceleration_boosting.py",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/inputs/src/acceleration_boosting.py",
+      "bytes": 19181,
+      "sha256": "8785379e0e9d9c02775aa73a34654d9cf4d98e999a4547564b21d40f0a2e1a73",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/inputs/src/acceleration_randomness.py",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/inputs/src/acceleration_randomness.py",
+      "bytes": 15990,
+      "sha256": "98ad4e61c03eb17e2456368225adb58f9059e6f02690f9df8648c999119a4671",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/inputs/src/detector_catalog.py",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/inputs/src/detector_catalog.py",
+      "bytes": 8095,
+      "sha256": "694cd25c57e6a738659e0fbe9def7fa1008b0ef4d73680cafbb96b957a87bc58",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/inputs/src/dynamics.py",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/inputs/src/dynamics.py",
+      "bytes": 6563,
+      "sha256": "3b44a6ffbe4652d8dc732a6babdd66c9957f073ec33d7e45b10086c17797e1ad",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/inputs/src/research_workflow.py",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/inputs/src/research_workflow.py",
+      "bytes": 44994,
+      "sha256": "ff39334363d8f08f23613204e22dc24545390266f5f3197ac67fdecfd8dc45fd",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/inputs/src/resource_ledger.py",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/inputs/src/resource_ledger.py",
+      "bytes": 11762,
+      "sha256": "af55db7c171efef7ef1792d287c419d3ae6a6e87dcd52f8be946fb8cbfb7c3d5",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/inputs/tests/test_acceleration_randomness.py",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/inputs/tests/test_acceleration_randomness.py",
+      "bytes": 5018,
+      "sha256": "faa6d94e9cba9da106d57a93871952da1d545ddfcc760d5ebd5d768703aed317",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/inputs/uv.lock",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/inputs/uv.lock",
+      "bytes": 157725,
+      "sha256": "ac89eef670e3774086fff7a06df62f1ba760f85d6c76378ac915ca32b76523b4",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/manifest.json",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/manifest.json",
+      "bytes": 28296,
+      "sha256": "fc4d0c3da64ec28f5c6ad73c5d5ab869f92c4daef0b23dbb6dbf0ed21e4b225a",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/plan.json",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/plan.json",
+      "bytes": 7318,
+      "sha256": "8ae9d070bba865d347db6d56f767285054d1b7b170f2c534a5d234c82639b32b",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/report.md",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/report.md",
+      "bytes": 6710,
+      "sha256": "15d925325f8d17170a70ae76d661194fd160b33b6352ca3416e0f04c9cb555c9",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/review.json",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/review.json",
+      "bytes": 6927,
+      "sha256": "6a7f6ed712080be2230b76a17de617c872b41c65b9588c67b357e13db746c20e",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/analysis.json",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/analysis.json",
+      "bytes": 26593,
+      "sha256": "4f03363af83d21af360489286edb99045762b64e932caa80027d018ab1e48224",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/cells.jsonl",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/cells.jsonl",
+      "bytes": 24368443,
+      "sha256": "9bd8c04eb053d34658e04f5d63c3ec9797bbcc686188b8abfc085a6262da4be4",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/data.npz",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/data.npz",
+      "bytes": 1643742,
+      "sha256": "31ad1a41f0e867fb8dc30339bd534cf7d78bd721c2871d96f0d95696b056885e",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/environment.json",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/environment.json",
+      "bytes": 437,
+      "sha256": "4e4e22bfffbbd22f496940f87a9065ecab5067952b4c91ed3907d44bde9f9fbd",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models.json",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models.json",
+      "bytes": 12577,
+      "sha256": "1e4a2f0976be41a3b1cf74cf6c07d0790ff91801596dbc54905387b59e5680f6",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13001_rs0.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13001_rs0.cbm",
+      "bytes": 344544,
+      "sha256": "54b31394258042b3e6b4243f888344bb6ed6160f7111e03b4758b175e511f89b",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13001_rs1.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13001_rs1.cbm",
+      "bytes": 346056,
+      "sha256": "4e140935dee4a8972c75e0e91c51ea828b260031d6b2a40364fa82eebd717e15",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13001_rs10.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13001_rs10.cbm",
+      "bytes": 346872,
+      "sha256": "43c65af6a433b1a67f57aa4dafa6f2b21a6d43caaa37325f8c7310287e74ef41",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13002_rs0.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13002_rs0.cbm",
+      "bytes": 344584,
+      "sha256": "2583fe37e0fd1a2c7c3213cca740897d7b4357bb37214af0f4f0b7aa03ea1f4a",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13002_rs1.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13002_rs1.cbm",
+      "bytes": 345928,
+      "sha256": "8f65012531b8cbe475f850385cddbe5696a4dfe394232a4b1d04bdb969ddc4f3",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13002_rs10.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13002_rs10.cbm",
+      "bytes": 346856,
+      "sha256": "933478b8d9227c4ce7100cd40b4bb3b304b11767b19bca91710fc3fb6a309c6d",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13003_rs0.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13003_rs0.cbm",
+      "bytes": 344648,
+      "sha256": "28c8a33abc8f42c2be66ba3dae7781107cb53d20847cff649cd613222e90f5b2",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13003_rs1.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13003_rs1.cbm",
+      "bytes": 345856,
+      "sha256": "48a59248da323d991f6e68aad3f22fcce8f61b8844a313e902954ff84cc9fe89",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13003_rs10.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13003_rs10.cbm",
+      "bytes": 346800,
+      "sha256": "4567d8823041645661e864cfa9bafbbb3b29a26a21876dc69c520490ad9f2198",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13004_rs0.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13004_rs0.cbm",
+      "bytes": 344776,
+      "sha256": "68652392f08516f2b423abcd9063cb43b9639ada1f4d61c7dfc799f2fa6b662b",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13004_rs1.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13004_rs1.cbm",
+      "bytes": 345952,
+      "sha256": "d8620f4e326c9eac94e629a3f04def43f3a31236947bbf40f1cad5595fa89c94",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13004_rs10.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13004_rs10.cbm",
+      "bytes": 347144,
+      "sha256": "11548772f25c1bec6d990bd9c8bc5d1a7f6e8f19e1ce3d70435176b04da92f59",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13005_rs0.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13005_rs0.cbm",
+      "bytes": 344584,
+      "sha256": "0be716a3b6f6477374a0dd0ee271ab44429257500922bbea7ae32e09935631fb",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13005_rs1.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13005_rs1.cbm",
+      "bytes": 346008,
+      "sha256": "3d134fadb184aa9ee87ee94a26e3653b5f6578b79aef2fcb41fb5bec710182ee",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13005_rs10.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13005_rs10.cbm",
+      "bytes": 347080,
+      "sha256": "c303f04d6c367f3fefb6ddcefebfe0fb28d4759fb9ddd6b4bfe8af1ec3f3552a",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13006_rs0.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13006_rs0.cbm",
+      "bytes": 344544,
+      "sha256": "e1318229287f939bd440c6e464f856c8892a93f9aad7bf1a6905c103cc450cb6",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13006_rs1.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13006_rs1.cbm",
+      "bytes": 345968,
+      "sha256": "1ac38206e92cd1cefe675ccd93f4108e476bab85ed32ab15092f3378b0ba4b26",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13006_rs10.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13006_rs10.cbm",
+      "bytes": 347008,
+      "sha256": "feec9bba1b2960de94fcbd91e048542050ba84f580552471fd8cb8c9187574e6",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13007_rs0.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13007_rs0.cbm",
+      "bytes": 344608,
+      "sha256": "7c578bd503fee7f067f1ec75baeb366ecfdf73d2ec635549ec3f7f71d127797b",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13007_rs1.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13007_rs1.cbm",
+      "bytes": 346040,
+      "sha256": "4eb735f67af02692f64350cf604eca4d8753629d21834c9fedcbc069c04d549a",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13007_rs10.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13007_rs10.cbm",
+      "bytes": 347064,
+      "sha256": "38a5c12d0f7d66b192e56dde46e405822a0d4b1b563bff506d3616ab1011b98d",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13008_rs0.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13008_rs0.cbm",
+      "bytes": 344568,
+      "sha256": "a8d38b920825416ced108b7d7721bb809d58c15647717da95d499790f3b204ad",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13008_rs1.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13008_rs1.cbm",
+      "bytes": 346112,
+      "sha256": "3cef40dfb059a8105874efcb023ce9c62b17ff3679dccf43f19db96314cc0151",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13008_rs10.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13008_rs10.cbm",
+      "bytes": 346928,
+      "sha256": "2cf852fc00a4869ee757276536ae31564430f5635731b00ed73dd3922e3d92f8",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13009_rs0.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13009_rs0.cbm",
+      "bytes": 344744,
+      "sha256": "01a28d8dbf5c12b9331b205cc1930d1be3052a615169f5cc52e9df6fc1db17f2",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13009_rs1.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13009_rs1.cbm",
+      "bytes": 346256,
+      "sha256": "7aba1b352d57ca89deefa8fbe4df0102e5295950afe16ddc530cc8e755bd1fcd",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13009_rs10.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13009_rs10.cbm",
+      "bytes": 347128,
+      "sha256": "2d765b4b88a6986a4d6216fb6304c3213a0224a4fea5a44e43bc4f3700662462",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13010_rs0.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13010_rs0.cbm",
+      "bytes": 344448,
+      "sha256": "d5c87259dc94778950ca454f69e8d4b505dba93918311cba9e458c64fc3cab20",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13010_rs1.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13010_rs1.cbm",
+      "bytes": 345864,
+      "sha256": "50d128428847ef69989abdfa0b7afc6344da7047c967ebddba27777894265ecd",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13010_rs10.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13010_rs10.cbm",
+      "bytes": 346592,
+      "sha256": "16048bea9414bd2ca0bebb0b13a47215b2b9116ba400517b52415f8feeea7041",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13011_rs0.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13011_rs0.cbm",
+      "bytes": 344656,
+      "sha256": "ef8ecd447be393dfb2f2790b483a722c9d983e24c1a02e29d12ae83ff7bfbbad",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13011_rs1.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13011_rs1.cbm",
+      "bytes": 346384,
+      "sha256": "49eb32052ae0a2bda72b27f6d34e588195e9fc491111d350e74022f6e0b51467",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13011_rs10.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13011_rs10.cbm",
+      "bytes": 346688,
+      "sha256": "4dd752ba263c3eda14b4db1609a23411eddc4b8c88cf4998f809bb48342e0e78",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13012_rs0.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13012_rs0.cbm",
+      "bytes": 344512,
+      "sha256": "2c87012c2c410991ad76ad6a5a786262c7135f0d196deb91de86511975a31f6c",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13012_rs1.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13012_rs1.cbm",
+      "bytes": 346104,
+      "sha256": "67556be0ea2593a51356352f733c3af10d36e5cf4c210ea8af572238df90e6e1",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13012_rs10.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/breast_cancer_13012_rs10.cbm",
+      "bytes": 347168,
+      "sha256": "522a278ea73023396ac7ee9fa469202c0678c75dae5c048fca99eff62e6726fb",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13001_rs0.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13001_rs0.cbm",
+      "bytes": 343080,
+      "sha256": "d4fbe82bff0fdb833512825433606d2c5be6b9c586179e135003faa394c294d0",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13001_rs1.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13001_rs1.cbm",
+      "bytes": 343040,
+      "sha256": "035c66719434ff5b23b4e91a7faa1a9156ed30b7d9b26f343320ec6823fd4a0b",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13001_rs10.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13001_rs10.cbm",
+      "bytes": 345120,
+      "sha256": "db6887195dda68691a4fab44f529d2c748cef4b0846688f55afe29592acb37b8",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13002_rs0.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13002_rs0.cbm",
+      "bytes": 343592,
+      "sha256": "ceae544fcf1eff0ea0903b7b0770a9b3d44e1dfa018863fbfabebb346f59c6e3",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13002_rs1.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13002_rs1.cbm",
+      "bytes": 344840,
+      "sha256": "0436a6237293aa9d3f0cc84522e8094b6acb9a270410994fe105f356193db121",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13002_rs10.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13002_rs10.cbm",
+      "bytes": 345592,
+      "sha256": "80a656921b78fe2073eb6ad7e722215907fdb9c329081b568bb1844161898475",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13003_rs0.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13003_rs0.cbm",
+      "bytes": 341264,
+      "sha256": "a42087de62194d9e4c8ea40bbd3deeaff3acf5baa64984a32940e50d9dc50217",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13003_rs1.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13003_rs1.cbm",
+      "bytes": 344088,
+      "sha256": "3bbaf607123feeadd92e129121b8d09bf1c9d9753533dfcb15a763f7c8abbf36",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13003_rs10.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13003_rs10.cbm",
+      "bytes": 344144,
+      "sha256": "225f5b95cdeb0917adf77b8bb173fce8a9b0bb79f590264c0f85c32dc744b7bc",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13004_rs0.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13004_rs0.cbm",
+      "bytes": 343544,
+      "sha256": "0a78cc15903ff197241499a5ce56310e68ddd7516be9728a62989a67ec6151f7",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13004_rs1.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13004_rs1.cbm",
+      "bytes": 343264,
+      "sha256": "4787c0082824ae9e53943f9c627ec0cca7547e73b3816452571e6c882937e70b",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13004_rs10.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13004_rs10.cbm",
+      "bytes": 344552,
+      "sha256": "cc2d5aa47396f7a2c46021f4cd902641eab29f10c0c580d65617bc9672430b60",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13005_rs0.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13005_rs0.cbm",
+      "bytes": 310336,
+      "sha256": "a0625c243d783333d985e9bcbb6892f839a4b693fe5fc6d76b5b4d06e576bd3d",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13005_rs1.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13005_rs1.cbm",
+      "bytes": 339136,
+      "sha256": "11984e527079d52b7e8801a1f65bc5b99c30d4adf94b65582355d4d985eefcbf",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13005_rs10.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13005_rs10.cbm",
+      "bytes": 332496,
+      "sha256": "699103480ba5dda94d712ad57281e6097cb1297bffc860c4f1c454a99c84bf25",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13006_rs0.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13006_rs0.cbm",
+      "bytes": 343568,
+      "sha256": "afb01912cec4a38686c999b2ac1ecaaa74362ac6fa9a424cf8800a6d70ceb946",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13006_rs1.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13006_rs1.cbm",
+      "bytes": 344864,
+      "sha256": "6bb7cee2b029b1de15eb7e5ac6fc678ba319d6cef9e47b1e7c74ad32a981da5e",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13006_rs10.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13006_rs10.cbm",
+      "bytes": 345672,
+      "sha256": "0a6115325419ec42fabfd3a1aee040155132a19677ba09bc684d594cec39ce5c",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13007_rs0.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13007_rs0.cbm",
+      "bytes": 343856,
+      "sha256": "3243b1f95ab55d94bf327990fb2025bfc507ea81ef5f2171818e7e1c09b19a37",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13007_rs1.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13007_rs1.cbm",
+      "bytes": 345056,
+      "sha256": "894834dfd0572ab6f7ad279cb05ca8f71bcf5e77962858dcef5530039b33e658",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13007_rs10.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13007_rs10.cbm",
+      "bytes": 345616,
+      "sha256": "ec936542a4b19caf88404c0c82599859339d1265a0df51a87e2eb2753c386f99",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13008_rs0.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13008_rs0.cbm",
+      "bytes": 343528,
+      "sha256": "b3cdf97ee901177dee7a4e926306aec96b33107a47500a4ffd1d7f3f73ef3ba1",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13008_rs1.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13008_rs1.cbm",
+      "bytes": 344704,
+      "sha256": "5ce12443c8b7844c94b22b4c3f24c83f5df71b8102e28fd7f8083d0a30e315d3",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13008_rs10.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13008_rs10.cbm",
+      "bytes": 345528,
+      "sha256": "7c2fdd26d839a41c7bb3c85d71d5b2b9a5b512cc0ba6e83a13fd18f8d18347b9",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13009_rs0.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13009_rs0.cbm",
+      "bytes": 343632,
+      "sha256": "57da6027f066b3fc5472f802b81d99d55cad946d39d20cda27b7cf15eef86b06",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13009_rs1.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13009_rs1.cbm",
+      "bytes": 344872,
+      "sha256": "b1ec6665eab0e4e5cd5e3f3929a74cc859740f28221abc5e35565e04048b3d9e",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13009_rs10.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13009_rs10.cbm",
+      "bytes": 345648,
+      "sha256": "235a683a051b519685f5c51be184eab93caf55de62e365eedbe67df173e3a6f9",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13010_rs0.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13010_rs0.cbm",
+      "bytes": 341992,
+      "sha256": "9c282a007090b74f8d9041807cfa39f14d82d358e4bcbafcb7c5a7f1e409f763",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13010_rs1.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13010_rs1.cbm",
+      "bytes": 343352,
+      "sha256": "13b289b94e4b44c9867838a646637a0242a65a2bdc5d2cd4beb29a678fbda9cd",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13010_rs10.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13010_rs10.cbm",
+      "bytes": 345136,
+      "sha256": "8b10280e83f314347a69892a4483a84a866c81d2b3cb60a99a571f2b96c49e9a",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13011_rs0.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13011_rs0.cbm",
+      "bytes": 343384,
+      "sha256": "2d0c67071b72679299e20972b676a806cf310a4b221ba80fa9ebc4456ed7f8ee",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13011_rs1.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13011_rs1.cbm",
+      "bytes": 344648,
+      "sha256": "1d4a4c04e666f8f254bc661cbd6a9293875cb13078f2e5bdb99273124b2fa9c3",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13011_rs10.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13011_rs10.cbm",
+      "bytes": 345328,
+      "sha256": "75d03b6cd3d3330ff72b65cdaf90787ecd9e43b54fde45e0c2b7b528dd10438f",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13012_rs0.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13012_rs0.cbm",
+      "bytes": 343552,
+      "sha256": "dde8788e28aaa2b0b99ba758bbb5acd7a6c5f4586b285b1a0732198ed320fc47",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13012_rs1.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13012_rs1.cbm",
+      "bytes": 344976,
+      "sha256": "b5307e966c72db5df3fc3f538de377fc2f2acebdf070972f9dd1c1fc4581901c",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13012_rs10.cbm",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/models/synthetic_13012_rs10.cbm",
+      "bytes": 345632,
+      "sha256": "f11e674f6eaf64ac8a951cd731e0448138eb2bab77eaaa4d2666072c5b255fe0",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/predictions.npz",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/predictions.npz",
+      "bytes": 385199095,
+      "sha256": "c11dd216d71c89f9575ccd4aca2ba826ea2f385fec504f97b2a0908d71465d0a",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/stderr.log",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/stdout.log",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/randomness-study/stdout.log",
+      "bytes": 3624,
+      "sha256": "edba70aadabc5e76ae390c8deeef3100559fbdec0bc4289d1b5078686acf034c",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/unit-checks/checks.json",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/unit-checks/checks.json",
+      "bytes": 1300,
+      "sha256": "95d9513bc94a2184a72790b81620d280fd3270bed29986cbcf6509367f21e71e",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/unit-checks/stderr.log",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/unit-checks/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/unit-checks/stdout.log",
+      "intake_path": "artifacts/intake/R13/frozen-runs/R12/20261107T194939-7c18953a98/tasks/unit-checks/stdout.log",
+      "bytes": 1194,
+      "sha256": "6af88cb38e81018ded1bb66750f8db7e7725770ebfd3d6af7b29ced255888657",
+      "category": "complete_selected_attempt"
+    },
+    {
+      "original_path": "artifacts/intake/v2-literature/acquisition.jsonl",
+      "intake_path": "artifacts/intake/R13/review-packets/artifacts/intake/v2-literature/acquisition.jsonl",
+      "bytes": 4141,
+      "sha256": "c1493d540e0e972203dc2e8dae0ca0206f367a736c28c84b93fcb616fb8a9832",
+      "category": "literature_snapshot_or_acquisition"
+    },
+    {
+      "original_path": "artifacts/intake/v2-literature/catboost-parameter-tuning-attempt1.html",
+      "intake_path": "artifacts/intake/R13/review-packets/artifacts/intake/v2-literature/catboost-parameter-tuning-attempt1.html",
+      "bytes": 327209,
+      "sha256": "350290a2a6138b5232033f2f7e7f3ab47a8e091bab66453a4b6edb2e710b9873",
+      "category": "literature_snapshot_or_acquisition"
+    },
+    {
+      "original_path": "artifacts/intake/v2-literature/he-2308.04368v5-attempt1.html",
+      "intake_path": "artifacts/intake/R13/review-packets/artifacts/intake/v2-literature/he-2308.04368v5-attempt1.html",
+      "bytes": 544535,
+      "sha256": "b6afc37c44994bf829218a7da549bb84d176c4bcf85f26bd3249729568e36436",
+      "category": "literature_snapshot_or_acquisition"
+    },
+    {
+      "original_path": "artifacts/intake/v2-literature/kanoh-2608.03111v1-attempt1.html",
+      "intake_path": "artifacts/intake/R13/review-packets/artifacts/intake/v2-literature/kanoh-2608.03111v1-attempt1.html",
+      "bytes": 252566,
+      "sha256": "29cc4b9f3f1ba56b4d0357f421d5c052299bef4ff25b2f964574ee35bbdb010f",
+      "category": "literature_snapshot_or_acquisition"
+    },
+    {
+      "original_path": "artifacts/intake/v2-literature/mosum-2208.04900v3-attempt1.html",
+      "intake_path": "artifacts/intake/R13/review-packets/artifacts/intake/v2-literature/mosum-2208.04900v3-attempt1.html",
+      "bytes": 1954615,
+      "sha256": "6f7a4efeaeaab10261b6aa435dffba95cc732a4ef54c5481ec4311cee4499527",
+      "category": "literature_snapshot_or_acquisition"
+    },
+    {
+      "original_path": "artifacts/research/R10/20261107T192414-36aee5d99b/tasks/calibrate-evaluate/analysis.json",
+      "intake_path": "artifacts/intake/R13/review-packets/artifacts/research/R10/20261107T192414-36aee5d99b/tasks/calibrate-evaluate/analysis.json",
+      "bytes": 28114,
+      "sha256": "e3bf51e3f41d21f26fc00b7b784606a451ef0d587ff2e1767f519ec91872390d",
+      "category": "accepted_claim_evidence"
+    },
+    {
+      "original_path": "artifacts/research/R10/20261107T192414-36aee5d99b/tasks/calibrate-evaluate/calibration.json",
+      "intake_path": "artifacts/intake/R13/review-packets/artifacts/research/R10/20261107T192414-36aee5d99b/tasks/calibrate-evaluate/calibration.json",
+      "bytes": 3192,
+      "sha256": "3967d880e9f2a0abfa5f6199a2db63c20e3255b69b335782c70e0ef785bdc622",
+      "category": "accepted_claim_evidence"
+    },
+    {
+      "original_path": "artifacts/research/R10/20261107T192414-36aee5d99b/tasks/calibrate-evaluate/curves.jsonl",
+      "intake_path": "artifacts/intake/R13/review-packets/artifacts/research/R10/20261107T192414-36aee5d99b/tasks/calibrate-evaluate/curves.jsonl",
+      "bytes": 5825323,
+      "sha256": "cc61cde47e19c31f58dc907ed56212d1566270a6b930cf447c3be2dcffc53111",
+      "category": "accepted_claim_evidence"
+    },
+    {
+      "original_path": "artifacts/research/R10/20261107T192414-36aee5d99b/tasks/calibrate-evaluate/curves.npz",
+      "intake_path": "artifacts/intake/R13/review-packets/artifacts/research/R10/20261107T192414-36aee5d99b/tasks/calibrate-evaluate/curves.npz",
+      "bytes": 13578837,
+      "sha256": "0a3a93ff6e9c1c47418c223b138a64f52ec23eb1b399f6e3e1b8d95d1e94aff4",
+      "category": "accepted_claim_evidence"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/analysis.json",
+      "intake_path": "artifacts/intake/R13/review-packets/artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/analysis.json",
+      "bytes": 10942,
+      "sha256": "f83c00cc8844af56c1073e756db80f3e9596e04306ff7d4943622ef330cb05c3",
+      "category": "accepted_claim_evidence"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/cells.jsonl",
+      "intake_path": "artifacts/intake/R13/review-packets/artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/cells.jsonl",
+      "bytes": 6451118,
+      "sha256": "df64212083191fb78579c5883b282318d8a00ce669eff2d643c10693f4d83185",
+      "category": "accepted_claim_evidence"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/data.npz",
+      "intake_path": "artifacts/intake/R13/review-packets/artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/data.npz",
+      "bytes": 1643911,
+      "sha256": "e95b1bd73f14a578e9662a813e424739b93032c01812492bd8c6bf53a9c9cba4",
+      "category": "accepted_claim_evidence"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models.json",
+      "intake_path": "artifacts/intake/R13/review-packets/artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/models.json",
+      "bytes": 12793,
+      "sha256": "398160c18ebddba0fbffaf5f74682ceab1e9d180af19fd6852b0b82dbd43fdb2",
+      "category": "accepted_claim_evidence"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/predictions.npz",
+      "intake_path": "artifacts/intake/R13/review-packets/artifacts/research/R11/20261107T194028-229b223740/tasks/schedule-study/predictions.npz",
+      "bytes": 93017289,
+      "sha256": "3045935cd2290cc944d0a8d0e3d4aa871fbece4b4cc307c6c9f15620e013c0f3",
+      "category": "accepted_claim_evidence"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/analysis.json",
+      "intake_path": "artifacts/intake/R13/review-packets/artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/analysis.json",
+      "bytes": 26593,
+      "sha256": "4f03363af83d21af360489286edb99045762b64e932caa80027d018ab1e48224",
+      "category": "accepted_claim_evidence"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/cells.jsonl",
+      "intake_path": "artifacts/intake/R13/review-packets/artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/cells.jsonl",
+      "bytes": 24368443,
+      "sha256": "9bd8c04eb053d34658e04f5d63c3ec9797bbcc686188b8abfc085a6262da4be4",
+      "category": "accepted_claim_evidence"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/data.npz",
+      "intake_path": "artifacts/intake/R13/review-packets/artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/data.npz",
+      "bytes": 1643742,
+      "sha256": "31ad1a41f0e867fb8dc30339bd534cf7d78bd721c2871d96f0d95696b056885e",
+      "category": "accepted_claim_evidence"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models.json",
+      "intake_path": "artifacts/intake/R13/review-packets/artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models.json",
+      "bytes": 12577,
+      "sha256": "1e4a2f0976be41a3b1cf74cf6c07d0790ff91801596dbc54905387b59e5680f6",
+      "category": "accepted_claim_evidence"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/predictions.npz",
+      "intake_path": "artifacts/intake/R13/review-packets/artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/predictions.npz",
+      "bytes": 385199095,
+      "sha256": "c11dd216d71c89f9575ccd4aca2ba826ea2f385fec504f97b2a0908d71465d0a",
+      "category": "accepted_claim_evidence"
+    },
+    {
+      "original_path": "artifacts/research/R8/20261107T140907-bd7e4a5a5e/tasks/score-catalog/scores.json",
+      "intake_path": "artifacts/intake/R13/review-packets/artifacts/research/R8/20261107T140907-bd7e4a5a5e/tasks/score-catalog/scores.json",
+      "bytes": 15406,
+      "sha256": "36882c2612f0c2b58285b099d7b817e29d3a6013dd21610f3d986bafbf1331fc",
+      "category": "accepted_claim_evidence"
+    },
+    {
+      "original_path": "artifacts/research/R9/20261107T141434-ba64acb5eb/tasks/discovery-fit/analysis.json",
+      "intake_path": "artifacts/intake/R13/review-packets/artifacts/research/R9/20261107T141434-ba64acb5eb/tasks/discovery-fit/analysis.json",
+      "bytes": 1053,
+      "sha256": "f8255a598c1c3a8b8a68a9ff394d75f981fd68c4f8bf75dade39647c556d53a3",
+      "category": "accepted_claim_evidence"
+    },
+    {
+      "original_path": "artifacts/research/R9/20261107T141434-ba64acb5eb/tasks/discovery-fit/cells.jsonl",
+      "intake_path": "artifacts/intake/R13/review-packets/artifacts/research/R9/20261107T141434-ba64acb5eb/tasks/discovery-fit/cells.jsonl",
+      "bytes": 3665,
+      "sha256": "a3ec302a67390df662de35d2aa68e1eff85cc33b08537ec8fbc21401ae9ed075",
+      "category": "accepted_claim_evidence"
+    },
+    {
+      "original_path": "artifacts/research/R9/20261107T141434-ba64acb5eb/tasks/discovery-fit/seed-audit.json",
+      "intake_path": "artifacts/intake/R13/review-packets/artifacts/research/R9/20261107T141434-ba64acb5eb/tasks/discovery-fit/seed-audit.json",
+      "bytes": 263,
+      "sha256": "8ffc85ab2f1fb59b3f9610872422b64bf74a0234119ec3c4c3090b954707ae3d",
+      "category": "accepted_claim_evidence"
+    },
+    {
+      "original_path": "docs/decisions/0003-cursor-autonomous-research.md",
+      "intake_path": "artifacts/intake/R13/review-packets/docs/decisions/0003-cursor-autonomous-research.md",
+      "bytes": 11162,
+      "sha256": "089eff5c6bd51fd62c519de44cc050f64bf00a10709660987430efd6e486c8ac",
+      "category": "policy_methods_or_literature"
+    },
+    {
+      "original_path": "docs/decisions/0004-v2-research-refactor.md",
+      "intake_path": "artifacts/intake/R13/review-packets/docs/decisions/0004-v2-research-refactor.md",
+      "bytes": 3730,
+      "sha256": "648b1bd91d2378e31f40e8d7feaf6bb0ce33d815a468660486526700088f251a",
+      "category": "policy_methods_or_literature"
+    },
+    {
+      "original_path": "docs/literature/2026-11-07-v2-audit.md",
+      "intake_path": "artifacts/intake/R13/review-packets/docs/literature/2026-11-07-v2-audit.md",
+      "bytes": 12252,
+      "sha256": "8e3d5f3505b422f9bc1e57d95c22f72a407182022f58566db7222a504c163a94",
+      "category": "policy_methods_or_literature"
+    },
+    {
+      "original_path": "docs/literature/sources.json",
+      "intake_path": "artifacts/intake/R13/review-packets/docs/literature/sources.json",
+      "bytes": 7814,
+      "sha256": "17d33c38cc576ea00ef0d1ead0aeb69511d15a22599d0f26bac73b358174b600",
+      "category": "policy_methods_or_literature"
+    },
+    {
+      "original_path": "docs/literature/v2-acquisition-plan.json",
+      "intake_path": "artifacts/intake/R13/review-packets/docs/literature/v2-acquisition-plan.json",
+      "bytes": 4134,
+      "sha256": "e13d7f0f7690cf1a877829affd85e9f2df27a9e23ec0de28840a16f342b93e80",
+      "category": "policy_methods_or_literature"
+    },
+    {
+      "original_path": "docs/methods/acceleration-identifiability-review.json",
+      "intake_path": "artifacts/intake/R13/review-packets/docs/methods/acceleration-identifiability-review.json",
+      "bytes": 5602,
+      "sha256": "0af244ecb011218c61bbb2b01e08cc523ef54ce75d3d761fa0a14c29c3fe14ac",
+      "category": "policy_methods_or_literature"
+    },
+    {
+      "original_path": "docs/methods/acceleration-identifiability.md",
+      "intake_path": "artifacts/intake/R13/review-packets/docs/methods/acceleration-identifiability.md",
+      "bytes": 5036,
+      "sha256": "891640dd43ec8f12bc2e1cb717465b2933379a6c3315adb63024a261d54e5e73",
+      "category": "accepted_claim_evidence"
+    },
+    {
+      "original_path": "manuscript/acceleration_audit_v2.md",
+      "intake_path": "artifacts/intake/R13/review-packets/manuscript/acceleration_audit_v2.md",
+      "bytes": 31400,
+      "sha256": "90a02f57759bd976e123732125405f091212f0adc6596ce55d2c6d3e7dda4684",
+      "category": "final_manuscript_after_coordinator_stability"
+    },
+    {
+      "original_path": ".research/workflow/closures/R10.json",
+      "intake_path": "artifacts/intake/R13/review-packets/operational-closures/R10.json",
+      "bytes": 512,
+      "sha256": "b9182467ae9b9e39ac5dfb64bfdfa1d943f60607e2eda247ce746f1aaf68bc46",
+      "category": "operational_closure"
+    },
+    {
+      "original_path": ".research/workflow/closures/R11.json",
+      "intake_path": "artifacts/intake/R13/review-packets/operational-closures/R11.json",
+      "bytes": 513,
+      "sha256": "80527aef70663f00163b9b52056b9d288397420e8af10a04e2470438e315ac66",
+      "category": "operational_closure"
+    },
+    {
+      "original_path": ".research/workflow/closures/R12.json",
+      "intake_path": "artifacts/intake/R13/review-packets/operational-closures/R12.json",
+      "bytes": 513,
+      "sha256": "6b6e8d188e414e82f577826ed5237625ff413ba2615d7f1ed6bea431a3b46960",
+      "category": "operational_closure"
+    },
+    {
+      "original_path": ".research/workflow/closures/R2.json",
+      "intake_path": "artifacts/intake/R13/review-packets/operational-closures/R2.json",
+      "bytes": 511,
+      "sha256": "6ea982220fed069efec466df3100e43139394f37099d29687aa3a513cffdbffa",
+      "category": "operational_closure"
+    },
+    {
+      "original_path": ".research/workflow/closures/R3.json",
+      "intake_path": "artifacts/intake/R13/review-packets/operational-closures/R3.json",
+      "bytes": 511,
+      "sha256": "a56ebdfdd164b2dd5ae8b469c4d4116add0833f64e015bb7885d9be6ba1f9089",
+      "category": "operational_closure"
+    },
+    {
+      "original_path": ".research/workflow/closures/R4.json",
+      "intake_path": "artifacts/intake/R13/review-packets/operational-closures/R4.json",
+      "bytes": 511,
+      "sha256": "f7293bb10ebe08503445466ead6f860a928162ee749ebbb47c1ea4fd615f7bd6",
+      "category": "operational_closure"
+    },
+    {
+      "original_path": ".research/workflow/closures/R5.json",
+      "intake_path": "artifacts/intake/R13/review-packets/operational-closures/R5.json",
+      "bytes": 589,
+      "sha256": "8098bb0195df32f0a408167dcff13e2df4f4f776176a73c15f9f8f096070c656",
+      "category": "operational_closure"
+    },
+    {
+      "original_path": ".research/workflow/closures/R8.json",
+      "intake_path": "artifacts/intake/R13/review-packets/operational-closures/R8.json",
+      "bytes": 511,
+      "sha256": "05fb40f60b8365120abd2f78d32e47c69efab3e1842ae2c6c21dd419b45f4b3f",
+      "category": "operational_closure"
+    },
+    {
+      "original_path": ".research/workflow/closures/R9.json",
+      "intake_path": "artifacts/intake/R13/review-packets/operational-closures/R9.json",
+      "bytes": 511,
+      "sha256": "706094d24ffbd07288dff2b4b0522ce103201f99ee7344d664d5d415fb0e0e7b",
+      "category": "operational_closure"
+    },
+    {
+      "original_path": "artifacts/research/R10/20261107T192414-36aee5d99b/manifest.json",
+      "intake_path": "artifacts/intake/R13/review-packets/operational-records/R10/20261107T192414-36aee5d99b/manifest.json",
+      "bytes": 10616,
+      "sha256": "42dcdc5ddc70026e364190d572bc2a9a2acdb3dd76090526aa8cba70df4d3e1c",
+      "category": "accepted_operational_record"
+    },
+    {
+      "original_path": "artifacts/research/R10/20261107T192414-36aee5d99b/plan.json",
+      "intake_path": "artifacts/intake/R13/review-packets/operational-records/R10/20261107T192414-36aee5d99b/plan.json",
+      "bytes": 3443,
+      "sha256": "669285e14b959243a077631ab85691ad0d8df77f683a2a98db80caf2fe4ab256",
+      "category": "accepted_operational_record"
+    },
+    {
+      "original_path": "artifacts/research/R10/20261107T192414-36aee5d99b/report.md",
+      "intake_path": "artifacts/intake/R13/review-packets/operational-records/R10/20261107T192414-36aee5d99b/report.md",
+      "bytes": 5510,
+      "sha256": "58a13b8907316c7c7482874a6a9f9bccf3eb15ed9d7a11180d9680054c85859a",
+      "category": "accepted_operational_record"
+    },
+    {
+      "original_path": "artifacts/research/R10/20261107T192414-36aee5d99b/review.json",
+      "intake_path": "artifacts/intake/R13/review-packets/operational-records/R10/20261107T192414-36aee5d99b/review.json",
+      "bytes": 6066,
+      "sha256": "8240fd32643039dec1c0f606d3b89610f256f6de0f91d9c163211091522eeb24",
+      "category": "accepted_operational_record"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/manifest.json",
+      "intake_path": "artifacts/intake/R13/review-packets/operational-records/R11/20261107T194028-229b223740/manifest.json",
+      "bytes": 27618,
+      "sha256": "e1ff4eb1c8ad4f6cae4026906e59f47a7f48d4765d70a6f091e6d7a11525e66b",
+      "category": "accepted_operational_record"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/plan.json",
+      "intake_path": "artifacts/intake/R13/review-packets/operational-records/R11/20261107T194028-229b223740/plan.json",
+      "bytes": 7258,
+      "sha256": "33328abb7ecf995c370af4cc3ded98ba79597f20e280a78b317ba20caec4afb4",
+      "category": "accepted_operational_record"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/report.md",
+      "intake_path": "artifacts/intake/R13/review-packets/operational-records/R11/20261107T194028-229b223740/report.md",
+      "bytes": 6753,
+      "sha256": "df9741beed00b24494b46ceb0485292dc4855fe5c1fb71bceb4d2cf8a301f1d9",
+      "category": "accepted_operational_record"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T194028-229b223740/review.json",
+      "intake_path": "artifacts/intake/R13/review-packets/operational-records/R11/20261107T194028-229b223740/review.json",
+      "bytes": 6949,
+      "sha256": "ddd80b9aa91b3cb28c001e92fc3a06f9d3c8e54f422477da9f6d3d2227a09574",
+      "category": "accepted_operational_record"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/manifest.json",
+      "intake_path": "artifacts/intake/R13/review-packets/operational-records/R12/20261107T194939-7c18953a98/manifest.json",
+      "bytes": 28296,
+      "sha256": "fc4d0c3da64ec28f5c6ad73c5d5ab869f92c4daef0b23dbb6dbf0ed21e4b225a",
+      "category": "accepted_operational_record"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/plan.json",
+      "intake_path": "artifacts/intake/R13/review-packets/operational-records/R12/20261107T194939-7c18953a98/plan.json",
+      "bytes": 7318,
+      "sha256": "8ae9d070bba865d347db6d56f767285054d1b7b170f2c534a5d234c82639b32b",
+      "category": "accepted_operational_record"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/report.md",
+      "intake_path": "artifacts/intake/R13/review-packets/operational-records/R12/20261107T194939-7c18953a98/report.md",
+      "bytes": 6710,
+      "sha256": "15d925325f8d17170a70ae76d661194fd160b33b6352ca3416e0f04c9cb555c9",
+      "category": "accepted_operational_record"
+    },
+    {
+      "original_path": "artifacts/research/R12/20261107T194939-7c18953a98/review.json",
+      "intake_path": "artifacts/intake/R13/review-packets/operational-records/R12/20261107T194939-7c18953a98/review.json",
+      "bytes": 6927,
+      "sha256": "6a7f6ed712080be2230b76a17de617c872b41c65b9588c67b357e13db746c20e",
+      "category": "accepted_operational_record"
+    },
+    {
+      "original_path": "artifacts/research/R2/20261107T095343-6bc0c457c7/manifest.json",
+      "intake_path": "artifacts/intake/R13/review-packets/operational-records/R2/20261107T095343-6bc0c457c7/manifest.json",
+      "bytes": 10083,
+      "sha256": "70238cdf53696fd1b9bd4ec64eb08c66ccaee2fabcbf9474cda802dd8312bb66",
+      "category": "accepted_operational_record"
+    },
+    {
+      "original_path": "artifacts/research/R2/20261107T095343-6bc0c457c7/plan.json",
+      "intake_path": "artifacts/intake/R13/review-packets/operational-records/R2/20261107T095343-6bc0c457c7/plan.json",
+      "bytes": 5239,
+      "sha256": "06045b1da1cc2ea849d7c30dd06dc1bf38170534ad106dc58250e627f809b78d",
+      "category": "accepted_operational_record"
+    },
+    {
+      "original_path": "artifacts/research/R2/20261107T095343-6bc0c457c7/report.md",
+      "intake_path": "artifacts/intake/R13/review-packets/operational-records/R2/20261107T095343-6bc0c457c7/report.md",
+      "bytes": 7226,
+      "sha256": "bd9c1db8298424205d6f16b059f68fb73ad4d72fd2c2243d7b100acabc5146b6",
+      "category": "accepted_operational_record"
+    },
+    {
+      "original_path": "artifacts/research/R2/20261107T095343-6bc0c457c7/review.json",
+      "intake_path": "artifacts/intake/R13/review-packets/operational-records/R2/20261107T095343-6bc0c457c7/review.json",
+      "bytes": 8676,
+      "sha256": "a4e389ae2bf47a1920145439eae84fd9621ff5d6fe407dfbb423762728d79b7b",
+      "category": "accepted_operational_record"
+    },
+    {
+      "original_path": "artifacts/research/R3/20261107T102511-b1cf6c7be9/manifest.json",
+      "intake_path": "artifacts/intake/R13/review-packets/operational-records/R3/20261107T102511-b1cf6c7be9/manifest.json",
+      "bytes": 9567,
+      "sha256": "0e944a762326befb10cfd4e62ce49f2f35de119bed89716524761e7883888e02",
+      "category": "accepted_operational_record"
+    },
+    {
+      "original_path": "artifacts/research/R3/20261107T102511-b1cf6c7be9/plan.json",
+      "intake_path": "artifacts/intake/R13/review-packets/operational-records/R3/20261107T102511-b1cf6c7be9/plan.json",
+      "bytes": 3927,
+      "sha256": "2ca61ba925d577c2c822b9c31b1a15cca4b3585f09786dce3a9062f6f80e13bb",
+      "category": "accepted_operational_record"
+    },
+    {
+      "original_path": "artifacts/research/R3/20261107T102511-b1cf6c7be9/report.md",
+      "intake_path": "artifacts/intake/R13/review-packets/operational-records/R3/20261107T102511-b1cf6c7be9/report.md",
+      "bytes": 4224,
+      "sha256": "f8d499838fb06b1b560b3fa9d455b080f0b423e327d4c363885716f7e13e09d8",
+      "category": "accepted_operational_record"
+    },
+    {
+      "original_path": "artifacts/research/R3/20261107T102511-b1cf6c7be9/review.json",
+      "intake_path": "artifacts/intake/R13/review-packets/operational-records/R3/20261107T102511-b1cf6c7be9/review.json",
+      "bytes": 8167,
+      "sha256": "6c17b3010fdb68ae525962cfec673fac90579a878ca23d99eaaa1edd22756743",
+      "category": "accepted_operational_record"
+    },
+    {
+      "original_path": "artifacts/research/R4/20261107T104140-5bc2019cef/manifest.json",
+      "intake_path": "artifacts/intake/R13/review-packets/operational-records/R4/20261107T104140-5bc2019cef/manifest.json",
+      "bytes": 9554,
+      "sha256": "78686bff8324c898eef55092b3a4d78b6a80ea2da7afe118d17352fc28fede65",
+      "category": "accepted_operational_record"
+    },
+    {
+      "original_path": "artifacts/research/R4/20261107T104140-5bc2019cef/plan.json",
+      "intake_path": "artifacts/intake/R13/review-packets/operational-records/R4/20261107T104140-5bc2019cef/plan.json",
+      "bytes": 3587,
+      "sha256": "83a4299977697f3fe09a2cba621786d046b29331e2fb54c2c8cafd2642d14a0f",
+      "category": "accepted_operational_record"
+    },
+    {
+      "original_path": "artifacts/research/R4/20261107T104140-5bc2019cef/report.md",
+      "intake_path": "artifacts/intake/R13/review-packets/operational-records/R4/20261107T104140-5bc2019cef/report.md",
+      "bytes": 4432,
+      "sha256": "8efa8edda2bba0203fe5f94ce76684e3f17e9271b66105d3e951c25b0d3b5767",
+      "category": "accepted_operational_record"
+    },
+    {
+      "original_path": "artifacts/research/R4/20261107T104140-5bc2019cef/review.json",
+      "intake_path": "artifacts/intake/R13/review-packets/operational-records/R4/20261107T104140-5bc2019cef/review.json",
+      "bytes": 9547,
+      "sha256": "16ac881579ff2de3f6d821ceaf6b99e502793e34e3646dbfe9b7b83d274e32fe",
+      "category": "accepted_operational_record"
+    },
+    {
+      "original_path": "artifacts/research/R5/20261107T105955-6e7f800ff1/manifest.json",
+      "intake_path": "artifacts/intake/R13/review-packets/operational-records/R5/20261107T105955-6e7f800ff1/manifest.json",
+      "bytes": 9840,
+      "sha256": "324bb798223c02dbef8e5b171d05ca0aa56d4ef7fc6aca0480e1d90fcde2ed8b",
+      "category": "accepted_operational_record"
+    },
+    {
+      "original_path": "artifacts/research/R5/20261107T105955-6e7f800ff1/plan.json",
+      "intake_path": "artifacts/intake/R13/review-packets/operational-records/R5/20261107T105955-6e7f800ff1/plan.json",
+      "bytes": 3515,
+      "sha256": "2be0f54a502a68a50491728c45a2d4714ea89c7036490d289fcefc2cb3e29f8e",
+      "category": "accepted_operational_record"
+    },
+    {
+      "original_path": "artifacts/research/R5/20261107T105955-6e7f800ff1/report.md",
+      "intake_path": "artifacts/intake/R13/review-packets/operational-records/R5/20261107T105955-6e7f800ff1/report.md",
+      "bytes": 3385,
+      "sha256": "e1ea156529372bd57a02005efaae06f314d3bccbb7269d98b0ea36e01eed7ada",
+      "category": "accepted_operational_record"
+    },
+    {
+      "original_path": "artifacts/research/R5/20261107T105955-6e7f800ff1/review.json",
+      "intake_path": "artifacts/intake/R13/review-packets/operational-records/R5/20261107T105955-6e7f800ff1/review.json",
+      "bytes": 9526,
+      "sha256": "0735cf70372781ed77e5648e3280a3ba5d15d019516c86fd373fd8b8f0e0b338",
+      "category": "accepted_operational_record"
+    },
+    {
+      "original_path": "artifacts/research/R8/20261107T140907-bd7e4a5a5e/manifest.json",
+      "intake_path": "artifacts/intake/R13/review-packets/operational-records/R8/20261107T140907-bd7e4a5a5e/manifest.json",
+      "bytes": 7136,
+      "sha256": "25291153cd7352fbe10653ce50f997af008cb38a61f1152ea44d97047a14aa8e",
+      "category": "accepted_operational_record"
+    },
+    {
+      "original_path": "artifacts/research/R8/20261107T140907-bd7e4a5a5e/plan.json",
+      "intake_path": "artifacts/intake/R13/review-packets/operational-records/R8/20261107T140907-bd7e4a5a5e/plan.json",
+      "bytes": 2695,
+      "sha256": "7304d89c4b57cd9d1ac8e4a8facd482ed54e32e694886d0ad16e62560a1f3780",
+      "category": "accepted_operational_record"
+    },
+    {
+      "original_path": "artifacts/research/R8/20261107T140907-bd7e4a5a5e/report.md",
+      "intake_path": "artifacts/intake/R13/review-packets/operational-records/R8/20261107T140907-bd7e4a5a5e/report.md",
+      "bytes": 6691,
+      "sha256": "fba83cda301e61b0686239db2bc3430cfe8507e8f8e095d028769ffff3ddeef7",
+      "category": "accepted_operational_record"
+    },
+    {
+      "original_path": "artifacts/research/R8/20261107T140907-bd7e4a5a5e/review.json",
+      "intake_path": "artifacts/intake/R13/review-packets/operational-records/R8/20261107T140907-bd7e4a5a5e/review.json",
+      "bytes": 4063,
+      "sha256": "92a010aba675c41b72cecba3285180f993b646d8210560f801c3f50af7530e03",
+      "category": "accepted_operational_record"
+    },
+    {
+      "original_path": "artifacts/research/R9/20261107T141434-ba64acb5eb/manifest.json",
+      "intake_path": "artifacts/intake/R13/review-packets/operational-records/R9/20261107T141434-ba64acb5eb/manifest.json",
+      "bytes": 7706,
+      "sha256": "e6912b77cd159e10274a28cae21ecc0b05517442907c42e769aa6e7514a39b9e",
+      "category": "accepted_operational_record"
+    },
+    {
+      "original_path": "artifacts/research/R9/20261107T141434-ba64acb5eb/plan.json",
+      "intake_path": "artifacts/intake/R13/review-packets/operational-records/R9/20261107T141434-ba64acb5eb/plan.json",
+      "bytes": 2561,
+      "sha256": "e2c3b9e1c4d1297c3ef51fcb4dee1f9d19dc54a7c377be08fb2fe165244410e3",
+      "category": "accepted_operational_record"
+    },
+    {
+      "original_path": "artifacts/research/R9/20261107T141434-ba64acb5eb/report.md",
+      "intake_path": "artifacts/intake/R13/review-packets/operational-records/R9/20261107T141434-ba64acb5eb/report.md",
+      "bytes": 5798,
+      "sha256": "4344111d3541796585d4cb118057a42303d327e71bb84a6b386b9d23c275b3d7",
+      "category": "accepted_operational_record"
+    },
+    {
+      "original_path": "artifacts/research/R9/20261107T141434-ba64acb5eb/review.json",
+      "intake_path": "artifacts/intake/R13/review-packets/operational-records/R9/20261107T141434-ba64acb5eb/review.json",
+      "bytes": 3438,
+      "sha256": "355781c82ce0b05c35b06f1dd5e446bff2933b3390c0bf22205a2c94282709c9",
+      "category": "accepted_operational_record"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/inputs/docs/decisions/0004-v2-research-refactor.md",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/inputs/docs/decisions/0004-v2-research-refactor.md",
+      "bytes": 3730,
+      "sha256": "648b1bd91d2378e31f40e8d7feaf6bb0ce33d815a468660486526700088f251a",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/inputs/docs/methods/acceleration-identifiability.md",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/inputs/docs/methods/acceleration-identifiability.md",
+      "bytes": 5036,
+      "sha256": "891640dd43ec8f12bc2e1cb717465b2933379a6c3315adb63024a261d54e5e73",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/inputs/pyproject.toml",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/inputs/pyproject.toml",
+      "bytes": 991,
+      "sha256": "5d43d6f7f88312b18299a1ec7e8ac921d512c271ac022de4ad0720eb5883e182",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/inputs/research/decisions/codex-refactor-authorization-2026-11-07.json",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/inputs/research/decisions/codex-refactor-authorization-2026-11-07.json",
+      "bytes": 2197,
+      "sha256": "8559055cea21e6f58bdd58b07930e5d9ab505a84a1ea58c72721c0c5e4e2119d",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/inputs/research/plans/R11.json",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/inputs/research/plans/R11.json",
+      "bytes": 7258,
+      "sha256": "33328abb7ecf995c370af4cc3ded98ba79597f20e280a78b317ba20caec4afb4",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/inputs/research/stages.json",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/inputs/research/stages.json",
+      "bytes": 5190,
+      "sha256": "50dc1cc8cd3ee3004e19581cac4343bcef42ff031260c914897a3d3bdb76fd79",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/inputs/research/stages/R11/PLAN.md",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/inputs/research/stages/R11/PLAN.md",
+      "bytes": 10671,
+      "sha256": "713967818f195ec1a4df71db9ff5b2b0f565faf39d20e52972932bd79c09143f",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/inputs/research/stages/R11/inputs/design-review.json",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/inputs/research/stages/R11/inputs/design-review.json",
+      "bytes": 5470,
+      "sha256": "d8b36cbf7332b0bbf16fb784fc13b71f833b59ba7dd023195f5dd89e76143dce",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/inputs/research/stages/R11/inputs/protocol.json",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/inputs/research/stages/R11/inputs/protocol.json",
+      "bytes": 1847,
+      "sha256": "67e09270f43c54bb2299918676a225d28d1a2411ff5c25218edd2a95f3ef66c1",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/inputs/scripts/r11_run.py",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/inputs/scripts/r11_run.py",
+      "bytes": 845,
+      "sha256": "10471400ecd602e5d76293dc95455bc7b0be35bc8503da80aebddd63b8cff82c",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/inputs/scripts/research.py",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/inputs/scripts/research.py",
+      "bytes": 2907,
+      "sha256": "63fe04dfe3ced14b3e8760508372d5c321675cfd650b9fbb80f15598c1aaf384",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/inputs/scripts/run_unit_checks.py",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/inputs/scripts/run_unit_checks.py",
+      "bytes": 1293,
+      "sha256": "d2fc3c360195cd7f8d69689b0dc60940dcd416e2b31b9396e60bfeafb9528c52",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/inputs/src/__init__.py",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/inputs/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/inputs/src/acceleration_boosting.py",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/inputs/src/acceleration_boosting.py",
+      "bytes": 18944,
+      "sha256": "8bb28cd9fbe77c692c1a08c7705a17ccae776382cbda77865d9c0568a396f242",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/inputs/src/research_workflow.py",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/inputs/src/research_workflow.py",
+      "bytes": 44603,
+      "sha256": "fed92eea9867e2b54d4e19f3c44a0fab3a5490e804dc54087429a469a70b669d",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/inputs/src/resource_ledger.py",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/inputs/src/resource_ledger.py",
+      "bytes": 11762,
+      "sha256": "af55db7c171efef7ef1792d287c419d3ae6a6e87dcd52f8be946fb8cbfb7c3d5",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/inputs/tests/test_acceleration_boosting.py",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/inputs/tests/test_acceleration_boosting.py",
+      "bytes": 5166,
+      "sha256": "fb1b03ad479861d881e46d83cac7f1fca5fdb75fb9fef7df5ad39e94d87fabf1",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/inputs/uv.lock",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/inputs/uv.lock",
+      "bytes": 157725,
+      "sha256": "ac89eef670e3774086fff7a06df62f1ba760f85d6c76378ac915ca32b76523b4",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/manifest.json",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/manifest.json",
+      "bytes": 27301,
+      "sha256": "3bc4bb2e3de9728d4b658e1fd3d82c3159d899abac1fbd41ca7184950252294b",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/plan.json",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/plan.json",
+      "bytes": 7258,
+      "sha256": "33328abb7ecf995c370af4cc3ded98ba79597f20e280a78b317ba20caec4afb4",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/report.md",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/report.md",
+      "bytes": 2395,
+      "sha256": "4be11cb9444e1241fdb4de64fe7531fa125d8cabe31d723e802aa55c3a4e4239",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/review.json",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/review.json",
+      "bytes": 4782,
+      "sha256": "1cab6c3076e24360915cb6304a92021dc69a13ed4eff9fe81db537906b7cdf20",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/analysis.json",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/analysis.json",
+      "bytes": 10942,
+      "sha256": "500a7f6bec3ceef03845acef7a9b9ca67a7d77dff21cab35df36f9424a3059a3",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/cells.jsonl",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/cells.jsonl",
+      "bytes": 6451070,
+      "sha256": "ad37dba6298d08417602d351c7f8e91f95e1a478eca01115a22a42ac7d78f6ad",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/data.npz",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/data.npz",
+      "bytes": 1643911,
+      "sha256": "e95b1bd73f14a578e9662a813e424739b93032c01812492bd8c6bf53a9c9cba4",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/environment.json",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/environment.json",
+      "bytes": 437,
+      "sha256": "4e4e22bfffbbd22f496940f87a9065ecab5067952b4c91ed3907d44bde9f9fbd",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models.json",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models.json",
+      "bytes": 12793,
+      "sha256": "0aae09017d806b643ce0c7a4e59eff0c0db24d9c0c1ecda6d51489ac83ee46f2",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12001_constant.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12001_constant.cbm",
+      "bytes": 88656,
+      "sha256": "ec78dc176c402a9ee04b913ef733786613c002244059dcd4ca8d2fc6ce9f6891",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12001_stepdown.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12001_stepdown.cbm",
+      "bytes": 89528,
+      "sha256": "9156a48d8c98c076fbef3ed33b39b021295ed01319b30ed432411b32b8ccdd49",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12001_stepup.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12001_stepup.cbm",
+      "bytes": 89280,
+      "sha256": "9cd2c04c9e2a48fbf544b80ebff660978e68b19289d8b6d2aa5aa35006f1340e",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12002_constant.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12002_constant.cbm",
+      "bytes": 88680,
+      "sha256": "fed8bf937ddbcfe56a27da0c87b3cad74aefefb66540ff76f90172892845325c",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12002_stepdown.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12002_stepdown.cbm",
+      "bytes": 89784,
+      "sha256": "2192fb3a06481a74c1fad0ac37e384de210ee6f495167a0f6ed164b7dc52cfdc",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12002_stepup.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12002_stepup.cbm",
+      "bytes": 89328,
+      "sha256": "182ec930d49db3a4543fc8c73c5caa44b8a0464f4c4248879783e1a0adaf483f",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12003_constant.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12003_constant.cbm",
+      "bytes": 88768,
+      "sha256": "c6279fe097133acc7f911300ccaf2aa455e104154ca161648b61bad03f425ca3",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12003_stepdown.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12003_stepdown.cbm",
+      "bytes": 89776,
+      "sha256": "e1ab72e079b6042449b7c6a58c509983aa71e153d408a33e403c26ed41b674fb",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12003_stepup.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12003_stepup.cbm",
+      "bytes": 89512,
+      "sha256": "5f769a31baafdf6cb9d5cf6e2923d77cb03e559fddc7562836ecc815b9403747",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12004_constant.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12004_constant.cbm",
+      "bytes": 88712,
+      "sha256": "697bd9fa7d4004a2ab75abf3acc04d206ea1e42f4cbb922ee0291767e63326ac",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12004_stepdown.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12004_stepdown.cbm",
+      "bytes": 89728,
+      "sha256": "8027c43238d27ab452eaa5b87b53d35ed57d6ac4e8142b8fc1a606c482c5e942",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12004_stepup.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12004_stepup.cbm",
+      "bytes": 89272,
+      "sha256": "7b7b589d9fe6882f182fa508a5808a64a41c0e13f3a7a4a08b89610c48b9b33b",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12005_constant.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12005_constant.cbm",
+      "bytes": 88664,
+      "sha256": "19ab584250c4abb456a6faaf52d2bfc3f364a1c794f56a10c94b7c4745b3c0c2",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12005_stepdown.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12005_stepdown.cbm",
+      "bytes": 89736,
+      "sha256": "a927527f96b840a66aaccac2ac398bc88c9da587501a14e622bfcf6989058cb9",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12005_stepup.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12005_stepup.cbm",
+      "bytes": 89336,
+      "sha256": "bf570d69ed32eb7c0b542316ad9d81a6f3e4cb1f8d13929572e056893f38f046",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12006_constant.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12006_constant.cbm",
+      "bytes": 88720,
+      "sha256": "43db3f761b1b3c3cff3da18712778f611d34a0cfc7d0b57e7e3c674389513734",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12006_stepdown.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12006_stepdown.cbm",
+      "bytes": 89776,
+      "sha256": "6db082a762a093e8c1ee18b8dc3b03edd1ab8292f8476386fb11c9ac4d7d6ca3",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12006_stepup.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12006_stepup.cbm",
+      "bytes": 89520,
+      "sha256": "8ddbf68c0a89c679b533726abdb33f2750b070b51397542aa40c8a63084239f1",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12007_constant.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12007_constant.cbm",
+      "bytes": 88576,
+      "sha256": "b00ce427e2a0579dbd6153f50cd61bfe043422deff35ae7cdb62bce23a6ca7e2",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12007_stepdown.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12007_stepdown.cbm",
+      "bytes": 89648,
+      "sha256": "f5ad090bdd116a13f7b78ec7558132c7e618d2bf9e701bfa05a9df27fbfb75a9",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12007_stepup.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12007_stepup.cbm",
+      "bytes": 89256,
+      "sha256": "9686024cb47f7d0f647ba89125e569857e1a366b7d7f8919181c51cdf5039e6d",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12008_constant.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12008_constant.cbm",
+      "bytes": 88632,
+      "sha256": "cd94b0448e55a62a740ecba7b4e318915a891f35c53f6ef29e4d38b5b4da8433",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12008_stepdown.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12008_stepdown.cbm",
+      "bytes": 89672,
+      "sha256": "cda4770ea6b2cdb6ff9e2e4a7477ee91688b50ff80b165c68092c94633e91c13",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12008_stepup.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12008_stepup.cbm",
+      "bytes": 89304,
+      "sha256": "7e8ee02fc93343719f14848d0aafc3c39cd6cfbee8cf2de763fb3e7d3beeda08",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12009_constant.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12009_constant.cbm",
+      "bytes": 88536,
+      "sha256": "d29c4be5b43cc61be1b4d93e31905bbe3b2952ba53ec583a2f05f99e32c6257a",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12009_stepdown.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12009_stepdown.cbm",
+      "bytes": 89696,
+      "sha256": "ee7767d0ced3fcc65df97d8232bf3c23e09ad158a2b2b227689969ccffcb6652",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12009_stepup.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12009_stepup.cbm",
+      "bytes": 89328,
+      "sha256": "16ab031c523d447b02df25d17af5798cf0c6a3977bf6f2ee32346b0c107069fd",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12010_constant.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12010_constant.cbm",
+      "bytes": 88512,
+      "sha256": "b7ea244ce53a884470392e0823655ba619c66a7677460388302e21fb7ab81411",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12010_stepdown.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12010_stepdown.cbm",
+      "bytes": 89512,
+      "sha256": "292ed0c972cbfd82a8eb7efa429f49196c45fa1d0eea30e5eeb97b6e502ae1f3",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12010_stepup.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12010_stepup.cbm",
+      "bytes": 89224,
+      "sha256": "139e998ad26069e920bb0df4eace4cfaa42c1e4d0ad083fcc2433b4c1d1ebcf1",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12011_constant.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12011_constant.cbm",
+      "bytes": 88696,
+      "sha256": "c46e98473a06946a20554803cf3240d618f2481227b459928fbf7a971c611c06",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12011_stepdown.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12011_stepdown.cbm",
+      "bytes": 89776,
+      "sha256": "ed8e24d76e655350c41a2920b9cab42cda6d4875ff2b27b7889468772d39adc5",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12011_stepup.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12011_stepup.cbm",
+      "bytes": 89400,
+      "sha256": "0f734751017b2b027b45a39ba7575bcc6037b02a9deed3baca4d780226b7619d",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12012_constant.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12012_constant.cbm",
+      "bytes": 88720,
+      "sha256": "899f774cc3516dfe621364d0957e6a1bfca1178061a7322879a3383d03a163d4",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12012_stepdown.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12012_stepdown.cbm",
+      "bytes": 89808,
+      "sha256": "d376e60bb0827a817db4dae7bfa2403eb302073f11a4e1a4bc46e59143f61da1",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12012_stepup.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/breast_cancer_12012_stepup.cbm",
+      "bytes": 89408,
+      "sha256": "88773fed6d8d8336e087494dfe1282bb7dc639ef4494bc52b8eae6d1ee7b7e16",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12001_constant.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12001_constant.cbm",
+      "bytes": 88072,
+      "sha256": "dac452185108efd5da89916f2d19b7a8767a123f99e60f2646234b7f21a7b520",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12001_stepdown.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12001_stepdown.cbm",
+      "bytes": 89048,
+      "sha256": "952a68c588246823e940fac61005d79bbbaa52288f2142c8db0d4216d2dfd8a8",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12001_stepup.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12001_stepup.cbm",
+      "bytes": 88648,
+      "sha256": "c3d1975d26258fa6b5efdc325abbcd40b7d7aac52672d2304e4bca06d11e2ee2",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12002_constant.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12002_constant.cbm",
+      "bytes": 88152,
+      "sha256": "87198cbc45ea4066773018eb62ac19632fb6f849e1de0352bf84e4bc9780628a",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12002_stepdown.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12002_stepdown.cbm",
+      "bytes": 89128,
+      "sha256": "18a8ac88c096667dbe792a691f52010787979216be76d86ab5d153ec00719727",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12002_stepup.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12002_stepup.cbm",
+      "bytes": 88704,
+      "sha256": "a0584578f424850d0671b9f73df8cd4b29e0b01d3817eb38559da20313f9f5d6",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12003_constant.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12003_constant.cbm",
+      "bytes": 88200,
+      "sha256": "eda41861d312c7715f6b2313deb01424e7de8bb07fd91791debcf1e9b47851b7",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12003_stepdown.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12003_stepdown.cbm",
+      "bytes": 89176,
+      "sha256": "cc3ad55d228e8c9a68bb60c30b4c7b6c90a60a9f11d76a0cf4a23e36a8c22078",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12003_stepup.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12003_stepup.cbm",
+      "bytes": 88800,
+      "sha256": "d93674edd4791ff9010bc947fd64638f11e6c5e4438212cf83abe3257efbfc26",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12004_constant.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12004_constant.cbm",
+      "bytes": 87912,
+      "sha256": "bafa5a1b7932656274ea845e89eae9072a7bd4a0ad9bbb65c232a7395997fd8f",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12004_stepdown.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12004_stepdown.cbm",
+      "bytes": 88856,
+      "sha256": "842d8626965669c268e72259cc1bc799e0ddb239bb68efc90a367df0fd01db87",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12004_stepup.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12004_stepup.cbm",
+      "bytes": 88536,
+      "sha256": "90ddfcb107b3d3ca151eab05374b1caf8b5e0a6924cab488874af85d3422f92e",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12005_constant.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12005_constant.cbm",
+      "bytes": 87720,
+      "sha256": "0654fd972ac4b9db483141b6c6714008ade3cf494e3e3fab32cbd40033e054c5",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12005_stepdown.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12005_stepdown.cbm",
+      "bytes": 89008,
+      "sha256": "b31a02abd927a99676c5fdfcd46068d3d8135fdea81be1b0b5c2101f9bb4397c",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12005_stepup.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12005_stepup.cbm",
+      "bytes": 88032,
+      "sha256": "4cd8cbc509df6f9027cabf579eb6574248a43a7795f26b54aac5bf43afad65a2",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12006_constant.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12006_constant.cbm",
+      "bytes": 88272,
+      "sha256": "aa1de83c2c00875e9489b494281e0221097249feca430daa446f5a83c95aefa4",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12006_stepdown.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12006_stepdown.cbm",
+      "bytes": 89168,
+      "sha256": "75567632bcd51f18393e6914f29c324166548b709b33294e62d54efad59e6590",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12006_stepup.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12006_stepup.cbm",
+      "bytes": 88776,
+      "sha256": "eb6882e313fa3fb2f9c6ac69e5e692e9a7b52d68d57765ab911c76aebdf9f47e",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12007_constant.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12007_constant.cbm",
+      "bytes": 88184,
+      "sha256": "7dd138eb674dd3d43dd49468aa014b7999a60a12ebd48ab76b6889f695579e52",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12007_stepdown.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12007_stepdown.cbm",
+      "bytes": 89224,
+      "sha256": "961ea56c348d38f0e8616b70859880823bed50caadf79194b4edcdcf0ff5e7be",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12007_stepup.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12007_stepup.cbm",
+      "bytes": 88784,
+      "sha256": "41ed5d6993ed607ad0dcb84aaac2bd2bcb04a03f281dbe9d49af9e5c0fd217a5",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12008_constant.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12008_constant.cbm",
+      "bytes": 88352,
+      "sha256": "17eb7dea75689f8f8ee15e4b6068e0fd0c7f995db977b970fdc27e64adc18874",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12008_stepdown.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12008_stepdown.cbm",
+      "bytes": 89200,
+      "sha256": "9f8f13c34e9e60b392c3bc6f35052a93b6693a07e4ab5d1b5dc4bc706f1e9a9e",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12008_stepup.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12008_stepup.cbm",
+      "bytes": 88752,
+      "sha256": "b429dd6e343feff3b4ad17024b7d0a3d3d7d763ef3cc7fe42e7d760fb80e7412",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12009_constant.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12009_constant.cbm",
+      "bytes": 87576,
+      "sha256": "1766b91896d57f3c245c12151b7d402e33db343c1c8abd446fff2ce836174a38",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12009_stepdown.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12009_stepdown.cbm",
+      "bytes": 89176,
+      "sha256": "9cd5bd539bfd39552f526d3c0d02fac7ca2f59540954f5011c0f4d274468a7d4",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12009_stepup.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12009_stepup.cbm",
+      "bytes": 88352,
+      "sha256": "1c230cc8c0438997a4d2c292a6a36331ba8733c3441ab402ba3ca7f6a765b74d",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12010_constant.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12010_constant.cbm",
+      "bytes": 88064,
+      "sha256": "91880bda173d08f10827b62bbb5fc8aa0fc0d050acbd7680a2e5b5159dbb21af",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12010_stepdown.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12010_stepdown.cbm",
+      "bytes": 89296,
+      "sha256": "d418ab0b2883c668ee1a800cddaf94b3bf3cd813bb1aba5de8a746d8875adee6",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12010_stepup.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12010_stepup.cbm",
+      "bytes": 88720,
+      "sha256": "8690db3f61e22045c82a19c9b7cba2adc427cadf821bf4093f8610560d7248e3",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12011_constant.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12011_constant.cbm",
+      "bytes": 88160,
+      "sha256": "42eef7375a679de6b3cc371f94c865d888862bfd44133489b3497495f3133506",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12011_stepdown.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12011_stepdown.cbm",
+      "bytes": 89152,
+      "sha256": "521c150d4d39cea187e3bcda57f703ea7200652527a5dd8d556ed27482f7d24b",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12011_stepup.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12011_stepup.cbm",
+      "bytes": 88808,
+      "sha256": "89ea9be19a3d603feab83eff3119038c2a11a2b8c11d2cc1360bdfea553cf36e",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12012_constant.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12012_constant.cbm",
+      "bytes": 88016,
+      "sha256": "0909a62745fdfbced462b741795858589741c2753b7bc2cc9065c81f5f622a6a",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12012_stepdown.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12012_stepdown.cbm",
+      "bytes": 89016,
+      "sha256": "360a3af0dbb3c8c29e00ed2e86d429daef695f22a7d980c80d7fcfd33be4223a",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12012_stepup.cbm",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/models/synthetic_12012_stepup.cbm",
+      "bytes": 88640,
+      "sha256": "e4d097e36b259f65383aa2fa6de81594533953bbc3999153de03b606b44b6dbd",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/predictions.npz",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/predictions.npz",
+      "bytes": 93017289,
+      "sha256": "3045935cd2290cc944d0a8d0e3d4aa871fbece4b4cc307c6c9f15620e013c0f3",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/stderr.log",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/schedule-study/stdout.log",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/schedule-study/stdout.log",
+      "bytes": 3552,
+      "sha256": "2e4dc4110facd99c70314f5362c0fe782970dc327153c44e02132bffad5fb1ac",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/unit-checks/checks.json",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/unit-checks/checks.json",
+      "bytes": 1501,
+      "sha256": "fd80a93c317d3a4c1739b7a425c18a3862b03299b79b224cbfccfe1bc140b69d",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/unit-checks/stderr.log",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/unit-checks/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "artifacts/research/R11/20261107T192904-5420604589/tasks/unit-checks/stdout.log",
+      "intake_path": "artifacts/intake/R13/review-packets/prior-attempts/R11/20261107T192904-5420604589/tasks/unit-checks/stdout.log",
+      "bytes": 1395,
+      "sha256": "fb886866330307cc30d1489ee33aadf39bb4c8c3470c41e14de133604757755c",
+      "category": "retained_technical_attempt_not_extra_n"
+    },
+    {
+      "original_path": "research/claims.json",
+      "intake_path": "artifacts/intake/R13/review-packets/research/claims.json",
+      "bytes": 30095,
+      "sha256": "8facf2f69c52245fb482b31c37654bc138adfaba57fe886c3bb4d2d6fd579cc9",
+      "category": "claim_registry_snapshot"
+    },
+    {
+      "original_path": "research/decisions/A1-identifiability-claim.json",
+      "intake_path": "artifacts/intake/R13/review-packets/research/decisions/A1-identifiability-claim.json",
+      "bytes": 3251,
+      "sha256": "02569cc5ae61f069277dd3155f751fe7ecdde17a6e8f0fefed0dc7f923622ce8",
+      "category": "scientific_claim_decision"
+    },
+    {
+      "original_path": "research/decisions/R10-audit-claim.json",
+      "intake_path": "artifacts/intake/R13/review-packets/research/decisions/R10-audit-claim.json",
+      "bytes": 3927,
+      "sha256": "257dec40b5b16532ceb9fe38907f77e5e1d3ff6f609ad17060e59e9eed2d9855",
+      "category": "scientific_claim_decision"
+    },
+    {
+      "original_path": "research/decisions/R11-clock-claim.json",
+      "intake_path": "artifacts/intake/R13/review-packets/research/decisions/R11-clock-claim.json",
+      "bytes": 4608,
+      "sha256": "10d343708b14aba5e7f66437f62af5a4a3a8ab65d38955827cdcf2f7ec43e6fd",
+      "category": "scientific_claim_decision"
+    },
+    {
+      "original_path": "research/decisions/R12-randomness-claim.json",
+      "intake_path": "artifacts/intake/R13/review-packets/research/decisions/R12-randomness-claim.json",
+      "bytes": 4854,
+      "sha256": "fb9254a9af65439bf15f003a176208b8f6b9cded283a84c1edb1b8b0ae817186",
+      "category": "scientific_claim_decision"
+    },
+    {
+      "original_path": "research/decisions/R2-confirmation-claim.json",
+      "intake_path": "artifacts/intake/R13/review-packets/research/decisions/R2-confirmation-claim.json",
+      "bytes": 2330,
+      "sha256": "51a8a4b0ebebefaf38aa73675f90200ec0c89302f7bc2e77c43ae492c0072285",
+      "category": "scientific_claim_decision"
+    },
+    {
+      "original_path": "research/decisions/R3-confirmation-claim.json",
+      "intake_path": "artifacts/intake/R13/review-packets/research/decisions/R3-confirmation-claim.json",
+      "bytes": 2315,
+      "sha256": "324808a6af6c02d699c496792288a3d275bbba1a006f1163b0c21df669e80104",
+      "category": "scientific_claim_decision"
+    },
+    {
+      "original_path": "research/decisions/R4-confirmation-claim.json",
+      "intake_path": "artifacts/intake/R13/review-packets/research/decisions/R4-confirmation-claim.json",
+      "bytes": 3269,
+      "sha256": "30c17d3e77e239c74de38aafdbf268e3728630d09d5a2081798cd100402cd3e9",
+      "category": "scientific_claim_decision"
+    },
+    {
+      "original_path": "research/decisions/R5-confirmation-claim.json",
+      "intake_path": "artifacts/intake/R13/review-packets/research/decisions/R5-confirmation-claim.json",
+      "bytes": 1795,
+      "sha256": "a26da8049ead289229fc74c47d1d395b35fa09196e6f8e4fbd0a5da0156cfaec",
+      "category": "scientific_claim_decision"
+    },
+    {
+      "original_path": "research/decisions/R8-detector-claim.json",
+      "intake_path": "artifacts/intake/R13/review-packets/research/decisions/R8-detector-claim.json",
+      "bytes": 2074,
+      "sha256": "6b805fc3e0462178b24c629b818221ea7e3f87bc61dba4cd275c9041765e2188",
+      "category": "scientific_claim_decision"
+    },
+    {
+      "original_path": "research/decisions/R9-iteration-claim.json",
+      "intake_path": "artifacts/intake/R13/review-packets/research/decisions/R9-iteration-claim.json",
+      "bytes": 2244,
+      "sha256": "0e00b4c61430b15fa40f8e346f47644ae5640e1a6e5bc4fc36b7892af9459a0e",
+      "category": "scientific_claim_decision"
+    },
+    {
+      "original_path": "research/decisions/autonomous-research-authorization.json",
+      "intake_path": "artifacts/intake/R13/review-packets/research/decisions/autonomous-research-authorization.json",
+      "bytes": 2797,
+      "sha256": "4f2eca57802835816b688668838545df60fd568c99069c291d2e42cb4f5371c9",
+      "category": "policy_methods_or_literature"
+    },
+    {
+      "original_path": "research/decisions/codex-refactor-authorization-2026-11-07.json",
+      "intake_path": "artifacts/intake/R13/review-packets/research/decisions/codex-refactor-authorization-2026-11-07.json",
+      "bytes": 2197,
+      "sha256": "8559055cea21e6f58bdd58b07930e5d9ab505a84a1ea58c72721c0c5e4e2119d",
+      "category": "policy_methods_or_literature"
+    },
+    {
+      "original_path": "research/stages/R13/inputs/manuscript-review.json",
+      "intake_path": "artifacts/intake/R13/review-packets/research/stages/R13/inputs/manuscript-review.json",
+      "bytes": 11813,
+      "sha256": "2360bc0016886189cd6d6167a7876c24328765bd93ffe5f12a7b27765acf9e8d",
+      "category": "distinct_final_manuscript_review"
+    },
+    {
+      "original_path": "research/stages/R2/exports/analysis.json",
+      "intake_path": "artifacts/intake/R13/review-packets/research/stages/R2/exports/analysis.json",
+      "bytes": 8685,
+      "sha256": "65448550391fa2c8852eb58441378d8e86857e14ac96a1814bfb2a766a534753",
+      "category": "accepted_claim_evidence"
+    },
+    {
+      "original_path": "research/stages/R2/exports/bound-discovery.json",
+      "intake_path": "artifacts/intake/R13/review-packets/research/stages/R2/exports/bound-discovery.json",
+      "bytes": 880,
+      "sha256": "c1fa5bbc32329a25323bea39ed476aa1ffedecf4474672308aad78303404c8ef",
+      "category": "accepted_claim_evidence"
+    },
+    {
+      "original_path": "research/stages/R2/exports/seed-audit.json",
+      "intake_path": "artifacts/intake/R13/review-packets/research/stages/R2/exports/seed-audit.json",
+      "bytes": 472,
+      "sha256": "7218413feeb9fd5a21c7f5cb8c53e9ce35fa02a1c1df475ac049aaa2f7ea9b12",
+      "category": "accepted_claim_evidence"
+    },
+    {
+      "original_path": "research/stages/R3/exports/analysis.json",
+      "intake_path": "artifacts/intake/R13/review-packets/research/stages/R3/exports/analysis.json",
+      "bytes": 1109,
+      "sha256": "9b6d5e3064407b819089fc9b497818dcd7e78024ed1e9b626fb0b61cfadc785d",
+      "category": "accepted_claim_evidence"
+    },
+    {
+      "original_path": "research/stages/R3/exports/bound-discovery.json",
+      "intake_path": "artifacts/intake/R13/review-packets/research/stages/R3/exports/bound-discovery.json",
+      "bytes": 560,
+      "sha256": "c4cab46f81303f002bf33c439d1328e70b755c3d215d7e8d996c32c586369c9d",
+      "category": "accepted_claim_evidence"
+    },
+    {
+      "original_path": "research/stages/R3/exports/seed-audit.json",
+      "intake_path": "artifacts/intake/R13/review-packets/research/stages/R3/exports/seed-audit.json",
+      "bytes": 209,
+      "sha256": "2ec9544709efc1395a12444a7d94c4919a2c798722f068e961136265497f8ed3",
+      "category": "accepted_claim_evidence"
+    },
+    {
+      "original_path": "research/stages/R4/exports/analysis.json",
+      "intake_path": "artifacts/intake/R13/review-packets/research/stages/R4/exports/analysis.json",
+      "bytes": 450,
+      "sha256": "8aaada532ecb0783afd47402410b869ca4588389ac808517e6951ac70e39518b",
+      "category": "accepted_claim_evidence"
+    },
+    {
+      "original_path": "research/stages/R4/exports/bound-discovery.json",
+      "intake_path": "artifacts/intake/R13/review-packets/research/stages/R4/exports/bound-discovery.json",
+      "bytes": 530,
+      "sha256": "10ca1a88a0e5ed64471ef1811f517fd067dba5e3754a6a16049666203784a5c5",
+      "category": "accepted_claim_evidence"
+    },
+    {
+      "original_path": "research/stages/R4/exports/seed-audit.json",
+      "intake_path": "artifacts/intake/R13/review-packets/research/stages/R4/exports/seed-audit.json",
+      "bytes": 186,
+      "sha256": "1a224d277719a514ac022cee7a37a5f6f8990fbd6c04afdeb56c8c86617cd226",
+      "category": "accepted_claim_evidence"
+    },
+    {
+      "original_path": "research/stages/R5/exports/analysis.json",
+      "intake_path": "artifacts/intake/R13/review-packets/research/stages/R5/exports/analysis.json",
+      "bytes": 1948,
+      "sha256": "56e48cf85af3f1f0aaeccf729e506c80b9bae7b0909ae3048c506ffa3d6d03cc",
+      "category": "accepted_claim_evidence"
+    },
+    {
+      "original_path": "research/stages/R5/exports/bound-discovery.json",
+      "intake_path": "artifacts/intake/R13/review-packets/research/stages/R5/exports/bound-discovery.json",
+      "bytes": 681,
+      "sha256": "5b8113d801f3d018ce1c74b9bee19bee14d0e0bb7809bec04ac67a2b588313f1",
+      "category": "accepted_claim_evidence"
+    },
+    {
+      "original_path": "research/stages/R5/exports/seed-audit.json",
+      "intake_path": "artifacts/intake/R13/review-packets/research/stages/R5/exports/seed-audit.json",
+      "bytes": 186,
+      "sha256": "ccff4a6517cb0d981c9690d65efc1c64c68ff294f477f9ce313fc12b6105ceb6",
+      "category": "accepted_claim_evidence"
+    },
+    {
+      "original_path": "research/stages/R8/inputs/catalog.json",
+      "intake_path": "artifacts/intake/R13/review-packets/research/stages/R8/inputs/catalog.json",
+      "bytes": 1413,
+      "sha256": "1680b0d4eded65c3ac695388ba4988f0d3824cafd582828b25f92fb0c4d060ee",
+      "category": "accepted_claim_evidence"
+    },
+    {
+      "original_path": "research/resources/ledger.jsonl",
+      "intake_path": "artifacts/intake/R13/review-packets/resources/ledger-through-R12.jsonl",
+      "bytes": 4238,
+      "sha256": "41ea9c74228ae0598ccdd2a72fbd4c6154049075ca385d7109036ed842d2f064",
+      "category": "resource_ledger_snapshot_not_live_input"
+    },
+    {
+      "original_path": "generated:src.resource_ledger.report",
+      "intake_path": "artifacts/intake/R13/review-packets/resources/resource-report-through-R12.json",
+      "bytes": 6314,
+      "sha256": "a55830c3a258ca323f598dd64839d7a59e4ed567f31d93fa33362908cdd12716",
+      "category": "resource_report_snapshot_not_live_state"
+    },
+    {
+      "original_path": "artifacts/research/R2/20261107T095343-6bc0c457c7/tasks/confirmation/cells.jsonl",
+      "intake_path": "artifacts/intake/R13/review-packets/secondary-controls/R2/cells.jsonl",
+      "bytes": 1616272,
+      "sha256": "5fbe76b00645481acfb979dbf9c999c096e0403e72f749c497d4726fb4836991",
+      "category": "secondary_figure_control"
+    },
+    {
+      "original_path": "artifacts/research/R3/20261107T102511-b1cf6c7be9/tasks/confirmation/cells.jsonl",
+      "intake_path": "artifacts/intake/R13/review-packets/secondary-controls/R3/cells.jsonl",
+      "bytes": 86893,
+      "sha256": "60bfd425ac089136f5313dcb9de2fe83b63ecbbcf6b485a6dd21a5e1cdaf69a1",
+      "category": "secondary_figure_control"
+    },
+    {
+      "original_path": "artifacts/research/R4/20261107T104140-5bc2019cef/tasks/confirmation/cells.jsonl",
+      "intake_path": "artifacts/intake/R13/review-packets/secondary-controls/R4/cells.jsonl",
+      "bytes": 59137,
+      "sha256": "77a5062809b7a26c8dbd5a4aca7107ab6f93534bc17b94ff8d340895e469dee3",
+      "category": "secondary_figure_control"
+    }
+  ],
+  "total_intake_bytes": 1209091777,
+  "source_policy": "Exact byte copies only; no scientific inputs/metrics or original claims/reviews edited. No live ledger registered. Final manuscript/review copied only after coordinator declared the manuscript stable.",
+  "scientific_validity": "not_assessed",
+  "finalized_utc": "2026-11-07T20:53:25.128535+00:00"
+}

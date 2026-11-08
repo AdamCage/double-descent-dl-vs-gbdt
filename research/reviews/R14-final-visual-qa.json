@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "stage_id": "R14",
+  "attempt_id": "20261108T073937-26f816e66d",
+  "reviewer_agent": "/root/r14_final_review/visual_qa",
+  "role": "independent_visual_and_delivery_reviewer",
+  "assessment": "delivery_supported_with_explicit_cost_scope_limitation",
+  "blocking_issues": [],
+  "independence": "Not an author of the renderer, protocol, scientific computation or evaluated report. Did not fit models, alter scientific sources/outputs, or generate new study data. Created only inspection contact sheets and QA notes outside the attempt.",
+  "actual_checks": {
+    "passed": true,
+    "static_pairs": 113,
+    "tables": {
+      "tables/r14_all_forecast_rows.csv": 64,
+      "tables/r14_all_contexts.csv": 32,
+      "tables/r14_all_direction_metrics.csv": 384,
+      "tables/r14_all_raw_responses.csv": 147456,
+      "tables/r14_oof_fold_fits.csv": 24,
+      "tables/r14_all_timing_components.csv": 2816,
+      "tables/r14_cost_scopes.csv": 11
+    },
+    "all_pngs_readable": true,
+    "all_svg_xml_valid": true,
+    "exact_figures_and_tables_inventory": true,
+    "all_manifest_source_hashes": true,
+    "index_article_count": 113
+  },
+  "csv_source_comparison": {
+    "all_csv_cells_source_faithful": true,
+    "checked_rows": {
+      "r14_all_forecast_rows.csv": 64,
+      "r14_all_contexts.csv": 32,
+      "r14_all_direction_metrics.csv": 384,
+      "r14_oof_fold_fits.csv": 24,
+      "r14_all_timing_components.csv": 2816,
+      "r14_cost_scopes.csv": 11,
+      "r14_all_raw_responses.csv": 147456
+    },
+    "scope": "Independent direct export comparison against source JSON/NPZ; no fitting or statistical reanalysis."
+  },
+  "visual_scope": {
+    "overview_pngs_inspected": 113,
+    "contact_sheets_inspected": [
+      "artifacts/intake/R14-final-visual-qa/contact-01.jpg",
+      "artifacts/intake/R14-final-visual-qa/contact-02.jpg",
+      "artifacts/intake/R14-final-visual-qa/contact-03.jpg",
+      "artifacts/intake/R14-final-visual-qa/contact-04.jpg",
+      "artifacts/intake/R14-final-visual-qa/contact-05.jpg",
+      "artifacts/intake/R14-final-visual-qa/contact-06.jpg"
+    ],
+    "full_resolution_pngs_inspected": [
+      "r14_mae_aggregate",
+      "r14_cost_scopes",
+      "r14_declared_decision",
+      "r14_decomposition_interaction",
+      "r14_response_interaction_s14004_p60",
+      "r14_geometry_by_prefix",
+      "r14_baseline_clean_quality",
+      "r14_oof_prediction_A",
+      "r14_pilot_interaction_s14003_p28"
+    ],
+    "count_full_resolution": 9
+  },
+  "findings": [
+    "All113 figures are present and legible in the overview; nine representative full-resolution figures have readable titles/axes/captions without blocking overlaps or clipping.",
+    "All32 contexts and both amplitudes remain in the full and cheap response panels; no favorable-direction selection is shown.",
+    "Response discrepancy is labelled separately from clean teacher MSE. Signed twice-cross heatmaps retain negative values and explicitly deny additive nonnegative variance interpretation.",
+    "Shaded ranges are labelled observed draw min-max, not confidence intervals. Forecast and MAE captions identify data draw as the independent cluster; they do not treat64 rows as iid repetitions.",
+    "The source-decision panel explicitly displays P2_forecast=False and go=False, and the MAE panel faithfully shows only a small A-over-B3 advantage.",
+    "The cost plot displays source probe ratio.1506, setup cost22.5seconds and cold ratio1.08; it does not hide the larger scopes. Its computedP3 label is a source quantity, not proof of whole-forecaster cost under the weaker basefit/operator-only availability assumption."
+  ],
+  "nonblocking_notes": [
+    "Cost/decision figures must accompany the REPORT P3 caveat: mixed base prediction/EFC trajectory timers leave whole-forecaster conditional cost unestablished. A standalone P3_cost=True image must not be cited as a general speedup or full cost-hypothesis confirmation.",
+    "Full-resolution detailed label review covers9 figures; all113 were visually inspected in scaled overview sheets, not every small label read at full resolution.",
+    "B0-B4/A identifiers require the protocol/report method definitions. The package supplies them, but this is not a standalone legend for general audiences.",
+    "This audit concerns actual complete-OOF branch113pairs/7CSV. The invalid-delta branch89pairs/6CSV was not executed or visually certified by this reviewer."
+  ],
+  "evidence": [
+    {
+      "path": "artifacts/research/R14/20261108T073937-26f816e66d/tasks/figures/gallery/figure_manifest.json",
+      "sha256": "d2d2fa79fc3dc95ec8d07fdab48fb0036fb5b7cec301353b4f02bc1e4b9bc502"
+    },
+    {
+      "path": "research/stages/R14/inputs/figure-spec.json",
+      "sha256": "fff5f16b8a746ea5546e764cdf5aa1d5205c9e3f8b65473152069b0e96007c36"
+    },
+    {
+      "path": "artifacts/intake/R14-final-visual-qa/machine-audit.json",
+      "sha256": "e8ea6a5f37f8bdd8f83c4b76f0eacb7ea7a9a45f38db1c465b321d4a350a2c52"
+    },
+    {
+      "path": "artifacts/intake/R14-final-visual-qa/csv-source-audit.json",
+      "sha256": "a6f689f7c0ec0c5cdf3f780a5211aa5f03b4565257ed7c31d4c064f2c8f32b02"
+    },
+    {
+      "path": "research/stages/R14/REPORT.md",
+      "sha256": "34763eb84b76dc80d0cdd28f0709d341db1fe586834c0fc58fccc548d7ed6ba0"
+    }
+  ],
+  "scientific_validity": "not_assessed",
+  "original_goal_achieved": false,
+  "new_n_or_independent_replication": false
+}

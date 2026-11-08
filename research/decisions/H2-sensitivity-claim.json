@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "claim_id": "H2-confirmed-comparison-population-sensitivity",
+  "statement": "On the preregistered H2 scope-only confirmation attempt 20261108T100025-c526dea890, 16 of 56 support- and inference-eligible pair/dataset comparisons (9 BBH, 7 MMLU; 84 declared, including 28 unsupported GPQA cells) met the fixed materiality rule: absolute native-to-exact-input ACK-gap shift at least 0.05 and its simultaneous 95% cluster-bootstrap interval wholly outside [-0.02, 0.02]. The largest eligible shift was BBH Qwen3-235B-A22B-2507 minus QwQ-32B: native gap +0.04197651663405097 to exact-overlap gap -0.11323051948051949, shift -0.15520703611457046, interval [-0.1919879710837689, -0.11842610114537203]. This uses previously unused 35% question clusters, historical 2025 released judge annotations and equal released-question weights. It does not reproduce the paper macro estimator or measure latent faithfulness. All 84 version-restriction components equal zero under the observed single-version structure; the shifts describe support/composition changes, not causal cue-version effects or corrected true rankings. The narrower H1 discovery and H2 exploratory reuse are disclosed; reserve outcomes remain unused.",
+  "statement_sha256": "7b789bf9e3a388b6950c77ef24a9d7c88eee16dcf11a08ad7c8634b20ac69721",
+  "scope": "Pinned Meek public release a7a8b25ae467db9d80d63e55ac053b48753b2d36; scope-only contexts, equal released core-question weights, native adaptive versus common exact inputs; confirmation 35% clusters. Historical cached outputs only; no causal or internal-reasoning inference.",
+  "author_agent": "/root",
+  "coauthor_agents": [
+    "/root/alignment_brainstorm"
+  ],
+  "evidence": [
+    {
+      "path": "artifacts/research/R17/20261108T100025-c526dea890/tasks/ack-audit/audit/analysis.json",
+      "sha256": "356880a535e0478a3cb74b0a4dda3379b73f2da3ec4e77955096ace1dbe076fa"
+    },
+    {
+      "path": "artifacts/research/R17/20261108T100025-c526dea890/tasks/ack-audit/audit/dataquality.json",
+      "sha256": "1eeec603882aabb324234d5e3092e6a33ecf27ed60e99b3f026fc078b3e2a26d"
+    },
+    {
+      "path": "artifacts/research/R17/20261108T100025-c526dea890/tasks/ack-audit/audit/per_question.parquet",
+      "sha256": "1294a650ef2799eb5291e9a3cd86f3404581ef48605fc405f05f856ef4ddd788"
+    },
+    {
+      "path": "artifacts/research/R17/20261108T100025-c526dea890/tasks/ack-audit/audit/bootstrap.npz",
+      "sha256": "55922628257313f5f55e7bd23f79461e27c86bb7c295b90fdb502e4f00260b17"
+    },
+    {
+      "path": "artifacts/research/R17/20261108T100025-c526dea890/manifest.json",
+      "sha256": "956014d23074a0c07617f5607fde9b208cd699dca14094450767a01ace9207f1"
+    },
+    {
+      "path": "research/stages/R17/REPORT.md",
+      "sha256": "205104d4401f247605d9dd54e9fc4c538c34b26e16b7be7c671def87e8030c50"
+    },
+    {
+      "path": "research/stages/R17/inputs/analysis-protocol.json",
+      "sha256": "912da166ea5ec241bbccb07615ed1eaddb4690bb65b0992566f7a12b93d5cd7b"
+    },
+    {
+      "path": "research/stages/R17/inputs/design-review-H2.json",
+      "sha256": "c4be1f1f412f587c776c24e8453c883984bfce8849f733e7613544cd77b636c3"
+    }
+  ],
+  "authorization_decision": {
+    "path": "research/decisions/alignment-h2-authorization-2026-11-08.json",
+    "sha256": "76eb82a9b82c8ad0c7832d0c55b7d3e445e9f412579e57390aca56f7c1bc66cd"
+  },
+  "limitations": [
+    "The outcome is a historical released judge annotation, not ground-truth internal reasoning. False can include source parsing failures.",
+    "Equal-question weighting differs from the published subdataset macro estimator; the native adaptive policy is intentional and is not shown flawed.",
+    "Matching changes question and cue-kind composition. A zero version component is algebraic under the observed structure, not causal evidence.",
+    "Intervals use approximate conditional empirical cluster resampling, separately simultaneous by endpoint and split. No joint programme-wide, finite-sample or population-safety guarantee.",
+    "All 28 GPQA comparisons lack the frozen 100-cluster confirmation support; no GPQA significance inference.",
+    "H1 overconditioned U0 and remains preserved. H2 discovery reused H1 questions; H2 confirmation ACK had not been used for design.",
+    "This is local distinct Codex-team review, not external peer review, priority certification or journal-readiness approval.",
+    "Largest observed raw-gap signchange isdescriptive; nogap-specificCI ortrue-ranking reversal inference isprovided. All56primarydeltaCIsbelongtothesameselected-scope maxTfamily.",
+    "Question-cluster resampling doesnot establish independentsemantic/taskfamily sampling; transfer beyond heldoutquestionsinsamehistoricalrelease isnotdemonstrated."
+  ],
+  "reviewer": "Independent Codex child agent /root/reset_critic",
+  "harness": "codex",
+  "verdict": "accepted",
+  "assessment": "evidence_supported",
+  "review_mode": "subagent_review",
+  "reviewer_agent": "/root/reset_critic",
+  "reviewed_at_utc": "2026-11-08T10:07:30.823513+00:00",
+  "scientific_validity": "not_assessed",
+  "proposal_binding": {
+    "path": "research/decisions/H2-sensitivity-claim-proposal.json",
+    "sha256": "433a6bdaa4bf70ff50582bd8cfcc822aafb9687145e9cb37f1f486f5aada83e9"
+  },
+  "reviewer_independence": "Distinct child; authored no evaluated H2plans/protocol/source/tests, primary outputs or REPORT. Independently reimplemented all CONFIRMATION-only scalar aggregation,5000globalcluster bootstrap draws and all3interval families; scanner returns only selectedconfirmation rows before ACK enters Python. H1/H2discovery reuse explicitly known; reserve ACK/factor outcomes not used. Only review/checker artifacts authored by reviewer. Local independent team review, not external peer review.",
+  "assessment_basis": "Independently18purefixturechecks,complete446208row metadata/design audit,allconfirmed3268q/3215clusters/88772perquestion records/all84scalar+support cells/all5000global bootstrap replicas and3maxTfamilies recomputed; maxerror7.77e-16. Source/protocol/split/quarantine bindings andsingleversion identity checked. Fullcriterion16cells/2datasets andlargestexampleverified. This is local independentnumericalreview ofsamecacheddata,notindependentnewmodel/benchmarkreplication.",
+  "review_evidence": [
+    {
+      "path": "research/reviews/R17-v1.json",
+      "sha256": "afe449669bad2e1313201f90b91a3986e480268b6f2c31dd113e4c9c4a4a1928"
+    },
+    {
+      "path": "artifacts/intake/R17-independent-review/verification.json",
+      "sha256": "c5b49a4f49c4a95077f857d470900a85d03009357e09f459be1a9b27f5281771"
+    },
+    {
+      "path": "artifacts/intake/cot-independent-review/check_scope_audit.py",
+      "sha256": "7330c7a3d3aeebea1e807b94fd63dcad179091e7bbdfc10f012b2ee41284f673"
+    },
+    {
+      "path": "docs/methods/cot-scope-comparison.md",
+      "sha256": "9d431d9fd434b24c06bf95bde9e817e128bd71070097af52b6228ddff3952679"
+    }
+  ],
+  "novelty_assessment": "Bounded empirical result and reproducible practical measurement audit; no newtheorem/matchingmethod/world-firstpriority orjournal-readinessapproval. Standardcommon-support comparison andelementarydesignproof known; externalpriorityandgeneralization remainunestablished."
+}

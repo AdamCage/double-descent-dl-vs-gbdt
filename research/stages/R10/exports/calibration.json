@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "protocol_sha256": "0f36466a9ebc3ff75c1dbba412f079f23f2959d0ff23b2842f004b0e22135dd7",
+  "windows": [
+    8,
+    16,
+    32
+  ],
+  "alpha": 0.05,
+  "thresholds": {
+    "small_iid": {
+      "threshold": 0.022720495566653637,
+      "per_family": {
+        "linear": {
+          "threshold": 0.022720495566653637,
+          "order": 190,
+          "n": 199,
+          "alpha": 0.05,
+          "rejection": "strictly_greater"
+        },
+        "exponential": {
+          "threshold": 0.012413390678219317,
+          "order": 190,
+          "n": 199,
+          "alpha": 0.05,
+          "rejection": "strictly_greater"
+        },
+        "early_plateau": {
+          "threshold": 0.018003473901221746,
+          "order": 190,
+          "n": 199,
+          "alpha": 0.05,
+          "rejection": "strictly_greater"
+        }
+      }
+    },
+    "small_ar": {
+      "threshold": 0.03135981374400287,
+      "per_family": {
+        "linear": {
+          "threshold": 0.03135981374400287,
+          "order": 190,
+          "n": 199,
+          "alpha": 0.05,
+          "rejection": "strictly_greater"
+        },
+        "exponential": {
+          "threshold": 0.017021285803322527,
+          "order": 190,
+          "n": 199,
+          "alpha": 0.05,
+          "rejection": "strictly_greater"
+        },
+        "early_plateau": {
+          "threshold": 0.026440602799669345,
+          "order": 190,
+          "n": 199,
+          "alpha": 0.05,
+          "rejection": "strictly_greater"
+        }
+      }
+    },
+    "large_iid": {
+      "threshold": 0.1122530603099248,
+      "per_family": {
+        "linear": {
+          "threshold": 0.1122530603099248,
+          "order": 190,
+          "n": 199,
+          "alpha": 0.05,
+          "rejection": "strictly_greater"
+        },
+        "exponential": {
+          "threshold": 0.06908052670955836,
+          "order": 190,
+          "n": 199,
+          "alpha": 0.05,
+          "rejection": "strictly_greater"
+        },
+        "early_plateau": {
+          "threshold": 0.08757204870978022,
+          "order": 190,
+          "n": 199,
+          "alpha": 0.05,
+          "rejection": "strictly_greater"
+        }
+      }
+    },
+    "large_ar": {
+      "threshold": 0.15929846954919005,
+      "per_family": {
+        "linear": {
+          "threshold": 0.15929846954919005,
+          "order": 190,
+          "n": 199,
+          "alpha": 0.05,
+          "rejection": "strictly_greater"
+        },
+        "exponential": {
+          "threshold": 0.09759272884832501,
+          "order": 190,
+          "n": 199,
+          "alpha": 0.05,
+          "rejection": "strictly_greater"
+        },
+        "early_plateau": {
+          "threshold": 0.12594625129649537,
+          "order": 190,
+          "n": 199,
+          "alpha": 0.05,
+          "rejection": "strictly_greater"
+        }
+      }
+    }
+  },
+  "deployment_descriptive_threshold": 0.15929846954919005,
+  "guarantee_scope": "Marginal rank bound for each included whole-curve null law; not conditional on calibration. No arbitrary model-trajectory guarantee."
+}

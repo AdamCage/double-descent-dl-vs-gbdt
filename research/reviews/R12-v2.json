@@ -1,0 +1,109 @@
+{
+  "attempt_id": "20261107T194939-7c18953a98",
+  "author_agent": "/root/catboost_study",
+  "criteria": [
+    {
+      "id": "C1",
+      "verdict": "pass",
+      "evidence": [
+        "unit-checks/checks.json",
+        "randomness-study/cells.jsonl",
+        "randomness-study/predictions.npz",
+        "randomness-study/models.json"
+      ],
+      "reason": "Complete72 unique cells,12 seeds per environment/strength,1024 trees and1025 raw timepoints per split. All216 raw-margin arrays and72 train-leaf-index arrays finite/shape/hash checked. All72 CBM hashes checked; unit artifact7tests with no errors/failures/skips. Historical verify passed83files."
+    },
+    {
+      "id": "C2",
+      "verdict": "pass",
+      "evidence": [
+        "randomness-study/data.npz",
+        "randomness-study/predictions.npz",
+        "randomness-study/cells.jsonl",
+        "randomness-study/models.json"
+      ],
+      "reason": "Independently checked every data/label/split-order hash, disjoint exhaustive splits, paired hashes, all seven raw-derived per-iteration metrics and exact first-zero train errors. Every stored structural/occupied leaf count matched saved leaf indices. Six loaded models covering both environments/all strengths matched raw predictions at512 and1024 on all splits and train leaf-index matrices. Max raw metric error0."
+    },
+    {
+      "id": "C3",
+      "verdict": "pass",
+      "evidence": [
+        "randomness-study/analysis.json",
+        "randomness-study/cells.jsonl",
+        "randomness-study/predictions.npz",
+        "randomness-study/data.npz"
+      ],
+      "reason": "Independently recomputed all train/test multiscale max-scan scores and locations from raw-derived loss using sliding-window OLS (max score discrepancy3.63e-15), all split fixed512/64-point gains (max discrepancy2.13e-18), all four scan/four fixed-boundary contrast vectors and family4 intervals, and all six gates including twelve family12 mean gain/drop intervals and positive-seed counts. All gatesnot_established; negative/exploratory outcomes retained."
+    },
+    {
+      "id": "C4",
+      "verdict": "pass",
+      "evidence": [
+        "randomness-study/environment.json",
+        "randomness-study/analysis.json",
+        "randomness-study/cells.jsonl"
+      ],
+      "reason": "Frozen code uses one continuous fit,constantLR.05 and explicit thread4 in fit/raw inference/leaf-index calculation. Environment GPU/API/download0; no test-selected grid or DD/annealing-mechanism claim. Optional synthetic calibration not supplied; calibration_binding and descriptive flags are null. Reviewer directly inspected source controls; no unit evidence outside this criterion task is required."
+    }
+  ],
+  "limitations": [
+    "Whole-run random_strength interventions change tree partitions, gradient history and entire loss range. A positive normalized maximum-scan contrast does not isolate the internal annealing law, a localized late event or a causal mechanism of natural acceleration.",
+    "The primary max scan can concern early dynamics. All six fixed late-window gatesnot_established apply only to boundary512 and64-point windows with practical drop.01 and>=10/12 positive gains. This is not evidence that acceleration is absent everywhere.",
+    "Onlytwo small fixed environments and12 paired seed units; breast-cancer repeats condition on one corpus and do not sample independent new corpora or provide clinical validation.",
+    "Student-t inference atn12 is approximate. Separate family4 scan, family4 fixed-boundary and family12 gate intervals do not provide a joint95% guarantee over all20 reported intervals. rs1 contrasts remain exploratory.",
+    "R10 synthetic nulls are not established exchangeable with these1025-point CatBoost curves. No synthetic p-value or valid transported threshold is claimed; no optional calibration was supplied.",
+    "Sixty-three of72 models reached exactzero classification error at iterations123..988; maximum training LogLoss at firstzero was.14022221881182134. These descriptive values distinguish0-1 interpolation from surrogate loss and do not by themselves establish double descent.",
+    "This local subagent review checked all saved raw arrays/metrics and72 model hashes; detailed saved-model predictions/leaves were spotchecked on6 models. It did not rerun training or supply external review, priority certification or journal-readiness approval."
+  ],
+  "manifest_sha256": "fc4d0c3da64ec28f5c6ad73c5d5ab869f92c4daef0b23dbb6dbf0ed21e4b225a",
+  "plan_sha256": "8ae9d070bba865d347db6d56f767285054d1b7b170f2c534a5d234c82639b32b",
+  "predictions": [
+    {
+      "id": "P1",
+      "outcome": "supported for the prespecified rs10-minus0 scan-score contrast in both environments: synthetic mean.017136016867994843, family4CI[.00759461814522553,.026677415590764156]; breast_cancer mean.003238597748487245,CI[.0014128320519830092,.005064363444991481]. rs1 retains exploratory_no_sign_prediction and is not upgraded to confirmatory.",
+      "evidence": [
+        "randomness-study/analysis.json",
+        "randomness-study/cells.jsonl",
+        "randomness-study/predictions.npz"
+      ]
+    },
+    {
+      "id": "P2",
+      "outcome": "supported as an evaluation-completeness prediction: all six prespecified fixed-window event gates were evaluated and all returnednot_established. No group had a positive lower family12 mean-gain bound; positive-gain counts were4,4,5,4,6,2. This does not establish absence at other times/windows/settings.",
+      "evidence": [
+        "randomness-study/analysis.json",
+        "randomness-study/cells.jsonl",
+        "randomness-study/predictions.npz"
+      ]
+    },
+    {
+      "id": "P3",
+      "outcome": "supported: all72 trajectories complete on paired inputs, fixed newseeds13001-13012 and frozen settings, test not used to change grid, no double-descent or annealing-mechanism declaration.",
+      "evidence": [
+        "randomness-study/cells.jsonl",
+        "randomness-study/data.npz",
+        "randomness-study/predictions.npz",
+        "randomness-study/analysis.json"
+      ]
+    }
+  ],
+  "report": {
+    "path": "research/stages/R12/REPORT.md",
+    "sha256": "15d925325f8d17170a70ae76d661194fd160b33b6352ca3416e0f04c9cb555c9"
+  },
+  "review_mode": "subagent_review",
+  "reviewer": {
+    "name": "Independent Codex R12 result reviewer",
+    "harness": "codex",
+    "role": "stage_reviewer",
+    "independence": "Distinct subagent /root/science_critique; not author of implementation, scientific protocol, report or evaluated numerical conclusion. Independently audited every saved raw metric, scan, fixed-boundary contrast and gate; all72 models hashed and6 loaded for prediction/leaf checks. No training or scientific matrix rerun."
+  },
+  "reviewer_agent": "/root/science_critique",
+  "schema_version": 1,
+  "scientific_validity": "not_assessed",
+  "stage_id": "R12",
+  "verdict": "accept",
+  "coauthor_agents": [
+    "/root"
+  ]
+}

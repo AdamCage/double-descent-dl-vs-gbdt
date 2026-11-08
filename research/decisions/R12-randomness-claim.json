@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "claim_id": "R12-randomness-without-fixed-late-event",
+  "statement": "On the frozen R12 continuous-fit study with constant learning rate .05, increasing whole-run random_strength from 0 to 10 increased the normalized maximum train slope-scan score in both environments: synthetic mean paired difference 0.017136016867994843 (adjusted family4 95% CI [0.00759461814522553,0.026677415590764156]) and breast_cancer 0.003238597748487245 (CI [0.0014128320519830092,0.005064363444991481]). All six prespecified fixed late-event gates at tree 512 with 64-point windows returned not_established under the family12 gain/drop intervals, practical after-drop >.01, and at least 10/12 positive-gain rule. Descriptively, 63/72 models reached exact zero train classification errors at first-zero iterations 123-988, while training LogLoss at first zero reached 0.14022221881182134. Whole-run parameter effects do not identify split-noise annealing, a natural late-acceleration mechanism, or double descent; failure of this fixed-window gate does not exclude events elsewhere.",
+  "statement_sha256": "0d3f127ed34d8095f935f740826333b3ca86602b61657aa021716c8023103732",
+  "evidence": [
+    {
+      "path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/analysis.json",
+      "sha256": "4f03363af83d21af360489286edb99045762b64e932caa80027d018ab1e48224"
+    },
+    {
+      "path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/cells.jsonl",
+      "sha256": "9bd8c04eb053d34658e04f5d63c3ec9797bbcc686188b8abfc085a6262da4be4"
+    },
+    {
+      "path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/predictions.npz",
+      "sha256": "c11dd216d71c89f9575ccd4aca2ba826ea2f385fec504f97b2a0908d71465d0a"
+    },
+    {
+      "path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/data.npz",
+      "sha256": "31ad1a41f0e867fb8dc30339bd534cf7d78bd721c2871d96f0d95696b056885e"
+    },
+    {
+      "path": "artifacts/research/R12/20261107T194939-7c18953a98/tasks/randomness-study/models.json",
+      "sha256": "1e4a2f0976be41a3b1cf74cf6c07d0790ff91801596dbc54905387b59e5680f6"
+    }
+  ],
+  "reviewer": "Independent Codex subagent /root/science_critique",
+  "harness": "codex",
+  "verdict": "accepted",
+  "review_mode": "subagent_review",
+  "author_agent": "/root/catboost_study",
+  "coauthor_agents": [
+    "/root"
+  ],
+  "reviewer_agent": "/root/science_critique",
+  "authorization_decision": {
+    "path": "research/decisions/codex-refactor-authorization-2026-11-07.json",
+    "sha256": "8559055cea21e6f58bdd58b07930e5d9ab505a84a1ea58c72721c0c5e4e2119d"
+  },
+  "scientific_validity": "not_assessed",
+  "limitations": [
+    "Whole-run random_strength interventions change tree partitions, gradient history and entire loss range. A positive normalized maximum-scan contrast does not isolate the internal annealing law, a localized late event or a causal mechanism of natural acceleration.",
+    "The primary max scan can concern early dynamics. All six fixed late-window gatesnot_established apply only to boundary512 and64-point windows with practical drop.01 and>=10/12 positive gains. This is not evidence that acceleration is absent everywhere.",
+    "Onlytwo small fixed environments and12 paired seed units; breast-cancer repeats condition on one corpus and do not sample independent new corpora or provide clinical validation.",
+    "Student-t inference atn12 is approximate. Separate family4 scan, family4 fixed-boundary and family12 gate intervals do not provide a joint95% guarantee over all20 reported intervals. rs1 contrasts remain exploratory.",
+    "R10 synthetic nulls are not established exchangeable with these1025-point CatBoost curves. No synthetic p-value or valid transported threshold is claimed; no optional calibration was supplied.",
+    "Sixty-three of72 models reached exactzero classification error at iterations123..988; maximum training LogLoss at firstzero was.14022221881182134. These descriptive values distinguish0-1 interpolation from surrogate loss and do not by themselves establish double descent.",
+    "This local subagent review checked all saved raw arrays/metrics and72 model hashes; detailed saved-model predictions/leaves were spotchecked on6 models. It did not rerun training or supply external review, priority certification or journal-readiness approval."
+  ],
+  "assessment_basis": "All72 cells, data/split pairing/hashes,216 raw-margin and72 leaf-index arrays, every raw metric, train/test scan score/location and fixed-boundary gain independently recomputed; all8 paired contrast vectors/CIs and6 family12 gates checked. All72 model hashes and6 loaded-model512/final predictions+leaf indices checked. No training or scientific matrix rerun."
+}

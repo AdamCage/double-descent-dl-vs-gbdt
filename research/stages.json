@@ -110,6 +110,174 @@
         "path": "research/decisions/autonomous-research-authorization.json",
         "sha256": "4f2eca57802835816b688668838545df60fd568c99069c291d2e42cb4f5371c9"
       }
+    },
+    {
+      "id": "R8",
+      "depends_on": [
+        "R7"
+      ],
+      "plan": "research/plans/R8.json",
+      "kind": "science",
+      "execution_authorized": true,
+      "preparation_authorized": true,
+      "authorization_decision": {
+        "path": "research/decisions/autonomous-research-authorization.json",
+        "sha256": "4f2eca57802835816b688668838545df60fd568c99069c291d2e42cb4f5371c9"
+      }
+    },
+    {
+      "id": "R9",
+      "depends_on": [
+        "R8"
+      ],
+      "plan": "research/plans/R9.json",
+      "kind": "science",
+      "execution_authorized": true,
+      "preparation_authorized": true,
+      "authorization_decision": {
+        "path": "research/decisions/autonomous-research-authorization.json",
+        "sha256": "4f2eca57802835816b688668838545df60fd568c99069c291d2e42cb4f5371c9"
+      }
+    },
+    {
+      "id": "R10",
+      "depends_on": [
+        "R9"
+      ],
+      "plan": "research/plans/R10.json",
+      "kind": "science",
+      "preparation_authorized": true,
+      "execution_authorized": true,
+      "authorization_decision": {
+        "path": "research/decisions/codex-refactor-authorization-2026-11-07.json",
+        "sha256": "8559055cea21e6f58bdd58b07930e5d9ab505a84a1ea58c72721c0c5e4e2119d"
+      }
+    },
+    {
+      "id": "R11",
+      "depends_on": [
+        "R10"
+      ],
+      "plan": "research/plans/R11.json",
+      "kind": "science",
+      "preparation_authorized": true,
+      "execution_authorized": true,
+      "authorization_decision": {
+        "path": "research/decisions/codex-refactor-authorization-2026-11-07.json",
+        "sha256": "8559055cea21e6f58bdd58b07930e5d9ab505a84a1ea58c72721c0c5e4e2119d"
+      }
+    },
+    {
+      "id": "R12",
+      "depends_on": [
+        "R11"
+      ],
+      "plan": "research/plans/R12.json",
+      "kind": "science",
+      "preparation_authorized": true,
+      "execution_authorized": true,
+      "authorization_decision": {
+        "path": "research/decisions/codex-refactor-authorization-2026-11-07.json",
+        "sha256": "8559055cea21e6f58bdd58b07930e5d9ab505a84a1ea58c72721c0c5e4e2119d"
+      }
+    },
+    {
+      "id": "R13",
+      "depends_on": [
+        "R12"
+      ],
+      "plan": "research/plans/R13.json",
+      "kind": "engineering",
+      "preparation_authorized": true,
+      "execution_authorized": true,
+      "authorization_decision": {
+        "path": "research/decisions/codex-refactor-authorization-2026-11-07.json",
+        "sha256": "8559055cea21e6f58bdd58b07930e5d9ab505a84a1ea58c72721c0c5e4e2119d"
+      }
+    },
+    {
+      "id": "R14",
+      "depends_on": [
+        "R13"
+      ],
+      "plan": "research/plans/R14.json",
+      "kind": "science",
+      "preparation_authorized": true,
+      "execution_authorized": true,
+      "authorization_decision": {
+        "path": "research/decisions/codex-refactor-authorization-2026-11-07.json",
+        "sha256": "8559055cea21e6f58bdd58b07930e5d9ab505a84a1ea58c72721c0c5e4e2119d"
+      }
+    },
+    {
+      "id": "R15",
+      "depends_on": [
+        "R14"
+      ],
+      "plan": "research/plans/R15.json",
+      "kind": "engineering",
+      "preparation_authorized": true,
+      "execution_authorized": true,
+      "authorization_decision": {
+        "path": "research/decisions/alignment-portfolio-authorization-2026-11-08.json",
+        "sha256": "c0ad0d0aa0fdb84d70f4ddfe7b613a22436400003427d37882284f1bdbbb38b1"
+      }
+    },
+    {
+      "id": "R16",
+      "depends_on": [
+        "R15"
+      ],
+      "plan": "research/plans/R16.json",
+      "kind": "science",
+      "preparation_authorized": true,
+      "execution_authorized": true,
+      "authorization_decision": {
+        "path": "research/decisions/alignment-portfolio-authorization-2026-11-08.json",
+        "sha256": "c0ad0d0aa0fdb84d70f4ddfe7b613a22436400003427d37882284f1bdbbb38b1"
+      }
+    },
+    {
+      "id": "R17D",
+      "depends_on": [
+        "R16"
+      ],
+      "plan": "research/plans/R17D.json",
+      "kind": "science",
+      "preparation_authorized": true,
+      "execution_authorized": true,
+      "authorization_decision": {
+        "path": "research/decisions/alignment-h2-authorization-2026-11-08.json",
+        "sha256": "76eb82a9b82c8ad0c7832d0c55b7d3e445e9f412579e57390aca56f7c1bc66cd"
+      }
+    },
+    {
+      "id": "R17",
+      "depends_on": [
+        "R17D"
+      ],
+      "plan": "research/plans/R17.json",
+      "kind": "science",
+      "preparation_authorized": true,
+      "execution_authorized": true,
+      "authorization_decision": {
+        "path": "research/decisions/alignment-h2-authorization-2026-11-08.json",
+        "sha256": "76eb82a9b82c8ad0c7832d0c55b7d3e445e9f412579e57390aca56f7c1bc66cd"
+      }
+    },
+    {
+      "id": "R18",
+      "depends_on": [
+        "R17"
+      ],
+      "plan": "research/plans/R18.json",
+      "kind": "engineering",
+      "preparation_authorized": true,
+      "execution_authorized": true,
+      "authorization_decision": {
+        "path": "research/decisions/alignment-h2-authorization-2026-11-08.json",
+        "sha256": "76eb82a9b82c8ad0c7832d0c55b7d3e445e9f412579e57390aca56f7c1bc66cd"
+      }
     }
   ]
 }

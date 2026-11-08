@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "stage_id": "R13",
+  "review_mode": "subagent_review",
+  "harness": "codex",
+  "author_agent": "/root/workflow_audit",
+  "coauthor_agents": [
+    "/root",
+    "/root/literature"
+  ],
+  "reviewer_agent": "/root/science_critique",
+  "reviewer_independence": "Reviewer authored neither renderer, builder, wrapper, validator, scientific plans nor evaluated delivery claims. Reviewer separately reviewed manuscript/evidence and did not author the manuscript. No scientific fits or full R13 delivery execution performed.",
+  "verdict": "revise",
+  "blocking_issues": [
+    "verify_science_release.py does not enforce189 figure rows, disjoint exact static-versus-HTML path kinds, or global uniqueness of asset paths. Reusing one PNG/SVG pair in187 unique IDs can satisfy its current static count and actual-set check. Enforce exact expected row count, exact allowed per-row kinds, unique paths and187 distinct complete pairs plus2 distinct HTML files.",
+    "Source-table list can be empty or contain duplicates and still pass; table paths are not confined or checked against the actual table-file inventory. Enforce the16 expected table names/paths (or exact predeclared equivalent), uniqueness, confined regular paths, hashes and exact table inventory, with sensible positive CSV row counts.",
+    "Explicitly enforce replay loss shape[7188,256] and finite entries before accepting equality. Comparing the replay to whatever original array is passed does not on its own enforce the declared full-size C3 predicate."
+  ],
+  "nonblocking_notes": [
+    "Use a context-correct label for scan in R12, where no calibration was supplied; global Calibrated OLS scan label can imply calibration that the captions correctly deny.",
+    "Full visual readability must be checked after actual rendering; preflight cannot certify that187 captions/legends are readable solely from image dimensions.",
+    "The actual replay checks relocated paths in the existing environment, not a clean dependency installation or cross-platform binary reproducibility. Current documentation correctly limits that guarantee."
+  ],
+  "reviewed_artifacts": [
+    {
+      "path": "research/stages/R13/PLAN.md",
+      "sha256": "656c0cf6ed697de30a20b1005af529e19157c3bbe167578505c1361604576cdd"
+    },
+    {
+      "path": "research/plans/R13.json",
+      "sha256": "50f2926ce88eb1dae334b821ab0fc9c819f67c8e37406a8ed970f9ab0e4b6209"
+    },
+    {
+      "path": "research/stages/R13/inputs/release-spec.json",
+      "sha256": "066bbaaffdcf698b5c1c480141d3a7cd4efba25a9635e4a677e8088c9476d8ca"
+    },
+    {
+      "path": "research/stages/R13/inputs/intake-manifest.json",
+      "sha256": "e810683f8c2182155a6cfe4307128f3ebf1e9e10e1c8bdaefa193285366f2fb5"
+    },
+    {
+      "path": "research/stages/R13/inputs/run_derivative_task.py",
+      "sha256": "1fe9185c19c38e151b23c7dcc1991eeb2abb7ab388d8c47cba01f16a21959281"
+    },
+    {
+      "path": "scripts/plot_v2_research.py",
+      "sha256": "ef773ae19b60d186ee45ed622686022dbd8a6f82ee55be8803a7c04993f16d46"
+    },
+    {
+      "path": "scripts/build_science_package.py",
+      "sha256": "0e69672d2949753da41cb41a441ee8e3465ebeece0d75f0b04b2779aed425f0a"
+    },
+    {
+      "path": "scripts/verify_science_release.py",
+      "sha256": "0e7e31305ef16723c570e3076a277c20c23b351a3d61c73e2ce9290a536e2478"
+    }
+  ],
+  "checks": {
+    "intake": "Independently hashed all462 copied files,1209091777bytes: every size/SHA binding matches. Every copied intake file appears explicitly in machine inputs. No forbidden artifacts/research live inputs, .env/.venv/.git paths were found.478 unique declared input paths include the pending design review. Selected complete attempts and prior technicalR11 attempt are preserved.",
+    "source_and_task_design": "Sequential figures/package/validation tasks with900/240/480s timeouts,1800s attempt,3600s total,2attempts. Fixed189figure entries,16 table sources, standalone package and R10 exact replay; no data/seed/grid changes, new model fitting or independent replication. Workflow handles timeout/process-tree termination and single lock.",
+    "resource_wrapper": "Wrapper fixes OMP/MKL/OPENBLAS/NUMEXPR4, CUDAempty, disablespyc and uses a local Matplotlib cache. It checks symlinks/junctions and storage before/after child execution and records exit/runtime/controls.8GiB is a boundary check, not OS quota, as documented. Copies are inside accounted intake/artifact roots; no overall budget reset.",
+    "builder": "Inspects frozen manifests/plans/source hashes and complete task inventories; scientific allowlists and AST local imports are perstage. Copies full attempts and explicit reviews plus separatecode/Rxx, without merging versions. Refuses existing outputs, secret-named paths, symlink/junction traversal, destination collisions and size/count excess. Requirements derive exact installed active-base metadata closure and explicitly rejecttorch/EpistemeOS. Original uv.lock is provenance only.",
+    "pure_self_test": "uv run python scripts/build_science_package.py --self-test passed. FakeR10/R11/R12 runners only, no scientificfit: separate versions, minimal closure, standalone replay, frozen calibration replay, explicit review packets, integrity after replay, exclusive outputs, tamper detection and credential-name rejection.",
+    "replay_and_validator": "Replay requires a new external directory, absolute packaged protocols, Python3.12, disabled import caches, preserved logs/exit records, and verifies package before execution. Validator checks image hashes/readability, SVG parsing, HTML presence, package verify before/after and exact R10 numerical JSON/metadata, but must fix the completeness predicates listed above before acceptance.",
+    "renderer_science_scope": "Code keeps all declared conditions and every R11/R12 seed, deterministic firstfiveR10 examples, fixed known-boundary zooms, separate axes and split metrics. Bands are observed minmax, CP intervals conditional pointwise, t-families are labeled, R12 maximizing positions/flags are descriptive and missing firstzero events are shown separately rather than at a fabricated eventtime. Static plotting cannot establish a new mechanism or independent sample.",
+    "goal_scope": "This derivative stage can complete a reproducibility milestone of the bounded methodological line only. Manuscript review explicitly leaves the original cross-model double-descent scientific objective incomplete. Graphics/package success cannot certify novelty, journal readiness or goal completion."
+  },
+  "scientific_validity": "not_assessed"
+}

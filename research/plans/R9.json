@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "stage_id": "R9",
+  "status": "frozen",
+  "question": "On one frozen CatBoost iteration axis, new synthetic draws, and fixed depth, learning rate, L2 and no bootstrap, does the 1e-8 training-residual interpolation threshold fall inside the grid?",
+  "scope": "Discovery only on seeds 7101 and 7102. Confirmation seeds 9101-9105 are not fit. The grid is not chosen from clean risk or from R8 scores. Double descent is not declared. scientific_validity remains not_assessed.",
+  "authorization_decision": {
+    "path": "research/decisions/autonomous-research-authorization.json",
+    "sha256": "4f2eca57802835816b688668838545df60fd568c99069c291d2e42cb4f5371c9"
+  },
+  "budget": {"max_wall_seconds": 600, "total_wall_seconds": 1200, "max_attempts": 2},
+  "tasks": [
+    {
+      "id": "discovery-fit",
+      "argv": ["{python}", "{repo}/scripts/r9_run.py", "--protocol", "{repo}/research/stages/R9/inputs/protocol.json"],
+      "inputs": [
+        "scripts/r9_run.py",
+        "src/__init__.py",
+        "src/r9_catboost.py",
+        "src/controlled_synthetic.py",
+        "tests/test_r9_catboost.py",
+        "research/stages/R9/PLAN.md",
+        "research/stages/R9/inputs/protocol.json",
+        "research/stages/R9/inputs/design-review.json",
+        "research/escalations/2026-11-07-review.md",
+        "docs/research-program.md"
+      ],
+      "outputs": ["cells.jsonl", "analysis.json", "seed-audit.json"],
+      "timeout_seconds": 480
+    }
+  ],
+  "exit_criteria": [
+    {
+      "id": "C1",
+      "description": "Exactly 14 discovery cells use only seeds 7101 and 7102, and each cell has finite residual_relative, clean_mse, noisy_mse and a boolean interpolating flag.",
+      "task_ids": ["discovery-fit"]
+    },
+    {
+      "id": "C2",
+      "description": "analysis.json records a bracket status per seed, double_descent_declared false, used_clean_risk_to_choose_grid false, zero downloads, and seed-audit.json shows the confirmation seeds absent.",
+      "task_ids": ["discovery-fit"]
+    }
+  ],
+  "predictions": [
+    {"id": "P1", "statement": "analysis.json records iteration_grid [1, 2, 4, 8, 16, 32, 64] and used_clean_risk_to_choose_grid false."},
+    {"id": "P2", "statement": "Each discovery seed has bracket_status bracketed or not_identifiable, and double_descent_declared is false."},
+    {"id": "P3", "statement": "No cell uses confirmation seeds 9101-9105."},
+    {"id": "P4", "statement": "When bracket_status is not_identifiable, same_iteration is null."}
+  ]
+}

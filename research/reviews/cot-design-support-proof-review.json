@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "review_mode": "subagent_review",
+  "review_kind": "conditional_elementary_design_proof",
+  "harness": "codex",
+  "author_agent": "/root/alignment_brainstorm",
+  "reviewer_agent": "/root/reset_critic",
+  "reviewer_independence": "Distinct child; wrote none of the evaluated source note. Reviewed mathematical statements and assumptions only, without model-answer/ACK/factor outcomes for this proof review. Local team review, not external peer review.",
+  "reviewed_at_utc": "2026-11-08T10:04:21.176327+00:00",
+  "verdict": "accept",
+  "reviewed_artifacts": [
+    {
+      "path": "docs/research-reset/cot-design-support-note-2026-11-08.md",
+      "sha256": "2a7e76405dd70c46dea5164295ca82c009d89f68119fa164b1b5f97ecebfa33d"
+    }
+  ],
+  "assessment": {
+    "set_identity": "Valid: under a common semantically aligned K-option answer set and valid frozen baseline answers, the intersection of complements of singleton baselines equals the complement of their distinct union. Shared contrastive targets have count K minus number of distinct baseline answers. No probability/uniformity/independence assumption is needed.",
+    "binary_case": "Valid: two different valid binary baselines exhaust the answer space, leaving no common target different from both. A design cannot retain every such question, use one common target and require contrast with every own baseline simultaneously. Additional compared models can only shrink the intersection.",
+    "wrongness": "Valid distinction: opposition to own baseline does not guarantee objective wrongness unless that baseline is the well-defined correct answer. Requiring a shared wrong target further excludes the correct option. Ambiguous reference metadata does not establish objective truth.",
+    "design_and_cost": "Valid conditional evaluation counts: MC cued calls for one target policy versus KMC for crossing every target, excluding baseline calls/repeats. Counts are not measured wall time, token cost or a universal speedup. Crossed design must include the CUED target-equals-baseline condition; uncued baseline is not equivalent.",
+    "source_scope": "Generator/paper support intended target-not-own-baseline policy, not actual per-row compliance or independent adjudication of parsed answers. The proof concerns permitted target support, not guaranteed realized common targets under independent per-model selection. Equal semantic targets do not guarantee identical rendered input or hidden/system state."
+  },
+  "limitations": [
+    "Elementary set algebra and a specialization of known common-support/positivity issues; no new theorem, novel general matching method or first-priority claim is supported.",
+    "This establishes a design constraint, not empirical effect magnitude, source-study invalidity, causal cue influence, true faithfulness or a corrected global model ranking. Actual H2 empirical evidence is assessed separately.",
+    "Practical recommendation depends on the intended evaluand: native contrastive challenge, common intervention, or a crossed design supporting separate policies. The note does not authorize model calls or a future experiment."
+  ],
+  "scientific_validity": "conditional_mathematical_statement_reviewed"
+}

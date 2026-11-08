@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "review_mode": "subagent_review",
+  "harness": "cursor",
+  "stage_id": "R9",
+  "author_agent": "research-owner-r8r9",
+  "reviewer_agent": "7078a728-72d6-430c-b416-5aacf7cc7b3c",
+  "verdict": "accept",
+  "blocking_issues": [],
+  "notes": "Distinct design review. The reviewer did not write the protocol and did not run scripts/r9_run.py or fit CatBoost. First review blocked protocol_salt 20261110 because that salt is the closed R5 salt. The author changed the salt to 20261111 and the sentences that name it. The follow-up review read protocol.json, PLAN.md, and the R2-R5 protocol salts. protocol_salt is 20261111. Lineage names 20261111 and the closed salts 20261107 (R2), 20261108 (R3), 20261109 (R4), and 20261110 (R5). R5 remains 20261110. Seeds, iteration grid, n_train 48, p_max 40, tolerance 1e-8, fixed CatBoost controls, bracket rule, and double_descent_declared were unchanged. R9 code does not read R8 scores. Confirmation seeds are not fit. not_identifiable is a complete answer. This file is the listed design-review input.",
+  "scientific_validity": "not_assessed"
+}

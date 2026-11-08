@@ -1,0 +1,182 @@
+{
+  "schema_version": 1,
+  "stage_id": "R14",
+  "status": "frozen",
+  "question": "Can a prespecified short independent label-perturbation probe forecast out-of-sample exact frozen-tree response error beyond static and simple-probe baselines at useful measured cost?",
+  "scope": "Discovery only; 4 independent data draws, 32 contexts, 64 context/amplitude forecasts,416 serial fixed-control fits. Known conditional replay and EFC adaptation are controls. No DD endpoint, scientific novelty certificate or independent confirmation.",
+  "authorization_decision": {
+    "path": "research/decisions/codex-refactor-authorization-2026-11-07.json",
+    "sha256": "8559055cea21e6f58bdd58b07930e5d9ab505a84a1ea58c72721c0c5e4e2119d"
+  },
+  "budget": {
+    "max_wall_seconds": 1800,
+    "total_wall_seconds": 3600,
+    "max_attempts": 3
+  },
+  "tasks": [
+    {
+      "id": "unit-checks",
+      "argv": [
+        "{python}",
+        "{repo}/scripts/run_unit_checks.py",
+        "--pattern",
+        "test_*response*.py"
+      ],
+      "inputs": [
+        "research/stages/R14/PLAN.md",
+        "research/stages/R14/inputs/protocol.json",
+        "research/stages/R14/inputs/design-review.json",
+        "docs/decisions/0005-frozen-response-discovery.md",
+        "docs/literature/C2-source-cards-2026-11-08.md",
+        "docs/literature/C2-author-code-note-2026-11-08.md",
+        "docs/literature/C2-priority-risk-note-2026-11-08.md",
+        "docs/literature/next-question-scout-2026-11-07.md",
+        "uv.lock",
+        "src/boosting_response.py",
+        "src/response_forecast.py",
+        "scripts/r14_run.py",
+        "tests/test_boosting_response.py",
+        "tests/test_response_forecast.py",
+        "research/stages/R14/TECHNICAL.md",
+        "scripts/run_unit_checks.py",
+        "scripts/plot_response_forecast.py",
+        "tests/test_plot_response_forecast.py",
+        "scripts/plot_v2_research.py",
+        "src/__init__.py",
+        "pyproject.toml",
+        "research/stages/R14/draft-design-review.md",
+        "research/stages/R14/inputs/figure-spec.json"
+      ],
+      "outputs": [
+        "checks.json"
+      ],
+      "timeout_seconds": 60
+    },
+    {
+      "id": "response-study",
+      "argv": [
+        "{python}",
+        "{repo}/scripts/r14_run.py",
+        "--protocol",
+        "{repo}/research/stages/R14/inputs/protocol.json"
+      ],
+      "inputs": [
+        "research/stages/R14/PLAN.md",
+        "research/stages/R14/inputs/protocol.json",
+        "research/stages/R14/inputs/design-review.json",
+        "docs/decisions/0005-frozen-response-discovery.md",
+        "docs/literature/C2-source-cards-2026-11-08.md",
+        "docs/literature/C2-author-code-note-2026-11-08.md",
+        "docs/literature/C2-priority-risk-note-2026-11-08.md",
+        "docs/literature/next-question-scout-2026-11-07.md",
+        "uv.lock",
+        "src/boosting_response.py",
+        "src/response_forecast.py",
+        "scripts/r14_run.py",
+        "tests/test_boosting_response.py",
+        "tests/test_response_forecast.py",
+        "research/stages/R14/TECHNICAL.md",
+        "src/__init__.py",
+        "pyproject.toml",
+        "research/stages/R14/draft-design-review.md",
+        "research/stages/R14/inputs/figure-spec.json"
+      ],
+      "outputs": [
+        "analysis.json",
+        "contexts.jsonl",
+        "directions.jsonl",
+        "forecast_rows.jsonl",
+        "data.npz",
+        "predictions.npz",
+        "operators.npz",
+        "models.json",
+        "timings.json",
+        "environment.json",
+        "progress.json",
+        "feature_snapshots.jsonl",
+        "budget_checks.json"
+      ],
+      "timeout_seconds": 1200
+    },
+    {
+      "id": "figures",
+      "argv": [
+        "{python}",
+        "{repo}/scripts/plot_response_forecast.py",
+        "--study",
+        "{run}/tasks/response-study",
+        "--output",
+        "gallery"
+      ],
+      "inputs": [
+        "research/stages/R14/PLAN.md",
+        "research/stages/R14/inputs/protocol.json",
+        "research/stages/R14/inputs/design-review.json",
+        "docs/decisions/0005-frozen-response-discovery.md",
+        "docs/literature/C2-source-cards-2026-11-08.md",
+        "docs/literature/C2-author-code-note-2026-11-08.md",
+        "docs/literature/C2-priority-risk-note-2026-11-08.md",
+        "docs/literature/next-question-scout-2026-11-07.md",
+        "uv.lock",
+        "scripts/plot_response_forecast.py",
+        "tests/test_plot_response_forecast.py",
+        "scripts/plot_v2_research.py",
+        "src/__init__.py",
+        "pyproject.toml",
+        "research/stages/R14/draft-design-review.md",
+        "research/stages/R14/inputs/figure-spec.json"
+      ],
+      "outputs": [
+        "gallery/index.html",
+        "gallery/figure_manifest.json"
+      ],
+      "timeout_seconds": 500
+    }
+  ],
+  "exit_criteria": [
+    {
+      "id": "C1",
+      "description": "All fixed32contexts/416fits completed with native labels, exact controls/model hashes/raw per-direction predictions/leaves/operators and passing pure unit checks; no dropped or replaced observation.",
+      "task_ids": [
+        "unit-checks",
+        "response-study"
+      ]
+    },
+    {
+      "id": "C2",
+      "description": "Every baseline replay at32/512 agrees at fixed atol1e-10/rtol0; paired seed channels, native rounding, norm identity and actual zero initialization preserved.",
+      "task_ids": [
+        "response-study"
+      ]
+    },
+    {
+      "id": "C3",
+      "description": "All64 OOF predictions for B0..B4/A and cluster-wise metrics/stop-go criteria/costs evaluated faithfully, including negative or inconclusive outcomes and invalid-zero-delta policy.",
+      "task_ids": [
+        "response-study"
+      ]
+    },
+    {
+      "id": "C4",
+      "description": "Complete prespecified figure/table matrix:113PNG/SVGpairs7CSV on completeOOF, or89pairs6CSV with explicit unavailableOOF on invalidactualdelta; allcontexts/directions/rawresponse rows preserved, readable outputs/hash bindings, no favorable selection or unsupported DD/novelty claim.",
+      "task_ids": [
+        "figures",
+        "response-study"
+      ]
+    }
+  ],
+  "predictions": [
+    {
+      "id": "P1",
+      "statement": "Known-control exact conditional baseline replay passes for all32 contexts and checkpoints32/512 at atol1e-10 and rtol0."
+    },
+    {
+      "id": "P2",
+      "statement": "A reduces held-out-draw MAE(log10(1+D)) by>=20percent against each B0..B4, is no worse in>=3of4 draws separately against B2/B3/B4 and in both teachers against each; q90-q10>=.1 is required for a meaningful challenge."
+    },
+    {
+      "id": "P3",
+      "statement": "Additional cheap fit+prediction+decomposition wall is<=50percent comparable full-response wall, conditional on available baseline/frozen operator; full end-to-end costs are reported separately."
+    }
+  ]
+}

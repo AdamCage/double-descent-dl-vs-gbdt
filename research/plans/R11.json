@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "stage_id": "R11",
+  "status": "frozen",
+  "question": "Do predeclared equal-total learning-rate schedules change CatBoost descent-speed gain in tree and cumulative-LR clocks?",
+  "scope": "Paired fixed schedule regimes on synthetic and bundled breast cancer,12 seeds,72 final models. Positive control, not natural acceleration discovery or double descent.",
+  "authorization_decision": {
+    "path": "research/decisions/codex-refactor-authorization-2026-11-07.json",
+    "sha256": "8559055cea21e6f58bdd58b07930e5d9ab505a84a1ea58c72721c0c5e4e2119d"
+  },
+  "budget": {
+    "max_wall_seconds": 1800,
+    "total_wall_seconds": 3600,
+    "max_attempts": 2
+  },
+  "tasks": [
+    {
+      "id": "unit-checks",
+      "argv": [
+        "{python}",
+        "{repo}/scripts/run_unit_checks.py",
+        "--pattern",
+        "test_acceleration_boosting.py",
+        "--model-smoke"
+      ],
+      "inputs": [
+        "scripts/run_unit_checks.py",
+        "tests/test_acceleration_boosting.py",
+        "src/acceleration_boosting.py",
+        "src/__init__.py",
+        "research/stages/R11/inputs/protocol.json",
+        "uv.lock"
+      ],
+      "outputs": [
+        "checks.json"
+      ],
+      "timeout_seconds": 60
+    },
+    {
+      "id": "schedule-study",
+      "argv": [
+        "{python}",
+        "{repo}/scripts/r11_run.py",
+        "--protocol",
+        "{repo}/research/stages/R11/inputs/protocol.json"
+      ],
+      "inputs": [
+        "scripts/r11_run.py",
+        "src/acceleration_boosting.py",
+        "src/__init__.py",
+        "tests/test_acceleration_boosting.py",
+        "research/stages/R11/PLAN.md",
+        "research/stages/R11/inputs/protocol.json",
+        "research/stages/R11/inputs/design-review.json",
+        "docs/decisions/0004-v2-research-refactor.md",
+        "docs/methods/acceleration-identifiability.md",
+        "uv.lock"
+      ],
+      "outputs": [
+        "cells.jsonl",
+        "analysis.json",
+        "predictions.npz",
+        "data.npz",
+        "models.json",
+        "environment.json",
+        "models/synthetic_12001_constant.cbm",
+        "models/synthetic_12001_stepup.cbm",
+        "models/synthetic_12001_stepdown.cbm",
+        "models/synthetic_12002_constant.cbm",
+        "models/synthetic_12002_stepup.cbm",
+        "models/synthetic_12002_stepdown.cbm",
+        "models/synthetic_12003_constant.cbm",
+        "models/synthetic_12003_stepup.cbm",
+        "models/synthetic_12003_stepdown.cbm",
+        "models/synthetic_12004_constant.cbm",
+        "models/synthetic_12004_stepup.cbm",
+        "models/synthetic_12004_stepdown.cbm",
+        "models/synthetic_12005_constant.cbm",
+        "models/synthetic_12005_stepup.cbm",
+        "models/synthetic_12005_stepdown.cbm",
+        "models/synthetic_12006_constant.cbm",
+        "models/synthetic_12006_stepup.cbm",
+        "models/synthetic_12006_stepdown.cbm",
+        "models/synthetic_12007_constant.cbm",
+        "models/synthetic_12007_stepup.cbm",
+        "models/synthetic_12007_stepdown.cbm",
+        "models/synthetic_12008_constant.cbm",
+        "models/synthetic_12008_stepup.cbm",
+        "models/synthetic_12008_stepdown.cbm",
+        "models/synthetic_12009_constant.cbm",
+        "models/synthetic_12009_stepup.cbm",
+        "models/synthetic_12009_stepdown.cbm",
+        "models/synthetic_12010_constant.cbm",
+        "models/synthetic_12010_stepup.cbm",
+        "models/synthetic_12010_stepdown.cbm",
+        "models/synthetic_12011_constant.cbm",
+        "models/synthetic_12011_stepup.cbm",
+        "models/synthetic_12011_stepdown.cbm",
+        "models/synthetic_12012_constant.cbm",
+        "models/synthetic_12012_stepup.cbm",
+        "models/synthetic_12012_stepdown.cbm",
+        "models/breast_cancer_12001_constant.cbm",
+        "models/breast_cancer_12001_stepup.cbm",
+        "models/breast_cancer_12001_stepdown.cbm",
+        "models/breast_cancer_12002_constant.cbm",
+        "models/breast_cancer_12002_stepup.cbm",
+        "models/breast_cancer_12002_stepdown.cbm",
+        "models/breast_cancer_12003_constant.cbm",
+        "models/breast_cancer_12003_stepup.cbm",
+        "models/breast_cancer_12003_stepdown.cbm",
+        "models/breast_cancer_12004_constant.cbm",
+        "models/breast_cancer_12004_stepup.cbm",
+        "models/breast_cancer_12004_stepdown.cbm",
+        "models/breast_cancer_12005_constant.cbm",
+        "models/breast_cancer_12005_stepup.cbm",
+        "models/breast_cancer_12005_stepdown.cbm",
+        "models/breast_cancer_12006_constant.cbm",
+        "models/breast_cancer_12006_stepup.cbm",
+        "models/breast_cancer_12006_stepdown.cbm",
+        "models/breast_cancer_12007_constant.cbm",
+        "models/breast_cancer_12007_stepup.cbm",
+        "models/breast_cancer_12007_stepdown.cbm",
+        "models/breast_cancer_12008_constant.cbm",
+        "models/breast_cancer_12008_stepup.cbm",
+        "models/breast_cancer_12008_stepdown.cbm",
+        "models/breast_cancer_12009_constant.cbm",
+        "models/breast_cancer_12009_stepup.cbm",
+        "models/breast_cancer_12009_stepdown.cbm",
+        "models/breast_cancer_12010_constant.cbm",
+        "models/breast_cancer_12010_stepup.cbm",
+        "models/breast_cancer_12010_stepdown.cbm",
+        "models/breast_cancer_12011_constant.cbm",
+        "models/breast_cancer_12011_stepup.cbm",
+        "models/breast_cancer_12011_stepdown.cbm",
+        "models/breast_cancer_12012_constant.cbm",
+        "models/breast_cancer_12012_stepup.cbm",
+        "models/breast_cancer_12012_stepdown.cbm"
+      ],
+      "timeout_seconds": 1700
+    }
+  ],
+  "exit_criteria": [
+    {
+      "id": "C1",
+      "description": "Exactly72 cells with all seeds/schedules/datasets,256trees,257 finite raw timepoints and all model files; unit checks pass.",
+      "task_ids": [
+        "unit-checks",
+        "schedule-study"
+      ]
+    },
+    {
+      "id": "C2",
+      "description": "Paired data/split hashes agree and final staged margins equal model predictions; raw arrays and model hashes match.",
+      "task_ids": [
+        "schedule-study"
+      ]
+    },
+    {
+      "id": "C3",
+      "description": "Four primary and four LR-clock diagnostic contrasts preserve all12 paired observations and intervals including negative/inconclusive outcomes.",
+      "task_ids": [
+        "schedule-study"
+      ]
+    },
+    {
+      "id": "C4",
+      "description": "No GPU/API/download, no test-selected grid, no DD/natural-mechanism claim or p-value transport.",
+      "task_ids": [
+        "schedule-study"
+      ]
+    }
+  ],
+  "predictions": [
+    {
+      "id": "P1",
+      "statement": "Stepup-minus-constant train descent-speed gain is positive in both datasets using primary family-adjusted intervals."
+    },
+    {
+      "id": "P2",
+      "statement": "Stepdown-minus-constant train descent-speed gain is negative in both datasets using primary family-adjusted intervals."
+    },
+    {
+      "id": "P3",
+      "statement": "All72 trajectories are complete and paired on identical data; no test grid selection or double-descent declaration."
+    }
+  ]
+}

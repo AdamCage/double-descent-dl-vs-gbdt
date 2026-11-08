@@ -1,0 +1,297 @@
+{
+  "schema_version": 1,
+  "accounting_implemented": true,
+  "charter_sha256": "76eb82a9b82c8ad0c7832d0c55b7d3e445e9f412579e57390aca56f7c1bc66cd",
+  "attempts": [
+    {
+      "stage_id": "R0",
+      "attempt_id": "20261107T070335-5521b09a17",
+      "measured": true,
+      "elapsed_seconds": 13.094000000040978,
+      "charged_seconds": 13.094000000040978,
+      "status": "complete",
+      "charge_is_measurement": true
+    },
+    {
+      "stage_id": "R1",
+      "attempt_id": "20261107T085630-b4345b8c44",
+      "measured": true,
+      "elapsed_seconds": 11.828000000212342,
+      "charged_seconds": 11.828000000212342,
+      "status": "complete",
+      "charge_is_measurement": true
+    },
+    {
+      "stage_id": "R10",
+      "attempt_id": "20261107T192414-36aee5d99b",
+      "measured": true,
+      "elapsed_seconds": 5.186999999918044,
+      "charged_seconds": 5.186999999918044,
+      "status": "complete",
+      "charge_is_measurement": true
+    },
+    {
+      "stage_id": "R11",
+      "attempt_id": "20261107T192904-5420604589",
+      "measured": true,
+      "elapsed_seconds": 196.67200000025332,
+      "charged_seconds": 196.67200000025332,
+      "status": "complete",
+      "charge_is_measurement": true
+    },
+    {
+      "stage_id": "R11",
+      "attempt_id": "20261107T194028-229b223740",
+      "measured": true,
+      "elapsed_seconds": 60.92200000025332,
+      "charged_seconds": 60.92200000025332,
+      "status": "complete",
+      "charge_is_measurement": true
+    },
+    {
+      "stage_id": "R12",
+      "attempt_id": "20261107T194939-7c18953a98",
+      "measured": true,
+      "elapsed_seconds": 205.10900000017136,
+      "charged_seconds": 205.10900000017136,
+      "status": "complete",
+      "charge_is_measurement": true
+    },
+    {
+      "stage_id": "R13",
+      "attempt_id": "20261107T210201-651abc88d9",
+      "measured": true,
+      "elapsed_seconds": 89.76500000013039,
+      "charged_seconds": 89.76500000013039,
+      "status": "failed",
+      "charge_is_measurement": true
+    },
+    {
+      "stage_id": "R13",
+      "attempt_id": "20261107T210937-844511dd10",
+      "measured": true,
+      "elapsed_seconds": 236.40599999995902,
+      "charged_seconds": 236.40599999995902,
+      "status": "complete",
+      "charge_is_measurement": true
+    },
+    {
+      "stage_id": "R13",
+      "attempt_id": "20261107T214015-f184806e46",
+      "measured": true,
+      "elapsed_seconds": 147.15599999995902,
+      "charged_seconds": 147.15599999995902,
+      "status": "complete",
+      "charge_is_measurement": true
+    },
+    {
+      "stage_id": "R14",
+      "attempt_id": "20261108T073937-26f816e66d",
+      "measured": true,
+      "elapsed_seconds": 521.7659999998286,
+      "charged_seconds": 521.7659999998286,
+      "status": "complete",
+      "charge_is_measurement": true
+    },
+    {
+      "stage_id": "R15",
+      "attempt_id": "20261108T090628-8efd502cb8",
+      "measured": true,
+      "elapsed_seconds": 79.70300000021234,
+      "charged_seconds": 79.70300000021234,
+      "status": "complete",
+      "charge_is_measurement": true
+    },
+    {
+      "stage_id": "R16",
+      "attempt_id": "20261108T091936-7fa306e46e",
+      "measured": true,
+      "elapsed_seconds": 1.328999999910593,
+      "charged_seconds": 1.328999999910593,
+      "status": "failed",
+      "charge_is_measurement": true
+    },
+    {
+      "stage_id": "R16",
+      "attempt_id": "20261108T093900-48ff41116f",
+      "measured": true,
+      "elapsed_seconds": 61.78099999995902,
+      "charged_seconds": 61.78099999995902,
+      "status": "complete",
+      "charge_is_measurement": true
+    },
+    {
+      "stage_id": "R17",
+      "attempt_id": "20261108T100025-c526dea890",
+      "measured": true,
+      "elapsed_seconds": 30.155999999959022,
+      "charged_seconds": 30.155999999959022,
+      "status": "complete",
+      "charge_is_measurement": true
+    },
+    {
+      "stage_id": "R17D",
+      "attempt_id": "20261108T095410-f87b41e0ef",
+      "measured": true,
+      "elapsed_seconds": 28.734999999869615,
+      "charged_seconds": 28.734999999869615,
+      "status": "complete",
+      "charge_is_measurement": true
+    },
+    {
+      "stage_id": "R18",
+      "attempt_id": "20261108T104100-7836d70ed3",
+      "measured": true,
+      "elapsed_seconds": 278.7349999998696,
+      "charged_seconds": 278.7349999998696,
+      "status": "complete",
+      "charge_is_measurement": true
+    },
+    {
+      "stage_id": "R18",
+      "attempt_id": "20261108T111319-cf1d82f2a8",
+      "measured": true,
+      "elapsed_seconds": 129.26500000013039,
+      "charged_seconds": 129.26500000013039,
+      "status": "complete",
+      "charge_is_measurement": true
+    },
+    {
+      "stage_id": "R2",
+      "attempt_id": "20261107T095017-e76868f52e",
+      "measured": true,
+      "elapsed_seconds": 8.282000000122935,
+      "charged_seconds": 8.282000000122935,
+      "status": "complete",
+      "charge_is_measurement": true
+    },
+    {
+      "stage_id": "R2",
+      "attempt_id": "20261107T095343-6bc0c457c7",
+      "measured": true,
+      "elapsed_seconds": 27.546000000089407,
+      "charged_seconds": 27.546000000089407,
+      "status": "complete",
+      "charge_is_measurement": true
+    },
+    {
+      "stage_id": "R3",
+      "attempt_id": "20261107T102058-3d5e221c96",
+      "measured": true,
+      "elapsed_seconds": 16.484999999869615,
+      "charged_seconds": 16.484999999869615,
+      "status": "complete",
+      "charge_is_measurement": true
+    },
+    {
+      "stage_id": "R3",
+      "attempt_id": "20261107T102511-b1cf6c7be9",
+      "measured": true,
+      "elapsed_seconds": 20.29700000025332,
+      "charged_seconds": 20.29700000025332,
+      "status": "complete",
+      "charge_is_measurement": true
+    },
+    {
+      "stage_id": "R4",
+      "attempt_id": "20261107T103949-29045fc56f",
+      "measured": true,
+      "elapsed_seconds": 5.234000000171363,
+      "charged_seconds": 5.234000000171363,
+      "status": "complete",
+      "charge_is_measurement": true
+    },
+    {
+      "stage_id": "R4",
+      "attempt_id": "20261107T104140-5bc2019cef",
+      "measured": true,
+      "elapsed_seconds": 6.57799999974668,
+      "charged_seconds": 6.57799999974668,
+      "status": "complete",
+      "charge_is_measurement": true
+    },
+    {
+      "stage_id": "R5",
+      "attempt_id": "20261107T105818-f129d71a55",
+      "measured": true,
+      "elapsed_seconds": 4.686999999918044,
+      "charged_seconds": 4.686999999918044,
+      "status": "complete",
+      "charge_is_measurement": true
+    },
+    {
+      "stage_id": "R5",
+      "attempt_id": "20261107T105955-6e7f800ff1",
+      "measured": true,
+      "elapsed_seconds": 4.82799999974668,
+      "charged_seconds": 4.82799999974668,
+      "status": "complete",
+      "charge_is_measurement": true
+    },
+    {
+      "stage_id": "R6",
+      "attempt_id": "20261107T111120-40cf0c74f2",
+      "measured": true,
+      "elapsed_seconds": 0.1559999999590218,
+      "charged_seconds": 0.1559999999590218,
+      "status": "complete",
+      "charge_is_measurement": true
+    },
+    {
+      "stage_id": "R7",
+      "attempt_id": "20261107T112024-93842d83aa",
+      "measured": true,
+      "elapsed_seconds": 0.17199999978765845,
+      "charged_seconds": 0.17199999978765845,
+      "status": "complete",
+      "charge_is_measurement": true
+    },
+    {
+      "stage_id": "R8",
+      "attempt_id": "20261107T140907-bd7e4a5a5e",
+      "measured": true,
+      "elapsed_seconds": 0.3899999996647239,
+      "charged_seconds": 0.3899999996647239,
+      "status": "complete",
+      "charge_is_measurement": true
+    },
+    {
+      "stage_id": "R9",
+      "attempt_id": "20261107T141434-ba64acb5eb",
+      "measured": true,
+      "elapsed_seconds": 1.5630000000819564,
+      "charged_seconds": 1.5630000000819564,
+      "status": "complete",
+      "charge_is_measurement": true
+    }
+  ],
+  "charged_wall_seconds": 2193.8270000000484,
+  "remaining_wall_seconds": 84206.17299999995,
+  "storage": {
+    "roots": {
+      "artifacts/research": 9639569562,
+      "artifacts/intake": 1744261450,
+      "research/evidence": 9040382975
+    },
+    "bytes": 20424213987,
+    "excluded_roots": [
+      "result",
+      ".research",
+      "EpistemeOS-0.2.0"
+    ],
+    "exclusion_note": "Historical result/, workflow state and the EpistemeOS snapshot are not new-artifact storage."
+  },
+  "remaining_storage_bytes": 1050622493,
+  "network": {
+    "document_download_bytes": 25381303,
+    "dataset_download_bytes": 940116134,
+    "http_requests": 70
+  },
+  "ledger_path": "research/resources/ledger.jsonl",
+  "ledger_entries": 30,
+  "reconciliation_problems": [],
+  "unmeasured_attempts": [],
+  "unknown_elapsed_policy": "Unmeasured attempts charge max_stage_wall_seconds and block computational activation. The hold is not a measured duration.",
+  "computational_activation_ready": true,
+  "scientific_validity": "not_assessed"
+}

@@ -1,0 +1,109 @@
+{
+  "attempt_id": "20261107T194028-229b223740",
+  "author_agent": "/root/catboost_study",
+  "criteria": [
+    {
+      "id": "C1",
+      "verdict": "pass",
+      "evidence": [
+        "unit-checks/checks.json",
+        "schedule-study/cells.jsonl",
+        "schedule-study/predictions.npz",
+        "schedule-study/models.json"
+      ],
+      "reason": "Seventy-two unique cells,12 seeds per dataset/schedule and216 raw arrays. Every raw array is finite, has257 timepoints and the saved split size. All72 model-file hashes independently checked. Unit artifact has9 tests with zero failures/errors/skips; independent historical verify passed83 files."
+    },
+    {
+      "id": "C2",
+      "verdict": "pass",
+      "evidence": [
+        "schedule-study/cells.jsonl",
+        "schedule-study/data.npz",
+        "schedule-study/predictions.npz",
+        "schedule-study/models.json"
+      ],
+      "reason": "Independently verified all data/label/split-order hashes, disjoint exhaustive split indices, and equality of paired hashes across schedules. Recomputed every saved raw-logit LogLoss/error trajectory, max loss error0. Loaded six saved models covering both datasets/all schedules; predictions at tree128 and256 matched raw snapshots on every split. Entire retry raw prediction set exactly equals preserved attempt1, confirming no additional independent sample or numerical outcome selection."
+    },
+    {
+      "id": "C3",
+      "verdict": "pass",
+      "evidence": [
+        "schedule-study/analysis.json",
+        "schedule-study/cells.jsonl",
+        "schedule-study/predictions.npz",
+        "schedule-study/data.npz"
+      ],
+      "reason": "Independently recomputed all raw-loss fixed97:129/128:160 OLS contrasts using separate least-squares implementation in tree and prescribed cumulative-LR clocks. Max gain discrepancy3.01e-14. All eight paired12-value vectors, means, SEs, ordinary Student-t and Bonferroni family4 intervals matched. Breast-cancer stepdown primary remains inconclusive under the adjusted interval; no post-hoc replacement by its negative unadjusted interval."
+    },
+    {
+      "id": "C4",
+      "verdict": "pass",
+      "evidence": [
+        "schedule-study/environment.json",
+        "schedule-study/analysis.json"
+      ],
+      "reason": "Corrected snapshotted helper explicitly supplies protocol4 to CatBoost staged/final prediction and fitting; pure API regression test passed. Environment records thread limits4 and GPU/API/download0. No test-selected grid, DD, natural-mechanism or synthetic p-value transport claim. These are configured API controls, not retrospective CPU telemetry of attempt1.",
+      "notes": "Reviewer independently read snapshotted source/API-control implementation. Unit-check evidence is cited under C1 only; no scientific or operational judgment changed by this citation-placement correction."
+    }
+  ],
+  "limitations": [
+    "This is a whole-schedule intervention, including different pre-boundary training histories, not an isolated LR jump with identical initial trees/gradients.",
+    "Tree-clock and cumulative-LR-clock slopes have different units. Their numerical effect sizes must not be subtracted or compared as a common estimand; the claim concerns signs of within-clock schedule-minus-constant contrasts.",
+    "Cumulative prescribed LR is a diagnostic clock, not a proved exact optimization time for CatBoost or a fixed quadratic operator.",
+    "Each of the primary and LR-clock families has4 nominal Bonferroni-adjusted intervals. They do not jointly provide95%coverage across all8 quantities; n12 Student-t inference is approximate.",
+    "Synthetic repeats are new data/split/model units. Breast-cancer repeats are split/model units conditional on one fixed corpus, not independent new corpora or clinical validation.",
+    "First successful numerical attempt is preserved with operational revise for missing inference-resource assurance; actual excess CPU was unmeasured. Both attempts remain charged, share the same12 units and exactly identical raw prediction values, and do not form independent replications.",
+    "Observed scheduled acceleration is a positive optimization control, not naturally discovered late acceleration, a new general method/theorem, a CatBoost annealing mechanism or double descent. Novelty priority and journal readiness are not certified.",
+    "All raw arrays and72 model hashes were checked, while detailed model inference was spotchecked on6 models rather than independently rerunning training."
+  ],
+  "manifest_sha256": "e1ff4eb1c8ad4f6cae4026906e59f47a7f48d4765d70a6f091e6d7a11525e66b",
+  "plan_sha256": "33328abb7ecf995c370af4cc3ded98ba79597f20e280a78b317ba20caec4afb4",
+  "predictions": [
+    {
+      "id": "P1",
+      "outcome": "supported in both declared environments: stepup-minus-constant primary mean.004256879126726967 with adjustedCI[.00319455579167358,.005319202461780355] on synthetic; mean.0016625764263010839 withCI[.0013709968758980947,.001954155976704073] on breast_cancer.",
+      "evidence": [
+        "schedule-study/analysis.json",
+        "schedule-study/predictions.npz",
+        "schedule-study/cells.jsonl"
+      ]
+    },
+    {
+      "id": "P2",
+      "outcome": "partial: synthetic stepdown-minus-constant is supported negative, adjustedCI[-.0012054608189429527,-.0004773601481159411]. Breast-cancer is inconclusive, adjustedCI[-.0002831841415743753,.000011323178771080662]. The prediction of supported negativity in both environments is not met.",
+      "evidence": [
+        "schedule-study/analysis.json",
+        "schedule-study/cells.jsonl"
+      ]
+    },
+    {
+      "id": "P3",
+      "outcome": "supported: all72 trajectories complete, paired data identical, test not used to choose the frozen grid, no double-descent declaration. Retry retains the same seed units and exactly the same raw predictions as attempt1.",
+      "evidence": [
+        "schedule-study/cells.jsonl",
+        "schedule-study/data.npz",
+        "schedule-study/predictions.npz",
+        "schedule-study/analysis.json"
+      ]
+    }
+  ],
+  "report": {
+    "path": "research/stages/R11/REPORT.md",
+    "sha256": "df9741beed00b24494b46ceb0485292dc4855fe5c1fb71bceb4d2cf8a301f1d9"
+  },
+  "review_mode": "subagent_review",
+  "reviewer": {
+    "name": "Independent Codex R11 result reviewer",
+    "harness": "codex",
+    "role": "stage_reviewer",
+    "independence": "Distinct subagent /root/science_critique, not author of implementation, protocol, report or evaluated numerical conclusion. Reviewed all saved raw arrays/data/hashes and independently recomputed eight contrast families; loaded six saved models for prefix/final-prediction spotchecks using explicit thread_count1. No model training or scientific matrix rerun."
+  },
+  "reviewer_agent": "/root/science_critique",
+  "schema_version": 1,
+  "scientific_validity": "not_assessed",
+  "stage_id": "R11",
+  "verdict": "accept",
+  "coauthor_agents": [
+    "/root"
+  ]
+}

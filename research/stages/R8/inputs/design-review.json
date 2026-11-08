@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "review_mode": "subagent_review",
+  "harness": "cursor",
+  "stage_id": "R8",
+  "author_agent": "research-owner-r8r9",
+  "reviewer_agent": "7078a728-72d6-430c-b416-5aacf7cc7b3c",
+  "verdict": "accept",
+  "blocking_issues": [],
+  "notes": "Distinct design review before freeze. The reviewer did not write the plans, code, catalog, or protocol, and did not run scripts/r8_score.py or score the scientific catalog. Decision 0003 item 2, research/escalations/2026-11-07-review.md, and the program section on the 7 November review keep late CatBoost acceleration from becoming the main question. R8 is a discovery catalog only. PLAN.md and research/plans/R8.json match: one question, predictions P1-P7 with falsifiers, five deterministic formulas, repetition unit equal to one length-100 curve, budget 120/240 seconds and 2 attempts, task timeout 60, one pass, exclusions, and exit criteria C1-C2. C1-C2 require a complete score file. A refuted prediction can still be operationally complete. catalog.json fixes window 5, fraction 0.2, and RSS floor 0.05. describe_change is called with those global settings. local_velocity_change sets candidate from a positive window gain and stores the RSS floor separately as rss_gated_candidate. For length 100 the global loop is range(20, 80), so the last eligible index is 79. The reviewer did not compute velocity gains or RSS. There is no CatBoost import and no held-out test. two_drops stays excluded_multiple and mechanism_claim is false. Task imports are listed. tests/test_detector_catalog.py checks knots and a length-20 toy catalog, not the five scientific series. This file is the listed design-review input. execution was false at review time.",
+  "scientific_validity": "not_assessed"
+}

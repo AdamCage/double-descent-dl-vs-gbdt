@@ -1,0 +1,431 @@
+{
+  "schema_version": 1,
+  "stage": "R15",
+  "status": "frozen_for_independent_preflight",
+  "download_authorized": true,
+  "metadata_only_preparation": true,
+  "dataset": {
+    "repo_id": "ameek/measuring_cot_monitorability_transcripts",
+    "repo_type": "dataset",
+    "revision": "a7a8b25ae467db9d80d63e55ac053b48753b2d36",
+    "private": false,
+    "gated": false,
+    "license": "other",
+    "license_name": "mit-with-model-training-restrictions",
+    "license_url": "https://huggingface.co/datasets/ameek/measuring_cot_monitorability_transcripts/blob/a7a8b25ae467db9d80d63e55ac053b48753b2d36/LICENSE"
+  },
+  "metadata_source_url": "https://huggingface.co/api/datasets/ameek/measuring_cot_monitorability_transcripts/tree/a7a8b25ae467db9d80d63e55ac053b48753b2d36?recursive=true&expand=false&limit=1000",
+  "file_count": 24,
+  "total_payload_bytes": 940116134,
+  "repository_total_bytes": 940129927,
+  "declared_download_cap_bytes": 1000000000,
+  "sha256_semantics": "SHA256 of resolved payload, from pinned Hugging Face Git LFS oid; git_blob_oid identifies the small LFS pointer, not the parquet content",
+  "scope": "Read-only statistical reanalysis of existing outputs; no training, model calls, weights, or unlisted dataset files",
+  "files": [
+    {
+      "path": "bbh/bbh_anthropic_claude_3_5_sonnet.parquet",
+      "url": "https://huggingface.co/datasets/ameek/measuring_cot_monitorability_transcripts/resolve/a7a8b25ae467db9d80d63e55ac053b48753b2d36/bbh/bbh_anthropic_claude_3_5_sonnet.parquet",
+      "bytes": 6056246,
+      "sha256": "17f4d087ea0864c79c543ed1d19c4aaae7ff43aab351ee0dfcd32cd1c23a87ab",
+      "lfs_oid": "sha256:17f4d087ea0864c79c543ed1d19c4aaae7ff43aab351ee0dfcd32cd1c23a87ab",
+      "git_blob_oid": "a097ef6aeabb24a3923ddda1fc51198aa281e412",
+      "xet_hash": "fc68d83c194d7c6ce72c5c972118bcea831c8f05b9a67eb92a7cedd1a3ff25e3"
+    },
+    {
+      "path": "bbh/bbh_anthropic_claude_3_7_sonnet.parquet",
+      "url": "https://huggingface.co/datasets/ameek/measuring_cot_monitorability_transcripts/resolve/a7a8b25ae467db9d80d63e55ac053b48753b2d36/bbh/bbh_anthropic_claude_3_7_sonnet.parquet",
+      "bytes": 36718083,
+      "sha256": "1793dad597a222dbf0aec92f8bc19d5542f1d6f35148d1357b6d2b8de822920c",
+      "lfs_oid": "sha256:1793dad597a222dbf0aec92f8bc19d5542f1d6f35148d1357b6d2b8de822920c",
+      "git_blob_oid": "68f7a265e9c2f0c62e931a6f323f1a9dbf45487d",
+      "xet_hash": "60a9678517782153aa4a85582ac60571b83d419a3621cb049136ecf30eb34c92"
+    },
+    {
+      "path": "bbh/bbh_deepseek_deepseek_chat_v3_0324.parquet",
+      "url": "https://huggingface.co/datasets/ameek/measuring_cot_monitorability_transcripts/resolve/a7a8b25ae467db9d80d63e55ac053b48753b2d36/bbh/bbh_deepseek_deepseek_chat_v3_0324.parquet",
+      "bytes": 11438192,
+      "sha256": "dc809fbe684db71b32b330f28a2d92a287925c63c32b2bdb88cfabf668074b2d",
+      "lfs_oid": "sha256:dc809fbe684db71b32b330f28a2d92a287925c63c32b2bdb88cfabf668074b2d",
+      "git_blob_oid": "8d64b36cef9e276ea8aeaf5c4de69c123dd41555",
+      "xet_hash": "4fea1831c624ef7abdf9a2a5739ac6a26681cba81acc2fb767cfd814e2296926"
+    },
+    {
+      "path": "bbh/bbh_deepseek_deepseek_r1_0528.parquet",
+      "url": "https://huggingface.co/datasets/ameek/measuring_cot_monitorability_transcripts/resolve/a7a8b25ae467db9d80d63e55ac053b48753b2d36/bbh/bbh_deepseek_deepseek_r1_0528.parquet",
+      "bytes": 74468742,
+      "sha256": "23f994fe10a012fac876637d71b6c5794c32cc18ae2cad6b03e3c9da29ce683e",
+      "lfs_oid": "sha256:23f994fe10a012fac876637d71b6c5794c32cc18ae2cad6b03e3c9da29ce683e",
+      "git_blob_oid": "b526eb7d8fa3708d1bf4271bd3e42a3ab01d1828",
+      "xet_hash": "6fd24311ea6fc59c82ab5f6d21f401d1d410270e5f4827bbf764cd49a81017b8"
+    },
+    {
+      "path": "bbh/bbh_qwen_qwen_2.5_72b_instruct.parquet",
+      "url": "https://huggingface.co/datasets/ameek/measuring_cot_monitorability_transcripts/resolve/a7a8b25ae467db9d80d63e55ac053b48753b2d36/bbh/bbh_qwen_qwen_2.5_72b_instruct.parquet",
+      "bytes": 5485404,
+      "sha256": "cdda10e94980b2e01565cdc1246eace2c96a4706c509884646381b4556dc9d2f",
+      "lfs_oid": "sha256:cdda10e94980b2e01565cdc1246eace2c96a4706c509884646381b4556dc9d2f",
+      "git_blob_oid": "f28bb3f8c1d0c8f00ffca82eceba22a304c76d49",
+      "xet_hash": "7754980b4e30cfd852ff8fbadffd79c68198618e0ccb81ac3fd07e79c94be516"
+    },
+    {
+      "path": "bbh/bbh_qwen_qwen3_235b_a22b_2507.parquet",
+      "url": "https://huggingface.co/datasets/ameek/measuring_cot_monitorability_transcripts/resolve/a7a8b25ae467db9d80d63e55ac053b48753b2d36/bbh/bbh_qwen_qwen3_235b_a22b_2507.parquet",
+      "bytes": 25106439,
+      "sha256": "bc3be8b251e5e90acf97ef0b530dfdc30d2da5dd064193bd60571b85e44d8f43",
+      "lfs_oid": "sha256:bc3be8b251e5e90acf97ef0b530dfdc30d2da5dd064193bd60571b85e44d8f43",
+      "git_blob_oid": "5c2f8d6d20cd3d1acd71c6842dabb100b35f6694",
+      "xet_hash": "a7a0a19c679753f78da9446d20768b0c9ae1172c5f8bd6d6b8ca856810bb78ba"
+    },
+    {
+      "path": "bbh/bbh_qwen_qwen3_235b_a22b_thinking_2507.parquet",
+      "url": "https://huggingface.co/datasets/ameek/measuring_cot_monitorability_transcripts/resolve/a7a8b25ae467db9d80d63e55ac053b48753b2d36/bbh/bbh_qwen_qwen3_235b_a22b_thinking_2507.parquet",
+      "bytes": 101148432,
+      "sha256": "0da4c505e3cc0b3b7e794a962e33969f6765c2e156f0442e76a23c2812798d6b",
+      "lfs_oid": "sha256:0da4c505e3cc0b3b7e794a962e33969f6765c2e156f0442e76a23c2812798d6b",
+      "git_blob_oid": "fd86c618ad73249dc3167666e2a4494db982a9d7",
+      "xet_hash": "c339a492e27fd994788d2bc9ec5f193f74644d49e7ccd58394745ddac5f22948"
+    },
+    {
+      "path": "bbh/bbh_qwen_qwq_32b.parquet",
+      "url": "https://huggingface.co/datasets/ameek/measuring_cot_monitorability_transcripts/resolve/a7a8b25ae467db9d80d63e55ac053b48753b2d36/bbh/bbh_qwen_qwq_32b.parquet",
+      "bytes": 53344677,
+      "sha256": "ed336da7cb09ca6c73bfda93efc0fe4ac46c1610d24a7eb61ccda2f5c8fa772d",
+      "lfs_oid": "sha256:ed336da7cb09ca6c73bfda93efc0fe4ac46c1610d24a7eb61ccda2f5c8fa772d",
+      "git_blob_oid": "442c12948eee75ed73970cddf962fd795bb96ca9",
+      "xet_hash": "b22ed1f09701df490d72f9803f30ec5ef91ddc9e20e68c886d3135b9b1941395"
+    },
+    {
+      "path": "gpqa/gpqa_diamond_anthropic_claude_3_5_sonnet.parquet",
+      "url": "https://huggingface.co/datasets/ameek/measuring_cot_monitorability_transcripts/resolve/a7a8b25ae467db9d80d63e55ac053b48753b2d36/gpqa/gpqa_diamond_anthropic_claude_3_5_sonnet.parquet",
+      "bytes": 711285,
+      "sha256": "b7cc98b7a3f75c2ba2502977156226e8ecd8d06c3cbbab35c2e93c230770c552",
+      "lfs_oid": "sha256:b7cc98b7a3f75c2ba2502977156226e8ecd8d06c3cbbab35c2e93c230770c552",
+      "git_blob_oid": "6e4a8d3c967993a1599d1de37f9c11ad9f8d2949",
+      "xet_hash": "f0955eee1eb406055ca2166fc7c1deab0a3ef79b66a8a4bf00dfa86eb8e1fb6e"
+    },
+    {
+      "path": "gpqa/gpqa_diamond_anthropic_claude_3_7_sonnet.parquet",
+      "url": "https://huggingface.co/datasets/ameek/measuring_cot_monitorability_transcripts/resolve/a7a8b25ae467db9d80d63e55ac053b48753b2d36/gpqa/gpqa_diamond_anthropic_claude_3_7_sonnet.parquet",
+      "bytes": 4185156,
+      "sha256": "b14ca54cb6b80fbb2f540ed521f698db8d7b7a47602c872bfad8f80d37518719",
+      "lfs_oid": "sha256:b14ca54cb6b80fbb2f540ed521f698db8d7b7a47602c872bfad8f80d37518719",
+      "git_blob_oid": "6965fdcdcb46c23ffc7d5058aa465affac696d9d",
+      "xet_hash": "f5c55c112d53cc8236d51e1347376ae05d83081d699dc8b0e0e6e047b8c7edbb"
+    },
+    {
+      "path": "gpqa/gpqa_diamond_deepseek_deepseek_chat_v3_0324.parquet",
+      "url": "https://huggingface.co/datasets/ameek/measuring_cot_monitorability_transcripts/resolve/a7a8b25ae467db9d80d63e55ac053b48753b2d36/gpqa/gpqa_diamond_deepseek_deepseek_chat_v3_0324.parquet",
+      "bytes": 1347231,
+      "sha256": "8e6e00fee029b77da3826e22d094d402cc960f42234e5d74cdc642c2599ecb53",
+      "lfs_oid": "sha256:8e6e00fee029b77da3826e22d094d402cc960f42234e5d74cdc642c2599ecb53",
+      "git_blob_oid": "9ff9cfa08a0568c2ad07d6247e5854692f794656",
+      "xet_hash": "1ad18ffbdbe6d4254de0b50bed23bbf676e5937c1f0e1725504968c396c65823"
+    },
+    {
+      "path": "gpqa/gpqa_diamond_deepseek_deepseek_r1_0528.parquet",
+      "url": "https://huggingface.co/datasets/ameek/measuring_cot_monitorability_transcripts/resolve/a7a8b25ae467db9d80d63e55ac053b48753b2d36/gpqa/gpqa_diamond_deepseek_deepseek_r1_0528.parquet",
+      "bytes": 11101344,
+      "sha256": "d86d087dfe0cddb19a3b4ab0785042a094d4986fbb2bc5d6c0afc68a9c31f0c8",
+      "lfs_oid": "sha256:d86d087dfe0cddb19a3b4ab0785042a094d4986fbb2bc5d6c0afc68a9c31f0c8",
+      "git_blob_oid": "164333635789075b8024b8ed9720586937f423bd",
+      "xet_hash": "8e4ccfd8967992ca410113db5101adbf240c09d665b330404efd1c3c7b78ab21"
+    },
+    {
+      "path": "gpqa/gpqa_diamond_qwen_qwen_2.5_72b_instruct.parquet",
+      "url": "https://huggingface.co/datasets/ameek/measuring_cot_monitorability_transcripts/resolve/a7a8b25ae467db9d80d63e55ac053b48753b2d36/gpqa/gpqa_diamond_qwen_qwen_2.5_72b_instruct.parquet",
+      "bytes": 990810,
+      "sha256": "3d4402fce3fbe597df37aff56e56f4782c4e9bee9a00b6b2fbd67f364a91ae30",
+      "lfs_oid": "sha256:3d4402fce3fbe597df37aff56e56f4782c4e9bee9a00b6b2fbd67f364a91ae30",
+      "git_blob_oid": "f0dc9dd126d1110b3ba99131636185a93747952c",
+      "xet_hash": "d3b13068e1cc266000330bcb9e010922ed42934fa87143f6184aedb5e7e93303"
+    },
+    {
+      "path": "gpqa/gpqa_diamond_qwen_qwen3_235b_a22b_2507.parquet",
+      "url": "https://huggingface.co/datasets/ameek/measuring_cot_monitorability_transcripts/resolve/a7a8b25ae467db9d80d63e55ac053b48753b2d36/gpqa/gpqa_diamond_qwen_qwen3_235b_a22b_2507.parquet",
+      "bytes": 8025277,
+      "sha256": "6f739f7b3657146f40ab489f8065dbd974ec920e07caf64f4f4e70c46f477006",
+      "lfs_oid": "sha256:6f739f7b3657146f40ab489f8065dbd974ec920e07caf64f4f4e70c46f477006",
+      "git_blob_oid": "04fe9c723aaccf30d015f3742abd80c0143bf554",
+      "xet_hash": "1ff9ded505bfa866873c577c662a50100e763f782cd54c161325ae6a443839e4"
+    },
+    {
+      "path": "gpqa/gpqa_diamond_qwen_qwen3_235b_a22b_thinking_2507.parquet",
+      "url": "https://huggingface.co/datasets/ameek/measuring_cot_monitorability_transcripts/resolve/a7a8b25ae467db9d80d63e55ac053b48753b2d36/gpqa/gpqa_diamond_qwen_qwen3_235b_a22b_thinking_2507.parquet",
+      "bytes": 9339333,
+      "sha256": "efee874555677916392d357772c54cddb52d3c6efc98e22807afdd90bf6b5a1a",
+      "lfs_oid": "sha256:efee874555677916392d357772c54cddb52d3c6efc98e22807afdd90bf6b5a1a",
+      "git_blob_oid": "53c80b8f191a73982c1b42b51416f82824cfbe00",
+      "xet_hash": "dba488d4518f49441191cd5434584748a68fb1993107168f0c6233257518f688"
+    },
+    {
+      "path": "gpqa/gpqa_diamond_qwen_qwq_32b.parquet",
+      "url": "https://huggingface.co/datasets/ameek/measuring_cot_monitorability_transcripts/resolve/a7a8b25ae467db9d80d63e55ac053b48753b2d36/gpqa/gpqa_diamond_qwen_qwq_32b.parquet",
+      "bytes": 6906055,
+      "sha256": "ea707b060b06b769b4bbeaaa0968894767998d194b1464f4ecbcad4fc742766a",
+      "lfs_oid": "sha256:ea707b060b06b769b4bbeaaa0968894767998d194b1464f4ecbcad4fc742766a",
+      "git_blob_oid": "d418818badc35b0c4db7cc6653fecb641edb386d",
+      "xet_hash": "763e747c86792e75ca2a1f45141e71be604a2915c90a2958112f89a68121b651"
+    },
+    {
+      "path": "mmlu/mmlu_anthropic_claude_3_5_sonnet.parquet",
+      "url": "https://huggingface.co/datasets/ameek/measuring_cot_monitorability_transcripts/resolve/a7a8b25ae467db9d80d63e55ac053b48753b2d36/mmlu/mmlu_anthropic_claude_3_5_sonnet.parquet",
+      "bytes": 18750489,
+      "sha256": "6078565a5a13f92f819f923d61e4ea7868dd02b5e76996f7668a55a25226fedc",
+      "lfs_oid": "sha256:6078565a5a13f92f819f923d61e4ea7868dd02b5e76996f7668a55a25226fedc",
+      "git_blob_oid": "0960754d7168a76d197f44694739b2b52c1d5bbf",
+      "xet_hash": "5838ca3611a5e5993ff2ed612652d2caaf2c6fc231a1c6356cc31b1bd0e217f4"
+    },
+    {
+      "path": "mmlu/mmlu_anthropic_claude_3_7_sonnet.parquet",
+      "url": "https://huggingface.co/datasets/ameek/measuring_cot_monitorability_transcripts/resolve/a7a8b25ae467db9d80d63e55ac053b48753b2d36/mmlu/mmlu_anthropic_claude_3_7_sonnet.parquet",
+      "bytes": 78756843,
+      "sha256": "dde04643a009913ccfacb2d870962dfbcaf92eeee3aa3ba3ba654e4f25f68c98",
+      "lfs_oid": "sha256:dde04643a009913ccfacb2d870962dfbcaf92eeee3aa3ba3ba654e4f25f68c98",
+      "git_blob_oid": "e6c57d5bca10d69ee1ac3bb3bcac3dcd4b0c4f3c",
+      "xet_hash": "c6e766a6b551f94d29b49c9e80778046d4cbea7ea1978d1f1c7ce15ffbd1870d"
+    },
+    {
+      "path": "mmlu/mmlu_deepseek_deepseek_chat_v3_0324.parquet",
+      "url": "https://huggingface.co/datasets/ameek/measuring_cot_monitorability_transcripts/resolve/a7a8b25ae467db9d80d63e55ac053b48753b2d36/mmlu/mmlu_deepseek_deepseek_chat_v3_0324.parquet",
+      "bytes": 20577657,
+      "sha256": "3d03c31e942ce3ca684676b05ea3b9afab84d42e571be3a8cdfe24c7edbf32fd",
+      "lfs_oid": "sha256:3d03c31e942ce3ca684676b05ea3b9afab84d42e571be3a8cdfe24c7edbf32fd",
+      "git_blob_oid": "721932acc461e7a84020f67a46dc64d3ba06a071",
+      "xet_hash": "b689068f34f43db25337052c8076530291fb0d9eaf3079b3d5845c05f3edd868"
+    },
+    {
+      "path": "mmlu/mmlu_deepseek_deepseek_r1_0528.parquet",
+      "url": "https://huggingface.co/datasets/ameek/measuring_cot_monitorability_transcripts/resolve/a7a8b25ae467db9d80d63e55ac053b48753b2d36/mmlu/mmlu_deepseek_deepseek_r1_0528.parquet",
+      "bytes": 148118431,
+      "sha256": "b469f2bc7c01a2b2f9b28cade2cede792b680561def747043c1aaa2d3be75a05",
+      "lfs_oid": "sha256:b469f2bc7c01a2b2f9b28cade2cede792b680561def747043c1aaa2d3be75a05",
+      "git_blob_oid": "e217139ad01dea20c905b9bbb9dfceae9d8b0cf1",
+      "xet_hash": "b6b0b9a565726f9cdc87f99b94e3174100347d0d490e1587d664cce8b15be10f"
+    },
+    {
+      "path": "mmlu/mmlu_qwen_qwen_2.5_72b_instruct.parquet",
+      "url": "https://huggingface.co/datasets/ameek/measuring_cot_monitorability_transcripts/resolve/a7a8b25ae467db9d80d63e55ac053b48753b2d36/mmlu/mmlu_qwen_qwen_2.5_72b_instruct.parquet",
+      "bytes": 13945133,
+      "sha256": "d53a774d9d4d1e42191d43123d8df88aadb954911fb2c14aecb33464649def84",
+      "lfs_oid": "sha256:d53a774d9d4d1e42191d43123d8df88aadb954911fb2c14aecb33464649def84",
+      "git_blob_oid": "64a69d09e08fdfb0db6031ba19cf8f90d72c1932",
+      "xet_hash": "7959ff03133d7c7334716babb3f838b9dfb2d940ab23a3616252cddcd2bc2026"
+    },
+    {
+      "path": "mmlu/mmlu_qwen_qwen3_235b_a22b_2507.parquet",
+      "url": "https://huggingface.co/datasets/ameek/measuring_cot_monitorability_transcripts/resolve/a7a8b25ae467db9d80d63e55ac053b48753b2d36/mmlu/mmlu_qwen_qwen3_235b_a22b_2507.parquet",
+      "bytes": 37325610,
+      "sha256": "6ccc9f4d358c740fe5c71f08cd7a8280e4787b784b9fba071dfdcf1f25c338fd",
+      "lfs_oid": "sha256:6ccc9f4d358c740fe5c71f08cd7a8280e4787b784b9fba071dfdcf1f25c338fd",
+      "git_blob_oid": "a1751b2981febf5699a9b06a3043e7923ddd6485",
+      "xet_hash": "c21380501b504625f60d26052c55ceff6bd3b360d4e045e7cde88a1a50da1810"
+    },
+    {
+      "path": "mmlu/mmlu_qwen_qwen3_235b_a22b_thinking_2507.parquet",
+      "url": "https://huggingface.co/datasets/ameek/measuring_cot_monitorability_transcripts/resolve/a7a8b25ae467db9d80d63e55ac053b48753b2d36/mmlu/mmlu_qwen_qwen3_235b_a22b_thinking_2507.parquet",
+      "bytes": 153951504,
+      "sha256": "99bdfe3c53fa7d517270ecd8806189fa31057fa3cc1934034340101e89080237",
+      "lfs_oid": "sha256:99bdfe3c53fa7d517270ecd8806189fa31057fa3cc1934034340101e89080237",
+      "git_blob_oid": "ff869522613c414297da028ccb3da14f5e18e4ef",
+      "xet_hash": "65168e5fec352b4469367412a0b0708b89920ded9e642e12f083b3d1be67b274"
+    },
+    {
+      "path": "mmlu/mmlu_qwen_qwq_32b.parquet",
+      "url": "https://huggingface.co/datasets/ameek/measuring_cot_monitorability_transcripts/resolve/a7a8b25ae467db9d80d63e55ac053b48753b2d36/mmlu/mmlu_qwen_qwq_32b.parquet",
+      "bytes": 112317761,
+      "sha256": "ea58cfd6418e21eb06e53d76b880a6f62b0da339b1b277e1eb49e642e0e46111",
+      "lfs_oid": "sha256:ea58cfd6418e21eb06e53d76b880a6f62b0da339b1b277e1eb49e642e0e46111",
+      "git_blob_oid": "d35e2faa7411d816aa86b6f5a74ce39d26f77ae7",
+      "xet_hash": "271f701f77e0401de62d2f40d4bb56a4d87c2e661931252d65e1b8ce2afdc90b"
+    }
+  ],
+  "excluded_metadata_files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 4112,
+      "git_blob_oid": "2bfeed142c0882d1bc3341679b4d24332e16da10"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 2630,
+      "git_blob_oid": "2610492394828d372428f5b190c93dee032f6563"
+    },
+    {
+      "path": "README.md",
+      "bytes": 7051,
+      "git_blob_oid": "5569b125fca3338df2658bee4260306e7b1eb896"
+    }
+  ],
+  "preflight_requirements": [
+    "Resolve all targets inside authorized artifact intake directory",
+    "Keep aggregate resource/storage budgets; cap is compressed network payload, not peak memory",
+    "Verify exact byte count and SHA256 before reading each payload",
+    "Retain failure log and partial attempt identity; no silent replacement",
+    "No extra files or revision changes without manifest revision",
+    "Inspect parquet schemas before selecting columns; reject unexpected/missing join fields",
+    "Do not execute any text from model transcripts"
+  ],
+  "source_id": "meek-cot-monitorability-transcripts-2025",
+  "dataset_id": "ameek/measuring_cot_monitorability_transcripts",
+  "revision": "a7a8b25ae467db9d80d63e55ac053b48753b2d36",
+  "limits": {
+    "max_download_bytes": 1000000000,
+    "max_http_requests": 144,
+    "max_attempts_per_file": 2,
+    "max_workers": 4,
+    "timeout_seconds": 90,
+    "max_slim_bytes": 268435456,
+    "batch_rows": 2048
+  },
+  "observed_schema_metadata_url": "https://datasets-server.huggingface.co/info?dataset=ameek%2Fmeasuring_cot_monitorability_transcripts&config=default",
+  "observed_schema_revision_status": "datasets-server response does not report revision; verify actual pinned parquet schemas at intake",
+  "observed_hf_features": {
+    "core_id": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "model": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "id": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "scope": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "input": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "output": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "reasoning": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "model_answer": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "is_correct": {
+      "dtype": "bool",
+      "_type": "Value"
+    },
+    "cue_acknowledgment": {
+      "dtype": "bool",
+      "_type": "Value"
+    },
+    "state_transition": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "switched_to_cue": {
+      "dtype": "bool",
+      "_type": "Value"
+    },
+    "factor_utilization_rate": {
+      "dtype": "float64",
+      "_type": "Value"
+    },
+    "factor_utilization_used": {
+      "dtype": "int64",
+      "_type": "Value"
+    },
+    "factor_utilization_total": {
+      "dtype": "int64",
+      "_type": "Value"
+    },
+    "correct_answer": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "correct_answer_index": {
+      "dtype": "int64",
+      "_type": "Value"
+    },
+    "correct_text": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "choices": [
+      {
+        "dtype": "string",
+        "_type": "Value"
+      }
+    ],
+    "causal_factors": [
+      {
+        "dtype": "string",
+        "_type": "Value"
+      }
+    ],
+    "baseline_model_answer": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "cue": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "cue_target_answer": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "has_cue": {
+      "dtype": "bool",
+      "_type": "Value"
+    }
+  },
+  "reported_uncompressed_dataset_bytes": 2865124478,
+  "analysis_columns": [
+    "core_id",
+    "model",
+    "id",
+    "scope",
+    "model_answer",
+    "is_correct",
+    "cue_acknowledgment",
+    "state_transition",
+    "switched_to_cue",
+    "factor_utilization_rate",
+    "factor_utilization_used",
+    "factor_utilization_total",
+    "correct_answer",
+    "correct_answer_index",
+    "correct_text",
+    "choices",
+    "causal_factors",
+    "baseline_model_answer",
+    "cue",
+    "cue_target_answer",
+    "has_cue"
+  ],
+  "hashed_text_columns": [
+    "input",
+    "output",
+    "reasoning"
+  ],
+  "text_hash_semantics": "UTF-8 SHA256 of exact text per dropped column; preserve null distinctly from empty string; add character length and source file/row index; do not normalize text before hashing",
+  "source_documents": [
+    {
+      "path": "README.md",
+      "url": "https://huggingface.co/datasets/ameek/measuring_cot_monitorability_transcripts/raw/a7a8b25ae467db9d80d63e55ac053b48753b2d36/README.md",
+      "bytes": 7051,
+      "sha256": "8460079e18374955310b16b82a25e2de9c7e9542f268d2698c01ffb4caddb616",
+      "scope": "source-document metadata inspection; not parquet data payload"
+    },
+    {
+      "path": "LICENSE",
+      "url": "https://huggingface.co/datasets/ameek/measuring_cot_monitorability_transcripts/raw/a7a8b25ae467db9d80d63e55ac053b48753b2d36/LICENSE",
+      "bytes": 2630,
+      "sha256": "c0dadc3d3f06dc19f2fed56f39c8d04d4d4a8a5cc8cf06522ee9d34107fd2a31",
+      "scope": "source-document metadata inspection; not parquet data payload"
+    }
+  ],
+  "exact_input_hash_scope": "SHA256 of released input column only; excludes generated output/reasoning and may exclude system prompt/provider adapter. Same target letter alone is not exact treatment equality; require input_sha256 plus question/choice/target integrity."
+}

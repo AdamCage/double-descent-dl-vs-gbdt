@@ -1,0 +1,192 @@
+{
+  "attempt_id": "20261108T111319-cf1d82f2a8",
+  "author_agent": "/root",
+  "criteria": [
+    {
+      "evidence": [
+        "figures/gallery/figure_manifest.json",
+        "figures/gallery/index.html"
+      ],
+      "id": "C1",
+      "verdict": "pass"
+    },
+    {
+      "evidence": [
+        "replay/replay/replay_report.json",
+        "replay/replay/discovery/analysis.json",
+        "replay/replay/discovery/dataquality.json",
+        "replay/replay/discovery/per_question.parquet",
+        "replay/replay/discovery/bootstrap.npz",
+        "replay/replay/discovery/pairs.csv",
+        "replay/replay/discovery/protocol.json",
+        "replay/replay/confirmation/analysis.json",
+        "replay/replay/confirmation/dataquality.json",
+        "replay/replay/confirmation/per_question.parquet",
+        "replay/replay/confirmation/bootstrap.npz",
+        "replay/replay/confirmation/pairs.csv",
+        "replay/replay/confirmation/protocol.json"
+      ],
+      "id": "C2",
+      "verdict": "pass"
+    },
+    {
+      "evidence": [
+        "package/portfolio/portfolio_manifest.json",
+        "package/portfolio/manuscript.pdf",
+        "package/portfolio/manuscript.md",
+        "package/portfolio/manuscript.html",
+        "package/portfolio/README.md",
+        "package/portfolio/provenance/replay_report.json",
+        "package/portfolio/provenance/pdf_render_report.json",
+        "figures/gallery/figure_manifest.json",
+        "replay/replay/replay_report.json"
+      ],
+      "id": "C3",
+      "verdict": "pass"
+    },
+    {
+      "evidence": [
+        "replay/replay/replay_report.json",
+        "package/portfolio/portfolio_manifest.json",
+        "package/portfolio/provenance/pdf_render_report.json",
+        "figures/gallery/figure_manifest.json"
+      ],
+      "id": "C4",
+      "verdict": "pass"
+    }
+  ],
+  "limitations": [
+    "This is acceptance of bounded derivative delivery and exact computational reproduction, not external peer review, independent model replication, certified priority, journal readiness or acceptance into a residency.",
+    "The three existing H2 claims retain their original restrictions: historical released judge-ACK proxy, equal released-question weighting, changing comparison support/populations, approximate conditional bootstrap families and unsupported GPQA confirmation. No causal cue effect, latent faithfulness or corrected true model ranking is established. Source judge false values can include parsing failures.",
+    "Original reused-question discovery is exploratory. The frozen confirmation questions are held out within the same released benchmarks, not an out-of-distribution or new-model replication. Reserve statistical outcomes remain unused. Earlier DD/CatBoost negative results and H1 failure/supersession remain visible.",
+    "All111 visual pairs were assessed through complete overview sheets, exact-coordinate checks and detailed repaired/example views; every final PDF page was individually inspected by the distinct visual reviewer. This numerical reviewer does not claim to have personally performed the separate complete visual inspection.",
+    "HTML received static parser/CSS/local-link/asset checks, not browser-rendered screenshots or responsive/print interaction testing. The CUA file-URL restriction was respected without a local-server/browser bypass. SVG text uses declared DejaVu; reader-side font substitution can change SVG appearance. PNG/PDF preserve reviewed appearance.",
+    "Package builder manifest remains honestly built_pending_visual_review because actual review occurred afterward. Use this bound accepted operational review plus the distinct visual review and a separate release receipt; do not edit immutable task outputs to rewrite history.",
+    "All111 logical figures provide artifact coverage, not111 independent scientific findings. The layout-only repair adds no new inference; all8CSV and four paper PNGs are byte-identical to attempt1.",
+    "Archive/restore verification and final STATE/release receipt are subsequent operational handoff work for parent. No external publication, application, submission or message is authorized by this local acceptance."
+  ],
+  "manifest_sha256": "11a96cb9a0e5487d0ad7c24c4b1539b202aeceec37c594477a74a6265d71909f",
+  "plan_sha256": "95057573e43ad184d3e66c313b5432856467bd14ba3a5bbf8c0add092fa3d06c",
+  "predictions": [
+    {
+      "evidence": [
+        "figures/gallery/figure_manifest.json",
+        "figures/gallery/index.html"
+      ],
+      "id": "P1",
+      "outcome": "Supported. Exactly111 PNG/SVG pairs and eight complete CSVs match the frozen matrix. Independently rebuilt19824 top-level CSV cells plus every nested scientific value/type from this attempt's frozen inputs; all232 gallery files and source/output hashes verified. Null/unsupported cases are retained without zero imputation; explicit descriptive example-selection rule matches. Distinct visual reviewer accepted all111PNG+111SVG overviews, repaired figures in both formats, all56 bottom pair baselines and611 N/A boxes. All8CSV and four paper PNGs remain byte-identical to preserved attempt1."
+    },
+    {
+      "evidence": [
+        "replay/replay/replay_report.json",
+        "replay/replay/discovery/analysis.json",
+        "replay/replay/discovery/dataquality.json",
+        "replay/replay/discovery/per_question.parquet",
+        "replay/replay/discovery/bootstrap.npz",
+        "replay/replay/discovery/pairs.csv",
+        "replay/replay/discovery/protocol.json",
+        "replay/replay/confirmation/analysis.json",
+        "replay/replay/confirmation/dataquality.json",
+        "replay/replay/confirmation/per_question.parquet",
+        "replay/replay/confirmation/bootstrap.npz",
+        "replay/replay/confirmation/pairs.csv",
+        "replay/replay/confirmation/protocol.json"
+      ],
+      "id": "P2",
+      "outcome": "Supported as computational reproduction. A genuinely new detached two-phase replay against the amended source binding passes all12 full output comparisons with zero mismatches and zero maximum float difference. Both scientific JSON outputs, data quality, all77664 discovery/88772 confirmation per-question rows and schema/metadata/null identities, every bootstrap array/dtype/ID/NaN mask, typed CSV and original protocols match. All21 required plus3 additional input bindings independently rehashed. No new model/data generation or reserve aggregation; this is not independent scientific/model replication."
+    },
+    {
+      "evidence": [
+        "package/portfolio/portfolio_manifest.json",
+        "package/portfolio/manuscript.pdf",
+        "package/portfolio/manuscript.md",
+        "package/portfolio/manuscript.html",
+        "package/portfolio/README.md",
+        "package/portfolio/provenance/replay_report.json",
+        "package/portfolio/provenance/pdf_render_report.json",
+        "figures/gallery/figure_manifest.json",
+        "replay/replay/replay_report.json"
+      ],
+      "id": "P3",
+      "outcome": "Supported for final delivery. All313 listed package files plus manifest accounted; all232 gallery and70 evidence copies are byte-exact, with the fresh passed report correctly bound and old passed report retained unchanged as history. Manuscript230a and four selected captions/images match accepted sources. All9 actual PDF pages separately rendered/visually accepted, including complete56-row forest/model legend; executable/modules/all4 actual Vera fonts independently rehashed. Main10local references and9citation anchors plus342 gallery references resolve under static checks; no scripts/remote assets. Builder status built_pending_visual_review is intentionally immutable; this distinct acceptance and the bound visual review provide subsequent operational review."
+    },
+    {
+      "evidence": [
+        "replay/replay/replay_report.json",
+        "package/portfolio/portfolio_manifest.json",
+        "package/portfolio/provenance/pdf_render_report.json",
+        "figures/gallery/figure_manifest.json"
+      ],
+      "id": "P4",
+      "outcome": "Supported within observed limits. Attempt2 runtime129.265s, task outputs188021168bytes. Both attempts combined408s and376626549bytes remain below3600s/512MiB;2attempt ceiling preserved. DeclaredCPU4/API0/GPU0/training0/network0 respected; numeric producer, data, protocols, models, weights, seeds, thresholds and manuscript unchanged. Artifact marker was executed exactly once before attempt1 and not repeated. Initial visual REVISE and its valid numerical evidence remain intact; no silent omission, rebinding or budget reset."
+    }
+  ],
+  "report": {
+    "path": "research/stages/R18/REPORT.md",
+    "sha256": "add0fee9cdefd5fb84f95d70e5ff2f011745c0b7d5a64a85b00212b441523104"
+  },
+  "review_mode": "subagent_review",
+  "reviewer": {
+    "name": "/root/reset_critic",
+    "harness": "codex",
+    "role": "stage_reviewer",
+    "independence": "Distinct numerical/replay/package reviewer; authored none of the evaluated implementation, tests, PLAN, manuscript, figures, captions or REPORT. Authored independent checkers and reviews only. Independently rebuilt every CSV value and verified all new replay/package/runtime/hash/link bindings. Actual all-figure/every-PDF-page visual acceptance is separately bound to distinct /root/cot_visual_reviewer, who authored none of the evaluated implementation. Local team review, not external peer review or independent model replication."
+  },
+  "reviewer_agent": "/root/reset_critic",
+  "schema_version": 1,
+  "scientific_validity": "not_assessed",
+  "stage_id": "R18",
+  "verdict": "accept",
+  "reviewed_at_utc": "2026-11-08T11:24:17.982449+00:00",
+  "blocking_issues": [],
+  "independent_QA_evidence": [
+    {
+      "path": "research/reviews/R18-independent-visual-qa.json",
+      "sha256": "833dec87df044b1755544611729befae7ad3d61065fd469717abbe2616252e2a"
+    },
+    {
+      "path": "research/reviews/R18-attempt2-visual-qa.json",
+      "sha256": "833dec87df044b1755544611729befae7ad3d61065fd469717abbe2616252e2a"
+    },
+    {
+      "path": "research/reviews/R18-attempt1-v1.json",
+      "sha256": "b0a28812694445b12c18ba97af89e6d3e0043fa1988dc37f9e3ed54306104ae9"
+    },
+    {
+      "path": "research/reviews/R18-attempt1-visual-qa.json",
+      "sha256": "c863af240aeb760c76418a021dabf676097321f35b8b08c604fbe72b54f19dbf"
+    },
+    {
+      "path": "research/stages/R18/inputs/design-review-attempt2.json",
+      "sha256": "988385424076bc444df387efba6189531265a267997855ff7c3b9ca439f569b3"
+    },
+    {
+      "path": "artifacts/intake/R18-pdf-operation-started.json",
+      "sha256": "8d42b02e8c88429b7eff27b7287b7db7bf75db4beb013cb75d92bdee46bb0e47"
+    },
+    {
+      "path": "artifacts/intake/R18-attempt2-independent-numeric-qa/check_gallery.py",
+      "sha256": "b486651b499dbd4b15ac938fd77a284a12316dbc99bc56cc0f73d41f56eedc64"
+    },
+    {
+      "path": "artifacts/intake/R18-attempt2-independent-numeric-qa/check_package.py",
+      "sha256": "cd708780dd9837606b70abbeb5149ee6b31b81537663bbaef034ecacd55be6fd"
+    },
+    {
+      "path": "artifacts/intake/R18-attempt2-independent-numeric-qa/gallery-verification.json",
+      "sha256": "a17a9674032220556ab2fb2cb15333a3fd576ef376c592f0f84f9a70366f78cd"
+    },
+    {
+      "path": "artifacts/intake/R18-attempt2-independent-numeric-qa/package-verification.json",
+      "sha256": "9ecb6ea3172048d615e311ec162af6ceddf67ac010920fcaf5b6218cdbc88b08"
+    },
+    {
+      "path": "artifacts/intake/R18-attempt2-independent-numeric-qa/repair-scope-verification.json",
+      "sha256": "74c92e7c8f66253607bfb3a2cd2c69ed9ddb7cb9731fa718b93c3701642a5026"
+    },
+    {
+      "path": "artifacts/intake/R18-attempt2-independent-numeric-qa/runtime-verification.json",
+      "sha256": "90558efc0dca2c79effd93e8a27e7f6d26288c6c62731ce8f12401e102a323f7"
+    }
+  ]
+}

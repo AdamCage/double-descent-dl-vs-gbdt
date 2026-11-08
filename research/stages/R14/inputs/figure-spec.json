@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "stage_id": "R14",
+  "mode": "derivative_delivery_specification_before_scientific_execution",
+  "source_implementation_authorship": [
+    "/root/literature",
+    "/root/r14_figures"
+  ],
+  "renderer": "scripts/plot_response_forecast.py",
+  "shared_renderer_read_only": "scripts/plot_v2_research.py",
+  "source_files": [
+    "analysis.json",
+    "forecast_rows.jsonl",
+    "contexts.jsonl",
+    "directions.jsonl",
+    "predictions.npz",
+    "environment.json"
+  ],
+  "matrix": {
+    "contexts": 32,
+    "context_amplitude_rows": 64,
+    "pilot_directions": 128,
+    "full_response_directions": 256,
+    "train_rows_per_direction": 128,
+    "evaluation_rows_per_direction": 256,
+    "independent_data_draws": 4
+  },
+  "figure_groups_common": {
+    "all_full_direction_context_panels": 32,
+    "all_cheap_direction_context_panels": 32,
+    "measurements_geometry_quality_decomposition_panels": 19,
+    "cost_panels": 5
+  },
+  "timing_table_count_derivation": {
+    "context_scalar_components": 16,
+    "direction_scalar_components": 6,
+    "formula": "32*16 + 384*6 = 2816"
+  },
+  "branches": {
+    "complete_discovery_cross_validation": {
+      "static_png_svg_pairs": 113,
+      "interactive_html": 0,
+      "source_tables": 7,
+      "oof_panels": 25,
+      "table_rows": {
+        "tables/r14_all_forecast_rows.csv": 64,
+        "tables/r14_all_contexts.csv": 32,
+        "tables/r14_all_direction_metrics.csv": 384,
+        "tables/r14_all_raw_responses.csv": 147456,
+        "tables/r14_all_timing_components.csv": 2816,
+        "tables/r14_cost_scopes.csv": 11,
+        "tables/r14_oof_fold_fits.csv": 24
+      }
+    },
+    "inconclusive_invalid_direction": {
+      "static_png_svg_pairs": 89,
+      "interactive_html": 0,
+      "source_tables": 6,
+      "oof_panels": 1,
+      "table_rows": {
+        "tables/r14_all_forecast_rows.csv": 64,
+        "tables/r14_all_contexts.csv": 32,
+        "tables/r14_all_direction_metrics.csv": 384,
+        "tables/r14_all_raw_responses.csv": 147456,
+        "tables/r14_all_timing_components.csv": 2816,
+        "tables/r14_cost_scopes.csv": 11
+      },
+      "omitted_table": "tables/r14_oof_fold_fits.csv",
+      "interpretation": "Complete raw direction/context matrices retained. One explicit unavailable OOF panel; no fabricated model predictions or zero-filled fold table."
+    }
+  },
+  "completeness_enforcement": "Renderer delivery_spec declares every figure ID and CSV row count from complete source evidence before render; finish rejects missing/duplicate/unexpected figure IDs, non-PNG/SVG pairs or table/row mismatch. Independent verification also compares this fixed pre-run matrix.",
+  "interpretation": "Descriptive discovery only. All contexts/seeds/amplitudes/directions are included; observed ranges are not confidence intervals. No model fitting/network, no new n, novelty certificate, double-descent or independent-confirmation claim."
+}

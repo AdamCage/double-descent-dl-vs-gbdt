@@ -1,5 +1,27 @@
 # Cursor: автономное исполнение и проверяемое исследование
 
+Ревизия v2: прямой запрос пользователя разрешил также Codex и новые stages
+([0004](decisions/0004-v2-research-refactor.md)). Описанные ниже workflow,
+заморозка, отдельный reviewer и бюджеты действуют и для этого lane; harness
+записывается как `codex`, без имитации Cursor/human approval. Общий resource
+preflight теперь проверяется самим runner внутри project lock, а elapsed/status
+каждого нового attempt автоматически добавляются в append-only ledger.
+Повторно вручную эти attempts не записывать. Для team review обоих harness
+проверяются разные author/reviewer IDs.
+
+Обычный `check_repository.py` не запускает fitting smoke. Он записывает
+`tests_run` отдельно от `tests_returncode` и отклоняет пустое discovery.
+Малые fitting проверки запускаются явно отдельным research task:
+`python scripts/run_unit_checks.py --pattern test_acceleration_boosting.py --model-smoke`.
+Исторические source snapshots и закрытые R0–R9 не переписываются.
+
+Если исправление исходников уже сделано до записи отрицательного review старой
+полной попытки, доступен `review <ID> --attempt <old> --review <scored.json>
+--historical`. Он проверяет frozen evidence и точные bindings, сохраняет
+только `revise`/`reject`; `accept` этим маршрутом запрещён. Принимающий review
+по-прежнему требует live sources. Это сохранение технической истории, а не
+обход admission gates. Неполный/повреждённый attempt таким импортом не исправляется.
+
 Действует вместе с `AGENTS.md` и `docs/research-program.md`. Это локальный
 операционный workflow, не sandbox, не механизм доказательства научной истины
 и не сервис, который сам запускает Cursor после перезагрузки компьютера.
@@ -172,6 +194,23 @@ Closure из `.research/workflow/closures/` архивируется отдел�
 read-only EpistemeOS export либо согласованный SQLite backup. DB файловый архив
 через `evidence_bundle.py` запрещён.
 
+### Архив повторных snapshots без потери файлов
+
+Для больших стадий с повторяющимися input/package bytes доступен
+`scripts/deduplicated_evidence_bundle.py create --source <stage-directory>
+--output <new-exclusive.zip>`. ZIP содержит каждый исходный path/size/SHA256
+в EVIDENCE-INDEX.json, уникальные content blobs и standalone RESTORE.py.
+`verify <archive>` сверяет всё покрытие и bytes; `restore <archive> --output
+<new-directory>` восстанавливает полные обычные файлы с проверкой hashes,
+без symlinks/hardlinks и без перезаписи. Можно извлечь RESTORE.py и выполнять
+эти команды без checkout и внешних зависимостей, только Python stdlib.
+Это тот же evidence, не новое scientific n. Прерванные архивы сохраняются
+и явно маркируются failed, не перезаписываются.
+
+Фактический recovery R13 и границы restore check записаны в
+research/stages/R13/HANDOFF-2026-11-08.md. SHA256 архива сохраняется снаружи;
+самопроверка inventory не является цифровой подписью или scientific review.
+
 ## EpistemeOS и научные claims
 
 ```powershell
@@ -203,7 +242,9 @@ lane и быть неизменной по SHA-256. Один лишь operationa
 создаёт claim: нужны содержательный review и exact evidence/statement bindings.
 Метки личности логические: код не удостоверяет, кто написал файл, внешнюю
 независимость или истинность утверждения. `scientific_validity=not_assessed`
-сохраняется; human approval не придумывается. Сейчас accepted claims нет.
+сохраняется; human approval не придумывается. Текущие accepted local claims
+перечислены в research/claims.json с отдельными bound decisions; это не
+внешнее подтверждение приоритета или достижения всей исследовательской цели.
 
 ## Проверки инфраструктуры
 

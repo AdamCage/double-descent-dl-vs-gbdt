@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "stage_id": "R17",
+  "execution_authorized": true,
+  "input_sha256": "cf41ae989be031362fed849a89387be87ca5d8231f89faa94ff8c1a96763f6ec",
+  "spec_sha256": "e28633394bacca464ffa4190527dd0d55b4db25ddc019c5f17a6bbb8e958c66c",
+  "models": [
+    "openrouter_anthropic_claude-3-5-sonnet",
+    "openrouter_anthropic_claude-3-7-sonnet",
+    "openrouter_deepseek_deepseek-chat-v3-0324",
+    "openrouter_deepseek_deepseek-r1-0528",
+    "openrouter_qwen_qwen-2.5-72b-instruct",
+    "openrouter_qwen_qwen3-235b-a22b-2507",
+    "openrouter_qwen_qwen3-235b-a22b-thinking-2507",
+    "openrouter_qwen_qwq-32b"
+  ],
+  "datasets": [
+    "bbh",
+    "gpqa",
+    "mmlu"
+  ],
+  "split_seed": 20261108,
+  "split_modulus": 20,
+  "discovery_buckets": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "confirmation_buckets": [
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+  ],
+  "reserve_buckets": [
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19
+  ],
+  "bootstrap_replicates": 5000,
+  "bootstrap_batch": 32,
+  "bootstrap_seed": {
+    "discovery": 16016,
+    "confirmation": 17017
+  },
+  "min_clusters": {
+    "discovery": 50,
+    "confirmation": 100
+  },
+  "min_overlap_coverage": 0.25,
+  "practical_effect": 0.05,
+  "tie_band": 0.02,
+  "min_joint_finite_bootstrap_fraction": 0.99,
+  "population": "equal released core question, common context, observed version; not source subdataset macro; excluding complete baseline-union clusters with contradictory same-input cross-question reference metadata",
+  "scope": "historical cached judge acknowledgment; no latent faithfulness or causal version attribution",
+  "reserve_policy": "No reserve ACK analysis. New hypothesis requires separate preregistration and distinct review; reserve used once.",
+  "metadata_conflict_policy": "quarantine_entire_baseline_union_cluster_before_outcomes",
+  "metadata_audit_sha256": "c6b267d3e253f6d8f404073f94fa330d669a9dc94afca6901821f23ffa89593a"
+}

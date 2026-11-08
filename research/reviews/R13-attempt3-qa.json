@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "stage_id": "R13",
+  "attempt_id": "20261107T214015-f184806e46",
+  "harness": "codex",
+  "reviewer_agent": "/root/science_critique",
+  "review_mode": "subagent_review",
+  "verdict": "accept",
+  "visual_scope": {
+    "all187PNG_contact_overview": true,
+    "contact_sheets": [
+      {
+        "path": "artifacts/intake/R13-visual-qa/20261107T214015-f184806e46/contact-01.png",
+        "sha256": "b77eff9b44de7a2b47d5555633865e6c95437229cd45c87059c2d5dc7cacc370"
+      },
+      {
+        "path": "artifacts/intake/R13-visual-qa/20261107T214015-f184806e46/contact-02.png",
+        "sha256": "5a61e34588f9289b4797b0a74d368740afbadb45e806f4d5938cb9d1fb9cb062"
+      },
+      {
+        "path": "artifacts/intake/R13-visual-qa/20261107T214015-f184806e46/contact-03.png",
+        "sha256": "5bb45646c049c813cb4f01b4b6783a29ebffc12414802fcfdc76a02473efb873"
+      },
+      {
+        "path": "artifacts/intake/R13-visual-qa/20261107T214015-f184806e46/contact-04.png",
+        "sha256": "635d4944c4d408e09120d790689bcfbcedda7ff26dd1f2c4a7a39e278dbcb684"
+      },
+      {
+        "path": "artifacts/intake/R13-visual-qa/20261107T214015-f184806e46/contact-05.png",
+        "sha256": "1807a3bbdadc48074d10bbc36d3d1c054a2f4d06221e5eee77f5d4b43f740b08"
+      },
+      {
+        "path": "artifacts/intake/R13-visual-qa/20261107T214015-f184806e46/contact-06.png",
+        "sha256": "8d8a80e2b5cbfd236e685f0dca7d7e2482ab6b1dd038e52401b89197612421f4"
+      },
+      {
+        "path": "artifacts/intake/R13-visual-qa/20261107T214015-f184806e46/contact-07.png",
+        "sha256": "3f9c7cdced9b4d44084d3a9020be8dc663dc73d4ec6574357696324a640d1269"
+      }
+    ],
+    "individual_fullresolution_ids": [
+      "r12_fixed_late_acceleration_gates",
+      "r12_fixed_gain_paired_contrasts",
+      "r11_tree_paired_contrasts",
+      "r10_null_intervals_large_ar",
+      "r10_localization_late_hinge",
+      "r11_synthetic_clock_comparison",
+      "r12_synthetic_zero_error_timing",
+      "controls_r2_linear_geometric_interpolating",
+      "controls_r4_gbdt_depth"
+    ],
+    "detail_limit": "Overview does not certify individual tiny labels on every figure; detailed checks were9 representative panels."
+  },
+  "evidence": [
+    {
+      "path": "artifacts/research/R13/20261107T214015-f184806e46/tasks/figures/gallery/figure_manifest.json",
+      "sha256": "c8290c14cd6c495d4a7d00d53d8331eee65fe6229f250f2dde1e745d222feafb"
+    },
+    {
+      "path": "artifacts/research/R13/20261107T214015-f184806e46/tasks/package/science-package/package-manifest.json",
+      "sha256": "49e7c188dff4d07b86ae4363b9afdcb90fd9b1d911c3a2c2fd331ca40af3badf"
+    },
+    {
+      "path": "artifacts/research/R13/20261107T214015-f184806e46/tasks/validation/validation.json",
+      "sha256": "3ef3a2b4adbb78b2f780822f51c0d8c947f9fb25e57710c2a98939f59f1a705f"
+    }
+  ],
+  "independent_checks": {
+    "gallery": "187PNG/SVG+2HTML+16CSV verified",
+    "CSV": "All16byteidentical to fully source-audited attempt2",
+    "package_files": 901,
+    "package_bytes": 1320440971,
+    "source_versions": "Every perstage sourcebinding matched",
+    "portable_R10": "All7188x256finite rawvalues, JSON andmetadataexact; no redispatch"
+  },
+  "resolved_blockers": [
+    "R12gate leftsmall ticks readable with\u00d710^-4",
+    "R12fixedgain bothsmallaxes readable with\u00d710^-4"
+  ],
+  "nonblocking_limits": [
+    "Contact-sheet overview covered all187PNGs; detailed individual full-resolution inspection covered9representative panels, not every label of every figure. Byte/format/inventory checks covered allstaticfiles.",
+    "The gate right after-drop axis remains dense but distinguishable; some scientific exponent offset text is close to long axis labels. These are nonblocking presentation limitations, not changed numerical values.",
+    "Late-window plots retain broad y ranges from the full trajectories, reducing local visual resolution; fixed-window inferential panels separately quantify the prespecified effect.",
+    "HTML companions include inlinePlotly with no external script src tags. This review inspected source and outputbytes, not actual browserhover/zoom interaction.",
+    "R10replay checks relocated packagedpaths in the existing environment, not a fresh dependency installation or cross-platform bitwise reproducibility; originalseed replay is not independent scientific replication.",
+    "Attempt1failure and attempt2completed/readability-revise remain preserved andcharged. Explicitamendment2to3 stayed within parentmax3 andunchangedstage/global caps; no scientific n was added.",
+    "R13 closes a derivative methodological release milestone only. It establishes no newdouble-descent mechanism, natural annealing explanation, noveltypriority, journalreadiness or completion of the original scientificgoal."
+  ],
+  "no_fits_or_dispatch": true,
+  "full_original_user_goal_achieved": false,
+  "scientific_validity": "not_assessed"
+}

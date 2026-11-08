@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "catalog_id": "R8-synthetic-trajectories-2026-11-07",
+  "length": 100,
+  "local_window": 5,
+  "global_min_fraction": 0.2,
+  "rss_improvement_min": 0.05,
+  "exclusions": [
+    "no model fit",
+    "no dataset download",
+    "a single reported boundary does not identify multiple changes",
+    "this catalog is discovery and is not a confirmation sample"
+  ],
+  "series": [
+    {
+      "id": "fast_plateau_moderate",
+      "formula": "piecewise_linear",
+      "claim_role": "review_counterexample",
+      "known_transition": 70,
+      "knots": [[0, 1.0], [29, 0.42], [70, 0.42], [99, 0.275]]
+    },
+    {
+      "id": "smooth_exponential",
+      "formula": "exponential_decay",
+      "claim_role": "smooth_negative_control",
+      "rate": 0.04
+    },
+    {
+      "id": "late_tail",
+      "formula": "piecewise_linear",
+      "claim_role": "censored_tail",
+      "known_transition": 90,
+      "knots": [[0, 1.0], [90, 1.0], [99, 0.5]]
+    },
+    {
+      "id": "single_late_drop",
+      "formula": "piecewise_linear",
+      "claim_role": "global_positive_control",
+      "known_transition": 50,
+      "knots": [[0, 1.0], [50, 1.0], [99, 0.2]]
+    },
+    {
+      "id": "two_drops",
+      "formula": "piecewise_linear",
+      "claim_role": "excluded_multiple",
+      "knots": [[0, 1.0], [20, 0.6], [45, 0.6], [70, 0.35], [99, 0.35]]
+    }
+  ]
+}

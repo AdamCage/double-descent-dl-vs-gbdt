@@ -1,0 +1,128 @@
+{
+  "attempt_id": "20261108T073937-26f816e66d",
+  "author_agent": "/root",
+  "criteria": [
+    {
+      "id": "C1",
+      "verdict": "pass",
+      "evidence": [
+        "unit-checks/checks.json",
+        "response-study/models.json",
+        "response-study/contexts.jsonl",
+        "response-study/directions.jsonl",
+        "response-study/predictions.npz",
+        "response-study/progress.json",
+        "response-study/budget_checks.json",
+        "response-study/environment.json"
+      ],
+      "reason": "Fixed32contexts/416uniquefits/384directions/64endpoints complete, no dropped/replaced observation; stageunit30tests with28pass/2optin fitting skips. Current final reviewer reran all CBM/fit-NPZ hashes and source data bindings, independently loaded every416CBM:832final predictions,832leaf-index calls and64baseprefix32 predictions exactly matched saved arrays; leaf counts/unit weights/control metadata checked. Live verify1119files passed; one serial model job, CPU4, no GPU/API/download."
+    },
+    {
+      "id": "C2",
+      "verdict": "pass",
+      "evidence": [
+        "response-study/analysis.json",
+        "response-study/data.npz",
+        "response-study/predictions.npz",
+        "response-study/operators.npz",
+        "response-study/feature_snapshots.jsonl"
+      ],
+      "reason": "Current reviewer reran separate mathematical reconstruction of all32 train/evaluation operators at32/512 and128baseline checks; maximum known-control error7.993605777301127e-15 under unchangedatol1e-10/rtol0. Every native rounded delta, all384 full/frozen/structural response arrays,768split-direction norms/cross terms and64C/D endpoints matched. Train-only quantiles, disjoint pilot/response streams, paired seed channels and pre-response feature snapshots verified. Invalidactualdelta0; norm closure maximum5.684341886080802e-14; signed cross is not additive nonnegative variance."
+    },
+    {
+      "id": "C3",
+      "verdict": "pass",
+      "evidence": [
+        "response-study/analysis.json",
+        "response-study/forecast_rows.jsonl",
+        "response-study/timings.json",
+        "response-study/feature_snapshots.jsonl"
+      ],
+      "reason": "All64OOF predictions for B0..B4/A independently recomputed by augmented least-squares ridge, including training-fold scaling/intercept; maxdifference8.77e-15. All aggregate/draw/teacher MAE, range and gates independently match. P2refuted: A MAE.24255870158417397 vsB3.2501409331788036 gives3.0312percent, below20; other gate parts do not rescue it. Broad P3 method-cost with only available basefit/operator is NOT_ESTABLISHED: EFC trajectory mixed into14.976943base prediction seconds; accounting bounds.1605053-.7778347 straddle.5. SourceP3_cost=true verifies only narrow additional-probe ratio.1506197241. REPORT explicitly separates this from overall cost and preservesgo=false. C3 explicitly requires faithful evaluation including negative/inconclusive outcomes, not positive P2/P3: assessment complete; no scientific retry or confirmation is warranted for this stopped candidate."
+    },
+    {
+      "id": "C4",
+      "verdict": "pass",
+      "evidence": [
+        "figures/gallery/figure_manifest.json",
+        "figures/gallery/index.html",
+        "response-study/analysis.json"
+      ],
+      "reason": "Independent visual co-reviewer checked all113PNG/SVG pairs, exact7CSV matrix/hashes/source coverage and every CSV cell against JSON/NPZ including147456rawresponse rows,2816timingcomponents and24foldfits. All113figures overviewed on6contact sheets,9keyfigures full-resolution; parent reviewer also personally viewed MAE/cost/decision panels. No blocking readability or numerical-label issue. NegativeP2/goFALSE visible; teacher-risk distinct from approximation discrepancy, observed ranges notCI, signed cross preserved. Source decision P3true must be read with REPORT cost qualification, not treated as whole-method feasibility or novelty proof."
+    }
+  ],
+  "limitations": [
+    "Only4independent data draws from2fixed synthetic teachers; teachers/prefixes/amplitudes/directions/evaluation rows are correlated within draw.64rows/416models are not64/416independent repetitions. No iid significance, confidence intervals or independent confirmation.",
+    "Discovery LODO folds overlap in training data. Fixed alpha/features were not tuned after endpoints, but no transfer to new generators, real datasets, alternative CatBoost settings, MLP or double descent is established.",
+    "D/C measure finite-label-response approximation discrepancy, not true teacher prediction error or nonnegative extra variance. MeanD can grow while clean risk falls; this is descriptive, not a new causal mechanism/scaling law.",
+    "Material P3 measurement gap: base_prediction_seconds mixes ordinary baseline predictions with512training stages needed forEFC. Overall forecaster cost given merely basefit/operator is not identified; sourceP3true is only a probe-component gate. Cost/decision plots require REPORT qualification. No general standalone-service speedup or utility claim.",
+    "All timings are environment-specific component measurements; IO and leaf evidence costs are separate, and component ratios are not universal end-to-end deployment timing guarantees.",
+    "Actual normalbranch113pairs/7CSV audited; invalid-zero-delta branch did not occur and is covered by preflight fixture tests, not new actual scientific evidence. Visual coverage is overview of all113 plus9full-resolution figures, not per-pixel certification of every figure.",
+    "Reloaded CatBoost1.2.10 get_all_params rounds learning_rate/bayesian_matrix_reg by9.8839e-12. Separate1e-10 metadata-display check was used only for those2fields; native predictions remained EXACT and study replay tolerances unchanged. Fresh-model helper guard is not certified as generic roundtripAPI for arbitraryCBM; reconstruction uses stored actualeta/partitions.",
+    "Current final reviewer reran the prior separate mathematical audit with attribution and independently implemented native/gate/cost checks. This is local team review, not an external identity certification, new scientific replication or priority/journal-readiness assessment.",
+    "Full original research goal remains incomplete. CandidateA must remain stopped; this operational accept does not authorize R15confirmation or a positive novelty/practical-value claim."
+  ],
+  "manifest_sha256": "29d2cf114c9886b61f10ad5b7f5955ac4b63f157edc6fdc46e2e012919347f05",
+  "plan_sha256": "2cdb3c1411ea7155a3a89c0abc1bfe8b4f58e85b9c8ae3a552347cdc336f41df",
+  "predictions": [
+    {
+      "id": "P1",
+      "outcome": "Supported for the prescribed known fixed-partition/native-label control only: all128baseline split/checkpoint checks passed atatol1e-10/rtol0; maxerror7.993605777301127e-15, independent operator reconstruction agrees, all416saved native models exact. This is technical control, not new theory or independent scientific replication.",
+      "evidence": [
+        "response-study/analysis.json",
+        "response-study/operators.npz",
+        "response-study/predictions.npz",
+        "response-study/models.json"
+      ]
+    },
+    {
+      "id": "P2",
+      "outcome": "Refuted within this frozen discovery protocol. A MAE.24255870158417397 vsB1.25602287674423807/B2.2547045512965802/B3.2501409331788036 improves5.2590/4.7686/3.0312percent, below required20percent against each. Gain criterion passes onlyvsB0/B4; perbaseline3/3/4draw and both-teacher gates and range1.5720428594518647 pass but conjunctive decision remainsgo=false/stop_this_forecast_candidate. No claim of impossibility for all forecasts.",
+      "evidence": [
+        "response-study/analysis.json",
+        "response-study/forecast_rows.jsonl"
+      ]
+    },
+    {
+      "id": "P3",
+      "outcome": "Inconclusive for overall forecaster cost when only full basefit/frozen operator are already available. Narrow measured cheap-probe augmentation ratio3.654164098203182/24.260860392358154=.15061972407846652 passes. Required EFC-stage trajectory cost is not isolated from base predictions; broader extra accounting bounds.1605052844-.7778347138 cross.5; cold component cost ratio1.0797860742. Thus rawcomputedP3true does not establish whole conditional/deployment cheapness. REPORT accurately retains this material limitation; P2 already stops the candidate independently of cost interpretation.",
+      "evidence": [
+        "response-study/analysis.json",
+        "response-study/timings.json"
+      ]
+    }
+  ],
+  "report": {
+    "path": "research/stages/R14/REPORT.md",
+    "sha256": "34763eb84b76dc80d0cdd28f0709d341db1fe586834c0fc58fccc548d7ed6ba0"
+  },
+  "review_mode": "subagent_review",
+  "reviewer": {
+    "name": "Independent Codex final R14 continuation reviewer",
+    "harness": "codex",
+    "role": "stage_reviewer",
+    "independence": "Current reviewer and visual co-reviewer authored none of the evaluated PLAN, implementation, renderer, forecasts, REPORT or author analysis. Current reviewer personally reran raw/operator/OOF audit and all416 native saved-model checks, plus an independent gate/cost assessment. Visual co-reviewer inspected all113 overview and9 full-resolution figures. No fits or new draws. Preceding partial reviewer /root/r14_reviewer is credited separately; its identity/signature is not reused."
+  },
+  "reviewer_agent": "/root/r14_final_review",
+  "schema_version": 1,
+  "scientific_validity": "not_assessed",
+  "stage_id": "R14",
+  "verdict": "accept",
+  "coauthor_agents": [
+    "/root/catboost_study",
+    "/root/r14_implementation",
+    "/root/literature",
+    "/root/r14_figures"
+  ],
+  "qa_records": [
+    {
+      "path": "research/reviews/R14-final-review-qa.json",
+      "sha256": "9eb19fc0a2e93a18bc4144e9cfa5583fef2df1c8612edfc9d493e4e72b3239b3"
+    },
+    {
+      "path": "research/reviews/R14-final-visual-qa.json",
+      "sha256": "e6f25c0172d85100231efb0b39e79b61528e0645b8c44d635e41ecfc1be5df75"
+    }
+  ],
+  "operational_acceptance_scope": "Complete faithful assessment and preservation of a negative discovery candidate, including explicitly inconclusive broader cost endpoint. Not scientific success, novelty, confirmation or completion of the original goal."
+}

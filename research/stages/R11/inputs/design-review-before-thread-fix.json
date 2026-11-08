@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "stage_id": "R11",
+  "review_mode": "subagent_review",
+  "harness": "codex",
+  "author_agent": "/root/catboost_study",
+  "coauthor_agents": ["/root"],
+  "reviewer_agent": "/root/science_critique",
+  "reviewer_independence": "Reviewer did not author the implementation, scientific protocol, analysis, or conclusions. First round ran seven unit tests including one tiny technical continuation fit. Second round ran the final eight-test selection: six non-fitting tests passed and two opt-in fitting smoke tests were skipped. The scientific matrix was not executed.",
+  "verdict": "accept",
+  "blocking_issues": [],
+  "previous_round": {"path": "research/stages/R11/inputs/design-review-round1.json", "sha256": "902b5103c8aad0c66616b7f08ab0d53f749d8006be47257ecb5529335db33ad8", "verdict": "revise"},
+  "resolved_preflight_checks": [
+    "Both fitting tests now require explicit RESEARCH_MODEL_SMOKE=1; default discovery skips them. scripts/run_unit_checks.py --model-smoke opts in only in the R11 research unit task, which precedes the scientific task.",
+    "An unbalanced5/11 training split test verifies nonzero initial and final prevalence logits and matches initial predictions to the complete first-segment prefix of the continuation model on all three splits. The task will execute this opt-in check before scientific training.",
+    "Machine plan explicitly binds all72 models/*.cbm in addition to six other scientific files. Unit wrapper and complete imported local source modules are declared."
+  ],
+  "reviewed_artifacts": [
+    {"path": "src/acceleration_boosting.py", "sha256": "8bb28cd9fbe77c692c1a08c7705a17ccae776382cbda77865d9c0568a396f242"},
+    {"path": "scripts/r11_run.py", "sha256": "10471400ecd602e5d76293dc95455bc7b0be35bc8503da80aebddd63b8cff82c"},
+    {"path": "tests/test_acceleration_boosting.py", "sha256": "fb1b03ad479861d881e46d83cac7f1fca5fdb75fb9fef7df5ad39e94d87fabf1"},
+    {"path": "research/stages/R11/PLAN.md", "sha256": "713967818f195ec1a4df71db9ff5b2b0f565faf39d20e52972932bd79c09143f"},
+    {"path": "research/stages/R11/inputs/protocol.json", "sha256": "67e09270f43c54bb2299918676a225d28d1a2411ff5c25218edd2a95f3ef66c1"},
+    {"path": "research/plans/R11.json", "sha256": "15225c5e890c824baff455cbd327173eb2a94811b56214a5443cf2f17b91390f", "status_at_review": "draft"},
+    {"path": "scripts/run_unit_checks.py", "sha256": "d2fc3c360195cd7f8d69689b0dc60940dcd416e2b31b9396e60bfeafb9528c52"}
+  ],
+  "checks": {
+    "scientific_design": "No substantive statistical blocker found in the frozen scientific values. Three schedules over two datasets and12 seed units yield72 final models. All arms use the same two-fit continuation mechanism, preventing continuation itself from being unique to stepup/down arms. Contrast concerns complete schedule regimes, not an isolated instantaneous jump with identical prehistory.",
+    "learning_rate_budget": "Each arm has128 steps at each of two rates summing to.22, so the total prescribed LR sum is28.16. Cumulative LR clock includes zero at t0 and assigns rates to the correct tree segments. It is a descriptive prescribed clock, not a guarantee of equal gradient paths or partitions.",
+    "boundary_and_intervals": "For boundary128 and32 points, before97:129 and after128:160 exactly match the scientific plan. Primary four contrasts use paired seed differences. Two-sided Student-t intervals with per-comparison alpha=.05/4 have nominal Bonferroni family coverage under the stated approximation. Four clock diagnostics form a separate declared family; no joint eight-contrast95% claim is justified.",
+    "data_and_predictions": "Synthetic data regenerated per seed; breast cancer repeats are conditional on one fixed corpus. Splits are disjoint and stratified, model/split channels separated and paired across schedules; no preprocessing or test selection. Raw logits, labels, row order, split indices, per-iteration exact classification errors, margins, gradient summaries and models are saved. t0 verifies the fitted bias against the train-prevalence logit.",
+    "unit_tests": "Final uv run python -m unittest tests.test_acceleration_boosting -v: eight discovered, six non-fitting tests passed, two fitting tests skipped. R11 unit task explicitly opts into both fitting smoke tests and must pass before the scientific grid. No scientific matrix was executed during this review.",
+    "machine_preflight": "Two ordered tasks, unit-checks with explicit --model-smoke and schedule-study, with60/1700-second task timeouts,1800-second attempt budget,3600-second total and2 attempts, agree with scientific plan. Registry execution remains false at review. Draft-to-frozen machine status transition is anticipated after acceptance; validate-plan and final resource gates remain mandatory. Automatic controls additionally snapshot registry, machine plan, authorization, workflow CLI/modules, pyproject.toml and uv.lock. Any newly imported resource-control modules must remain in that automatic closure.",
+    "math_note": "The algebra in docs/methods/acceleration-identifiability.md is correct on its stated domain, including zero steps for plateaus and positive loss excluding eta=1. However this reviewer supplied the constructive quadratic argument earlier and therefore cannot serve as the independent scientific reviewer of that mathematical conclusion. A separate non-contributing subagent must bind-review it."
+  },
+  "scientific_validity": "not_assessed"
+}

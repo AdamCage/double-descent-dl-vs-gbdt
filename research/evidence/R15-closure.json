@@ -1,0 +1,13 @@
+{
+  "attempt_id": "20261108T090628-8efd502cb8",
+  "closed_at": "2026-11-08T09:17:22.042284+00:00",
+  "dependency_closure_hashes": {
+    "R14": "125ae7b613eb9dbe573c5426cd99e1fe79aa457af893fed1e7d5f9fe051af8db"
+  },
+  "manifest_sha256": "a4081216beb27c0183138648c99115bebdfbadaee82ed84004ef5e4f1f7bcbed",
+  "review_sha256": "861e1dfe09c7669c289620a13eac87e4e18ae7a4a9ee48089976533e61e3aae5",
+  "schema_version": 1,
+  "scientific_validity": "not_assessed",
+  "stage_id": "R15",
+  "status": "operationally_closed"
+}

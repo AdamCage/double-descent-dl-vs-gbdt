@@ -1,0 +1,39 @@
+{
+  "created_at": "2026-11-08T07:29:23.329946+00:00",
+  "stage": "R13",
+  "status": "verified",
+  "archive": {
+    "path": "research/evidence/R13-runs-2026-11-08-deduplicated-v3.zip",
+    "sha256": "dcf9c43d990677e64b2408f76d97557267459bc2e3a3f5a2fc62dbce3bc38324",
+    "bytes": 791114717,
+    "files": 4449,
+    "unique_blobs": 1358,
+    "restored_bytes": 6634782233
+  },
+  "interrupted_archive": {
+    "path": "research/evidence/R13-runs-2026-11-08-v2.tar.gz",
+    "sha256": "709d2d59ff76ebe43a9a2947b475c07f97feb4ee8e9c3a91c75a63a6d900c497",
+    "bytes": 5826524778,
+    "verification": "failed EOFError: compressed file ended before end-of-stream marker",
+    "cause": "explicit user pause; verified worker stopped; never overwritten or deleted"
+  },
+  "actual_restore_sample": [
+    "20261107T210201-651abc88d9/manifest.json",
+    "20261107T210937-844511dd10/manifest.json",
+    "20261107T214015-f184806e46/manifest.json",
+    "20261107T210201-651abc88d9/inputs/artifacts/intake/R13/frozen-runs/R11/20261107T194028-229b223740/tasks/schedule-study/models/synthetic_12001_constant.cbm",
+    "20261107T214015-f184806e46/review.json"
+  ],
+  "restore_scope": "All-path/full-byte detached verification plus complete toy round-trip tests; five actual files restored byte-exact from all three attempts. Full6634782233-byte tree not duplicated under storage budget.",
+  "scientific_validity": "not_assessed",
+  "detached_verification": {
+    "command": "uv run python artifacts/intake/R13-archive-recovery/RESTORE.py verify research/evidence/R13-runs-2026-11-08-deduplicated-v3.zip",
+    "exit_code": 0,
+    "verified": true,
+    "files": 4449,
+    "unique_blobs": 1358,
+    "restored_bytes": 6634782233,
+    "unique_bytes": 789671543,
+    "dependencies": "Python standard library only; verifier extracted byte-exact from the archive"
+  }
+}
