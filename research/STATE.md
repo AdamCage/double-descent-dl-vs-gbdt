@@ -1,5 +1,16 @@
 # Завершено 2026-11-08: подтверждённый H2-аудит и готовое портфолио
 
+Обновление упаковки 15 ноября 2026: [portfolio overview](../docs/portfolio/cot-audit-overview.md)
+объясняет связь с CoT evaluation/scalable oversight и публичными исследованиями
+Anthropic; добавлены честные формулировки для портфолио и CV с разделением
+вклада человека и Codex-агентов. Это редакционная поставка, не новый stage или
+научный claim. [Release notes](../docs/releases/cot-audit-portfolio-2026-11-15.md).
+`uv sync --frozen` и полный `check_repository.py --output checks.json` прошли:
+248 tests, 9 skipped, structural problems отсутствуют. Historical verify R18
+`20261108T111319-cf1d82f2a8` подтвердил 569 файлов.
+Следующая команда для проверки состояния: `uv run python scripts/research.py next`.
+Новых экспериментов или подтверждённых личных методических решений не добавлено.
+
 Это действующее состояние. Все записи ниже разделителя «История» сохранены
 как журнал и не задают очередь запуска. Все 20 зарегистрированных этапов
 R0–R18, включая R17D, операционно закрыты без closure errors; `next` возвращает
